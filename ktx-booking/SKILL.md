@@ -1,6 +1,6 @@
 ---
 name: ktx-booking
-description: Search, reserve, inspect, and cancel KTX or Korail tickets in Korea with the koreantrain Python package. Use when the user asks for KTX seats, Korail bookings, train changes, or reservation status.
+description: Search, reserve, inspect, and cancel KTX or Korail tickets in Korea with the korail2 Python package. Use when the user asks for KTX seats, Korail bookings, train changes, or reservation status.
 license: MIT
 metadata:
   category: travel
@@ -12,7 +12,7 @@ metadata:
 
 ## What this skill does
 
-`koreantrain`의 Korail interface로 KTX/Korail 열차 조회, 예약, 예약 확인, 취소를 처리한다.
+`korail2`로 KTX/Korail 열차 조회, 예약, 예약 확인, 취소를 처리한다.
 
 ## When to use
 
@@ -30,7 +30,7 @@ metadata:
 ## Prerequisites
 
 - Python 3.10+
-- `python -m pip install koreantrain`
+- `python -m pip install korail2`
 - `sops` and `age` installed
 - common setup reviewed in `../k-skill-setup/SKILL.md`
 - secret policy reviewed in `../docs/security-and-secrets.md`
@@ -57,14 +57,19 @@ metadata:
 SOPS_AGE_KEY_FILE="$HOME/.config/k-skill/age/keys.txt" \
 sops exec-env "$HOME/.config/k-skill/secrets.env" 'python - <<'"'"'PY'"'"'
 import os
-from koreantrain import KorailService
+from korail2 import Korail, TrainType
 
-svc = KorailService(
+korail = Korail(
     os.environ["KSKILL_KTX_ID"],
     os.environ["KSKILL_KTX_PASSWORD"],
-    train_type="ktx",
 )
-trains = svc.search("서울", "부산", "20260328", "090000", time_limit="130000")
+trains = korail.search_train(
+    "서울",
+    "부산",
+    "20260328",
+    "090000",
+    train_type=TrainType.KTX,
+)
 
 for idx, train in enumerate(trains[:5], start=1):
     print(idx, train)
@@ -87,18 +92,23 @@ PY
 SOPS_AGE_KEY_FILE="$HOME/.config/k-skill/age/keys.txt" \
 sops exec-env "$HOME/.config/k-skill/secrets.env" 'python - <<'"'"'PY'"'"'
 import os
-from koreantrain import KorailService, Passenger, SeatType
+from korail2 import AdultPassenger, Korail, ReserveOption, TrainType
 
-svc = KorailService(
+korail = Korail(
     os.environ["KSKILL_KTX_ID"],
     os.environ["KSKILL_KTX_PASSWORD"],
-    train_type="ktx",
 )
-trains = svc.search("서울", "부산", "20260328", "090000", time_limit="130000")
-reservation = svc.reserve(
+trains = korail.search_train(
+    "서울",
+    "부산",
+    "20260328",
+    "090000",
+    train_type=TrainType.KTX,
+)
+reservation = korail.reserve(
     trains[0],
-    passengers=[Passenger.adult(1)],
-    seat_type=SeatType.GENERAL_FIRST,
+    passengers=[AdultPassenger()],
+    option=ReserveOption.GENERAL_FIRST,
 )
 print(reservation)
 PY
@@ -108,6 +118,21 @@ PY
 ### 4. Inspect or cancel
 
 취소는 대상 예약을 다시 조회해 식별한 뒤에만 진행한다.
+
+```bash
+SOPS_AGE_KEY_FILE="$HOME/.config/k-skill/age/keys.txt" \
+sops exec-env "$HOME/.config/k-skill/secrets.env" 'python - <<'"'"'PY'"'"'
+import os
+from korail2 import Korail
+
+korail = Korail(
+    os.environ["KSKILL_KTX_ID"],
+    os.environ["KSKILL_KTX_PASSWORD"],
+)
+print(korail.reservations())
+PY
+'
+```
 
 ## Done when
 
@@ -123,5 +148,6 @@ PY
 
 ## Notes
 
-- `koreantrain`은 SRT와 KTX를 같은 인터페이스로 다룰 수 있어 v1 구현을 얇게 유지하기 좋다
+- `korail2`는 KTX/Korail 전용 표면이라 train type과 passenger model이 분명하다
+- 결제 완료까지는 자동화하지 않는다
 - aggressive polling은 피한다

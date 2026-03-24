@@ -1,6 +1,6 @@
 ---
 name: srt-booking
-description: Search, reserve, inspect, and cancel SRT tickets in Korea with the koreantrain Python package. Use when the user asks for SRT seat availability, booking, canceling, or sold-out retry plans.
+description: Search, reserve, inspect, and cancel SRT tickets in Korea with the SRTrain library. Use when the user asks for SRT seat availability, booking, canceling, or sold-out retry plans.
 license: MIT
 metadata:
   category: travel
@@ -12,7 +12,7 @@ metadata:
 
 ## What this skill does
 
-`koreantrain` 위에서 SRT 좌석을 조회하고, 조건이 맞으면 예약과 취소까지 진행한다.
+`SRTrain` 위에서 SRT 좌석을 조회하고, 조건이 맞으면 예약과 취소까지 진행한다.
 
 ## When to use
 
@@ -30,7 +30,7 @@ metadata:
 ## Prerequisites
 
 - Python 3.10+
-- `python -m pip install koreantrain`
+- `python -m pip install SRTrain`
 - `sops` and `age` installed
 - common setup reviewed in `../k-skill-setup/SKILL.md`
 - secret policy reviewed in `../docs/security-and-secrets.md`
@@ -65,10 +65,10 @@ metadata:
 SOPS_AGE_KEY_FILE="$HOME/.config/k-skill/age/keys.txt" \
 sops exec-env "$HOME/.config/k-skill/secrets.env" 'python - <<'"'"'PY'"'"'
 import os
-from koreantrain import SRTService
+from SRT import SRT
 
-svc = SRTService(os.environ["KSKILL_SRT_ID"], os.environ["KSKILL_SRT_PASSWORD"])
-trains = svc.search("수서", "부산", "20260328", "080000", time_limit="120000")
+srt = SRT(os.environ["KSKILL_SRT_ID"], os.environ["KSKILL_SRT_PASSWORD"])
+trains = srt.search_train("수서", "부산", "20260328", "080000", time_limit="120000")
 
 for idx, train in enumerate(trains[:5], start=1):
     print(idx, train)
@@ -92,14 +92,14 @@ PY
 SOPS_AGE_KEY_FILE="$HOME/.config/k-skill/age/keys.txt" \
 sops exec-env "$HOME/.config/k-skill/secrets.env" 'python - <<'"'"'PY'"'"'
 import os
-from koreantrain import Passenger, SRTService, SeatType
+from SRT import Adult, SRT, SeatType
 
-svc = SRTService(os.environ["KSKILL_SRT_ID"], os.environ["KSKILL_SRT_PASSWORD"])
-trains = svc.search("수서", "부산", "20260328", "080000", time_limit="120000")
-reservation = svc.reserve(
+srt = SRT(os.environ["KSKILL_SRT_ID"], os.environ["KSKILL_SRT_PASSWORD"])
+trains = srt.search_train("수서", "부산", "20260328", "080000", time_limit="120000")
+reservation = srt.reserve(
     trains[0],
-    passengers=[Passenger.adult(1)],
-    seat_type=SeatType.GENERAL_FIRST,
+    passengers=[Adult(1)],
+    special_seat=SeatType.GENERAL_FIRST,
 )
 print(reservation)
 PY
@@ -109,6 +109,19 @@ PY
 ### 5. Inspect or cancel
 
 예약 확인이나 취소도 같은 credential path를 유지한다. 취소 전에는 대상 예약을 다시 식별한다.
+
+```bash
+SOPS_AGE_KEY_FILE="$HOME/.config/k-skill/age/keys.txt" \
+sops exec-env "$HOME/.config/k-skill/secrets.env" 'python - <<'"'"'PY'"'"'
+import os
+from SRT import SRT
+
+srt = SRT(os.environ["KSKILL_SRT_ID"], os.environ["KSKILL_SRT_PASSWORD"])
+reservations = srt.get_reservations()
+print(reservations)
+PY
+'
+```
 
 ## Done when
 
@@ -124,5 +137,6 @@ PY
 
 ## Notes
 
-- `koreantrain`은 통합 API지만 SRT는 내부적으로 비공식 표면에 의존할 수 있다
+- `SRTrain`은 SRT 전용 라이브러리라서 스킬 의도가 더 선명하다
+- 결제 완료까지는 자동화하지 않는다
 - 자동 재시도 루프는 계정 보호 차원에서 짧고 보수적으로 유지한다
