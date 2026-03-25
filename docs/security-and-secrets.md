@@ -81,4 +81,4 @@ sops exec-env "$HOME/.config/k-skill/secrets.env" '<command>'
 - dotenv 파일을 그대로 암호화할 수 있다
 - `sops exec-env`로 런타임 주입 패턴이 단순하다
 
-이 레포의 credential-bearing skill은 전부 이 정책을 전제로 작성한다. 자세한 공통 설치 절차는 [`k-skill-setup/SKILL.md`](/Users/jeffrey/Projects/k-skill/k-skill-setup/SKILL.md)를 본다.
+이 레포의 credential-bearing skill은 전부 이 정책을 전제로 작성한다. 자세한 공통 설치 절차는 [공통 설정 가이드](setup.md)를 본다.

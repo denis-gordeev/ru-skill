@@ -1,5 +1,16 @@
 # 설치 방법
 
+## 무엇을 설치할지 먼저 고르기
+
+| 하고 싶은 일 | 같이 설치할 것 |
+| --- | --- |
+| KBO 경기 결과만 보기 | `kbo-results` |
+| 로또 결과만 보기 | `lotto-results` |
+| SRT 예매하기 | `k-skill-setup`, `srt-booking` |
+| KTX 예매하기 | `k-skill-setup`, `ktx-booking` |
+| 서울 지하철 도착정보 보기 | `k-skill-setup`, `seoul-subway-arrival` |
+| 전부 설치하기 | `k-skill-setup` + 나머지 전체 |
+
 ## 에이전트에게 맡기기
 
 Codex나 Claude Code에 아래 문장을 그대로 붙여 넣으면 된다.
@@ -60,5 +71,5 @@ npx --yes skills add . --list
 
 관련 문서:
 
-- [`k-skill-setup/SKILL.md`](/Users/jeffrey/Projects/k-skill/k-skill-setup/SKILL.md)
-- [`docs/security-and-secrets.md`](/Users/jeffrey/Projects/k-skill/docs/security-and-secrets.md)
+- [공통 설정 가이드](setup.md)
+- [보안/시크릿 정책](security-and-secrets.md)
