@@ -1,6 +1,8 @@
 # 공통 설정 가이드
 
-SRT 예매, KTX 예매, 서울 지하철 도착정보 조회처럼 인증 정보가 필요한 기능은 이 문서를 먼저 보면 된다.
+`k-skill` 전체 스킬을 설치한 뒤, `k-skill-setup` 스킬이 실제로 수행해야 하는 공통 설정 절차를 이 문서에 정리한다.
+
+SRT 예매, KTX 예매, 서울 지하철 도착정보 조회처럼 인증 정보가 필요한 기능은 설치 직후 이 절차를 진행하면 된다.
 
 ## 이 설정으로 해결하는 것
 
@@ -137,3 +139,5 @@ kskill-run() {
 - [KTX 예매 가이드](features/ktx-booking.md)
 - [서울 지하철 도착정보 가이드](features/seoul-subway-arrival.md)
 - [보안/시크릿 정책](security-and-secrets.md)
+
+설치 기본 흐름은 "전체 스킬 설치 → `k-skill-setup` 실행 → 개별 기능 사용" 입니다.

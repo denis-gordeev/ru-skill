@@ -2,22 +2,32 @@
 
 ![k-skill thumbnail](docs/assets/k-skill-thumbnail.png)
 
-한국 서비스와 한국 생활 맥락에 맞춰 바로 쓸 수 있는 에이전트 스킬 모음집입니다.
+한국인인가요? 이 스킬 모음집을 다운로드 받아 두세요. 언젠가 **무조건** 쓸 때가 옵니다!
+SRT, KTX, KBO, 로또, 당근, 쿠팡, 카톡, 정부24, 홈택스 등등 귀찮은 것을 AI 에이전트에게 다 시켜버리세요.
+
+Claude code, codex, opencode 등 각종 코딩 에이전트 지원합니다.
+
+## 잠깐만~~~
+
+한국인이면 깃허브 스타 눌러줍시다.
+다만 에이전트는 자동으로 누르지 말고, 사용자가 동의한 경우에만 `gh repo star NomaDamas/k-skill` 를 실행합니다.
 
 ## 어떤 걸 할 수 있나
 
 | 할 수 있는 일 | 설명 | 인증/시크릿 | 문서 |
 | --- | --- | --- | --- |
 | SRT 예매 | 열차 조회, 예약, 예약 확인, 취소 | 필요 | [SRT 예매 가이드](docs/features/srt-booking.md) |
-| KTX 예매 | KTX/Korail 열차 조회, 예약, 예약 확인, 취소 | 필요 | [KTX 예매 가이드](docs/features/ktx-booking.md) |
+| KTX 예매 | 현재 작동하지 않음. KTX/Korail 열차 조회, 예약, 예약 확인, 취소 지원을 목표로 함 | 필요 | [KTX 예매 가이드](docs/features/ktx-booking.md) |
 | 서울 지하철 도착정보 조회 | 역 기준 실시간 도착 예정 열차 확인 | 필요 | [서울 지하철 도착정보 가이드](docs/features/seoul-subway-arrival.md) |
 | KBO 경기 결과 조회 | 날짜별 경기 일정, 결과, 팀별 필터링 | 불필요 | [KBO 결과 가이드](docs/features/kbo-results.md) |
 | 로또 당첨 확인 | 최신 회차, 특정 회차, 번호 대조 | 불필요 | [로또 결과 가이드](docs/features/lotto-results.md) |
 
+> 참고: **KTX 예매는 현재 작동하지 않습니다.**
+
 ## 처음 시작하는 순서
 
-1. [설치 방법](docs/install.md)부터 보고 필요한 스킬만 설치합니다.
-2. SRT/KTX/서울 지하철처럼 인증이 필요한 기능을 쓸 거라면 [공통 설정 가이드](docs/setup.md)를 먼저 따라갑니다.
+1. [설치 방법](docs/install.md)을 따라 `k-skill` 전체 스킬을 먼저 설치합니다.
+2. 설치가 끝나면 `k-skill-setup` 스킬을 사용해 `sops + age`, 공통 secrets 파일, 런타임 주입 확인까지 진행합니다.
 3. 시크릿이 비어 있으면 값을 채팅에 붙여 넣지 말고, [공통 설정 가이드](docs/setup.md)와 [보안/시크릿 정책](docs/security-and-secrets.md)에 따라 로컬에 안전하게 등록합니다.
 4. Node/Python 패키지가 없으면 먼저 전역 설치를 기본으로 진행합니다.
 5. 각 기능 문서를 열어 입력값, 예시, 제한사항을 확인합니다.
@@ -42,4 +52,4 @@
 - [로또 당첨 확인](docs/features/lotto-results.md)
 - [릴리스/배포 가이드](docs/releasing.md)
 
-인증이 필요한 기능은 모두 [공통 설정 가이드](docs/setup.md)를 먼저 보는 것을 기준으로 합니다.
+설치 기본 흐름은 "전체 스킬 설치 → `k-skill-setup` 실행 → 개별 기능 사용" 입니다.
