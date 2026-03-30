@@ -1,7 +1,7 @@
 {
   "name": "k-lotto",
   "version": "0.2.0",
-  "description": "Official dhlottery-backed client for Korean Lotto results",
+  "description": "Legacy dhlottery-backed client retained during the ru-skill migration",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NomaDamas/k-skill.git"
+    "url": "git+https://github.com/denis-gordeev/ru-skill.git"
   },
   "keywords": [
-    "k-skill",
+    "ru-skill",
     "korea",
     "lotto",
     "dhlottery"

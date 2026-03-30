@@ -1,7 +1,7 @@
 {
   "name": "toss-securities",
   "version": "0.2.0",
-  "description": "Safe read-only tossctl wrapper for Toss Securities skill workflows",
+  "description": "Legacy read-only tossctl wrapper retained during the ru-skill migration",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NomaDamas/k-skill.git"
+    "url": "git+https://github.com/denis-gordeev/ru-skill.git"
   },
   "keywords": [
-    "k-skill",
+    "ru-skill",
     "korea",
     "toss",
     "securities",

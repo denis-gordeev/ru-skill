@@ -1,7 +1,7 @@
 {
   "name": "blue-ribbon-nearby",
   "version": "0.2.0",
-  "description": "Official Blue Ribbon Survey nearby restaurant client for asking a user's location and finding nearby ribbon picks",
+  "description": "Legacy Blue Ribbon Survey nearby restaurant client retained during the ru-skill migration",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NomaDamas/k-skill.git"
+    "url": "git+https://github.com/denis-gordeev/ru-skill.git"
   },
   "keywords": [
-    "k-skill",
+    "ru-skill",
     "korea",
     "restaurant",
     "blue-ribbon",

@@ -1,7 +1,7 @@
 {
   "name": "kleague-results",
   "version": "0.2.0",
-  "description": "Official K League match results and standings client",
+  "description": "Legacy K League results and standings client retained during the ru-skill migration",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NomaDamas/k-skill.git"
+    "url": "git+https://github.com/denis-gordeev/ru-skill.git"
   },
   "keywords": [
-    "k-skill",
+    "ru-skill",
     "korea",
     "kleague",
     "soccer"
