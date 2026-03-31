@@ -4,7 +4,7 @@ description: After installing the full k-skill bundle, configure and verify the 
 license: MIT
 metadata:
   category: setup
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

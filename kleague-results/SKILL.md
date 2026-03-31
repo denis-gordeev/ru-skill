@@ -4,7 +4,7 @@ description: 케이리그 경기 결과와 현재 순위를 날짜/팀 기준으
 license: MIT
 metadata:
   category: sports
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

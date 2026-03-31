@@ -4,7 +4,7 @@ description: Check Korean Lotto draw results, latest rounds, and ticket matches 
 license: MIT
 metadata:
   category: utility
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

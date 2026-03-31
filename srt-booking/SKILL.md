@@ -4,7 +4,7 @@ description: Search, reserve, inspect, and cancel SRT tickets in Korea with the 
 license: MIT
 metadata:
   category: travel
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

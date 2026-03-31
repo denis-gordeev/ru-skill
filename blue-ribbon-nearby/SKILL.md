@@ -4,7 +4,7 @@ description: Use when the user asks for nearby restaurants or 근처 맛집. Alw
 license: MIT
 metadata:
   category: food
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

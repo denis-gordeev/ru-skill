@@ -4,7 +4,7 @@ description: Convert HWP files to JSON, Markdown, or HTML, extract images, and c
 license: MIT
 metadata:
   category: documents
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

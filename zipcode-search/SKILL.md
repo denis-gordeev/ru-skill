@@ -4,7 +4,7 @@ description: Look up a Korean postcode from a known address with the official eP
 license: MIT
 metadata:
   category: utility
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

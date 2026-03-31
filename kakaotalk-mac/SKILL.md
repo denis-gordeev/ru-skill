@@ -4,7 +4,7 @@ description: Use kakaocli on macOS to read KakaoTalk chats, search messages, and
 license: MIT
 metadata:
   category: messaging
-  locale: ko-KR
+  locale: ru-RU
   phase: v1.5
 ---
 

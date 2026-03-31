@@ -4,7 +4,7 @@ description: Search, reserve, inspect, and cancel KTX or Korail tickets in Korea
 license: MIT
 metadata:
   category: travel
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

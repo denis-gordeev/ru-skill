@@ -4,7 +4,7 @@ description: Use when the user asks for nearby bars or 근처 술집. Always ask
 license: MIT
 metadata:
   category: food
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

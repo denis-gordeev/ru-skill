@@ -4,7 +4,7 @@ description: Fetch KBO game schedules and results for a specific date with the k
 license: MIT
 metadata:
   category: sports
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

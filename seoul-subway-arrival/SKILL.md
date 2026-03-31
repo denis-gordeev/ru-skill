@@ -4,7 +4,7 @@ description: Look up Seoul real-time subway arrival information with the officia
 license: MIT
 metadata:
   category: transit
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

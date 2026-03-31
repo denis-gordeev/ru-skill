@@ -4,7 +4,7 @@ description: Look up Daiso products by store name and product keyword using offi
 license: MIT
 metadata:
   category: retail
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 

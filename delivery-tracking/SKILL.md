@@ -4,7 +4,7 @@ description: Track CJ대한통운 and 우체국 parcels by invoice number with o
 license: MIT
 metadata:
   category: logistics
-  locale: ko-KR
+  locale: ru-RU
   phase: v1
 ---
 
