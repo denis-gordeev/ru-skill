@@ -23,27 +23,27 @@
 Достаточно любого из этих трёх вариантов команды `skills`.
 
 ```bash
-npx --yes skills add <owner/repo> --list
-pnpm dlx skills add <owner/repo> --list
-bunx skills add <owner/repo> --list
+npx --yes skills add denis-gordeev/ru-skill --list
+pnpm dlx skills add denis-gordeev/ru-skill --list
+bunx skills add denis-gordeev/ru-skill --list
 ```
 
 Рекомендуется сначала поставить весь набор навыков.
 
 ```bash
-npx --yes skills add <owner/repo> --all -g
+npx --yes skills add denis-gordeev/ru-skill --all -g
 ```
 
 После установки запустите `k-skill-setup` для общей настройки.
 
 ```text
-k-skill-setup 스킬을 사용해서 공통 설정을 진행해줘.
+Используй навык k-skill-setup и выполни общую настройку окружения.
 ```
 
 Точечную установку имеет смысл делать только если это действительно нужно, например для быстрого теста read-only-навыков.
 
 ```bash
-npx --yes skills add <owner/repo> \
+npx --yes skills add denis-gordeev/ru-skill \
   --skill hwp \
   --skill kbo-results \
   --skill kleague-results \
@@ -58,10 +58,10 @@ npx --yes skills add <owner/repo> \
   --skill delivery-tracking
 ```
 
-인증이 필요한 기능만 부분 설치할 때도 `k-skill-setup` 은 같이 넣는다.
+Если ставите только навыки с авторизацией, `k-skill-setup` всё равно должен идти вместе с ними.
 
 ```bash
-npx --yes skills add <owner/repo> \
+npx --yes skills add denis-gordeev/ru-skill \
   --skill k-skill-setup \
   --skill srt-booking \
   --skill ktx-booking \
@@ -69,7 +69,7 @@ npx --yes skills add <owner/repo> \
   --skill fine-dust-location
 ```
 
-로컬 저장소에서 바로 전체 설치 테스트:
+Проверка полной установки прямо из локального репозитория:
 
 ```bash
 npx --yes skills add . --all -g
@@ -83,7 +83,7 @@ npx --yes skills add . --all -g
 npx --yes skills add . --list
 ```
 
-설치 반영 확인:
+Проверка, что установка действительно отразилась в глобальном списке:
 
 ```bash
 npx --yes skills ls -g
@@ -144,5 +144,5 @@ python3 -m pip install SRTrain korail2 pycryptodome
 
 Связанные документы:
 
-- [공통 설정 가이드](setup.md)
-- [보안/시크릿 정책](security-and-secrets.md)
+- [Общая настройка](setup.md)
+- [Политика секретов](security-and-secrets.md)

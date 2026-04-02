@@ -21,74 +21,74 @@
 
 ## Что сейчас доступно
 
-| 할 수 있는 일 | 설명 | 인증/시크릿 | 문서 |
+| Навык | Описание | Нужны секреты | Документ |
 | --- | --- | --- | --- |
-| SRT 예매 | 열차 조회, 예약, 예약 확인, 취소 | 필요 | [SRT 예매 가이드](docs/features/srt-booking.md) |
-| KTX 예매 | Dynapath anti-bot 대응 helper 로 KTX/Korail 열차 조회, 예약, 예약 확인, 취소 | 필요 | [KTX 예매 가이드](docs/features/ktx-booking.md) |
-| 카카오톡 Mac CLI | macOS에서 kakaocli로 대화 조회, 검색, 테스트 전송, 확인 후 실제 전송 | 불필요 | [카카오톡 Mac CLI 가이드](docs/features/kakaotalk-mac.md) |
-| 서울 지하철 도착정보 조회 | 역 기준 실시간 도착 예정 열차 확인 | 필요 | [서울 지하철 도착정보 가이드](docs/features/seoul-subway-arrival.md) |
-| 사용자 위치 미세먼지 조회 | `k-skill-proxy` 로 현재 위치 또는 지역 fallback 기준 PM10/PM2.5 확인 | 불필요 | [사용자 위치 미세먼지 조회 가이드](docs/features/fine-dust-location.md) |
-| KBO 경기 결과 조회 | 날짜별 경기 일정, 결과, 팀별 필터링 | 불필요 | [KBO 결과 가이드](docs/features/kbo-results.md) |
-| K리그 경기 결과 조회 | 날짜별 K리그1/K리그2 경기 결과, 팀별 필터링, 현재 순위 확인 | 불필요 | [K리그 결과 가이드](docs/features/kleague-results.md) |
-| 토스증권 조회 | `tossctl` 기반 계좌 요약, 포트폴리오, 시세, 주문내역, 관심종목 조회 | 필요 | [토스증권 조회 가이드](docs/features/toss-securities.md) |
-| 로또 당첨 확인 | 최신 회차, 특정 회차, 번호 대조 | 불필요 | [로또 결과 가이드](docs/features/lotto-results.md) |
-| HWP 문서 처리 | `.hwp` → JSON/Markdown/HTML 변환, 이미지 추출, 배치 처리, Windows 직접 제어 선택 | 불필요 | [HWP 문서 처리 가이드](docs/features/hwp.md) |
-| 근처 블루리본 맛집 | 현재 위치를 먼저 확인한 뒤 블루리본 서베이 공식 표면으로 근처 블루리본 맛집 검색 | 불필요 | [근처 블루리본 맛집 가이드](docs/features/blue-ribbon-nearby.md) |
-| 근처 술집 조회 | 현재 위치(서울역/강남/사당 등)를 먼저 확인한 뒤 카카오맵 기준으로 영업 상태·메뉴·좌석·전화번호가 포함된 술집 조회 | 불필요 | [근처 술집 조회 가이드](docs/features/kakao-bar-nearby.md) |
-| 우편번호 검색 | 주소 키워드로 공식 우체국 우편번호 조회 | 불필요 | [우편번호 검색 가이드](docs/features/zipcode-search.md) |
-| 다이소 상품 조회 | 다이소몰 공식 매장/상품/재고 표면으로 특정 매장의 상품 재고 확인 | 불필요 | [다이소 상품 조회 가이드](docs/features/daiso-product-search.md) |
-| 택배 배송조회 | CJ대한통운·우체국 공식 표면으로 배송 상태를 조회하고, carrier adapter 규칙으로 추가 택배사 확장을 준비 | 불필요 | [택배 배송조회 가이드](docs/features/delivery-tracking.md) |
+| `srt-booking` | Поиск поездов SRT, бронирование, просмотр и отмена брони | Да | [Гайд по SRT](docs/features/srt-booking.md) |
+| `ktx-booking` | Поиск и бронирование поездов KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
+| `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
+| `seoul-subway-arrival` | Просмотр ожидаемого времени прибытия поездов метро Сеула по станции | Да | [Гайд по метро Сеула](docs/features/seoul-subway-arrival.md) |
+| `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Гайд по fine dust](docs/features/fine-dust-location.md) |
+| `kbo-results` | Результаты и расписание матчей KBO по датам и командам | Нет | [Гайд по KBO](docs/features/kbo-results.md) |
+| `kleague-results` | Результаты матчей и таблица K League 1/2 | Нет | [Гайд по K League](docs/features/kleague-results.md) |
+| `toss-securities` | Read-only-сводки по счёту, портфелю, котировкам и watchlist через `tossctl` | Да | [Гайд по Toss Securities](docs/features/toss-securities.md) |
+| `lotto-results` | Проверка последних и конкретных тиражей корейской лотереи | Нет | [Гайд по lotto](docs/features/lotto-results.md) |
+| `hwp` | Конвертация `.hwp` в JSON/Markdown/HTML, извлечение изображений и пакетная обработка | Нет | [Гайд по HWP](docs/features/hwp.md) |
+| `blue-ribbon-nearby` | Поиск ближайших ресторанов Blue Ribbon Survey после уточнения местоположения | Нет | [Гайд по Blue Ribbon nearby](docs/features/blue-ribbon-nearby.md) |
+| `kakao-bar-nearby` | Поиск ближайших баров по данным Kakao Map с режимом работы и контактами | Нет | [Гайд по Kakao bar nearby](docs/features/kakao-bar-nearby.md) |
+| `zipcode-search` | Поиск официального почтового индекса по адресу | Нет | [Гайд по postcode search](docs/features/zipcode-search.md) |
+| `daiso-product-search` | Поиск магазинов, товаров и pickup-остатков в Daiso Mall | Нет | [Гайд по Daiso product search](docs/features/daiso-product-search.md) |
+| `delivery-tracking` | Отслеживание доставки через официальные поверхности CJ Logistics и Korea Post | Нет | [Гайд по delivery tracking](docs/features/delivery-tracking.md) |
 
 Все перечисленные выше функции пока остаются в основном legacy-набором корейских сценариев. Они сохранены, чтобы не ломать существующие рабочие потоки, пока репозиторий переориентируется на русскоязычное использование.
 
 ## Текущие пакеты
 
-| 패키지 | 설명 | 상태 |
+| Пакет | Описание | Статус |
 | --- | --- | --- |
-| `k-lotto` | 한국 로또 결과 조회 패키지 | 레거시 |
-| `daiso-product-search` | 다이소 매장/상품/재고 조회 | 레거시 |
-| `blue-ribbon-nearby` | 블루리본 맛집 조회 | 레거시 |
-| `kakao-bar-nearby` | 카카오맵 기반 근처 술집 조회 | 레거시 |
-| `kleague-results` | K리그 경기/순위 조회 | 레거시 |
-| `toss-securities` | 토스증권 읽기 전용 래퍼 | 레거시 |
-| `k-skill-proxy` | 무료 API용 프록시 서버 베이스 | 유지 |
+| `k-lotto` | Клиент для результатов корейской лотереи | Legacy |
+| `daiso-product-search` | Поиск магазинов, товаров и остатков Daiso | Legacy |
+| `blue-ribbon-nearby` | Поиск ресторанов Blue Ribbon nearby | Legacy |
+| `kakao-bar-nearby` | Поиск баров рядом через Kakao Map | Legacy |
+| `kleague-results` | Результаты матчей и таблица K League | Legacy |
+| `toss-securities` | Read-only-обёртка над `tossctl` | Legacy |
+| `k-skill-proxy` | База прокси для бесплатных API | Активный |
 
 ## Документация
 
-| 문서 | 설명 |
+| Документ | Описание |
 | --- | --- |
-| [설치 방법](docs/install.md) | 현재 스킬 설치 및 로컬 테스트 흐름 |
-| [공통 설정 가이드](docs/setup.md) | 시크릿/환경변수 준비 방식 |
-| [보안/시크릿 정책](docs/security-and-secrets.md) | 시크릿 저장 원칙과 금지 패턴 |
-| [프록시 서버 가이드](docs/features/k-skill-proxy.md) | 무료 API 프록시 운영 방식 |
-| [릴리스/배포 가이드](docs/releasing.md) | Changesets, release-please, trusted publishing |
-| [로드맵](docs/roadmap.md) | 러시아/러시아어 현실 기준의 다음 전환 후보 |
-| [출처/참고 표면](docs/sources.md) | 설계 시 참고한 공개 라이브러리와 공식 문서 |
+| [Установка](docs/install.md) | Установка навыков и локальная проверка |
+| [Общая настройка](docs/setup.md) | Подготовка секретов и переменных окружения |
+| [Политика секретов](docs/security-and-secrets.md) | Правила хранения и использования секретов |
+| [Гайд по прокси](docs/features/k-skill-proxy.md) | Эксплуатация прокси для бесплатных API |
+| [Релизы и публикация](docs/releasing.md) | Changesets, release-please и trusted publishing |
+| [Дорожная карта](docs/roadmap.md) | Следующие шаги миграции под российские сценарии |
+| [Источники и поверхности](docs/sources.md) | Публичные документы и API, на которые опирается проект |
 
 ## Быстрые ссылки на legacy-функции
 
-- [SRT 예매](docs/features/srt-booking.md)
-- [KTX 예매](docs/features/ktx-booking.md)
-- [카카오톡 Mac CLI](docs/features/kakaotalk-mac.md)
-- [서울 지하철 도착정보 조회](docs/features/seoul-subway-arrival.md)
-- [사용자 위치 미세먼지 조회](docs/features/fine-dust-location.md)
-- [KBO 경기 결과 조회](docs/features/kbo-results.md)
-- [K리그 경기 결과 조회](docs/features/kleague-results.md)
-- [토스증권 조회 가이드](docs/features/toss-securities.md)
-- [로또 당첨 확인](docs/features/lotto-results.md)
-- [HWP 문서 처리](docs/features/hwp.md)
-- [근처 블루리본 맛집 가이드](docs/features/blue-ribbon-nearby.md)
-- [근처 술집 조회 가이드](docs/features/kakao-bar-nearby.md)
-- [우편번호 검색](docs/features/zipcode-search.md)
-- [다이소 상품 조회](docs/features/daiso-product-search.md)
-- [택배 배송조회](docs/features/delivery-tracking.md)
+- [Бронирование SRT](docs/features/srt-booking.md)
+- [Бронирование KTX](docs/features/ktx-booking.md)
+- [KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md)
+- [Прибытие поездов метро Сеула](docs/features/seoul-subway-arrival.md)
+- [Fine dust по местоположению](docs/features/fine-dust-location.md)
+- [Результаты KBO](docs/features/kbo-results.md)
+- [Результаты K League](docs/features/kleague-results.md)
+- [Сводки Toss Securities](docs/features/toss-securities.md)
+- [Результаты корейской лотереи](docs/features/lotto-results.md)
+- [Обработка HWP-документов](docs/features/hwp.md)
+- [Ближайшие рестораны Blue Ribbon](docs/features/blue-ribbon-nearby.md)
+- [Ближайшие бары через Kakao Map](docs/features/kakao-bar-nearby.md)
+- [Поиск почтового индекса](docs/features/zipcode-search.md)
+- [Поиск товаров Daiso](docs/features/daiso-product-search.md)
+- [Отслеживание доставки](docs/features/delivery-tracking.md)
 
 ## С чего начать
 
-1. Прочитайте [설치 방법](docs/install.md) и установите только те навыки, которые реально нужны.
-2. Если используете legacy-функции из `k-skill`, сначала проверьте [공통 설정 가이드](docs/setup.md) и [보안/시크릿 정책](docs/security-and-secrets.md).
-3. Область дальнейшего перехода на российские сценарии зафиксирована в [로드맵](docs/roadmap.md).
-4. При изменении релизных настроек и метаданных соблюдайте [릴리스/배포 가이드](docs/releasing.md) и правила Changesets.
+1. Прочитайте [Установку](docs/install.md) и установите только те навыки, которые реально нужны.
+2. Если используете legacy-функции из `k-skill`, сначала проверьте [Общую настройку](docs/setup.md) и [Политику секретов](docs/security-and-secrets.md).
+3. Область дальнейшего перехода на российские сценарии зафиксирована в [Дорожной карте](docs/roadmap.md).
+4. При изменении релизных настроек и метаданных соблюдайте [Гайд по релизам](docs/releasing.md) и правила Changesets.
 
 ## Примечания
 
