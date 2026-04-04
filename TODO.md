@@ -10,6 +10,8 @@
 - Рабочее дерево уже содержит незакоммиченные изменения, поэтому дальнейшие правки нужно держать точечными.
 - Первый новый русскоязычный навык уже добавлен: `cbr-rates` поверх официального XML-сервиса курсов валют Банка России.
 - В базовых shell-скриптах и документации внедрён dual-path для секретов: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
+- Оставшиеся legacy feature-guides в `docs/features/*.md` переведены на русскоязычный тон, при этом сохранены нужные legacy-маркеры для doc-regression тестов.
+- Для Python helper-скриптов добавлен общий resolver `scripts/shared_secrets.py`; теперь `fine_dust.py` и `ktx_booking.py` читают секреты из env, затем из `~/.config/ru-skill/secrets.env`, затем из legacy fallback.
 
 ## Выполнено в этом раунде
 
@@ -27,6 +29,10 @@
 - [x] Добавлен compatibility alias `ru-skill-setup`, при этом legacy-имя `k-skill-setup` сохранено для обратной совместимости.
 - [x] Обновлены `k-skill-setup/SKILL.md`, `docs/install.md` и `README.md`, чтобы setup-поток продвигался под именем `ru-skill-setup`.
 - [x] Обновлены feature-guides и Python helper-скрипты, где оставался жёсткий путь только к `~/.config/k-skill/secrets.env`.
+- [x] Переведены оставшиеся legacy feature-guides на русский, при этом сохранены совместимые формулировки для `scripts/skill-docs.test.js`.
+- [x] Вынесена общая логика поиска `secrets.env` в `scripts/shared_secrets.py` и подключена в Python helper-скрипты.
+- [x] Добавлены Python regression-тесты на shared secrets-resolution для `fine_dust.py` и `ktx_booking.py`.
+- [x] Прогнаны `PYTHONPATH=scripts python3 -m unittest scripts/test_fine_dust.py scripts/test_ktx_booking.py` и полный `npm run ci`.
 
 ## Ближайшие задачи
 
@@ -44,12 +50,10 @@
 - [x] Спроектировать dual-path поддержку `~/.config/ru-skill/secrets.env` с fallback на legacy `~/.config/k-skill/secrets.env`.
 - [x] Решить, нужен ли alias или wrapper для `k-skill-setup` перед дальнейшей миграцией install/setup-документов.
 - [x] Распространить dual-path описание на feature-guides и Python helper-скрипты, где пока ещё зафиксирован только legacy-путь `~/.config/k-skill/secrets.env`.
-- [ ] Перевести remaining legacy feature-guides с корейских заголовков и mixed-language блоков на единый русскоязычный тон без потери технических деталей.
-- [ ] Вынести общую логику поиска secrets-файла в Python helper/shared utility, чтобы shell и Python больше не расходились по текстам и fallback-порядку.
 - [ ] Добавить следующий российский read-only навык поверх публичного источника, чтобы `cbr-rates` не оставался единственным target-package.
 
 ## Проверки на следующий шаг
 
 - Для документных и релизных изменений запускать `npm run ci`.
 - Перед коммитом отдельно проверять, что правки не затёрли уже существующие незакоммиченные изменения в рабочем дереве.
-- Следующий продуктовый шаг: выровнять оставшиеся legacy feature-guides по языку, затем вынести shared secrets-resolution для Python helpers и выбрать второй российский target-skill.
+- Следующий продуктовый шаг: выбрать и реализовать второй российский read-only target-skill поверх публичного источника, не ломая текущие legacy-пакеты.

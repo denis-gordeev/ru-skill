@@ -12,6 +12,8 @@ import sys
 import time
 from functools import reduce
 
+from shared_secrets import build_missing_secret_message, resolve_secret_value
+
 try:
     from Crypto.Cipher import AES
     from Crypto.Util.Padding import pad
@@ -621,14 +623,10 @@ def print_json(payload: dict[str, object]) -> None:
 
 def build_client() -> PatchedKorail:
     ensure_runtime_dependencies()
-    korail_id = os.environ.get("KSKILL_KTX_ID")
-    korail_pw = os.environ.get("KSKILL_KTX_PASSWORD")
+    korail_id = resolve_secret_value("KSKILL_KTX_ID")
+    korail_pw = resolve_secret_value("KSKILL_KTX_PASSWORD")
     if not korail_id or not korail_pw:
-        raise SystemExit(
-            "이 작업에는 KSKILL_KTX_ID, KSKILL_KTX_PASSWORD 환경변수가 필요합니다. "
-            "환경변수가 설정되어 있지 않으면 ~/.config/ru-skill/secrets.env 에 먼저 추가하고 "
-            "legacy fallback 인 ~/.config/k-skill/secrets.env 또는 에이전트 secret vault를 사용해 주세요."
-        )
+        raise SystemExit(build_missing_secret_message(["KSKILL_KTX_ID", "KSKILL_KTX_PASSWORD"]))
     client = PatchedKorail(korail_id, korail_pw)
     if not client.logined:
         raise NeedToLoginError()

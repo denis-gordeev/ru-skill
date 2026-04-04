@@ -1,71 +1,71 @@
-# 사용자 위치 미세먼지 조회 가이드
+# Гайд по fine dust для текущего местоположения
 
-## 이 기능으로 할 수 있는 일
+## Что умеет этот сценарий
 
-- 지역명/행정구역 힌트로 측정소 후보 찾기
-- 단일 측정소 확정이 어려우면 후보 측정소 목록 반환
-- 정확한 측정소명으로 재조회
-- PM10, PM2.5, 등급, 조회 시각 요약
+- Искать станции наблюдения по району, `행정구역` или `지역명`.
+- Возвращать список кандидатов, если однозначно выбрать станцию нельзя.
+- Повторно запрашивать данные по точному имени станции.
+- Сводить PM10, PM2.5, уровень и время измерения.
 
-## 먼저 필요한 것
+## Что нужно заранее
 
-- [공통 설정 가이드](../setup.md) 완료
-- [보안/시크릿 정책](../security-and-secrets.md) 확인
-- `k-skill-proxy` 또는 에어코리아 OpenAPI key
+- Прочитать [общую настройку](../setup.md)
+- Прочитать [политику по секретам](../security-and-secrets.md)
+- Либо `k-skill-proxy`, либо ключ Air Korea OpenAPI
 
-## 필요한 환경변수
+## Нужные переменные окружения
 
-클라이언트 기본값:
+Базовый клиентский режим:
 
-- 기본 external proxy URL: `https://k-skill-proxy.nomadamas.org`
-- `KSKILL_PROXY_BASE_URL` 는 override 가 필요할 때만 사용
+- Внешний proxy URL по умолчанию: `https://k-skill-proxy.nomadamas.org`
+- `KSKILL_PROXY_BASE_URL` задаётся только если нужно переопределение
 
-프록시 없이 direct fallback 으로 쓸 때만:
+Только для direct fallback без proxy:
 
 - `AIR_KOREA_OPEN_API_KEY`
 
-### Credential resolution order
+### Порядок разрешения учётных данных
 
-1. **이미 환경변수에 있으면** 그대로 사용한다.
-2. **에이전트가 자체 secret vault(1Password CLI, Bitwarden CLI, macOS Keychain 등)를 사용 중이면** 거기서 꺼내 환경변수로 주입해도 된다.
-3. **`~/.config/ru-skill/secrets.env`** 를 먼저 사용하고, 없으면 legacy fallback **`~/.config/k-skill/secrets.env`** 를 사용한다. 두 파일 모두 plain dotenv 형식과 `0600` 권한을 전제로 한다.
-4. **아무것도 없으면** 유저에게 물어서 2 또는 3에 저장한다.
+1. Если переменные уже есть в окружении, использовать их.
+2. Если агент работает через отдельный secret vault, можно брать значения оттуда.
+3. Если env нет, сначала искать `~/.config/ru-skill/secrets.env`, затем `~/.config/k-skill/secrets.env`.
+4. Если источников нет, запросить секрет у пользователя и сохранить его в vault или `secrets.env`.
 
-## 입력값
+## Входные данные
 
-- 기본: 지역명/행정구역 힌트(`regionHint`)
-- 재조회: 정확한 측정소명(`stationName`)
+- Базовый запрос: административная подсказка `regionHint`, то есть `행정구역` или `지역명`
+- Повторный запрос: точное имя станции `stationName`
 
-## 기본 흐름
+## Базовый поток
 
-1. `KSKILL_PROXY_BASE_URL` 가 있으면 먼저 `k-skill-proxy` 의 `/v1/fine-dust/report` endpoint 를 호출합니다.
-2. `regionHint` 가 들어오면 프록시는 먼저 시도명을 추출하고, `getCtprvnRltmMesureDnsty` 로 해당 시도 측정소 목록을 확보합니다.
-3. region token 이 시도 내 실제 측정소명과 **유일하게** 대응하면 그 측정소로 `getMsrstnAcctoRltmMesureDnsty` 를 호출합니다.
-4. 단일 측정소 확정이 어려우면 `ambiguous_location` 과 `candidate_stations` 를 반환합니다.
-5. 클라이언트/사용자는 후보 중 정확한 측정소명으로 다시 `/v1/fine-dust/report?stationName=...` 를 호출합니다.
-6. PM10, PM2.5, 등급, 조회 시점/조회 시각을 함께 요약합니다.
+1. Если задан `KSKILL_PROXY_BASE_URL`, сначала вызвать `/v1/fine-dust/report` на `k-skill-proxy`.
+2. Если пришёл `regionHint`, proxy сначала выделяет название региона и получает список станций через `getCtprvnRltmMesureDnsty`.
+3. Если токен из региона однозначно соответствует одной станции, proxy вызывает `getMsrstnAcctoRltmMesureDnsty` для неё.
+4. Если однозначности нет, proxy возвращает `ambiguous_location` и `candidate_stations`.
+5. Клиент повторяет запрос с точным `stationName`.
+6. В итоговый ответ попадают PM10, PM2.5, уровни и момент измерения, а также `조회 시각` или `조회 시점`.
 
-프록시 예시:
+Пример через proxy:
 
 ```bash
 python3 scripts/fine_dust.py report --region-hint "서울 강남구" --json
 ```
 
-후보 반환 예시:
+Пример, когда proxy возвращает кандидатов:
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
   --data-urlencode 'regionHint=광주 광산구'
 ```
 
-정확한 측정소명 재조회:
+Повторный запрос по точному имени станции:
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
   --data-urlencode 'stationName=우산동(광주)'
 ```
 
-원본 AirKorea endpoint 형태를 거의 그대로 쓰고 싶으면 passthrough endpoint 도 사용할 수 있습니다. 별도 client API 는 불필요하고, 프록시가 `serviceKey` 만 서버에서 주입합니다.
+Если нужен почти raw-доступ к AirKorea, можно использовать passthrough endpoint. При этом proxy сам инжектирует `serviceKey`, а отдельный client API не нужен.
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty' \
@@ -77,9 +77,9 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSv
   --data-urlencode 'ver=1.4'
 ```
 
-## 예시
+## Примеры
 
-지역 기반 direct fallback:
+Direct fallback по региону:
 
 ```bash
 curl -sG "http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getMsrstnList" \
@@ -90,7 +90,7 @@ curl -sG "http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getMsrstnList" \
   --data-urlencode "addr=서울 강남구"
 ```
 
-실시간 측정값:
+Запрос текущих значений:
 
 ```bash
 curl -sG "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty" \
@@ -103,7 +103,7 @@ curl -sG "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltm
   --data-urlencode "ver=1.4"
 ```
 
-helper script 반복 검증:
+Проверка helper-скрипта на fixture'ах:
 
 ```bash
 python3 scripts/fine_dust.py report \
@@ -114,15 +114,15 @@ python3 scripts/fine_dust.py report \
 
 ## fallback / 대체 흐름
 
-- 지역명/행정구역을 먼저 받습니다
-- 단일 측정소를 확정하지 못하면 후보 측정소 목록을 돌려줍니다
-- 사용자는 후보 중 하나를 선택해 `stationName` 으로 다시 조회합니다
-- 측정소 목록 API가 403 이어도 `getCtprvnRltmMesureDnsty` 와 측정소별 실측 API 조합으로 우회합니다
+- Сначала принимать район или административную подсказку.
+- Если станцию выбрать нельзя, возвращать список кандидатов.
+- Затем просить пользователя выбрать один вариант и повторять запрос по `stationName`.
+- Даже если station-list API отдаёт `403`, можно обойтись комбинацией `getCtprvnRltmMesureDnsty` и измерений по станции.
 
-## 주의할 점
+## Ограничения
 
-- 실시간 수치라 조회 시각을 같이 적어야 합니다
-- PM10/PM2.5 값이 `-` 이거나 비정상이면 등급도 함께 재확인합니다
-- API 가 `khaiGrade` 를 비워 보내면 통합대기등급은 `정보없음` 으로 표시합니다
-- regionHint 는 자연어이므로 단일 측정소가 안 잡히는 경우가 자주 있습니다
-- hosted 모드에서는 upstream AirKorea key 를 클라이언트에 배포하지 않고 proxy 에만 둡니다
+- Поскольку значения real-time, в ответе нужно указывать время измерения.
+- Если PM10 или PM2.5 приходят как `-` или выглядят некорректно, нужно перепроверять уровень вместе со значением.
+- Если API не прислал `khaiGrade`, интегральный уровень нужно выводить как `정보없음`.
+- `regionHint` описывает место в естественном языке, поэтому неоднозначность там частая.
+- В hosted-режиме upstream AirKorea key должен оставаться только на proxy, а не на клиенте.

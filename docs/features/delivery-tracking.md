@@ -1,40 +1,40 @@
-# 택배 배송조회 가이드
+# Гайд по отслеживанию доставки
 
-## 이 기능으로 할 수 있는 일
+## Что умеет этот сценарий
 
-- CJ대한통운 송장 조회
-- 우체국 송장 조회
-- 현재 상태와 최근 이벤트 요약
-- 같은 스킬 안에서 택배사별 carrier adapter 규칙 유지
+- Отслеживать отправления CJ Logistics.
+- Отслеживать отправления Korea Post.
+- Сводить текущий статус и последние события.
+- Держать единые правила carrier adapter внутри одного навыка.
 
-## 먼저 필요한 것
+## Что нужно заранее
 
-- 인터넷 연결
+- Доступ в интернет
 - `python3`
 - `curl`
 
-별도 npm/Python 패키지 설치 없이 공식 endpoint 기준으로 바로 조회한다.
+Дополнительные npm- или Python-пакеты не нужны: достаточно официальных endpoint'ов.
 
-## 입력값
+## Входные данные
 
-- 택배사: `cj` 또는 `epost`
-- 송장번호
-  - CJ대한통운: 숫자 10자리 또는 12자리
-  - 우체국: 숫자 13자리
+- Перевозчик: `cj` или `epost`
+- Трек-номер
+  - CJ Logistics: 10 или 12 цифр (`10자리 또는 12자리`)
+  - Korea Post: 13 цифр (`13자리`)
 
-## 기본 흐름
+## Базовый поток
 
-1. 택배사별 validator로 자리수를 먼저 확인한다.
-2. CJ는 공식 페이지에서 `_csrf` 를 읽은 뒤 `tracking-detail` JSON endpoint 로 조회한다.
-3. 우체국은 `sid1` 을 `trace.RetrieveDomRigiTraceList.comm` 에 POST해서 HTML 결과를 받는다.
-4. 결과를 공통 포맷으로 정리한다.
-5. 새 택배사를 붙일 때는 같은 carrier adapter 필드(validator / entrypoint / transport / parser / status map / retry policy)를 채운다.
+1. Сначала проверить длину номера через validator конкретного перевозчика.
+2. Для CJ прочитать `_csrf` с официальной страницы и только потом дернуть JSON endpoint `tracking-detail`.
+3. Для Korea Post отправить `sid1` в `trace.RetrieveDomRigiTraceList.comm` и распарсить HTML.
+4. Нормализовать ответы в общий формат.
+5. При добавлении нового перевозчика придерживаться той же схемы adapter fields: `validator / entrypoint / transport / parser / status map / retry policy`.
 
-## CJ대한통운 예시
+## Пример для CJ Logistics
 
-- 진입 페이지: `https://www.cjlogistics.com/ko/tool/parcel/tracking`
-- 상세 endpoint: `https://www.cjlogistics.com/ko/tool/parcel/tracking-detail`
-- 파라미터: `_csrf`, `paramInvcNo`
+- Страница входа: `https://www.cjlogistics.com/ko/tool/parcel/tracking`
+- Endpoint деталей: `https://www.cjlogistics.com/ko/tool/parcel/tracking-detail`
+- Параметры: `_csrf`, `paramInvcNo`
 
 ```bash
 tmp_body="$(mktemp)"
@@ -141,13 +141,13 @@ rm -f "$tmp_body" "$tmp_cookie" "$tmp_json"
 }
 ```
 
-CJ는 JSON 응답이므로 `parcelDetailResultMap.resultList` 를 기준으로 상태를 읽는 편이 가장 안정적이다. 문서 예시는 공통 결과 스키마(`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`, 선택적 `status_code`)만 남기고, 담당자 이름이나 휴대폰 번호가 포함될 수 있는 `crgNm` 원문은 그대로 출력하지 않는다.
+Для CJ надёжнее всего читать статус из `parcelDetailResultMap.resultList`. В итоговой выдаче лучше оставлять только `공통 포맷` и `공통 결과 스키마` (`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`, опционально `status_code`) и не выводить сырые поля вроде `crgNm`, где может оказаться имя сотрудника или телефон.
 
-## 우체국 예시
+## Пример для Korea Post
 
-- 진입 페이지: `https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=`
-- 조회 endpoint: `https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm`
-- 파라미터: `sid1`
+- Страница входа: `https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=`
+- Endpoint запроса: `https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm`
+- Параметр: `sid1`
 
 ```bash
 tmp_html="$(mktemp)"
@@ -267,35 +267,35 @@ rm -f "$tmp_html"
 }
 ```
 
-우체국은 HTML 응답이라 기본정보 `table_col` 과 상세 `processTable` 을 파싱해야 한다. 문서 예시는 CJ와 같은 공통 결과 스키마(`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`)만 남기고, 이벤트 location에 섞일 수 있는 `TEL` 번호 조각도 제거한 뒤 수령인/상세 메모 원문은 그대로 출력하지 않는다.
+У Korea Post ответ приходит в HTML, поэтому нужно парсить базовую таблицу `table_col` и детальные события из `processTable`. В итоговой выдаче стоит оставить тот же `공통 결과 스키마`, что и для CJ, а примеси вроде `TEL` в location и сырые заметки получателя удалять.
 
 ## 결과 정리 기준
 
 ### 공통 결과 스키마
 
-- `carrier`: 택배사 식별자 (`cj` 또는 `epost`)
-- `invoice`: 정규화된 송장번호
-- `status`: 현재 배송 상태
-- `timestamp`: 마지막 이벤트 시각
-- `location`: 마지막 이벤트 위치
-- `event_count`: 전체 이벤트 수
-- `recent_events`: 최근 최대 3개 이벤트 목록
-- `status_code`: 필요할 때만 남기는 원본 상태 코드 (현재는 CJ 예시에서만 사용)
+- `carrier`: идентификатор перевозчика (`cj` или `epost`)
+- `invoice`: нормализованный трек-номер
+- `status`: текущий статус доставки
+- `timestamp`: время последнего события
+- `location`: место последнего события
+- `event_count`: число событий
+- `recent_events`: до трёх последних событий, то есть `최근 최대 3개 이벤트` и раздел `최근 이벤트`
+- `status_code`: исходный код статуса, если он нужен; сейчас используется только для CJ
 
 ## 확장 규칙
 
-다른 택배사를 붙일 때는 새 carrier adapter에 아래만 먼저 정의한다.
+Если подключается новый перевозчик, то есть `다른 택배사`, сначала явно определите только эти части adapter'а:
 
 - validator
 - official entrypoint
-- transport(JSON / HTML / CLI)
+- transport (`JSON / HTML / CLI`)
 - parser
 - status map
 - retry policy
 
-## 주의할 점
+## Ограничения
 
-- CJ는 `_csrf` 없이 바로 `tracking-detail` 만 호출하지 않는다.
-- 우체국은 `curl --http1.1 --tls-max 1.2` 경로를 기본으로 유지한다.
-- 우체국은 JSON이 아니라 HTML 응답이므로 regex/HTML 정리에 대비해야 한다.
-- 비공식 통합 배송조회 서비스로 자동 우회하지 않는다.
+- Для CJ нельзя сразу вызывать `tracking-detail` без `_csrf`.
+- Для Korea Post базовым остаётся путь `curl --http1.1 --tls-max 1.2`.
+- Для Korea Post нужно быть готовым к HTML, а не к JSON.
+- Не следует автоматически уходить на неофициальные агрегаторы доставки.

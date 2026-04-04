@@ -199,6 +199,19 @@ class KtxBookingTests(unittest.TestCase):
         self.assertTrue(client.search_calls[-1]["include_waiting_list"])
         self.assertIs(client.reserved_train, waiting_only)
 
+    def test_build_client_uses_shared_secret_resolution(self):
+        with (
+            patch.object(ktx_booking, "ensure_runtime_dependencies"),
+            patch.object(ktx_booking, "resolve_secret_value", side_effect=["user", "password"]) as resolver,
+            patch.object(ktx_booking, "PatchedKorail") as patched_korail,
+        ):
+            patched_korail.return_value.logined = True
+            client = ktx_booking.build_client()
+
+        self.assertIs(client, patched_korail.return_value)
+        self.assertEqual([call.args[0] for call in resolver.call_args_list], ["KSKILL_KTX_ID", "KSKILL_KTX_PASSWORD"])
+        patched_korail.assert_called_once_with("user", "password")
+
 
 if __name__ == "__main__":
     unittest.main()

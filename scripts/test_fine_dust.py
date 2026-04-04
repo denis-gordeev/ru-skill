@@ -279,6 +279,11 @@ class FineDustTests(unittest.TestCase):
         self.assertEqual(rendered["station_name"], "강남구")
         self.assertEqual(rendered["proxy"]["name"], "k-skill-proxy")
 
+    def test_get_required_secret_uses_shared_secret_resolution(self):
+        with mock.patch.object(fine_dust, "resolve_secret_value", return_value="resolved-secret") as resolver:
+            self.assertEqual(fine_dust.get_required_secret(), "resolved-secret")
+        resolver.assert_called_once_with(fine_dust.SECRET_NAME)
+
 
 if __name__ == "__main__":
     unittest.main()
