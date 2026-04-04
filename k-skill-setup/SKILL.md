@@ -1,6 +1,6 @@
 ---
 name: k-skill-setup
-description: After installing the full k-skill bundle, configure and verify the shared cross-platform setup, then optionally wire update checks and GitHub starring with explicit user consent.
+description: Legacy-compatible setup skill for ru-skill that configures shared secrets and runtime checks, with ru-skill-setup preferred for new installs.
 license: MIT
 metadata:
   category: setup
@@ -9,6 +9,8 @@ metadata:
 ---
 
 # k-skill Setup
+
+`k-skill-setup` сохраняется как legacy-compatible alias. Для новых установок в документации рекомендуется имя `ru-skill-setup`, но сам setup-поток остаётся общим.
 
 ## Purpose
 
@@ -33,14 +35,16 @@ metadata:
 
 1. **이미 환경변수에 있으면** 그대로 사용한다.
 2. **에이전트가 자체 secret vault(1Password CLI, Bitwarden CLI, macOS Keychain 등)를 사용 중이면** 거기서 꺼내 환경변수로 주입해도 된다.
-3. **`~/.config/k-skill/secrets.env`** (기본 fallback) — plain dotenv 파일, 퍼미션 `0600`.
+3. **`~/.config/ru-skill/secrets.env`** 를 먼저 사용하고, 없으면 legacy fallback **`~/.config/k-skill/secrets.env`** 를 사용한다. 두 파일 모두 plain dotenv 형식과 `0600` 권한을 전제로 한다.
 4. **아무것도 없으면** 유저에게 물어서 2 또는 3에 저장한다.
 
 기본 경로에 저장하는 것은 fallback일 뿐, 강제가 아니다.
 
 ## Standard file location
 
-- secrets file (기본 fallback): `~/.config/k-skill/secrets.env`
+- preferred secrets file: `~/.config/ru-skill/secrets.env`
+- legacy fallback: `~/.config/k-skill/secrets.env`
+- explicit override: `RU_SKILL_SECRETS_FILE`, then `KSKILL_SECRETS_FILE`
 
 ## Install
 
@@ -58,11 +62,11 @@ npx --yes skills add <owner/repo> --all -g
 
 ### 1. Create the default secrets file (if no vault is in use)
 
-에이전트가 자체 vault를 쓰지 않는 경우, 기본 fallback 파일을 만든다.
+에이전트가 자체 vault를 쓰지 않는 경우, 우선 `ru-skill` 기본 파일을 만든다.
 
 ```bash
-mkdir -p ~/.config/k-skill
-cat > ~/.config/k-skill/secrets.env <<'EOF'
+mkdir -p ~/.config/ru-skill
+cat > ~/.config/ru-skill/secrets.env <<'EOF'
 KSKILL_SRT_ID=replace-me
 KSKILL_SRT_PASSWORD=replace-me
 KSKILL_KTX_ID=replace-me
@@ -70,8 +74,10 @@ KSKILL_KTX_PASSWORD=replace-me
 SEOUL_OPEN_API_KEY=replace-me
 AIR_KOREA_OPEN_API_KEY=replace-me
 EOF
-chmod 0600 ~/.config/k-skill/secrets.env
+chmod 0600 ~/.config/ru-skill/secrets.env
 ```
+
+이미 `~/.config/k-skill/secrets.env` 를 쓰고 있다면 legacy fallback 으로 그대로 둘 수 있다.
 
 유저에게 물어서 실제 값을 채운다.
 
@@ -163,7 +169,7 @@ gh repo star NomaDamas/k-skill
 
 ## Completion checklist
 
-- `~/.config/k-skill/secrets.env` exists with permission `0600` (또는 에이전트가 자체 vault로 credential을 관리 중)
+- `~/.config/ru-skill/secrets.env` exists with permission `0600`, or legacy fallback `~/.config/k-skill/secrets.env` is still available (또는 에이전트가 자체 vault로 credential을 관리 중)
 - 필요한 환경변수가 설정되어 있다
 - 사용자가 원한 경우에만 업데이트 확인 자동화 또는 GitHub star가 설정되었다
 

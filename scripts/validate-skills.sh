@@ -43,6 +43,7 @@ done < <(
     ! -name .changeset \
     ! -name data \
     ! -name docs \
+    ! -name inbox \
     ! -name node_modules \
     ! -name packages \
     ! -name python-packages \

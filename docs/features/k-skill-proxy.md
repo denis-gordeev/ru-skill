@@ -1,60 +1,84 @@
-# k-skill 프록시 서버 가이드
+# Гайд по `k-skill-proxy`
 
-## 이 기능으로 할 수 있는 일
+`k-skill-proxy` - это Fastify-прокси для бесплатных и публичных API, который сохраняется в `ru-skill` как базовая серверная заготовка для новых русскоязычных сценариев.
 
-- AirKorea 같은 무료/공공 API key를 서버에만 보관
-- `k-skill` 클라이언트는 프록시만 호출
-- 캐시, 인증, rate limit, 로깅을 한곳에서 통제
+Сейчас в коде уже реализован legacy-адаптер для AirKorea и сводка по fine dust. Это не основной будущий фокус репозитория, но хороший референс того, как в проекте должен выглядеть безопасный read-only proxy.
 
-## 기본 구조
+## Для чего нужен прокси
+
+- Хранить upstream API key только на стороне сервера
+- Сужать наружную поверхность до allowlist-маршрутов
+- Давать один стабильный endpoint для навыков и агентов
+- Добавлять cache, rate limit и минимальную нормализацию ответа
+
+Базовая схема остаётся такой:
 
 ```text
 client/skill -> k-skill-proxy -> upstream public API
 ```
 
-현재 기본 엔드포인트는 아래 둘입니다.
+## Текущие endpoint'ы
 
 - `GET /health`
 - `GET /v1/fine-dust/report`
-- `GET /B552584/:service/:operation` (허용된 AirKorea route passthrough)
+- `GET /B552584/:service/:operation`
 
-## 권장 환경변수
+Последний маршрут ограничен allowlist-набором AirKorea операций и нужен только для legacy-сценариев.
 
-클라이언트(스킬) 쪽:
+## Рекомендуемые переменные окружения
+
+На стороне клиента:
 
 - `KSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org`
 
-프록시 서버 쪽:
+На стороне сервера:
 
 - `AIR_KOREA_OPEN_API_KEY=...`
+- `KSKILL_PROXY_HOST=127.0.0.1`
 - `KSKILL_PROXY_PORT=4020`
+- `KSKILL_PROXY_CACHE_TTL_MS=300000`
+- `KSKILL_PROXY_RATE_LIMIT_WINDOW_MS=60000`
+- `KSKILL_PROXY_RATE_LIMIT_MAX=60`
 
-## PM2 + cloudflared
+## Политика по безопасности и доступу
+
+- Прокси в этом репозитории предназначен только для бесплатных API.
+- Базовый режим: публичный read-only endpoint без proxy auth.
+- Безопасность достигается не авторизацией "на всякий случай", а узкой allowlist-поверхностью, кэшем и rate limit.
+- Если появится злоупотребление или операционные проблемы, ограничения можно усилить отдельным изменением.
+
+## Локальный запуск
+
+```bash
+node packages/k-skill-proxy/src/server.js
+```
+
+Перед запуском нужно экспортировать переменные окружения вручную или загрузить их из своего локального секрета.
+
+## Развёртывание через PM2
+
+В репозитории уже подготовлены:
+
+- `ecosystem.config.cjs`
+- `scripts/run-k-skill-proxy.sh`
+
+Типовой порядок:
 
 1. `pm2 start ecosystem.config.cjs`
 2. `pm2 save`
-3. `pm2 startup` 출력대로 launchd 등록
-4. Cloudflare Tunnel ingress 에 `k-skill-proxy.nomadamas.org -> http://localhost:4020` 추가
+3. `pm2 startup`
+4. Привязать внешний ingress или tunnel к `http://localhost:4020`
 
-## 기본 공개 정책
+## Как использовать существующий legacy endpoint
 
-- 이 프록시는 **무료 API만** 붙인다.
-- 기본값은 **무인증 공개 endpoint** 다.
-- 대신 read-only / allowlisted endpoint / cache / rate limit 을 유지한다.
-- 문제가 생기면 그때 인증이나 더 강한 방어를 덧붙인다.
-
-## 사용법
-
-추가 client API 레이어는 불필요합니다. 필요한 쿼리를 그대로 프록시에 넣으면 되고, 프록시가 upstream API key 만 서버에서 주입합니다.
-
-요약 endpoint:
+Сводка по fine dust:
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
   --data-urlencode 'regionHint=서울 강남구'
 ```
 
-AirKorea passthrough endpoint:
+AirKorea passthrough:
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty' \
@@ -66,7 +90,15 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSv
   --data-urlencode 'ver=1.4'
 ```
 
-## 주의할 점
+## Как использовать прокси в новых русскоязычных сценариях
 
-- upstream key는 프록시 서버에서만 관리합니다.
-- client 쪽에는 upstream API key를 배포하지 않습니다.
+- Добавлять только публичные и бесплатные upstream-источники.
+- Сначала фиксировать источник и ограничения в [docs/sources.md](/Users/denis/programming/autowork/ru-skill/docs/sources.md).
+- Затем добавлять узкий endpoint вместо общего универсального passthrough, если это возможно.
+- По умолчанию нормализовать ответы на русском там, где это улучшает UX и не скрывает важные поля upstream.
+
+## Ограничения текущей реализации
+
+- Прокси ещё завязан на legacy-название `k-skill-proxy`.
+- Единственный полностью реализованный upstream сейчас - AirKorea.
+- Русскоязычные proxy-адаптеры пока не добавлены и остаются задачей следующих раундов разработки.

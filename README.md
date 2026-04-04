@@ -23,6 +23,7 @@
 
 | Навык | Описание | Нужны секреты | Документ |
 | --- | --- | --- | --- |
+| `cbr-rates` | Официальные курсы валют Банка России по публичному XML-сервису | Нет | [Гайд по курсам ЦБ РФ](docs/features/cbr-rates.md) |
 | `srt-booking` | Поиск поездов SRT, бронирование, просмотр и отмена брони | Да | [Гайд по SRT](docs/features/srt-booking.md) |
 | `ktx-booking` | Поиск и бронирование поездов KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
@@ -45,6 +46,7 @@
 
 | Пакет | Описание | Статус |
 | --- | --- | --- |
+| `cbr-rates` | Клиент для официальных курсов валют Банка России | Target |
 | `k-lotto` | Клиент для результатов корейской лотереи | Legacy |
 | `daiso-product-search` | Поиск магазинов, товаров и остатков Daiso | Legacy |
 | `blue-ribbon-nearby` | Поиск ресторанов Blue Ribbon nearby | Legacy |
@@ -63,9 +65,19 @@
 | [Гайд по прокси](docs/features/k-skill-proxy.md) | Эксплуатация прокси для бесплатных API |
 | [Релизы и публикация](docs/releasing.md) | Changesets, release-please и trusted publishing |
 | [Дорожная карта](docs/roadmap.md) | Следующие шаги миграции под российские сценарии |
+| [Инвентарь бренда](docs/brand-inventory.md) | Где legacy-имя `k-skill` ещё нужно ради совместимости |
 | [Источники и поверхности](docs/sources.md) | Публичные документы и API, на которые опирается проект |
 
-## Быстрые ссылки на legacy-функции
+## Что уже сделано по миграции
+
+- Добавлен первый целевой русскоязычный навык `cbr-rates` на официальном XML-сервисе Банка России.
+- Верхнеуровневая документация и roadmap переведены на единый русскоязычный сценарий с явным разделением `Target` и `Legacy`.
+- Для setup и shell-скриптов введён dual-path secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
+- Setup-поток теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый alias.
+
+## Быстрые ссылки на ключевые функции
+
+- [Курсы валют Банка России](docs/features/cbr-rates.md)
 
 - [Бронирование SRT](docs/features/srt-booking.md)
 - [Бронирование KTX](docs/features/ktx-booking.md)
@@ -87,8 +99,9 @@
 
 1. Прочитайте [Установку](docs/install.md) и установите только те навыки, которые реально нужны.
 2. Если используете legacy-функции из `k-skill`, сначала проверьте [Общую настройку](docs/setup.md) и [Политику секретов](docs/security-and-secrets.md).
-3. Область дальнейшего перехода на российские сценарии зафиксирована в [Дорожной карте](docs/roadmap.md).
-4. При изменении релизных настроек и метаданных соблюдайте [Гайд по релизам](docs/releasing.md) и правила Changesets.
+3. Для общей подготовки окружения используйте `ru-skill-setup`; legacy-имя `k-skill-setup` остаётся рабочим alias.
+4. Область дальнейшего перехода на российские сценарии зафиксирована в [Дорожной карте](docs/roadmap.md).
+5. При изменении релизных настроек и метаданных соблюдайте [Гайд по релизам](docs/releasing.md) и правила Changesets.
 
 ## Примечания
 

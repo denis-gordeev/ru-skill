@@ -137,8 +137,8 @@ test("repository docs advertise the hwp skill", () => {
   const featureDoc = read(path.join("docs", "features", "hwp.md"));
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/hwp.md to exist");
-  assert.match(readme, /\| HWP 문서 처리 \|/);
-  assert.match(readme, /\[HWP 문서 처리\]\(docs\/features\/hwp\.md\)/);
+  assert.match(readme, /\| `hwp` \|/);
+  assert.match(readme, /\[Гайд по HWP\]\(docs\/features\/hwp\.md\)/);
   assert.match(install, /--skill hwp/);
   assert.match(featureDoc, /--include-images/);
   assert.match(featureDoc, /(data:|base64)/);
@@ -152,8 +152,8 @@ test("repository docs advertise the kakaotalk-mac skill", () => {
   const featureDocPath = path.join(repoRoot, "docs", "features", "kakaotalk-mac.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/kakaotalk-mac.md to exist");
-  assert.match(readme, /\| 카카오톡 Mac CLI \|/);
-  assert.match(readme, /\[카카오톡 Mac CLI\]\(docs\/features\/kakaotalk-mac\.md\)/);
+  assert.match(readme, /\| `kakaotalk-mac` \|/);
+  assert.match(readme, /\[Гайд по KakaoTalk Mac CLI\]\(docs\/features\/kakaotalk-mac\.md\)/);
   assert.match(install, /--skill kakaotalk-mac/);
 });
 
@@ -180,10 +180,10 @@ test("repository docs advertise the KTX booking skill as supported", () => {
   const featureDocPath = path.join(repoRoot, "docs", "features", "ktx-booking.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/ktx-booking.md to exist");
-  assert.match(readme, /\| KTX 예매 \|/);
-  assert.match(readme, /\[KTX 예매 가이드\]\(docs\/features\/ktx-booking\.md\)/);
+  assert.match(readme, /\| `ktx-booking` \|/);
+  assert.match(readme, /\[Гайд по KTX\]\(docs\/features\/ktx-booking\.md\)/);
+  assert.doesNotMatch(readme, /ktx-booking.*не работает/iu);
   assert.doesNotMatch(readme, /KTX 예매는 현재 작동하지 않습니다/);
-  assert.doesNotMatch(readme, /KTX 예매 \| 현재 작동하지 않음/);
   assert.match(install, /--skill ktx-booking/);
 });
 
@@ -248,11 +248,47 @@ test("repository docs advertise the zipcode-search skill across the documented s
   const featureDocPath = path.join(repoRoot, "docs", "features", "zipcode-search.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/zipcode-search.md to exist");
-  assert.match(readme, /\| 우편번호 검색 \|/);
-  assert.match(readme, /\[우편번호 검색 가이드\]\(docs\/features\/zipcode-search\.md\)/);
+  assert.match(readme, /\| `zipcode-search` \|/);
+  assert.match(readme, /\[Гайд по postcode search\]\(docs\/features\/zipcode-search\.md\)/);
   assert.match(install, /--skill zipcode-search/);
-  assert.match(roadmap, /우편번호 검색/);
+  assert.match(roadmap, /Поиск почтовых индексов/);
   assert.match(sources, /우체국 도로명주소 검색: https:\/\/parcel\.epost\.go\.kr\/parcel\/comm\/zipcode\/comm_newzipcd_list\.jsp/);
+});
+
+test("repository docs advertise the cbr-rates skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "cbr-rates.md");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/cbr-rates.md to exist");
+  assert.match(readme, /\| `cbr-rates` \|/);
+  assert.match(readme, /\[Гайд по курсам ЦБ РФ\]\(docs\/features\/cbr-rates\.md\)/);
+  assert.match(install, /--skill cbr-rates/);
+  assert.match(roadmap, /cbr-rates/);
+});
+
+test("cbr-rates docs document the official Bank of Russia XML workflow", () => {
+  const skillPath = path.join(repoRoot, "cbr-rates", "SKILL.md");
+  const packageReadmePath = path.join(repoRoot, "packages", "cbr-rates", "README.md");
+
+  assert.ok(fs.existsSync(skillPath), "expected cbr-rates/SKILL.md to exist");
+  assert.ok(fs.existsSync(packageReadmePath), "expected packages/cbr-rates/README.md to exist");
+
+  const skill = read(path.join("cbr-rates", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "cbr-rates.md"));
+  const packageReadme = read(path.join("packages", "cbr-rates", "README.md"));
+
+  assert.match(skill, /^name: cbr-rates$/m);
+  assert.match(skill, /Bank of Russia|Банка России/);
+  assert.match(skill, /npm install -g cbr-rates/);
+  assert.match(skill, /getRateWithChange/);
+  assert.match(skill, /publishedDate/);
+  assert.match(featureDoc, /XML_daily\.asp/);
+  assert.match(featureDoc, /requestedDate/);
+  assert.match(featureDoc, /publishedDate/);
+  assert.match(packageReadme, /getDailyRates/);
+  assert.match(packageReadme, /getRateWithChange/);
 });
 
 test("zipcode-search docs lock the official ePost extraction flow and reliable transport example", () => {
@@ -299,10 +335,10 @@ test("repository docs advertise the delivery-tracking skill across the documente
   const featureDocPath = path.join(repoRoot, "docs", "features", "delivery-tracking.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/delivery-tracking.md to exist");
-  assert.match(readme, /\| 택배 배송조회 \|/);
-  assert.match(readme, /\[택배 배송조회 가이드\]\(docs\/features\/delivery-tracking\.md\)/);
+  assert.match(readme, /\| `delivery-tracking` \|/);
+  assert.match(readme, /\[Гайд по delivery tracking\]\(docs\/features\/delivery-tracking\.md\)/);
   assert.match(install, /--skill delivery-tracking/);
-  assert.match(roadmap, /택배 배송조회 스킬 출시/);
+  assert.match(roadmap, /Навык для отслеживания доставки/);
   assert.match(sources, /CJ대한통운 배송조회: https:\/\/www\.cjlogistics\.com\/ko\/tool\/parcel\/tracking/);
   assert.match(sources, /우체국 배송조회: https:\/\/service\.epost\.go\.kr\/trace\.RetrieveRegiPrclDeliv\.postal\?sid1=/);
 });
@@ -512,8 +548,8 @@ test("repository docs advertise the daiso-product-search skill", () => {
   const featureDocPath = path.join(repoRoot, "docs", "features", "daiso-product-search.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/daiso-product-search.md to exist");
-  assert.match(readme, /\| 다이소 상품 조회 \|/);
-  assert.match(readme, /\[다이소 상품 조회 가이드\]\(docs\/features\/daiso-product-search\.md\)/);
+  assert.match(readme, /\| `daiso-product-search` \|/);
+  assert.match(readme, /\[Гайд по Daiso product search\]\(docs\/features\/daiso-product-search\.md\)/);
   assert.match(install, /--skill daiso-product-search/);
 });
 
@@ -550,7 +586,7 @@ test("daiso-product-search docs record the shipped feature and official sources"
   const roadmap = read(path.join("docs", "roadmap.md"));
   const sources = read(path.join("docs", "sources.md"));
 
-  assert.match(roadmap, /다이소 상품 조회 스킬 출시/);
+  assert.match(roadmap, /Навык поиска товаров Daiso/);
   assert.match(sources, /https:\/\/www\.daisomall\.co\.kr\/api\/ms\/msg\/selStr/);
   assert.match(sources, /https:\/\/www\.daisomall\.co\.kr\/ssn\/search\/SearchGoods/);
   assert.match(sources, /https:\/\/www\.daisomall\.co\.kr\/api\/pd\/pdh\/selStrPkupStck/);
@@ -559,6 +595,7 @@ test("daiso-product-search docs record the shipped feature and official sources"
 test("root pack:dry-run script covers all publishable workspaces", () => {
   const packageJson = readJson("package.json");
 
+  assert.match(packageJson.scripts["pack:dry-run"], /workspace cbr-rates/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace k-lotto/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace daiso-product-search/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace blue-ribbon-nearby/);
@@ -574,10 +611,10 @@ test("repository docs advertise the kleague-results skill across the documented 
   const featureDocPath = path.join(repoRoot, "docs", "features", "kleague-results.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/kleague-results.md to exist");
-  assert.match(readme, /\| K리그 경기 결과 조회 \|/);
-  assert.match(readme, /\[K리그 결과 가이드\]\(docs\/features\/kleague-results\.md\)/);
+  assert.match(readme, /\| `kleague-results` \|/);
+  assert.match(readme, /\[Гайд по K League\]\(docs\/features\/kleague-results\.md\)/);
   assert.match(install, /--skill kleague-results/);
-  assert.match(roadmap, /K리그 경기 결과 조회 스킬 출시/);
+  assert.match(roadmap, /Навык с результатами K League/);
   assert.match(sources, /K League 일정\/결과 JSON: https:\/\/www\.kleague\.com\/getScheduleList\.do/);
   assert.match(sources, /K League 팀 순위 JSON: https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
 });
@@ -631,10 +668,10 @@ test("repository docs advertise the blue-ribbon-nearby skill across the document
   const featureDocPath = path.join(repoRoot, "docs", "features", "blue-ribbon-nearby.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/blue-ribbon-nearby.md to exist");
-  assert.match(readme, /\| 근처 블루리본 맛집 \|/);
-  assert.match(readme, /\[근처 블루리본 맛집 가이드\]\(docs\/features\/blue-ribbon-nearby\.md\)/);
+  assert.match(readme, /\| `blue-ribbon-nearby` \|/);
+  assert.match(readme, /\[Гайд по Blue Ribbon nearby\]\(docs\/features\/blue-ribbon-nearby\.md\)/);
   assert.match(install, /--skill blue-ribbon-nearby/);
-  assert.match(roadmap, /근처 블루리본 맛집 스킬 출시/);
+  assert.match(roadmap, /Навык поиска nearby-ресторанов Blue Ribbon/);
   assert.match(sources, /블루리본 지역 검색: https:\/\/www\.bluer\.co\.kr\/search\/zone/);
   assert.match(sources, /블루리본 주변 맛집 JSON: https:\/\/www\.bluer\.co\.kr\/restaurants\/map/);
 });
@@ -684,10 +721,10 @@ test("repository docs advertise the kakao-bar-nearby skill across the documented
   const featureDocPath = path.join(repoRoot, "docs", "features", "kakao-bar-nearby.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/kakao-bar-nearby.md to exist");
-  assert.match(readme, /\| 근처 술집 조회 \|/);
-  assert.match(readme, /\[근처 술집 조회 가이드\]\(docs\/features\/kakao-bar-nearby\.md\)/);
+  assert.match(readme, /\| `kakao-bar-nearby` \|/);
+  assert.match(readme, /\[Гайд по Kakao bar nearby\]\(docs\/features\/kakao-bar-nearby\.md\)/);
   assert.match(install, /--skill kakao-bar-nearby/);
-  assert.match(roadmap, /근처 술집 조회 스킬 출시/);
+  assert.match(roadmap, /Навык поиска nearby-баров/);
   assert.match(sources, /카카오맵 모바일 검색: https:\/\/m\.map\.kakao\.com\/actions\/searchView/);
   assert.match(sources, /카카오맵 장소 패널 JSON: https:\/\/place-api\.map\.kakao\.com\/places\/panel3\//);
 });
@@ -750,10 +787,10 @@ test("repository docs advertise the fine-dust-location skill across the document
   const featureDocPath = path.join(repoRoot, "docs", "features", "fine-dust-location.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/fine-dust-location.md to exist");
-  assert.match(readme, /\| 사용자 위치 미세먼지 조회 \|/);
-  assert.match(readme, /\[사용자 위치 미세먼지 조회 가이드\]\(docs\/features\/fine-dust-location\.md\)/);
+  assert.match(readme, /\| `fine-dust-location` \|/);
+  assert.match(readme, /\[Гайд по fine dust\]\(docs\/features\/fine-dust-location\.md\)/);
   assert.match(install, /--skill fine-dust-location/);
-  assert.match(roadmap, /사용자 위치 미세먼지 조회 스킬 출시/);
+  assert.match(roadmap, /Навык по проверке fine dust по местоположению/);
   assert.match(sources, /에어코리아 대기오염정보: https:\/\/www\.data\.go\.kr\/data\/15073861\/openapi\.do/);
   assert.match(sources, /에어코리아 측정소정보: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
   assert.match(setup, /AIR_KOREA_OPEN_API_KEY/);
@@ -796,6 +833,20 @@ test("fine-dust-location skill documents the official two-api flow and fallback 
   }
 });
 
+test("install docs prefer ru-skill-setup while keeping legacy k-skill-setup as alias", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const preferredSkill = read(path.join("ru-skill-setup", "SKILL.md"));
+  const legacySkill = read(path.join("k-skill-setup", "SKILL.md"));
+
+  assert.match(readme, /ru-skill-setup/);
+  assert.match(install, /ru-skill-setup/);
+  assert.match(install, /k-skill-setup.*alias/i);
+  assert.match(preferredSkill, /^name: ru-skill-setup$/m);
+  assert.match(legacySkill, /^name: k-skill-setup$/m);
+  assert.match(legacySkill, /legacy-compatible alias/i);
+});
+
 test("fine-dust helper python regression tests pass", () => {
   const result = childProcess.spawnSync(
     "python3",
@@ -818,10 +869,10 @@ test("repository docs advertise the toss-securities skill across the documented 
   const featureDocPath = path.join(repoRoot, "docs", "features", "toss-securities.md");
 
   assert.ok(fs.existsSync(featureDocPath), "expected docs/features/toss-securities.md to exist");
-  assert.match(readme, /\| 토스증권 조회 \|/);
-  assert.match(readme, /\[토스증권 조회 가이드\]\(docs\/features\/toss-securities\.md\)/);
+  assert.match(readme, /\| `toss-securities` \|/);
+  assert.match(readme, /\[Гайд по Toss Securities\]\(docs\/features\/toss-securities\.md\)/);
   assert.match(install, /--skill toss-securities/);
-  assert.match(roadmap, /토스증권 조회 스킬 출시/);
+  assert.match(roadmap, /Навык для Toss Securities/);
   assert.match(sources, /tossinvest-cli: https:\/\/github\.com\/JungHoonGhae\/tossinvest-cli/);
 });
 

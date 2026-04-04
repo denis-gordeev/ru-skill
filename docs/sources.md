@@ -1,6 +1,134 @@
 # Sources
 
-현재 v1 설계 시 확인한 외부 표면:
+Этот документ фиксирует внешние поверхности, на которые уже опирается `ru-skill`, и источники, которые рассматриваются как база для русскоязычной миграции.
+
+## Что здесь важно
+
+- Основная цель репозитория сейчас: постепенно уходить от корейско-специфичных сценариев к российским и русскоязычным.
+- Legacy-источники ниже сохраняются, чтобы не ломать уже существующие навыки и тесты.
+- Для новых функций предпочтение отдаётся бесплатным, публичным и официальным поверхностям с понятными условиями использования.
+
+## Базовые источники по платформе и экосистеме
+
+- Vercel agent skills package structure: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
+
+## Источники для текущих legacy-навыков
+
+### Железные дороги и транспорт
+
+- `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
+- `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
+- `korail2` anti-bot bypass PR #54: https://github.com/carpedm20/korail2/pull/54
+- Seoul real-time subway arrival API: https://www.data.go.kr/data/15058052/openapi.do
+
+### Спорт
+
+- `kbo-game`: https://github.com/vkehfdl1/kbo-game
+- K League schedule/results JSON: https://www.kleague.com/getScheduleList.do
+- K League standings JSON: https://www.kleague.com/record/teamRank.do
+
+### Финансы
+
+- tossinvest-cli: https://github.com/JungHoonGhae/tossinvest-cli
+
+### Документы и приложения
+
+- `@ohah/hwpjs`: https://github.com/ohah/hwpjs
+- `hwp-mcp`: https://github.com/jkf87/hwp-mcp
+- `silver-flight-group/kakaocli`: https://github.com/silver-flight-group/kakaocli
+- KakaoTalk Mac install reference via `mas`: https://velog.io/@bonjugi/%EB%A7%A5%EB%B6%81-M1%EC%97%90-homebrew%EB%A1%9C-node-vscode-%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+
+### Лотереи, адреса и доставка
+
+- Dhlottery result page: https://www.dhlottery.co.kr/lt645/result
+- Dhlottery past rounds JSON: https://www.dhlottery.co.kr/lt645/selectPstLt645InfoNew.do
+- Korea Post postcode lookup: https://parcel.epost.go.kr/parcel/comm/zipcode/comm_newzipcd_list.jsp
+- CJ Logistics tracking page: https://www.cjlogistics.com/ko/tool/parcel/tracking
+- CJ Logistics tracking detail JSON: https://www.cjlogistics.com/ko/tool/parcel/tracking-detail
+- Korea Post tracking summary: https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=
+- Korea Post tracking detail HTML: https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm
+
+### Локации, еда и товары
+
+- Daiso store search: https://www.daisomall.co.kr/api/ms/msg/selStr
+- Daiso store search keywords: https://www.daisomall.co.kr/api/ms/msg/selStrSrchKeyword
+- Daiso store details: https://www.daisomall.co.kr/api/dl/dla-api/selStrInfo
+- Daiso product search page: https://www.daisomall.co.kr/ssn/search/Search
+- Daiso product search JSON: https://www.daisomall.co.kr/ssn/search/SearchGoods
+- Daiso product summary JSON: https://www.daisomall.co.kr/ssn/search/GoodsMummResult
+- Daiso pickup stock JSON: https://www.daisomall.co.kr/api/pd/pdh/selStrPkupStck
+- Daiso online stock JSON: https://www.daisomall.co.kr/api/pdo/selOnlStck
+- Blue Ribbon Survey main site: https://www.bluer.co.kr/
+- Blue Ribbon zone search: https://www.bluer.co.kr/search/zone
+- Blue Ribbon nearby restaurants JSON: https://www.bluer.co.kr/restaurants/map
+- Kakao Map mobile search: https://m.map.kakao.com/actions/searchView
+- Kakao Map place panel JSON: https://place-api.map.kakao.com/places/panel3/<confirmId>
+
+### Экология и погода
+
+- AirKorea air quality API: https://www.data.go.kr/data/15073861/openapi.do
+- AirKorea station info API: https://www.data.go.kr/data/15073877/openapi.do
+
+## Источники-кандидаты для русскоязычной миграции
+
+Этот блок не означает, что соответствующие навыки уже реализованы. Он нужен, чтобы следующий раунд разработки опирался на заранее зафиксированные классы источников.
+
+## Первый выбранный русскоязычный источник
+
+### Банк России: официальные курсы валют
+
+- Страница с описанием XML-сервисов Банка России: https://www.cbr.ru/development/SXML/
+- Ежедневные курсы валют XML: https://www.cbr.ru/scripts/XML_daily.asp
+- Динамика курса по валюте: https://www.cbr.ru/scripts/XML_dynamic.asp
+
+Почему этот источник выбран первым:
+
+- Это официальный источник Банка России, а не сторонний агрегатор.
+- Доступ read-only и публичный, без логина и без пользовательских секретов.
+- Минимальный сценарий полезен сам по себе: курс на сегодня, курс на дату, краткая динамика.
+- Для первого нового навыка не нужен proxy или обход нестабильного веб-интерфейса.
+
+Минимальный scope первого навыка:
+
+- Вход: код валюты (`USD`, `EUR`, `CNY`) и необязательная дата.
+- Выход: номинал, курс ЦБ РФ, дата публикации, изменение к предыдущему доступному значению.
+- Технический baseline: skill + небольшой read-only package с fixture-based тестом на нормализацию XML.
+- Рабочее имя-кандидат: `cbr-rates` или `bank-of-russia-rates`.
+
+Что не входит в первый scope:
+
+- Конвертация по пользовательским банковским курсам.
+- Исторические графики и длинная аналитика.
+- Любые write-операции, авторизация или пользовательские кабинеты.
+
+### Бытовые и городские данные
+
+- Официальные погодные и климатические API с публичным доступом или бесплатным тарифом
+- Источники по качеству воздуха и предупреждениям, пригодные для read-only proxy
+- Официальные или общедоступные источники по адресам и индексам
+- Официальные расписания транспорта и железнодорожные веб-интерфейсы, допускающие аккуратный read-only доступ
+
+### Электронная коммерция и геопоиск
+
+- Публичные карточки магазинов и поисковые страницы маркетплейсов
+- Официальные страницы магазинов с адресами, режимом работы и контактами
+- Каталоги товаров и availability-страницы, которые можно использовать без приватных API и без логина
+
+### Финансы и гос-сценарии
+
+- Read-only веб-поверхности с официальной документацией или стабильным пользовательским UX
+- Пошаговые официальные инструкции, которые можно превращать в skill-гайды без хранения чувствительных данных
+
+## Правила отбора новых источников
+
+- Берём только то, что можно использовать легально и без обхода платных ограничений.
+- Для proxy-поверхностей приоритет у бесплатных API и официальных open data.
+- Если источник требует секрет, этот секрет должен жить только на серверной стороне или в локальном окружении пользователя.
+- Если источник нестабилен, в репозиторий добавляется фикстура или явная документация о рисках.
+
+## Legacy reference block
+
+Этот блок сохранён в исходном виде, потому что текущие regression-тесты и часть legacy-документации опираются на точные формулировки.
 
 - Vercel skills package 구조: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT

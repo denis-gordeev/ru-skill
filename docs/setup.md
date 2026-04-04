@@ -1,25 +1,25 @@
-# 공통 설정 가이드
+# Общая настройка
 
-`k-skill` 전체 스킬을 설치한 뒤, 인증 정보가 필요한 기능(SRT 예매, KTX 예매, 서울 지하철 도착정보 조회, 미세먼지 조회)을 사용하려면 이 절차를 진행하면 된다.
+После установки полного набора `ru-skill` именно эта процедура подготавливает навыки, которым нужны секреты или API-ключи, например `srt-booking`, `ktx-booking`, `seoul-subway-arrival` и `fine-dust-location`.
 
-## Credential resolution order
+## Порядок разрешения credential
 
-모든 credential-bearing 스킬은 아래 우선순위를 따른다.
+Все навыки, которым нужны секреты, придерживаются одного и того же порядка.
 
-1. **이미 환경변수에 있으면** 그대로 사용한다.
-2. **에이전트가 자체 secret vault(1Password CLI, Bitwarden CLI, macOS Keychain 등)를 사용 중이면** 거기서 꺼내 환경변수로 주입해도 된다.
-3. **`~/.config/k-skill/secrets.env`** (기본 fallback) — plain dotenv 파일, 퍼미션 `0600`.
-4. **아무것도 없으면** 유저에게 물어서 2 또는 3에 저장한다.
+1. Если значение уже есть в переменной окружения, используется оно.
+2. Если агент работает с собственным secret vault, например 1Password CLI, Bitwarden CLI или macOS Keychain, секрет можно достать оттуда и пробросить в окружение.
+3. Если vault нет, сначала используется `~/.config/ru-skill/secrets.env`, а при его отсутствии допускается legacy fallback `~/.config/k-skill/secrets.env`; оба файла должны быть в формате dotenv с правами `0600`.
+4. Если значения нет нигде, агент должен запросить его у пользователя и сохранить через вариант 2 или 3.
 
-에이전트가 자체 vault를 사용 중이라면 기본 경로 설정을 건너뛰어도 된다.
+Если у агента уже есть штатный secret vault, этап с fallback-файлом можно пропустить.
 
-## 기본 경로로 설정하기
+## Настройка через стандартный путь
 
-에이전트가 별도 vault를 쓰지 않는 경우, 기본 fallback 파일을 만든다.
+Если отдельного vault нет, создайте стандартный fallback-файл.
 
 ```bash
-mkdir -p ~/.config/k-skill
-cat > ~/.config/k-skill/secrets.env <<'EOF'
+mkdir -p ~/.config/ru-skill
+cat > ~/.config/ru-skill/secrets.env <<'EOF'
 KSKILL_SRT_ID=replace-me
 KSKILL_SRT_PASSWORD=replace-me
 KSKILL_KTX_ID=replace-me
@@ -28,39 +28,41 @@ SEOUL_OPEN_API_KEY=replace-me
 AIR_KOREA_OPEN_API_KEY=replace-me
 KSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org
 EOF
-chmod 0600 ~/.config/k-skill/secrets.env
+chmod 0600 ~/.config/ru-skill/secrets.env
 ```
 
-실제 값을 채운다.
+Заполните файл реальными значениями.
 
-## 확인
+Если у вас уже есть legacy-файл `~/.config/k-skill/secrets.env`, его можно оставить: скрипты репозитория сначала смотрят `~/.config/ru-skill/secrets.env`, затем fallback-ятся на legacy-путь. Для явного переопределения используются `RU_SKILL_SECRETS_FILE` и `KSKILL_SECRETS_FILE`.
+
+## Проверка
 
 ```bash
 bash scripts/check-setup.sh
 ```
 
-## 시크릿이 없을 때의 기본 응답
+## Если секрета не хватает
 
-인증이 필요한 스킬에서 값이 비어 있으면 credential resolution order에 따라 확보한다.
+Если у навыка с авторизацией нет нужного значения, агент не должен искать неофициальный обходной путь. Нужно действовать по порядку разрешения credential.
 
-- 어떤 값이 필요한지 정확한 변수 이름으로 알려주기
-- resolution order에 따라 유저에게 확보 방법 안내하기
+- Явно назвать отсутствующую переменную окружения.
+- Объяснить пользователю, как получить или сохранить её через vault либо `secrets.env`.
 
-## 기능별로 필요한 값
+## Какие значения нужны конкретным навыкам
 
-| 기능 | 필요한 값 |
+| Навык | Нужные значения |
 | --- | --- |
-| SRT 예매 | `KSKILL_SRT_ID`, `KSKILL_SRT_PASSWORD` |
-| KTX 예매 | `KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD` |
-| 서울 지하철 도착정보 조회 | `SEOUL_OPEN_API_KEY` |
-| 사용자 위치 미세먼지 조회 | `KSKILL_PROXY_BASE_URL` 또는 `AIR_KOREA_OPEN_API_KEY` |
+| `srt-booking` | `KSKILL_SRT_ID`, `KSKILL_SRT_PASSWORD` |
+| `ktx-booking` | `KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD` |
+| `seoul-subway-arrival` | `SEOUL_OPEN_API_KEY` |
+| `fine-dust-location` | `KSKILL_PROXY_BASE_URL` или `AIR_KOREA_OPEN_API_KEY` |
 
-## 다음에 볼 문서
+## Что читать дальше
 
-- [SRT 예매 가이드](features/srt-booking.md)
-- [KTX 예매 가이드](features/ktx-booking.md)
-- [서울 지하철 도착정보 가이드](features/seoul-subway-arrival.md)
-- [사용자 위치 미세먼지 조회 가이드](features/fine-dust-location.md)
-- [보안/시크릿 정책](security-and-secrets.md)
+- [Гайд по SRT](features/srt-booking.md)
+- [Гайд по KTX](features/ktx-booking.md)
+- [Гайд по метро Сеула](features/seoul-subway-arrival.md)
+- [Гайд по fine dust](features/fine-dust-location.md)
+- [Политика секретов](security-and-secrets.md)
 
-설치 기본 흐름은 "전체 스킬 설치 → 개별 기능 사용" 이다.
+Базовый поток остаётся таким: сначала установка полного набора, потом общая настройка, потом запуск нужных навыков.

@@ -626,8 +626,8 @@ def build_client() -> PatchedKorail:
     if not korail_id or not korail_pw:
         raise SystemExit(
             "이 작업에는 KSKILL_KTX_ID, KSKILL_KTX_PASSWORD 환경변수가 필요합니다. "
-            "환경변수가 설정되어 있지 않으면 ~/.config/k-skill/secrets.env 에 추가하거나 "
-            "에이전트의 secret vault에서 주입해 주세요."
+            "환경변수가 설정되어 있지 않으면 ~/.config/ru-skill/secrets.env 에 먼저 추가하고 "
+            "legacy fallback 인 ~/.config/k-skill/secrets.env 또는 에이전트 secret vault를 사용해 주세요."
         )
     client = PatchedKorail(korail_id, korail_pw)
     if not client.logined:
@@ -712,7 +712,7 @@ def add_common_trip_args(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Patched KTX/Korail booking helper for k-skill")
+    parser = argparse.ArgumentParser(description="Patched KTX/Korail booking helper for ru-skill")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     search_parser = subparsers.add_parser("search", help="KTX 열차를 조회합니다")
