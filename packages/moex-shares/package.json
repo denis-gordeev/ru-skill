@@ -1,0 +1,32 @@
+{
+  "name": "moex-shares",
+  "version": "0.1.0",
+  "description": "Read-only client for Moscow Exchange ISS share metadata and delayed market snapshots",
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denis-gordeev/ru-skill.git"
+  },
+  "keywords": [
+    "ru-skill",
+    "moex",
+    "moscow-exchange",
+    "shares",
+    "market-data"
+  ],
+  "scripts": {
+    "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",
+    "test": "node --test"
+  }
+}

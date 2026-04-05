@@ -2,13 +2,14 @@
 
 Живой список задач для `ru-skill`. Обновляется по итогам каждого automation round.
 
-## Статус на 2026-04-04
+## Статус на 2026-04-05
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет подтверждён, курс репозитория - перевод на российские и русскоязычные реалии.
 - GitHub Issues: недоступны, в репозитории отключены.
 - Open PR: автоматическая проверка недоступна без `gh auth login`, поэтому в этом раунде PR backlog не подтверждён.
 - Рабочее дерево уже содержит незакоммиченные изменения, поэтому дальнейшие правки нужно держать точечными.
 - Первый новый русскоязычный навык уже добавлен: `cbr-rates` поверх официального XML-сервиса курсов валют Банка России.
+- Второй новый русскоязычный навык добавлен: `moex-shares` поверх публичного ISS API Московской биржи.
 - В базовых shell-скриптах и документации внедрён dual-path для секретов: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 - Оставшиеся legacy feature-guides в `docs/features/*.md` переведены на русскоязычный тон, при этом сохранены нужные legacy-маркеры для doc-regression тестов.
 - Для Python helper-скриптов добавлен общий resolver `scripts/shared_secrets.py`; теперь `fine_dust.py` и `ktx_booking.py` читают секреты из env, затем из `~/.config/ru-skill/secrets.env`, затем из legacy fallback.
@@ -33,6 +34,8 @@
 - [x] Вынесена общая логика поиска `secrets.env` в `scripts/shared_secrets.py` и подключена в Python helper-скрипты.
 - [x] Добавлены Python regression-тесты на shared secrets-resolution для `fine_dust.py` и `ktx_booking.py`.
 - [x] Прогнаны `PYTHONPATH=scripts python3 -m unittest scripts/test_fine_dust.py scripts/test_ktx_booking.py` и полный `npm run ci`.
+- [x] Добавлен новый target-package `moex-shares` для публичных акций Московской биржи с fixture-based тестами и skill-документацией.
+- [x] Обновлены `README.md`, `docs/install.md`, `docs/roadmap.md` и `docs/sources.md`, чтобы второй российский read-only навык был встроен в основную матрицу репозитория.
 
 ## Ближайшие задачи
 
@@ -50,10 +53,11 @@
 - [x] Спроектировать dual-path поддержку `~/.config/ru-skill/secrets.env` с fallback на legacy `~/.config/k-skill/secrets.env`.
 - [x] Решить, нужен ли alias или wrapper для `k-skill-setup` перед дальнейшей миграцией install/setup-документов.
 - [x] Распространить dual-path описание на feature-guides и Python helper-скрипты, где пока ещё зафиксирован только legacy-путь `~/.config/k-skill/secrets.env`.
-- [ ] Добавить следующий российский read-only навык поверх публичного источника, чтобы `cbr-rates` не оставался единственным target-package.
+- [x] Добавить следующий российский read-only навык поверх публичного источника, чтобы `cbr-rates` не оставался единственным target-package.
+- [ ] Выбрать следующий российский read-only источник вне финансового домена, чтобы целевая ветка `ru-skill` не ограничивалась только финтех-сценариями.
 
 ## Проверки на следующий шаг
 
 - Для документных и релизных изменений запускать `npm run ci`.
 - Перед коммитом отдельно проверять, что правки не затёрли уже существующие незакоммиченные изменения в рабочем дереве.
-- Следующий продуктовый шаг: выбрать и реализовать второй российский read-only target-skill поверх публичного источника, не ломая текущие legacy-пакеты.
+- Следующий продуктовый шаг: выбрать и реализовать третий российский read-only target-skill, желательно вне финансового домена, не ломая текущие legacy-пакеты.

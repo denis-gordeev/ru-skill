@@ -1,0 +1,10 @@
+{
+  "securities": {
+    "columns": ["SECID", "SHORTNAME", "LOTSIZE", "ISIN"],
+    "data": [
+      ["ABIO", "iАРТГЕН ао", 10, "RU000A0JNAB6"],
+      ["ABRD", "АбрауДюрсо", 10, "RU000A0JS5T7"],
+      ["AFKS", "Система ао", 100, "RU000A0DQZE3"]
+    ]
+  }
+}

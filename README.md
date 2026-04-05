@@ -24,6 +24,7 @@
 | Навык | Описание | Нужны секреты | Документ |
 | --- | --- | --- | --- |
 | `cbr-rates` | Официальные курсы валют Банка России по публичному XML-сервису | Нет | [Гайд по курсам ЦБ РФ](docs/features/cbr-rates.md) |
+| `moex-shares` | Публичные метаданные и задержанные котировки акций Московской биржи через ISS API | Нет | [Гайд по акциям MOEX](docs/features/moex-shares.md) |
 | `srt-booking` | Поиск поездов SRT, бронирование, просмотр и отмена брони | Да | [Гайд по SRT](docs/features/srt-booking.md) |
 | `ktx-booking` | Поиск и бронирование поездов KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
@@ -47,6 +48,7 @@
 | Пакет | Описание | Статус |
 | --- | --- | --- |
 | `cbr-rates` | Клиент для официальных курсов валют Банка России | Target |
+| `moex-shares` | Клиент для публичных акций Московской биржи через ISS API | Target |
 | `k-lotto` | Клиент для результатов корейской лотереи | Legacy |
 | `daiso-product-search` | Поиск магазинов, товаров и остатков Daiso | Legacy |
 | `blue-ribbon-nearby` | Поиск ресторанов Blue Ribbon nearby | Legacy |
@@ -71,6 +73,7 @@
 ## Что уже сделано по миграции
 
 - Добавлен первый целевой русскоязычный навык `cbr-rates` на официальном XML-сервисе Банка России.
+- Добавлен второй целевой русскоязычный навык `moex-shares` на публичном ISS API Московской биржи.
 - Верхнеуровневая документация и roadmap переведены на единый русскоязычный сценарий с явным разделением `Target` и `Legacy`.
 - Для setup и shell-скриптов введён dual-path secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 - Setup-поток теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый alias.
@@ -78,7 +81,7 @@
 ## Быстрые ссылки на ключевые функции
 
 - [Курсы валют Банка России](docs/features/cbr-rates.md)
-
+- [Акции Московской биржи](docs/features/moex-shares.md)
 - [Бронирование SRT](docs/features/srt-booking.md)
 - [Бронирование KTX](docs/features/ktx-booking.md)
 - [KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md)
