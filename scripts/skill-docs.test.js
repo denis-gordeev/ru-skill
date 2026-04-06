@@ -268,6 +268,21 @@ test("repository docs advertise the cbr-rates skill across the documented surfac
   assert.match(roadmap, /cbr-rates/);
 });
 
+test("repository docs advertise the postcalc-postcodes skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "postcalc-postcodes.md");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/postcalc-postcodes.md to exist");
+  assert.match(readme, /\| `postcalc-postcodes` \|/);
+  assert.match(readme, /\[Гайд по Postcalc и индексам\]\(docs\/features\/postcalc-postcodes\.md\)/);
+  assert.match(install, /--skill postcalc-postcodes/);
+  assert.match(roadmap, /postcalc-postcodes/);
+  assert.match(sources, /postcalc\.ru\/offices\/109189/);
+});
+
 test("cbr-rates docs document the official Bank of Russia XML workflow", () => {
   const skillPath = path.join(repoRoot, "cbr-rates", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "cbr-rates", "README.md");
@@ -289,6 +304,28 @@ test("cbr-rates docs document the official Bank of Russia XML workflow", () => {
   assert.match(featureDoc, /publishedDate/);
   assert.match(packageReadme, /getDailyRates/);
   assert.match(packageReadme, /getRateWithChange/);
+});
+
+test("postcalc-postcodes docs document the Postcalc office and city workflows", () => {
+  const skillPath = path.join(repoRoot, "postcalc-postcodes", "SKILL.md");
+  const packageReadmePath = path.join(repoRoot, "packages", "postcalc-postcodes", "README.md");
+
+  assert.ok(fs.existsSync(skillPath), "expected postcalc-postcodes/SKILL.md to exist");
+  assert.ok(fs.existsSync(packageReadmePath), "expected packages/postcalc-postcodes/README.md to exist");
+
+  const skill = read(path.join("postcalc-postcodes", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "postcalc-postcodes.md"));
+  const packageReadme = read(path.join("packages", "postcalc-postcodes", "README.md"));
+
+  assert.match(skill, /^name: postcalc-postcodes$/m);
+  assert.match(skill, /npm install -g postcalc-postcodes/);
+  assert.match(skill, /getOfficeOverview/);
+  assert.match(skill, /getCityOverview/);
+  assert.match(featureDoc, /postcalc\.ru\/offices/);
+  assert.match(featureDoc, /postcalc\.ru\/cities/);
+  assert.match(featureDoc, /defaultPostalCode/);
+  assert.match(packageReadme, /getOfficeOverview/);
+  assert.match(packageReadme, /getCityOverview/);
 });
 
 test("zipcode-search docs lock the official ePost extraction flow and reliable transport example", () => {
@@ -596,6 +633,7 @@ test("root pack:dry-run script covers all publishable workspaces", () => {
   const packageJson = readJson("package.json");
 
   assert.match(packageJson.scripts["pack:dry-run"], /workspace cbr-rates/);
+  assert.match(packageJson.scripts["pack:dry-run"], /workspace postcalc-postcodes/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace k-lotto/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace daiso-product-search/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace blue-ribbon-nearby/);
