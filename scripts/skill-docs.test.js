@@ -673,6 +673,7 @@ test("root pack:dry-run script covers all publishable workspaces", () => {
 
   assert.match(packageJson.scripts["pack:dry-run"], /workspace cbr-rates/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace postcalc-postcodes/);
+  assert.match(packageJson.scripts["pack:dry-run"], /workspace stoloto-lotto/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace k-lotto/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace daiso-product-search/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace blue-ribbon-nearby/);
