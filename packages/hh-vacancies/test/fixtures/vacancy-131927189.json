@@ -1,0 +1,106 @@
+{
+  "id": "131927189",
+  "name": "Middle Frontend-разработчик (React / React Admin)",
+  "area": {
+    "id": "1",
+    "name": "Москва",
+    "url": "https://api.hh.ru/areas/1"
+  },
+  "salary": {
+    "from": 180000,
+    "to": null,
+    "currency": "RUR",
+    "gross": false
+  },
+  "salary_range": {
+    "from": 180000,
+    "to": null,
+    "currency": "RUR",
+    "gross": false,
+    "mode": {
+      "id": "MONTH",
+      "name": "За\u00a0месяц"
+    },
+    "frequency": {
+      "id": "TWICE_PER_MONTH",
+      "name": "Два раза в\u00a0месяц"
+    }
+  },
+  "address": {
+    "city": "Москва",
+    "street": "Научный проезд",
+    "building": "19",
+    "lat": 55.653304,
+    "lng": 37.553963,
+    "raw": "Москва, Научный проезд, 19",
+    "metro": {
+      "station_name": "Воронцовская",
+      "line_name": "Большая кольцевая линия"
+    },
+    "metro_stations": [
+      {
+        "station_name": "Воронцовская",
+        "line_name": "Большая кольцевая линия"
+      },
+      {
+        "station_name": "Зюзино",
+        "line_name": "Большая кольцевая линия"
+      },
+      {
+        "station_name": "Калужская",
+        "line_name": "Калужско-Рижская"
+      }
+    ]
+  },
+  "experience": {
+    "id": "between1And3",
+    "name": "От 1 года до 3 лет"
+  },
+  "schedule": {
+    "id": "fullDay",
+    "name": "Полный день"
+  },
+  "employment": {
+    "id": "full",
+    "name": "Полная занятость"
+  },
+  "employment_form": {
+    "id": "FULL",
+    "name": "Полная"
+  },
+  "description": "<p>В компанию Авеню групп требуется <strong>Middle Frontend-разработчик</strong>.</p><p><strong>О проекте</strong><br />Нам нужен разработчик, который возьмет на себя создание клиентской части для мощного RESTful API.</p><ul><li>Разработка SPA на React для админской панели.</li><li>Интеграция с готовым RESTful API.</li><li>Верстка по макетам.</li></ul><p><strong>Условия:</strong></p><ul><li>Гибридный режим работы.</li><li>Комфортный офис рядом с метро.</li></ul>",
+  "key_skills": [],
+  "employer": {
+    "id": "5574166",
+    "name": "Бизнес Совет",
+    "alternate_url": "https://hh.ru/employer/5574166",
+    "accredited_it_employer": false,
+    "trusted": true
+  },
+  "published_at": "2026-04-07T17:21:28+0300",
+  "alternate_url": "https://hh.ru/vacancy/131927189",
+  "professional_roles": [
+    {
+      "id": "96",
+      "name": "Программист, разработчик"
+    }
+  ],
+  "work_format": [
+    {
+      "id": "HYBRID",
+      "name": "Гибрид"
+    }
+  ],
+  "working_hours": [
+    {
+      "id": "HOURS_8",
+      "name": "8\u00a0часов"
+    }
+  ],
+  "work_schedule_by_days": [
+    {
+      "id": "FIVE_ON_TWO_OFF",
+      "name": "5/2"
+    }
+  ]
+}

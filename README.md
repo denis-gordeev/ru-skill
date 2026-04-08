@@ -26,6 +26,7 @@
 | `cbr-rates` | Официальные курсы валют Банка России по публичному XML-сервису | Нет | [Гайд по курсам ЦБ РФ](docs/features/cbr-rates.md) |
 | `moex-shares` | Публичные метаданные и задержанные котировки акций Московской биржи через ISS API | Нет | [Гайд по акциям MOEX](docs/features/moex-shares.md) |
 | `postcalc-postcodes` | Карточки отделений и сводки по населённым пунктам через публичные страницы Postcalc | Нет | [Гайд по Postcalc и индексам](docs/features/postcalc-postcodes.md) |
+| `hh-vacancies` | Поиск вакансий, карточки вакансий и lookup регионов через публичный API hh.ru | Нет | [Гайд по HH вакансиям](docs/features/hh-vacancies.md) |
 | `srt-booking` | Поиск поездов SRT, бронирование, просмотр и отмена брони | Да | [Гайд по SRT](docs/features/srt-booking.md) |
 | `ktx-booking` | Поиск и бронирование поездов KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
@@ -51,6 +52,7 @@
 | `cbr-rates` | Клиент для официальных курсов валют Банка России | Target |
 | `moex-shares` | Клиент для публичных акций Московской биржи через ISS API | Target |
 | `postcalc-postcodes` | Клиент для read-only-сводок по индексам и отделениям Почты России через Postcalc | Target |
+| `hh-vacancies` | Клиент для поиска вакансий и карточек вакансий через публичный API hh.ru | Target |
 | `k-lotto` | Клиент для результатов корейской лотереи | Legacy |
 | `daiso-product-search` | Поиск магазинов, товаров и остатков Daiso | Legacy |
 | `blue-ribbon-nearby` | Поиск ресторанов Blue Ribbon nearby | Legacy |
@@ -77,6 +79,7 @@
 - Добавлен первый целевой русскоязычный навык `cbr-rates` на официальном XML-сервисе Банка России.
 - Добавлен второй целевой русскоязычный навык `moex-shares` на публичном ISS API Московской биржи.
 - Добавлен третий целевой русскоязычный навык `postcalc-postcodes` для индексов и отделений Почты России через публичные страницы Postcalc.
+- Добавлен четвёртый целевой русскоязычный навык `hh-vacancies` для поиска вакансий и карточек вакансий через публичный API `hh.ru`.
 - Верхнеуровневая документация и roadmap переведены на единый русскоязычный сценарий с явным разделением `Target` и `Legacy`.
 - Для setup и shell-скриптов введён dual-path secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 - Setup-поток теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый alias.
@@ -86,6 +89,7 @@
 - [Курсы валют Банка России](docs/features/cbr-rates.md)
 - [Акции Московской биржи](docs/features/moex-shares.md)
 - [Postcalc и индексы Почты России](docs/features/postcalc-postcodes.md)
+- [HH вакансии](docs/features/hh-vacancies.md)
 - [Бронирование SRT](docs/features/srt-booking.md)
 - [Бронирование KTX](docs/features/ktx-booking.md)
 - [KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md)

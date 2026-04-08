@@ -283,6 +283,21 @@ test("repository docs advertise the postcalc-postcodes skill across the document
   assert.match(sources, /postcalc\.ru\/offices\/109189/);
 });
 
+test("repository docs advertise the hh-vacancies skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "hh-vacancies.md");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/hh-vacancies.md to exist");
+  assert.match(readme, /\| `hh-vacancies` \|/);
+  assert.match(readme, /\[Гайд по HH вакансиям\]\(docs\/features\/hh-vacancies\.md\)/);
+  assert.match(install, /--skill hh-vacancies/);
+  assert.match(roadmap, /hh-vacancies/);
+  assert.match(sources, /api\.hh\.ru\/vacancies/);
+});
+
 test("cbr-rates docs document the official Bank of Russia XML workflow", () => {
   const skillPath = path.join(repoRoot, "cbr-rates", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "cbr-rates", "README.md");
@@ -326,6 +341,30 @@ test("postcalc-postcodes docs document the Postcalc office and city workflows", 
   assert.match(featureDoc, /defaultPostalCode/);
   assert.match(packageReadme, /getOfficeOverview/);
   assert.match(packageReadme, /getCityOverview/);
+});
+
+test("hh-vacancies docs document the public HH vacancy workflow", () => {
+  const skillPath = path.join(repoRoot, "hh-vacancies", "SKILL.md");
+  const packageReadmePath = path.join(repoRoot, "packages", "hh-vacancies", "README.md");
+
+  assert.ok(fs.existsSync(skillPath), "expected hh-vacancies/SKILL.md to exist");
+  assert.ok(fs.existsSync(packageReadmePath), "expected packages/hh-vacancies/README.md to exist");
+
+  const skill = read(path.join("hh-vacancies", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "hh-vacancies.md"));
+  const packageReadme = read(path.join("packages", "hh-vacancies", "README.md"));
+
+  assert.match(skill, /^name: hh-vacancies$/m);
+  assert.match(skill, /npm install -g hh-vacancies/);
+  assert.match(skill, /getAreaOverview/);
+  assert.match(skill, /searchVacancies/);
+  assert.match(skill, /getVacancyOverview/);
+  assert.match(featureDoc, /api\.hh\.ru\/vacancies/);
+  assert.match(featureDoc, /descriptionText/);
+  assert.match(featureDoc, /areaId/);
+  assert.match(packageReadme, /getAreaOverview/);
+  assert.match(packageReadme, /searchVacancies/);
+  assert.match(packageReadme, /getVacancyOverview/);
 });
 
 test("zipcode-search docs lock the official ePost extraction flow and reliable transport example", () => {

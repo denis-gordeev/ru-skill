@@ -2,7 +2,7 @@
 
 Живой список задач для `ru-skill`. Обновляется по итогам каждого automation round.
 
-## Статус на 2026-04-06
+## Статус на 2026-04-08
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет подтверждён, курс репозитория - перевод на российские и русскоязычные реалии.
 - GitHub Issues: недоступны, в репозитории отключены.
@@ -11,6 +11,7 @@
 - Первый новый русскоязычный навык уже добавлен: `cbr-rates` поверх официального XML-сервиса курсов валют Банка России.
 - Второй новый русскоязычный навык добавлен: `moex-shares` поверх публичного ISS API Московской биржи.
 - Третий новый русскоязычный навык добавлен: `postcalc-postcodes` поверх публичных страниц `Postcalc` для индексов и отделений Почты России.
+- Четвёртый новый русскоязычный навык добавлен: `hh-vacancies` поверх публичного API `hh.ru` для поиска вакансий, карточек вакансий и lookup регионов.
 - В базовых shell-скриптах и документации внедрён dual-path для секретов: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 - Оставшиеся legacy feature-guides в `docs/features/*.md` переведены на русскоязычный тон, при этом сохранены нужные legacy-маркеры для doc-regression тестов.
 - Для Python helper-скриптов добавлен общий resolver `scripts/shared_secrets.py`; теперь `fine_dust.py` и `ktx_booking.py` читают секреты из env, затем из `~/.config/ru-skill/secrets.env`, затем из legacy fallback.
@@ -43,6 +44,11 @@
 - [x] Подготовлены fixture-based HTML-тесты для страниц `postcalc.ru/cities/...` и `postcalc.ru/offices/...`, чтобы не зависеть от живой вёрстки в CI.
 - [x] Обновлены `README.md`, `docs/install.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/postcalc-postcodes.md` и `postcalc-postcodes/SKILL.md`, чтобы третий российский target-skill был встроен в основной пользовательский путь.
 - [x] Обновлены `package.json`, `scripts/skill-docs.test.js` и `.changeset/postcalc-postcodes.md`, чтобы новый workspace входил в doc-regression и pack dry-run поток.
+- [x] Выбран четвёртый русскоязычный read-only источник вне финансов и логистики: публичный API `hh.ru` для вакансий и регионов.
+- [x] Реализован новый target-package `hh-vacancies` с тремя базовыми read-only сценариями: lookup региона, поиск вакансий и карточка вакансии.
+- [x] Подготовлены fixture-based JSON-тесты для `areas`, `vacancies` и `vacancies/{id}`, чтобы CI не зависел от live API.
+- [x] Обновлены `README.md`, `docs/install.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/hh-vacancies.md`, `hh-vacancies/SKILL.md` и `.changeset/hh-vacancies.md`, чтобы четвёртый target-skill был встроен в основной пользовательский путь.
+- [x] Обновлён `package.json`, чтобы `hh-vacancies` входил в `pack:dry-run`.
 
 ## Ближайшие задачи
 
@@ -62,11 +68,13 @@
 - [x] Распространить dual-path описание на feature-guides и Python helper-скрипты, где пока ещё зафиксирован только legacy-путь `~/.config/k-skill/secrets.env`.
 - [x] Добавить следующий российский read-only навык поверх публичного источника, чтобы `cbr-rates` не оставался единственным target-package.
 - [x] Выбрать следующий российский read-only источник вне финансового домена, чтобы целевая ветка `ru-skill` не ограничивалась только финтех-сценариями.
-- [ ] Выбрать следующий российский read-only источник после `Postcalc`, чтобы целевая ветка `ru-skill` не ограничивалась только финансами и почтовыми индексами.
-- [ ] Подготовить ещё один target-package вне финансов и логистики, чтобы доля русскоязычных `target` workspace-пакетов продолжала расти.
+- [x] Выбрать следующий российский read-only источник после `Postcalc`, чтобы целевая ветка `ru-skill` не ограничивалась только финансами и почтовыми индексами.
+- [x] Подготовить ещё один target-package вне финансов и логистики, чтобы доля русскоязычных `target` workspace-пакетов продолжала расти.
+- [ ] Выбрать пятый российский read-only источник после `hh.ru`, чтобы target-линейка не ограничивалась финансами, почтовыми индексами и рынком труда.
+- [ ] Подготовить ещё один target-package вне финансов, логистики и job-search, чтобы русскоязычные `target` workspace-пакеты росли по разным продуктовым доменам.
 
 ## Проверки на следующий шаг
 
 - Для документных и релизных изменений запускать `npm run ci`.
 - Перед коммитом отдельно проверять, что правки не затёрли уже существующие незакоммиченные изменения в рабочем дереве.
-- Следующий продуктовый шаг: выбрать четвёртый российский read-only target-skill после `Postcalc` и зафиксировать его минимальный MVP в `docs/sources.md` и `TODO.md`.
+- Следующий продуктовый шаг: выбрать пятый российский read-only target-skill после `hh.ru` и зафиксировать его минимальный MVP в `docs/sources.md` и `TODO.md`.
