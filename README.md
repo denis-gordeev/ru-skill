@@ -28,6 +28,7 @@
 | `postcalc-postcodes` | Карточки отделений и сводки по населённым пунктам через публичные страницы Postcalc | Нет | [Гайд по Postcalc и индексам](docs/features/postcalc-postcodes.md) |
 | `hh-vacancies` | Поиск вакансий, карточки вакансий и lookup регионов через публичный API hh.ru | Нет | [Гайд по HH вакансиям](docs/features/hh-vacancies.md) |
 | `stoloto-lotto` | Публичные результаты лотерей Столото через архивные страницы тиражей | Нет | [Гайд по лотереям Столото](docs/features/stoloto-lotto.md) |
+| `kinopoisk-search` | Поиск фильмов и карточки фильмов через публичные страницы Кинопоиска | Нет | [Гайд по Кинопоиску](docs/features/kinopoisk-search.md) |
 | `srt-booking` | Поиск поездов SRT, бронирование, просмотр и отмена брони | Да | [Гайд по SRT](docs/features/srt-booking.md) |
 | `ktx-booking` | Поиск и бронирование поездов KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
@@ -55,6 +56,7 @@
 | `postcalc-postcodes` | Клиент для read-only-сводок по индексам и отделениям Почты России через Postcalc | Target |
 | `hh-vacancies` | Клиент для поиска вакансий и карточек вакансий через публичный API hh.ru | Target |
 | `stoloto-lotto` | Клиент для публичных результатов лотерей Столото через архивные страницы | Target |
+| `kinopoisk-search` | Клиент для поиска фильмов и карточек фильмов через публичные страницы Кинопоиска | Target |
 | `k-lotto` | Клиент для результатов корейской лотереи | Legacy |
 | `daiso-product-search` | Поиск магазинов, товаров и остатков Daiso | Legacy |
 | `blue-ribbon-nearby` | Поиск ресторанов Blue Ribbon nearby | Legacy |
@@ -83,6 +85,7 @@
 - Добавлен третий целевой русскоязычный навык `postcalc-postcodes` для индексов и отделений Почты России через публичные страницы Postcalc.
 - Добавлен четвёртый целевой русскоязычный навык `hh-vacancies` для поиска вакансий и карточек вакансий через публичный API `hh.ru`.
 - Добавлен пятый целевой русскоязычный навык `stoloto-lotto` для результатов лотерей через публичные страницы архива Столото.
+- Добавлен шестой целевой русскоязычный навык `kinopoisk-search` для поиска фильмов и карточек фильмов через публичные страницы Кинопоиска.
 - Верхнеуровневая документация и roadmap переведены на единый русскоязычный сценарий с явным разделением `Target` и `Legacy`.
 - Для setup и shell-скриптов введён dual-path secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 - Setup-поток теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый alias.
@@ -94,6 +97,7 @@
 - [Postcalc и индексы Почты России](docs/features/postcalc-postcodes.md)
 - [HH вакансии](docs/features/hh-vacancies.md)
 - [Лотереи Столото](docs/features/stoloto-lotto.md)
+- [Кинопоиск](docs/features/kinopoisk-search.md)
 - [Бронирование SRT](docs/features/srt-booking.md)
 - [Бронирование KTX](docs/features/ktx-booking.md)
 - [KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md)
