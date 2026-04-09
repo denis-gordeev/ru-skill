@@ -33,9 +33,30 @@ metadata:
 
 ## Inputs
 
-- `regionHost`, например `46`, `78` или `moscow`
+- `regionHost`, например `46`, `78`, `moscow` или название региона вроде `"Курская область"`, `"Москва"`, `"Санкт-Петербург"`
 - Необязательная страница списка `page`
 - Идентификатор предупреждения или относительный путь предупреждения
+
+## Region lookup
+
+Пакет поддерживает поиск региона по человекочитаемому названию вместо ручного ввода `regionHost`:
+
+```bash
+NODE_PATH="$(npm root -g)" node - <<'JS'
+const { lookupRegion, listRegions } = require("mchs-storm-warnings");
+
+// Поиск по названию
+const kursk = lookupRegion("Курская область");
+console.log(kursk); // { name: "Курская область", host: "46" }
+
+const moscow = lookupRegion("Москва");
+console.log(moscow); // { name: "г. Москва", host: "moscow" }
+
+// Список всех регионов
+const all = listRegions();
+console.log(all.length); // 85+ регионов
+JS
+```
 
 ## Workflow
 

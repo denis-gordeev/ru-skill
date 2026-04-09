@@ -1,0 +1,46 @@
+{
+  "itemsTotalCount": 2,
+  "itemsPerPage": 20,
+  "pagesTotalCount": 1,
+  "currentPage": 1,
+  "items": [
+    {
+      "id": "test-id-1",
+      "eoNumber": "0001202501010001",
+      "publishDateShort": "2025-01-01T00:00:00",
+      "viewDate": "01.01.2025",
+      "complexName": "Федеральный закон от 01.01.2025",
+      "title": "О внесении изменений в отдельные законодательные акты",
+      "jdRegNumber": "123-ФЗ",
+      "jdRegDate": "01.01.2025",
+      "pagesCount": 15,
+      "pdfFileLength": 250000,
+      "zipFileLength": 100000,
+      "name": "Федеральный закон",
+      "number": "123-ФЗ",
+      "documentDate": "2025-01-01",
+      "signatoryAuthorityId": "auth-1",
+      "documentTypeId": "type-1",
+      "hasSvg": true
+    },
+    {
+      "id": "test-id-2",
+      "eoNumber": "0001202502010002",
+      "publishDateShort": "2025-02-01T00:00:00",
+      "viewDate": "01.02.2025",
+      "complexName": "Постановление Правительства РФ",
+      "title": "О мерах по реализации федеральных программ",
+      "jdRegNumber": "456",
+      "jdRegDate": "01.02.2025",
+      "pagesCount": 8,
+      "pdfFileLength": 180000,
+      "zipFileLength": 75000,
+      "name": "Постановление",
+      "number": "456",
+      "documentDate": "2025-02-01",
+      "signatoryAuthorityId": "auth-2",
+      "documentTypeId": "type-2",
+      "hasSvg": false
+    }
+  ]
+}

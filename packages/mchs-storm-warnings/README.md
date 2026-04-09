@@ -34,9 +34,41 @@ const {
 
 ## API
 
+### `lookupRegion(query)`
+
+Look up a region by name or host and return the normalized host and full name.
+
+```js
+const { lookupRegion } = require("mchs-storm-warnings");
+
+const kursk = lookupRegion("Курская область");
+// { name: "Курская область", host: "46" }
+
+const moscow = lookupRegion("Москва");
+// { name: "г. Москва", host: "moscow" }
+```
+
+- `query`: region name or host (e.g. `"Курская область"`, `"Москва"`, `"46"`, `"moscow"`)
+- Returns `{ name: string, host: string }` or `null` if not found
+- Supports fuzzy matching on Russian region names
+
+### `listRegions()`
+
+List all available regions with their names and hosts.
+
+```js
+const { listRegions } = require("mchs-storm-warnings");
+
+const regions = listRegions();
+// [{ name: "Республика Адыгея", host: "01" }, ...]
+```
+
+- Returns an array of `{ name: string, host: string }` sorted by Russian name
+- Covers all 85+ Russian federal subjects
+
 ### `listStormWarnings(regionHost, options?)`
 
-- `regionHost`: MChS regional host such as `46`, `78`, or `moscow`
+- `regionHost`: MChS regional host such as `46`, `78`, `moscow`, or a region name like `"Курская область"`
 - `options.page`: optional page number, default `0`
 - Returns a normalized feed with `regionName`, `sectionTitle`, and `items`
 

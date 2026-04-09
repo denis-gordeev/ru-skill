@@ -1,0 +1,32 @@
+{
+  "id": "test-card-id",
+  "eoNumber": "0001202501010001",
+  "publishDateShort": "2025-01-01T00:00:00",
+  "viewDate": "01.01.2025",
+  "complexName": "Федеральный закон от 01.01.2025",
+  "title": "О внесении изменений в отдельные законодательные акты",
+  "jdRegNumber": "123-ФЗ",
+  "jdRegDate": "01.01.2025",
+  "pagesCount": 15,
+  "pdfFileLength": 250000,
+  "zipFileLength": 100000,
+  "name": "Федеральный закон",
+  "number": "123-ФЗ",
+  "documentDate": "2025-01-01",
+  "signatoryAuthorityId": "auth-1",
+  "documentTypeId": "type-1",
+  "hasSvg": true,
+  "documentType": {
+    "id": "type-1",
+    "name": "Федеральный закон",
+    "weight": 1
+  },
+  "signatoryAuthorities": [
+    {
+      "id": "auth-1",
+      "name": "Президент Российской Федерации",
+      "weight": 1,
+      "isMain": true
+    }
+  ]
+}

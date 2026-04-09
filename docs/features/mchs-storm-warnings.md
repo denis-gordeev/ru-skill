@@ -20,9 +20,10 @@
 ## Базовый сценарий
 
 1. Если пакет не установлен, сначала поставить `mchs-storm-warnings`.
-2. Уточнить региональный хост МЧС, например `46`, `78` или `moscow`.
-3. Получить первую страницу списка предупреждений через `listStormWarnings`.
-4. Если нужен полный официальный текст, дочитать карточку через `getStormWarning`.
+2. Уточнить региональный хост МЧС, например `46`, `78`, `moscow` или название региона `"Курская область"`, `"Москва"`.
+3. При необходимости найти регион по названию через `lookupRegion` или посмотреть все доступные регионы через `listRegions`.
+4. Получить первую страницу списка предупреждений через `listStormWarnings`.
+5. Если нужен полный официальный текст, дочитать карточку через `getStormWarning`.
 
 ## Пример: список последних предупреждений
 
@@ -48,6 +49,27 @@ getStormWarning("46", "5695266").then((result) => {
 JS
 ```
 
+## Пример: поиск региона по названию
+
+```bash
+NODE_PATH="$(npm root -g)" node - <<'JS'
+const { lookupRegion, listRegions, listStormWarnings } = require("mchs-storm-warnings");
+
+// Поиск региона по названию
+const region = lookupRegion("Курская область");
+console.log(region); // { name: "Курская область", host: "46" }
+
+// Использование найденного региона
+listStormWarnings(region.host).then((result) => {
+  console.log(JSON.stringify(result, null, 2));
+});
+
+// Или список всех регионов
+const allRegions = listRegions();
+console.log(allRegions.length); // 85+ регионов
+JS
+```
+
 ## Что возвращать пользователю
 
 - Для списка: `title`, `publishedAt`, `publishedAtIso`, `tag`, `warningId`, `url`
@@ -58,5 +80,5 @@ JS
 
 - Это только read-only сценарий
 - Источник данных: официальные страницы вида `https://{region}.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya`
-- Региональный хост должен быть известен заранее; этот MVP не решает задачу общего поиска региона по названию
+- lookupRegion покрывает все основные российские регионы, но если какой-то регион отсутствует, его можно добавить в `src/regions.js`
 - `publishedAtIso` нормализуется из публичной строки даты или `itemprop="datePublished"` и не добавляет региональную временную зону

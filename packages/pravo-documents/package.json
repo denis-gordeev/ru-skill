@@ -1,7 +1,7 @@
 {
-  "name": "mchs-storm-warnings",
+  "name": "pravo-documents",
   "version": "0.1.0",
-  "description": "Read-only client for official regional MChS storm and emergency warning pages",
+  "description": "Read-only client for official Russian legal documents via pravo.gov.ru publication API",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
@@ -20,13 +20,14 @@
   },
   "keywords": [
     "ru-skill",
-    "mchs",
-    "weather",
-    "warnings",
-    "emergency"
+    "pravo",
+    "legal",
+    "law",
+    "legislation",
+    "documents"
   ],
   "scripts": {
-    "lint": "node --check src/index.js && node --check src/parse.js && node --check src/regions.js && node --check test/index.test.js",
+    "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",
     "test": "node --test"
   }
 }

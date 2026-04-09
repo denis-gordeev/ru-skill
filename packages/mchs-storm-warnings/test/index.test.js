@@ -8,7 +8,9 @@ const {
   buildWarningUrl,
   buildWarningsIndexUrl,
   getStormWarning,
-  listStormWarnings
+  listStormWarnings,
+  listRegions,
+  lookupRegion
 } = require("../src/index");
 const {
   normalizeRegionHost,
@@ -121,4 +123,57 @@ test("public helpers fetch and normalize the MChS warning feed and detail page",
   } finally {
     global.fetch = originalFetch;
   }
+});
+
+test("lookupRegion resolves numeric hosts", () => {
+  const result = lookupRegion("46");
+  assert.equal(result.host, "46");
+  assert.equal(result.name, "Курская область");
+});
+
+test("lookupRegion resolves named hosts", () => {
+  const moscow = lookupRegion("moscow");
+  assert.equal(moscow.host, "moscow");
+  assert.equal(moscow.name, "г. Москва");
+
+  const spb = lookupRegion("78");
+  assert.equal(spb.host, "78");
+  assert.equal(spb.name, "г. Санкт-Петербург");
+});
+
+test("lookupRegion resolves Russian region names", () => {
+  const kursk = lookupRegion("Курская область");
+  assert.equal(kursk.host, "46");
+  assert.equal(kursk.name, "Курская область");
+
+  const moscowResult = lookupRegion("Москва");
+  assert.equal(moscowResult.host, "moscow");
+  assert.equal(moscowResult.name, "г. Москва");
+
+  const spbResult = lookupRegion("Санкт-Петербург");
+  assert.equal(spbResult.host, "78");
+  assert.equal(spbResult.name, "г. Санкт-Петербург");
+});
+
+test("lookupRegion supports fuzzy matching", () => {
+  const result = lookupRegion("Курская");
+  assert.equal(result.host, "46");
+
+  const tatarstan = lookupRegion("Татарстан");
+  assert.equal(tatarstan.host, "16");
+});
+
+test("lookupRegion returns null for unknown regions", () => {
+  assert.equal(lookupRegion("unknown"), null);
+  assert.equal(lookupRegion(""), null);
+});
+
+test("listRegions returns all unique regions sorted by Russian name", () => {
+  const regions = listRegions();
+  assert.ok(regions.length > 70);
+  assert.equal(regions[0].name, "Алтайский край");
+  
+  // Check for duplicates - each host should appear once
+  const hosts = new Set(regions.map(r => r.host));
+  assert.equal(hosts.size, regions.length);
 });

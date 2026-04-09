@@ -4,6 +4,8 @@ const {
   parseStormWarningsIndex
 } = require("./parse");
 
+const { listRegions, lookupRegion } = require("./regions");
+
 const WARNINGS_SECTION_PATH = "/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya";
 const DEFAULT_HEADERS = {
   accept: "text/html,application/xhtml+xml;q=0.9,*/*;q=0.1",
@@ -113,5 +115,7 @@ module.exports = {
   buildWarningUrl,
   buildWarningsIndexUrl,
   getStormWarning,
-  listStormWarnings
+  listStormWarnings,
+  listRegions,
+  lookupRegion
 };
