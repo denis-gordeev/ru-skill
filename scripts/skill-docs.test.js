@@ -298,6 +298,21 @@ test("repository docs advertise the hh-vacancies skill across the documented sur
   assert.match(sources, /api\.hh\.ru\/vacancies/);
 });
 
+test("repository docs advertise the mchs-storm-warnings skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "mchs-storm-warnings.md");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/mchs-storm-warnings.md to exist");
+  assert.match(readme, /\| `mchs-storm-warnings` \|/);
+  assert.match(readme, /\[Гайд по предупреждениям МЧС\]\(docs\/features\/mchs-storm-warnings\.md\)/);
+  assert.match(install, /--skill mchs-storm-warnings/);
+  assert.match(roadmap, /mchs-storm-warnings/);
+  assert.match(sources, /46\.mchs\.gov\.ru\/deyatelnost\/press-centr\/operativnaya-informaciya\/shtormovye-i-ekstrennye-preduprezhdeniya/);
+});
+
 test("cbr-rates docs document the official Bank of Russia XML workflow", () => {
   const skillPath = path.join(repoRoot, "cbr-rates", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "cbr-rates", "README.md");
@@ -365,6 +380,28 @@ test("hh-vacancies docs document the public HH vacancy workflow", () => {
   assert.match(packageReadme, /getAreaOverview/);
   assert.match(packageReadme, /searchVacancies/);
   assert.match(packageReadme, /getVacancyOverview/);
+});
+
+test("mchs-storm-warnings docs document the official regional MChS warning workflow", () => {
+  const skillPath = path.join(repoRoot, "mchs-storm-warnings", "SKILL.md");
+  const packageReadmePath = path.join(repoRoot, "packages", "mchs-storm-warnings", "README.md");
+
+  assert.ok(fs.existsSync(skillPath), "expected mchs-storm-warnings/SKILL.md to exist");
+  assert.ok(fs.existsSync(packageReadmePath), "expected packages/mchs-storm-warnings/README.md to exist");
+
+  const skill = read(path.join("mchs-storm-warnings", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "mchs-storm-warnings.md"));
+  const packageReadme = read(path.join("packages", "mchs-storm-warnings", "README.md"));
+
+  assert.match(skill, /^name: mchs-storm-warnings$/m);
+  assert.match(skill, /npm install -g mchs-storm-warnings/);
+  assert.match(skill, /listStormWarnings/);
+  assert.match(skill, /getStormWarning/);
+  assert.match(featureDoc, /shtormovye-i-ekstrennye-preduprezhdeniya/);
+  assert.match(featureDoc, /publishedAtIso/);
+  assert.match(featureDoc, /regionHost/);
+  assert.match(packageReadme, /listStormWarnings/);
+  assert.match(packageReadme, /getStormWarning/);
 });
 
 test("zipcode-search docs lock the official ePost extraction flow and reliable transport example", () => {

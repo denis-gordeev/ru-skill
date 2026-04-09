@@ -29,6 +29,7 @@
 | `hh-vacancies` | Поиск вакансий, карточки вакансий и lookup регионов через публичный API hh.ru | Нет | [Гайд по HH вакансиям](docs/features/hh-vacancies.md) |
 | `stoloto-lotto` | Публичные результаты лотерей Столото через архивные страницы тиражей | Нет | [Гайд по лотереям Столото](docs/features/stoloto-lotto.md) |
 | `kinopoisk-search` | Поиск фильмов и карточки фильмов через публичные страницы Кинопоиска | Нет | [Гайд по Кинопоиску](docs/features/kinopoisk-search.md) |
+| `mchs-storm-warnings` | Официальные экстренные предупреждения МЧС по региональным страницам | Нет | [Гайд по предупреждениям МЧС](docs/features/mchs-storm-warnings.md) |
 | `srt-booking` | Поиск поездов SRT, бронирование, просмотр и отмена брони | Да | [Гайд по SRT](docs/features/srt-booking.md) |
 | `ktx-booking` | Поиск и бронирование поездов KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
@@ -57,6 +58,7 @@
 | `hh-vacancies` | Клиент для поиска вакансий и карточек вакансий через публичный API hh.ru | Target |
 | `stoloto-lotto` | Клиент для публичных результатов лотерей Столото через архивные страницы | Target |
 | `kinopoisk-search` | Клиент для поиска фильмов и карточек фильмов через публичные страницы Кинопоиска | Target |
+| `mchs-storm-warnings` | Клиент для официальных экстренных предупреждений МЧС по региональным страницам | Target |
 | `k-lotto` | Клиент для результатов корейской лотереи | Legacy |
 | `daiso-product-search` | Поиск магазинов, товаров и остатков Daiso | Legacy |
 | `blue-ribbon-nearby` | Поиск ресторанов Blue Ribbon nearby | Legacy |
@@ -86,6 +88,7 @@
 - Добавлен четвёртый целевой русскоязычный навык `hh-vacancies` для поиска вакансий и карточек вакансий через публичный API `hh.ru`.
 - Добавлен пятый целевой русскоязычный навык `stoloto-lotto` для результатов лотерей через публичные страницы архива Столото.
 - Добавлен шестой целевой русскоязычный навык `kinopoisk-search` для поиска фильмов и карточек фильмов через публичные страницы Кинопоиска.
+- Добавлен седьмой целевой русскоязычный навык `mchs-storm-warnings` для официальных экстренных предупреждений МЧС России по региональным страницам.
 - Верхнеуровневая документация и roadmap переведены на единый русскоязычный сценарий с явным разделением `Target` и `Legacy`.
 - Для setup и shell-скриптов введён dual-path secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 - Setup-поток теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый alias.
@@ -98,6 +101,7 @@
 - [HH вакансии](docs/features/hh-vacancies.md)
 - [Лотереи Столото](docs/features/stoloto-lotto.md)
 - [Кинопоиск](docs/features/kinopoisk-search.md)
+- [Предупреждения МЧС](docs/features/mchs-storm-warnings.md)
 - [Бронирование SRT](docs/features/srt-booking.md)
 - [Бронирование KTX](docs/features/ktx-booking.md)
 - [KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md)
