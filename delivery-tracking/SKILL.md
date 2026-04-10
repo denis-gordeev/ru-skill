@@ -1,6 +1,6 @@
 ---
 name: delivery-tracking
-description: Track CJ대한통운 and 우체국 parcels by invoice number with official carrier endpoints, and structure the workflow around a carrier adapter that can grow to more couriers later.
+description: Отслеживание посылок CJ대한통운 и 우체국 по номеру накладной через официальные эндпоинты перевозчиков. Структура построена вокруг адаптера перевозчика, который в будущем можно расширить на другие курьерские службы.
 license: MIT
 metadata:
   category: logistics
@@ -8,87 +8,87 @@ metadata:
   phase: v1
 ---
 
-# Delivery Tracking
+# Отслеживание доставки
 
-## What this skill does
+## Что делает этот навык
 
-CJ대한통운과 우체국 공식 조회 표면을 사용해 송장 번호로 현재 배송 상태를 조회한다.
+Получает текущий статус доставки по номеру накладной через официальные поверхности CJ대한통운 и 우체국.
 
-- **CJ대한통운**: 공식 배송조회 페이지가 노출하는 JSON endpoint 사용
-- **우체국**: 공식 배송조회 페이지가 사용하는 HTML endpoint 사용
-- 결과는 공통 포맷(택배사 / 송장번호 / 현재 상태 / 최근 이벤트들)으로 짧게 정리
+- **CJ대한통운**: используется JSON-эндпоинт, который раскрывает официальная страница отслеживания доставки
+- **우체국**: используется HTML-эндпоинт, который использует официальная страница отслеживания доставки
+- Результаты кратко оформляются в общем формате (перевозчик / номер накладной / текущий статус / последние события)
 
-## When to use
+## Когда использовать
 
-- "CJ대한통운 송장 조회해줘"
-- "우체국 택배 지금 어디야"
-- "이 송장번호 배송완료인지 확인해줘"
-- "택배사별 조회 로직을 나중에 더 붙일 수 있게 정리해줘"
+- "Отслеживай CJ대한통운 по накладной"
+- "Где сейчас почтовая посылка"
+- "Проверь, доставлена ли эта посылка"
+- "Упорядочи логику запросов по перевозчикам, чтобы потом можно было добавить новые"
 
-## When not to use
+## Когда не использовать
 
-- 주문번호만 있고 송장번호가 없는 경우
-- 택배 예약/반품 접수까지 바로 해야 하는 경우
-- 비공식 통합 배송조회 서비스로 우회하고 싶은 경우
+- Есть только номер заказа, но нет номера накладной
+- Требуется оформление заказа или возврат товара
+- Хочется использовать неофициальный агрегатор доставки
 
-## Prerequisites
+## Предварительные требования
 
-- 인터넷 연결
+- Подключение к интернету
 - `python3`
 - `curl`
-- 선택 사항: `jq`
+- Опционально: `jq`
 
-## Inputs
+## Входные данные
 
-- 택배사 식별자: `cj` 또는 `epost`
-- 송장번호
-  - CJ대한통운: 숫자 10자리 또는 12자리
-  - 우체국: 숫자 13자리
+- Идентификатор перевозчика: `cj` или `epost`
+- Номер накладной
+  - CJ대한통운: 10 или 12 цифр
+  - 우체국: 13 цифр
 
-## Carrier adapter rule
+## Правило адаптера перевозчика
 
-이 스킬은 택배사별 로직을 **carrier adapter** 단위로 나눈다.
+Этот навык разделяет логику по перевозчикам на уровне **адаптера перевозчика**.
 
-새 택배사를 붙일 때는 아래 필드를 먼저 정한다.
+При подключении нового перевозчика сначала определяются следующие поля.
 
-- `carrier id`: 예) `cj`, `epost`
-- `validator`: 송장번호 자리수/패턴
-- `entrypoint`: 공식 조회 진입 URL
-- `transport`: JSON API / HTML form / CLI 중 무엇을 쓰는지
-- `parser`: 어떤 필드나 테이블에서 상태를 뽑는지
-- `status map`: 각 택배사의 원본 상태 코드를 공통 상태로 어떻게 줄일지
-- `retry policy`: timeout/retry 규칙
+- `carrier id`: например, `cj`, `epost`
+- `validator`: длина/паттерн номера накладной
+- `entrypoint`: официальный URL для запроса статуса
+- `transport`: что используется — JSON API / HTML-форма / CLI
+- `parser`: из каких полей или таблиц извлекается статус
+- `status map`: как привести исходные коды статусов перевозчика к общим статусам
+- `retry policy`: правила таймаута и повторных попыток
 
-현재 어댑터는 아래 둘이다.
+Текущие адаптеры:
 
-| carrier adapter | official entry | transport | validator | parser focus |
+| адаптер перевозчика | официальный вход | transport | валидатор | фокус парсера |
 | --- | --- | --- | --- | --- |
-| `cj` | `https://www.cjlogistics.com/ko/tool/parcel/tracking` | page GET + `tracking-detail` POST JSON | 10자리 또는 12자리 숫자 | `parcelDetailResultMap.resultList` |
-| `epost` | `https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=` | form POST HTML | 13자리 숫자 | 기본정보 `table_col` + 상세 `processTable` |
+| `cj` | `https://www.cjlogistics.com/ko/tool/parcel/tracking` | GET страницы + POST JSON `tracking-detail` | 10 или 12 цифр | `parcelDetailResultMap.resultList` |
+| `epost` | `https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=` | POST HTML-формы | 13 цифр | основная информация `table_col` + детали `processTable` |
 
-## Workflow
+## Рабочий процесс
 
-### 0. Normalize the input first
+### 0. Сначала нормализуйте входные данные
 
-- 택배사 이름을 `cj` / `epost` 둘 중 하나로 정규화한다.
-- 송장번호에서 공백과 `-` 를 제거한다.
-- 자리수 검증이 먼저 실패하면 조회를 보내지 않는다.
+- Приведите название перевозчика к одному из значений: `cj` / `epost`.
+- Удалите пробелы и `-` из номера накладной.
+- Если проверка длины не проходит, не отправляйте запрос.
 
-### 1. CJ대한통운: official JSON flow
+### 1. CJ대한통운: официальный JSON-поток
 
-공식 진입 페이지에서 `_csrf` 를 읽고, 그 값을 `tracking-detail` POST에 같이 보낸다.
+Прочитайте `_csrf` со страницы входа и отправьте это значение вместе с POST-запросом к `tracking-detail`.
 
-- 진입 페이지: `https://www.cjlogistics.com/ko/tool/parcel/tracking`
-- 상세 endpoint: `https://www.cjlogistics.com/ko/tool/parcel/tracking-detail`
-- 필수 필드: `_csrf`, `paramInvcNo`
+- Страница входа: `https://www.cjlogistics.com/ko/tool/parcel/tracking`
+- Эндпоинт деталей: `https://www.cjlogistics.com/ko/tool/parcel/tracking-detail`
+- Обязательные поля: `_csrf`, `paramInvcNo`
 
-기본 예시는 `curl` 로 `_csrf` 와 cookie를 유지하고, Python은 JSON 정리에만 쓴다.
+Базовый пример использует `curl` для получения `_csrf` и сохранения cookie, а Python — только для разбора JSON.
 
 ```bash
 tmp_body="$(mktemp)"
 tmp_cookie="$(mktemp)"
 tmp_json="$(mktemp)"
-invoice="1234567890"  # 공식 페이지 placeholder 성격의 smoke-test 값
+invoice="1234567890"  # официальная страница, placeholder для smoke-test
 
 curl -sS -L -c "$tmp_cookie" \
   "https://www.cjlogistics.com/ko/tool/parcel/tracking" \
@@ -154,9 +154,9 @@ PY
 rm -f "$tmp_body" "$tmp_cookie" "$tmp_json"
 ```
 
-#### CJ 공개 출력 예시
+#### Пример вывода CJ
 
-아래 값은 2026-03-27 기준 live smoke test(`1234567890`)에서 확인한 정규화 결과다.
+Ниже приведён результат нормализации, подтверждённый live smoke test (`1234567890`) на 2026-03-27.
 
 ```json
 {
@@ -190,19 +190,19 @@ rm -f "$tmp_body" "$tmp_cookie" "$tmp_json"
 }
 ```
 
-추가 smoke test 로는 `000000000000` 도 사용할 수 있다.
+В качестве дополнительного smoke test можно использовать `000000000000`.
 
-CJ 응답은 `parcelResultMap.resultList` 가 비어 있어도 `parcelDetailResultMap.resultList` 쪽에 이벤트가 들어올 수 있으므로, 상세 이벤트 배열을 우선 본다. published 예시는 공통 결과 스키마(`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`, 선택적 `status_code`)에 맞춰 비식별 필드만 남기고, 담당자 이름·연락처가 섞일 수 있는 `crgNm` 원문은 그대로 보여주지 않는다.
+Даже если `parcelResultMap.resultList` пуст, события могут поступать через `parcelDetailResultMap.resultList`, поэтому приоритет отдаётся массиву детальных событий. Опубликованный пример оставляет только обезличенные поля в соответствии с общей схемой результатов (`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`, опциональный `status_code`), не раскрывая исходный текст `crgNm`, в который могут попасть имена и контакты ответственных лиц.
 
-### 2. 우체국: official HTML flow
+### 2. 우체국: официальный HTML-поток
 
-우체국은 공식 entry page가 다시 `trace.RetrieveDomRigiTraceList.comm` 으로 `sid1` 을 POST하는 구조다.
+У 우체국 официальная страница входа повторно отправляет `sid1` через POST на `trace.RetrieveDomRigiTraceList.comm`.
 
-- 진입 페이지: `https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=`
-- 실제 조회 endpoint: `https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm`
-- 필수 필드: `sid1`
+- Страница входа: `https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=`
+- Фактический эндпоинт запроса: `https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm`
+- Обязательное поле: `sid1`
 
-우체국은 로컬 Python HTTP client보다 `curl --http1.1 --tls-max 1.2` 경로가 더 안정적이므로 그 조합을 기본 예시로 쓴다.
+Для 우체국 путь `curl --http1.1 --tls-max 1.2` стабильнее локального Python HTTP-клиента, поэтому в базовом примере используется именно эта комбинация.
 
 ```bash
 tmp_html="$(mktemp)"
@@ -213,7 +213,7 @@ import re
 import subprocess
 import sys
 
-invoice = "1234567890123"  # 공식 페이지 placeholder 성격의 smoke-test 값
+invoice = "1234567890123"  # официальная страница, placeholder для smoke-test
 output_path = sys.argv[1]
 
 cmd = [
@@ -295,9 +295,9 @@ PY
 rm -f "$tmp_html"
 ```
 
-#### 우체국 공개 출력 예시
+#### Пример вывода 우체국
 
-아래 값은 2026-03-27 기준 live smoke test(`1234567890123`)에서 확인한 정규화 결과다.
+Ниже приведён результат нормализации, подтверждённый live smoke test (`1234567890123`) на 2026-03-27.
 
 ```json
 {
@@ -322,47 +322,47 @@ rm -f "$tmp_html"
 }
 ```
 
-우체국 기본정보 테이블은 `등기번호`, `보내는 분/접수일자`, `받는 분`, `수령인/배달일자`, `취급구분`, `배달결과` 순서를 사용하고, 상세 이벤트는 `processTable` 아래 `날짜 / 시간 / 발생국 / 처리현황` 행을 읽으면 된다. published 예시는 CJ와 같은 공통 결과 스키마(`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`)에 맞춰 배송 상태에 필요한 값만 남기고, 이벤트 location에 섞일 수 있는 `TEL` 번호 조각도 제거한 뒤 수령인/상세 메모 원문은 그대로 노출하지 않는다.
+Таблица основной информации 우체국 использует порядок `등기번호`, `보내는 분/접수일자`, `받는 분`, `수령인/배달일자`, `취급구분`, `배달결과`, а детальные события считываются из строк `processTable`: `날짜 / 시간 / 발생국 / 처리현황`. Опубликованный пример оставляет только значения, необходимые для статуса доставки, в соответствии с общей схемой результатов, общей для CJ (`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`). Номера телефонов, которые могут встречаться в расположении событий, также удаляются, а исходный текст получателя и детальных заметок не раскрывается.
 
-### 3. Normalize for humans
+### 3. Нормализация для человека
 
-응답 원문을 그대로 붙이지 말고 아래 공통 결과 스키마로 요약한다.
+Не копируйте исходный ответ как есть, а суммируйте его по общей схеме результатов.
 
-#### 공통 결과 스키마
+#### Общая схема результатов
 
-- `carrier`: 택배사 식별자 (`cj` 또는 `epost`)
-- `invoice`: 정규화된 송장번호
-- `status`: 현재 배송 상태
-- `timestamp`: 마지막 이벤트 시각
-- `location`: 마지막 이벤트 위치
-- `event_count`: 전체 이벤트 수
-- `recent_events`: 최근 최대 3개 이벤트 목록
-- `status_code`: 필요할 때만 남기는 원본 상태 코드 (현재는 CJ 예시에서만 사용)
+- `carrier`: идентификатор перевозчика (`cj` или `epost`)
+- `invoice`: нормализованный номер накладной
+- `status`: текущий статус доставки
+- `timestamp`: время последнего события
+- `location`: место последнего события
+- `event_count`: общее количество событий
+- `recent_events`: список последних 3 событий
+- `status_code`: исходный код статуса, оставляется только при необходимости (сейчас используется только в примере CJ)
 
-### 4. Retry and fallback policy
+### 4. Политика повторных попыток и fallback
 
-- 자리수 오류면 바로 멈추고 올바른 형식을 다시 받는다.
-- CJ는 `_csrf` 재취득 후 한 번 더 시도한다.
-- 우체국은 `curl --retry 3 --retry-all-errors --retry-delay 1` 을 유지한다.
-- 다른 택배사로 우회하지 않는다.
+- При неправильной длине номера — немедленно остановитесь и запросите корректный формат.
+- Для CJ: после повторного получения `_csrf` попробуйте ещё раз.
+- Для 우체국: сохраняйте `curl --retry 3 --retry-all-errors --retry-delay 1`.
+- Не переключайтесь на другие перевозчики.
 
-## Done when
+## Считается выполненным, когда
 
-- 택배사와 송장번호가 올바르게 식별되어 있다
-- 현재 상태와 최근 이벤트가 정리되어 있다
-- 어느 official surface를 썼는지 설명할 수 있다
-- 다른 택배사 확장 시 어떤 carrier adapter 필드를 추가해야 하는지 남아 있다
+- Перевозчик и номер накладной правильно идентифицированы
+- Текущий статус и последние события задокументированы
+- Можно объяснить, какая официальная поверхность использовалась
+- Понятно, какие поля адаптера перевозчика нужно добавить при расширении на другие перевозчики
 
-## Failure modes
+## Режимы сбоев
 
-- CJ: `_csrf` 추출 실패 또는 `tracking-detail` 응답 스키마 변경
-- CJ: 송장번호 길이가 10자리 또는 12자리가 아님
-- 우체국: `sid1` 이 13자리가 아님
-- 우체국: HTML 마크업 변경으로 테이블 추출 규칙이 깨짐
-- 우체국: `curl` 없이 다른 client로 붙다가 timeout/reset 발생
+- CJ: не удалось извлечь `_csrf` или изменилась схема ответа `tracking-detail`
+- CJ: длина номера накладной не 10 и не 12 цифр
+- 우체국: `sid1` не состоит из 13 цифр
+- 우체국: изменение HTML-разметки ломает правила извлечения таблиц
+- 우체국: таймаут/сброс при использовании клиента, отличного от `curl`
 
-## Notes
+## Примечания
 
-- 조회형 스킬이다.
-- 기본 표면은 공식 carrier endpoint만 사용한다.
-- 다른 택배사 추가는 새 carrier adapter 1개를 같은 포맷으로 붙이는 방식으로 확장한다.
+- Это навык запроса статуса.
+- Базовая поверхность использует только официальные эндпоинты перевозчиков.
+- Добавление новых перевозчиков выполняется путём подключения одного нового адаптера перевозчика в том же формате.

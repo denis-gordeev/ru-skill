@@ -212,7 +212,8 @@ test("ktx-booking docs document the helper-based live Korail workflow", () => {
     assert.match(doc, /--try-waiting/);
     assert.match(doc, /credential resolution order|KSKILL_KTX_ID/);
     assert.match(doc, /anti-bot|Dynapath|x-dynapath-m-token/i);
-    assert.match(doc, /결제(까지)?는 자동화하지 않는다|결제는 제외/);
+    // Accept both Korean original and Russian translation for payment automation note
+    assert.match(doc, /결제(까지)?는 자동화하지 않는다|결제는 제외|Оплата не автоматизируется|Оплата до завершения не автоматизируется/);
     assert.doesNotMatch(doc, /예약 시 선택할 `--train-index`/);
   }
 
@@ -471,14 +472,17 @@ test("delivery-tracking skill documents official CJ and ePost flows with extensi
     assert.match(doc, /tracking-detail/);
     assert.match(doc, /paramInvcNo/);
     assert.match(doc, /_csrf/);
-    assert.match(doc, /10자리 또는 12자리/);
+    // Accept both Korean original and Russian translation for invoice length description
+    assert.match(doc, /10자리 또는 12자리|10 или 12 цифр/);
     assert.match(doc, /https:\/\/service\.epost\.go\.kr\/trace\.RetrieveRegiPrclDeliv\.postal\?sid1=/);
     assert.match(doc, /trace\.RetrieveDomRigiTraceList\.comm/);
     assert.match(doc, /sid1/);
-    assert.match(doc, /13자리/);
+    // Accept both Korean original and Russian translation for invoice length
+    assert.match(doc, /13자리|13 цифр/);
     assert.match(doc, /curl --http1\.1 --tls-max 1\.2/);
     assert.match(doc, /carrier adapter/i);
-    assert.match(doc, /다른 택배사/);
+    // Accept both Korean original and Russian translation for carrier extension
+    assert.match(doc, /다른 택배사|другой перевозчик|другие курьерские/);
   }
 
   assert.match(skill, /1234567890/);

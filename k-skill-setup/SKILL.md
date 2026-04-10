@@ -8,61 +8,61 @@ metadata:
   phase: v1
 ---
 
-# k-skill Setup
+# Настройка k-skill
 
 `k-skill-setup` сохраняется как legacy-compatible alias. Для новых установок в документации рекомендуется имя `ru-skill-setup`, но сам setup-поток остаётся общим.
 
-## Purpose
+## Назначение
 
-전체 `k-skill` 설치가 끝난 뒤, 공통 후속 작업을 처리한다.
+Выполняет общие пост-установочные действия после полной установки набора `ru-skill`.
 
-- credential 확보 (에이전트 vault 또는 기본 secrets.env)
-- 런타임 환경변수 확인
-- 선택 사항: 주기적인 업데이트 확인 자동화
-- 선택 사항: GitHub star 여부 확인 및 동의 시 실행
+- Получение учётных данных (agent vault или стандартные secrets.env)
+- Проверка переменных окружения
+- Опционально: автоматическая периодическая проверка обновлений
+- Опционально: проверка GitHub star с явного согласия
 
-이 스킬의 기본 정책:
+Базовые политики этого навыка:
 
-- 시크릿이 없으면 필요한 값 이름을 사용자에게 정확히 알려준다
-- credential resolution order에 따라 확보한다
-- 필요한 패키지가 없으면 대체 구현을 찾기보다 전역 설치를 먼저 시도한다
-- `cron`, `launchd`, `schtasks`, `gh` 같은 지속성/외부 상태 변경은 자동으로 하지 말고 먼저 사용자 동의를 받는다
-- GitHub star는 사용자가 명시적으로 동의했을 때만 실행한다
+- Если секретов нет, точно сообщает пользователю, какие имена значений нужны
+- Получает учётные данные согласно порядку разрешения учётных данных
+- Если нужных пакетов нет, сначала пытается выполнить глобальную установку вместо поиска альтернативных реализаций
+- Для постоянных изменений системы (`cron`, `launchd`, `schtasks`, `gh`) сначала запрашивает согласие пользователя
+- GitHub star выполняется только при явном согласии пользователя
 
-## Credential resolution order
+## Порядок разрешения учётных данных
 
-모든 credential-bearing 스킬은 아래 우선순위를 따른다.
+Все credential-bearing навыки следуют одному приоритету.
 
-1. **이미 환경변수에 있으면** 그대로 사용한다.
-2. **에이전트가 자체 secret vault(1Password CLI, Bitwarden CLI, macOS Keychain 등)를 사용 중이면** 거기서 꺼내 환경변수로 주입해도 된다.
-3. **`~/.config/ru-skill/secrets.env`** 를 먼저 사용하고, 없으면 legacy fallback **`~/.config/k-skill/secrets.env`** 를 사용한다. 두 파일 모두 plain dotenv 형식과 `0600` 권한을 전제로 한다.
-4. **아무것도 없으면** 유저에게 물어서 2 또는 3에 저장한다.
+1. **Если переменная окружения уже установлена**, использовать её напрямую.
+2. **Если агент использует собственный secret vault** (1Password CLI, Bitwarden CLI, macOS Keychain и т.д.), извлечь оттуда и инжектировать как переменную окружения.
+3. **Сначала `~/.config/ru-skill/secrets.env`**, при отсутствии — legacy fallback **`~/.config/k-skill/secrets.env`**. Оба файла предполагают формат plain dotenv и права `0600`.
+4. **Если ничего нет**, запросит у пользователя и сохранит в пункт 2 или 3.
 
-기본 경로에 저장하는 것은 fallback일 뿐, 강제가 아니다.
+Сохранение в путь по умолчанию — это fallback, а не требование.
 
-## Standard file location
+## Стандартное расположение файлов
 
 - preferred secrets file: `~/.config/ru-skill/secrets.env`
 - legacy fallback: `~/.config/k-skill/secrets.env`
-- explicit override: `RU_SKILL_SECRETS_FILE`, then `KSKILL_SECRETS_FILE`
+- явное переопределение: `RU_SKILL_SECRETS_FILE`, затем `KSKILL_SECRETS_FILE`
 
-## Install
+## Установка
 
-이 스킬은 `k-skill` 전체 스킬 설치가 끝난 뒤 실행하는 것을 기본으로 한다.
+Этот навык рекомендуется выполнять после полной установки всех навыков `ru-skill`.
 
-예:
+Пример:
 
 ```bash
-npx --yes skills add <owner/repo> --all -g
+npx --yes skills add denis-gordeev/ru-skill --all -g
 ```
 
-설치가 끝나면 이 스킬을 호출해 아래 setup 단계를 이어간다.
+После завершения установки вызовите этот навык для продолжения настройки.
 
-## Setup steps
+## Шаги настройки
 
-### 1. Create the default secrets file (if no vault is in use)
+### 1. Создание файла secrets по умолчанию (если vault не используется)
 
-에이전트가 자체 vault를 쓰지 않는 경우, 우선 `ru-skill` 기본 파일을 만든다.
+Если агент не использует собственный vault, сначала создайте стандартный файл `ru-skill`.
 
 ```bash
 mkdir -p ~/.config/ru-skill
@@ -77,41 +77,41 @@ EOF
 chmod 0600 ~/.config/ru-skill/secrets.env
 ```
 
-이미 `~/.config/k-skill/secrets.env` 를 쓰고 있다면 legacy fallback 으로 그대로 둘 수 있다.
+Если вы уже используете `~/.config/k-skill/secrets.env`, можете оставить его как legacy fallback.
 
-유저에게 물어서 실제 값을 채운다.
+Запросите у пользователя фактические значения для заполнения.
 
-### Missing secret response template
+### Шаблон ответа об отсутствующем секрете
 
-인증 스킬에서 값이 빠졌을 때는 credential resolution order에 따라 확보한다.
+При отсутствии значений в навыке с аутентификацией получите их согласно порядку разрешения учётных данных.
 
-필요한 값 예:
+Примеры необходимых значений:
 
 - SRT: `KSKILL_SRT_ID`, `KSKILL_SRT_PASSWORD`
 - KTX: `KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD`
-- 서울 지하철: `SEOUL_OPEN_API_KEY`
-- 사용자 위치 미세먼지 조회: `AIR_KOREA_OPEN_API_KEY`
+- Метро Сеула: `SEOUL_OPEN_API_KEY`
+- Проверка пыли по местоположению: `AIR_KOREA_OPEN_API_KEY`
 
-시크릿이 비어 있다는 이유로 다른 서비스나 비공식 우회 경로를 자동 선택하지 않는다.
+Не выбирайте автоматически другие сервисы или неофициальные обходные пути из-за отсутствия секретов.
 
-### 2. Verify runtime environment
+### 2. Проверка окружения
 
 ```bash
 bash scripts/check-setup.sh
 ```
 
-### 3. Offer scheduled update checks
+### 3. Предложение автоматической проверки обновлений
 
-setup이 끝나면 사용자에게 주기적인 업데이트 확인 자동화를 원하는지 먼저 묻는다. 원하지 않으면 건너뛴다.
+После завершения настройки сначала спросите пользователя, хочет ли он автоматизировать периодическую проверку обновлений. При отказе пропустите этот шаг.
 
-기본 정책:
+Базовая политика:
 
-- 자동 설치가 아니라 `업데이트 확인` 만 기본으로 제안한다
-- 지속성 있는 시스템 변경(`crontab`, `launchd`, `schtasks`)은 동의 없이 적용하지 않는다
-- 기본 확인 명령은 `npx --yes skills check`
-- 사용자가 명시적으로 `자동 업데이트` 를 원할 때만 `npx --yes skills update` 기반 스케줄을 별도로 제안한다
+- По умолчанию предлагается только **проверка обновлений**, а не автоматическая установка
+- Изменения системы (`crontab`, `launchd`, `schtasks`) не применяются без согласия
+- Базовая команда проверки: `npx --yes skills check`
+- Только при явном запросе на **автоматические обновления** предлагается отдельный расписания на базе `npx --yes skills update`
 
-macOS / Linux 예시:
+Пример для macOS / Linux:
 
 ```bash
 mkdir -p ~/.config/k-skill/bin ~/.config/k-skill/logs
@@ -129,7 +129,7 @@ chmod +x ~/.config/k-skill/bin/check-skill-updates.sh
 (crontab -l 2>/dev/null; echo "0 9 * * * $HOME/.config/k-skill/bin/check-skill-updates.sh") | crontab -
 ```
 
-Windows 예시:
+Пример для Windows:
 
 ```powershell
 New-Item -ItemType Directory -Force "$HOME/.config/k-skill/bin" | Out-Null
@@ -140,40 +140,40 @@ npx --yes skills check >> "$HOME/.config/k-skill/logs/skills-check.log" 2>&1
 schtasks /Create /SC DAILY /TN "k-skill-update-check" /TR "\"$HOME/.config/k-skill/bin/check-skill-updates.cmd\"" /ST 09:00 /F
 ```
 
-설정 후에는 로그 위치를 짧게 알려준다:
+После настройки сообщите расположение логов:
 
 - `~/.config/k-skill/logs/skills-check.log`
 
-### 4. Offer GitHub starring with explicit consent
+### 4. Предложение GitHub star с явного согласия
 
-setup 마지막에는 다음처럼 짧게 묻는다.
+В конце настройки задайте короткий вопрос:
 
 ```text
-k-skill 저장소(NomaDamas/k-skill)에 GitHub star를 눌러드릴까요?
-원하시면 `gh` 로 바로 처리하고, 원하지 않으면 건너뜁니다.
+Поставить ли GitHub star репозиторию k-skill (NomaDamas/k-skill)?
+При согласии выполню через `gh`, при отказе пропущу.
 ```
 
-규칙:
+Правила:
 
-- 사용자가 명시적으로 동의하기 전에는 `gh repo star` 를 실행하지 않는다
-- `gh` 가 없거나 인증되지 않았으면 설치/로그인 안내만 하고 자동 우회하지 않는다
-- star 대상 저장소는 `NomaDamas/k-skill` 이다
+- Не выполняйте `gh repo star` без явного согласия пользователя
+- При отсутствии или неаутентифицированном `gh` только проинструктируйте по установке/входу, не используйте обходные пути
+- Целевой репозиторий для star: `NomaDamas/k-skill`
 
-동의했고 `gh auth status` 가 정상이면:
+При согласии и рабочем `gh auth status`:
 
 ```bash
 gh repo star NomaDamas/k-skill
 ```
 
-성공하면 짧게 완료만 알린다.
+При успехе кратко сообщите о завершении.
 
-## Completion checklist
+## Контрольный список завершения
 
-- `~/.config/ru-skill/secrets.env` exists with permission `0600`, or legacy fallback `~/.config/k-skill/secrets.env` is still available (또는 에이전트가 자체 vault로 credential을 관리 중)
-- 필요한 환경변수가 설정되어 있다
-- 사용자가 원한 경우에만 업데이트 확인 자동화 또는 GitHub star가 설정되었다
+- Существует `~/.config/ru-skill/secrets.env` с правами `0600`, или доступен legacy fallback `~/.config/k-skill/secrets.env` (или агент управляет учётными данными через собственный vault)
+- Необходимые переменные окружения настроены
+- Автоматическая проверка обновлений или GitHub star настроены только по желанию пользователя
 
-## Notes
+## Примечания
 
-- 기본 흐름은 "전체 스킬 설치 → 이 setup skill 실행 → 개별 기능 사용" 이다
-- 저장소 안에는 secret file을 두지 않는다
+- Базовый поток: "установка всех навыков → выполнение этого setup-навыка → использование отдельных функций"
+- Не размещайте файлы секретов в репозитории

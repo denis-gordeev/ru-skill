@@ -1,6 +1,6 @@
 ---
 name: ktx-booking
-description: Search, reserve, inspect, and cancel KTX or Korail tickets in Korea with the korail2 + pycryptodome Python packages. Use when the user asks for KTX seats, Korail bookings, train changes, or reservation status.
+description: Поиск, бронирование, проверка и отмена билетов KTX или Korail в Корее с помощью Python-пакетов korail2 + pycryptodome. Используйте, когда пользователь запрашивает места KTX, бронирования Korail, изменения поездов или статус бронирования.
 license: MIT
 metadata:
   category: travel
@@ -8,107 +8,107 @@ metadata:
   phase: v1
 ---
 
-# KTX Booking
+# Бронирование KTX
 
-## What this skill does
+## Что делает этот навык
 
-`korail2` 위에 `scripts/ktx_booking.py` helper 를 얹어 KTX/Korail 조회, 예약, 예약 확인, 취소를 처리한다.
+Обрабатывает поиск, бронирование, проверку и отмену билетов KTX/Korail через helper `scripts/ktx_booking.py` поверх `korail2`.
 
-최근 Korail 앱의 Dynapath anti-bot 체크 때문에 원본 `korail2` 0.4.0 예제만으로는 `MACRO ERROR` 가 날 수 있다. 이 스킬은 helper 가 `x-dynapath-m-token`, `Sid`, 최신 app version(`250601002`)을 붙여 실제 예매 흐름을 복구하는 것을 전제로 한다.
+Из-за проверки Dynapath anti-bot в приложении Korail стандартные примеры `korail2` 0.4.0 могут вызывать `MACRO ERROR`. Этот навык предполагает, что helper восстанавливает рабочий процесс бронирования, добавляя `x-dynapath-m-token`, `Sid` и актуальную версию приложения (`250601002`).
 
-## When to use
+## Когда использовать
 
-- "서울에서 부산 가는 KTX 찾아줘"
-- "코레일 예약 확인해줘"
-- "KTX 취소해줘"
-- "오전 9시 이후 KTX 중 제일 빠른 거 잡아줘"
+- "Найди места KTX из Сеула в Пусан"
+- "Проверь бронирования Korail"
+- "Отмени KTX"
+- "Выбери самый быстрый поезд после 9 утра"
 
-## When not to use
+## Когда не использовать
 
-- SRT 예매인 경우
-- 실결제 확정까지 자동화해야 하는 경우
-- credential 을 평문으로 넣으려는 경우
+- Для бронирования SRT
+- Для автоматизации до подтверждения оплаты
+- Для хранения учётных данных в открытом виде
 
-## Prerequisites
+## Предварительные требования
 
 - Python 3.10+
 - `python3 -m pip install korail2 pycryptodome`
 
-## Required environment variables
+## Необходимые переменные окружения
 
 - `KSKILL_KTX_ID`
 - `KSKILL_KTX_PASSWORD`
 
-### Credential resolution order
+### Порядок разрешения учётных данных
 
-1. **이미 환경변수에 있으면** 그대로 사용한다.
-2. **에이전트가 자체 secret vault(1Password CLI, Bitwarden CLI, macOS Keychain 등)를 사용 중이면** 거기서 꺼내 환경변수로 주입해도 된다.
-3. **`~/.config/k-skill/secrets.env`** (기본 fallback) — plain dotenv 파일, 퍼미션 `0600`.
-4. **아무것도 없으면** 유저에게 물어서 2 또는 3에 저장한다.
+1. **Если переменная окружения уже установлена**, использовать её напрямую.
+2. **Если агент использует собственный secret vault** (1Password CLI, Bitwarden CLI, macOS Keychain и т.д.), извлечь оттуда и инжектировать как переменную окружения.
+3. **`~/.config/k-skill/secrets.env`** (базовый fallback) — plain dotenv файл, права `0600`.
+4. **Если ничего нет**, запросит у пользователя и сохранит в пункт 2 или 3.
 
-기본 경로에 저장하는 것은 fallback일 뿐, 강제가 아니다.
+Сохранение в путь по умолчанию — это fallback, а не требование.
 
-## Inputs
+## Входные данные
 
-- 출발역
-- 도착역
-- 날짜: `YYYYMMDD`
-- 희망 시작 시각: `HHMMSS`
-- 인원 수와 승객 유형
-- 좌석 선호
-- 조회 결과에서 복사한 `train_id`
+- Станция отправления
+- Станция назначения
+- Дата: `YYYYMMDD`
+- Желаемое время отправления: `HHMMSS`
+- Количество пассажиров и тип пассажира
+- Предпочтение по месту
+- `train_id` из результатов поиска
 
-## Workflow
+## Рабочий процесс
 
-### 0. Install the package globally when missing
+### 0. Установка пакета при отсутствии
 
-`python3 -c 'import korail2, Crypto'` 가 실패하면 다른 구현으로 우회하지 말고 전역 Python 패키지 설치를 먼저 시도한다.
+Если `python3 -c 'import korail2, Crypto'` завершается ошибкой, сначала попробуйте глобальную установку Python-пакетов вместо поиска альтернатив.
 
 ```bash
 python3 -m pip install korail2 pycryptodome
 ```
 
-### 1. Ensure credentials are available
+### 1. Обеспечение доступа к учётным данным
 
-`KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD` 환경변수가 설정되어 있는지 확인한다. 없으면 위 credential resolution order에 따라 확보한다.
+Проверьте наличие переменных окружения `KSKILL_KTX_ID` и `KSKILL_KTX_PASSWORD`. При отсутствии получите их согласно порядку разрешения учётных данных выше.
 
-시크릿이 없다는 이유로 웹사이트를 직접 긁거나 다른 비공식 경로를 찾지 않는다.
+Не пытайтесь напрямую парсить веб-сайты или использовать другие неофициальные пути из-за отсутствия секретов.
 
-### 2. Search first via the helper
+### 2. Первоначальный поиск через helper
 
-항상 helper 를 통해 조회한다.
+Всегда выполняйте поиск через helper.
 
 ```bash
 python3 scripts/ktx_booking.py search 서울 부산 20260328 090000 --limit 5
 ```
 
-좌석이 없는 열차도 후보에 포함하려면 `--include-no-seats`, 예약 대기 가능한 열차도 같이 보고 싶으면 `--include-waiting-list` 를 붙인다.
+Для включения поездов без мест добавьте `--include-no-seats`, для совместного отображения поездов с ожиданием бронирования добавьте `--include-waiting-list`.
 
-### 3. Present the shortlist
+### 3. Представление короткого списка
 
-예매 전에 항상 아래를 확인한다.
+Перед бронированием всегда подтверждайте:
 
 - `index`
 - `train_id`
-- 출발/도착 시각
-- KTX 여부
-- 일반실/특실 가능 여부
-- 예약 대기 가능 여부
+- Время отправления/назначения
+- Статус KTX
+- Доступность обычного/первоклассного места
+- Возможность ожидания бронирования
 
-### 4. Reserve only after the target train is unambiguous
+### 4. Бронирование только после однозначного выбора поезда
 
-조회 결과의 `train_id` 를 고른 뒤에만 예약한다. 이 값은 helper 가 열차 번호/운행일/시각/역 코드를 묶어 만든 stable selector 이므로, 재조회 시 같은 열차가 아직 있으면 그대로 잡고 없으면 실패한다.
+Бронируйте только после выбора `train_id` из результатов поиска. Это значение — стабильный селектор, который helper создаёт из номера поезда/даты эксплуатации/времени/кода станции, поэтому при повторном поиске тот же поезд будет выбран, а при отсутствии — завершится ошибкой.
 
 ```bash
 python3 scripts/ktx_booking.py reserve 서울 부산 20260328 090000 --train-id <train_id> --seat-option general-first
 ```
 
-응답에는 예약번호, 운임, 구입기한이 포함된다. **결제는 자동화하지 않는다.**
-좌석이 없을 때는 조회 단계에서 `--include-waiting-list` 를 켜고 예약 단계에서 `--try-waiting` 으로 예약 대기까지 시도할 수 있다.
+Ответ включает номер бронирования, тариф и срок оплаты. **Оплата не автоматизируется.**
+При отсутствии мест на этапе поиска включите `--include-waiting-list`, а на этапе бронирования добавьте `--try-waiting` для попытки ожидания бронирования.
 
-### 5. Inspect or cancel
+### 5. Проверка или отмена
 
-취소는 대상 예약을 다시 조회해 식별한 뒤에만 진행한다.
+Отмену выполняйте только после идентификации целевого бронирования через повторный поиск.
 
 ```bash
 python3 scripts/ktx_booking.py reservations
@@ -118,21 +118,21 @@ python3 scripts/ktx_booking.py reservations
 python3 scripts/ktx_booking.py cancel <reservation_id>
 ```
 
-## Done when
+## Считается выполненным, когда
 
-- 조회면 열차 후보가 정리되어 있다
-- 예약이면 예약 결과와 제한 시간이 확인되어 있다
-- 취소면 어떤 예약을 취소했는지 남아 있다
+- Для поиска: кандидаты поездов отобраны
+- Для бронирования: результат бронирования и срок оплаты подтверждены
+- Для отмены: понятно, какое бронирование отменено
 
-## Failure modes
+## Режимы сбоев
 
-- 로그인 실패
-- 매진
-- Korail anti-bot 규칙 변경
+- Ошибка входа
+- Полная распродажа мест
+- Изменение правил anti-bot Korail
 
-## Notes
+## Примечания
 
-- `scripts/ktx_booking.py` 는 upstream `korail2` anti-bot 회귀를 보완하는 helper 다
-- `korail2` 는 KTX/Korail 전용 표면이라 train type 과 passenger model 이 분명하다
-- 결제 완료까지는 자동화하지 않는다
-- aggressive polling 은 피한다
+- `scripts/ktx_booking.py` — helper, компенсирующий регрессию anti-bot в upstream `korail2`
+- `korail2` — специальная поверхность для KTX/Korail, поэтому тип поезда и модель пассажира очевидны
+- Оплата до завершения не автоматизируется
+- Избегайте агрессивного опроса
