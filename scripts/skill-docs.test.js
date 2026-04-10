@@ -715,6 +715,7 @@ test("root pack:dry-run script covers all publishable workspaces", () => {
   assert.match(packageJson.scripts["pack:dry-run"], /workspace cbr-rates/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace postcalc-postcodes/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace stoloto-lotto/);
+  assert.match(packageJson.scripts["pack:dry-run"], /workspace yandex-rasp/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace k-lotto/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace daiso-product-search/);
   assert.match(packageJson.scripts["pack:dry-run"], /workspace blue-ribbon-nearby/);
@@ -1058,4 +1059,39 @@ test("package-lock captures the toss-securities workspace metadata for npm ci", 
   assert.equal(packageLock.packages["packages/toss-securities"].version, "0.2.0");
   assert.equal(packageLock.packages["packages/toss-securities"].license, "MIT");
   assert.equal(packageLock.packages["packages/toss-securities"].engines.node, ">=18");
+});
+
+test("repository docs advertise the yandex-rasp skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "yandex-rasp.md");
+  const skillDir = path.join(repoRoot, "yandex-rasp");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/yandex-rasp.md to exist");
+  assert.ok(fs.existsSync(path.join(skillDir, "SKILL.md")), "expected yandex-rasp/SKILL.md to exist");
+  assert.match(readme, /\| `yandex-rasp` \|/);
+  assert.match(readme, /\[Гайд по Яндекс\.Расписаниям\]\(docs\/features\/yandex-rasp\.md\)/);
+  assert.match(roadmap, /yandex-rasp/);
+  assert.match(sources, /yandex-rasp/);
+});
+
+test("yandex-rasp docs document the Yandex Raspisanie transport schedule workflow", () => {
+  const skillPath = path.join(repoRoot, "yandex-rasp", "SKILL.md");
+  const packageReadmePath = path.join(repoRoot, "packages", "yandex-rasp", "README.md");
+
+  assert.ok(fs.existsSync(skillPath), "expected yandex-rasp/SKILL.md to exist");
+  assert.ok(fs.existsSync(packageReadmePath), "expected packages/yandex-rasp/README.md to exist");
+
+  const skill = read(path.join("yandex-rasp", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "yandex-rasp.md"));
+  const packageReadme = read(path.join("packages", "yandex-rasp", "README.md"));
+
+  assert.match(skill, /^name: yandex-rasp$/m);
+  assert.match(skill, /npm install yandex-rasp/);
+  assert.match(featureDoc, /yandex-rasp/);
+  assert.match(packageReadme, /npm install yandex-rasp/);
+  assert.match(packageReadme, /searchStations/);
+  assert.match(packageReadme, /getStationSchedule/);
+  assert.match(packageReadme, /searchTrips/);
 });

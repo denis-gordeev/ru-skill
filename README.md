@@ -31,6 +31,7 @@
 | `kinopoisk-search` | Поиск фильмов и карточки фильмов через публичные страницы Кинопоиска | Нет | [Гайд по Кинопоиску](docs/features/kinopoisk-search.md) |
 | `mchs-storm-warnings` | Официальные экстренные предупреждения МЧС по региональным страницам | Нет | [Гайд по предупреждениям МЧС](docs/features/mchs-storm-warnings.md) |
 | `pravo-documents` | Поиск и карточки официальных правовых документов через API pravo.gov.ru | Нет | [Гайд по правовым документам](docs/features/pravo-documents.md) |
+| `yandex-rasp` | Расписания транспорта (электрички, поезда, автобусы, авиарейсы) через API Яндекс.Расписаний | Да | [Гайд по Яндекс.Расписаниям](docs/features/yandex-rasp.md) |
 | `srt-booking` | Поиск поездов SRT, бронирование, просмотр и отмена брони | Да | [Гайд по SRT](docs/features/srt-booking.md) |
 | `ktx-booking` | Поиск и бронирование поездов KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
@@ -61,6 +62,7 @@
 | `kinopoisk-search` | Клиент для поиска фильмов и карточек фильмов через публичные страницы Кинопоиска | Target |
 | `mchs-storm-warnings` | Клиент для официальных экстренных предупреждений МЧС по региональным страницам | Target |
 | `pravo-documents` | Клиент для поиска и карточек официальных правовых документов через API pravo.gov.ru | Target |
+| `yandex-rasp` | Клиент для расписаний транспорта через API Яндекс.Расписаний | Target |
 | `k-lotto` | Клиент для результатов корейской лотереи | Legacy |
 | `daiso-product-search` | Поиск магазинов, товаров и остатков Daiso | Legacy |
 | `blue-ribbon-nearby` | Поиск ресторанов Blue Ribbon nearby | Legacy |
@@ -92,6 +94,7 @@
 - Добавлен шестой целевой русскоязычный навык `kinopoisk-search` для поиска фильмов и карточек фильмов через публичные страницы Кинопоиска.
 - Добавлен седьмой целевой русскоязычный навык `mchs-storm-warnings` для официальных экстренных предупреждений МЧС России по региональным страницам.
 - Добавлен восьмой целевой русскоязычный навык `pravo-documents` для поиска и чтения официальных правовых документов через API pravo.gov.ru.
+- Добавлен девятый целевой русскоязычный навык `yandex-rasp` для расписаний транспорта через API Яндекс.Расписаний.
 - Верхнеуровневая документация и roadmap переведены на единый русскоязычный сценарий с явным разделением `Target` и `Legacy`.
 - Для setup и shell-скриптов введён dual-path secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 - Setup-поток теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый alias.
@@ -106,6 +109,7 @@
 - [Кинопоиск](docs/features/kinopoisk-search.md)
 - [Предупреждения МЧС](docs/features/mchs-storm-warnings.md)
 - [Правовые документы pravo.gov.ru](docs/features/pravo-documents.md)
+- [Яндекс.Расписания](docs/features/yandex-rasp.md)
 - [Бронирование SRT](docs/features/srt-booking.md)
 - [Бронирование KTX](docs/features/ktx-booking.md)
 - [KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md)
