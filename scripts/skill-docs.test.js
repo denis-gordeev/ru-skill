@@ -14,6 +14,39 @@ function readJson(relativePath) {
   return JSON.parse(read(relativePath));
 }
 
+function extractReadmePackageMatrix(readme) {
+  const match = readme.match(/## Текущие пакеты\n\n([\s\S]*?)\n## Документация/);
+
+  assert.ok(match, "expected package matrix in README.md");
+
+  return [...match[1].matchAll(/^\| `([^`]+)` \| .*? \| ([^|]+) \|$/gm)].map(([, name, status]) => ({
+    name,
+    status: status.trim()
+  }));
+}
+
+function extractInstallSkillSnippet(install) {
+  const match = install.match(
+    /npx --yes skills add denis-gordeev\/ru-skill \\\n([\s\S]*?)\n```/,
+  );
+
+  assert.ok(match, "expected explicit skills add snippet in docs/install.md");
+
+  return [...match[1].matchAll(/--skill ([a-z0-9-]+)/g)].map(([, skill]) => skill);
+}
+
+function extractNodeInstallPackages(install) {
+  const match = install.match(/npm install -g ([\s\S]*?)\nexport NODE_PATH/m);
+
+  assert.ok(match, "expected npm install -g snippet in docs/install.md");
+
+  return match[1]
+    .replace(/\\/g, " ")
+    .split(/\s+/)
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
 function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -1100,6 +1133,38 @@ test("pack:dry-run includes the yandex-market-search workspace", () => {
   const packageJson = JSON.parse(read("package.json"));
 
   assert.match(packageJson.scripts["pack:dry-run"], /workspace yandex-market-search/);
+});
+
+test("install docs enumerate every current target workspace in the explicit skills snippet", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const targetPackages = extractReadmePackageMatrix(readme)
+    .filter((entry) => entry.status === "Target")
+    .map((entry) => entry.name);
+  const installSkills = extractInstallSkillSnippet(install);
+
+  for (const targetPackage of targetPackages) {
+    assert.ok(
+      installSkills.includes(targetPackage),
+      `expected docs/install.md explicit skills snippet to include ${targetPackage}`,
+    );
+  }
+});
+
+test("install docs npm snippet covers every current target workspace package", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const targetPackages = extractReadmePackageMatrix(readme)
+    .filter((entry) => entry.status === "Target")
+    .map((entry) => entry.name);
+  const npmPackages = extractNodeInstallPackages(install);
+
+  for (const targetPackage of targetPackages) {
+    assert.ok(
+      npmPackages.includes(targetPackage),
+      `expected docs/install.md npm install snippet to include ${targetPackage}`,
+    );
+  }
 });
 
 test("package-lock captures the yandex-market-search workspace metadata for npm ci", () => {

@@ -51,6 +51,9 @@ npx --yes skills add denis-gordeev/ru-skill \
   --skill stoloto-lotto \
   --skill kinopoisk-search \
   --skill mchs-storm-warnings \
+  --skill pravo-documents \
+  --skill yandex-rasp \
+  --skill rpl-results \
   --skill yandex-market-search \
   --skill hwp \
   --skill kbo-results \
@@ -111,9 +114,16 @@ npm run ci
 ### Node-пакеты
 
 ```bash
-npm install -g @ohah/hwpjs cbr-rates moex-shares postcalc-postcodes hh-vacancies stoloto-lotto kinopoisk-search mchs-storm-warnings yandex-market-search kbo-game kleague-results toss-securities k-lotto
+npm install -g @ohah/hwpjs \
+  cbr-rates moex-shares postcalc-postcodes hh-vacancies stoloto-lotto \
+  kinopoisk-search mchs-storm-warnings pravo-documents yandex-rasp \
+  rpl-results yandex-market-search \
+  k-lotto daiso-product-search blue-ribbon-nearby kakao-bar-nearby \
+  kleague-results toss-securities kbo-game
 export NODE_PATH="$(npm root -g)"
 ```
+
+Здесь намеренно перечислены отдельно и текущие `target` workspace-пакеты, и legacy npm-пакеты. Навыки вроде `kbo-results`, `hwp`, `kakaotalk-mac`, `zipcode-search` и `delivery-tracking`, которые опираются на внешние CLI, Python-пакеты или skill-only workflow, продолжают устанавливаться через `skills add`, а не через этот `npm install -g`.
 
 ### Бинарники для macOS
 

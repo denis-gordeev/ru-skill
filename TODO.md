@@ -13,6 +13,8 @@
 - Одиннадцатый российский target-навык реализован: `yandex-market-search` поверх серверно отрендеренных страниц Яндекс Маркета для поиска товаров и карточек товаров.
 - Legacy-пакет `daiso-product-search` заменён на `yandex-market-search` в матрице замен.
 - Nearby-поиск остаётся открытым: 2GIS и Яндекс.Карты требуют API keys, нужен следующий публичный источник или free-tier credential path.
+- Верхнеуровневые документы синхронизированы с текущим набором target-навыков: в `docs/install.md` больше не потеряны `pravo-documents`, `yandex-rasp` и `rpl-results`.
+- Добавлена doc-regression проверка: install-flow и npm install snippet теперь валидируются относительно текущего `Target`-списка из `README.md`.
 
 ## Выполнено в этом раунде
 
@@ -30,6 +32,8 @@
 - [x] Исследованы публичные поверхности для marketplace-поиска (Yandex.Market, Wildberries, Ozon) — первичный скрин показал риски CSR/anti-bot, после чего отдельно подтверждена пригодная SSR-поверхность Яндекс Маркета для MVP.
 - [x] Исследованы публичные поверхности для nearby-поиска (2GIS, Yandex.Maps) — все требуют API keys.
 - [x] Документированы отложенные кандидаты в `docs/sources.md` с обоснованием и следующими шагами.
+- [x] Синхронизированы `README.md`, `TODO.md`, `docs/install.md` и `docs/roadmap.md` с фактически реализованными 8-11 target-навыками.
+- [x] Добавлена регрессионная проверка верхнеуровневой документации, которая сверяет `Target`-матрицу из `README.md` с install snippets.
 - [x] Реализован пакет `yandex-rasp` с тремя функциями: `searchStations`, `getStationSchedule`, `searchTrips`.
 - [x] Подготовлены fixture-based JSON-тесты для `stations_list`, `schedule` и `search` ответов API Яндекс.Расписаний.
 - [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/yandex-rasp.md`, `yandex-rasp/SKILL.md` и `.changeset/yandex-rasp.md`, чтобы девятый target-skill был встроен в основной пользовательский путь.
@@ -79,6 +83,9 @@
 - [ ] Выбрать 12-й российский источник для nearby-поиска (2GIS/Яндекс.Карты/Zoon) для замены `blue-ribbon-nearby` и `kakao-bar-nearby` — требует публичной поверхности или free API key.
 - [ ] Выбрать 13-й российский источник в домене городского транспорта/метро для замены `seoul-subway-arrival` — нужен публичный JSON/HTML без пользовательской авторизации.
 - [ ] Выбрать 14-й российский источник в домене брокерских и инвестиционных read-only сценариев для замены `toss-securities` — нужен официальный публичный или developer-friendly источник.
+- [ ] Проверить, можно ли закрыть nearby-replacement через SSR/HTML-поверхность `Zoon` с category + city pages без anti-bot и без API keys.
+- [ ] Подготовить fixture-first исследование по московским и петербургским metro/urban-transit источникам, чтобы replacement для `seoul-subway-arrival` опирался на стабильный публичный endpoint.
+- [ ] Уточнить минимальный scope российского read-only invest skill: рыночные сводки, портфельные симуляции без логина или официальные брокерские публичные инструменты.
 
 ## Проверки на следующий шаг
 
