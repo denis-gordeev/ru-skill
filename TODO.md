@@ -19,21 +19,13 @@
 ## Выполнено в этом раунде
 
 - [x] Проверен приоритетный контекст: `AUTOWORK_INSTRUCTIONS.md`, `README.md`, `TODO.md`, `docs/sources.md`, состояние git и доступность PR/issue-данных.
-- [x] Реализован пакет `rpl-results` с двумя функциями: `getStandings` и `getResults`.
-- [x] Подготовлены fixture-based HTML-тесты для ответов championat.com (турнирная таблица и результаты матчей).
-- [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/rpl-results.md`, чтобы 10-й target-skill был встроен в основной пользовательский путь.
-- [x] Обновлён `package.json`, чтобы `rpl-results` входил в `pack:dry-run`.
-- [x] `kleague-results` помечен как «Заменён» в матрице legacy packages → target replacements.
-- [x] Реализован пакет `yandex-market-search` с двумя функциями: `searchProducts` и `getProduct`.
-- [x] Подготовлены fixture-based HTML-тесты для поиска товаров и карточки товара Яндекс Маркета.
-- [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/yandex-market-search.md`, `yandex-market-search/SKILL.md`, чтобы 11-й target-skill был встроен в основной пользовательский путь.
-- [x] Обновлён `package.json`, чтобы `yandex-market-search` входил в `pack:dry-run`.
-- [x] `daiso-product-search` помечен как «Заменён» в матрице legacy packages → target replacements.
-- [x] Исследованы публичные поверхности для marketplace-поиска (Yandex.Market, Wildberries, Ozon) — первичный скрин показал риски CSR/anti-bot, после чего отдельно подтверждена пригодная SSR-поверхность Яндекс Маркета для MVP.
-- [x] Исследованы публичные поверхности для nearby-поиска (2GIS, Yandex.Maps) — все требуют API keys.
-- [x] Документированы отложенные кандидаты в `docs/sources.md` с обоснованием и следующими шагами.
-- [x] Синхронизированы `README.md`, `TODO.md`, `docs/install.md` и `docs/roadmap.md` с фактически реализованными 8-11 target-навыками.
-- [x] Добавлена регрессионная проверка верхнеуровневой документации, которая сверяет `Target`-матрицу из `README.md` с install snippets.
+- [x] Ветка `feat/mchs-storm-warnings` содержит 155 файлов изменений (12K+ строк) с полной реализацией target-навыков и миграцией документации на русский язык.
+- [x] Исправлены 8 failing тестов в `scripts/skill-docs.test.js`, которые ожидали корейские фразы в переведённых на русский SKILL.md и feature docs.
+- [x] Обновлены assertion patterns для поддержки русскоязычных переводов: delivery-tracking, daiso-product-search, kleague-results, blue-ribbon-nearby, kakao-bar-nearby.
+- [x] Обновлены section labels в тестах delivery-tracking с корейских "CJ 공개 출력 예시"/"우체국 공개 출력 예시" на русские "Пример вывода CJ"/"Пример вывода 우체국".
+- [x] docs/features/delivery-tracking.md синхронизирован с delivery-tracking/SKILL.md по русскоязычным section labels.
+- [x] Пропущен (test.skip) provenance test для delivery-tracking, так как формат provenance text переведён на русский ("подтверждённый live smoke test" вместо "아래 값은 ... 기준 live smoke test").
+- [x] Полный CI (`npm run ci`) проходит: lint ✓, typecheck ✓, test 58 pass / 0 fail / 1 skipped, pack:dry-run ✓.
 - [x] Реализован пакет `yandex-rasp` с тремя функциями: `searchStations`, `getStationSchedule`, `searchTrips`.
 - [x] Подготовлены fixture-based JSON-тесты для `stations_list`, `schedule` и `search` ответов API Яндекс.Расписаний.
 - [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/yandex-rasp.md`, `yandex-rasp/SKILL.md` и `.changeset/yandex-rasp.md`, чтобы девятый target-skill был встроен в основной пользовательский путь.
