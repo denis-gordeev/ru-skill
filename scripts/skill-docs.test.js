@@ -1095,3 +1095,53 @@ test("yandex-rasp docs document the Yandex Raspisanie transport schedule workflo
   assert.match(packageReadme, /getStationSchedule/);
   assert.match(packageReadme, /searchTrips/);
 });
+
+test("pack:dry-run includes the yandex-market-search workspace", () => {
+  const packageJson = JSON.parse(read("package.json"));
+
+  assert.match(packageJson.scripts["pack:dry-run"], /workspace yandex-market-search/);
+});
+
+test("package-lock captures the yandex-market-search workspace metadata for npm ci", () => {
+  const packageLock = readJson("package-lock.json");
+
+  assert.deepEqual(packageLock.packages["node_modules/yandex-market-search"], {
+    resolved: "packages/yandex-market-search",
+    link: true,
+  });
+  assert.equal(packageLock.packages["packages/yandex-market-search"].version, "0.1.0");
+  assert.equal(packageLock.packages["packages/yandex-market-search"].license, "MIT");
+  assert.equal(packageLock.packages["packages/yandex-market-search"].engines.node, ">=18");
+});
+
+test("repository docs advertise the yandex-market-search skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "yandex-market-search.md");
+  const skillDir = path.join(repoRoot, "yandex-market-search");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/yandex-market-search.md to exist");
+  assert.ok(fs.existsSync(path.join(skillDir, "SKILL.md")), "expected yandex-market-search/SKILL.md to exist");
+  assert.match(readme, /\| `yandex-market-search` \|/);
+  assert.match(readme, /\[Гайд по Яндекс Маркету\]\(docs\/features\/yandex-market-search\.md\)/);
+  assert.match(install, /--skill yandex-market-search/);
+  assert.match(roadmap, /yandex-market-search/);
+  assert.match(sources, /Яндекс Маркет/);
+});
+
+test("yandex-market-search docs document the marketplace workflow", () => {
+  const skill = read(path.join("yandex-market-search", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "yandex-market-search.md"));
+  const packageReadme = read(path.join("packages", "yandex-market-search", "README.md"));
+
+  assert.match(skill, /^name: yandex-market-search$/m);
+  assert.match(skill, /npm install yandex-market-search/);
+  assert.match(skill, /searchProducts/);
+  assert.match(skill, /getProduct/);
+  assert.match(featureDoc, /canonical/i);
+  assert.match(packageReadme, /npm install yandex-market-search/);
+  assert.match(packageReadme, /searchProducts/);
+  assert.match(packageReadme, /getProduct/);
+});

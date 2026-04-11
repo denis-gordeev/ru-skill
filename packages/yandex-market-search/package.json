@@ -1,0 +1,30 @@
+{
+  "name": "yandex-market-search",
+  "version": "0.1.0",
+  "description": "Read-only поиск товаров и карточки товаров через серверно отрендеренные страницы Яндекс Маркета",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ru-skill",
+    "yandex-market",
+    "marketplace",
+    "shopping",
+    "russia",
+    "search",
+    "ecommerce"
+  ],
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "node --check src/index.js && node --check src/parse.js",
+    "test": "node --test"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

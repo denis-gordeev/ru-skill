@@ -51,6 +51,7 @@ npx --yes skills add denis-gordeev/ru-skill \
   --skill stoloto-lotto \
   --skill kinopoisk-search \
   --skill mchs-storm-warnings \
+  --skill yandex-market-search \
   --skill hwp \
   --skill kbo-results \
   --skill kleague-results \
@@ -110,7 +111,7 @@ npm run ci
 ### Node-пакеты
 
 ```bash
-npm install -g @ohah/hwpjs cbr-rates moex-shares postcalc-postcodes hh-vacancies stoloto-lotto kinopoisk-search mchs-storm-warnings kbo-game kleague-results toss-securities k-lotto
+npm install -g @ohah/hwpjs cbr-rates moex-shares postcalc-postcodes hh-vacancies stoloto-lotto kinopoisk-search mchs-storm-warnings yandex-market-search kbo-game kleague-results toss-securities k-lotto
 export NODE_PATH="$(npm root -g)"
 ```
 

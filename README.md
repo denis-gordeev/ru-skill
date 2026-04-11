@@ -33,6 +33,7 @@
 | `pravo-documents` | Поиск и карточки официальных правовых документов через API pravo.gov.ru | Нет | [Гайд по правовым документам](docs/features/pravo-documents.md) |
 | `yandex-rasp` | Расписания транспорта (электрички, поезда, автобусы, авиарейсы) через API Яндекс.Расписаний | Да | [Гайд по Яндекс.Расписаниям](docs/features/yandex-rasp.md) |
 | `rpl-results` | Турнирная таблица и результаты матчей Российской Премьер-Лиги через championat.com | Нет | [Гайд по РПЛ](docs/features/rpl-results.md) |
+| `yandex-market-search` | Поиск товаров и карточки товаров через серверно отрендеренные страницы Яндекс Маркета | Нет | [Гайд по Яндекс Маркету](docs/features/yandex-market-search.md) |
 | `srt-booking` | Поиск поездов SRT, бронирование, просмотр и отмена брони | Да | [Гайд по SRT](docs/features/srt-booking.md) |
 | `ktx-booking` | Поиск и бронирование поездов KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
@@ -65,6 +66,7 @@
 | `pravo-documents` | Клиент для поиска и карточек официальных правовых документов через API pravo.gov.ru | Target |
 | `yandex-rasp` | Клиент для расписаний транспорта через API Яндекс.Расписаний | Target |
 | `rpl-results` | Клиент для турнирных таблиц и результатов матчей РПЛ через championat.com | Target |
+| `yandex-market-search` | Клиент для поиска товаров и карточек товаров через серверно отрендеренные страницы Яндекс Маркета | Target |
 | `k-lotto` | Клиент для результатов корейской лотереи | Legacy |
 | `daiso-product-search` | Поиск магазинов, товаров и остатков Daiso | Legacy |
 | `blue-ribbon-nearby` | Поиск ресторанов Blue Ribbon nearby | Legacy |
@@ -98,6 +100,7 @@
 - Добавлен восьмой целевой русскоязычный навык `pravo-documents` для поиска и чтения официальных правовых документов через API pravo.gov.ru.
 - Добавлен девятый целевой русскоязычный навык `yandex-rasp` для расписаний транспорта через API Яндекс.Расписаний.
 - Добавлен десятый целевой русскоязычный навык `rpl-results` для турнирной таблицы и результатов матчей Российской Премьер-Лиги через championat.com.
+- Добавлен одиннадцатый целевой русскоязычный навык `yandex-market-search` для поиска товаров и карточек товаров через серверно отрендеренные страницы Яндекс Маркета.
 - Верхнеуровневая документация и roadmap переведены на единый русскоязычный сценарий с явным разделением `Target` и `Legacy`.
 - Для setup и shell-скриптов введён dual-path secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 - Setup-поток теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый alias.
@@ -114,6 +117,7 @@
 - [Правовые документы pravo.gov.ru](docs/features/pravo-documents.md)
 - [Яндекс.Расписания](docs/features/yandex-rasp.md)
 - [Результаты РПЛ](docs/features/rpl-results.md)
+- [Яндекс Маркет](docs/features/yandex-market-search.md)
 - [Бронирование SRT](docs/features/srt-booking.md)
 - [Бронирование KTX](docs/features/ktx-booking.md)
 - [KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md)

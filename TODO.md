@@ -10,7 +10,9 @@
 - Десятый российский target-навык реализован: `rpl-results` поверх championat.com для турнирной таблицы и результатов матчей РПЛ.
 - Legacy-пакет `kleague-results` заменён на `rpl-results` в матрице замен.
 - Матрица замены legacy-пакетов обновлена: `kleague-results` помечен как «Заменён».
-- Marketplace и nearby-поиск отложены: Yandex.Market использует complex client-side rendering (JSON widgets), 2GIS/Yandex.Maps требуют API keys.
+- Одиннадцатый российский target-навык реализован: `yandex-market-search` поверх серверно отрендеренных страниц Яндекс Маркета для поиска товаров и карточек товаров.
+- Legacy-пакет `daiso-product-search` заменён на `yandex-market-search` в матрице замен.
+- Nearby-поиск остаётся открытым: 2GIS и Яндекс.Карты требуют API keys, нужен следующий публичный источник или free-tier credential path.
 
 ## Выполнено в этом раунде
 
@@ -20,7 +22,12 @@
 - [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/rpl-results.md`, чтобы 10-й target-skill был встроен в основной пользовательский путь.
 - [x] Обновлён `package.json`, чтобы `rpl-results` входил в `pack:dry-run`.
 - [x] `kleague-results` помечен как «Заменён» в матрице legacy packages → target replacements.
-- [x] Исследованы публичные поверхности для marketplace-поиска (Yandex.Market, Wildberries, Ozon) — все требуют либо API keys, либо используют complex CSR.
+- [x] Реализован пакет `yandex-market-search` с двумя функциями: `searchProducts` и `getProduct`.
+- [x] Подготовлены fixture-based HTML-тесты для поиска товаров и карточки товара Яндекс Маркета.
+- [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/yandex-market-search.md`, `yandex-market-search/SKILL.md`, чтобы 11-й target-skill был встроен в основной пользовательский путь.
+- [x] Обновлён `package.json`, чтобы `yandex-market-search` входил в `pack:dry-run`.
+- [x] `daiso-product-search` помечен как «Заменён» в матрице legacy packages → target replacements.
+- [x] Исследованы публичные поверхности для marketplace-поиска (Yandex.Market, Wildberries, Ozon) — первичный скрин показал риски CSR/anti-bot, после чего отдельно подтверждена пригодная SSR-поверхность Яндекс Маркета для MVP.
 - [x] Исследованы публичные поверхности для nearby-поиска (2GIS, Yandex.Maps) — все требуют API keys.
 - [x] Документированы отложенные кандидаты в `docs/sources.md` с обоснованием и следующими шагами.
 - [x] Реализован пакет `yandex-rasp` с тремя функциями: `searchStations`, `getStationSchedule`, `searchTrips`.
@@ -67,12 +74,15 @@
 - [x] Реализовать пакет `yandex-rasp` для расписаний транспорта с тремя функциями: поиск станции, расписание, поиск маршрута.
 - [x] Выбрать 10-й российский источник в домене российских спортивных сводок (РПЛ через championat.com) для замены `kleague-results`.
 - [x] Реализовать пакет `rpl-results` для турнирной таблицы и результатов матчей РПЛ с двумя функциями: `getStandings`, `getResults`.
-- [ ] Выбрать 11-й российский источник в домене российских маркетплейсов (Price.ru/E-katalog/Яндекс.Маркет) для замены `daiso-product-search` — требует публичной HTML-поверхности без API keys.
+- [x] Выбрать 11-й российский источник в домене российских маркетплейсов (Price.ru/E-katalog/Яндекс.Маркет) для замены `daiso-product-search` — выбран Яндекс Маркет на текущей SSR-поверхности.
+- [x] Реализовать пакет `yandex-market-search` для поиска товаров и карточек товаров через публичные страницы Яндекс Маркета.
 - [ ] Выбрать 12-й российский источник для nearby-поиска (2GIS/Яндекс.Карты/Zoon) для замены `blue-ribbon-nearby` и `kakao-bar-nearby` — требует публичной поверхности или free API key.
+- [ ] Выбрать 13-й российский источник в домене городского транспорта/метро для замены `seoul-subway-arrival` — нужен публичный JSON/HTML без пользовательской авторизации.
+- [ ] Выбрать 14-й российский источник в домене брокерских и инвестиционных read-only сценариев для замены `toss-securities` — нужен официальный публичный или developer-friendly источник.
 
 ## Проверки на следующий шаг
 
 - Для документных и релизных изменений запускать `npm run ci`.
 - Перед коммитом отдельно проверять, что правки не затёрли уже существующие незакоммиченные изменения в рабочем дереве.
 - Добавить `rpl-results` в `pack:dry-run` скрипт в `package.json`.
-- Следующий продуктовый шаг: найти публичную HTML-поверхность для marketplace-поиска (Price.ru, E-katalog) или начать реализацию nearby-поиска с бесплатным API key от 2GIS/Yandex.Maps.
+- Следующий продуктовый шаг: закрыть replacement для nearby-поиска и отдельно исследовать замену `seoul-subway-arrival` на российский metro/urban-transit источник.

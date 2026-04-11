@@ -383,14 +383,45 @@
 
 Статус реализации: пакет `rpl-results` создан в `packages/rpl-results` с двумя функциями (`getStandings`, `getResults`), fixture-based тестами и документацией.
 
+## Одиннадцатый выбранный русскоязычный источник
+
+### Яндекс Маркет: серверно отрендеренные страницы поиска и карточек товаров
+
+- Поиск товаров: https://market.yandex.ru/search?text=iphone
+- Пример карточки товара: https://market.yandex.ru/card/smartfon-apple-iphone-16-128-gb-dual-nano-sim--esim-chernyy/103572164696
+
+Почему этот источник выбран одиннадцатым:
+
+- Это крупный российский маркетплейс с полезным read-only discovery-сценарием.
+- На текущем этапе поисковая выдача и карточки товаров доступны как серверно отрендеренный HTML, который можно нормализовать без браузерной автоматизации и без API key.
+- Источник закрывает важный replacement-gap для legacy-пакета `daiso-product-search`.
+- MVP полезен уже в минимальном виде: поиск по запросу и чтение карточки товара с ценой, рейтингом и характеристиками.
+
+Минимальный scope одиннадцатого навыка:
+
+- Вход для поиска: строка запроса и опциональная страница выдачи.
+- Вход для карточки: URL товара из результатов поиска.
+- Выход для поиска: `title`, `productId`, canonical `url`, `price`, `rating`, `reviewCount`, `imageUrl`, top inline `specs`.
+- Выход для карточки: `title`, `brand`, `price`, `rating`, `reviewCount`, `description`, `specs`.
+- Технический baseline: skill + read-only package + fixture-based HTML-тесты.
+- Выбранное имя пакета: `yandex-market-search`.
+
+Что не входит в одиннадцатый scope:
+
+- Корзина, покупка, сравнение магазинов, отзывы и merchant-facing сценарии.
+- Авторизация, избранное и персонализированные списки.
+- Гарантия долгосрочной стабильности, если Маркет переведёт выдачу в чистый CSR или усилит антибот-слой.
+
+Статус реализации: пакет `yandex-market-search` создан в `packages/yandex-market-search` с двумя функциями (`searchProducts`, `getProduct`), fixture-based HTML-тестами и документацией.
+
 ### Отложенные кандидаты
 
-#### Маркетплейсы (Wildberries/Ozon/Яндекс.Маркет)
+#### Маркетплейсы (Wildberries/Ozon/Price.ru/E-katalog)
 
-- Wildberries API требует токен продавца (dev.wildberries.ru).
-- Ozon Seller API также требует авторизацию.
-- Яндекс.Маркет использует complex client-side rendering (JSON widgets), что делает надёжный scraping сложным.
-- **Решение**: отложить до появления публичной HTML-страницы поиска товаров с server-side рендерингом.
+- Wildberries API требует токен продавца (dev.wildberries.ru), а публичная выдача быстро уходит в antibot flow.
+- Ozon Seller API также требует авторизацию, а публичная выдача отвечает antibot challenge.
+- Price.ru и E-katalog остаются резервными кандидатами, если текущая SSR-поверхность Яндекс Маркета перестанет быть доступной.
+- **Решение**: основной replacement для `daiso-product-search` уже закрыт через `yandex-market-search`; резервный fallback держать на случай деградации SSR-страниц Маркета.
 
 #### Nearby-поиск (2GIS/Яндекс.Карты/Zoon)
 
