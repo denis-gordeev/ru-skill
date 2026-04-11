@@ -2,20 +2,27 @@
 
 Живой список задач для `ru-skill`. Обновляется по итогам каждого automation round.
 
-## Статус на 2026-04-10
+## Статус на 2026-04-11
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет подтверждён, курс репозитория - перевод на российские и русскоязычные реалии.
 - GitHub Issues: недоступны, в репозитории отключены.
 - Open PR: автоматическая проверка недоступна без `gh auth login`, поэтому в этом раунде PR backlog не подтверждён.
-- Девятый российский target-навык реализован: `yandex-rasp` поверх API Яндекс.Расписаний для расписаний транспорта.
-- Матрица замены legacy-пакетов расширена: добавлены столбцы статуса замены, конкретные российские аналоги для каждого legacy-пакета (РПЛ/ФНЛ/КХЛ для спорта, Wildberries/Ozon для товаров, 2GIS/Яндекс.Карты для nearby, РЖД/Туту.ру для ЖД-билетов).
-- В базовых shell-скриптах и документации внедрён dual-path для секретов: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
-- Оставшиеся legacy feature-guides в `docs/features/*.md` переведены на русскоязычный тон, при этом сохранены нужные legacy-маркеры для doc-regression тестов.
-- Для Python helper-скриптов добавлен общий resolver `scripts/shared_secrets.py`; теперь `fine_dust.py` и `ktx_booking.py` читают секреты из env, затем из `~/.config/ru-skill/secrets.env`, затем из legacy fallback.
+- Десятый российский target-навык реализован: `rpl-results` поверх championat.com для турнирной таблицы и результатов матчей РПЛ.
+- Legacy-пакет `kleague-results` заменён на `rpl-results` в матрице замен.
+- Матрица замены legacy-пакетов обновлена: `kleague-results` помечен как «Заменён».
+- Marketplace и nearby-поиск отложены: Yandex.Market использует complex client-side rendering (JSON widgets), 2GIS/Yandex.Maps требуют API keys.
 
 ## Выполнено в этом раунде
 
 - [x] Проверен приоритетный контекст: `AUTOWORK_INSTRUCTIONS.md`, `README.md`, `TODO.md`, `docs/sources.md`, состояние git и доступность PR/issue-данных.
+- [x] Реализован пакет `rpl-results` с двумя функциями: `getStandings` и `getResults`.
+- [x] Подготовлены fixture-based HTML-тесты для ответов championat.com (турнирная таблица и результаты матчей).
+- [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/rpl-results.md`, чтобы 10-й target-skill был встроен в основной пользовательский путь.
+- [x] Обновлён `package.json`, чтобы `rpl-results` входил в `pack:dry-run`.
+- [x] `kleague-results` помечен как «Заменён» в матрице legacy packages → target replacements.
+- [x] Исследованы публичные поверхности для marketplace-поиска (Yandex.Market, Wildberries, Ozon) — все требуют либо API keys, либо используют complex CSR.
+- [x] Исследованы публичные поверхности для nearby-поиска (2GIS, Yandex.Maps) — все требуют API keys.
+- [x] Документированы отложенные кандидаты в `docs/sources.md` с обоснованием и следующими шагами.
 - [x] Реализован пакет `yandex-rasp` с тремя функциями: `searchStations`, `getStationSchedule`, `searchTrips`.
 - [x] Подготовлены fixture-based JSON-тесты для `stations_list`, `schedule` и `search` ответов API Яндекс.Расписаний.
 - [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/yandex-rasp.md`, `yandex-rasp/SKILL.md` и `.changeset/yandex-rasp.md`, чтобы девятый target-skill был встроен в основной пользовательский путь.
@@ -57,15 +64,15 @@
 ## Новые пункты плана
 
 - [x] Выбрать 9-й российский read-only источник в домене транспорта/городских сервисов (Яндекс.Расписания).
-- [x] Перевести все оставшиеся SKILL.md файлы с корейского на русский для единообразия документации.
 - [x] Реализовать пакет `yandex-rasp` для расписаний транспорта с тремя функциями: поиск станции, расписание, поиск маршрута.
-- [x] Расширить матрицу замены legacy-пакетов: добавить столбцы статуса и конкретные российские аналоги для каждого legacy-пакета.
-- [ ] Выбрать 10-й российский источник в домене российских спортивных сводок (РПЛ/ФНЛ/КХЛ) для замены `kleague-results`.
-- [ ] Выбрать 11-й российский источник в домене российских маркетплейсов (Wildberries/Ozon) для замены `daiso-product-search`.
-- [ ] Выбрать 12-й российский источник для nearby-поиска (2GIS/Яндекс.Карты/Zoon) для замены `blue-ribbon-nearby` и `kakao-bar-nearby`.
+- [x] Выбрать 10-й российский источник в домене российских спортивных сводок (РПЛ через championat.com) для замены `kleague-results`.
+- [x] Реализовать пакет `rpl-results` для турнирной таблицы и результатов матчей РПЛ с двумя функциями: `getStandings`, `getResults`.
+- [ ] Выбрать 11-й российский источник в домене российских маркетплейсов (Price.ru/E-katalog/Яндекс.Маркет) для замены `daiso-product-search` — требует публичной HTML-поверхности без API keys.
+- [ ] Выбрать 12-й российский источник для nearby-поиска (2GIS/Яндекс.Карты/Zoon) для замены `blue-ribbon-nearby` и `kakao-bar-nearby` — требует публичной поверхности или free API key.
 
 ## Проверки на следующий шаг
 
 - Для документных и релизных изменений запускать `npm run ci`.
 - Перед коммитом отдельно проверять, что правки не затёрли уже существующие незакоммиченные изменения в рабочем дереве.
-- Следующий продуктовый шаг: выбрать 10-й российский источник (спортивные сводки РПЛ/КХЛ) или начать реализацию nearby-поиска на 2GIS/Яндекс.Картах.
+- Добавить `rpl-results` в `pack:dry-run` скрипт в `package.json`.
+- Следующий продуктовый шаг: найти публичную HTML-поверхность для marketplace-поиска (Price.ru, E-katalog) или начать реализацию nearby-поиска с бесплатным API key от 2GIS/Yandex.Maps.

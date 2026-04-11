@@ -1,0 +1,27 @@
+{
+  "name": "rpl-results",
+  "version": "0.1.0",
+  "description": "Результаты матчей и турнирная таблица Российской Премьер-Лиги через публичные страницы championat.com",
+  "keywords": [
+    "ru-skill",
+    "rpl",
+    "football",
+    "soccer",
+    "russian-premier-league",
+    "sports",
+    "standings",
+    "results"
+  ],
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "node --check src/index.js && node --check src/parse.js",
+    "test": "node --test"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -350,6 +350,55 @@
 
 Статус реализации: пакет `yandex-rasp` создан в `packages/yandex-rasp` с тремя функциями (`searchStations`, `getStationSchedule`, `searchTrips`), fixture-based тестами и документацией.
 
+## Десятый выбранный русскоязычный источник
+
+### championat.com: турнирная таблица и результаты матчей РПЛ
+
+- Турнирная таблица РПЛ: https://www.championat.com/football/_russiapl/tournament/5980/table/
+- Результаты матчей РПЛ: https://www.championat.com/football/_russiapl/tournament/5980/results/
+- Официальный сайт РПЛ: https://premierliga.ru/
+
+Почему этот источник выбран десятым:
+
+- Это крупнейший российский спортивный портал с публичными HTML-страницами футбольной статистики.
+- Read-only доступ к турнирным таблицам и результатам матчей без авторизации.
+- Прямая замена legacy-пакета `kleague-results` (корейская K League) на российский аналог.
+- championat.com использует server-side rendered HTML, который можно надёжно парсить без JS-рендеринга.
+- Источник добавляет в target-линейку отдельный продуктовый домен: российский спорт и футбольные сводки.
+
+Минимальный scope десятого навыка:
+
+- Вход: тип запроса (`standings` или `results`), опционально — номер тура.
+- Выход для таблицы: rank, team, played, wins, draws, losses, goalsFor/Against, points.
+- Выход для результатов: date, homeTeam, awayTeam, homeScore, awayScore.
+- Технический baseline: skill + read-only package + fixture-based HTML-тесты.
+- Выбранное имя пакета: `rpl-results`.
+
+Что не входит в десятый scope:
+
+- Статистика игроков, бомбардиры, ассистенты.
+- Календарь будущих матчей и расписание туров.
+- Другие лиги (ФНЛ, КХЛ, баскетбол), если они не нужны для базовой таблицы РПЛ.
+- Push-уведомления о голах и live-обновления матчей.
+
+Статус реализации: пакет `rpl-results` создан в `packages/rpl-results` с двумя функциями (`getStandings`, `getResults`), fixture-based тестами и документацией.
+
+### Отложенные кандидаты
+
+#### Маркетплейсы (Wildberries/Ozon/Яндекс.Маркет)
+
+- Wildberries API требует токен продавца (dev.wildberries.ru).
+- Ozon Seller API также требует авторизацию.
+- Яндекс.Маркет использует complex client-side rendering (JSON widgets), что делает надёжный scraping сложным.
+- **Решение**: отложить до появления публичной HTML-страницы поиска товаров с server-side рендерингом.
+
+#### Nearby-поиск (2GIS/Яндекс.Карты/Zoon)
+
+- 2GIS Catalog API требует API key (docs.2gis.com).
+- Яндекс.Карты Geosearch API требует API key.
+- Zoon.ru — публичный справочник организаций, но без официального open API.
+- **Решение**: отложить до выбора публичной поверхности, которая не требует ключей.
+
 ### Бытовые и городские данные
 
 - Официальные погодные и климатические API с публичным доступом или бесплатным тарифом
