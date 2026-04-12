@@ -1,0 +1,68 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API",
+  "osm3s": {
+    "timestamp_osm_base": "2026-04-12T10:00:00Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 1234567890,
+      "lat": 55.7558,
+      "lon": 37.6173,
+      "tags": {
+        "name": "Кафе Пушкинъ",
+        "amenity": "restaurant",
+        "cuisine": "russian",
+        "addr:street": "Тверской бульвар",
+        "addr:housenumber": "26",
+        "addr:city": "Москва",
+        "phone": "+7 495 123-45-67",
+        "website": "https://cafe-pushkin.ru",
+        "opening_hours": "Mo-Su 10:00-23:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1234567891,
+      "lat": 55.7560,
+      "lon": 37.6180,
+      "tags": {
+        "name": "Кофейня Surf",
+        "amenity": "cafe",
+        "addr:street": "Тверская улица",
+        "addr:housenumber": "15",
+        "addr:city": "Москва",
+        "opening_hours": "Mo-Fr 08:00-20:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1234567892,
+      "lat": 55.7565,
+      "lon": 37.6190,
+      "tags": {
+        "name": "Бар Noor",
+        "amenity": "bar",
+        "cuisine": "cocktails",
+        "addr:street": "Петровка",
+        "addr:housenumber": "12",
+        "addr:city": "Москва",
+        "phone": "+7 495 987-65-43",
+        "website": "https://noor-bar.ru",
+        "opening_hours": "Tu-Sa 18:00-02:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1234567893,
+      "lat": 55.7570,
+      "lon": 37.6200,
+      "tags": {
+        "amenity": "restaurant",
+        "operator": "Теремок"
+      }
+    }
+  ]
+}

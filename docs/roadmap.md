@@ -22,6 +22,7 @@
 - Добавлен девятый новый русскоязычный skill/package: `yandex-rasp` поверх API Яндекс.Расписаний для поиска станций, расписаний и маршрутов.
 - Добавлен десятый новый русскоязычный skill/package: `rpl-results` поверх championat.com для турнирной таблицы и результатов матчей РПЛ.
 - Добавлен одиннадцатый новый русскоязычный skill/package: `yandex-market-search` поверх серверно отрендеренных страниц Яндекс Маркета для поиска товаров и карточек товаров.
+- Добавлен двенадцатый новый русскоязычный skill/package: `osm-nearby` поверх публичного Overpass API OpenStreetMap для поиска ближайших заведений.
 - В качестве третьего источника вне финансового домена выбран `Postcalc` как read-only справочник индексов и отделений на базе эталонного справочника Почты России.
 - В качестве четвёртого источника вне финансов и логистики выбран публичный API `hh.ru` как базовый read-only сценарий вакансий и регионов.
 - Для setup и helper-скриптов уже внедрён dual-path secrets: `~/.config/ru-skill/secrets.env` с fallback на `~/.config/k-skill/secrets.env`.
@@ -121,8 +122,8 @@
 | `k-lotto` | `legacy` | Результаты корейской лотереи | Заменён на `stoloto-lotto` — российские публичные результаты лотерей | Заменён |
 | `kleague-results` | `legacy` | K League расписание и таблица | Заменён на `rpl-results` — российские спортивные сводки через championat.com | Заменён |
 | `daiso-product-search` | `legacy` | Товары и остатки Daiso | Заменён на `yandex-market-search` — российский marketplace discovery через Яндекс Маркет | Заменён |
-| `blue-ribbon-nearby` | `legacy` | Ближайшие рестораны Blue Ribbon | Поиск ближайших мест через 2GIS, Яндекс.Карты или Zoon | Кандидат на следующий раунд |
-| `kakao-bar-nearby` | `legacy` | Бары рядом через Kakao Map | Объединён с заменой `blue-ribbon-nearby` — универсальный nearby-поиск | Кандидат на следующий раунд |
+| `blue-ribbon-nearby` | `legacy` | Ближайшие рестораны Blue Ribbon | Заменён на `osm-nearby` — бесплатный поиск ближайших заведений через OpenStreetMap | Заменён |
+| `kakao-bar-nearby` | `legacy` | Бары рядом через Kakao Map | Заменён на `osm-nearby` — бесплатный поиск ближайших заведений через OpenStreetMap | Заменён |
 | `toss-securities` | `legacy` | Read-only-обёртка над `tossctl` | Read-only навык по российскому брокерскому сценарию (Тинькофф, Сбер, ВТБ) | Требует уточнения источника |
 | `srt-booking` | `legacy` | Бронирование поездов SRT | Российские ЖД-билеты через API РЖД или агрегаторы (Яндекс.Путешествия, Туту.ру) | Кандидат на следующий раунд |
 | `ktx-booking` | `legacy` | Бронирование поездов KTX/Korail | Объединён с заменой `srt-booking` — российские ЖД-билеты | Кандидат на следующий раунд |
@@ -132,9 +133,8 @@
 
 ## Приоритеты следующих раундов
 
-1. Реализованы 10-й и 11-й российские target-навыки: `rpl-results` и `yandex-market-search`.
+1. Реализованы 10-й, 11-й и 12-й российские target-навыки: `rpl-results`, `yandex-market-search` и `osm-nearby`.
 2. Продолжить поэтапную матрицу замен legacy-пакетов российскими аналогами в рамках Milestone 4.
-3. Закрыть nearby-replacement для `blue-ribbon-nearby` и `kakao-bar-nearby`.
-4. Исследовать replacement для `seoul-subway-arrival` на российском metro/urban-transit источнике.
-5. Подобрать публичный read-only источник для замены `toss-securities` в российском брокерском сценарии.
-6. Держать в CI синхрон верхнеуровневой документации и install-flow при добавлении новых target-навыков.
+3. Исследовать replacement для `seoul-subway-arrival` на российском metro/urban-transit источнике (реального времени нет, возможны только статические справочники).
+4. Подобрать публичный read-only источник для замены `toss-securities` в российском брокерском сценарии (MOEX ISS уже покрывается через `moex-shares`).
+5. Держать в CI синхрон верхнеуровневой документации и install-flow при добавлении новых target-навыков.

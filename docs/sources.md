@@ -414,6 +414,38 @@
 
 Статус реализации: пакет `yandex-market-search` создан в `packages/yandex-market-search` с двумя функциями (`searchProducts`, `getProduct`), fixture-based HTML-тестами и документацией.
 
+## Двенадцатый выбранный русскоязычный источник
+
+### Overpass API: поиск ближайших заведений через OpenStreetMap
+
+- Главная страница: https://overpass-api.de/
+- API endpoint: https://overpass-api.de/api/interpreter
+- Документация Overpass QL: https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL
+- OpenStreetMap данные: https://www.openstreetmap.org/
+
+Почему этот источник выбран двенадцатым:
+
+- Это бесплатный публичный API без необходимости API key или авторизации.
+- Прямая замена legacy-пакетов `blue-ribbon-nearby` и `kakao-bar-nearby` на российский/универсальный аналог.
+- Покрытие по России хорошее в крупных городах (Москва, Петербург), зависит от участия сообщества OSM.
+- Источник добавляет в target-линейку отдельный продуктовый домен: nearby-поиск заведений.
+
+Минимальный scope двенадцатого навыка:
+
+- Вход: координаты (lat, lon), радиус поиска, категории заведений.
+- Выход: список заведений с названием, адресом, телефоном, сайтом, часами работы, типом кухни.
+- Технический baseline: skill + read-only package + fixture-based JSON-тесты.
+- Выбранное имя пакета: `osm-nearby`.
+
+Что не входит в двенадцатый scope:
+
+- Рейтинги и отзывы пользователей (OSM не агрегирует оценки).
+- Платные API с курированными данными (2GIS, Яндекс.Карты).
+- Бронирование столиков и любые write-операции.
+- Гарантия полноты данных в малых городах.
+
+Статус реализации: пакет `osm-nearby` создан в `packages/osm-nearby` с функциями (`searchNearby`, `searchRestaurants`, `searchCafes`, `searchBars`, `getPlaceDetails`), fixture-based тестами и документацией.
+
 ### Отложенные кандидаты
 
 #### Маркетплейсы (Wildberries/Ozon/Price.ru/E-katalog)
@@ -428,7 +460,7 @@
 - 2GIS Catalog API требует API key (docs.2gis.com).
 - Яндекс.Карты Geosearch API требует API key.
 - Zoon.ru — публичный справочник организаций, но без официального open API.
-- **Решение**: отложить до выбора публичной поверхности, которая не требует ключей.
+- **Решение**: реализован `osm-nearby` через Overpass API как free/no-key альтернатива; 2GIS/Яндекс.Карты остаются опцией для production с рейтингами и отзывами.
 
 ### Бытовые и городские данные
 

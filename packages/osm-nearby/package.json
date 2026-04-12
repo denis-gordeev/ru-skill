@@ -1,0 +1,34 @@
+{
+  "name": "osm-nearby",
+  "version": "0.1.0",
+  "description": "Read-only client for nearby places search via OpenStreetMap Overpass API",
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denis-gordeev/ru-skill.git"
+  },
+  "keywords": [
+    "ru-skill",
+    "osm",
+    "overpass",
+    "nearby",
+    "places",
+    "restaurants",
+    "openstreetmap"
+  ],
+  "scripts": {
+    "lint": "node --check src/index.js && node --check src/query.js && node --check test/index.test.js",
+    "test": "node --test"
+  }
+}
