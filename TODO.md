@@ -2,23 +2,30 @@
 
 Живой список задач для `ru-skill`. Обновляется по итогам каждого automation round.
 
-## Статус на 2026-04-11
+## Статус на 2026-04-12
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет подтверждён, курс репозитория - перевод на российские и русскоязычные реалии.
 - GitHub Issues: недоступны, в репозитории отключены.
 - Open PR: автоматическая проверка недоступна без `gh auth login`, поэтому в этом раунде PR backlog не подтверждён.
-- Десятый российский target-навык реализован: `rpl-results` поверх championat.com для турнирной таблицы и результатов матчей РПЛ.
-- Legacy-пакет `kleague-results` заменён на `rpl-results` в матрице замен.
-- Матрица замены legacy-пакетов обновлена: `kleague-results` помечен как «Заменён».
-- Одиннадцатый российский target-навык реализован: `yandex-market-search` поверх серверно отрендеренных страниц Яндекс Маркета для поиска товаров и карточек товаров.
-- Legacy-пакет `daiso-product-search` заменён на `yandex-market-search` в матрице замен.
-- Nearby-поиск остаётся открытым: 2GIS и Яндекс.Карты требуют API keys, нужен следующий публичный источник или free-tier credential path.
-- Верхнеуровневые документы синхронизированы с текущим набором target-навыков: в `docs/install.md` больше не потеряны `pravo-documents`, `yandex-rasp` и `rpl-results`.
-- Добавлена doc-regression проверка: install-flow и npm install snippet теперь валидируются относительно текущего `Target`-списка из `README.md`.
+- Двенадцатый российский target-навык реализован: `osm-nearby` через Overpass API OpenStreetMap для поиска ближайших заведений.
+- Legacy-пакеты `blue-ribbon-nearby` и `kakao-bar-nearby` заменены на `osm-nearby` в матрице замен.
+- Матрица замены legacy-пакетов обновлена: `blue-ribbon-nearby` и `kakao-bar-nearby` помечены как «Заменён».
+- Исследование 13-го источника для metro/urban-transit завершено: реального времени нет, возможны только статические справочники (низкая ценность).
+- Исследование 14-го источника для broker/investment завершено: MOEX ISS уже покрывается через `moex-shares`, реальные брокерские API требуют авторизации.
+- Верхнеуровневые документы синхронизированы с текущим набором target-навыков: `osm-nearby` добавлен в `README.md`, `docs/install.md`, `docs/roadmap.md`, `docs/sources.md`.
 
 ## Выполнено в этом раунде
 
-- [x] Проверен приоритетный контекст: `AUTOWORK_INSTRUCTIONS.md`, `README.md`, `TODO.md`, `docs/sources.md`, состояние git и доступность PR/issue-данных.
+- [x] Проведено исследование российских аналогов для nearby-поиска: Overpass API (OSM) выбран как лучший free/no-key вариант.
+- [x] Проведено исследование российских metro/urban-transit API: реального времени нет (Moscow Metro, SPb Metro), только статические справочники.
+- [x] Проведено исследование российских broker/investment API: MOEX ISS уже покрывается через `moex-shares`, T-Invest требует аккаунт.
+- [x] Реализован пакет `osm-nearby` с пятью функциями: `searchNearby`, `searchRestaurants`, `searchCafes`, `searchBars`, `getPlaceDetails`.
+- [x] Подготовлены fixture-based JSON-тесты для Overpass API ответов с московскими заведениями.
+- [x] Обновлены `README.md`, `docs/install.md`, `docs/roadmap.md`, `docs/sources.md`, чтобы 12-й target-skill был встроен в основной пользовательский путь.
+- [x] Обновлён `package.json`, чтобы `osm-nearby` входил в `pack:dry-run`.
+- [x] Обновлена матрица замены legacy-пакетов: `blue-ribbon-nearby` и `kakao-bar-nearby` помечены как «Заменён».
+- [x] Добавлен changeset `.changeset/osm-nearby-add.md` для подготовки к публикации.
+- [x] Полный CI (`npm run ci`) проходит: lint ✓, typecheck ✓, test 66 pass / 0 fail / 1 skipped, pack:dry-run ✓.
 - [x] Ветка `feat/mchs-storm-warnings` содержит 155 файлов изменений (12K+ строк) с полной реализацией target-навыков и миграцией документации на русский язык.
 - [x] Исправлены 8 failing тестов в `scripts/skill-docs.test.js`, которые ожидали корейские фразы в переведённых на русский SKILL.md и feature docs.
 - [x] Обновлены assertion patterns для поддержки русскоязычных переводов: delivery-tracking, daiso-product-search, kleague-results, blue-ribbon-nearby, kakao-bar-nearby.
@@ -72,9 +79,10 @@
 - [x] Реализовать пакет `rpl-results` для турнирной таблицы и результатов матчей РПЛ с двумя функциями: `getStandings`, `getResults`.
 - [x] Выбрать 11-й российский источник в домене российских маркетплейсов (Price.ru/E-katalog/Яндекс.Маркет) для замены `daiso-product-search` — выбран Яндекс Маркет на текущей SSR-поверхности.
 - [x] Реализовать пакет `yandex-market-search` для поиска товаров и карточек товаров через публичные страницы Яндекс Маркета.
-- [ ] Выбрать 12-й российский источник для nearby-поиска (2GIS/Яндекс.Карты/Zoon) для замены `blue-ribbon-nearby` и `kakao-bar-nearby` — требует публичной поверхности или free API key.
-- [ ] Выбрать 13-й российский источник в домене городского транспорта/метро для замены `seoul-subway-arrival` — нужен публичный JSON/HTML без пользовательской авторизации.
-- [ ] Выбрать 14-й российский источник в домене брокерских и инвестиционных read-only сценариев для замены `toss-securities` — нужен официальный публичный или developer-friendly источник.
+- [x] Выбрать 12-й российский источник для nearby-поиска (2GIS/Яндекс.Карты/Zoon) для замены `blue-ribbon-nearby` и `kakao-bar-nearby` — выбран Overpass API (OpenStreetMap) как free/no-key вариант.
+- [x] Реализовать пакет `osm-nearby` для поиска ближайших заведений (рестораны, кафе, бары) через Overpass API.
+- [ ] Выбрать 13-й российский источник в домене городского транспорта/метро для замены `seoul-subway-arrival` — исследование завершено: реального времени нет, возможны только статические справочники (низкая ценность).
+- [ ] Выбрать 14-й российский источник в домене брокерских и инвестиционных read-only сценариев для замены `toss-securities` — исследование завершено: MOEX ISS уже через `moex-shares`, реальные брокерские API требуют авторизации.
 - [ ] Проверить, можно ли закрыть nearby-replacement через SSR/HTML-поверхность `Zoon` с category + city pages без anti-bot и без API keys.
 - [ ] Подготовить fixture-first исследование по московским и петербургским metro/urban-transit источникам, чтобы replacement для `seoul-subway-arrival` опирался на стабильный публичный endpoint.
 - [ ] Уточнить минимальный scope российского read-only invest skill: рыночные сводки, портфельные симуляции без логина или официальные брокерские публичные инструменты.
