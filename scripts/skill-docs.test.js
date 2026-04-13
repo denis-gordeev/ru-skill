@@ -1211,3 +1211,38 @@ test("yandex-market-search docs document the marketplace workflow", () => {
   assert.match(packageReadme, /searchProducts/);
   assert.match(packageReadme, /getProduct/);
 });
+
+test("pack:dry-run includes the zoon-nearby workspace", () => {
+  const packageJson = JSON.parse(read("package.json"));
+
+  assert.match(packageJson.scripts["pack:dry-run"], /workspace zoon-nearby/);
+});
+
+test("repository docs advertise the zoon-nearby skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "zoon-nearby.md");
+  const skillDir = path.join(repoRoot, "zoon-nearby");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/zoon-nearby.md to exist");
+  assert.ok(fs.existsSync(path.join(skillDir, "SKILL.md")), "expected zoon-nearby/SKILL.md to exist");
+  assert.match(readme, /\| `zoon-nearby` \|/);
+  assert.match(readme, /\[Гайд по Zoon\.ru\]\(docs\/features\/zoon-nearby\.md\)/);
+  assert.match(roadmap, /zoon-nearby/);
+  assert.match(sources, /Zoon/);
+});
+
+test("zoon-nearby docs document the nearby search workflow", () => {
+  const skill = read(path.join("zoon-nearby", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "zoon-nearby.md"));
+  const packageReadme = read(path.join("packages", "zoon-nearby", "README.md"));
+
+  assert.match(skill, /^name: zoon-nearby$/m);
+  assert.match(skill, /npm install zoon-nearby/);
+  assert.match(skill, /searchRestaurants/);
+  assert.match(featureDoc, /zoon-nearby/);
+  assert.match(packageReadme, /npm install zoon-nearby/);
+  assert.match(packageReadme, /searchRestaurants/);
+  assert.match(packageReadme, /getBusinessDetails/);
+});

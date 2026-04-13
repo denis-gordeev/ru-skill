@@ -1,0 +1,33 @@
+{
+  "name": "zoon-nearby",
+  "version": "0.1.0",
+  "description": "Supplementary nearby places search via Zoon.ru SSR pages",
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denis-gordeev/ru-skill.git"
+  },
+  "keywords": [
+    "ru-skill",
+    "zoon",
+    "nearby",
+    "places",
+    "restaurants",
+    "supplementary"
+  ],
+  "scripts": {
+    "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",
+    "test": "node --test"
+  }
+}

@@ -56,6 +56,7 @@ npx --yes skills add denis-gordeev/ru-skill \
   --skill rpl-results \
   --skill yandex-market-search \
   --skill osm-nearby \
+  --skill zoon-nearby \
   --skill hwp \
   --skill kbo-results \
   --skill kleague-results \
@@ -118,7 +119,7 @@ npm run ci
 npm install -g @ohah/hwpjs \
   cbr-rates moex-shares postcalc-postcodes hh-vacancies stoloto-lotto \
   kinopoisk-search mchs-storm-warnings pravo-documents yandex-rasp \
-  rpl-results yandex-market-search osm-nearby \
+  rpl-results yandex-market-search osm-nearby zoon-nearby \
   k-lotto daiso-product-search blue-ribbon-nearby kakao-bar-nearby \
   kleague-results toss-securities kbo-game
 export NODE_PATH="$(npm root -g)"

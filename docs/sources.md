@@ -459,8 +459,8 @@
 
 - 2GIS Catalog API требует API key (docs.2gis.com).
 - Яндекс.Карты Geosearch API требует API key.
-- Zoon.ru — публичный справочник организаций, но без официального open API.
-- **Решение**: реализован `osm-nearby` через Overpass API как free/no-key альтернатива; 2GIS/Яндекс.Карты остаются опцией для production с рейтингами и отзывами.
+- Zoon.ru — публичный справочник организаций, SSR страницы, без anti-bot, без API keys.
+- **Решение**: реализован `osm-nearby` через Overpass API как основной free/no-key источник; реализован `zoon-nearby` как supplementary источник с рейтингами, телефонами и режимами работы; 2GIS/Яндекс.Карты остаются опцией для production.
 
 ### Бытовые и городские данные
 
