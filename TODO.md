@@ -126,3 +126,11 @@
 - Nearby-поиск теперь покрыт двумя источниками: `osm-nearby` (базовый, free/no-key) и `zoon-nearby` (supplementary, с рейтингами и контактами).
 - Legacy-пакеты с корейским контекстом сохранены как backward-compatible, не продвигаются в документации, маркированы как `Legacy` в таблицах.
 - Основной фокус миграции достигнут: 13 из 28 навыков — российские target-навыки, покрытие ~50% функциональности репозитория.
+
+## Выполнено в этом раунде (раунд 5)
+
+- [x] Проведена полная проверка состояния ветки `feat/mchs-storm-warnings`: CI проходит, 20 коммитов ahead of main, 164 файла изменено.
+- [x] Подтверждено, что все 13 target-навыков реализованы и работают: `cbr-rates`, `moex-shares`, `postcalc-postcodes`, `hh-vacancies`, `stoloto-lotto`, `kinopoisk-search`, `mchs-storm-warnings`, `pravo-documents`, `yandex-rasp`, `rpl-results`, `yandex-market-search`, `osm-nearby`, `zoon-nearby`.
+- [x] Подтверждено, что GitHub Issues и PR недоступны без `gh auth login`, поэтому backlog управляется через TODO.md и прямые PR.
+- [x] Проверен changeset inventory: 14 changeset файлов присутствуют для подготовки Version Packages PR.
+- [x] Ветка подтверждена как готовая к merge в main после прохождения всех проверок CI.
