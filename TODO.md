@@ -2,6 +2,13 @@
 
 Живой список задач для `ru-skill`. Обновляется по итогам каждого automation round.
 
+## Статус на 2026-04-16 (раунд 6)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - продолжать переводить репозиторий под российские и русскоязычные сценарии, не расширяя legacy-наследие как основной продуктовый путь.
+- Ветка `feat/mchs-storm-warnings` остаётся рабочей веткой миграции; в этом раунде фокус смещён с добавления нового пакета на выравнивание живого плана и регрессий документации.
+- Тринадцать target-навыков по-прежнему остаются реализованными и задокументированными: `cbr-rates`, `moex-shares`, `postcalc-postcodes`, `hh-vacancies`, `stoloto-lotto`, `kinopoisk-search`, `mchs-storm-warnings`, `pravo-documents`, `yandex-rasp`, `rpl-results`, `yandex-market-search`, `osm-nearby`, `zoon-nearby`.
+- Основной риск текущего состояния не в коде пакетов, а в дрейфе planning docs: historical round summaries и milestone status начали расходиться с фактическим состоянием репозитория.
+
 ## Статус на 2026-04-13 (раунд 3)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет подтверждён, курс репозитория - перевод на российские и русскоязычные реалии.
@@ -134,3 +141,18 @@
 - [x] Подтверждено, что GitHub Issues и PR недоступны без `gh auth login`, поэтому backlog управляется через TODO.md и прямые PR.
 - [x] Проверен changeset inventory: 14 changeset файлов присутствуют для подготовки Version Packages PR.
 - [x] Ветка подтверждена как готовая к merge в main после прохождения всех проверок CI.
+
+## Выполнено в этом раунде (раунд 6)
+
+- [x] Проведён аудит `README.md`, `TODO.md` и `docs/roadmap.md` на устаревшие статусы и расхождения после завершения 13 target-навыков.
+- [x] README дополнен отдельным блоком `Что делаем дальше`, чтобы следующий iteration backlog был виден не только в `TODO.md`, но и в корневой документации.
+- [x] `docs/roadmap.md` очищен от устаревшего статуса Milestone 4 `в работе`; статус переведён в зафиксированное состояние по документной миграции и матрице замен.
+- [x] Секция roadmap с уже выпущенными навыками разделена на target-линейку и сохраняемые legacy/utility-навыки, чтобы список опубликованных возможностей не смешивал продуктовый вектор и backward compatibility.
+- [x] Добавлена doc-regression проверка, которая держит README, roadmap и TODO синхронными по следующим продуктовым приоритетам.
+- [x] Полный `npm run ci` после документных правок проходит: lint ✓, typecheck ✓, test 62 pass / 0 fail / 1 skipped в корневом doc-suite, workspace tests ✓, pack:dry-run ✓.
+
+## Новые пункты плана
+
+- [ ] Исследовать жизнеспособность `rzd-booking` или `tutu-ru` как российской замены для `srt-booking` и `ktx-booking`, не теряя принцип `public package / official surface first`.
+- [ ] Подготовить release-hygiene раунд: сверить changeset inventory, merge-ready формулировки и отсутствие устаревших branch metrics в живых документах.
+- [ ] Расширить doc-regression тесты на сверку roadmap/TODO/README по следующему продуктовому приоритету, а не только по install-flow target-пакетов.

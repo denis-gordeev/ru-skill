@@ -1168,6 +1168,25 @@ test("install docs npm snippet covers every current target workspace package", (
   }
 });
 
+test("planning docs stay aligned on the next migration priorities", () => {
+  const readme = read("README.md");
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const todo = read("TODO.md");
+
+  assert.match(readme, /## Что делаем дальше/);
+  assert.match(readme, /rzd-booking|tutu-ru/);
+  assert.match(readme, /release-hygiene/i);
+
+  assert.match(roadmap, /### Milestone 5\. Booking replacements и release hygiene/);
+  assert.match(roadmap, /rzd-booking|tutu-ru/);
+  assert.match(roadmap, /Статус: в работе\./);
+
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 6\)/);
+  assert.match(todo, /## Новые пункты плана/);
+  assert.match(todo, /rzd-booking|tutu-ru/);
+  assert.match(todo, /release-hygiene/i);
+});
+
 test("package-lock captures the yandex-market-search workspace metadata for npm ci", () => {
   const packageLock = readJson("package-lock.json");
 
