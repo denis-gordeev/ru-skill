@@ -2,6 +2,16 @@
 
 Живой список задач для `ru-skill`. Обновляется по итогам каждого automation round.
 
+Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
+
+## Статус на 2026-04-23 (раунд 7)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде фокус смещён на release-hygiene и поддержание живой документации: README/roadmap должны отражать текущий продуктовый приоритет без branch metrics и merge-ready формулировок.
+- Проверен текущий release backlog: в `.changeset/` по-прежнему 14 файлов, этого достаточно для следующего version/publish round без ручной археологии по старым summary.
+- Тринадцать target-навыков по-прежнему остаются реализованными и задокументированными: `cbr-rates`, `moex-shares`, `postcalc-postcodes`, `hh-vacancies`, `stoloto-lotto`, `kinopoisk-search`, `mchs-storm-warnings`, `pravo-documents`, `yandex-rasp`, `rpl-results`, `yandex-market-search`, `osm-nearby`, `zoon-nearby`.
+- Основной открытый product gap не изменился: жизнеспособная российская замена для `srt-booking` и `ktx-booking` пока не выбрана, поэтому следующий инженерный раунд должен быть research-first, а не implementation-first.
+
 ## Статус на 2026-04-16 (раунд 6)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - продолжать переводить репозиторий под российские и русскоязычные сценарии, не расширяя legacy-наследие как основной продуктовый путь.
@@ -151,8 +161,18 @@
 - [x] Добавлена doc-regression проверка, которая держит README, roadmap и TODO синхронными по следующим продуктовым приоритетам.
 - [x] Полный `npm run ci` после документных правок проходит: lint ✓, typecheck ✓, test 62 pass / 0 fail / 1 skipped в корневом doc-suite, workspace tests ✓, pack:dry-run ✓.
 
+## Выполнено в этом раунде (раунд 7)
+
+- [x] Проведён release-hygiene аудит верхнеуровневых документов: `README.md` и `docs/roadmap.md` очищены от устаревших релизных ярлыков и сводок расстояния ветки как от неустойчивого статуса.
+- [x] Повторно сверён release backlog: inventory `.changeset/` остаётся целостным и содержит 14 файлов, достаточных для следующего version/publish round.
+- [x] README обновлён: в блоке `Что уже сделано по миграции` зафиксирован завершённый release-hygiene раунд, а в `Что делаем дальше` добавлены более точные следующие шаги по booking-replacement decision matrix.
+- [x] `docs/roadmap.md` обновлён: Milestone 5 теперь явно разделяет закрытую release-hygiene подзадачу и незавершённый booking-research.
+- [x] `TODO.md` дополнен новым верхним статус-блоком и явной пометкой, что нижележащие round summaries являются историческим журналом, а не источником текущего статуса.
+- [x] Doc-regression тесты расширены: теперь они проверяют отсутствие устаревших branch metrics и merge-ready формулировок в `README.md` и `docs/roadmap.md`.
+
 ## Новые пункты плана
 
 - [ ] Исследовать жизнеспособность `rzd-booking` или `tutu-ru` как российской замены для `srt-booking` и `ktx-booking`, не теряя принцип `public package / official surface first`.
-- [ ] Подготовить release-hygiene раунд: сверить changeset inventory, merge-ready формулировки и отсутствие устаревших branch metrics в живых документах.
-- [ ] Расширить doc-regression тесты на сверку roadmap/TODO/README по следующему продуктовому приоритету, а не только по install-flow target-пакетов.
+- [ ] Собрать decision matrix по booking replacement: официальный поток РЖД, агрегаторный read-only сценарий, fallback через handoff без оплаты.
+- [ ] Явно зафиксировать критерий закрытия Milestone 5 на случай, если ни один публичный booking-source не выдержит требования по стабильности и отсутствию логина.
+- [ ] Продолжать держать doc-regression в CI: README, roadmap и TODO должны совпадать по следующему продуктовому приоритету и не возвращать release-археологию в живые секции.

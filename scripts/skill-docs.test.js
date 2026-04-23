@@ -51,6 +51,13 @@ function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+function assertNoStaleReleaseStatus(doc, label) {
+  assert.doesNotMatch(doc, /\bahead of main\b/i, `${label} must not expose branch-distance summaries as current status`);
+  assert.doesNotMatch(doc, /\bmerge-ready\b/i, `${label} must not expose merge-ready claims as current status`);
+  assert.doesNotMatch(doc, /\b\d+\s+коммит(?:ов|а)? ahead\b/i, `${label} must not pin current status to commit-distance metrics`);
+  assert.doesNotMatch(doc, /\b\d+\s+файл(?:ов|а)? изменено\b/i, `${label} must not pin current status to file-count metrics`);
+}
+
 function extractQuotedEntries(block, indent) {
   return block
     .split("\n")
@@ -1175,16 +1182,25 @@ test("planning docs stay aligned on the next migration priorities", () => {
 
   assert.match(readme, /## Что делаем дальше/);
   assert.match(readme, /rzd-booking|tutu-ru/);
-  assert.match(readme, /release-hygiene/i);
+  assert.match(readme, /decision matrix/i);
 
   assert.match(roadmap, /### Milestone 5\. Booking replacements и release hygiene/);
   assert.match(roadmap, /rzd-booking|tutu-ru/);
-  assert.match(roadmap, /Статус: в работе\./);
+  assert.match(roadmap, /release-hygiene подзадача закрыта/i);
 
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 6\)/);
+  assert.match(todo, /## Статус на 2026-04-23 \(раунд 7\)/);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 7\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /rzd-booking|tutu-ru/);
-  assert.match(todo, /release-hygiene/i);
+  assert.match(todo, /decision matrix/i);
+});
+
+test("readme and roadmap stay free from stale release-status archaeology", () => {
+  const readme = read("README.md");
+  const roadmap = read(path.join("docs", "roadmap.md"));
+
+  assertNoStaleReleaseStatus(readme, "README.md");
+  assertNoStaleReleaseStatus(roadmap, "docs/roadmap.md");
 });
 
 test("package-lock captures the yandex-market-search workspace metadata for npm ci", () => {
