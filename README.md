@@ -89,6 +89,7 @@
 | [Гайд по прокси](docs/features/k-skill-proxy.md) | Эксплуатация прокси для бесплатных API |
 | [Релизы и публикация](docs/releasing.md) | Changesets, release-please и trusted publishing |
 | [Дорожная карта](docs/roadmap.md) | Следующие шаги миграции под российские сценарии |
+| [Замены booking-навыков](docs/booking-replacements.md) | Decision matrix по замене `srt-booking` и `ktx-booking` |
 | [Инвентарь бренда](docs/brand-inventory.md) | Где legacy-имя `k-skill` ещё нужно ради совместимости |
 | [Источники и поверхности](docs/sources.md) | Публичные документы и API, на которые опирается проект |
 
@@ -116,12 +117,13 @@
 - Добавлена отдельная doc-regression проверка, которая не даёт README, roadmap и TODO разъехаться по следующим шагам и продуктовым приоритетам.
 - Проведён release-hygiene раунд: подтверждён текущий inventory `.changeset/`, а из верхнеуровневых документов убраны устаревшие релизные ярлыки и сводки расстояния ветки как неустойчивый live-статус.
 - Doc-regression усилен: README и roadmap теперь дополнительно страхуются тестами от возврата устаревшей release-археологии в живые секции.
+- Проведён research-first раунд по railway booking replacements: добавлен отдельный decision matrix-документ, где официальный поток РЖД признан слишком checkout-heavy для MVP, а `tutu.ru` и Яндекс Путешествия зафиксированы как read-only/handoff кандидаты, а не как подтверждённые public booking API.
 
 ## Что делаем дальше
 
-- Исследовать и выбрать российскую замену для `srt-booking` и `ktx-booking`: приоритетно `rzd-booking` или read-only/read-mostly поток через `tutu.ru`/`Яндекс Путешествия`, если публичная поверхность окажется жизнеспособной.
-- Собрать decision matrix для booking replacement: отдельно оценить официальный поток РЖД, агрегаторный read-only сценарий и минимально жизнеспособный handoff без автоматизации оплаты.
-- Если устойчивой публичной поверхности для booking replacement не найдётся, явно зафиксировать критерий закрытия этого gap без дальнейшего разрастания legacy-booking как продуктового направления.
+- Decision matrix по booking replacement уже собран в [docs/booking-replacements.md](docs/booking-replacements.md): следующий шаг не в полном booking automation, а в проверке, нужен ли отдельный read-only/handoff skill поверх уже существующего `yandex-rasp`.
+- Если появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, вернуться к идее `rzd-booking` как target-пакета; до этого не раздувать write-автоматизацию checkout-потоков.
+- Проверить, стоит ли добавить лёгкий handoff-слой для train discovery на базе `tutu.ru` или Яндекс Путешествий без оплаты и без пользовательских секретов.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 
 ## Быстрые ссылки на ключевые функции

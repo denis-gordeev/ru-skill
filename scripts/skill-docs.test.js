@@ -1179,20 +1179,25 @@ test("planning docs stay aligned on the next migration priorities", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
   const todo = read("TODO.md");
+  const bookingResearch = read(path.join("docs", "booking-replacements.md"));
 
   assert.match(readme, /## Что делаем дальше/);
-  assert.match(readme, /rzd-booking|tutu-ru/);
-  assert.match(readme, /decision matrix/i);
+  assert.match(readme, /booking-replacements\.md/);
+  assert.match(readme, /handoff/i);
 
   assert.match(roadmap, /### Milestone 5\. Booking replacements и release hygiene/);
-  assert.match(roadmap, /rzd-booking|tutu-ru/);
   assert.match(roadmap, /release-hygiene подзадача закрыта/i);
+  assert.match(roadmap, /yandex-rasp/);
+  assert.match(roadmap, /handoff/i);
 
-  assert.match(todo, /## Статус на 2026-04-23 \(раунд 7\)/);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 7\)/);
+  assert.match(todo, /## Статус на 2026-04-27 \(раунд 8\)/);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 8\)/);
   assert.match(todo, /## Новые пункты плана/);
-  assert.match(todo, /rzd-booking|tutu-ru/);
-  assert.match(todo, /decision matrix/i);
+  assert.match(todo, /handoff/i);
+
+  assert.match(bookingResearch, /## Decision matrix/);
+  assert.match(bookingResearch, /yandex-rasp/);
+  assert.match(bookingResearch, /Milestone 5 считается закрытым/);
 });
 
 test("readme and roadmap stay free from stale release-status archaeology", () => {

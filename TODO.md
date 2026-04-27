@@ -4,6 +4,14 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-04-27 (раунд 8)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- Этот раунд закрывает research-first часть Milestone 5: собран и зафиксирован decision matrix по railway booking replacements.
+- Подтверждено, что 13 target-навыков остаются актуальными и что railway-discovery уже частично покрыт существующим `yandex-rasp`.
+- Основной вывод раунда: полноценный `rzd-booking` пока не годится для target-MVP, а `tutu.ru` и Яндекс Путешествия разумно рассматривать только как read-only/handoff-кандидаты.
+- Следующий инженерный шаг теперь не в том, чтобы «искать любой booking source», а в том, чтобы решить, нужен ли отдельный handoff-слой сверх `yandex-rasp`.
+
 ## Статус на 2026-04-23 (раунд 7)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -29,6 +37,16 @@
 - Исследование Zoon.ru подтверждено: SSR, без anti-bot, HTML напрямую парсится — viable supplementary источник для nearby-поиска.
 - Исследование 13-го источника (metro/urban-transit): закрыто как нежизнеспособное — реального времени нет, только статические справочники.
 - Исследование 14-го источника (broker/invest): закрыто как избыточное — MOEX ISS уже покрыт через `moex-shares`, брокерские API требуют авторизации.
+
+## Выполнено в этом раунде (раунд 8)
+
+- [x] Проведён research-first раунд по railway booking replacements вместо premature implementation.
+- [x] Добавлен `docs/booking-replacements.md` с decision matrix для `rzd-booking`, `tutu.ru`, Яндекс Путешествий и текущего baseline `yandex-rasp`.
+- [x] Зафиксирован replacement boundary: full booking automation не идёт в target-MVP без устойчивого official/public interface без логина и anti-bot обходов.
+- [x] README обновлён: в блоках `Что уже сделано по миграции` и `Что делаем дальше` отражён новый статус Milestone 5 и добавлена ссылка на decision matrix.
+- [x] `docs/roadmap.md` обновлён: Milestone 5 переведён из абстрактного research backlog в конкретное решение по границе replacement-а.
+- [x] `docs/sources.md` дополнен отдельным блоком по кандидатам на railway booking replacement.
+- [x] Doc-regression тесты расширены: теперь они требуют наличия отдельного booking-research документа и нового статуса planning docs.
 
 ## Выполнено в этом раунде
 
@@ -172,7 +190,7 @@
 
 ## Новые пункты плана
 
-- [ ] Исследовать жизнеспособность `rzd-booking` или `tutu-ru` как российской замены для `srt-booking` и `ktx-booking`, не теряя принцип `public package / official surface first`.
-- [ ] Собрать decision matrix по booking replacement: официальный поток РЖД, агрегаторный read-only сценарий, fallback через handoff без оплаты.
-- [ ] Явно зафиксировать критерий закрытия Milestone 5 на случай, если ни один публичный booking-source не выдержит требования по стабильности и отсутствию логина.
-- [ ] Продолжать держать doc-regression в CI: README, roadmap и TODO должны совпадать по следующему продуктовому приоритету и не возвращать release-археологию в живые секции.
+- [ ] Решить, нужен ли отдельный read-only/handoff skill сверх `yandex-rasp`, или railway replacement уже достаточно закрыт текущим discovery + documented external handoff.
+- [ ] Если отдельный handoff-layer нужен, проверить только стабильные безлогинные сценарии: deep-link, landing search или export маршрута без оплаты и пользовательских секретов.
+- [ ] Явно обновить legacy railway docs, чтобы `srt-booking` и `ktx-booking` были помечены не только как совместимые, но и как нецелевые для новых российских write-интеграций.
+- [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету и не возвращать release-археологию в живые секции.
