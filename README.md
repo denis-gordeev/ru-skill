@@ -36,8 +36,8 @@
 | `yandex-market-search` | Поиск товаров и карточки товаров через серверно отрендеренные страницы Яндекс Маркета | Нет | [Гайд по Яндекс Маркету](docs/features/yandex-market-search.md) |
 | `osm-nearby` | Поиск ближайших заведений через Overpass API OpenStreetMap | Нет | [Гайд по OSM nearby](docs/features/osm-nearby.md) |
 | `zoon-nearby` | Поиск ближайших заведений через публичные страницы Zoon.ru | Нет | [Гайд по Zoon.ru](docs/features/zoon-nearby.md) |
-| `srt-booking` | Поиск поездов SRT, бронирование, просмотр и отмена брони | Да | [Гайд по SRT](docs/features/srt-booking.md) |
-| `ktx-booking` | Поиск и бронирование поездов KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
+| `srt-booking` | Legacy-совместимый корейский сценарий поиска поездов SRT и бронирования | Да | [Гайд по SRT](docs/features/srt-booking.md) |
+| `ktx-booking` | Legacy-совместимый корейский сценарий KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
 | `seoul-subway-arrival` | Просмотр ожидаемого времени прибытия поездов метро Сеула по станции | Да | [Гайд по метро Сеула](docs/features/seoul-subway-arrival.md) |
 | `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Гайд по fine dust](docs/features/fine-dust-location.md) |
@@ -118,6 +118,7 @@
 - Проведён release-hygiene раунд: подтверждён текущий inventory `.changeset/`, а из верхнеуровневых документов убраны устаревшие релизные ярлыки и сводки расстояния ветки как неустойчивый live-статус.
 - Doc-regression усилен: README и roadmap теперь дополнительно страхуются тестами от возврата устаревшей release-археологии в живые секции.
 - Проведён research-first раунд по railway booking replacements: добавлен отдельный decision matrix-документ, где официальный поток РЖД признан слишком checkout-heavy для MVP, а `tutu.ru` и Яндекс Путешествия зафиксированы как read-only/handoff кандидаты, а не как подтверждённые public booking API.
+- Legacy railway docs выровнены с этим решением: `srt-booking` и `ktx-booking` теперь явно помечены как backward-compatible корейские сценарии, а не как направление для новых российских write-интеграций.
 
 ## Что делаем дальше
 
@@ -125,6 +126,7 @@
 - Если появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, вернуться к идее `rzd-booking` как target-пакета; до этого не раздувать write-автоматизацию checkout-потоков.
 - Проверить, стоит ли добавить лёгкий handoff-слой для train discovery на базе `tutu.ru` или Яндекс Путешествий без оплаты и без пользовательских секретов.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
+- Если отдельный handoff-layer так и не нужен, закрыть Milestone 5 документно: зафиксировать `yandex-rasp + external handoff` как конечную границу replacement-а и не открывать новый railway target-package искусственно.
 
 ## Быстрые ссылки на ключевые функции
 

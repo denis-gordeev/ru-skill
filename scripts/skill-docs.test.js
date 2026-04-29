@@ -263,6 +263,26 @@ test("ktx-booking docs document the helper-based live Korail workflow", () => {
   assert.match(helper, /train_id/);
 });
 
+test("legacy railway docs keep the replacement boundary explicit", () => {
+  const readme = read("README.md");
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const srtSkill = read(path.join("srt-booking", "SKILL.md"));
+  const srtFeature = read(path.join("docs", "features", "srt-booking.md"));
+  const ktxSkill = read(path.join("ktx-booking", "SKILL.md"));
+  const ktxFeature = read(path.join("docs", "features", "ktx-booking.md"));
+
+  for (const doc of [srtSkill, srtFeature, ktxSkill, ktxFeature]) {
+    assert.match(doc, /Legacy-совместимый|legacy-коридору/i);
+    assert.match(doc, /yandex-rasp/);
+    assert.match(doc, /новых российских write-интеграций|российский железнодорожный сценарий/i);
+    assert.match(doc, /booking-replacements\.md/);
+  }
+
+  assert.match(readme, /Legacy railway docs выровнены с этим решением/);
+  assert.match(roadmap, /Legacy railway docs выровнены с этим boundary/);
+  assert.match(roadmap, /legacy railway docs выровнены с replacement boundary/i);
+});
+
 test("ktx-booking helper python regression tests pass", () => {
   const result = childProcess.spawnSync(
     "python3",
