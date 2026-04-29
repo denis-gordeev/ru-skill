@@ -4,7 +4,7 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
-## Статус на 2026-04-27
+## Статус на 2026-04-29
 
 - Корневой README, install/setup/releasing-документы уже переводятся на русскоязычную терминологию.
 - В рабочем дереве всё ещё остаются legacy-пакеты и feature-гайды с корейским контекстом.
@@ -28,6 +28,8 @@
 - Отдельно проведён release-hygiene раунд: inventory `.changeset/` подтверждён, а верхнеуровневые документы очищены от устаревших релизных ярлыков и сводок расстояния ветки как от неустойчивого статуса.
 - Проведён research-first раунд по booking replacement; decision matrix вынесен в `docs/booking-replacements.md`, а replacement boundary зафиксирован отдельно от release-hygiene.
 - Legacy railway docs выровнены с этим boundary: `srt-booking` и `ktx-booking` явно сохранены как backward-compatible корейские сценарии, а не как template для новых российских write-интеграций.
+- Milestone 5 закрыт документно: `yandex-rasp` признан достаточным stable baseline для railway discovery, а отдельный handoff-skill не даёт новой устойчивой API-функции без скатывания в checkout automation.
+- Railway replacement выведен из активного implementation backlog; следующий шаг смещён на выравнивание remaining legacy-only gaps и их статусов в user-facing документации.
 - Milestone 4 переведён в зафиксированное состояние по документной части: legacy-пакеты размечены, матрица замен актуализирована, публичная документация не продвигает корейские сценарии как основной путь.
 - В качестве третьего источника вне финансового домена выбран `Postcalc` как read-only справочник индексов и отделений на базе эталонного справочника Почты России.
 - В качестве четвёртого источника вне финансов и логистики выбран публичный API `hh.ru` как базовый read-only сценарий вакансий и регионов.
@@ -125,13 +127,13 @@
 - В roadmap и TODO нет устаревших статусов round-summary, которые противоречат фактическому состоянию репозитория.
 - Changeset/release backlog приведён в состояние, из которого можно делать следующий publish round без ручной археологии по старым summary.
 
-Статус: в работе; release-hygiene подзадача закрыта, booking-research проведён документно, legacy railway docs выровнены с replacement boundary, остаётся решение нужен ли отдельный read-only/handoff skill сверх `yandex-rasp`.
+Статус: завершён; release-hygiene подзадача закрыта, booking-research проведён документно, legacy railway docs выровнены с replacement boundary, а отдельный read-only/handoff skill сверх `yandex-rasp` признан нецелесообразным.
 
 Текущее решение по направлению:
 
 - Полноценный `rzd-booking` не идёт в MVP, пока не подтверждён устойчивый официальный интерфейс без checkout automation, логина и brittle anti-bot обходов.
 - `tutu.ru` и Яндекс Путешествия фиксируются как кандидаты на read-only/handoff сценарий, а не как подтверждённые public booking API.
-- Базовый railway-discovery сценарий уже покрывается `yandex-rasp`; новый target-пакет имеет смысл только если он добавляет стабильный handoff, а не хрупкую оплату.
+- Базовый railway-discovery сценарий уже покрывается `yandex-rasp`; отдельный target-пакет не открывается, пока он не добавляет устойчивую API-функцию, а не thin-wrapper над внешним checkout.
 - Критерий закрытия milestone вынесен в [отдельный документ по booking replacements](booking-replacements.md).
 
 ## Legacy packages и целевые замены
@@ -154,18 +156,18 @@
 | `daiso-product-search` | `legacy` | Товары и остатки Daiso | Заменён на `yandex-market-search` — российский marketplace discovery через Яндекс Маркет | Заменён |
 | `blue-ribbon-nearby` | `legacy` | Ближайшие рестораны Blue Ribbon | Заменён на `osm-nearby` и `zoon-nearby` — бесплатный поиск ближайших заведений через OpenStreetMap и Zoon.ru | Заменён |
 | `kakao-bar-nearby` | `legacy` | Бары рядом через Kakao Map | Заменён на `osm-nearby` и `zoon-nearby` — бесплатный поиск ближайших заведений через OpenStreetMap и Zoon.ru | Заменён |
-| `toss-securities` | `legacy` | Read-only-обёртка над `tossctl` | Read-only навык по российскому брокерскому сценарию (Тинькофф, Сбер, ВТБ) | Требует уточнения источника |
-| `srt-booking` | `legacy` | Бронирование поездов SRT | `yandex-rasp` как read-only база + возможный handoff к РЖД/агрегатору без автоматизации оплаты | В исследовании; full booking automation не подтверждён |
-| `ktx-booking` | `legacy` | Бронирование поездов KTX/Korail | Объединён с заменой `srt-booking` — read-only discovery и handoff вместо прямой оплаты | В исследовании; full booking automation не подтверждён |
-| `seoul-subway-arrival` | `legacy` | Прибытие поездов метро Сеула | Российское метро: Moscow Metro API, Санкт-Петербург через публичные источники | Кандидат на следующий раунд |
+| `toss-securities` | `legacy` | Read-only-обёртка над `tossctl` | Прямой российский replacement не подтверждён; рыночные read-only сводки уже покрывает `moex-shares` | Закрыто документно; legacy-only |
+| `srt-booking` | `legacy` | Бронирование поездов SRT | `yandex-rasp` как read-only база + ручной внешний handoff без автоматизации оплаты | Закрыто документно; новый target-пакет не открывается |
+| `ktx-booking` | `legacy` | Бронирование поездов KTX/Korail | Объединён с заменой `srt-booking` — read-only discovery и ручной внешний handoff вместо прямой оплаты | Закрыто документно; новый target-пакет не открывается |
+| `seoul-subway-arrival` | `legacy` | Прибытие поездов метро Сеула | Прямой российский replacement не подтверждён; публичные источники дают только низкоценные статические справочники | Закрыто документно; legacy-only |
 | `k-skill-proxy` | `transition` | Узкий прокси для бесплатных API | Сохранить как инфраструктурную базу и добавить русскоязычные adapter'ы | Сохраняется |
 | `hwp`-документация и tooling | `target-supporting` | Обработка HWP-документов | Сохранить как отдельную полезную утилиту вне темы российской локализации | Сохраняется |
 
 ## Приоритеты следующих раундов
 
-1. Реализованы 10-й, 11-й, 12-й и 13-й российские target-навыки: `rpl-results`, `yandex-market-search`, `osm-nearby` и `zoon-nearby`.
-2. Решить, нужен ли отдельный read-only/handoff пакет сверх `yandex-rasp`, или railway replacement уже достаточно закрыт сочетанием discovery + внешнего перехода.
-3. Если handoff-слой нужен, проверить только стабильные сценарии без оплаты: deep-link, train-search landing или export маршрута без пользовательских секретов.
-4. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по живому плану следующего продуктового шага, а также по отсутствию устаревшей release-археологии в README/roadmap.
-5. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.
-6. Если отдельный handoff-layer не даёт устойчивой пользовательской ценности сверх `yandex-rasp`, закрыть Milestone 5 как документное решение, а не как forced implementation.
+1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
+2. Довести до конца remaining legacy-only matrix: `seoul-subway-arrival`, `toss-securities` и другие закрытые без replacement gaps должны иметь одинаковый статус в README, roadmap и install-flow.
+3. Пересмотреть user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs только на предмет реально поддерживаемых российских public surfaces.
+4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
+5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по живому плану следующего продуктового шага, а также по отсутствию устаревшей release-археологии в README/roadmap.
+6. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.

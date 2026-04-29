@@ -119,14 +119,17 @@
 - Doc-regression усилен: README и roadmap теперь дополнительно страхуются тестами от возврата устаревшей release-археологии в живые секции.
 - Проведён research-first раунд по railway booking replacements: добавлен отдельный decision matrix-документ, где официальный поток РЖД признан слишком checkout-heavy для MVP, а `tutu.ru` и Яндекс Путешествия зафиксированы как read-only/handoff кандидаты, а не как подтверждённые public booking API.
 - Legacy railway docs выровнены с этим решением: `srt-booking` и `ktx-booking` теперь явно помечены как backward-compatible корейские сценарии, а не как направление для новых российских write-интеграций.
+- Milestone 5 закрыт документно: подтверждено, что `yandex-rasp` уже покрывает стабильный railway-discovery, а отдельный handoff-skill без публичного booking API не добавляет новой устойчивой функции.
+- `docs/booking-replacements.md`, `docs/sources.md`, `docs/features/yandex-rasp.md` и `yandex-rasp/SKILL.md` обновлены под это решение: внешний переход в checkout-поверхности описан как пользовательский ручной шаг, а не как новый `target`-пакет.
 
 ## Что делаем дальше
 
-- Decision matrix по booking replacement уже собран в [docs/booking-replacements.md](docs/booking-replacements.md): следующий шаг не в полном booking automation, а в проверке, нужен ли отдельный read-only/handoff skill поверх уже существующего `yandex-rasp`.
-- Если появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, вернуться к идее `rzd-booking` как target-пакета; до этого не раздувать write-автоматизацию checkout-потоков.
-- Проверить, стоит ли добавить лёгкий handoff-слой для train discovery на базе `tutu.ru` или Яндекс Путешествий без оплаты и без пользовательских секретов.
+- Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
+- Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
+- Следующий шаг - дожать remaining legacy-only matrix: `seoul-subway-arrival`, `toss-securities` и другие уже закрытые без replacement gaps должны быть одинаково помечены в README, roadmap и install-flow.
+- После этого перепроверить user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs, чтобы они не выглядели как скрытый target-backlog без подтверждённого публичного source.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
-- Если отдельный handoff-layer так и не нужен, закрыть Milestone 5 документно: зафиксировать `yandex-rasp + external handoff` как конечную границу replacement-а и не открывать новый railway target-package искусственно.
+- Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 
 ## Быстрые ссылки на ключевые функции
 

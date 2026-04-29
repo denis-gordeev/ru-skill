@@ -4,6 +4,13 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-04-29 (раунд 10)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- Этот раунд закрывает открытый вопрос Milestone 5: отдельный railway handoff-skill поверх `yandex-rasp` не даёт новой устойчивой API-функции и не должен открываться как target-package.
+- Railway replacement теперь официально ограничен границей `yandex-rasp` для discovery + ручной внешний handoff пользователя в checkout-поверхности РЖД или агрегаторов.
+- README, roadmap, booking research, sources и `yandex-rasp` docs синхронно фиксируют, что railway backlog закрыт документно и выведен из активного implementation priority.
+
 ## Статус на 2026-04-29 (раунд 9)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -54,6 +61,13 @@
 - [x] `docs/roadmap.md` обновлён: Milestone 5 переведён из абстрактного research backlog в конкретное решение по границе replacement-а.
 - [x] `docs/sources.md` дополнен отдельным блоком по кандидатам на railway booking replacement.
 - [x] Doc-regression тесты расширены: теперь они требуют наличия отдельного booking-research документа и нового статуса planning docs.
+
+## Выполнено в этом раунде (раунд 10)
+
+- [x] Закрыт открытый вопрос Milestone 5: подтверждено, что отдельный handoff-skill поверх `yandex-rasp` не нужен и не открывается как новый `target`-пакет.
+- [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/booking-replacements.md` и `docs/sources.md`, чтобы railway replacement был зафиксирован как документно закрытый backlog, а не как незавершённое implementation-направление.
+- [x] Обновлены `docs/features/yandex-rasp.md` и `yandex-rasp/SKILL.md`: railway handoff описан как ручной пользовательский шаг после discovery, без checkout automation внутри репозитория.
+- [x] Doc-regression тесты обновлены под новый статус Milestone 5 и теперь дополнительно страхуют от возврата railway handoff в активный target-backlog.
 
 ## Выполнено в этом раунде (раунд 9)
 
@@ -205,9 +219,12 @@
 
 ## Новые пункты плана
 
-- [ ] Решить, нужен ли отдельный read-only/handoff skill сверх `yandex-rasp`, или railway replacement уже достаточно закрыт текущим discovery + documented external handoff.
-- [ ] Если отдельный handoff-layer нужен, проверить только стабильные безлогинные сценарии: deep-link, landing search или export маршрута без оплаты и пользовательских секретов.
+- [x] Решить, нужен ли отдельный read-only/handoff skill сверх `yandex-rasp`, или railway replacement уже достаточно закрыт текущим discovery + documented external handoff.
+- [x] Если отдельный handoff-layer нужен, проверить только стабильные безлогинные сценарии: deep-link, landing search или export маршрута без оплаты и пользовательских секретов.
 - [x] Явно обновить legacy railway docs, чтобы `srt-booking` и `ktx-booking` были помечены не только как совместимые, но и как нецелевые для новых российских write-интеграций.
 - [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету и не возвращать release-археологию в живые секции.
-- [ ] Проверить, даёт ли какой-либо handoff-сценарий измеримую пользовательскую ценность сверх уже существующего `yandex-rasp`, прежде чем открывать новый target-package.
-- [ ] Если handoff-ценность не подтверждается, перевести Milestone 5 в документно закрытое состояние и убрать railway replacement из активного implementation backlog.
+- [x] Проверить, даёт ли какой-либо handoff-сценарий измеримую пользовательскую ценность сверх уже существующего `yandex-rasp`, прежде чем открывать новый target-package.
+- [x] Если handoff-ценность не подтверждается, перевести Milestone 5 в документно закрытое состояние и убрать railway replacement из активного implementation backlog.
+- [ ] Довести до конца remaining legacy-only matrix: `seoul-subway-arrival`, `toss-securities` и другие уже закрытые без replacement gaps должны иметь одинаковый статус в README, roadmap и install-flow.
+- [ ] Пересмотреть user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs только на предмет реально поддерживаемых российских public surfaces.
+- [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.

@@ -1155,6 +1155,10 @@ test("yandex-rasp docs document the Yandex Raspisanie transport schedule workflo
   assert.match(packageReadme, /searchStations/);
   assert.match(packageReadme, /getStationSchedule/);
   assert.match(packageReadme, /searchTrips/);
+  assert.match(skill, /manual external handoff|вручную/i);
+  assert.match(featureDoc, /railway handoff/i);
+  assert.match(featureDoc, /ручн/i);
+  assert.match(featureDoc, /checkout/i);
 });
 
 test("pack:dry-run includes the yandex-market-search workspace", () => {
@@ -1203,21 +1207,23 @@ test("planning docs stay aligned on the next migration priorities", () => {
 
   assert.match(readme, /## Что делаем дальше/);
   assert.match(readme, /booking-replacements\.md/);
-  assert.match(readme, /handoff/i);
+  assert.match(readme, /manual external handoff/i);
 
   assert.match(roadmap, /### Milestone 5\. Booking replacements и release hygiene/);
-  assert.match(roadmap, /release-hygiene подзадача закрыта/i);
+  assert.match(roadmap, /Статус: завершён; release-hygiene подзадача закрыта/i);
   assert.match(roadmap, /yandex-rasp/);
-  assert.match(roadmap, /handoff/i);
+  assert.match(roadmap, /новый target-пакет не открывается/i);
 
-  assert.match(todo, /## Статус на 2026-04-27 \(раунд 8\)/);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 8\)/);
+  assert.match(todo, /## Статус на 2026-04-29 \(раунд 10\)/);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 10\)/);
   assert.match(todo, /## Новые пункты плана/);
-  assert.match(todo, /handoff/i);
+  assert.match(todo, /railway backlog закрыт документно/i);
 
   assert.match(bookingResearch, /## Decision matrix/);
   assert.match(bookingResearch, /yandex-rasp/);
   assert.match(bookingResearch, /Milestone 5 считается закрытым/);
+  assert.match(bookingResearch, /Milestone 5 закрыт вторым способом/);
+  assert.match(bookingResearch, /Отдельный railway handoff-skill не открывается/);
 });
 
 test("readme and roadmap stay free from stale release-status archaeology", () => {
