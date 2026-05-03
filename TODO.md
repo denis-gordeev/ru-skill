@@ -4,6 +4,13 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-03 (раунд 11)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт следующий governance/doc gap после railway boundary: `remaining legacy-only matrix` теперь синхронно размечена в README, roadmap и install-flow.
+- `seoul-subway-arrival` и `toss-securities` закреплены как документно закрытые `legacy-only`, а `k-skill-proxy` переведён в единый `transition`-статус на всех верхнеуровневых user-facing поверхностях.
+- User-facing docs для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy` больше не должны выглядеть как скрытый target-backlog без подтверждённого российского public source.
+
 ## Статус на 2026-04-29 (раунд 10)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -225,6 +232,21 @@
 - [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету и не возвращать release-археологию в живые секции.
 - [x] Проверить, даёт ли какой-либо handoff-сценарий измеримую пользовательскую ценность сверх уже существующего `yandex-rasp`, прежде чем открывать новый target-package.
 - [x] Если handoff-ценность не подтверждается, перевести Milestone 5 в документно закрытое состояние и убрать railway replacement из активного implementation backlog.
-- [ ] Довести до конца remaining legacy-only matrix: `seoul-subway-arrival`, `toss-securities` и другие уже закрытые без replacement gaps должны иметь одинаковый статус в README, roadmap и install-flow.
-- [ ] Пересмотреть user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs только на предмет реально поддерживаемых российских public surfaces.
+- [x] Довести до конца remaining legacy-only matrix: `seoul-subway-arrival`, `toss-securities` и другие уже закрытые без replacement gaps должны иметь одинаковый статус в README, roadmap и install-flow.
+- [x] Пересмотреть user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs только на предмет реально поддерживаемых российских public surfaces.
 - [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
+
+## Выполнено в этом раунде (раунд 11)
+
+- [x] README, `docs/roadmap.md` и `docs/install.md` выровнены по статусам `legacy-only` и `transition` для `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy`.
+- [x] В `README.md` статус `k-skill-proxy` переведён из двусмысленного `Активный` в явный `Transition`, чтобы package matrix не расходилась с roadmap.
+- [x] `docs/install.md` дополнен явным описанием того, как читать смешанный список skills: где текущая `target`-линейка, где `legacy-only`, а где transition-инфраструктура.
+- [x] `docs/features/delivery-tracking.md`, `docs/features/seoul-subway-arrival.md`, `docs/features/toss-securities.md` и `docs/features/k-skill-proxy.md` дополнены boundary notes, чтобы legacy/transition сценарии не выглядели как скрытый backlog новых российских skills.
+- [x] `seoul-subway-arrival/SKILL.md` исправлен на `ru-skill`-first credential order с legacy fallback на `~/.config/k-skill/secrets.env`.
+- [x] Doc-regression тесты расширены: теперь они страхуют package-status matrix, install-flow boundary notes и `ru-skill`-first credential order для `seoul-subway-arrival`.
+
+## Новые пункты плана
+
+- [ ] Довести `fine-dust-location`, `docs/setup.md` и `docs/security-and-secrets.md` до того же `ru-skill`-first credential order, чтобы proxy/secret flow не расползался между skill-level и setup-level документацией.
+- [ ] Добавить doc-regression на user-facing boundary notes для `fine-dust-location` и других transition/legacy utility guides, чтобы они не возвращались к двусмысленной подаче как потенциальные target-skills.
+- [ ] Провести отдельный audit helper scripts и package README для `k-skill-proxy`/`fine-dust-location`, чтобы legacy endpoint и naming оставались compatibility-layer, а не неявным public default для новых русскоязычных сценариев.

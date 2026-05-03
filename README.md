@@ -77,7 +77,7 @@
 | `kakao-bar-nearby` | Поиск баров рядом через Kakao Map | Legacy |
 | `kleague-results` | Результаты матчей и таблица K League | Legacy |
 | `toss-securities` | Read-only-обёртка над `tossctl` | Legacy |
-| `k-skill-proxy` | База прокси для бесплатных API | Активный |
+| `k-skill-proxy` | База прокси для бесплатных API | Transition |
 
 ## Документация
 
@@ -121,15 +121,19 @@
 - Legacy railway docs выровнены с этим решением: `srt-booking` и `ktx-booking` теперь явно помечены как backward-compatible корейские сценарии, а не как направление для новых российских write-интеграций.
 - Milestone 5 закрыт документно: подтверждено, что `yandex-rasp` уже покрывает стабильный railway-discovery, а отдельный handoff-skill без публичного booking API не добавляет новой устойчивой функции.
 - `docs/booking-replacements.md`, `docs/sources.md`, `docs/features/yandex-rasp.md` и `yandex-rasp/SKILL.md` обновлены под это решение: внешний переход в checkout-поверхности описан как пользовательский ручной шаг, а не как новый `target`-пакет.
+- Доведена до конца `remaining legacy-only matrix`: `seoul-subway-arrival` и `toss-securities` теперь одинаково помечены как документно закрытые `Legacy`, а `k-skill-proxy` — как `Transition` во всех user-facing верхнеуровневых документах.
+- `docs/install.md` больше не смешивает `target`, `legacy-only` и transition-навыки без пояснений: в install-flow зафиксированы границы для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy`.
+- User-facing guides для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy` дополнены явными boundary notes, чтобы legacy/transition сценарии не выглядели как скрытый target-backlog.
 
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
-- Следующий шаг - дожать remaining legacy-only matrix: `seoul-subway-arrival`, `toss-securities` и другие уже закрытые без replacement gaps должны быть одинаково помечены в README, roadmap и install-flow.
-- После этого перепроверить user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs, чтобы они не выглядели как скрытый target-backlog без подтверждённого публичного source.
+- Следующий шаг - дожать оставшиеся utility/transition surfaces: `delivery-tracking`, `fine-dust-location`, `k-skill-proxy` и связанные helper-docs должны одинаково держать границу между backward compatibility и новым русскоязычным target-направлением.
+- После этого стоит проверить setup/security docs и skill-level guides на оставшиеся legacy-first credential orders и формулировки, которые ещё могут продвигать `~/.config/k-skill/*` как основной путь вместо `ru-skill`-first.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
+- Добавить отдельную регрессию на статусы `Legacy` / `Transition` в README package matrix и на boundary notes в install-flow и feature-guides.
 
 ## Быстрые ссылки на ключевые функции
 

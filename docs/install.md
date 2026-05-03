@@ -71,6 +71,12 @@ npx --yes skills add denis-gordeev/ru-skill \
   --skill delivery-tracking
 ```
 
+Как читать этот список:
+
+- `cbr-rates` ... `zoon-nearby` — текущая `target`-линейка русскоязычных навыков, которую и нужно считать основным продуктовым направлением репозитория.
+- `seoul-subway-arrival`, `toss-securities`, `delivery-tracking`, `kbo-results`, `kleague-results`, `lotto-results` и похожие корейско-специфичные сценарии — `legacy-only`: они сохраняются для совместимости, но не являются backlog'ом на новые российские реализации без подтверждённого публичного источника.
+- `k-skill-proxy` не является отдельным конечным пользовательским skill в этом install-flow: это `transition`-инфраструктура для бесплатных API, которую имеет смысл поднимать только когда конкретный сценарий вроде `fine-dust-location` действительно требует proxy-слоя.
+
 Если ставите только навыки с авторизацией, `ru-skill-setup` всё равно должен идти вместе с ними.
 
 ```bash
@@ -126,6 +132,8 @@ export NODE_PATH="$(npm root -g)"
 ```
 
 Здесь намеренно перечислены отдельно и текущие `target` workspace-пакеты, и legacy npm-пакеты. Навыки вроде `kbo-results`, `hwp`, `kakaotalk-mac`, `zipcode-search` и `delivery-tracking`, которые опираются на внешние CLI, Python-пакеты или skill-only workflow, продолжают устанавливаться через `skills add`, а не через этот `npm install -g`.
+
+Важно: присутствие `toss-securities` или других legacy npm-пакетов в этой команде не означает, что они считаются следующими target-заменами. Для `toss-securities` и `seoul-subway-arrival` документная граница уже закрыта как `legacy-only`, а `k-skill-proxy` остаётся transition-слоем, а не отдельным направлением продукта.
 
 ### Бинарники для macOS
 

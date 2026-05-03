@@ -4,7 +4,7 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
-## Статус на 2026-04-29
+## Статус на 2026-05-03
 
 - Корневой README, install/setup/releasing-документы уже переводятся на русскоязычную терминологию.
 - В рабочем дереве всё ещё остаются legacy-пакеты и feature-гайды с корейским контекстом.
@@ -29,7 +29,9 @@
 - Проведён research-first раунд по booking replacement; decision matrix вынесен в `docs/booking-replacements.md`, а replacement boundary зафиксирован отдельно от release-hygiene.
 - Legacy railway docs выровнены с этим boundary: `srt-booking` и `ktx-booking` явно сохранены как backward-compatible корейские сценарии, а не как template для новых российских write-интеграций.
 - Milestone 5 закрыт документно: `yandex-rasp` признан достаточным stable baseline для railway discovery, а отдельный handoff-skill не даёт новой устойчивой API-функции без скатывания в checkout automation.
-- Railway replacement выведен из активного implementation backlog; следующий шаг смещён на выравнивание remaining legacy-only gaps и их статусов в user-facing документации.
+- Railway replacement выведен из активного implementation backlog; `remaining legacy-only matrix` для `seoul-subway-arrival` и `toss-securities` уже доведена до одинакового статуса в README, roadmap и install-flow.
+- `k-skill-proxy` теперь синхронно маркируется как `transition`-слой в верхнеуровневых user-facing документах, а не как неявно "активный" продуктовый трек.
+- User-facing guides для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy` дополнены boundary notes, чтобы legacy/transition сценарии не выглядели как скрытый target-backlog.
 - Milestone 4 переведён в зафиксированное состояние по документной части: legacy-пакеты размечены, матрица замен актуализирована, публичная документация не продвигает корейские сценарии как основной путь.
 - В качестве третьего источника вне финансового домена выбран `Postcalc` как read-only справочник индексов и отделений на базе эталонного справочника Почты России.
 - В качестве четвёртого источника вне финансов и логистики выбран публичный API `hh.ru` как базовый read-only сценарий вакансий и регионов.
@@ -166,8 +168,8 @@
 ## Приоритеты следующих раундов
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
-2. Довести до конца remaining legacy-only matrix: `seoul-subway-arrival`, `toss-securities` и другие закрытые без replacement gaps должны иметь одинаковый статус в README, roadmap и install-flow.
-3. Пересмотреть user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs только на предмет реально поддерживаемых российских public surfaces.
+2. Дожать remaining utility/transition surfaces: `delivery-tracking`, `fine-dust-location`, `k-skill-proxy` и связанные helper-docs должны одинаково описывать границу между backward compatibility и новым русскоязычным target-направлением.
+3. Пересмотреть setup/security и skill-level docs на оставшиеся legacy-first credential orders, чтобы `~/.config/ru-skill/*` везде оставался основным путём, а `~/.config/k-skill/*` — только fallback.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
-5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по живому плану следующего продуктового шага, а также по отсутствию устаревшей release-археологии в README/roadmap.
+5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes и отсутствию устаревшей release-археологии в README/roadmap.
 6. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.

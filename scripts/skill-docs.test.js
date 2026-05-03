@@ -1199,6 +1199,29 @@ test("install docs npm snippet covers every current target workspace package", (
   }
 });
 
+test("README package matrix keeps legacy and transition statuses aligned with the roadmap", () => {
+  const readme = read("README.md");
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const packageMatrix = extractReadmePackageMatrix(readme);
+  const byName = new Map(packageMatrix.map((entry) => [entry.name, entry]));
+
+  assert.equal(byName.get("toss-securities")?.status, "Legacy");
+  assert.equal(byName.get("k-skill-proxy")?.status, "Transition");
+  assert.match(roadmap, /\| `toss-securities` \| `legacy` \|/);
+  assert.match(roadmap, /\| `k-skill-proxy` \| `transition` \|/);
+});
+
+test("install docs explain target vs legacy-only vs transition boundaries", () => {
+  const install = read(path.join("docs", "install.md"));
+
+  assert.match(install, /target[\s`-]*линейк/i);
+  assert.match(install, /legacy-only/);
+  assert.match(install, /transition/);
+  assert.match(install, /k-skill-proxy.*не является отдельным конечным пользовательским skill/i);
+  assert.match(install, /toss-securities.*legacy npm-пакетов/i);
+  assert.match(install, /seoul-subway-arrival.*legacy-only/i);
+});
+
 test("planning docs stay aligned on the next migration priorities", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -1213,11 +1236,14 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /Статус: завершён; release-hygiene подзадача закрыта/i);
   assert.match(roadmap, /yandex-rasp/);
   assert.match(roadmap, /новый target-пакет не открывается/i);
+  assert.match(roadmap, /remaining legacy-only matrix.*уже доведена/i);
+  assert.match(roadmap, /k-skill-proxy[\s\S]*transition`?-слой/i);
 
-  assert.match(todo, /## Статус на 2026-04-29 \(раунд 10\)/);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 10\)/);
+  assert.match(todo, /## Статус на 2026-05-03 \(раунд 11\)/);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 11\)/);
   assert.match(todo, /## Новые пункты плана/);
-  assert.match(todo, /railway backlog закрыт документно/i);
+  assert.match(todo, /remaining legacy-only matrix/i);
+  assert.match(todo, /k-skill-proxy.*Transition/i);
 
   assert.match(bookingResearch, /## Decision matrix/);
   assert.match(bookingResearch, /yandex-rasp/);
@@ -1232,6 +1258,42 @@ test("readme and roadmap stay free from stale release-status archaeology", () =>
 
   assertNoStaleReleaseStatus(readme, "README.md");
   assertNoStaleReleaseStatus(roadmap, "docs/roadmap.md");
+});
+
+test("legacy-only and transition guides publish explicit boundary notes", () => {
+  const deliveryTracking = read(path.join("docs", "features", "delivery-tracking.md"));
+  const seoulSubway = read(path.join("docs", "features", "seoul-subway-arrival.md"));
+  const tossSecurities = read(path.join("docs", "features", "toss-securities.md"));
+  const proxyGuide = read(path.join("docs", "features", "k-skill-proxy.md"));
+
+  assert.match(deliveryTracking, /## Boundary note/);
+  assert.match(deliveryTracking, /legacy-only/);
+  assert.match(deliveryTracking, /скрытый backlog/i);
+
+  assert.match(seoulSubway, /## Boundary note/);
+  assert.match(seoulSubway, /legacy-only/);
+  assert.match(seoulSubway, /российский replacement не подтверждён/i);
+
+  assert.match(tossSecurities, /## Boundary note/);
+  assert.match(tossSecurities, /legacy-only/);
+  assert.match(tossSecurities, /moex-shares/);
+
+  assert.match(proxyGuide, /## Boundary note/);
+  assert.match(proxyGuide, /transition/);
+  assert.match(proxyGuide, /не отдельным пользовательским target-навыком/i);
+});
+
+test("seoul-subway-arrival skill prefers ru-skill secrets before the legacy fallback", () => {
+  const skill = read(path.join("seoul-subway-arrival", "SKILL.md"));
+
+  assert.match(skill, /## Boundary note/);
+  assert.match(skill, /legacy-only/);
+  assert.match(skill, /~\/\.config\/ru-skill\/secrets\.env/);
+  assert.match(skill, /~\/\.config\/k-skill\/secrets\.env/);
+  assert.ok(
+    skill.indexOf("~/.config/ru-skill/secrets.env") < skill.indexOf("~/.config/k-skill/secrets.env"),
+    "expected ru-skill secrets path to appear before the legacy k-skill fallback",
+  );
 });
 
 test("package-lock captures the yandex-market-search workspace metadata for npm ci", () => {
