@@ -14,6 +14,10 @@ metadata:
 
 기본적으로 `https://k-skill-proxy.nomadamas.org/v1/fine-dust/report` 로 요청해서 PM10 / PM2.5 / 통합대기등급을 요약한다.
 
+## Boundary note
+
+이 스킬은 `ru-skill`의 새로운 target 방향이 아니라 AirKorea + `k-skill-proxy` compatibility layer 를 유지하기 위한 legacy/transition utility 다. 새로운 러시아어 public-source 시나리오 후보처럼 보이면 안 되며, 기본 proxy endpoint 와 legacy naming 역시 호환성 목적이다.
+
 ## When to use
 
 - "지금 내 위치 미세먼지 어때?"
@@ -48,6 +52,13 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
 ```bash
 python3 scripts/fine_dust.py report --region-hint '서울 강남구' --json
 ```
+
+## Credential resolution order
+
+1. 이미 환경변수에 값이 있으면 그대로 사용한다.
+2. 별도 secret vault 가 있으면 거기서 값을 꺼내 환경변수로 주입한다.
+3. env 가 비어 있으면 먼저 `~/.config/ru-skill/secrets.env`, 그다음 legacy fallback `~/.config/k-skill/secrets.env` 를 찾는다.
+4. 그래도 없으면 사용자에게 `AIR_KOREA_OPEN_API_KEY` 또는 필요한 proxy override 값을 요청한다.
 
 ## Ambiguous locations
 
@@ -94,6 +105,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
 ## Notes
 
 - 기본 경로는 항상 `k-skill-proxy.nomadamas.org` 의 report endpoint 다.
+- `KSKILL_PROXY_BASE_URL` 는 published compatibility endpoint 를 다른 proxy 로 바꿔야 할 때만 지정한다.
 - 지역명 조회는 먼저 후보를 얻고, 필요하면 정확한 측정소명으로 재조회한다.
 - passthrough / direct AirKorea 구현 세부는 스킬 본문에 길게 반복하지 않는다.
-- free API 프록시는 공개 endpoint 를 기본으로 둔다.
+- free API 프록시는 공개 endpoint 를 기본으로 두되, 이 동작이 새로운 target-skill 방향을 뜻하지는 않는다.

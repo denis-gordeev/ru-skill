@@ -124,16 +124,18 @@
 - Доведена до конца `remaining legacy-only matrix`: `seoul-subway-arrival` и `toss-securities` теперь одинаково помечены как документно закрытые `Legacy`, а `k-skill-proxy` — как `Transition` во всех user-facing верхнеуровневых документах.
 - `docs/install.md` больше не смешивает `target`, `legacy-only` и transition-навыки без пояснений: в install-flow зафиксированы границы для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy`.
 - User-facing guides для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy` дополнены явными boundary notes, чтобы legacy/transition сценарии не выглядели как скрытый target-backlog.
+- `fine-dust-location`, `docs/setup.md`, `docs/security-and-secrets.md` и `packages/k-skill-proxy/README.md` выровнены по `ru-skill`-first secret order и transition-boundary: published proxy endpoint описан как compatibility-layer, а `AIR_KOREA_OPEN_API_KEY` оставлен только для direct fallback или self-hosted proxy.
+- Doc-regression расширен на `fine-dust-location` и proxy helper-docs, чтобы boundary notes, порядок `~/.config/ru-skill/secrets.env` -> `~/.config/k-skill/secrets.env` и distinction между endpoint override и реальными секретами не разъезжались.
 
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
-- Следующий шаг - дожать оставшиеся utility/transition surfaces: `delivery-tracking`, `fine-dust-location`, `k-skill-proxy` и связанные helper-docs должны одинаково держать границу между backward compatibility и новым русскоязычным target-направлением.
-- После этого стоит проверить setup/security docs и skill-level guides на оставшиеся legacy-first credential orders и формулировки, которые ещё могут продвигать `~/.config/k-skill/*` как основной путь вместо `ru-skill`-first.
+- Следующий шаг - дожать оставшиеся utility/transition surfaces уже не на уровне top-level docs, а на уровне package README, helper scripts и skill-level copy: сохранить compatibility, но убрать неявные legacy-default формулировки там, где они ещё остались.
+- После этого стоит проверить остальные legacy utility guides на distinction между конфигурационным override и реальными секретами, чтобы `~/.config/k-skill/*` и legacy endpoint'ы нигде не выглядели как основной путь для новых установок.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
-- Добавить отдельную регрессию на статусы `Legacy` / `Transition` в README package matrix и на boundary notes в install-flow и feature-guides.
+- Добавить отдельную регрессию на package-level helper docs и startup scripts, чтобы `transition`/`legacy-only` boundary не держалась только на верхнеуровневых документах.
 
 ## Быстрые ссылки на ключевые функции
 

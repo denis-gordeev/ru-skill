@@ -65,4 +65,6 @@ KSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org
 - `AIR_KOREA_OPEN_API_KEY`
 - `KSKILL_PROXY_BASE_URL`
 
+Для `fine-dust-location` переменная `KSKILL_PROXY_BASE_URL` не считается секретом сама по себе: это только override published proxy endpoint. Секретным значением в этом сценарии остаётся `AIR_KOREA_OPEN_API_KEY`, если используется direct fallback или self-hosted proxy.
+
 Все навыки этого репозитория, которым нужны credential, опираются на эту политику. Общий порядок настройки описан в [гайде по setup](setup.md).

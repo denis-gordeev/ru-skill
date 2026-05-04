@@ -1,5 +1,9 @@
 # Гайд по fine dust для текущего местоположения
 
+## Boundary note
+
+Этот сценарий не считается новым `target`-навыком `ru-skill`. Он сохраняется как legacy/transition utility вокруг AirKorea и `k-skill-proxy`, чтобы не ломать совместимость, но не должен выглядеть как скрытый backlog новых русскоязычных public-source интеграций.
+
 ## Что умеет этот сценарий
 
 - Искать станции наблюдения по району, `행정구역` или `지역명`.
@@ -15,12 +19,13 @@
 
 ## Нужные переменные окружения
 
-Базовый клиентский режим:
+Предпочтительный клиентский режим:
 
 - Внешний proxy URL по умолчанию: `https://k-skill-proxy.nomadamas.org`
-- `KSKILL_PROXY_BASE_URL` задаётся только если нужно переопределение
+- `KSKILL_PROXY_BASE_URL` задаётся только если нужно переопределить этот endpoint
+- Отдельный клиентский API key в этом режиме не нужен
 
-Только для direct fallback без proxy:
+Только для direct fallback без proxy или для собственного proxy-сервера:
 
 - `AIR_KOREA_OPEN_API_KEY`
 
@@ -28,7 +33,7 @@
 
 1. Если переменные уже есть в окружении, использовать их.
 2. Если агент работает через отдельный secret vault, можно брать значения оттуда.
-3. Если env нет, сначала искать `~/.config/ru-skill/secrets.env`, затем `~/.config/k-skill/secrets.env`.
+3. Если env нет, сначала искать `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 4. Если источников нет, запросить секрет у пользователя и сохранить его в vault или `secrets.env`.
 
 ## Входные данные
@@ -38,7 +43,7 @@
 
 ## Базовый поток
 
-1. Если задан `KSKILL_PROXY_BASE_URL`, сначала вызвать `/v1/fine-dust/report` на `k-skill-proxy`.
+1. Если задан `KSKILL_PROXY_BASE_URL`, сначала вызвать `/v1/fine-dust/report` на этом proxy; если переменная не задана, использовать опубликованный compatibility endpoint `https://k-skill-proxy.nomadamas.org`.
 2. Если пришёл `regionHint`, proxy сначала выделяет название региона и получает список станций через `getCtprvnRltmMesureDnsty`.
 3. Если токен из региона однозначно соответствует одной станции, proxy вызывает `getMsrstnAcctoRltmMesureDnsty` для неё.
 4. Если однозначности нет, proxy возвращает `ambiguous_location` и `candidate_stations`.
@@ -126,3 +131,4 @@ python3 scripts/fine_dust.py report \
 - Если API не прислал `khaiGrade`, интегральный уровень нужно выводить как `정보없음`.
 - `regionHint` описывает место в естественном языке, поэтому неоднозначность там частая.
 - В hosted-режиме upstream AirKorea key должен оставаться только на proxy, а не на клиенте.
+- Public proxy и legacy naming здесь остаются compatibility-layer, а не рекомендацией расширять `ru-skill` новыми корейскими data-source сценариями.

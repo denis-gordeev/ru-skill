@@ -55,7 +55,9 @@ bash scripts/check-setup.sh
 | `srt-booking` | `KSKILL_SRT_ID`, `KSKILL_SRT_PASSWORD` |
 | `ktx-booking` | `KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD` |
 | `seoul-subway-arrival` | `SEOUL_OPEN_API_KEY` |
-| `fine-dust-location` | `KSKILL_PROXY_BASE_URL` или `AIR_KOREA_OPEN_API_KEY` |
+| `fine-dust-location` | Обычно ничего: published proxy endpoint используется по умолчанию. Для override нужен `KSKILL_PROXY_BASE_URL`, для direct fallback или self-hosted proxy - `AIR_KOREA_OPEN_API_KEY`. |
+
+Для `fine-dust-location` важно не смешивать конфигурацию и секреты: `KSKILL_PROXY_BASE_URL` - это override для endpoint, а не обязательный credential. Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`, если вы уходите с опубликованного compatibility proxy на direct fallback или свой сервер.
 
 ## Что читать дальше
 

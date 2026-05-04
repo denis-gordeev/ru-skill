@@ -4,6 +4,13 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-04 (раунд 12)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт следующий doc-governance gap после `remaining legacy-only matrix`: `fine-dust-location` и `k-skill-proxy` больше не расходятся между skill-level, package-level и setup/security поверхностями.
+- Для fine dust и proxy теперь синхронно зафиксировано, что published endpoint и legacy naming - это compatibility-layer, а не новый target-default.
+- `ru-skill`-first credential order и distinction между endpoint override и реальными секретами теперь дополнительно защищены тестами, а не только текстом документации.
+
 ## Статус на 2026-05-03 (раунд 11)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -247,6 +254,21 @@
 
 ## Новые пункты плана
 
-- [ ] Довести `fine-dust-location`, `docs/setup.md` и `docs/security-and-secrets.md` до того же `ru-skill`-first credential order, чтобы proxy/secret flow не расползался между skill-level и setup-level документацией.
-- [ ] Добавить doc-regression на user-facing boundary notes для `fine-dust-location` и других transition/legacy utility guides, чтобы они не возвращались к двусмысленной подаче как потенциальные target-skills.
-- [ ] Провести отдельный audit helper scripts и package README для `k-skill-proxy`/`fine-dust-location`, чтобы legacy endpoint и naming оставались compatibility-layer, а не неявным public default для новых русскоязычных сценариев.
+- [x] Довести `fine-dust-location`, `docs/setup.md` и `docs/security-and-secrets.md` до того же `ru-skill`-first credential order, чтобы proxy/secret flow не расползался между skill-level и setup-level документацией.
+- [x] Добавить doc-regression на user-facing boundary notes для `fine-dust-location` и других transition/legacy utility guides, чтобы они не возвращались к двусмысленной подаче как потенциальные target-skills.
+- [x] Провести отдельный audit helper scripts и package README для `k-skill-proxy`/`fine-dust-location`, чтобы legacy endpoint и naming оставались compatibility-layer, а не неявным public default для новых русскоязычных сценариев.
+
+## Выполнено в этом раунде (раунд 12)
+
+- [x] `docs/features/fine-dust-location.md` дополнен явным boundary note: сценарий зафиксирован как legacy/transition utility, а не как новый target-skill.
+- [x] `fine-dust-location/SKILL.md` выровнен по `ru-skill`-first credential order и теперь отдельно объясняет, что published proxy endpoint и legacy naming существуют ради совместимости.
+- [x] `docs/setup.md` и `docs/security-and-secrets.md` уточняют различие между `KSKILL_PROXY_BASE_URL` как endpoint override и `AIR_KOREA_OPEN_API_KEY` как реальным секретом для direct fallback/self-hosted proxy.
+- [x] `packages/k-skill-proxy/README.md` дополнен transition-boundary и явным порядком secret resolution для `scripts/run-k-skill-proxy.sh`.
+- [x] `README.md` и `docs/roadmap.md` синхронизированы с этим раундом и больше не держат `fine-dust-location` backlog только в TODO.
+- [x] Doc-regression тесты расширены на `fine-dust-location`, `k-skill-proxy` package README и proxy secret-order semantics.
+
+## Новые пункты плана
+
+- [ ] Расширить package-level audit на остальные legacy/utility surfaces, где README или helper scripts ещё могут продвигать compatibility endpoint как неявный default для новых сценариев.
+- [ ] Проверить `examples/secrets.env.example` и связанные setup helper'ы на необходимость более явного разделения config override и настоящих credential, не ломая текущую совместимость.
+- [ ] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback.

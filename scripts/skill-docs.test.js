@@ -975,7 +975,11 @@ test("repository docs advertise the fine-dust-location skill across the document
   assert.match(sources, /에어코리아 대기오염정보: https:\/\/www\.data\.go\.kr\/data\/15073861\/openapi\.do/);
   assert.match(sources, /에어코리아 측정소정보: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
   assert.match(setup, /AIR_KOREA_OPEN_API_KEY/);
+  assert.match(setup, /KSKILL_PROXY_BASE_URL/);
+  assert.match(setup, /published proxy endpoint используется по умолчанию/i);
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
+  assert.match(security, /KSKILL_PROXY_BASE_URL/);
+  assert.match(security, /override published proxy endpoint/i);
   assert.match(secretsExample, /^AIR_KOREA_OPEN_API_KEY=replace-me$/m);
 });
 
@@ -998,9 +1002,22 @@ test("fine-dust-location skill documents the official two-api flow and fallback 
   assert.match(skill, /PM10/);
   assert.match(skill, /PM2\.5|PM25/);
   assert.match(skill, /통합대기등급/);
+  assert.match(skill, /## Boundary note/);
+  assert.match(skill, /legacy\/transition utility/i);
+  assert.match(skill, /~\/\.config\/ru-skill\/secrets\.env/);
+  assert.match(skill, /~\/\.config\/k-skill\/secrets\.env/);
+  assert.ok(
+    skill.indexOf("~/.config/ru-skill/secrets.env") < skill.indexOf("~/.config/k-skill/secrets.env"),
+    "expected fine-dust skill to mention the ru-skill secrets path before the legacy fallback",
+  );
 
   for (const doc of [featureDoc]) {
+    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /legacy\/transition utility/i);
+    assert.match(doc, /скрытый backlog/i);
     assert.match(doc, /AIR_KOREA_OPEN_API_KEY/);
+    assert.match(doc, /KSKILL_PROXY_BASE_URL/);
+    assert.match(doc, /Отдельный клиентский API key в этом режиме не нужен/i);
     assert.match(doc, /B552584\/MsrstnInfoInqireSvc\/getMsrstnList/);
     assert.match(doc, /B552584\/ArpltnInforInqireSvc\/getMsrstnAcctoRltmMesureDnsty/);
     assert.match(doc, /getCtprvnRltmMesureDnsty/);
@@ -1239,10 +1256,11 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /remaining legacy-only matrix.*уже доведена/i);
   assert.match(roadmap, /k-skill-proxy[\s\S]*transition`?-слой/i);
 
-  assert.match(todo, /## Статус на 2026-05-03 \(раунд 11\)/);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 11\)/);
+  assert.match(todo, /## Статус на 2026-05-04 \(раунд 12\)/);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 12\)/);
   assert.match(todo, /## Новые пункты плана/);
-  assert.match(todo, /remaining legacy-only matrix/i);
+  assert.match(todo, /fine-dust-location.*k-skill-proxy/i);
+  assert.match(todo, /ru-skill`?-first credential order/i);
   assert.match(todo, /k-skill-proxy.*Transition/i);
 
   assert.match(bookingResearch, /## Decision matrix/);
@@ -1262,6 +1280,7 @@ test("readme and roadmap stay free from stale release-status archaeology", () =>
 
 test("legacy-only and transition guides publish explicit boundary notes", () => {
   const deliveryTracking = read(path.join("docs", "features", "delivery-tracking.md"));
+  const fineDust = read(path.join("docs", "features", "fine-dust-location.md"));
   const seoulSubway = read(path.join("docs", "features", "seoul-subway-arrival.md"));
   const tossSecurities = read(path.join("docs", "features", "toss-securities.md"));
   const proxyGuide = read(path.join("docs", "features", "k-skill-proxy.md"));
@@ -1269,6 +1288,10 @@ test("legacy-only and transition guides publish explicit boundary notes", () => 
   assert.match(deliveryTracking, /## Boundary note/);
   assert.match(deliveryTracking, /legacy-only/);
   assert.match(deliveryTracking, /скрытый backlog/i);
+
+  assert.match(fineDust, /## Boundary note/);
+  assert.match(fineDust, /legacy\/transition utility/i);
+  assert.match(fineDust, /не считается новым `target`-навыком/i);
 
   assert.match(seoulSubway, /## Boundary note/);
   assert.match(seoulSubway, /legacy-only/);
@@ -1281,6 +1304,38 @@ test("legacy-only and transition guides publish explicit boundary notes", () => 
   assert.match(proxyGuide, /## Boundary note/);
   assert.match(proxyGuide, /transition/);
   assert.match(proxyGuide, /не отдельным пользовательским target-навыком/i);
+});
+
+test("fine-dust and proxy docs distinguish endpoint override from real secrets", () => {
+  const setup = read(path.join("docs", "setup.md"));
+  const security = read(path.join("docs", "security-and-secrets.md"));
+  const proxyReadme = read(path.join("packages", "k-skill-proxy", "README.md"));
+  const proxyRunner = read(path.join("scripts", "run-k-skill-proxy.sh"));
+
+  assert.match(setup, /KSKILL_PROXY_BASE_URL/);
+  assert.match(setup, /override для endpoint/i);
+  assert.match(setup, /Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`/);
+
+  assert.match(security, /KSKILL_PROXY_BASE_URL/);
+  assert.match(security, /не считается секретом/i);
+  assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
+
+  assert.match(proxyReadme, /## Boundary note/);
+  assert.match(proxyReadme, /transition/i);
+  assert.match(proxyReadme, /RU_SKILL_SECRETS_FILE/);
+  assert.match(proxyReadme, /~\/\.config\/ru-skill\/secrets\.env/);
+  assert.match(proxyReadme, /~\/\.config\/k-skill\/secrets\.env/);
+  assert.ok(
+    proxyReadme.indexOf("~/.config/ru-skill/secrets.env") < proxyReadme.indexOf("~/.config/k-skill/secrets.env"),
+    "expected proxy package README to mention the ru-skill secrets path before the legacy fallback",
+  );
+
+  assert.match(proxyRunner, /DEFAULT_RU_SKILL_SECRETS_FILE/);
+  assert.match(proxyRunner, /DEFAULT_LEGACY_SECRETS_FILE/);
+  assert.ok(
+    proxyRunner.indexOf("RU_SKILL_SECRETS_FILE") < proxyRunner.indexOf("KSKILL_SECRETS_FILE"),
+    "expected proxy runner to prefer RU_SKILL_SECRETS_FILE before KSKILL_SECRETS_FILE",
+  );
 });
 
 test("seoul-subway-arrival skill prefers ru-skill secrets before the legacy fallback", () => {

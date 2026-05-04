@@ -4,7 +4,7 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
-## Статус на 2026-05-03
+## Статус на 2026-05-04
 
 - Корневой README, install/setup/releasing-документы уже переводятся на русскоязычную терминологию.
 - В рабочем дереве всё ещё остаются legacy-пакеты и feature-гайды с корейским контекстом.
@@ -32,6 +32,8 @@
 - Railway replacement выведен из активного implementation backlog; `remaining legacy-only matrix` для `seoul-subway-arrival` и `toss-securities` уже доведена до одинакового статуса в README, roadmap и install-flow.
 - `k-skill-proxy` теперь синхронно маркируется как `transition`-слой в верхнеуровневых user-facing документах, а не как неявно "активный" продуктовый трек.
 - User-facing guides для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy` дополнены boundary notes, чтобы legacy/transition сценарии не выглядели как скрытый target-backlog.
+- `fine-dust-location`, `docs/setup.md`, `docs/security-and-secrets.md` и `packages/k-skill-proxy/README.md` теперь тоже держат единый `ru-skill`-first credential order и не продвигают published proxy endpoint как новый target-default.
+- Doc-regression расширен до `fine-dust-location` и package-level proxy docs: проверяется boundary note, порядок `~/.config/ru-skill/secrets.env` -> `~/.config/k-skill/secrets.env` и то, что `KSKILL_PROXY_BASE_URL` описан как override, а не как обязательный секрет.
 - Milestone 4 переведён в зафиксированное состояние по документной части: legacy-пакеты размечены, матрица замен актуализирована, публичная документация не продвигает корейские сценарии как основной путь.
 - В качестве третьего источника вне финансового домена выбран `Postcalc` как read-only справочник индексов и отделений на базе эталонного справочника Почты России.
 - В качестве четвёртого источника вне финансов и логистики выбран публичный API `hh.ru` как базовый read-only сценарий вакансий и регионов.
@@ -168,8 +170,8 @@
 ## Приоритеты следующих раундов
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
-2. Дожать remaining utility/transition surfaces: `delivery-tracking`, `fine-dust-location`, `k-skill-proxy` и связанные helper-docs должны одинаково описывать границу между backward compatibility и новым русскоязычным target-направлением.
-3. Пересмотреть setup/security и skill-level docs на оставшиеся legacy-first credential orders, чтобы `~/.config/ru-skill/*` везде оставался основным путём, а `~/.config/k-skill/*` — только fallback.
+2. Дожать remaining utility/transition surfaces на package README и helper-script уровне: верхнеуровневые docs уже выровнены, теперь нужно удержать те же границы в локальных инструкциях вокруг compatibility-layer.
+3. Пересмотреть остальные skill-level guides на distinction между endpoint override и реальными секретами, чтобы `~/.config/ru-skill/*` везде оставался основным путём, а legacy endpoint'ы и `~/.config/k-skill/*` — только fallback.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes и отсутствию устаревшей release-археологии в README/roadmap.
 6. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.

@@ -4,6 +4,10 @@
 
 Сейчас пакет в основном обслуживает legacy-кейс с AirKorea и fine dust, но его архитектура рассчитана на добавление других read-only adapter'ов с узкой allowlist-поверхностью.
 
+## Boundary note
+
+Этот пакет остаётся `transition`-инфраструктурой и compatibility-layer, а не отдельным пользовательским `target`-продуктом. Legacy endpoint и имя `k-skill-proxy` сохраняются ради совместимости; это не означает, что AirKorea/fine-dust снова становятся основным направлением развития `ru-skill`.
+
 ## Текущие endpoint'ы
 
 - `GET /health`
@@ -31,6 +35,15 @@ node packages/k-skill-proxy/src/server.js
 ```
 
 Перед запуском нужно подготовить переменные окружения, включая `AIR_KOREA_OPEN_API_KEY`, если нужен legacy fine-dust сценарий.
+
+Если использовать репозиторный helper `scripts/run-k-skill-proxy.sh`, порядок разрешения будет таким:
+
+1. `RU_SKILL_SECRETS_FILE`
+2. `KSKILL_SECRETS_FILE`
+3. `~/.config/ru-skill/secrets.env`
+4. `~/.config/k-skill/secrets.env`
+
+То есть `ru-skill`-first путь считается основным, а legacy-файл остаётся только fallback-механизмом.
 
 ## Операционная модель
 
