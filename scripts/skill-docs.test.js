@@ -977,10 +977,14 @@ test("repository docs advertise the fine-dust-location skill across the document
   assert.match(setup, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(setup, /KSKILL_PROXY_BASE_URL/);
   assert.match(setup, /published proxy endpoint используется по умолчанию/i);
+  assert.match(setup, /не входит в минимальный secrets-шаблон/i);
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(security, /KSKILL_PROXY_BASE_URL/);
   assert.match(security, /override published proxy endpoint/i);
+  assert.match(security, /специально не включён в минимальный secrets-шаблон/i);
   assert.match(secretsExample, /^AIR_KOREA_OPEN_API_KEY=replace-me$/m);
+  assert.doesNotMatch(secretsExample, /^KSKILL_PROXY_BASE_URL=/m);
+  assert.match(secretsExample, /optional endpoint override/i);
 });
 
 test("fine-dust-location skill documents the official two-api flow and fallback handling", () => {
@@ -1309,16 +1313,24 @@ test("legacy-only and transition guides publish explicit boundary notes", () => 
 test("fine-dust and proxy docs distinguish endpoint override from real secrets", () => {
   const setup = read(path.join("docs", "setup.md"));
   const security = read(path.join("docs", "security-and-secrets.md"));
+  const setupSkill = read(path.join("k-skill-setup", "SKILL.md"));
+  const preferredSetupSkill = read(path.join("ru-skill-setup", "SKILL.md"));
   const proxyReadme = read(path.join("packages", "k-skill-proxy", "README.md"));
   const proxyRunner = read(path.join("scripts", "run-k-skill-proxy.sh"));
+  const checkSetup = read(path.join("scripts", "check-setup.sh"));
 
   assert.match(setup, /KSKILL_PROXY_BASE_URL/);
-  assert.match(setup, /override для endpoint/i);
+  assert.match(setup, /optional override для endpoint/i);
   assert.match(setup, /Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`/);
 
   assert.match(security, /KSKILL_PROXY_BASE_URL/);
   assert.match(security, /не считается секретом/i);
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
+
+  assert.match(setupSkill, /optional endpoint override/i);
+  assert.match(setupSkill, /published compatibility proxy/i);
+  assert.match(preferredSetupSkill, /optional endpoint override/i);
+  assert.match(preferredSetupSkill, /реальным секретом.*AIR_KOREA_OPEN_API_KEY/i);
 
   assert.match(proxyReadme, /## Boundary note/);
   assert.match(proxyReadme, /transition/i);
@@ -1336,6 +1348,8 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
     proxyRunner.indexOf("RU_SKILL_SECRETS_FILE") < proxyRunner.indexOf("KSKILL_SECRETS_FILE"),
     "expected proxy runner to prefer RU_SKILL_SECRETS_FILE before KSKILL_SECRETS_FILE",
   );
+
+  assert.match(checkSetup, /KSKILL_PROXY_BASE_URL only if you need a fine-dust endpoint override/i);
 });
 
 test("seoul-subway-arrival skill prefers ru-skill secrets before the legacy fallback", () => {

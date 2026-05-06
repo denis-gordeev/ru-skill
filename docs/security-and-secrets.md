@@ -28,6 +28,12 @@ KSKILL_KTX_ID=replace-me
 KSKILL_KTX_PASSWORD=replace-me
 SEOUL_OPEN_API_KEY=replace-me
 AIR_KOREA_OPEN_API_KEY=replace-me
+```
+
+`KSKILL_PROXY_BASE_URL` специально не включён в минимальный secrets-шаблон выше: это не секрет, а optional override для published compatibility proxy. Если override действительно нужен, его можно хранить рядом с остальными значениями в том же dotenv-файле или задавать отдельно через окружение:
+
+```dotenv
+# Optional endpoint override for fine-dust-location
 KSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org
 ```
 
@@ -65,6 +71,6 @@ KSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org
 - `AIR_KOREA_OPEN_API_KEY`
 - `KSKILL_PROXY_BASE_URL`
 
-Для `fine-dust-location` переменная `KSKILL_PROXY_BASE_URL` не считается секретом сама по себе: это только override published proxy endpoint. Секретным значением в этом сценарии остаётся `AIR_KOREA_OPEN_API_KEY`, если используется direct fallback или self-hosted proxy.
+Для `fine-dust-location` переменная `KSKILL_PROXY_BASE_URL` не считается секретом сама по себе: это только optional override published proxy endpoint. Секретным значением в этом сценарии остаётся `AIR_KOREA_OPEN_API_KEY`, если используется direct fallback или self-hosted proxy.
 
 Все навыки этого репозитория, которым нужны credential, опираются на эту политику. Общий порядок настройки описан в [гайде по setup](setup.md).

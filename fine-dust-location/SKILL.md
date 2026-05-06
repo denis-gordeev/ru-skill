@@ -1,6 +1,6 @@
 ---
 name: fine-dust-location
-description: 에어코리아 기반 미세먼지/초미세먼지를 지역명 또는 위치 힌트로 조회한다. 기본 경로는 k-skill-proxy의 report endpoint다.
+description: 에어코리아 기반 미세먼지/초미세먼지를 지역명 또는 위치 힌트로 조회한다. published k-skill-proxy report endpoint는 compatibility default 이며 필요할 때만 override 한다.
 license: MIT
 metadata:
   category: utility
@@ -12,7 +12,7 @@ metadata:
 
 ## What this skill does
 
-기본적으로 `https://k-skill-proxy.nomadamas.org/v1/fine-dust/report` 로 요청해서 PM10 / PM2.5 / 통합대기등급을 요약한다.
+기본적으로 published compatibility endpoint `https://k-skill-proxy.nomadamas.org/v1/fine-dust/report` 로 요청해서 PM10 / PM2.5 / 통합대기등급을 요약한다.
 
 ## Boundary note
 
@@ -58,7 +58,7 @@ python3 scripts/fine_dust.py report --region-hint '서울 강남구' --json
 1. 이미 환경변수에 값이 있으면 그대로 사용한다.
 2. 별도 secret vault 가 있으면 거기서 값을 꺼내 환경변수로 주입한다.
 3. env 가 비어 있으면 먼저 `~/.config/ru-skill/secrets.env`, 그다음 legacy fallback `~/.config/k-skill/secrets.env` 를 찾는다.
-4. 그래도 없으면 사용자에게 `AIR_KOREA_OPEN_API_KEY` 또는 필요한 proxy override 값을 요청한다.
+4. 그래도 없으면 direct fallback / self-hosted proxy 에 필요한 `AIR_KOREA_OPEN_API_KEY` 를 사용자에게 요청한다. `KSKILL_PROXY_BASE_URL` 는 사용자가 다른 endpoint 를 명시적으로 원할 때만 받는다.
 
 ## Ambiguous locations
 
@@ -105,7 +105,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
 ## Notes
 
 - 기본 경로는 항상 `k-skill-proxy.nomadamas.org` 의 report endpoint 다.
-- `KSKILL_PROXY_BASE_URL` 는 published compatibility endpoint 를 다른 proxy 로 바꿔야 할 때만 지정한다.
+- `KSKILL_PROXY_BASE_URL` 는 published compatibility endpoint 를 다른 proxy 로 바꿔야 할 때만 지정하는 optional override 다. credential 자체는 아니다.
 - 지역명 조회는 먼저 후보를 얻고, 필요하면 정확한 측정소명으로 재조회한다.
 - passthrough / direct AirKorea 구현 세부는 스킬 본문에 길게 반복하지 않는다.
 - free API 프록시는 공개 endpoint 를 기본으로 두되, 이 동작이 새로운 target-skill 방향을 뜻하지는 않는다.

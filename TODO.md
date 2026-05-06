@@ -4,6 +4,13 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-06 (раунд 13)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт следующий документный drift после fine-dust/proxy boundary: secrets template, setup skills и setup helper'ы больше не подают `KSKILL_PROXY_BASE_URL` как секрет или обязательный default.
+- Минимальный шаблон credential теперь отделён от optional endpoint override, а `AIR_KOREA_OPEN_API_KEY` остаётся единственным реальным секретом fine-dust direct fallback сценария.
+- Doc-regression расширен на `examples/secrets.env.example`, setup-skill copy и `scripts/check-setup.sh`, чтобы это разделение не расползалось между локальными инструкциями и runtime-check helper'ами.
+
 ## Статус на 2026-05-04 (раунд 12)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -270,5 +277,20 @@
 ## Новые пункты плана
 
 - [ ] Расширить package-level audit на остальные legacy/utility surfaces, где README или helper scripts ещё могут продвигать compatibility endpoint как неявный default для новых сценариев.
-- [ ] Проверить `examples/secrets.env.example` и связанные setup helper'ы на необходимость более явного разделения config override и настоящих credential, не ломая текущую совместимость.
+- [x] Проверить `examples/secrets.env.example` и связанные setup helper'ы на необходимость более явного разделения config override и настоящих credential, не ломая текущую совместимость.
+- [ ] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback.
+
+## Выполнено в этом раунде (раунд 13)
+
+- [x] `examples/secrets.env.example` больше не смешивает реальные credential с config override: `KSKILL_PROXY_BASE_URL` вынесен в явный optional-comment block вместо обязательной строки шаблона.
+- [x] `docs/setup.md`, `docs/security-and-secrets.md`, `k-skill-setup/SKILL.md` и `ru-skill-setup/SKILL.md` синхронно описывают `KSKILL_PROXY_BASE_URL` как optional endpoint override, а не как секрет по умолчанию.
+- [x] `fine-dust-location/SKILL.md` дополнительно очищен от operational-default формулировок: published proxy endpoint сохранён как compatibility default, а пользовательский запрос секрета ограничен direct fallback/self-hosted сценарием.
+- [x] `scripts/check-setup.sh` теперь не подсказывает добавлять proxy override без необходимости и отражает тот же `ru-skill`-first setup flow.
+- [x] `README.md` и `docs/roadmap.md` обновлены, чтобы этот шаг был отражён не только в `TODO.md`.
+- [x] Doc-regression тесты расширены на secrets template, setup skills и setup helper script.
+
+## Новые пункты плана
+
+- [ ] Довести тот же optional-override vs real-credential split до остальных package README и feature guides за пределами fine-dust/proxy-контура.
+- [ ] Проверить оставшиеся legacy setup/runtime helper'ы на подсказки, которые всё ещё могут продвигать `~/.config/k-skill/*` как неявный основной путь.
 - [ ] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback.

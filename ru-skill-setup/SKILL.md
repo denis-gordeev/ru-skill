@@ -42,6 +42,8 @@ bash scripts/check-setup.sh
 
 4. При необходимости продолжить с feature-specific навыками
 
+Для `fine-dust-location` published compatibility proxy остаётся рабочим default без дополнительного credential. `KSKILL_PROXY_BASE_URL` используется только как optional endpoint override, а реальным секретом в direct fallback/self-hosted сценарии остаётся `AIR_KOREA_OPEN_API_KEY`.
+
 ## Compatibility
 
 - Предпочтительное имя setup-навыка: `ru-skill-setup`

@@ -79,6 +79,8 @@ chmod 0600 ~/.config/ru-skill/secrets.env
 
 Если вы уже используете `~/.config/k-skill/secrets.env`, можете оставить его как legacy fallback.
 
+`KSKILL_PROXY_BASE_URL` намеренно не включён в этот минимальный шаблон: для `fine-dust-location` это optional endpoint override, а не credential. Добавляйте его только если нужно заменить published compatibility proxy.
+
 Запросите у пользователя фактические значения для заполнения.
 
 ### Шаблон ответа об отсутствующем секрете
@@ -90,7 +92,7 @@ chmod 0600 ~/.config/ru-skill/secrets.env
 - SRT: `KSKILL_SRT_ID`, `KSKILL_SRT_PASSWORD`
 - KTX: `KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD`
 - Метро Сеула: `SEOUL_OPEN_API_KEY`
-- Проверка пыли по местоположению: `AIR_KOREA_OPEN_API_KEY`
+- Проверка пыли по местоположению: обычно ничего, потому что published compatibility proxy используется по умолчанию; для direct fallback нужен `AIR_KOREA_OPEN_API_KEY`, а `KSKILL_PROXY_BASE_URL` остаётся только optional override.
 
 Не выбирайте автоматически другие сервисы или неофициальные обходные пути из-за отсутствия секретов.
 

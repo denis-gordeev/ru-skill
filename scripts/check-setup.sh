@@ -48,8 +48,9 @@ if [[ "$missing" -ne 0 ]]; then
 next steps:
   1. create ~/.config/ru-skill/secrets.env with your credentials
   2. chmod 0600 ~/.config/ru-skill/secrets.env
-  3. or point RU_SKILL_SECRETS_FILE / KSKILL_SECRETS_FILE to an existing dotenv file
-  4. run this check again
+  3. add KSKILL_PROXY_BASE_URL only if you need a fine-dust endpoint override
+  4. or point RU_SKILL_SECRETS_FILE / KSKILL_SECRETS_FILE to an existing dotenv file
+  5. run this check again
 EOF
   exit 1
 fi
