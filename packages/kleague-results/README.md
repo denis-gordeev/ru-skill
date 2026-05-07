@@ -1,19 +1,23 @@
 # kleague-results
 
-공식 K리그 JSON 엔드포인트를 감싼 재사용 가능한 Node.js 클라이언트입니다. 날짜별 경기 결과와 현재 순위를 함께 조회할 수 있습니다.
+`kleague-results` - legacy read-only клиент для официальных K League JSON endpoint'ов. Пакет отдаёт результаты матчей по дате и текущую таблицу, не прибегая к HTML scraping.
 
-## Install
+## Boundary note
+
+Этот пакет остаётся `legacy-only`: для российских футбольных сводок его replacement уже реализован как `rpl-results`. `kleague-results` сохраняется ради backward compatibility, но не должен подаваться как незавершённый target-backlog.
+
+## Установка
 
 ```bash
 npm install kleague-results
 ```
 
-## Official surfaces
+## Официальные поверхности
 
-- 일정/결과: `https://www.kleague.com/getScheduleList.do`
-- 팀 순위: `https://www.kleague.com/record/teamRank.do`
+- Расписание и результаты: `https://www.kleague.com/getScheduleList.do`
+- Таблица команд: `https://www.kleague.com/record/teamRank.do`
 
-## Usage
+## Пример
 
 ```js
 const { getKLeagueSummary, getMatchResults, getStandings } = require("kleague-results");
@@ -45,21 +49,21 @@ const { getKLeagueSummary, getMatchResults, getStandings } = require("kleague-re
 
 ### `getMatchResults(date, options)`
 
-- `date`: `YYYY-MM-DD` 또는 `Date`
+- `date`: `YYYY-MM-DD` или `Date`
 - `options.leagueId`: `1`, `2`, `K리그1`, `K리그2`
-- `options.team`: short name / full name / team code alias
+- `options.team`: short name, full name или team code alias
 
 ### `getStandings(options)`
 
-- `options.leagueId`: `1` 또는 `2`
-- `options.year`: 시즌 연도, 기본값은 한국 시간 현재 연도
+- `options.leagueId`: `1` или `2`
+- `options.year`: сезонный год, по умолчанию текущий год по корейскому времени
 
 ### `getKLeagueSummary(date, options)`
 
-- 날짜 결과와 현재 순위를 한 번에 반환합니다.
+- Возвращает результаты за дату и `standings` в одном ответе.
 
-## Notes
+## Примечания
 
-- 공식 K리그 JSON 엔드포인트 기준이라 HTML 크롤링보다 유지보수가 단순합니다.
-- `getScheduleList.do` 는 월 단위 응답이므로 라이브러리가 요청 날짜만 다시 필터링합니다.
-- `teamRank.do` 는 `stadium=all` 기준 현재 순위를 조회합니다.
+- Официальный JSON поток проще и устойчивее, чем HTML crawling.
+- `getScheduleList.do` отдаёт месяц целиком, поэтому библиотека дополнительно фильтрует точную дату.
+- `teamRank.do` читает `현재 순위` в режиме `stadium=all`.

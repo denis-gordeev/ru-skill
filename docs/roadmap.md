@@ -4,7 +4,7 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
-## Статус на 2026-05-06
+## Статус на 2026-05-07
 
 - Корневой README, install/setup/releasing-документы уже переводятся на русскоязычную терминологию.
 - В рабочем дереве всё ещё остаются legacy-пакеты и feature-гайды с корейским контекстом.
@@ -36,6 +36,8 @@
 - Doc-regression расширен до `fine-dust-location` и package-level proxy docs: проверяется boundary note, порядок `~/.config/ru-skill/secrets.env` -> `~/.config/k-skill/secrets.env` и то, что `KSKILL_PROXY_BASE_URL` описан как override, а не как обязательный секрет.
 - `examples/secrets.env.example`, setup-skills и `scripts/check-setup.sh` теперь тоже выровнены с этой моделью: `KSKILL_PROXY_BASE_URL` не входит в минимальный secrets-template и везде подан как optional endpoint override, а не как обязательный credential.
 - Doc-regression расширен на secrets template и setup helper-docs, чтобы distinction между optional override и реальными секретами не терялась вне верхнеуровневых документов.
+- Следующий package-level drift тоже закрыт: README у `toss-securities`, `daiso-product-search`, `kleague-results`, `blue-ribbon-nearby`, `kakao-bar-nearby` и `k-lotto` теперь синхронно фиксируют `legacy-only` статус и уже подтверждённые российские replacements там, где они существуют.
+- Doc-regression расширен ещё на этот слой package README, чтобы migration-boundary не держалась только на feature guides и верхнеуровневых документах.
 - Milestone 4 переведён в зафиксированное состояние по документной части: legacy-пакеты размечены, матрица замен актуализирована, публичная документация не продвигает корейские сценарии как основной путь.
 - В качестве третьего источника вне финансового домена выбран `Postcalc` как read-only справочник индексов и отделений на базе эталонного справочника Почты России.
 - В качестве четвёртого источника вне финансов и логистики выбран публичный API `hh.ru` как базовый read-only сценарий вакансий и регионов.
@@ -172,8 +174,8 @@
 ## Приоритеты следующих раундов
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
-2. Fine-dust/proxy secrets-template drift уже закрыт; следующий шаг - дожать remaining utility/transition surfaces на package README и helper-script уровне за пределами этого контура.
+2. Fine-dust/proxy secrets-template drift и часть package README уже закрыты; следующий шаг - дожать remaining utility/transition surfaces на helper-script и оставшемся skill-level уровне за пределами этого контура.
 3. Пересмотреть остальные skill-level guides на distinction между endpoint override и реальными секретами, чтобы `~/.config/ru-skill/*` везде оставался основным путём, а legacy endpoint'ы и `~/.config/k-skill/*` — только fallback.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
-5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes и отсутствию устаревшей release-археологии в README/roadmap.
+5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README и отсутствию устаревшей release-археологии в README/roadmap.
 6. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.

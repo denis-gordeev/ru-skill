@@ -1,54 +1,58 @@
 # daiso-product-search
 
-다이소몰 공식 검색/매장/재고 표면을 사용해 특정 매장의 상품 재고를 조회하는 Node.js 패키지입니다.
+`daiso-product-search` - legacy read-only пакет для поиска товаров и pickup-остатков в Daiso Mall по официальным web-поверхностям.
 
-## 설치
+## Boundary note
 
-배포 후:
+Этот пакет остаётся `legacy-only`: для российского marketplace discovery его replacement уже реализован как `yandex-market-search`. `daiso-product-search` сохраняется ради backward compatibility и как референс по store/product/stock flow, но не должен выглядеть как активный target-трек репозитория.
+
+## Установка
+
+После публикации:
 
 ```bash
 npm install daiso-product-search
 ```
 
-이 저장소에서 개발할 때:
+При локальной разработке в этом репозитории:
 
 ```bash
 npm install
 ```
 
-## 사용 원칙
+## Принципы использования
 
-- 매장명과 상품명 둘 다 필요합니다.
-- 공식 다이소몰 표면을 우선 사용합니다.
-- 현재 확인된 공식 표면은 **매장 픽업 재고**를 제공합니다.
-- 공식 표면이 매장 내 진열 위치를 주지 않으면 재고 중심으로 응답해야 합니다.
+- Нужны и `storeQuery`, и `productQuery`.
+- Приоритет всегда у официальных Daiso Mall поверхностей.
+- Подтверждённый сценарий здесь именно про `매장 픽업 재고`, то есть pickup stock.
+- Если официальный источник не отдаёт расположение товара внутри магазина, отвечать только про остатки.
 
-## 사용 예시
+## Пример
 
 ```js
-const { lookupStoreProductAvailability } = require("daiso-product-search")
+const { lookupStoreProductAvailability } = require("daiso-product-search");
 
 async function main() {
   const result = await lookupStoreProductAvailability({
     storeQuery: "강남역2호점",
     productQuery: "VT 리들샷 100",
     productLimit: 10
-  })
+  });
 
-  console.log(result.selectedStore)
-  console.log(result.selectedProduct)
-  console.log(result.pickupStock)
+  console.log(result.selectedStore);
+  console.log(result.selectedProduct);
+  console.log(result.pickupStock);
 }
 
 main().catch((error) => {
-  console.error(error)
-  process.exitCode = 1
-})
+  console.error(error);
+  process.exitCode = 1;
+});
 ```
 
 ## Live smoke snapshot
 
-2026-03-27 에 `storeQuery=강남역2호점`, `productQuery=VT 리들샷 100` 으로 실제 호출했을 때 공식 표면은 아래처럼 store/product/stock 을 반환했습니다.
+На 2026-03-27 комбинация `storeQuery=강남역2호점` и `productQuery=VT 리들샷 100` вернула через официальную поверхность следующие store/product/stock данные:
 
 ```json
 {
@@ -69,12 +73,13 @@ main().catch((error) => {
 }
 ```
 
-## 공개 API
+## Публичный API
 
 - `searchStores(query, options?)`
 - `getStoreDetail(strCd, options?)`
 - `searchProducts(query, options?)`
-  - 반환되는 각 상품 후보는 `pdNo` 와 함께 `onldPdNo` 를 포함할 수 있습니다. 다이소몰 온라인 재고 표면이 별도 마스터 상품 번호를 요구하는 경우 이 값을 그대로 `getOnlineStock()` 에 넘기면 됩니다.
 - `getStorePickupStock({ pdNo, strCd }, options?)`
 - `getOnlineStock({ pdNo, onldPdNo? }, options?)`
 - `lookupStoreProductAvailability({ storeQuery, productQuery, ...options })`
+
+Если `SearchGoods` отдаёт `onldPdNo`, его можно без преобразований передать в `getOnlineStock()` для дополнительной онлайн-проверки.

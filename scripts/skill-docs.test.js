@@ -770,6 +770,15 @@ test("daiso-product-search docs record the shipped feature and official sources"
   assert.match(sources, /https:\/\/www\.daisomall\.co\.kr\/api\/pd\/pdh\/selStrPkupStck/);
 });
 
+test("daiso-product-search package README keeps the legacy-only boundary aligned with the repository migration", () => {
+  const packageReadme = read(path.join("packages", "daiso-product-search", "README.md"));
+
+  assert.match(packageReadme, /legacy-only/i);
+  assert.match(packageReadme, /yandex-market-search/);
+  assert.match(packageReadme, /backward compatibility/i);
+  assert.match(packageReadme, /pickup stock|매장 픽업 재고/i);
+});
+
 test("root pack:dry-run script covers all publishable workspaces", () => {
   const packageJson = readJson("package.json");
 
@@ -834,7 +843,9 @@ test("kleague-results package exports reusable results and standings helpers", (
 test("kleague-results package README stays aligned with the official K League JSON lookup flow", () => {
   const packageReadme = read(path.join("packages", "kleague-results", "README.md"));
 
-  assert.match(packageReadme, /공식 K리그 JSON 엔드포인트/u);
+  assert.match(packageReadme, /legacy-only/i);
+  assert.match(packageReadme, /rpl-results/);
+  assert.match(packageReadme, /official K League JSON|официальн.*K League.*JSON/i);
   assert.match(packageReadme, /getScheduleList\.do/);
   assert.match(packageReadme, /teamRank\.do/);
   assert.match(packageReadme, /getKLeagueSummary/);
@@ -885,7 +896,10 @@ test("blue-ribbon-nearby skill documents mandatory location prompting and offici
 test("blue-ribbon-nearby package README stays aligned with the location-first and official-surface guidance", () => {
   const packageReadme = read(path.join("packages", "blue-ribbon-nearby", "README.md"));
 
-  assert.match(packageReadme, /먼저 현재 위치를 묻/u);
+  assert.match(packageReadme, /legacy-only/i);
+  assert.match(packageReadme, /osm-nearby/);
+  assert.match(packageReadme, /zoon-nearby/);
+  assert.match(packageReadme, /сначала обязательно спросите текущее местоположение/i);
   assert.match(packageReadme, /코엑스.*삼성동\/대치동/u);
   assert.match(packageReadme, /https:\/\/www\.bluer\.co\.kr\/search\/zone/);
   assert.match(packageReadme, /https:\/\/www\.bluer\.co\.kr\/restaurants\/map/);
@@ -936,6 +950,9 @@ test("kakao-bar-nearby skill documents location-first Kakao Map search with open
 test("kakao-bar-nearby package README stays aligned with the Kakao Map live lookup flow", () => {
   const packageReadme = read(path.join("packages", "kakao-bar-nearby", "README.md"));
 
+  assert.match(packageReadme, /legacy-only/i);
+  assert.match(packageReadme, /osm-nearby/);
+  assert.match(packageReadme, /zoon-nearby/);
   assert.match(packageReadme, /현재 위치를 먼저 물어본다/u);
   assert.match(packageReadme, /서울역 술집/);
   assert.match(packageReadme, /https:\/\/m\.map\.kakao\.com\/actions\/searchView/);
@@ -1117,11 +1134,13 @@ test("toss-securities package README stays aligned with the read-only tossctl wr
   const packageReadme = read(path.join("packages", "toss-securities", "README.md"));
 
   assert.match(packageReadme, /read-only tossctl wrapper/i);
+  assert.match(packageReadme, /legacy-only/i);
+  assert.match(packageReadme, /moex-shares/);
   assert.match(packageReadme, /brew tap JungHoonGhae\/tossinvest-cli/);
   assert.match(packageReadme, /account summary/);
   assert.match(packageReadme, /quote get/);
   assert.match(packageReadme, /order place/);
-  assert.match(packageReadme, /지원하지 않음|not supported/u);
+  assert.match(packageReadme, /не поддерживается|not supported/u);
 });
 
 test("pack:dry-run includes the toss-securities workspace", () => {

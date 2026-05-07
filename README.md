@@ -128,17 +128,19 @@
 - Doc-regression расширен на `fine-dust-location` и proxy helper-docs, чтобы boundary notes, порядок `~/.config/ru-skill/secrets.env` -> `~/.config/k-skill/secrets.env` и distinction между endpoint override и реальными секретами не разъезжались.
 - `examples/secrets.env.example`, setup-skills и `scripts/check-setup.sh` дополнительно выровнены по той же модели: `KSKILL_PROXY_BASE_URL` теперь везде подан как optional config override, а не как секрет по умолчанию или обязательный элемент стартового шаблона.
 - Doc-regression расширен ещё на secrets template и setup helper-docs, чтобы optional override/real credential distinction не откатывалась в локальных инструкциях и проверках окружения.
+- Package-level README для legacy utility-пакетов (`toss-securities`, `daiso-product-search`, `kleague-results`, `blue-ribbon-nearby`, `kakao-bar-nearby`, `k-lotto`) выровнены с текущей migration-governance: они теперь явно фиксируют `legacy-only` boundary, называют российские replacements там, где они уже есть, и не выглядят как активный target-backlog.
+- Doc-regression расширен на этот package-level слой, чтобы `legacy-only` boundary удерживался не только в feature guides и top-level docs, но и в README отдельных workspace-пакетов.
 
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
-- Следующий шаг - дожать оставшиеся utility/transition surfaces уже не на уровне top-level docs, а на уровне package README, helper scripts и skill-level copy: сохранить compatibility, но убрать неявные legacy-default формулировки там, где они ещё остались.
-- Отдельный drift вокруг `examples/secrets.env.example` и setup helper'ов уже закрыт; следующий подэтап - пройти остальные package README и skill-level guides на предмет таких же legacy-default формулировок вне fine dust/proxy-контура.
-- После этого стоит проверить остальные legacy utility guides на distinction между конфигурационным override и реальными секретами, чтобы `~/.config/k-skill/*` и legacy endpoint'ы нигде не выглядели как основной путь для новых установок.
+- Следующий шаг - дожать оставшиеся utility/transition surfaces уже не на уровне top-level docs, а на уровне helper scripts и skill-level copy: сохранить compatibility, но убрать неявные legacy-default формулировки там, где они ещё остались.
+- Отдельный drift вокруг `examples/secrets.env.example`, setup helper'ов и первой пачки package README уже закрыт; следующий подэтап - пройти оставшиеся skill-level guides на предмет таких же legacy-default формулировок вне fine dust/proxy-контура.
+- После package-level cleanup стоит проверить остальные legacy utility guides на distinction между конфигурационным override и реальными секретами, чтобы `~/.config/k-skill/*` и legacy endpoint'ы нигде не выглядели как основной путь для новых установок.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
-- Добавить отдельную регрессию на package-level helper docs и startup scripts, чтобы `transition`/`legacy-only` boundary не держалась только на верхнеуровневых документах.
+- После package-level helper docs дожать startup scripts и оставшиеся package README, которые ещё не получили явный `legacy-only` или replacement note.
 
 ## Быстрые ссылки на ключевые функции
 

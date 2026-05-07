@@ -4,6 +4,13 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-07 (раунд 14)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт следующий package-level drift после fine-dust/proxy helper cleanup: legacy utility README больше не остаются старым корейским островом без текущего migration-boundary.
+- `toss-securities`, `daiso-product-search`, `kleague-results`, `blue-ribbon-nearby`, `kakao-bar-nearby` и `k-lotto` теперь синхронно помечают `legacy-only` статус и называют уже подтверждённые российские replacements там, где они существуют.
+- Doc-regression расширен на package README, чтобы `legacy-only` boundary держался не только в feature guides и верхнеуровневых документах.
+
 ## Статус на 2026-05-06 (раунд 13)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -291,6 +298,15 @@
 
 ## Новые пункты плана
 
-- [ ] Довести тот же optional-override vs real-credential split до остальных package README и feature guides за пределами fine-dust/proxy-контура.
+- [x] Довести тот же optional-override vs real-credential split до первой пачки package README и package-level boundary notes за пределами fine-dust/proxy-контура.
+- [x] Добавить doc-regression на package README для `legacy-only` boundary и уже подтверждённых российских replacements.
 - [ ] Проверить оставшиеся legacy setup/runtime helper'ы на подсказки, которые всё ещё могут продвигать `~/.config/k-skill/*` как неявный основной путь.
+- [ ] Пройти оставшиеся skill-level guides и package README, где корейский контекст ещё допустим технически, но не должен звучать как продуктовый default.
 - [ ] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback.
+
+## Выполнено в этом раунде (раунд 14)
+
+- [x] `packages/toss-securities/README.md` переведён на текущую русскоязычную migration-модель: добавлен явный `legacy-only` boundary, ссылка на replacement `moex-shares` и сохранён read-only контракт над `tossctl`.
+- [x] `packages/daiso-product-search/README.md`, `packages/kleague-results/README.md`, `packages/blue-ribbon-nearby/README.md`, `packages/kakao-bar-nearby/README.md` и `packages/k-lotto/README.md` выровнены по той же схеме: legacy compatibility сохранена, но package-level docs больше не подают эти пакеты как скрытый target-backlog.
+- [x] `scripts/skill-docs.test.js` расширен регрессиями на package README, чтобы `legacy-only` boundary и replacement references удерживались автоматически.
+- [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронно обновлены под этот статус и следующий iteration backlog.
