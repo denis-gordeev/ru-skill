@@ -112,39 +112,40 @@ bash scripts/check-setup.sh
 - Изменения системы (`crontab`, `launchd`, `schtasks`) не применяются без согласия
 - Базовая команда проверки: `npx --yes skills check`
 - Только при явном запросе на **автоматические обновления** предлагается отдельный расписания на базе `npx --yes skills update`
+- Даже у legacy alias runtime-artifacts должны по умолчанию жить в `~/.config/ru-skill/*`; путь `~/.config/k-skill/*` допустим только как backward-compatible fallback, если пользователь уже завязал на него свою локальную автоматизацию
 
 Пример для macOS / Linux:
 
 ```bash
-mkdir -p ~/.config/k-skill/bin ~/.config/k-skill/logs
-cat > ~/.config/k-skill/bin/check-skill-updates.sh <<'EOF'
+mkdir -p ~/.config/ru-skill/bin ~/.config/ru-skill/logs
+cat > ~/.config/ru-skill/bin/check-skill-updates.sh <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
-mkdir -p "$HOME/.config/k-skill/logs"
+mkdir -p "$HOME/.config/ru-skill/logs"
 {
   date '+[%Y-%m-%d %H:%M:%S]'
   npx --yes skills check
   printf '\n'
-} >> "$HOME/.config/k-skill/logs/skills-check.log" 2>&1
+} >> "$HOME/.config/ru-skill/logs/skills-check.log" 2>&1
 EOF
-chmod +x ~/.config/k-skill/bin/check-skill-updates.sh
-(crontab -l 2>/dev/null; echo "0 9 * * * $HOME/.config/k-skill/bin/check-skill-updates.sh") | crontab -
+chmod +x ~/.config/ru-skill/bin/check-skill-updates.sh
+(crontab -l 2>/dev/null; echo "0 9 * * * $HOME/.config/ru-skill/bin/check-skill-updates.sh") | crontab -
 ```
 
 Пример для Windows:
 
 ```powershell
-New-Item -ItemType Directory -Force "$HOME/.config/k-skill/bin" | Out-Null
-New-Item -ItemType Directory -Force "$HOME/.config/k-skill/logs" | Out-Null
+New-Item -ItemType Directory -Force "$HOME/.config/ru-skill/bin" | Out-Null
+New-Item -ItemType Directory -Force "$HOME/.config/ru-skill/logs" | Out-Null
 @'
-npx --yes skills check >> "$HOME/.config/k-skill/logs/skills-check.log" 2>&1
-'@ | Set-Content "$HOME/.config/k-skill/bin/check-skill-updates.cmd"
-schtasks /Create /SC DAILY /TN "k-skill-update-check" /TR "\"$HOME/.config/k-skill/bin/check-skill-updates.cmd\"" /ST 09:00 /F
+npx --yes skills check >> "$HOME/.config/ru-skill/logs/skills-check.log" 2>&1
+'@ | Set-Content "$HOME/.config/ru-skill/bin/check-skill-updates.cmd"
+schtasks /Create /SC DAILY /TN "ru-skill-update-check" /TR "\"$HOME/.config/ru-skill/bin/check-skill-updates.cmd\"" /ST 09:00 /F
 ```
 
 После настройки сообщите расположение логов:
 
-- `~/.config/k-skill/logs/skills-check.log`
+- `~/.config/ru-skill/logs/skills-check.log`
 
 ### 4. Предложение GitHub star с явного согласия
 

@@ -130,6 +130,8 @@
 - Doc-regression расширен ещё на secrets template и setup helper-docs, чтобы optional override/real credential distinction не откатывалась в локальных инструкциях и проверках окружения.
 - Package-level README для legacy utility-пакетов (`toss-securities`, `daiso-product-search`, `kleague-results`, `blue-ribbon-nearby`, `kakao-bar-nearby`, `k-lotto`) выровнены с текущей migration-governance: они теперь явно фиксируют `legacy-only` boundary, называют российские replacements там, где они уже есть, и не выглядят как активный target-backlog.
 - Doc-regression расширен на этот package-level слой, чтобы `legacy-only` boundary удерживался не только в feature guides и top-level docs, но и в README отдельных workspace-пакетов.
+- Legacy alias `k-skill-setup` больше не продвигает `~/.config/k-skill/bin` и `~/.config/k-skill/logs` как runtime-default: update-check examples и log paths переведены на `~/.config/ru-skill/*`, а legacy-пути оставлены только как совместимый fallback.
+- Doc-regression расширен на setup runtime-artifacts, чтобы even legacy setup-skill не возвращал `k-skill`-prefixed bin/log directories в роли основного operational path.
 
 ## Что делаем дальше
 
@@ -140,7 +142,7 @@
 - После package-level cleanup стоит проверить остальные legacy utility guides на distinction между конфигурационным override и реальными секретами, чтобы `~/.config/k-skill/*` и legacy endpoint'ы нигде не выглядели как основной путь для новых установок.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
-- После package-level helper docs дожать startup scripts и оставшиеся package README, которые ещё не получили явный `legacy-only` или replacement note.
+- После cleanup setup runtime-artifacts пройти оставшиеся legacy skill-level guides и package README, где ещё могут всплывать `k-skill`-prefixed operational defaults вне секретов.
 
 ## Быстрые ссылки на ключевые функции
 

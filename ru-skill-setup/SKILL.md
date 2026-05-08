@@ -50,5 +50,6 @@ bash scripts/check-setup.sh
 - Legacy alias: `k-skill-setup`
 - Предпочтительный secrets path: `~/.config/ru-skill/secrets.env`
 - Legacy fallback path: `~/.config/k-skill/secrets.env`
+- Предпочтительные runtime-artifacts для update checks и логов: `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`
 
 Оба имени должны вести к одному и тому же setup-потоку без ломающей миграции.

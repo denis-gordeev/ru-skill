@@ -1348,8 +1348,15 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
 
   assert.match(setupSkill, /optional endpoint override/i);
   assert.match(setupSkill, /published compatibility proxy/i);
+  assert.match(setupSkill, /~\/\.config\/ru-skill\/bin/);
+  assert.match(setupSkill, /~\/\.config\/ru-skill\/logs/);
+  assert.doesNotMatch(setupSkill, /~\/\.config\/k-skill\/bin/);
+  assert.doesNotMatch(setupSkill, /~\/\.config\/k-skill\/logs/);
+  assert.doesNotMatch(setupSkill, /k-skill-update-check/);
+  assert.match(setupSkill, /ru-skill-update-check/);
   assert.match(preferredSetupSkill, /optional endpoint override/i);
   assert.match(preferredSetupSkill, /реальным секретом.*AIR_KOREA_OPEN_API_KEY/i);
+  assert.match(preferredSetupSkill, /~\/\.config\/ru-skill\/logs/);
 
   assert.match(proxyReadme, /## Boundary note/);
   assert.match(proxyReadme, /transition/i);

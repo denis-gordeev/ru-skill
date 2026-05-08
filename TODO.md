@@ -4,6 +4,13 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-08 (раунд 15)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт следующий setup/runtime drift после package README cleanup: even legacy alias `k-skill-setup` больше не показывает `~/.config/k-skill/bin` и `~/.config/k-skill/logs` как operational default для update checks.
+- Runtime-artifacts для setup automation теперь синхронно описаны как `~/.config/ru-skill/*`-first, а legacy `k-skill` paths оставлены только как backward-compatible fallback для уже существующей локальной автоматизации.
+- Doc-regression расширен на этот слой, чтобы skill-level setup copy не возвращал `k-skill`-prefixed bin/log directories в роль основного пути.
+
 ## Статус на 2026-05-07 (раунд 14)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -247,6 +254,9 @@
 
 ## Новые пункты плана
 
+- [x] Перевести runtime-artifacts в `k-skill-setup/SKILL.md` на `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`, сохранив legacy alias только на уровне совместимости имени, а не operational default path.
+- [x] Зафиксировать тот же `ru-skill`-first runtime path в `ru-skill-setup/SKILL.md`, README, roadmap и TODO, чтобы следующий шаг был виден не только в tests, но и в planning docs.
+- [x] Добавить doc-regression на setup runtime-artifacts, чтобы `k-skill-setup` не возвращал `~/.config/k-skill/*` как основной путь для check/log automation.
 - [x] Решить, нужен ли отдельный read-only/handoff skill сверх `yandex-rasp`, или railway replacement уже достаточно закрыт текущим discovery + documented external handoff.
 - [x] Если отдельный handoff-layer нужен, проверить только стабильные безлогинные сценарии: deep-link, landing search или export маршрута без оплаты и пользовательских секретов.
 - [x] Явно обновить legacy railway docs, чтобы `srt-booking` и `ktx-booking` были помечены не только как совместимые, но и как нецелевые для новых российских write-интеграций.
@@ -256,6 +266,12 @@
 - [x] Довести до конца remaining legacy-only matrix: `seoul-subway-arrival`, `toss-securities` и другие уже закрытые без replacement gaps должны иметь одинаковый статус в README, roadmap и install-flow.
 - [x] Пересмотреть user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs только на предмет реально поддерживаемых российских public surfaces.
 - [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
+
+## Выполнено в этом раунде (раунд 15)
+
+- [x] `k-skill-setup/SKILL.md` больше не использует `~/.config/k-skill/bin`, `~/.config/k-skill/logs` и `k-skill-update-check` как примеры по умолчанию: runtime-artifacts переведены на `ru-skill`-prefixed пути и имя задачи.
+- [x] `ru-skill-setup/SKILL.md`, `README.md` и `docs/roadmap.md` синхронно зафиксировали, что setup runtime-artifacts тоже относятся к `ru-skill`-first operational model, а не только secrets resolution order.
+- [x] `scripts/skill-docs.test.js` расширен регрессиями на setup runtime-artifacts, чтобы legacy alias `k-skill-setup` не возвращал `~/.config/k-skill/*` в роль основного operational path.
 
 ## Выполнено в этом раунде (раунд 11)
 
