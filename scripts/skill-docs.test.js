@@ -1013,16 +1013,16 @@ test("fine-dust-location skill documents the official two-api flow and fallback 
   const featureDoc = read(path.join("docs", "features", "fine-dust-location.md"));
 
   assert.match(skill, /^name: fine-dust-location$/m);
-  assert.match(skill, /^description: .*미세먼지.*초미세먼지.*위치.*$/m);
+  assert.match(skill, /^description: .*PM10\/PM2\.5.*KSKILL_PROXY_BASE_URL.*optional override.*$/m);
   assert.match(skill, /k-skill-proxy\.nomadamas\.org\/v1\/fine-dust\/report/);
-  assert.match(skill, /행정구역 이름/u);
+  assert.match(skill, /административное название|행정구역 이름/u);
   assert.match(skill, /강남구/);
   assert.match(skill, /python3 scripts\/fine_dust\.py/);
   assert.match(skill, /docs\/features\/fine-dust-location\.md/);
   assert.match(skill, /docs\/features\/k-skill-proxy\.md/);
   assert.match(skill, /PM10/);
   assert.match(skill, /PM2\.5|PM25/);
-  assert.match(skill, /통합대기등급/);
+  assert.match(skill, /общей категории качества воздуха|통합대기등급/);
   assert.match(skill, /## Boundary note/);
   assert.match(skill, /legacy\/transition utility/i);
   assert.match(skill, /~\/\.config\/ru-skill\/secrets\.env/);
@@ -1388,6 +1388,40 @@ test("seoul-subway-arrival skill prefers ru-skill secrets before the legacy fall
   assert.ok(
     skill.indexOf("~/.config/ru-skill/secrets.env") < skill.indexOf("~/.config/k-skill/secrets.env"),
     "expected ru-skill secrets path to appear before the legacy k-skill fallback",
+  );
+});
+
+test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first credential defaults", () => {
+  const fineDustSkill = read(path.join("fine-dust-location", "SKILL.md"));
+  const srtSkill = read(path.join("srt-booking", "SKILL.md"));
+  const ktxSkill = read(path.join("ktx-booking", "SKILL.md"));
+
+  assert.match(fineDustSkill, /## Boundary note/);
+  assert.match(fineDustSkill, /legacy\/transition utility/i);
+  assert.match(fineDustSkill, /optional endpoint override/i);
+  assert.match(fineDustSkill, /не считается credential/i);
+  assert.match(fineDustSkill, /AIR_KOREA_OPEN_API_KEY/);
+  assert.ok(
+    fineDustSkill.indexOf("~/.config/ru-skill/secrets.env") < fineDustSkill.indexOf("~/.config/k-skill/secrets.env"),
+    "expected fine-dust skill to mention the ru-skill secrets path before the legacy fallback",
+  );
+
+  assert.match(srtSkill, /## Boundary note/);
+  assert.match(srtSkill, /legacy-only/i);
+  assert.match(srtSkill, /yandex-rasp/);
+  assert.match(srtSkill, /новых российских write-интеграций/i);
+  assert.ok(
+    srtSkill.indexOf("~/.config/ru-skill/secrets.env") < srtSkill.indexOf("~/.config/k-skill/secrets.env"),
+    "expected srt-booking skill to mention the ru-skill secrets path before the legacy fallback",
+  );
+
+  assert.match(ktxSkill, /## Boundary note/);
+  assert.match(ktxSkill, /legacy-only/i);
+  assert.match(ktxSkill, /yandex-rasp/);
+  assert.match(ktxSkill, /новых российских write-интеграций/i);
+  assert.ok(
+    ktxSkill.indexOf("~/.config/ru-skill/secrets.env") < ktxSkill.indexOf("~/.config/k-skill/secrets.env"),
+    "expected ktx-booking skill to mention the ru-skill secrets path before the legacy fallback",
   );
 });
 

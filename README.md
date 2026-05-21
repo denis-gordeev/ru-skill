@@ -132,17 +132,18 @@
 - Doc-regression расширен на этот package-level слой, чтобы `legacy-only` boundary удерживался не только в feature guides и top-level docs, но и в README отдельных workspace-пакетов.
 - Legacy alias `k-skill-setup` больше не продвигает `~/.config/k-skill/bin` и `~/.config/k-skill/logs` как runtime-default: update-check examples и log paths переведены на `~/.config/ru-skill/*`, а legacy-пути оставлены только как совместимый fallback.
 - Doc-regression расширен на setup runtime-artifacts, чтобы even legacy setup-skill не возвращал `k-skill`-prefixed bin/log directories в роли основного operational path.
+- Оставшиеся legacy skill-level guides тоже выровнены с migration-boundary: `fine-dust-location`, `srt-booking` и `ktx-booking` теперь одинаково фиксируют `legacy/transition` роль, `ru-skill`-first secrets order и distinction между optional endpoint override и реальными секретами.
+- Doc-regression расширен на этот skill-level слой, чтобы railway/fine-dust copy не возвращала legacy defaults или скрытый target-backlog в новые раунды.
 
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
-- Следующий шаг - дожать оставшиеся utility/transition surfaces уже не на уровне top-level docs, а на уровне helper scripts и skill-level copy: сохранить compatibility, но убрать неявные legacy-default формулировки там, где они ещё остались.
-- Отдельный drift вокруг `examples/secrets.env.example`, setup helper'ов и первой пачки package README уже закрыт; следующий подэтап - пройти оставшиеся skill-level guides на предмет таких же legacy-default формулировок вне fine dust/proxy-контура.
-- После package-level cleanup стоит проверить остальные legacy utility guides на distinction между конфигурационным override и реальными секретами, чтобы `~/.config/k-skill/*` и legacy endpoint'ы нигде не выглядели как основной путь для новых установок.
+- Skill-level drift вокруг `fine-dust-location`, `srt-booking` и `ktx-booking` уже закрыт; следующий подэтап - пройти оставшиеся legacy utility guides и helper copy, которые ещё не были включены в doc-regression.
+- После cleanup railway/fine-dust skill docs стоит проверить остальные legacy utility guides на distinction между конфигурационным override, runtime defaults и реальными секретами, чтобы `~/.config/k-skill/*` и legacy endpoint'ы нигде не выглядели как основной путь для новых установок.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
-- После cleanup setup runtime-artifacts пройти оставшиеся legacy skill-level guides и package README, где ещё могут всплывать `k-skill`-prefixed operational defaults вне секретов.
+- После cleanup setup runtime-artifacts и первой волны skill-level docs пройти оставшиеся legacy skill-level guides и package README, где ещё могут всплывать `k-skill`-prefixed operational defaults вне секретов.
 
 ## Быстрые ссылки на ключевые функции
 

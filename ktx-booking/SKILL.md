@@ -10,7 +10,9 @@ metadata:
 
 # Бронирование KTX
 
-> Legacy-совместимый корейский railway skill. Он сохранён ради обратной совместимости и не считается шаблоном для новых российских write-интеграций. Для российских поездов используйте `yandex-rasp` как базовый read-only discovery, а replacement boundary смотрите в `docs/booking-replacements.md`.
+## Boundary note
+
+Этот навык сохраняется как `legacy-only` корейский railway flow. Он нужен ради обратной совместимости и не должен использоваться как шаблон для новых российских write-интеграций: для российских поездов базовым read-only discovery остаётся `yandex-rasp`, а replacement boundary закреплён в `docs/booking-replacements.md`.
 
 ## Что делает этот навык
 

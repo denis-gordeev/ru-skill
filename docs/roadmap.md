@@ -40,6 +40,8 @@
 - Doc-regression расширен ещё на этот слой package README, чтобы migration-boundary не держалась только на feature guides и верхнеуровневых документах.
 - Setup/runtime drift тоже закрыт на skill-level: даже legacy alias `k-skill-setup` теперь использует `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs` как operational default для update-check automation, а `~/.config/k-skill/*` остаётся только fallback-контуром совместимости.
 - Doc-regression расширен на setup runtime-artifacts, чтобы `k-skill`-prefixed bin/log directories не возвращались в документацию как основной рабочий путь.
+- Следующий skill-level drift тоже закрыт: `fine-dust-location`, `srt-booking` и `ktx-booking` теперь синхронно маркируют legacy/transition boundary, используют `ru-skill`-first credential order и не подают proxy override или railway legacy flow как активный target-default.
+- Doc-regression расширен на этот skill-level слой, чтобы railway/fine-dust copy не возвращала скрытый target-backlog, legacy endpoint defaults или `k-skill`-first credential порядок.
 - Milestone 4 переведён в зафиксированное состояние по документной части: legacy-пакеты размечены, матрица замен актуализирована, публичная документация не продвигает корейские сценарии как основной путь.
 - В качестве третьего источника вне финансового домена выбран `Postcalc` как read-only справочник индексов и отделений на базе эталонного справочника Почты России.
 - В качестве четвёртого источника вне финансов и логистики выбран публичный API `hh.ru` как базовый read-only сценарий вакансий и регионов.
@@ -176,7 +178,7 @@
 ## Приоритеты следующих раундов
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
-2. Fine-dust/proxy secrets-template drift, package README и setup runtime-artifacts уже закрыты; следующий шаг - дожать remaining utility/transition surfaces на оставшемся skill-level уровне за пределами этого контура.
+2. Fine-dust/proxy secrets-template drift, package README, setup runtime-artifacts и первая волна legacy skill-level docs уже закрыты; следующий шаг - дожать remaining utility/transition surfaces, которые пока не попали в этот regression perimeter.
 3. Пересмотреть остальные skill-level guides на distinction между endpoint override, runtime defaults и реальными секретами, чтобы `~/.config/ru-skill/*` везде оставался основным путём, а legacy endpoint'ы и `~/.config/k-skill/*` — только fallback.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README и отсутствию устаревшей release-археологии в README/roadmap.
