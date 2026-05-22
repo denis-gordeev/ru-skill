@@ -134,16 +134,17 @@
 - Doc-regression расширен на setup runtime-artifacts, чтобы even legacy setup-skill не возвращал `k-skill`-prefixed bin/log directories в роли основного operational path.
 - Оставшиеся legacy skill-level guides тоже выровнены с migration-boundary: `fine-dust-location`, `srt-booking` и `ktx-booking` теперь одинаково фиксируют `legacy/transition` роль, `ru-skill`-first secrets order и distinction между optional endpoint override и реальными секретами.
 - Doc-regression расширен на этот skill-level слой, чтобы railway/fine-dust copy не возвращала legacy defaults или скрытый target-backlog в новые раунды.
+- Следующий слой legacy skill-only guides тоже выровнен: `kakaotalk-mac`, `kbo-results`, `lotto-results` и `zipcode-search` теперь явно фиксируют `legacy-only` boundary и не выглядят как активные target-кандидаты.
+- Doc-regression расширен и на эти skill-only surfaces, чтобы migration-boundary для локальных CLI и корейских utility workflows не терялся между `docs/features/*` и `*/SKILL.md`.
 
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
-- Skill-level drift вокруг `fine-dust-location`, `srt-booking` и `ktx-booking` уже закрыт; следующий подэтап - пройти оставшиеся legacy utility guides и helper copy, которые ещё не были включены в doc-regression.
-- После cleanup railway/fine-dust skill docs стоит проверить остальные legacy utility guides на distinction между конфигурационным override, runtime defaults и реальными секретами, чтобы `~/.config/k-skill/*` и legacy endpoint'ы нигде не выглядели как основной путь для новых установок.
+- Skill-only drift для `kakaotalk-mac`, `kbo-results`, `lotto-results` и `zipcode-search` уже закрыт; следующий подэтап - добрать оставшиеся feature/skill guides без явного `## Boundary note`, прежде всего `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking`.
+- После этого cleanup стоит проверить оставшиеся helper/runtime surfaces на скрытые `k-skill`-prefixed operational defaults вне уже покрытых setup/proxy/legacy skill сценариев.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
-- После cleanup setup runtime-artifacts и первой волны skill-level docs пройти оставшиеся legacy skill-level guides и package README, где ещё могут всплывать `k-skill`-prefixed operational defaults вне секретов.
 
 ## Быстрые ссылки на ключевые функции
 

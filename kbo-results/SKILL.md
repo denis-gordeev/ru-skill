@@ -14,6 +14,10 @@ metadata:
 
 `kbo-game` 패키지로 특정 날짜 KBO 경기 정보를 가져와 경기 일정, 스코어, 상태를 요약한다.
 
+## Boundary note
+
+이 스킬은 `legacy-only` 로 유지된다. 러시아 축구 요약 replacement 는 이미 `rpl-results` 로 구현되어 있으므로, `kbo-results` 는 backward compatibility 와 reference scoreboard flow 이상으로 확장하지 않는다.
+
 ## When to use
 
 - "오늘 KBO 경기 결과 알려줘"

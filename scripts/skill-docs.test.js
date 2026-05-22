@@ -1425,6 +1425,50 @@ test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first
   );
 });
 
+test("remaining legacy skill-only guides keep explicit migration boundaries", () => {
+  const kakaoTalkGuide = read(path.join("docs", "features", "kakaotalk-mac.md"));
+  const kboGuide = read(path.join("docs", "features", "kbo-results.md"));
+  const lottoGuide = read(path.join("docs", "features", "lotto-results.md"));
+  const zipcodeGuide = read(path.join("docs", "features", "zipcode-search.md"));
+
+  const kakaoTalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  const kboSkill = read(path.join("kbo-results", "SKILL.md"));
+  const lottoSkill = read(path.join("lotto-results", "SKILL.md"));
+  const zipcodeSkill = read(path.join("zipcode-search", "SKILL.md"));
+
+  assert.match(kakaoTalkGuide, /## Boundary note/);
+  assert.match(kakaoTalkGuide, /legacy-only/);
+  assert.match(kakaoTalkGuide, /скрытый backlog/i);
+
+  assert.match(kboGuide, /## Boundary note/);
+  assert.match(kboGuide, /legacy-only/);
+  assert.match(kboGuide, /rpl-results/);
+
+  assert.match(lottoGuide, /## Boundary note/);
+  assert.match(lottoGuide, /legacy-only/);
+  assert.match(lottoGuide, /stoloto-lotto/);
+
+  assert.match(zipcodeGuide, /## Boundary note/);
+  assert.match(zipcodeGuide, /legacy-only/);
+  assert.match(zipcodeGuide, /postcalc-postcodes/);
+
+  assert.match(kakaoTalkSkill, /## Boundary note/);
+  assert.match(kakaoTalkSkill, /legacy-only/);
+  assert.match(kakaoTalkSkill, /target-messaging/i);
+
+  assert.match(kboSkill, /## Boundary note/);
+  assert.match(kboSkill, /legacy-only/);
+  assert.match(kboSkill, /rpl-results/);
+
+  assert.match(lottoSkill, /## Boundary note/);
+  assert.match(lottoSkill, /legacy-only/);
+  assert.match(lottoSkill, /stoloto-lotto/);
+
+  assert.match(zipcodeSkill, /## Boundary note/);
+  assert.match(zipcodeSkill, /legacy-only/);
+  assert.match(zipcodeSkill, /postcalc-postcodes/);
+});
+
 test("package-lock captures the yandex-market-search workspace metadata for npm ci", () => {
   const packageLock = readJson("package-lock.json");
 

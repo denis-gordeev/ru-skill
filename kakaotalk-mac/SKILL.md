@@ -16,6 +16,10 @@ metadata:
 
 이 스킬은 **macOS + 카카오톡 Mac 앱 설치**를 전제로 한다. 공식 Kakao API를 쓰는 것이 아니라 로컬 데이터베이스 읽기와 macOS 접근성 자동화 위에서 동작하므로, 권한과 안전 규칙을 먼저 확인해야 한다.
 
+## Boundary note
+
+이 스킬은 `legacy-only` 경계에 남는다. 로컬 macOS automation reference 와 backward compatibility 용도로 유지되지만, 새로운 러시아어 target-messaging 방향이나 숨은 backlog 처럼 다루지 않는다.
+
 ## When to use
 
 - "카카오톡 최근 대화 목록 보여줘"

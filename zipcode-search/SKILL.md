@@ -14,6 +14,10 @@ metadata:
 
 우체국 공식 도로명주소 검색 페이지를 조회해서 주소 키워드에 맞는 우편번호를 빠르게 찾는다.
 
+## Boundary note
+
+이 스킬은 `legacy-only` 경계에 남는다. 러시아어 index/address read-only 시나리오는 이미 `postcalc-postcodes` 가 담당하므로, `zipcode-search` 는 backward compatibility 용도로만 유지하고 새로운 target-postcode backlog 로 취급하지 않는다.
+
 ## When to use
 
 - "이 주소 우편번호 뭐야"

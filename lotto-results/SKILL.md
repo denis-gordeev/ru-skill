@@ -14,6 +14,10 @@ metadata:
 
 `k-lotto` 패키지로 동행복권 로또 최신 회차, 특정 회차, 상세 당첨 결과, 번호 대조를 처리한다.
 
+## Boundary note
+
+이 스킬은 `legacy-only` 로 남는다. 러시아 공개 로또 결과 replacement 는 이미 `stoloto-lotto` 로 구현되어 있으므로, `lotto-results` 를 새로운 target candidate 로 취급하지 않는다.
+
 ## When to use
 
 - "이번 주 로또 번호 뭐야"

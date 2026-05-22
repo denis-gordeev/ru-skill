@@ -1,5 +1,9 @@
 # Гайд по результатам KBO
 
+## Boundary note
+
+Этот сценарий остаётся `legacy-only`: для российских футбольных сводок его replacement уже реализован как `rpl-results`. `kbo-results` сохраняется ради backward compatibility и как reference scoreboard flow, но не должен выглядеть как активный target-backlog репозитория.
+
 ## Что умеет этот сценарий
 
 - Получать расписание матчей KBO на выбранную дату.

@@ -1,5 +1,9 @@
 # Гайд по CLI для KakaoTalk на macOS
 
+## Boundary note
+
+Этот сценарий остаётся `legacy-only`: он нужен для backward compatibility и как reference flow локальной macOS-автоматизации, но не считается новым российским target-направлением репозитория. Пока нет подтверждённого русскоязычного public-source replacement с сопоставимой ценностью и безопасностью, `kakaotalk-mac` не должен выглядеть как скрытый backlog на новую messaging-интеграцию.
+
 ## Что умеет этот сценарий
 
 - Читать список недавних чатов в KakaoTalk на macOS.
