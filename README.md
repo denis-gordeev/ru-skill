@@ -136,13 +136,15 @@
 - Doc-regression расширен на этот skill-level слой, чтобы railway/fine-dust copy не возвращала legacy defaults или скрытый target-backlog в новые раунды.
 - Следующий слой legacy skill-only guides тоже выровнен: `kakaotalk-mac`, `kbo-results`, `lotto-results` и `zipcode-search` теперь явно фиксируют `legacy-only` boundary и не выглядят как активные target-кандидаты.
 - Doc-regression расширен и на эти skill-only surfaces, чтобы migration-boundary для локальных CLI и корейских utility workflows не терялся между `docs/features/*` и `*/SKILL.md`.
+- Следующий слой legacy feature/skill drift тоже закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь в user-facing guides явно публикуют `## Boundary note`, а их replacement boundaries синхронизированы со связанными `SKILL.md`.
+- Doc-regression расширен и на этот feature/skill слой, чтобы replacement copy для nearby, marketplace, football и legacy railway сценариев не расходился между `docs/features/*` и `*/SKILL.md`.
 
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
-- Skill-only drift для `kakaotalk-mac`, `kbo-results`, `lotto-results` и `zipcode-search` уже закрыт; следующий подэтап - добрать оставшиеся feature/skill guides без явного `## Boundary note`, прежде всего `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking`.
-- После этого cleanup стоит проверить оставшиеся helper/runtime surfaces на скрытые `k-skill`-prefixed operational defaults вне уже покрытых setup/proxy/legacy skill сценариев.
+- Skill-only drift для `kakaotalk-mac`, `kbo-results`, `lotto-results` и `zipcode-search`, а также следующий слой legacy feature/skill guides уже закрыты; теперь следующий подэтап - пройти helper/runtime docs и scripts на оставшиеся скрытые `k-skill`-prefixed operational defaults вне уже покрытых setup/proxy/legacy skill сценариев.
+- После helper/runtime cleanup стоит отдельно добрать regression-покрытие для тех legacy feature guides, где пока проверяется только boundary copy, но не runtime/secrets behaviour.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 

@@ -1,6 +1,8 @@
 # Гайд по бронированию KTX
 
-> Legacy-совместимый сценарий для корейского KTX/Korail. Этот навык сохранён ради обратной совместимости и не считается шаблоном для новых российских write-интеграций. Для российских железнодорожных сценариев базовый discovery-путь проходит через [`yandex-rasp`](yandex-rasp.md), а product boundary по replacement-работе зафиксирован в [docs/booking-replacements.md](../booking-replacements.md).
+## Boundary note
+
+Этот сценарий остаётся `legacy-only`: это корейский KTX/Korail flow, сохранённый ради обратной совместимости. Он не считается шаблоном для новых российских write-интеграций: для российских железнодорожных сценариев базовый discovery-путь проходит через [`yandex-rasp`](yandex-rasp.md), а product boundary по replacement-работе зафиксирован в [docs/booking-replacements.md](../booking-replacements.md).
 
 ## Что умеет этот сценарий
 

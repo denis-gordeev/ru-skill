@@ -10,6 +10,10 @@ metadata:
 
 # Blue Ribbon Nearby
 
+## Boundary note
+
+Этот навык остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `blue-ribbon-nearby` сохраняется ради backward compatibility и как reference flow для location-first restaurant discovery, но не должен считаться новым target-направлением `ru-skill`.
+
 ## Что делает этот навык
 
 Показывает **ближайшие рестораны Blue Ribbon** на основе текущего местоположения, указанного пользователем, используя официальный поисковый интерфейс Blue Ribbon Survey.

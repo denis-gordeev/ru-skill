@@ -1,5 +1,9 @@
 # Гайд по результатам K League
 
+## Boundary note
+
+Этот сценарий остаётся `legacy-only`: для российских футбольных сводок его replacement уже реализован как `rpl-results`. `kleague-results` сохраняется ради backward compatibility и как reference flow по официальным schedule/standings surfaces, но не должен подаваться как незавершённый target-backlog.
+
 ## Что умеет этот сценарий
 
 - Показывать расписание и результаты матчей K League 1 и K League 2 по дате.

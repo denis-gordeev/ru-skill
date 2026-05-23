@@ -6,6 +6,8 @@
 
 ## Статус на 2026-05-22
 
+- Следующий слой legacy feature/skill drift тоже закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь явно публикуют `## Boundary note` и подтверждённые replacement boundaries на user-facing поверхностях.
+- Doc-regression расширен и на этот слой, чтобы nearby, marketplace, football и legacy railway replacement copy не расходился между `docs/features/*` и `*/SKILL.md`.
 - Корневой README, install/setup/releasing-документы уже переводятся на русскоязычную терминологию.
 - В рабочем дереве всё ещё остаются legacy-пакеты и feature-гайды с корейским контекстом.
 - GitHub Issues отключены, поэтому живой backlog ведётся в `TODO.md` и через PR.
@@ -180,8 +182,8 @@
 ## Приоритеты следующих раундов
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
-2. Fine-dust/proxy secrets-template drift и следующий skill-only слой уже закрыты; следующий шаг - добавить явные `## Boundary note` блоки в оставшиеся legacy feature/skill guides без такой секции, прежде всего `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking`.
-3. После этого пересмотреть оставшиеся helper/runtime surfaces на distinction между endpoint override, runtime defaults и реальными секретами, чтобы `~/.config/ru-skill/*` везде оставался основным путём, а legacy endpoint'ы и `~/.config/k-skill/*` — только fallback.
+2. Fine-dust/proxy secrets-template drift, skill-only drift и следующий слой legacy feature/skill guides уже закрыты; следующий шаг - пересмотреть оставшиеся helper/runtime surfaces на distinction между endpoint override, runtime defaults и реальными секретами, чтобы `~/.config/ru-skill/*` везде оставался основным путём, а legacy endpoint'ы и `~/.config/k-skill/*` — только fallback.
+3. После helper/runtime cleanup добрать regression-покрытие для legacy guides, где пока страхуется только boundary copy, но не runtime/secrets semantics.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README и отсутствию устаревшей release-археологии в README/roadmap.
 6. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.

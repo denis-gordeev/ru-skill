@@ -1469,6 +1469,64 @@ test("remaining legacy skill-only guides keep explicit migration boundaries", ()
   assert.match(zipcodeSkill, /postcalc-postcodes/);
 });
 
+test("remaining legacy feature and skill guides keep explicit replacement boundaries", () => {
+  const blueRibbonGuide = read(path.join("docs", "features", "blue-ribbon-nearby.md"));
+  const daisoGuide = read(path.join("docs", "features", "daiso-product-search.md"));
+  const kakaoBarGuide = read(path.join("docs", "features", "kakao-bar-nearby.md"));
+  const kleagueGuide = read(path.join("docs", "features", "kleague-results.md"));
+  const srtGuide = read(path.join("docs", "features", "srt-booking.md"));
+  const ktxGuide = read(path.join("docs", "features", "ktx-booking.md"));
+
+  const blueRibbonSkill = read(path.join("blue-ribbon-nearby", "SKILL.md"));
+  const daisoSkill = read(path.join("daiso-product-search", "SKILL.md"));
+  const kakaoBarSkill = read(path.join("kakao-bar-nearby", "SKILL.md"));
+  const kleagueSkill = read(path.join("kleague-results", "SKILL.md"));
+
+  assert.match(blueRibbonGuide, /## Boundary note/);
+  assert.match(blueRibbonGuide, /legacy-only/);
+  assert.match(blueRibbonGuide, /osm-nearby/);
+  assert.match(blueRibbonGuide, /zoon-nearby/);
+
+  assert.match(daisoGuide, /## Boundary note/);
+  assert.match(daisoGuide, /legacy-only/);
+  assert.match(daisoGuide, /yandex-market-search/);
+
+  assert.match(kakaoBarGuide, /## Boundary note/);
+  assert.match(kakaoBarGuide, /legacy-only/);
+  assert.match(kakaoBarGuide, /osm-nearby/);
+  assert.match(kakaoBarGuide, /zoon-nearby/);
+
+  assert.match(kleagueGuide, /## Boundary note/);
+  assert.match(kleagueGuide, /legacy-only/);
+  assert.match(kleagueGuide, /rpl-results/);
+
+  assert.match(srtGuide, /## Boundary note/);
+  assert.match(srtGuide, /legacy-only/);
+  assert.match(srtGuide, /yandex-rasp/);
+
+  assert.match(ktxGuide, /## Boundary note/);
+  assert.match(ktxGuide, /legacy-only/);
+  assert.match(ktxGuide, /yandex-rasp/);
+
+  assert.match(blueRibbonSkill, /## Boundary note/);
+  assert.match(blueRibbonSkill, /legacy-only/);
+  assert.match(blueRibbonSkill, /osm-nearby/);
+  assert.match(blueRibbonSkill, /zoon-nearby/);
+
+  assert.match(daisoSkill, /## Boundary note/);
+  assert.match(daisoSkill, /legacy-only/);
+  assert.match(daisoSkill, /yandex-market-search/);
+
+  assert.match(kakaoBarSkill, /## Boundary note/);
+  assert.match(kakaoBarSkill, /legacy-only/);
+  assert.match(kakaoBarSkill, /osm-nearby/);
+  assert.match(kakaoBarSkill, /zoon-nearby/);
+
+  assert.match(kleagueSkill, /## Boundary note/);
+  assert.match(kleagueSkill, /legacy-only/);
+  assert.match(kleagueSkill, /rpl-results/);
+});
+
 test("package-lock captures the yandex-market-search workspace metadata for npm ci", () => {
   const packageLock = readJson("package-lock.json");
 

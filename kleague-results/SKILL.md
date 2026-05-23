@@ -10,6 +10,10 @@ metadata:
 
 # Результаты K League
 
+## Boundary note
+
+Этот навык остаётся `legacy-only`: для российских футбольных сводок его replacement уже реализован как `rpl-results`. `kleague-results` сохраняется ради backward compatibility и как reference flow по официальным schedule/standings surfaces, но не должен подаваться как незавершённый target-backlog.
+
 ## Что делает этот навык
 
 Запрашивает результаты матчей K League1/K League2 за определённую дату через официальный JSON K League и при необходимости фильтрует по конкретной команде (например: `FC서울`, `서울 이랜드`, код команды `K09`), затем показывает текущую турнирную таблицу.

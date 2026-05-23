@@ -1,5 +1,9 @@
 # Гайд по поиску баров рядом через Kakao Map
 
+## Boundary note
+
+Этот сценарий остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `kakao-bar-nearby` сохраняется ради backward compatibility и как reference flow по live place lookup, но не должен выглядеть как активный target-backlog.
+
 ## Что умеет этот сценарий
 
 - Превращать запросы вроде `Сеульский вокзал`, `Gangnam`, `Sadang` или `Nonhyeon` в поиск баров по Kakao Map.
