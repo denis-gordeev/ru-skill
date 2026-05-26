@@ -4,6 +4,14 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-26 (раунд 19)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт следующий слой русификации helper/runtime scripts и setup-skill: корейские тексты в `fine_dust.py`, `ktx_booking.py`, `docs/features/fine-dust-location.md` и `k-skill-setup/SKILL.md` переведены на русский.
+- `k-skill-setup/SKILL.md` больше не направляет GitHub star на `NomaDamas/k-skill`; целевой репозиторий исправлен на `denis-gordeev/ru-skill`.
+- Doc-regression тесты обновлены под русскоязычные формулировки в fine-dust docs.
+- Полный CI проходит: lint, typecheck, 73 pass / 0 fail / 1 skipped, pack:dry-run.
+
 ## Статус на 2026-05-23 (раунд 18)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -217,7 +225,7 @@
 - [x] Пройти следующий слой legacy skill-only guides вне railway/fine-dust контура и добавить им явный `legacy-only` boundary note.
 - [x] Пройти следующий слой legacy feature/skill guides и добавить им явный `## Boundary note` с подтверждённым replacement boundary.
 - [x] Расширить doc-regression на `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby` и `kleague-results`, чтобы replacement copy не расходился между feature guides и `SKILL.md`.
-- [ ] Проверить, не осталось ли в helper/runtime документации других `k-skill`-prefixed operational defaults за пределами уже покрытых setup/proxy/railway сценариев.
+- [x] Проверить, не осталось ли в helper/runtime документации других `k-skill`-prefixed operational defaults за пределами уже покрытых setup/proxy/railway сценариев.
 - [ ] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
 
 - [x] Выбрать 9-й российский read-only источник в домене транспорта/городских сервисов (Яндекс.Расписания).
@@ -266,7 +274,7 @@
 ## Новые пункты плана
 
 - [ ] Добавить явные `## Boundary note` блоки в оставшиеся legacy feature/skill guides без такой секции: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, а также унифицировать форму для `srt-booking` и `ktx-booking`.
-- [ ] Проверить helper/runtime copy за пределами setup/proxy контура на скрытые `k-skill`-prefixed operational defaults и при необходимости расширить на этот слой doc-regression.
+- [x] Проверить helper/runtime copy за пределами setup/proxy контура на скрытые `k-skill`-prefixed operational defaults и при необходимости расширить на этот слой doc-regression.
 
 ## Выполнено в этом раунде (раунд 5)
 
@@ -358,9 +366,25 @@
 
 - [x] Довести тот же optional-override vs real-credential split до первой пачки package README и package-level boundary notes за пределами fine-dust/proxy-контура.
 - [x] Добавить doc-regression на package README для `legacy-only` boundary и уже подтверждённых российских replacements.
-- [ ] Проверить оставшиеся legacy setup/runtime helper'ы на подсказки, которые всё ещё могут продвигать `~/.config/k-skill/*` как неявный основной путь.
-- [ ] Пройти оставшиеся skill-level guides и package README, где корейский контекст ещё допустим технически, но не должен звучать как продуктовый default.
+- [x] Проверить оставшиеся legacy setup/runtime helper'ы на подсказки, которые всё ещё могут продвигать `~/.config/k-skill/*` как неявный основной путь.
+- [x] Пройти оставшиеся skill-level guides и package README, где корейский контекст ещё допустим технически, но не должен звучать как продуктовый default.
 - [ ] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback.
+
+## Выполнено в этом раунде (раунд 19)
+
+- [x] `scripts/fine_dust.py` русифицирован: корейские метки качества, ошибки, текстовый вывод и argparse help переведены на русский.
+- [x] `scripts/ktx_booking.py` русифицирован: корейские help-строки argparse переведены на русский.
+- [x] `scripts/test_fine_dust.py` обновлён: assertions синхронизированы с русскоязычными переводами fine_dust.py.
+- [x] `docs/features/fine-dust-location.md` русифицирован: корейские описательные термины (`행정구역`, `지역명`, `측정소`, `조회 시각` и др.) заменены русскими аналогами.
+- [x] `scripts/skill-docs.test.js` обновлён: doc-regression assertions для fine-dust docs синхронизированы с русскоязычными формулировками.
+- [x] `k-skill-setup/SKILL.md` исправлен: GitHub star направлен на `denis-gordeev/ru-skill` вместо `NomaDamas/k-skill`.
+- [x] Проведён аудит helper/runtime scripts на оставшиеся `k-skill`-prefixed defaults: `shared_secrets.py`, `check-setup.sh` и `run-k-skill-proxy.sh` корректно используют `ru-skill`-first порядок; legacy fallback сохранён только как совместимый путь.
+- [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 73 pass / 0 fail / 1 skipped, pack:dry-run.
+
+## Новые пункты плана
+
+- [ ] Расширить русификацию на `packages/k-skill-proxy/src/server.js` и `packages/k-skill-proxy/test/server.test.js`, где корейские ошибки и лог-сообщения ещё не переведены.
+- [ ] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
 
 ## Выполнено в этом раунде (раунд 14)
 

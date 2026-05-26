@@ -65,8 +65,8 @@ class FineDustTests(unittest.TestCase):
         )
 
         self.assertEqual(report["station_name"], "중구")
-        self.assertEqual(report["pm10"], {"value": "42", "grade": "보통"})
-        self.assertEqual(report["pm25"], {"value": "19", "grade": "보통"})
+        self.assertEqual(report["pm10"], {"value": "42", "grade": "Удовлетворительно"})
+        self.assertEqual(report["pm25"], {"value": "19", "grade": "Удовлетворительно"})
         self.assertEqual(report["measured_at"], "2026-03-27 21:00")
 
     def test_build_report_marks_khai_grade_unknown_when_api_omits_it(self):
@@ -86,7 +86,7 @@ class FineDustTests(unittest.TestCase):
             station_name="중구",
         )
 
-        self.assertEqual(report["khai_grade"], "정보없음")
+        self.assertEqual(report["khai_grade"], "Нет данных")
 
     def test_cli_report_supports_fixture_inputs(self):
         station_path = FIXTURES / "fine-dust-stations.json"
@@ -107,9 +107,9 @@ class FineDustTests(unittest.TestCase):
             ])
 
         rendered = stdout.getvalue()
-        self.assertIn("측정소: 중구", rendered)
-        self.assertIn("PM10: 42 (보통)", rendered)
-        self.assertIn("PM2.5: 19 (보통)", rendered)
+        self.assertIn("Станция: 중구", rendered)
+        self.assertIn("PM10: 42 (Удовлетворительно)", rendered)
+        self.assertIn("PM2.5: 19 (Удовлетворительно)", rendered)
 
     def test_live_station_lookup_converts_lat_lon_before_nearby_request(self):
         args = fine_dust.parse_args(["report", "--lat", "37.5665", "--lon", "126.9780"])
@@ -261,9 +261,9 @@ class FineDustTests(unittest.TestCase):
             "station_address": "서울 강남구 학동로 426",
             "lookup_mode": "fallback",
             "measured_at": "2026-03-27 21:00",
-            "pm10": {"value": "42", "grade": "보통"},
-            "pm25": {"value": "19", "grade": "보통"},
-            "khai_grade": "보통",
+            "pm10": {"value": "42", "grade": "Удовлетворительно"},
+            "pm25": {"value": "19", "grade": "Удовлетворительно"},
+            "khai_grade": "Удовлетворительно",
             "proxy": {"name": "k-skill-proxy"},
         }
 

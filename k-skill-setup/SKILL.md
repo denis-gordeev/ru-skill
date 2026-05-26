@@ -152,7 +152,7 @@ schtasks /Create /SC DAILY /TN "ru-skill-update-check" /TR "\"$HOME/.config/ru-s
 В конце настройки задайте короткий вопрос:
 
 ```text
-Поставить ли GitHub star репозиторию k-skill (NomaDamas/k-skill)?
+Поставить ли GitHub star репозиторию ru-skill (denis-gordeev/ru-skill)?
 При согласии выполню через `gh`, при отказе пропущу.
 ```
 
@@ -160,12 +160,12 @@ schtasks /Create /SC DAILY /TN "ru-skill-update-check" /TR "\"$HOME/.config/ru-s
 
 - Не выполняйте `gh repo star` без явного согласия пользователя
 - При отсутствии или неаутентифицированном `gh` только проинструктируйте по установке/входу, не используйте обходные пути
-- Целевой репозиторий для star: `NomaDamas/k-skill`
+- Целевой репозиторий для star: `denis-gordeev/ru-skill`
 
 При согласии и рабочем `gh auth status`:
 
 ```bash
-gh repo star NomaDamas/k-skill
+gh repo star denis-gordeev/ru-skill
 ```
 
 При успехе кратко сообщите о завершении.

@@ -699,45 +699,45 @@ def command_cancel(args: argparse.Namespace) -> None:
 
 
 def add_common_trip_args(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("dep", help="출발역")
-    parser.add_argument("arr", help="도착역")
-    parser.add_argument("date", help="출발일 YYYYMMDD")
-    parser.add_argument("time", help="희망 시작 시각 HHMMSS")
-    parser.add_argument("--adults", type=int, default=1, help="성인 수")
-    parser.add_argument("--children", type=int, default=0, help="어린이 수")
-    parser.add_argument("--toddlers", type=int, default=0, help="유아 수")
-    parser.add_argument("--seniors", type=int, default=0, help="경로 수")
+    parser.add_argument("dep", help="Станция отправления")
+    parser.add_argument("arr", help="Станция прибытия")
+    parser.add_argument("date", help="Дата отправления YYYYMMDD")
+    parser.add_argument("time", help="Желаемое время отправления HHMMSS")
+    parser.add_argument("--adults", type=int, default=1, help="Количество взрослых")
+    parser.add_argument("--children", type=int, default=0, help="Количество детей")
+    parser.add_argument("--toddlers", type=int, default=0, help="Количество малышей")
+    parser.add_argument("--seniors", type=int, default=0, help="Количество пенсионеров")
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Patched KTX/Korail booking helper for ru-skill")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    search_parser = subparsers.add_parser("search", help="KTX 열차를 조회합니다")
+    search_parser = subparsers.add_parser("search", help="Поиск поездов KTX")
     add_common_trip_args(search_parser)
-    search_parser.add_argument("--limit", type=int, default=5, help="출력할 최대 열차 수")
-    search_parser.add_argument("--include-no-seats", action="store_true", help="매진 열차도 포함")
-    search_parser.add_argument("--include-waiting-list", action="store_true", help="예약 대기 가능 열차도 포함")
+    search_parser.add_argument("--limit", type=int, default=5, help="Максимальное количество поездов")
+    search_parser.add_argument("--include-no-seats", action="store_true", help="Включить распроданные поезда")
+    search_parser.add_argument("--include-waiting-list", action="store_true", help="Включить поезда с листом ожидания")
     search_parser.set_defaults(func=command_search)
 
-    reserve_parser = subparsers.add_parser("reserve", help="조회 결과 중 하나를 예약합니다")
+    reserve_parser = subparsers.add_parser("reserve", help="Забронировать один из найденных поездов")
     add_common_trip_args(reserve_parser)
-    reserve_parser.add_argument("--train-id", required=True, help="search 결과에서 복사한 stable train_id")
+    reserve_parser.add_argument("--train-id", required=True, help="stable train_id из результатов поиска")
     reserve_parser.add_argument("--seat-option", choices=sorted(RESERVE_OPTION_MAP), default="general-first")
-    reserve_parser.add_argument("--include-no-seats", action="store_true", help="검색 시 매진 열차도 포함")
-    reserve_parser.add_argument("--include-waiting-list", action="store_true", help="검색 시 예약대기 열차도 포함")
+    reserve_parser.add_argument("--include-no-seats", action="store_true", help="Включить распроданные поезда при поиске")
+    reserve_parser.add_argument("--include-waiting-list", action="store_true", help="Включить лист ожидания при поиске")
     reserve_parser.add_argument(
         "--try-waiting",
         action="store_true",
-        help="좌석이 없으면 예약대기를 시도 (reserve 재조회 시 예약대기 열차 자동 포함)",
+        help="Если мест нет, попытаться встать в лист ожидания",
     )
     reserve_parser.set_defaults(func=command_reserve)
 
-    reservations_parser = subparsers.add_parser("reservations", help="현재 예약 목록을 조회합니다")
+    reservations_parser = subparsers.add_parser("reservations", help="Показать текущие бронирования")
     reservations_parser.set_defaults(func=command_reservations)
 
-    cancel_parser = subparsers.add_parser("cancel", help="예약번호로 예약을 취소합니다")
-    cancel_parser.add_argument("reservation_id", help="취소할 예약번호")
+    cancel_parser = subparsers.add_parser("cancel", help="Отменить бронирование по номеру")
+    cancel_parser.add_argument("reservation_id", help="Номер бронирования для отмены")
     cancel_parser.set_defaults(func=command_cancel)
 
     return parser
