@@ -95,7 +95,7 @@ function buildRateLimiter(config) {
     if (current.count >= config.rateLimitMax) {
       reply.code(429).send({
         error: "rate_limited",
-        message: "Too many requests.",
+        message: "Слишком много запросов.",
         retry_after_ms: current.resetAt - now
       });
       return false;
@@ -111,7 +111,7 @@ function normalizeFineDustQuery(query) {
   const stationName = trimOrNull(query.stationName ?? query.station_name);
 
   if (!regionHint && !stationName) {
-    throw new Error("Provide regionHint or stationName.");
+    throw new Error("Укажите regionHint или stationName.");
   }
 
   return {
@@ -131,7 +131,7 @@ async function proxyAirKoreaRequest({ service, operation, query, serviceKey, fet
       contentType: "application/json; charset=utf-8",
       body: JSON.stringify({
         error: "upstream_not_configured",
-        message: "AIR_KOREA_OPEN_API_KEY is not configured on the proxy server."
+        message: "AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере."
       })
     };
   }
@@ -142,7 +142,7 @@ async function proxyAirKoreaRequest({ service, operation, query, serviceKey, fet
       contentType: "application/json; charset=utf-8",
       body: JSON.stringify({
         error: "not_found",
-        message: "That AirKorea route is not exposed by this proxy."
+        message: "Этот маршрут AirKorea не доступен через прокси."
       })
     };
   }
@@ -256,7 +256,7 @@ function buildServer({ env = process.env, provider = null } = {}) {
       reply.code(503);
       return {
         error: "upstream_not_configured",
-        message: "AIR_KOREA_OPEN_API_KEY is not configured on the proxy server.",
+        message: "AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.",
         proxy: {
           name: config.proxyName,
           cache: {

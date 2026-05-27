@@ -4,6 +4,15 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-27 (раунд 20)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт следующий слой русификации proxy/runtime: корейские ошибки и лог-сообщения в `packages/k-skill-proxy/src/airkorea.js` и `packages/k-skill-proxy/src/server.js` переведены на русский.
+- Grade labels (좋음/보통/나쁨/매우나쁨/정보없음) → (Хорошо/Умеренно/Плохо/Очень плохо/Нет данных).
+- Error messages (측정소 후보가 없습니다, regionHint 필요합니다 и др.) переведены на русский.
+- Тесты `packages/k-skill-proxy/test/airkorea.test.js` и `test/server.test.js` синхронизированы с русскоязычными grade labels и error messages.
+- Полный CI проходит: lint, typecheck, 73 pass / 0 fail / 1 skipped, pack:dry-run.
+
 ## Статус на 2026-05-26 (раунд 19)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -273,7 +282,7 @@
 
 ## Новые пункты плана
 
-- [ ] Добавить явные `## Boundary note` блоки в оставшиеся legacy feature/skill guides без такой секции: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, а также унифицировать форму для `srt-booking` и `ktx-booking`.
+- [x] Добавить явные `## Boundary note` блоки в оставшиеся legacy feature/skill guides без такой секции: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, а также унифицировать форму для `srt-booking` и `ktx-booking`.
 - [x] Проверить helper/runtime copy за пределами setup/proxy контура на скрытые `k-skill`-prefixed operational defaults и при необходимости расширить на этот слой doc-regression.
 
 ## Выполнено в этом раунде (раунд 5)
@@ -383,8 +392,16 @@
 
 ## Новые пункты плана
 
-- [ ] Расширить русификацию на `packages/k-skill-proxy/src/server.js` и `packages/k-skill-proxy/test/server.test.js`, где корейские ошибки и лог-сообщения ещё не переведены.
+- [x] Расширить русификацию на `packages/k-skill-proxy/src/server.js` и `packages/k-skill-proxy/test/server.test.js`, где корейские ошибки и лог-сообщения ещё не переведены.
 - [ ] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
+
+## Выполнено в этом раунде (раунд 20)
+
+- [x] `packages/k-skill-proxy/src/airkorea.js` русифицирован: корейские grade labels, error messages и log messages переведены на русский.
+- [x] `packages/k-skill-proxy/src/server.js` русифицирован: error messages и rate-limit message переведены на русский.
+- [x] `packages/k-skill-proxy/test/airkorea.test.js` обновлён: assertions синхронизированы с русскоязычными grade labels.
+- [x] `packages/k-skill-proxy/test/server.test.js` обновлён: mock provider messages и grade labels синхронизированы с русскоязычными переводами.
+- [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 73 pass / 0 fail / 1 skipped, pack:dry-run.
 
 ## Выполнено в этом раунде (раунд 14)
 

@@ -58,7 +58,7 @@ test("fine dust endpoint returns candidate stations when region resolution is am
       AIR_KOREA_OPEN_API_KEY: "airkorea-key"
     },
     provider: async () => {
-      const error = new Error("단일 측정소를 확정하지 못했습니다.");
+      const error = new Error("Для указанного региона не удалось однозначно определить станцию мониторинга.");
       error.statusCode = 400;
       error.code = "ambiguous_location";
       error.sidoName = "광주";
@@ -96,9 +96,9 @@ test("fine dust endpoint caches successful provider responses", async (t) => {
         station_address: "서울 강남구 학동로 426",
         lookup_mode: "fallback",
         measured_at: "2026-03-27 21:00",
-        pm10: { value: "42", grade: "보통" },
-        pm25: { value: "19", grade: "보통" },
-        khai_grade: "보통"
+        pm10: { value: "42", grade: "Умеренно" },
+        pm25: { value: "19", grade: "Умеренно" },
+        khai_grade: "Умеренно"
       };
     }
   });

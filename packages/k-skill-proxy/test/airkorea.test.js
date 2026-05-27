@@ -62,8 +62,8 @@ test("buildReport combines station and measurement summary", () => {
   });
 
   assert.equal(report.station_name, "강남구");
-  assert.deepEqual(report.pm10, { value: "42", grade: "보통" });
-  assert.deepEqual(report.pm25, { value: "19", grade: "보통" });
+  assert.deepEqual(report.pm10, { value: "42", grade: "Умеренно" });
+  assert.deepEqual(report.pm25, { value: "19", grade: "Умеренно" });
   assert.equal(report.lookup_mode, "fallback");
 });
 
