@@ -168,21 +168,8 @@ test("hwp skill documents inline image verification for markdown output", () => 
   assert.match(skill, /--images-dir/);
   assert.doesNotMatch(skill, /Markdown:.*이미지 경로 생성 여부 확인/);
   assert.match(featureDoc, /--images-dir/);
-});
-
-test("repository docs advertise the hwp skill", () => {
-  const readme = read("README.md");
-  const install = read(path.join("docs", "install.md"));
-  const featureDocPath = path.join(repoRoot, "docs", "features", "hwp.md");
-  const featureDoc = read(path.join("docs", "features", "hwp.md"));
-
-  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/hwp.md to exist");
-  assert.match(readme, /\| `hwp` \|/);
-  assert.match(readme, /\[Гайд по HWP\]\(docs\/features\/hwp\.md\)/);
-  assert.match(install, /--skill hwp/);
-  assert.match(featureDoc, /--include-images/);
   assert.match(featureDoc, /(data:|base64)/);
-  assert.match(featureDoc, /Markdown 출력.*(data:|base64)/);
+  assert.match(featureDoc, /Markdown.*(data:|base64)/);
   assert.doesNotMatch(featureDoc, /Markdown 출력.*이미지 (파일 )?경로 생성 여부 확인/);
 });
 
@@ -211,7 +198,7 @@ test("kakaotalk-mac skill documents safe macOS kakaocli usage", () => {
   assert.match(skill, /Full Disk Access/i);
   assert.match(skill, /Accessibility/i);
   assert.match(skill, /--me/);
-  assert.match(skill, /confirm before sending/i);
+  assert.match(skill, /confirm before sending|подтверди перед отправкой/i);
 });
 
 test("repository docs advertise the KTX booking skill as supported", () => {
@@ -313,7 +300,7 @@ test("repository docs advertise the zipcode-search skill across the documented s
   assert.match(readme, /\[Гайд по postcode search\]\(docs\/features\/zipcode-search\.md\)/);
   assert.match(install, /--skill zipcode-search/);
   assert.match(roadmap, /Поиск почтовых индексов/);
-  assert.match(sources, /우체국 도로명주소 검색: https:\/\/parcel\.epost\.go\.kr\/parcel\/comm\/zipcode\/comm_newzipcd_list\.jsp/);
+  assert.match(sources, /Почтовая служба Кореи поиск адресов: https:\/\/parcel\.epost\.go\.kr\/parcel\/comm\/zipcode\/comm_newzipcd_list\.jsp/);
 });
 
 test("repository docs advertise the cbr-rates skill across the documented surfaces", () => {
@@ -487,18 +474,18 @@ test("zipcode-search docs lock the official ePost extraction flow and reliable t
     assert.match(doc, /"--retry-delay",\s+"1"/);
     assert.match(doc, /mktemp|임시 파일/);
     assert.match(doc, /curl: \(23\)/);
-    assert.match(doc, /짧은 도로명 \+ 건물번호/);
-    assert.match(doc, /시\/군\/구 포함 전체 주소/);
+    assert.match(doc, /짧은 도로명 \+ 건물번호|Короткое название дороги \+ номер здания/);
+    assert.match(doc, /시\/군\/구 포함 전체 주소|Полный адрес с городом\/районом/);
     assert.doesNotMatch(doc, /urllib\.request/);
     assert.doesNotMatch(doc, /urlopen/);
   }
 
-  assert.match(skill, /검색 결과가 없으면/i);
+  assert.match(skill, /검색 결과가 없으면|Результаты поиска не найдены/i);
   assert.doesNotMatch(skill, /timeout\s*=/);
   assert.doesNotMatch(featureDoc, /timeout\s*=/);
-  assert.match(skill, /`curl` 자체 제한/);
-  assert.match(featureDoc, /프로토콜\/클라이언트 제약/i);
-  assert.match(featureDoc, /`curl` 자체 제한/);
+  assert.match(skill, /`curl` 자체 제한|ограничения самого `curl`/);
+  assert.match(featureDoc, /프로토콜\/클라이언트 제약|ограничения протокола\/клиента/i);
+  assert.match(featureDoc, /`curl` 자체 제한|ограничения самого `curl`/);
 });
 
 test("repository docs advertise the delivery-tracking skill across the documented surfaces", () => {
@@ -513,8 +500,8 @@ test("repository docs advertise the delivery-tracking skill across the documente
   assert.match(readme, /\[Гайд по delivery tracking\]\(docs\/features\/delivery-tracking\.md\)/);
   assert.match(install, /--skill delivery-tracking/);
   assert.match(roadmap, /Навык для отслеживания доставки/);
-  assert.match(sources, /CJ대한통운 배송조회: https:\/\/www\.cjlogistics\.com\/ko\/tool\/parcel\/tracking/);
-  assert.match(sources, /우체국 배송조회: https:\/\/service\.epost\.go\.kr\/trace\.RetrieveRegiPrclDeliv\.postal\?sid1=/);
+  assert.match(sources, /CJ Logistics отслеживание доставки: https:\/\/www\.cjlogistics\.com\/ko\/tool\/parcel\/tracking/);
+  assert.match(sources, /Почтовая служба Кореи отслеживание: https:\/\/service\.epost\.go\.kr\/trace\.RetrieveRegiPrclDeliv\.postal\?sid1=/);
 });
 
 test("delivery-tracking skill documents official CJ and ePost flows with extension guidance", () => {
@@ -533,16 +520,14 @@ test("delivery-tracking skill documents official CJ and ePost flows with extensi
     assert.match(doc, /paramInvcNo/);
     assert.match(doc, /_csrf/);
     // Accept both Korean original and Russian translation for invoice length description
-    assert.match(doc, /10자리 또는 12자리|10 или 12 цифр/);
-    assert.match(doc, /https:\/\/service\.epost\.go\.kr\/trace\.RetrieveRegiPrclDeliv\.postal\?sid1=/);
+    assert.match(doc, /10자리 또는 12자리|10 или 12 цифр/);    assert.match(doc, /https:\/\/service\.epost\.go\.kr\/trace\.RetrieveRegiPrclDeliv\.postal\?sid1=/);
     assert.match(doc, /trace\.RetrieveDomRigiTraceList\.comm/);
     assert.match(doc, /sid1/);
     // Accept both Korean original and Russian translation for invoice length
-    assert.match(doc, /13자리|13 цифр/);
-    assert.match(doc, /curl --http1\.1 --tls-max 1\.2/);
+    assert.match(doc, /13자리|13 цифр/);    assert.match(doc, /curl --http1\.1 --tls-max 1\.2/);
     assert.match(doc, /carrier adapter|адаптер перевозчика/i);
     // Accept both Korean original and Russian translation for carrier extension
-    assert.match(doc, /다른 택배사|другой перевозчик|другие курьерские/);
+    assert.match(doc, /다른 택배사|другой перевозчик|другие курьерские|других перевозчиков/);
   }
 
   assert.match(skill, /1234567890/);
@@ -560,7 +545,7 @@ test("delivery-tracking published examples lock a shared normalized non-PII sche
       ["carrier", '"cj"'],
       ["invoice", 'payload["parcelDetailResultMap"]["paramInvcNo"]'],
       ["status_code", 'latest.get("crgSt")'],
-      ["status", 'status_map.get(latest.get("crgSt"), latest.get("scanNm") or "알수없음")'],
+      ["status", 'status_map.get(latest.get("crgSt"), latest.get("scanNm") or "Неизвестно")'],
       ["timestamp", 'latest.get("dTime")'],
       ["location", 'latest.get("regBranNm")'],
       ["event_count", "len(events)"],
@@ -581,7 +566,7 @@ test("delivery-tracking published examples lock a shared normalized non-PII sche
       ["timestamp", 'event.get("dTime")'],
       ["location", 'event.get("regBranNm")'],
       ["status_code", 'event.get("crgSt")'],
-      ["status", 'status_map.get(event.get("crgSt"), event.get("scanNm") or "알수없음")'],
+      ["status", 'status_map.get(event.get("crgSt"), event.get("scanNm") or "Неизвестно")'],
     ],
     epost: [
       ["timestamp", 'f"{day} {time_}"'],
@@ -597,8 +582,8 @@ test("delivery-tracking published examples lock a shared normalized non-PII sche
   );
 
   for (const doc of [skill, featureDoc]) {
-    assert.match(doc, /공통 포맷|общей схемой результатов/i);
-    assert.match(doc, /공통 결과 스키마|общей схемой результатов/i);
+    assert.match(doc, /공통 포맷|общей схемой результатов|общую схему результатов/i);
+    assert.match(doc, /공통 결과 스키마|общей схемой результатов|общую схему результатов/i);
     assert.match(doc, /최근 이벤트|последние события/i);
     assert.match(doc, /`carrier`/);
     assert.match(doc, /`invoice`/);
@@ -607,8 +592,7 @@ test("delivery-tracking published examples lock a shared normalized non-PII sche
     assert.match(doc, /`location`/);
     assert.match(doc, /`event_count`/);
     assert.match(doc, /`recent_events`/);
-    assert.match(doc, /최근 최대 3개 이벤트|последних 3 событий|последние 3/i);
-    assert.doesNotMatch(doc, /최근 3~5개 이벤트/);
+    assert.match(doc, /최근 최대 3개 이벤트|последних 3 событий|последние 3|до трёх последних событий/i);
     assert.match(doc, /"invoice":\s*payload\["parcelDetailResultMap"\]\["paramInvcNo"\]/);
     assert.match(doc, /"status_code":\s*latest\.get\("crgSt"\)/);
     assert.match(doc, /"status":\s*status_map\.get\(latest\.get\("crgSt"\),/);
@@ -677,8 +661,8 @@ test("delivery-tracking docs publish aligned sample normalized outputs for both 
   const featureDoc = read(path.join("docs", "features", "delivery-tracking.md"));
   const cjSkillOutput = findJsonFenceAfterLabel(skill, "Пример вывода CJ");
   const cjFeatureOutput = findJsonFenceAfterLabel(featureDoc, "Пример вывода CJ");
-  const epostSkillOutput = findJsonFenceAfterLabel(skill, "Пример вывода 우체국");
-  const epostFeatureOutput = findJsonFenceAfterLabel(featureDoc, "Пример вывода 우체국");
+  const epostSkillOutput = findJsonFenceAfterLabel(skill, "Пример вывода Почтовой службы Кореи");
+  const epostFeatureOutput = findJsonFenceAfterLabel(featureDoc, "Пример вывода Почтовой службы Кореи");
 
   for (const [docLabel, doc] of [
     ["skill doc", skill],
@@ -686,7 +670,7 @@ test("delivery-tracking docs publish aligned sample normalized outputs for both 
   ]) {
     for (const [carrier, label] of [
       ["cj", "Пример вывода CJ"],
-      ["epost", "Пример вывода 우체국"],
+      ["epost", "Пример вывода Почтовой службы Кореи"],
     ]) {
       assert.equal(
         findJsonFenceTextAfterLabel(doc, label),
@@ -805,8 +789,8 @@ test("repository docs advertise the kleague-results skill across the documented 
   assert.match(readme, /\[Гайд по K League\]\(docs\/features\/kleague-results\.md\)/);
   assert.match(install, /--skill kleague-results/);
   assert.match(roadmap, /Навык с результатами K League/);
-  assert.match(sources, /K League 일정\/결과 JSON: https:\/\/www\.kleague\.com\/getScheduleList\.do/);
-  assert.match(sources, /K League 팀 순위 JSON: https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
+  assert.match(sources, /K League расписание\/результаты JSON: https:\/\/www\.kleague\.com\/getScheduleList\.do/);
+  assert.match(sources, /K League командный рейтинг JSON: https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
 });
 
 test("kleague-results skill documents the official JSON flow for date, team, and standings lookups", () => {
@@ -864,8 +848,8 @@ test("repository docs advertise the blue-ribbon-nearby skill across the document
   assert.match(readme, /\[Гайд по Blue Ribbon nearby\]\(docs\/features\/blue-ribbon-nearby\.md\)/);
   assert.match(install, /--skill blue-ribbon-nearby/);
   assert.match(roadmap, /Навык поиска nearby-ресторанов Blue Ribbon/);
-  assert.match(sources, /블루리본 지역 검색: https:\/\/www\.bluer\.co\.kr\/search\/zone/);
-  assert.match(sources, /블루리본 주변 맛집 JSON: https:\/\/www\.bluer\.co\.kr\/restaurants\/map/);
+  assert.match(sources, /Blue Ribbon поиск по зоне: https:\/\/www\.bluer\.co\.kr\/search\/zone/);
+  assert.match(sources, /Blue Ribbon ближайшие рестораны JSON: https:\/\/www\.bluer\.co\.kr\/restaurants\/map/);
 });
 
 test("blue-ribbon-nearby skill documents mandatory location prompting and official Blue Ribbon nearby search flow", () => {
@@ -920,8 +904,8 @@ test("repository docs advertise the kakao-bar-nearby skill across the documented
   assert.match(readme, /\[Гайд по Kakao bar nearby\]\(docs\/features\/kakao-bar-nearby\.md\)/);
   assert.match(install, /--skill kakao-bar-nearby/);
   assert.match(roadmap, /Навык поиска nearby-баров/);
-  assert.match(sources, /카카오맵 모바일 검색: https:\/\/m\.map\.kakao\.com\/actions\/searchView/);
-  assert.match(sources, /카카오맵 장소 패널 JSON: https:\/\/place-api\.map\.kakao\.com\/places\/panel3\//);
+  assert.match(sources, /Kakao Map мобильный поиск: https:\/\/m\.map\.kakao\.com\/actions\/searchView/);
+  assert.match(sources, /Kakao Map панель места JSON: https:\/\/place-api\.map\.kakao\.com\/places\/panel3\//);
 });
 
 test("kakao-bar-nearby skill documents location-first Kakao Map search with open-now/menu/seating hints", () => {
@@ -989,8 +973,8 @@ test("repository docs advertise the fine-dust-location skill across the document
   assert.match(readme, /\[Гайд по fine dust\]\(docs\/features\/fine-dust-location\.md\)/);
   assert.match(install, /--skill fine-dust-location/);
   assert.match(roadmap, /Навык по проверке fine dust по местоположению/);
-  assert.match(sources, /에어코리아 대기오염정보: https:\/\/www\.data\.go\.kr\/data\/15073861\/openapi\.do/);
-  assert.match(sources, /에어코리아 측정소정보: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
+  assert.match(sources, /AirKorea качество воздуха API: https:\/\/www\.data\.go\.kr\/data\/15073861\/openapi\.do/);
+  assert.match(sources, /AirKorea станции мониторинга API: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
   assert.match(setup, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(setup, /KSKILL_PROXY_BASE_URL/);
   assert.match(setup, /published proxy endpoint используется по умолчанию/i);

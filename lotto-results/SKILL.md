@@ -1,6 +1,6 @@
 ---
 name: lotto-results
-description: Check Korean Lotto draw results, latest rounds, and ticket matches with the k-lotto npm package. Use when the user asks for winning numbers, payout details, or whether their numbers matched.
+description: Проверка результатов розыгрышей корейской лотереи, последних тиражей и совпадений билетов через пакет k-lotto npm. Используется, когда пользователь спрашивает о выигрышных номерах, деталях выплат или совпадении своих номеров.
 license: MIT
 metadata:
   category: utility
@@ -8,48 +8,48 @@ metadata:
   phase: v1
 ---
 
-# Lotto Results
+# Результаты лотереи
 
-## What this skill does
+## Что делает этот навык
 
-`k-lotto` 패키지로 동행복권 로또 최신 회차, 특정 회차, 상세 당첨 결과, 번호 대조를 처리한다.
+Обрабатывает последний тираж корейской лотереи, конкретный тираж, детальные результаты выигрыша и сверку номеров через пакет `k-lotto`.
 
 ## Boundary note
 
-이 스킬은 `legacy-only` 로 남는다. 러시아 공개 로또 결과 replacement 는 이미 `stoloto-lotto` 로 구현되어 있으므로, `lotto-results` 를 새로운 target candidate 로 취급하지 않는다.
+Этот навык остаётся как `legacy-only`. Замена для российских публичных результатов лотерей уже реализована в `stoloto-lotto`, поэтому `lotto-results` не рассматривается как новый target-кандидат.
 
-## When to use
+## Когда использовать
 
-- "이번 주 로또 번호 뭐야"
-- "1210회 당첨번호 알려줘"
-- "내 번호가 몇 등인지 봐줘"
+- «Какие номера лотереи на этой неделе?»
+- «Покажи выигрышные номера 1210-го тиража»
+- «Проверь, какой приз у моих номеров»
 
-## Prerequisites
+## Предварительные требования
 
 - Node.js 18+
-- 배포 후: `npm install -g k-lotto`
-- 실행 전: `export NODE_PATH="$(npm root -g)"`
-- 이 저장소에서 개발할 때: 루트에서 `npm install`
+- После публикации: `npm install -g k-lotto`
+- Перед запуском: `export NODE_PATH="$(npm root -g)"`
+- При разработке в этом репозитории: `npm install` в корне
 
-## Inputs
+## Входные данные
 
-- 회차 번호 또는 "latest"
-- 선택 사항: 사용자가 가진 6개 번호
+- Номер тиража или «latest»
+- Опционально: 6 номеров пользователя
 
-## Workflow
+## Рабочий процесс
 
-### 0. Install the package globally when missing
+### 0. Установить пакет глобально при отсутствии
 
-`node -e 'require("k-lotto")'` 가 실패하면 다른 구현으로 우회하지 말고 전역 Node 패키지 설치를 먼저 시도한다.
+Если `node -e 'require("k-lotto")'` завершается ошибкой, не обходить альтернативными реализациями, а сначала попробовать глобальную установку Node-пакета.
 
 ```bash
 npm install -g k-lotto
 export NODE_PATH="$(npm root -g)"
 ```
 
-패키지가 없다는 이유로 HTML 파서를 다시 짜거나 다른 비공식 소스를 찾지 않는다.
+Не писать новый HTML-парсер или искать другой неофициальный источник из-за отсутствия пакета.
 
-### 1. Get the latest round when needed
+### 1. Получить последний тираж при необходимости
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -58,7 +58,7 @@ lotto.getLatestRound().then((round) => console.log(round));
 JS
 ```
 
-### 2. Fetch result or detailed payout data
+### 2. Получить результат или детальные данные о выплатах
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -67,7 +67,7 @@ lotto.getDetailResult(1216).then((result) => console.log(JSON.stringify(result, 
 JS
 ```
 
-### 3. Check user's numbers when provided
+### 3. Проверить номера пользователя при наличии
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -77,18 +77,18 @@ lotto.checkNumber(1216, ["3", "10", "14", "15", "23", "24"])
 JS
 ```
 
-## Done when
+## Считается выполненным, когда
 
-- 최신 또는 요청 회차의 번호가 확인되어 있다
-- 상세 요청이면 추첨일과 당첨금 분포가 정리되어 있다
-- 번호 대조 요청이면 일치 번호와 등수가 확인되어 있다
+- Подтверждены номера последнего или запрошенного тиража
+- При детальном запросе整理ированы дата розыгрыша и распределение призового фонда
+- При запросе сверки номеров подтверждены совпадающие номера и категория приза
 
-## Failure modes
+## Режимы сбоев
 
-- 최신 회차는 결과 페이지 HTML에서 읽기 때문에 upstream HTML 변경의 영향을 받을 수 있다
-- 상세 회차 정보는 동행복권 JSON 응답 스키마 변경의 영향을 받을 수 있다
+- Последний тираж читается из HTML-страницы результатов, поэтому может пострадать от изменений upstream HTML
+- Детальная информация о тираже может пострадать от изменений схемы JSON-ответа
 
-## Notes
+## Примечания
 
-- 사용자 번호를 받아도 영구 저장하지 않는다
-- 조회 전용 스킬이다
+- Номера пользователя не сохраняются постоянно
+- Этот навык предназначен только для чтения

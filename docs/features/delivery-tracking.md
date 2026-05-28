@@ -23,8 +23,8 @@
 
 - Перевозчик: `cj` или `epost`
 - Трек-номер
-  - CJ Logistics: 10 или 12 цифр (`10자리 또는 12자리`)
-  - Korea Post: 13 цифр (`13자리`)
+  - CJ Logistics: 10 или 12 цифр
+  - Korea Post: 13 цифр
 
 ## Базовый поток
 
@@ -70,19 +70,19 @@ import json
 import sys
 
 status_map = {
-    "11": "상품인수",
-    "21": "상품이동중",
-    "41": "상품이동중",
-    "42": "배송지도착",
-    "44": "상품이동중",
-    "82": "배송출발",
-    "91": "배달완료",
+    "11": "Принято",
+    "21": "В пути",
+    "41": "В пути",
+    "42": "Прибыло в пункт доставки",
+    "44": "В пути",
+    "82": "Доставка начата",
+    "91": "Доставлено",
 }
 
 payload = json.load(open(sys.argv[1], encoding="utf-8"))
 events = payload["parcelDetailResultMap"]["resultList"]
 if not events:
-    raise SystemExit("조회 결과가 없습니다.")
+    raise SystemExit("Результаты запроса не найдены.")
 
 latest = events[-1]
 normalized_events = [
@@ -90,7 +90,7 @@ normalized_events = [
         "timestamp": event.get("dTime"),
         "location": event.get("regBranNm"),
         "status_code": event.get("crgSt"),
-        "status": status_map.get(event.get("crgSt"), event.get("scanNm") or "알수없음"),
+        "status": status_map.get(event.get("crgSt"), event.get("scanNm") or "Неизвестно"),
     }
     for event in events
 ]
@@ -98,7 +98,7 @@ print(json.dumps({
     "carrier": "cj",
     "invoice": payload["parcelDetailResultMap"]["paramInvcNo"],
     "status_code": latest.get("crgSt"),
-    "status": status_map.get(latest.get("crgSt"), latest.get("scanNm") or "알수없음"),
+    "status": status_map.get(latest.get("crgSt"), latest.get("scanNm") or "Неизвестно"),
     "timestamp": latest.get("dTime"),
     "location": latest.get("regBranNm"),
     "event_count": len(events),
@@ -109,43 +109,43 @@ PY
 rm -f "$tmp_body" "$tmp_cookie" "$tmp_json"
 ```
 
-#### Пример вывода CJ
+#### Пример вывода CJ Logistics
 
-아래 값은 2026-03-27 기준 live smoke test(`1234567890`)에서 확인한 정규화 결과다.
+Ниже приведён результат нормализации, подтверждённый live smoke test (`1234567890`) на 2026-03-27.
 
 ```json
 {
   "carrier": "cj",
   "invoice": "1234567890",
   "status_code": "91",
-  "status": "배달완료",
+  "status": "Доставлено",
   "timestamp": "2026-03-21 12:22:13",
-  "location": "경기광주오포",
+  "location": "Кёнги-Кванджу-Опхо",
   "event_count": 3,
   "recent_events": [
     {
       "timestamp": "2026-03-10 03:01:45",
-      "location": "청원HUB",
+      "location": "Чхонвон-HUB",
       "status_code": "44",
-      "status": "상품이동중"
+      "status": "В пути"
     },
     {
       "timestamp": "2026-03-21 10:53:19",
-      "location": "경기광주오포",
+      "location": "Кёнги-Кванджу-Опхо",
       "status_code": "82",
-      "status": "배송출발"
+      "status": "Доставка начата"
     },
     {
       "timestamp": "2026-03-21 12:22:13",
-      "location": "경기광주오포",
+      "location": "Кёнги-Кванджу-Опхо",
       "status_code": "91",
-      "status": "배달완료"
+      "status": "Доставлено"
     }
   ]
 }
 ```
 
-Для CJ надёжнее всего читать статус из `parcelDetailResultMap.resultList`. В итоговой выдаче лучше оставлять только `공통 포맷` и `공통 결과 스키마` (`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`, опционально `status_code`) и не выводить сырые поля вроде `crgNm`, где может оказаться имя сотрудника или телефон.
+Для CJ Logistics надёжнее всего читать статус из `parcelDetailResultMap.resultList`. В итоговой выдаче лучше оставлять только общую схему результатов (`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`, опционально `status_code`) и не выводить исходные поля вроде `crgNm`, где может оказаться имя сотрудника или телефон.
 
 ## Пример для Korea Post
 
@@ -202,7 +202,7 @@ summary = re.search(
     re.S,
 )
 if not summary:
-    raise SystemExit("기본정보 테이블을 찾지 못했습니다.")
+    raise SystemExit("Не удалось найти таблицу основной информации.")
 
 def clean(raw: str) -> str:
     return " ".join(html.unescape(re.sub(r"<[^>]+>", " ", raw)).split())
@@ -244,38 +244,38 @@ PY
 rm -f "$tmp_html"
 ```
 
-#### Пример вывода 우체국
+#### Пример вывода Почтовой службы Кореи
 
-아래 값은 2026-03-27 기준 live smoke test(`1234567890123`)에서 확인한 정규화 결과다.
+Ниже приведён результат нормализации, подтверждённый live smoke test (`1234567890123`) на 2026-03-27.
 
 ```json
 {
   "carrier": "epost",
   "invoice": "1234567890123",
-  "status": "배달완료",
+  "status": "Доставлено",
   "timestamp": "2025.12.04 15:13",
-  "location": "제주우편집중국",
+  "location": "Чеджудо-почтамт",
   "event_count": 2,
   "recent_events": [
     {
       "timestamp": "2025.12.04 15:13",
-      "location": "제주우편집중국",
-      "status": "배달준비"
+      "location": "Чеджудо-почтамт",
+      "status": "Подготовка к доставке"
     },
     {
       "timestamp": "2025.12.04 15:13",
-      "location": "제주우편집중국",
-      "status": "배달완료"
+      "location": "Чеджудо-почтамт",
+      "status": "Доставлено"
     }
   ]
 }
 ```
 
-У Korea Post ответ приходит в HTML, поэтому нужно парсить базовую таблицу `table_col` и детальные события из `processTable`. В итоговой выдаче стоит оставить тот же `공통 결과 스키마`, что и для CJ, а примеси вроде `TEL` в location и сырые заметки получателя удалять.
+У Почтовой службы Кореи ответ приходит в HTML, поэтому нужно парсить базовую таблицу `table_col` и детальные события из `processTable`. В итоговой выдаче стоит оставлять ту же общую схему результатов, что и для CJ Logistics, а примеси вроде `TEL` в location и исходные заметки получателя удалять.
 
-## 결과 정리 기준
+## Критерии整理ирования результатов
 
-### 공통 결과 스키마
+### Общая схема результатов
 
 - `carrier`: идентификатор перевозчика (`cj` или `epost`)
 - `invoice`: нормализованный трек-номер
@@ -283,12 +283,12 @@ rm -f "$tmp_html"
 - `timestamp`: время последнего события
 - `location`: место последнего события
 - `event_count`: число событий
-- `recent_events`: до трёх последних событий, то есть `최근 최대 3개 이벤트` и раздел `최근 이벤트`
-- `status_code`: исходный код статуса, если он нужен; сейчас используется только для CJ
+- `recent_events`: до трёх последних событий
+- `status_code`: исходный код статуса, если он нужен; сейчас используется только для CJ Logistics
 
-## 확장 규칙
+## Правила расширения
 
-Если подключается новый перевозчик, то есть `다른 택배사`, сначала явно определите только эти части adapter'а:
+Если подключается другой перевозчик, сначала явно определите только эти части адаптера:
 
 - validator
 - official entrypoint

@@ -3,48 +3,48 @@
     "carrier": "cj",
     "invoice": "1234567890",
     "status_code": "91",
-    "status": "배달완료",
+    "status": "Доставлено",
     "timestamp": "2026-03-21 12:22:13",
-    "location": "경기광주오포",
+    "location": "Кёнги-Кванджу-Опхо",
     "event_count": 3,
     "recent_events": [
       {
         "timestamp": "2026-03-10 03:01:45",
-        "location": "청원HUB",
+        "location": "Чхонвон-HUB",
         "status_code": "44",
-        "status": "상품이동중"
+        "status": "В пути"
       },
       {
         "timestamp": "2026-03-21 10:53:19",
-        "location": "경기광주오포",
+        "location": "Кёнги-Кванджу-Опхо",
         "status_code": "82",
-        "status": "배송출발"
+        "status": "Доставка начата"
       },
       {
         "timestamp": "2026-03-21 12:22:13",
-        "location": "경기광주오포",
+        "location": "Кёнги-Кванджу-Опхо",
         "status_code": "91",
-        "status": "배달완료"
+        "status": "Доставлено"
       }
     ]
   },
   "epost": {
     "carrier": "epost",
     "invoice": "1234567890123",
-    "status": "배달완료",
+    "status": "Доставлено",
     "timestamp": "2025.12.04 15:13",
-    "location": "제주우편집중국",
+    "location": "Чеджудо-почтамт",
     "event_count": 2,
     "recent_events": [
       {
         "timestamp": "2025.12.04 15:13",
-        "location": "제주우편집중국",
-        "status": "배달준비"
+        "location": "Чеджудо-почтамт",
+        "status": "Подготовка к доставке"
       },
       {
         "timestamp": "2025.12.04 15:13",
-        "location": "제주우편집중국",
-        "status": "배달완료"
+        "location": "Чеджудо-почтамт",
+        "status": "Доставлено"
       }
     ]
   }

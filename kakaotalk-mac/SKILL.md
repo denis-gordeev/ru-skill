@@ -1,6 +1,6 @@
 ---
 name: kakaotalk-mac
-description: Use kakaocli on macOS to read KakaoTalk chats, search messages, and send replies after explicit confirmation.
+description: Использование kakaocli на macOS для чтения чатов KakaoTalk, поиска сообщений и отправки ответов после явного подтверждения.
 license: MIT
 metadata:
   category: messaging
@@ -10,52 +10,52 @@ metadata:
 
 # KakaoTalk Mac CLI
 
-## What this skill does
+## Что делает этот навык
 
-`kakaocli` 를 사용해 macOS에서 카카오톡 대화 목록을 확인하고, 메시지를 검색하고, 필요할 때 답장을 보낸다.
+Использует `kakaocli` для просмотра списка чатов KakaoTalk на macOS, поиска сообщений и при необходимости отправки ответов.
 
-이 스킬은 **macOS + 카카오톡 Mac 앱 설치**를 전제로 한다. 공식 Kakao API를 쓰는 것이 아니라 로컬 데이터베이스 읽기와 macOS 접근성 자동화 위에서 동작하므로, 권한과 안전 규칙을 먼저 확인해야 한다.
+Этот навык предполагает **macOS + установленное приложение KakaoTalk для Mac**. Он работает не через официальный Kakao API, а поверх чтения локальной базы данных и macOS accessibility-автоматизации, поэтому сначала нужно проверить разрешения и правила безопасности.
 
 ## Boundary note
 
-이 스킬은 `legacy-only` 경계에 남는다. 로컬 macOS automation reference 와 backward compatibility 용도로 유지되지만, 새로운 러시아어 target-messaging 방향이나 숨은 backlog 처럼 다루지 않는다.
+Этот навык остаётся на `legacy-only` границе. Он поддерживается как локальная macOS automation reference и для backward compatibility, но не рассматривается как новый русскоязычный target-messaging направление или скрытый backlog.
 
-## When to use
+## Когда использовать
 
-- "카카오톡 최근 대화 목록 보여줘"
-- "특정 채팅방 최근 메시지 찾아줘"
-- "카카오톡 메시지 검색해줘"
-- "내 카톡으로 테스트 메시지 보내줘"
-- "답장 초안은 만들되 실제 전송 전에는 꼭 확인받아"
+- «Покажи последние чаты KakaoTalk»
+- «Найди недавние сообщения в определённом чате»
+- «Поищи сообщения в KakaoTalk»
+- «Отправь тестовое сообщение мне в KakaoTalk»
+- «Составь черновик ответа, но обязательно подтверди перед отправкой»
 
-## When not to use
+## Когда не использовать
 
-- macOS가 아닌 환경
-- 카카오톡 Mac 앱이 설치되어 있지 않은 환경
-- 사용자 확인 없이 다른 사람에게 메시지를 바로 보내야 하는 작업
-- 카카오 공식 API 범위 안에서 해결 가능한 서버-투-서버 연동 작업
+- Среда не macOS
+- Приложение KakaoTalk для Mac не установлено
+- Нужно отправить сообщение другому человеку без подтверждения пользователя
+- Задача server-to-server интеграции, которую можно решить через официальный Kakao API
 
-## Prerequisites
+## Предварительные требования
 
 - macOS
-- KakaoTalk for Mac 설치
+- KakaoTalk для Mac установлен
 - Homebrew
-- Mac App Store 로그인(`mas` 사용 시)
-- `kakaocli` 설치
-- 터미널 앱에 **Full Disk Access** 와 **Accessibility** 권한 부여
+- Вход в Mac App Store (при использовании `mas`)
+- `kakaocli` установлен
+- Предоставлены разрешения **Full Disk Access** и **Accessibility** для приложения терминала
 
-## Inputs
+## Входные данные
 
-- 채팅방 이름 또는 검색 키워드
-- 읽기 범위: 최근 N개, `--since 1h`, `--since 7d` 등
-- 전송할 메시지 본문
-- 테스트 여부 (`--me`, `--dry-run`)
+- Название чата или поисковый запрос
+- Диапазон чтения: последние N сообщений, `--since 1h`, `--since 7d` и т.д.
+- Текст сообщения для отправки
+- Флаг тестовой отправки (`--me`, `--dry-run`)
 
-## Workflow
+## Рабочий процесс
 
-### 0. Install KakaoTalk for Mac first when missing
+### 0. Сначала установить KakaoTalk для Mac при отсутствии
 
-카카오톡 Mac 앱이 없으면 먼저 설치한다. `mas` 를 쓰려면 App Store 로그인 상태여야 한다.
+Если приложение KakaoTalk для Mac не установлено, сначала установить его. Для использования `mas` нужно быть в системе App Store.
 
 ```bash
 brew install mas
@@ -63,37 +63,37 @@ mas account
 mas install 869223134
 ```
 
-`mas install` 이 막히면 App Store 앱에서 먼저 로그인한 뒤 다시 시도한다.
+Если `mas install` зависает, сначала войдите в приложение App Store, затем повторите попытку.
 
-### 1. Install `kakaocli`
+### 1. Установить `kakaocli`
 
-공식 저장소 기준 권장 설치는 Homebrew tap 이다.
+Рекомендуемый способ установки из официального репозитория — Homebrew tap.
 
 ```bash
 brew install silver-flight-group/tap/kakaocli
 ```
 
-설치 후 바로 상태를 확인한다.
+После установки сразу проверить состояние.
 
 ```bash
 kakaocli status
 ```
 
-### 2. Grant the required macOS permissions
+### 2. Предоставить необходимые разрешения macOS
 
-**System Settings > Privacy & Security** 에서 현재 사용하는 터미널 앱(iTerm, Terminal, Warp 등)에 아래 권한을 준다.
+В **System Settings > Privacy & Security** предоставьте текущему приложению терминала (iTerm, Terminal, Warp и т.д.) следующие разрешения:
 
-- **Full Disk Access**: 카카오톡 로컬 데이터베이스 읽기용
-- **Accessibility**: 메시지 전송, harvest, inspect 같은 UI 자동화용
+- **Full Disk Access**: для чтения локальной базы данных KakaoTalk
+- **Accessibility**: для UI-автоматизации — отправка сообщений, harvest, inspect
 
-기본 규칙:
+Основные правила:
 
-- `status` / `auth` / `chats` 같은 읽기 명령도 Full Disk Access 가 필요하다.
-- `send`, `harvest`, `inspect` 류 작업은 Accessibility 권한까지 필요하다.
+- Команды чтения (`status`, `auth`, `chats`) также требуют Full Disk Access.
+- Команды `send`, `harvest`, `inspect` дополнительно требуют Accessibility.
 
-### 3. Verify read access before attempting side effects
+### 3. Проверить доступ на чтение перед side effects
 
-먼저 읽기 경로가 되는지 확인한다.
+Сначала убедиться, что путь чтения работает.
 
 ```bash
 kakaocli status
@@ -101,71 +101,71 @@ kakaocli auth
 kakaocli chats --limit 10 --json
 ```
 
-`auth` 가 성공하면 읽기 경로는 준비된 것이다.
+Если `auth` выполнен успешно, путь чтения готов.
 
-### 4. Read or search messages
+### 4. Читать или искать сообщения
 
 ```bash
 kakaocli messages --chat "지수" --since 1h --json
 kakaocli search "점심" --json
 ```
 
-응답은 가능하면 JSON 모드로 받고, 사람이 읽기 쉽게 다시 요약한다.
+Получать ответы предпочтительно в JSON-режиме и кратко пересказывать для удобства чтения.
 
-### 5. Use safe testing before real sends
+### 5. Использовать безопасное тестирование перед реальной отправкой
 
-실제 전송 전에 먼저 자기 자신에게 테스트하거나 dry-run 으로 확인한다.
+Перед фактической отправкой сначала протестировать на себе или проверить через dry-run.
 
 ```bash
 kakaocli send --me _ "테스트 메시지"
 kakaocli send --dry-run "채팅방 이름" "보낼 문장"
 ```
 
-`--me` 는 나와의 채팅으로 보내므로 가장 안전한 테스트 경로다.
+`--me` отправляет в чат с самим собой — это самый безопасный путь тестирования.
 
-### 6. Confirm before sending to other people
+### 6. Подтверждать перед отправкой другим людям
 
-다른 사람이나 단체방으로 보내기 전에는 반드시 사용자의 최종 확인을 받는다.
+Перед отправкой другим людям или в групповой чат обязательно получить окончательное подтверждение пользователя.
 
-확인 전에는 아래만 준비한다.
+До подтверждения подготовить только:
 
-- 대상 채팅방 이름
-- 전송할 문장
-- 왜 이 문장을 보내는지 한 줄 설명
+- Название целевого чата
+- Текст для отправки
+- Краткое объяснение, почему отправляется это сообщение
 
-확인을 받았을 때만 전송한다.
+Отправлять только после получения подтверждения.
 
 ```bash
 kakaocli send "채팅방 이름" "보낼 문장"
 ```
 
-### 7. Use login storage only when the user explicitly wants auto-login
+### 7. Использовать сохранение входа только при явном желании пользователя
 
-자동 로그인 편의를 원할 때만 자격증명을 저장한다.
+Сохранять учётные данные для автоматического входа только когда пользователь хочет это для удобства.
 
 ```bash
 kakaocli login
 kakaocli login --status
 ```
 
-비밀번호를 채팅창에 보내라고 요구하지 않는다. 사용자가 직접 로컬 터미널에서 입력하게 한다.
+Не просить пароль в чате. Пользователь должен вводить его непосредственно в локальном терминале.
 
-## Done when
+## Считается выполненным, когда
 
-- 읽기 요청이면 상태 확인 + 대화/메시지 조회 결과가 정리되어 있다
-- 검색 요청이면 키워드 기준 결과가 정리되어 있다
-- 전송 요청이면 테스트(`--me` 또는 `--dry-run`)와 사용자 확인이 끝난 뒤 실제 전송 여부가 명확하다
+- Для запроса на чтение: подтверждено состояние и получены результаты просмотра чатов/сообщений
+- Для запроса на поиск: результаты по ключевому слову整理ированы
+- Для запроса на отправку: после тестирования (`--me` или `--dry-run`) и подтверждения пользователя ясно, выполнена ли фактическая отправка
 
-## Failure modes
+## Режимы сбоев
 
-- KakaoTalk for Mac 미설치
-- App Store 로그인 누락으로 `mas install` 실패
-- Full Disk Access 미부여
-- Accessibility 미부여
-- 채팅방 이름 substring 이 애매해서 잘못된 후보가 여러 개 잡힘
+- KakaoTalk для Mac не установлен
+- `mas install` не удался из-за отсутствия входа в App Store
+- Full Disk Access не предоставлен
+- Accessibility не предоставлен
+- Подстрока названия чата неоднозначна, найдено несколько неверных кандидатов
 
-## Notes
+## Примечания
 
-- 이 스킬은 macOS 전용이다.
-- 다른 사람에게 보내는 메시지는 항상 confirm before sending 원칙을 지킨다.
-- 첫 검증은 `kakaocli status` 와 `kakaocli auth` 부터 시작하는 편이 안전하다.
+- Этот навык предназначен только для macOS.
+- Сообщения другим людям всегда отправляются по принципу «подтверди перед отправкой».
+- Первую проверку безопаснее начинать с `kakaocli status` и `kakaocli auth`.

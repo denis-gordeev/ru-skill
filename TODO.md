@@ -4,6 +4,17 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-28 (раунд 21)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт самый крупный оставшийся слой русификации skill-level документации: 7 полностью корейских SKILL.md файлов (`hwp`, `kakaotalk-mac`, `zipcode-search`, `toss-securities`, `kbo-results`, `srt-booking`, `lotto-results`) и `python-packages/README.md` переведены на русский.
+- Частичная русификация `delivery-tracking/SKILL.md`: корейские status map labels, error messages, sample output и carrier names переведены на русский (CJ대한통운 → CJ Logistics, 우체국 → Почтовая служба Кореи, 상품인수 → Принято, 배달완료 → Доставлено и т.д.).
+- Частичная русификация `docs/features/delivery-tracking.md`: та же status map, error messages, sample output и section labels переведены на русский.
+- `docs/sources.md` legacy reference block: все корейские метки источников переведены на русский (K League 일정/결과 → расписание/результаты, 블루리본 → Blue Ribbon, 카카오맵 → Kakao Map, 에어코리아 → AirKorea, 우체국 → Почтовая служба Кореи, CJ대한통운 → CJ Logistics, 동행복권 → Dhlottery, 다이소몰 → Daisomall).
+- `scripts/fixtures/delivery-tracking-public-samples.json` обновлён: статус-метки в sample output синхронизированы с русскоязычным переводом.
+- Doc-regression тесты обновлены: assertions для zipcode-search, delivery-tracking, sources.md, kakaotalk-mac синхронизированы с русскоязычными формулировками.
+- Полный CI проходит: lint, typecheck, 72 pass / 0 fail / 1 skipped, pack:dry-run.
+
 ## Статус на 2026-05-27 (раунд 20)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -394,6 +405,29 @@
 
 - [x] Расширить русификацию на `packages/k-skill-proxy/src/server.js` и `packages/k-skill-proxy/test/server.test.js`, где корейские ошибки и лог-сообщения ещё не переведены.
 - [ ] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
+
+## Выполнено в этом раунде (раунд 21)
+
+- [x] `hwp/SKILL.md` полностью переведён на русский: все корейские описания, команды, примеры и заметки.
+- [x] `kakaotalk-mac/SKILL.md` полностью переведён на русский: все корейские описания, шаги workflow, safety rules и примеры.
+- [x] `zipcode-search/SKILL.md` полностью переведён на русский: все корейские описания, шаги workflow и заметки.
+- [x] `toss-securities/SKILL.md` полностью переведён на русский: все корейские описания, команды, safety rules и примеры.
+- [x] `kbo-results/SKILL.md` полностью переведён на русский: все корейские описания, шаги workflow и заметки.
+- [x] `srt-booking/SKILL.md` оставшиеся корейские фрагменты переведены на русский: примеры запросов, входные данные, заметки.
+- [x] `lotto-results/SKILL.md` полностью переведён на русский: все корейские описания, шаги workflow и заметки.
+- [x] `python-packages/README.md` полностью переведён на русский.
+- [x] `delivery-tracking/SKILL.md` корейские фрагменты переведены на русский: status map, error messages, carrier names, sample output.
+- [x] `docs/features/delivery-tracking.md` корейские фрагменты переведены на русский: status map, error messages, carrier names, sample output, section labels.
+- [x] `docs/sources.md` legacy reference block: все корейские метки источников переведены на русский.
+- [x] `scripts/fixtures/delivery-tracking-public-samples.json` обновлён: статус-метки синхронизированы с русскоязычным переводом.
+- [x] `scripts/skill-docs.test.js` обновлён: doc-regression assertions синхронизированы с русскоязычными формулировками для zipcode-search, delivery-tracking, sources.md, kakaotalk-mac, hwp.
+- [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 72 pass / 0 fail / 1 skipped, pack:dry-run.
+
+## Новые пункты плана
+
+- [ ] Продолжить русификацию оставшихся feature doc файлов, где ещё встречаются корейские фрагменты (`docs/features/zipcode-search.md`, `docs/features/kakaotalk-mac.md`, `docs/features/kbo-results.md`, `docs/features/toss-securities.md`, `docs/features/lotto-results.md`, `docs/features/srt-booking.md`, `docs/features/hwp.md`).
+- [ ] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
+- [ ] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback (в основном в feature docs, не SKILL.md).
 
 ## Выполнено в этом раунде (раунд 20)
 
