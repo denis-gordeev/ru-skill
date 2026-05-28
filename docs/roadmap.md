@@ -4,7 +4,7 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
-## Статус на 2026-05-22
+## Статус на 2026-05-28
 
 - Следующий слой legacy feature/skill drift тоже закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь явно публикуют `## Boundary note` и подтверждённые replacement boundaries на user-facing поверхностях.
 - Doc-regression расширен и на этот слой, чтобы nearby, marketplace, football и legacy railway replacement copy не расходился между `docs/features/*` и `*/SKILL.md`.
@@ -46,6 +46,8 @@
 - Doc-regression расширен на этот skill-level слой, чтобы railway/fine-dust copy не возвращала скрытый target-backlog, legacy endpoint defaults или `k-skill`-first credential порядок.
 - Ещё один skill-only drift тоже закрыт: `kakaotalk-mac`, `kbo-results`, `lotto-results` и `zipcode-search` теперь синхронно помечают `legacy-only` boundary и больше не выглядят как активные target-кандидаты.
 - Doc-regression расширен на эти skill-only guides и соответствующие `SKILL.md`, чтобы confirmed replacements и compatibility-role удерживались и в user-facing, и в agent-facing документации.
+- Helper/runtime cleanup теперь закрыт и на следующем user-facing слое: `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking` дополнительно страхуются тестами на `ru-skill`-first secrets order, runtime/secrets semantics и replacement boundary.
+- Приоритет после этого сместился с helper/runtime docs/scripts на добор русификации оставшихся legacy feature-docs и на дальнейшее расширение doc-regression именно по user-facing guides, а не только по `SKILL.md` и setup/proxy helper surfaces.
 - Milestone 4 переведён в зафиксированное состояние по документной части: legacy-пакеты размечены, матрица замен актуализирована, публичная документация не продвигает корейские сценарии как основной путь.
 - В качестве третьего источника вне финансового домена выбран `Postcalc` как read-only справочник индексов и отделений на базе эталонного справочника Почты России.
 - В качестве четвёртого источника вне финансов и логистики выбран публичный API `hh.ru` как базовый read-only сценарий вакансий и регионов.
@@ -182,8 +184,8 @@
 ## Приоритеты следующих раундов
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
-2. Fine-dust/proxy secrets-template drift, skill-only drift и следующий слой legacy feature/skill guides уже закрыты; следующий шаг - пересмотреть оставшиеся helper/runtime surfaces на distinction между endpoint override, runtime defaults и реальными секретами, чтобы `~/.config/ru-skill/*` везде оставался основным путём, а legacy endpoint'ы и `~/.config/k-skill/*` — только fallback.
-3. После helper/runtime cleanup добрать regression-покрытие для legacy guides, где пока страхуется только boundary copy, но не runtime/secrets semantics.
+2. Fine-dust/proxy secrets-template drift, skill-only drift, legacy feature/skill drift и helper/runtime cleanup уже закрыты; следующий шаг - добрать русификацию оставшихся legacy feature-docs, где ещё встречаются корейские фрагменты поверх уже обновлённых `SKILL.md`.
+3. Runtime/secrets regression для `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking` уже добавлен; следующий слой - распространить такие же user-facing проверки на остальные legacy guides, где пока страхуется только boundary copy и replacement semantics.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README и отсутствию устаревшей release-археологии в README/roadmap.
 6. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.

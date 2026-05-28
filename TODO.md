@@ -4,6 +4,14 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-28 (раунд 22)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде не добавлялся новый target-пакет: фокус смещён на то, чтобы закрыть следующий слой doc-governance для уже существующих legacy guides.
+- Doc-regression расширен на user-facing runtime/secrets semantics для `docs/features/fine-dust-location.md`, `docs/features/seoul-subway-arrival.md`, `docs/features/srt-booking.md` и `docs/features/ktx-booking.md`.
+- Новые проверки страхуют не только boundary note, но и `ru-skill`-first порядок `~/.config/ru-skill/secrets.env` -> `~/.config/k-skill/secrets.env`, distinction между config override и реальными секретами, а также replacement boundary через `yandex-rasp` там, где это важно.
+- `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы: helper/runtime cleanup больше не висит как следующий шаг, а активный приоритет смещён на оставшуюся русификацию feature-guides и распространение user-facing regression на остальные legacy surfaces.
+
 ## Статус на 2026-05-28 (раунд 21)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -422,6 +430,19 @@
 - [x] `scripts/fixtures/delivery-tracking-public-samples.json` обновлён: статус-метки синхронизированы с русскоязычным переводом.
 - [x] `scripts/skill-docs.test.js` обновлён: doc-regression assertions синхронизированы с русскоязычными формулировками для zipcode-search, delivery-tracking, sources.md, kakaotalk-mac, hwp.
 - [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 72 pass / 0 fail / 1 skipped, pack:dry-run.
+
+## Новые пункты плана
+
+- [x] Добавить doc-regression для user-facing feature-guides (`fine-dust-location`, `seoul-subway-arrival`, `srt-booking`, `ktx-booking`), чтобы runtime/secrets semantics и `ru-skill`-first порядок не защищались только на уровне `SKILL.md` и setup/proxy helper-docs.
+- [x] Синхронизировать `README.md`, `TODO.md` и `docs/roadmap.md` после закрытия helper/runtime cleanup, чтобы следующий приоритет больше не ссылался на уже выполненный слой работ.
+- [ ] Продолжить русификацию оставшихся feature-doc файлов, где ещё встречаются корейские фрагменты (`docs/features/zipcode-search.md`, `docs/features/kakaotalk-mac.md`, `docs/features/kbo-results.md`, `docs/features/toss-securities.md`, `docs/features/lotto-results.md`, `docs/features/srt-booking.md`, `docs/features/hwp.md`).
+- [ ] Распространить user-facing runtime/secrets regression на остальные legacy guides, где сейчас ещё страхуются только boundary notes и replacement copy без operational semantics.
+
+## Выполнено в этом раунде (раунд 22)
+
+- [x] `scripts/skill-docs.test.js` расширен на user-facing guides `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking`: добавлены проверки `ru-skill`-first secrets order, runtime/secrets semantics и replacement boundary.
+- [x] `README.md` обновлён: helper/runtime cleanup больше не подаётся как следующий шаг, а новый фокус зафиксирован на user-facing regression и оставшейся русификации feature-docs.
+- [x] `docs/roadmap.md` синхронизирован с тем же статусом: roadmap теперь явно фиксирует закрытие helper/runtime cleanup и следующий слой работы по legacy feature-docs.
 
 ## Новые пункты плана
 

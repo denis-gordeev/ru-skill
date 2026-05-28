@@ -1375,6 +1375,49 @@ test("seoul-subway-arrival skill prefers ru-skill secrets before the legacy fall
   );
 });
 
+test("legacy feature guides keep runtime and secrets semantics aligned with ru-skill-first defaults", () => {
+  const fineDustGuide = read(path.join("docs", "features", "fine-dust-location.md"));
+  const seoulGuide = read(path.join("docs", "features", "seoul-subway-arrival.md"));
+  const srtGuide = read(path.join("docs", "features", "srt-booking.md"));
+  const ktxGuide = read(path.join("docs", "features", "ktx-booking.md"));
+
+  assert.match(fineDustGuide, /KSKILL_PROXY_BASE_URL/);
+  assert.match(fineDustGuide, /AIR_KOREA_OPEN_API_KEY/);
+  assert.match(fineDustGuide, /optional|переопределить/i);
+  assert.match(fineDustGuide, /compatibility endpoint|compatibility-layer/i);
+  assert.ok(
+    fineDustGuide.indexOf("~/.config/ru-skill/secrets.env") < fineDustGuide.indexOf("~/.config/k-skill/secrets.env"),
+    "expected fine-dust feature guide to prefer the ru-skill secrets path before the legacy fallback",
+  );
+
+  assert.match(seoulGuide, /## Boundary note/);
+  assert.match(seoulGuide, /legacy-only/);
+  assert.match(seoulGuide, /~\/\.config\/ru-skill\/secrets\.env/);
+  assert.match(seoulGuide, /~\/\.config\/k-skill\/secrets\.env/);
+  assert.ok(
+    seoulGuide.indexOf("~/.config/ru-skill/secrets.env") < seoulGuide.indexOf("~/.config/k-skill/secrets.env"),
+    "expected seoul-subway feature guide to prefer the ru-skill secrets path before the legacy fallback",
+  );
+
+  assert.match(srtGuide, /## Boundary note/);
+  assert.match(srtGuide, /legacy-only/i);
+  assert.match(srtGuide, /yandex-rasp/);
+  assert.match(srtGuide, /российских write-интеграций/i);
+  assert.ok(
+    srtGuide.indexOf("~/.config/ru-skill/secrets.env") < srtGuide.indexOf("~/.config/k-skill/secrets.env"),
+    "expected srt-booking feature guide to prefer the ru-skill secrets path before the legacy fallback",
+  );
+
+  assert.match(ktxGuide, /## Boundary note/);
+  assert.match(ktxGuide, /legacy-only/i);
+  assert.match(ktxGuide, /yandex-rasp/);
+  assert.match(ktxGuide, /российских write-интеграций/i);
+  assert.ok(
+    ktxGuide.indexOf("~/.config/ru-skill/secrets.env") < ktxGuide.indexOf("~/.config/k-skill/secrets.env"),
+    "expected ktx-booking feature guide to prefer the ru-skill secrets path before the legacy fallback",
+  );
+});
+
 test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first credential defaults", () => {
   const fineDustSkill = read(path.join("fine-dust-location", "SKILL.md"));
   const srtSkill = read(path.join("srt-booking", "SKILL.md"));
