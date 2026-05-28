@@ -4,6 +4,19 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-28 (раунд 23)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт следующий слой русификации source-level и doc-level корейского текста: user-facing Korean labels в `kleague-results`, `kakao-bar-nearby`, `k-lotto` и `blue-ribbon-nearby` переведены на русский.
+- Статусы матчей в `kleague-results`: `종료`→`Завершён`, `예정`→`Запланирован`, `진행 중`→`В процессе`, `하프타임`→`Перерыв`, `연기`→`Отложен`, `취소`→`Отменён`.
+- Подсказки по вместимости в `kakao-bar-nearby`: `단체 방문 가능`→`Групповые места доступны`, `소규모/혼술 위주`→`Для небольших групп / соло`.
+- Лотерейные метки в `k-lotto`: `낙첨`→`Не выиграно`, `N등`→`N-й приз`.
+- Сообщение об ошибке в `blue-ribbon-nearby`: Korean location terms заменены на русские (`район, станция, достопримечательность`).
+- Feature docs и SKILL.md для `kakao-bar-nearby`, `blue-ribbon-nearby`, `kleague-results`, `zipcode-search`, `hwp`, `ktx-booking`, `kakaotalk-mac` и несколько package README дополнительно русифицированы: Korean section headings, field labels, error messages и descriptive phrases переведены на русский.
+- Doc-regression расширен на 6 ранее непокрытых target-навыков: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby`.
+- Полный CI проходит: lint, typecheck, 85 pass / 0 fail / 1 skipped, pack:dry-run.
+- `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы: оставшаяся корейская user-facing копия в source code и docs существенно сокращена; domain-inherent Korean (API parameters, location names, fixture data) сохранён корректно.
+
 ## Статус на 2026-05-28 (раунд 22)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -254,7 +267,10 @@
 - [x] Пройти следующий слой legacy feature/skill guides и добавить им явный `## Boundary note` с подтверждённым replacement boundary.
 - [x] Расширить doc-regression на `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby` и `kleague-results`, чтобы replacement copy не расходился между feature guides и `SKILL.md`.
 - [x] Проверить, не осталось ли в helper/runtime документации других `k-skill`-prefixed operational defaults за пределами уже покрытых setup/proxy/railway сценариев.
-- [ ] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
+- [x] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
+- [x] Перевести user-facing Korean labels в source code на русский (kleague-results status labels, kakao-bar-nearby capacity hints, k-lotto lottery labels, blue-ribbon-nearby error message).
+- [x] Перевести user-facing Korean текст в docs/SKILL.md/feature-docs на русский (kakao-bar-nearby, blue-ribbon-nearby, kleague-results, zipcode-search, hwp, ktx-booking, kakaotalk-mac, package READMEs).
+- [x] Добавить doc-regression тесты для 6 ранее непокрытых target-навыков: moex-shares, stoloto-lotto, kinopoisk-search, pravo-documents, rpl-results, osm-nearby.
 
 - [x] Выбрать 9-й российский read-only источник в домене транспорта/городских сервисов (Яндекс.Расписания).
 - [x] Реализовать пакет `yandex-rasp` для расписаний транспорта с тремя функциями: поиск станции, расписание, поиск маршрута.
@@ -412,7 +428,7 @@
 ## Новые пункты плана
 
 - [x] Расширить русификацию на `packages/k-skill-proxy/src/server.js` и `packages/k-skill-proxy/test/server.test.js`, где корейские ошибки и лог-сообщения ещё не переведены.
-- [ ] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
+- [x] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
 
 ## Выполнено в этом раунде (раунд 21)
 
@@ -435,10 +451,23 @@
 
 - [x] Добавить doc-regression для user-facing feature-guides (`fine-dust-location`, `seoul-subway-arrival`, `srt-booking`, `ktx-booking`), чтобы runtime/secrets semantics и `ru-skill`-first порядок не защищались только на уровне `SKILL.md` и setup/proxy helper-docs.
 - [x] Синхронизировать `README.md`, `TODO.md` и `docs/roadmap.md` после закрытия helper/runtime cleanup, чтобы следующий приоритет больше не ссылался на уже выполненный слой работ.
-- [ ] Продолжить русификацию оставшихся feature-doc файлов, где ещё встречаются корейские фрагменты (`docs/features/zipcode-search.md`, `docs/features/kakaotalk-mac.md`, `docs/features/kbo-results.md`, `docs/features/toss-securities.md`, `docs/features/lotto-results.md`, `docs/features/srt-booking.md`, `docs/features/hwp.md`).
-- [ ] Распространить user-facing runtime/secrets regression на остальные legacy guides, где сейчас ещё страхуются только boundary notes и replacement copy без operational semantics.
+- [x] Продолжить русификацию оставшихся feature-doc файлов, где ещё встречаются корейские фрагменты (`docs/features/zipcode-search.md`, `docs/features/kakaotalk-mac.md`, `docs/features/kbo-results.md`, `docs/features/toss-securities.md`, `docs/features/lotto-results.md`, `docs/features/srt-booking.md`, `docs/features/hwp.md`).
+- [x] Распространить user-facing runtime/secrets regression на остальные legacy guides, где сейчас ещё страхуются только boundary notes и replacement copy без operational semantics.
 
-## Выполнено в этом раунде (раунд 22)
+## Выполнено в этом раунде (раунд 23)
+
+- [x] User-facing Korean labels в source code переведены на русский: `kleague-results` (статусы матчей), `kakao-bar-nearby` (подсказки вместимости), `k-lotto` (лотерейные метки), `blue-ribbon-nearby` (сообщение об ошибке).
+- [x] User-facing Korean текст в docs/SKILL.md/feature-docs переведён на русский: `kakao-bar-nearby`, `blue-ribbon-nearby`, `kleague-results`, `zipcode-search`, `hwp`, `ktx-booking`, `kakaotalk-mac`, package README (`kakao-bar-nearby`, `kleague-results`, `daiso-product-search`, `k-lotto`).
+- [x] Doc-regression расширен на 6 ранее непокрытых target-навыков: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby`.
+- [x] Doc-regression assertions обновлены под русскоязычные формулировки во всех затронутых файлах.
+- [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 85 pass / 0 fail / 1 skipped, pack:dry-run.
+
+## Новые пункты плана
+
+- [ ] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла (Korean fixture data в smoke snapshots, Korean location names в code examples).
+- [ ] Расширить doc-regression coverage для legacy skills с только boundary-level тестами (srt-booking, seoul-subway-arrival, kbo-results, lotto-results): добавить workflow/content assertions.
+- [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету.
+- [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
 - [x] `scripts/skill-docs.test.js` расширен на user-facing guides `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking`: добавлены проверки `ru-skill`-first secrets order, runtime/secrets semantics и replacement boundary.
 - [x] `README.md` обновлён: helper/runtime cleanup больше не подаётся как следующий шаг, а новый фокус зафиксирован на user-facing regression и оставшейся русификации feature-docs.
@@ -446,9 +475,9 @@
 
 ## Новые пункты плана
 
-- [ ] Продолжить русификацию оставшихся feature doc файлов, где ещё встречаются корейские фрагменты (`docs/features/zipcode-search.md`, `docs/features/kakaotalk-mac.md`, `docs/features/kbo-results.md`, `docs/features/toss-securities.md`, `docs/features/lotto-results.md`, `docs/features/srt-booking.md`, `docs/features/hwp.md`).
-- [ ] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
-- [ ] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback (в основном в feature docs, не SKILL.md).
+- [x] Продолжить русификацию оставшихся feature doc файлов, где ещё встречаются корейские фрагменты (`docs/features/zipcode-search.md`, `docs/features/kakaotalk-mac.md`, `docs/features/kbo-results.md`, `docs/features/toss-securities.md`, `docs/features/lotto-results.md`, `docs/features/srt-booking.md`, `docs/features/hwp.md`).
+- [x] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
+- [x] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback (в основном в feature docs, не SKILL.md).
 
 ## Выполнено в этом раунде (раунд 20)
 

@@ -42,7 +42,7 @@ test("evaluateTicket returns the right rank for an exact match", () => {
   const checked = evaluateTicket(detail, [3, 10, 14, 15, 23, 24]);
 
   assert.equal(checked.rank, 1);
-  assert.equal(checked.outcome, "1등");
+  assert.equal(checked.outcome, "1-й приз");
   assert.deepEqual(checked.matchedNumbers, [3, 10, 14, 15, 23, 24]);
 });
 

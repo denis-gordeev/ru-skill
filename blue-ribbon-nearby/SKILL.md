@@ -1,6 +1,6 @@
 ---
 name: blue-ribbon-nearby
-description: Use when the user asks for nearby restaurants or 근처 맛집. Always ask the user's current location first, then search official 블루리본 Blue Ribbon Survey ribbon restaurants near that location.
+description: Use when the user asks for nearby restaurants or рестораны рядом. Always ask the user's current location first, then search official Blue Ribbon Survey ribbon restaurants near that location.
 license: MIT
 metadata:
   category: food

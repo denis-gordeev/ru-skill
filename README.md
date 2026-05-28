@@ -139,14 +139,18 @@
 - Следующий слой legacy feature/skill drift тоже закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь в user-facing guides явно публикуют `## Boundary note`, а их replacement boundaries синхронизированы со связанными `SKILL.md`.
 - Doc-regression расширен и на этот feature/skill слой, чтобы replacement copy для nearby, marketplace, football и legacy railway сценариев не расходился между `docs/features/*` и `*/SKILL.md`.
 - Helper/runtime cleanup формально закрыт и на user-facing legacy guides: `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking` теперь дополнительно страхуются регрессиями на `ru-skill`-first secrets order, runtime/secrets semantics и replacement boundary.
-- `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с этим раундом: следующий приоритет смещён с helper/runtime cleanup на добор оставшейся русификации feature-guides и дальнейшее расширение doc-regression именно на user-facing legacy surfaces.
+- User-facing Korean labels в source code переведены на русский: статусы матчей (`kleague-results`), подсказки вместимости (`kakao-bar-nearby`), лотерейные метки (`k-lotto`), сообщения об ошибках (`blue-ribbon-nearby`).
+- User-facing Korean текст в feature docs, SKILL.md и package README дополнительно русифицирован: `kakao-bar-nearby`, `blue-ribbon-nearby`, `kleague-results`, `zipcode-search`, `hwp`, `ktx-booking`, `kakaotalk-mac`.
+- Doc-regression расширен на все 13 target-навыков (ранее непокрытые: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby`).
+- `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы: оставшийся Korean в source code и docs - domain-inherent (API parameters, location names, fixture data), следующий приоритет - расширить doc-regression coverage для legacy skills.
 
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
-- Skill-only drift, legacy feature/skill drift и helper/runtime cleanup уже закрыты; следующий подэтап - добрать оставшуюся русификацию user-facing feature-docs, где ещё торчат корейские фрагменты поверх уже русифицированных `SKILL.md`.
-- Runtime/secrets regression для `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking` уже добавлен; следующий слой - расширять те же user-facing проверки на остальные legacy guides, где сейчас защищены только boundary notes и общая replacement copy.
+- Skill-only drift, legacy feature/skill drift, helper/runtime cleanup и source-level русификация уже закрыты; оставшийся Korean в source code и docs - это domain-inherent (API parameters, location names, fixture data).
+- Doc-regression теперь покрывает все 13 target-навыков; следующий слой - расширить coverage для legacy skills с только boundary-level тестами (workflow/content assertions).
+- User-facing Korean labels в source code переведены на русский (статусы матчей, подсказки вместимости, лотерейные метки, сообщения об ошибках).
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 

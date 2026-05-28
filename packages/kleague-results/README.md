@@ -66,4 +66,4 @@ const { getKLeagueSummary, getMatchResults, getStandings } = require("kleague-re
 
 - Официальный JSON поток проще и устойчивее, чем HTML crawling.
 - `getScheduleList.do` отдаёт месяц целиком, поэтому библиотека дополнительно фильтрует точную дату.
-- `teamRank.do` читает `현재 순위` в режиме `stadium=all`.
+- `teamRank.do` читает текущую турнирную таблицу в режиме `stadium=all`.

@@ -193,11 +193,11 @@ function collectSeatingKeywords(panel) {
 
 function deriveCapacityHint(seatingKeywords) {
   if (seatingKeywords.some((keyword) => /단체석|룸|대관/u.test(keyword))) {
-    return "단체 방문 가능";
+    return "Групповые места доступны";
   }
 
   if (seatingKeywords.some((keyword) => /바테이블|혼술/u.test(keyword))) {
-    return "소규모/혼술 위주";
+    return "Для небольших групп / соло";
   }
 
   return seatingKeywords[0] || null;

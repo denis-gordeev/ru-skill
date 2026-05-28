@@ -10,13 +10,13 @@ const LEAGUE_ALIAS_MAP = new Map([
 ]);
 
 const STATUS_MAP = {
-  FE: { state: "finished", label: "종료" },
-  NS: { state: "scheduled", label: "예정" },
-  LIVE: { state: "live", label: "진행 중" },
-  IN: { state: "live", label: "진행 중" },
-  HT: { state: "halftime", label: "하프타임" },
-  PP: { state: "postponed", label: "연기" },
-  CAN: { state: "cancelled", label: "취소" },
+  FE: { state: "finished", label: "Завершён" },
+  NS: { state: "scheduled", label: "Запланирован" },
+  LIVE: { state: "live", label: "В процессе" },
+  IN: { state: "live", label: "В процессе" },
+  HT: { state: "halftime", label: "Перерыв" },
+  PP: { state: "postponed", label: "Отложен" },
+  CAN: { state: "cancelled", label: "Отменён" },
 };
 
 function normalizeLeagueId(value = 1) {
@@ -269,7 +269,7 @@ function normalizeMatchStatus(item) {
   const code = item.gameStatus || (item.endYn === "Y" ? "FE" : "NS");
   const mapped = STATUS_MAP[code] || {
     state: item.endYn === "Y" ? "finished" : "scheduled",
-    label: item.endYn === "Y" ? "종료" : "예정",
+    label: item.endYn === "Y" ? "Завершён" : "Запланирован",
   };
 
   return {

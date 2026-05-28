@@ -171,6 +171,7 @@ test("hwp skill documents inline image verification for markdown output", () => 
   assert.match(featureDoc, /(data:|base64)/);
   assert.match(featureDoc, /Markdown.*(data:|base64)/);
   assert.doesNotMatch(featureDoc, /Markdown 출력.*이미지 (파일 )?경로 생성 여부 확인/);
+  assert.doesNotMatch(featureDoc, /вывод Markdown.*이미지/);
 });
 
 test("repository docs advertise the kakaotalk-mac skill", () => {
@@ -240,7 +241,7 @@ test("ktx-booking docs document the helper-based live Korail workflow", () => {
     assert.match(doc, /credential resolution order|KSKILL_KTX_ID/);
     assert.match(doc, /anti-bot|Dynapath|x-dynapath-m-token/i);
     // Accept both Korean original and Russian translation for payment automation note
-    assert.match(doc, /결제(까지)?는 자동화하지 않는다|결제는 제외|Оплата не автоматизируется|Оплата до завершения не автоматизируется/);
+    assert.match(doc, /Оплата не автоматизируется|Оплата до завершения не автоматизируется|не закрывает оплату/);
     assert.doesNotMatch(doc, /예약 시 선택할 `--train-index`/);
   }
 
@@ -472,19 +473,20 @@ test("zipcode-search docs lock the official ePost extraction flow and reliable t
     assert.match(doc, /"--retry",\s+"3"/);
     assert.match(doc, /--retry-all-errors/);
     assert.match(doc, /"--retry-delay",\s+"1"/);
-    assert.match(doc, /mktemp|임시 파일/);
+    assert.match(doc, /mktemp|временный файл/);
     assert.match(doc, /curl: \(23\)/);
-    assert.match(doc, /짧은 도로명 \+ 건물번호|Короткое название дороги \+ номер здания/);
-    assert.match(doc, /시\/군\/구 포함 전체 주소|Полный адрес с городом\/районом/);
+    assert.match(doc, /짧은 도로명 \+ 건물번호|Короткое название дороги \+ номер здания|короткое название улицы.*номер дома/i);
+    assert.match(doc, /시\/군\/구 포함 전체 주소|Полный адрес с городом\/районом|полный адрес с городом\/районом/i);
     assert.doesNotMatch(doc, /urllib\.request/);
     assert.doesNotMatch(doc, /urlopen/);
   }
 
-  assert.match(skill, /검색 결과가 없으면|Результаты поиска не найдены/i);
+  assert.match(skill, /검색 결과가 없으면|Результаты не найдены|Результаты поиска не найдены/i);
   assert.doesNotMatch(skill, /timeout\s*=/);
   assert.doesNotMatch(featureDoc, /timeout\s*=/);
   assert.match(skill, /`curl` 자체 제한|ограничения самого `curl`/);
-  assert.match(featureDoc, /프로토콜\/클라이언트 제약|ограничения протокола\/клиента/i);
+  assert.doesNotMatch(featureDoc, /프로토콜\/클라이언트 제약/);
+  assert.match(featureDoc, /ограничения протокола и клиента|ограничения протокола\/клиента/i);
   assert.match(featureDoc, /`curl` 자체 제한|ограничения самого `curl`/);
 });
 
@@ -760,7 +762,7 @@ test("daiso-product-search package README keeps the legacy-only boundary aligned
   assert.match(packageReadme, /legacy-only/i);
   assert.match(packageReadme, /yandex-market-search/);
   assert.match(packageReadme, /backward compatibility/i);
-  assert.match(packageReadme, /pickup stock|매장 픽업 재고/i);
+  assert.match(packageReadme, /pickup stock|остатки для самовывоза/i);
 });
 
 test("root pack:dry-run script covers all publishable workspaces", () => {
@@ -810,8 +812,8 @@ test("kleague-results skill documents the official JSON flow for date, team, and
     assert.match(doc, /FC서울|서울 이랜드|팀 코드/);
     assert.match(doc, /https:\/\/www\.kleague\.com\/getScheduleList\.do/);
     assert.match(doc, /https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
-    assert.match(doc, /공식 JSON|공식 API|공식 표면|официальный JSON|официальный API|официальный/u);
-    assert.match(doc, /현재 순위|standings/i);
+    assert.match(doc, /공식 JSON|공식 API|공식 표면|официальный JSON|официальный API|официальные поверхности API/u);
+    assert.match(doc, /현재 순위|текущую турнирную таблицу|standings/i);
     assert.match(doc, /kleague-results|K리그 결과 조회/u);
   }
 });
@@ -861,10 +863,10 @@ test("blue-ribbon-nearby skill documents mandatory location prompting and offici
   const featureDoc = read(path.join("docs", "features", "blue-ribbon-nearby.md"));
 
   assert.match(skill, /^name: blue-ribbon-nearby$/m);
-  assert.match(skill, /^description: .*근처 맛집.*블루리본.*$|^description: .*nearby.*Blue Ribbon.*$|^description: .*nearby.*ресторан.*$/m);
+  assert.match(skill, /^description: .*근처 맛집.*블루리본.*$|^description: .*nearby.*Blue Ribbon.*$|^description: .*nearby.*ресторан.*$|^description: .*рестораны рядом.*Blue Ribbon.*$/m);
 
   for (const doc of [skill, featureDoc]) {
-    assert.match(doc, /반드시.*현재 위치|Обязательно.*местоположение|сначала спросите.*местоположение/i);
+    assert.match(doc, /반드시.*현재 위치|Обязательно.*местоположение|сначала спросите.*местоположение|уточнения текущего местоположения/i);
     assert.match(doc, /blue-ribbon-nearby|Blue Ribbon|블루리본/i);
     assert.match(doc, /https:\/\/www\.bluer\.co\.kr\/search\/zone/);
     assert.match(doc, /https:\/\/www\.bluer\.co\.kr\/restaurants\/map/);
@@ -872,7 +874,7 @@ test("blue-ribbon-nearby skill documents mandatory location prompting and offici
     assert.match(doc, /zone2Lng/);
     assert.match(doc, /isAround=true/);
     assert.match(doc, /ribbon=true/);
-    assert.match(doc, /위도|경도|동네|역명|координаты|широта|долгота|район|станция/i);
+    assert.match(doc, /위도|경도|동네|역명|координаты|широта|долгота|район|станция|достопримечательность/i);
     assert.match(doc, /blue-ribbon-nearby|근처 블루리본 맛집/u);
   }
 });
@@ -919,13 +921,12 @@ test("kakao-bar-nearby skill documents location-first Kakao Map search with open
   assert.match(skill, /^name: kakao-bar-nearby$/m);
 
   for (const doc of [skill, featureDoc]) {
-    assert.match(doc, /현재 위치|текущее местоположение/i);
-    assert.match(doc, /서울역|강남|사당|논현/);
+    assert.match(doc, /현재 위치|текущ[a-яА-ЯёЁ]+ местоположени[a-яА-ЯёЁ]+/i);    assert.match(doc, /서울역|강남|사당|논현/);
     assert.match(doc, /https:\/\/m\.map\.kakao\.com\/actions\/searchView/);
     assert.match(doc, /https:\/\/place-api\.map\.kakao\.com\/places\/panel3\//);
     assert.match(doc, /영업 중|영업전|영업 상태|Открыто|статус работы|open/i);
     assert.match(doc, /메뉴|меню/i);
-    assert.match(doc, /단체석|좌석 옵션|인원 수용|групповые места|варианты размещения|барные столы/i);
+    assert.match(doc, /단체석|좌석 옵션|인원 수용|групповые места|варианты размещения|опции посадки|барная стойка/i);
     assert.match(doc, /전화번호|номер телефона|телефон/i);
     assert.match(doc, /kakao-bar-nearby|근처 술집 조회/u);
   }
@@ -937,7 +938,7 @@ test("kakao-bar-nearby package README stays aligned with the Kakao Map live look
   assert.match(packageReadme, /legacy-only/i);
   assert.match(packageReadme, /osm-nearby/);
   assert.match(packageReadme, /zoon-nearby/);
-  assert.match(packageReadme, /현재 위치를 먼저 물어본다/u);
+  assert.match(packageReadme, /сначала спрашиваем текущее местоположение|현재 위치를 먼저 물어본다/u);
   assert.match(packageReadme, /서울역 술집/);
   assert.match(packageReadme, /https:\/\/m\.map\.kakao\.com\/actions\/searchView/);
   assert.match(packageReadme, /https:\/\/place-api\.map\.kakao\.com\/places\/panel3\//);
@@ -946,7 +947,7 @@ test("kakao-bar-nearby package README stays aligned with the Kakao Map live look
 
 test("kakao-bar-nearby feature doc keeps the verified 2026-03-29 sadang smoke snapshot current", () => {
   const featureDoc = read(path.join("docs", "features", "kakao-bar-nearby.md"));
-  const smoke = findJsonFenceAfterLabel(featureDoc, "## 검증된 live smoke 예시");
+  const smoke = findJsonFenceAfterLabel(featureDoc, "## Проверенный live smoke пример");
 
   assertKakaoBarNearbySadangSmokeSnapshot(smoke, "feature doc smoke snapshot");
 });
@@ -1631,4 +1632,175 @@ test("zoon-nearby docs document the nearby search workflow", () => {
   assert.match(packageReadme, /npm install zoon-nearby/);
   assert.match(packageReadme, /searchRestaurants/);
   assert.match(packageReadme, /getBusinessDetails/);
+});
+
+test("repository docs advertise the moex-shares skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "moex-shares.md");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/moex-shares.md to exist");
+  assert.match(readme, /\| `moex-shares` \|/);
+  assert.match(readme, /\[Гайд по акциям MOEX\]\(docs\/features\/moex-shares\.md\)/);
+  assert.match(install, /--skill moex-shares/);
+  assert.match(roadmap, /moex-shares/);
+  assert.match(sources, /iss\.moex\.com/);
+});
+
+test("moex-shares docs document the official MOEX ISS workflow", () => {
+  const skillPath = path.join(repoRoot, "moex-shares", "SKILL.md");
+
+  assert.ok(fs.existsSync(skillPath), "expected moex-shares/SKILL.md to exist");
+
+  const skill = read(path.join("moex-shares", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "moex-shares.md"));
+  const packageReadme = read(path.join("packages", "moex-shares", "README.md"));
+
+  assert.match(skill, /^name: moex-shares$/m);
+  assert.match(skill, /ISS API|Московской биржи/);
+  assert.match(featureDoc, /getSecurityOverview/);
+  assert.match(featureDoc, /listShares/);
+  assert.match(packageReadme, /getSecurityOverview/);
+  assert.match(packageReadme, /listShares/);
+});
+
+test("repository docs advertise the stoloto-lotto skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "stoloto-lotto.md");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/stoloto-lotto.md to exist");
+  assert.match(readme, /\| `stoloto-lotto` \|/);
+  assert.match(readme, /\[Гайд по лотереям Столото\]\(docs\/features\/stoloto-lotto\.md\)/);
+  assert.match(install, /--skill stoloto-lotto/);
+  assert.match(roadmap, /stoloto-lotto/);
+  assert.match(sources, /stoloto\.ru/);
+});
+
+test("stoloto-lotto docs document the public archive workflow", () => {
+  const featureDoc = read(path.join("docs", "features", "stoloto-lotto.md"));
+  const packageReadme = read(path.join("packages", "stoloto-lotto", "README.md"));
+
+  assert.match(featureDoc, /getArchiveDraws/);
+  assert.match(featureDoc, /stoloto\.ru\/\{?game\}?\//);
+  assert.match(packageReadme, /getArchiveDraws/);
+  assert.match(packageReadme, /SUPPORTED_GAMES/);
+});
+
+test("repository docs advertise the kinopoisk-search skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "kinopoisk-search.md");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/kinopoisk-search.md to exist");
+  assert.match(readme, /\| `kinopoisk-search` \|/);
+  assert.match(readme, /\[Гайд по Кинопоиску\]\(docs\/features\/kinopoisk-search\.md\)/);
+  assert.match(install, /--skill kinopoisk-search/);
+  assert.match(roadmap, /kinopoisk-search/);
+  assert.match(sources, /kinopoisk\.ru/);
+});
+
+test("kinopoisk-search docs document the search and film card workflow", () => {
+  const featureDoc = read(path.join("docs", "features", "kinopoisk-search.md"));
+  const packageReadme = read(path.join("packages", "kinopoisk-search", "README.md"));
+
+  assert.match(featureDoc, /getFilmById/);
+  assert.match(featureDoc, /searchFilms/);
+  assert.match(featureDoc, /kinopoisk\.ru/);
+  assert.match(packageReadme, /getFilmById/);
+  assert.match(packageReadme, /searchFilms/);
+});
+
+test("repository docs advertise the pravo-documents skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "pravo-documents.md");
+  const skillDir = path.join(repoRoot, "pravo-documents");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/pravo-documents.md to exist");
+  assert.ok(fs.existsSync(path.join(skillDir, "SKILL.md")), "expected pravo-documents/SKILL.md to exist");
+  assert.match(readme, /\| `pravo-documents` \|/);
+  assert.match(readme, /\[Гайд по правовым документам\]\(docs\/features\/pravo-documents\.md\)/);
+  assert.match(install, /--skill pravo-documents/);
+  assert.match(roadmap, /pravo-documents/);
+  assert.match(sources, /pravo\.gov\.ru/);
+});
+
+test("pravo-documents docs document the official pravo.gov.ru API workflow", () => {
+  const skill = read(path.join("pravo-documents", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "pravo-documents.md"));
+  const packageReadme = read(path.join("packages", "pravo-documents", "README.md"));
+
+  assert.match(skill, /^name: pravo-documents$/m);
+  assert.match(skill, /searchPravoDocuments/);
+  assert.match(skill, /getPravoDocument/);
+  assert.match(featureDoc, /publication\.pravo\.gov\.ru/);
+  assert.match(featureDoc, /searchPravoDocuments/);
+  assert.match(packageReadme, /searchPravoDocuments/);
+  assert.match(packageReadme, /getPravoDocument/);
+});
+
+test("repository docs advertise the rpl-results skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "rpl-results.md");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/rpl-results.md to exist");
+  assert.match(readme, /\| `rpl-results` \|/);
+  assert.match(readme, /\[Гайд по РПЛ\]\(docs\/features\/rpl-results\.md\)/);
+  assert.match(install, /--skill rpl-results/);
+  assert.match(roadmap, /rpl-results/);
+  assert.match(sources, /championat\.com/);
+});
+
+test("rpl-results docs document the championat.com standings and results workflow", () => {
+  const featureDoc = read(path.join("docs", "features", "rpl-results.md"));
+  const packageReadme = read(path.join("packages", "rpl-results", "README.md"));
+
+  assert.match(featureDoc, /getStandings/);
+  assert.match(featureDoc, /getResults/);
+  assert.match(featureDoc, /championat\.com/);
+  assert.match(packageReadme, /getStandings/);
+  assert.match(packageReadme, /getResults/);
+});
+
+test("repository docs advertise the osm-nearby skill across the documented surfaces", () => {
+  const readme = read("README.md");
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const featureDocPath = path.join(repoRoot, "docs", "features", "osm-nearby.md");
+
+  assert.ok(fs.existsSync(featureDocPath), "expected docs/features/osm-nearby.md to exist");
+  assert.match(readme, /\| `osm-nearby` \|/);
+  assert.match(readme, /\[Гайд по OSM nearby\]\(docs\/features\/osm-nearby\.md\)/);
+  assert.match(install, /--skill osm-nearby/);
+  assert.match(roadmap, /osm-nearby/);
+  assert.match(sources, /overpass|OpenStreetMap/i);
+});
+
+test("osm-nearby docs document the Overpass API search workflow", () => {
+  const skillPath = path.join(repoRoot, "packages", "osm-nearby", "SKILL.md");
+
+  assert.ok(fs.existsSync(skillPath), "expected packages/osm-nearby/SKILL.md to exist");
+
+  const featureDoc = read(path.join("docs", "features", "osm-nearby.md"));
+  const packageReadme = read(path.join("packages", "osm-nearby", "README.md"));
+
+  assert.match(featureDoc, /searchNearby|searchRestaurants|searchBars/);
+  assert.match(featureDoc, /overpass|Overpass/);
+  assert.match(featureDoc, /getPlaceDetails/);
+  assert.match(packageReadme, /searchNearby/);
+  assert.match(packageReadme, /searchRestaurants/);
+  assert.match(packageReadme, /getPlaceDetails/);
 });

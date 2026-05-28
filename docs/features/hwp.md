@@ -57,7 +57,7 @@ hwpjs to-markdown document.hwp -o output.md --include-images
 ```
 
 `--include-images` встраивает изображения в Markdown как base64 `data:` URI, а не пишет их в отдельные файлы.
-Строка для doc-регрессии: `Markdown 출력` должен включать `data:` или `base64`.
+Строка для doc-регрессии: вывод Markdown должен включать `data:` или `base64`.
 
 ### Конвертация в HTML
 

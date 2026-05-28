@@ -6,7 +6,10 @@
 
 ## Статус на 2026-05-28
 
-- Следующий слой legacy feature/skill drift тоже закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь явно публикуют `## Boundary note` и подтверждённые replacement boundaries на user-facing поверхностях.
+- User-facing Korean labels в source code переведены на русский: статусы матчей (`kleague-results`), подсказки вместимости (`kakao-bar-nearby`), лотерейные метки (`k-lotto`), сообщения об ошибках (`blue-ribbon-nearby`).
+- User-facing Korean текст в feature docs, SKILL.md и package README дополнительно русифицирован: `kakao-bar-nearby`, `blue-ribbon-nearby`, `kleague-results`, `zipcode-search`, `hwp`, `ktx-booking`, `kakaotalk-mac`.
+- Doc-regression расширен на все 13 target-навыков: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby` добавлены в этом раунде.
+- Следующий слой legacy feature/skill drift закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь явно публикуют `## Boundary note` и подтверждённые replacement boundaries.
 - Doc-regression расширен и на этот слой, чтобы nearby, marketplace, football и legacy railway replacement copy не расходился между `docs/features/*` и `*/SKILL.md`.
 - Корневой README, install/setup/releasing-документы уже переводятся на русскоязычную терминологию.
 - В рабочем дереве всё ещё остаются legacy-пакеты и feature-гайды с корейским контекстом.

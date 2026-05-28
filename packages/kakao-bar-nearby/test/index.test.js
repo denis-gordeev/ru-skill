@@ -60,7 +60,7 @@ test("normalizePlacePanel keeps menu, seating, phone, distance, and open-now hin
   assert.equal(item.openStatus.detail, "23:30 라스트오더");
   assert.deepEqual(item.menuSamples, ["수제맥주 샘플러", "감바스", "페퍼로니 피자"]);
   assert.deepEqual(item.seatingKeywords, ["단체석", "바테이블"]);
-  assert.equal(item.capacityHint, "단체 방문 가능");
+  assert.equal(item.capacityHint, "Групповые места доступны");
   assert.ok(item.distanceMeters > 0);
 });
 

@@ -206,7 +206,7 @@ async function searchNearbyByLocationQuery(locationQuery, options = {}) {
 
   if (matches.length === 0) {
     throw new Error(
-      "No official Blue Ribbon zone matched that location query. Ask the user for a nearby 동네, 역명, 랜드마크, or lat/lng.",
+      "No official Blue Ribbon zone matched that location query. Ask the user for a nearby район, станция, достопримечательность, or lat/lng.",
     );
   }
 

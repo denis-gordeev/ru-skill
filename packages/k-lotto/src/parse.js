@@ -168,7 +168,7 @@ function evaluateTicket(detail, ticketNumbers) {
     bonusMatched,
     matchCount: matchedNumbers.length,
     rank,
-    outcome: rank === null ? "낙첨" : `${rank}등`
+    outcome: rank === null ? "Не выиграно" : `${rank}-й приз`
   };
 }
 

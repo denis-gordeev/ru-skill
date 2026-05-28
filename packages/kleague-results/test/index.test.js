@@ -43,7 +43,7 @@ test("normalizeScheduleResponse filters a date and team alias from the official 
   assert.equal(result.matches[0].competitionName, "하나은행 K리그1 2026");
   assert.equal(result.matches[0].round, 5);
   assert.equal(result.matches[0].status.code, "FE");
-  assert.equal(result.matches[0].status.label, "종료");
+  assert.equal(result.matches[0].status.label, "Завершён");
   assert.equal(result.matches[0].homeTeam.code, "K09");
   assert.equal(result.matches[0].homeTeam.name, "서울");
   assert.equal(result.matches[0].homeTeam.fullName, "FC서울");
