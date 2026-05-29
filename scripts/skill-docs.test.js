@@ -1926,3 +1926,99 @@ test("srt-booking skill documents the SRTrain search, reserve and cancel workflo
     "expected srt-booking feature doc to mention ru-skill secrets path before legacy fallback",
   );
 });
+
+test("kakaotalk-mac skill documents the full macOS kakaocli workflow from install to safe send", () => {
+  const skill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "kakaotalk-mac.md"));
+
+  assert.match(skill, /^name: kakaotalk-mac$/m);
+
+  for (const doc of [skill, featureDoc]) {
+    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /legacy-only/);
+    assert.match(doc, /kakaocli status/);
+    assert.match(doc, /kakaocli auth/);
+    assert.match(doc, /kakaocli chats/);
+    assert.match(doc, /Full Disk Access/i);
+    assert.match(doc, /Accessibility/i);
+    assert.match(doc, /--me/);
+    assert.match(doc, /--dry-run/);
+    assert.match(doc, /подтвержд.*отправ|confirm before sending|отправ.*подтвержд/i);
+  }
+
+  assert.match(skill, /kakaocli messages/);
+  assert.match(skill, /kakaocli search/);
+  assert.match(skill, /kakaocli send/);
+  assert.match(skill, /kakaocli login/);
+  assert.match(skill, /brew install/);
+  assert.match(skill, /mas install/);
+
+  assert.match(featureDoc, /kakaocli status/);
+  assert.match(featureDoc, /kakaocli chats/);
+  assert.match(featureDoc, /kakaocli messages/);
+  assert.match(featureDoc, /kakaocli search/);
+  assert.match(featureDoc, /kakaocli send/);
+});
+
+test("daiso-product-search skill documents the store-product-stock workflow end to end", () => {
+  const skill = read(path.join("daiso-product-search", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "daiso-product-search.md"));
+
+  assert.match(skill, /^name: daiso-product-search$/m);
+
+  for (const doc of [skill, featureDoc]) {
+    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /legacy-only/);
+    assert.match(doc, /yandex-market-search/);
+    assert.match(doc, /daisomall\.co\.kr/);
+  }
+
+  assert.match(skill, /searchStores/);
+  assert.match(skill, /searchProducts/);
+  assert.match(skill, /getStorePickupStock/);
+  assert.match(skill, /lookupStoreProductAvailability/);
+  assert.match(skill, /selStrPkupStck/);
+  assert.match(skill, /SearchGoods/);
+  assert.match(skill, /официальные страницы.*расположение|расположение.*только остатки/i);
+
+  assert.match(featureDoc, /lookupStoreProductAvailability/);
+  assert.match(featureDoc, /selStrPkupStck/);
+  assert.match(featureDoc, /SearchGoods/);
+  assert.match(featureDoc, /официальн.*поверхност.*не.*расположен/i);
+});
+
+test("delivery-tracking skill documents the CJ and ePost carrier adapter workflow with boundary note", () => {
+  const skill = read(path.join("delivery-tracking", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "delivery-tracking.md"));
+
+  assert.match(skill, /^name: delivery-tracking$/m);
+
+  for (const doc of [skill, featureDoc]) {
+    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /legacy-only/);
+    assert.match(doc, /CJ Logistics/);
+    assert.match(doc, /Почтовая служба Кореи|Korea Post/);
+    assert.match(doc, /адаптер перевозчика|carrier adapter/i);
+    assert.match(doc, /_csrf/);
+    assert.match(doc, /sid1/);
+    assert.match(doc, /status_map|статус.*карт/i);
+    assert.match(doc, /Принято/);
+    assert.match(doc, /Доставлено/);
+    assert.match(doc, /В пути/);
+    assert.match(doc, /общей схемой результатов|общую схему результатов|общая схема результатов/i);
+    assert.match(doc, /`carrier`/);
+    assert.match(doc, /`invoice`/);
+    assert.match(doc, /`status`/);
+    assert.match(doc, /`recent_events`/);
+  }
+
+  assert.match(skill, /нормализуй.*вход|нормализуйте входные/i);
+  assert.match(skill, /curl --http1\.1 --tls-max 1\.2/);
+  assert.match(skill, /retry|повторн/i);
+  assert.match(skill, /backward-compatible/i);
+
+  assert.match(featureDoc, /curl --http1\.1 --tls-max 1\.2/);
+  assert.match(featureDoc, /validator/);
+  assert.match(featureDoc, /status map/);
+  assert.match(featureDoc, /retry policy/);
+});

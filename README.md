@@ -151,7 +151,7 @@
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
 - Skill-only drift, legacy feature/skill drift, helper/runtime cleanup, source-level русификация и skill-level copy audit уже закрыты; оставшийся Korean в source code и docs - это domain-inherent (API parameters, location names, fixture data).
-- Doc-regression теперь покрывает все 13 target-навыков и 4 legacy-навыка с workflow/content assertions; следующий слой - добрать coverage для оставшихся legacy skills (`kakaotalk-mac`, `daiso-product-search`, `delivery-tracking` workflow).
+- Doc-regression теперь покрывает все 13 target-навыков и все legacy-навыки с workflow/content assertions; непокрытых legacy SKILL.md workflow не осталось.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 
