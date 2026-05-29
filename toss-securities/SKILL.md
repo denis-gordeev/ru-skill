@@ -1,6 +1,6 @@
 ---
 name: toss-securities
-description: Для запросов к Toss Securities — установка/вход в tossctl из tossinvest-cli, затем просмотр сводки по счёту, портфеля, котировок, истории заказов и списка наблюдения через безопасный read-only поток.
+description: Legacy-compatible read-only wrapper over tossctl for Toss Securities. Use for existing Korean brokerage queries only; public market data is already covered by moex-shares.
 license: MIT
 metadata:
   category: finance
@@ -9,6 +9,10 @@ metadata:
 ---
 
 # Toss Securities
+
+## Boundary note
+
+Этот навык остаётся `legacy-only`: прямой российский replacement для авторизованных брокерских сценариев не подтверждён, а публичные рыночные read-only сводки уже покрываются `moex-shares`. `toss-securities` сохраняется ради обратной совместимости с существующими корейскими брокерскими сценариями, но не считается новым target-направлением `ru-skill`.
 
 ## Что делает этот навык
 

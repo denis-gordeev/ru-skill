@@ -529,7 +529,7 @@ test("delivery-tracking skill documents official CJ and ePost flows with extensi
     assert.match(doc, /13자리|13 цифр/);    assert.match(doc, /curl --http1\.1 --tls-max 1\.2/);
     assert.match(doc, /carrier adapter|адаптер перевозчика/i);
     // Accept both Korean original and Russian translation for carrier extension
-    assert.match(doc, /다른 택배사|другой перевозчик|другие курьерские|других перевозчиков/);
+    assert.match(doc, /다른 택배사|другой перевозчик|другие курьерские|других перевозчиков|новых перевозчиков|новых курьерских/i);
   }
 
   assert.match(skill, /1234567890/);
@@ -1287,11 +1287,17 @@ test("readme and roadmap stay free from stale release-status archaeology", () =>
 });
 
 test("legacy-only and transition guides publish explicit boundary notes", () => {
+  const deliveryTrackingSkill = read(path.join("delivery-tracking", "SKILL.md"));
   const deliveryTracking = read(path.join("docs", "features", "delivery-tracking.md"));
   const fineDust = read(path.join("docs", "features", "fine-dust-location.md"));
   const seoulSubway = read(path.join("docs", "features", "seoul-subway-arrival.md"));
+  const tossSecuritiesSkill = read(path.join("toss-securities", "SKILL.md"));
   const tossSecurities = read(path.join("docs", "features", "toss-securities.md"));
   const proxyGuide = read(path.join("docs", "features", "k-skill-proxy.md"));
+
+  assert.match(deliveryTrackingSkill, /## Boundary note/);
+  assert.match(deliveryTrackingSkill, /legacy-only/);
+  assert.match(deliveryTrackingSkill, /российск.*target-направлен/i);
 
   assert.match(deliveryTracking, /## Boundary note/);
   assert.match(deliveryTracking, /legacy-only/);
@@ -1304,6 +1310,10 @@ test("legacy-only and transition guides publish explicit boundary notes", () => 
   assert.match(seoulSubway, /## Boundary note/);
   assert.match(seoulSubway, /legacy-only/);
   assert.match(seoulSubway, /российский replacement не подтверждён/i);
+
+  assert.match(tossSecuritiesSkill, /## Boundary note/);
+  assert.match(tossSecuritiesSkill, /legacy-only/);
+  assert.match(tossSecuritiesSkill, /moex-shares/);
 
   assert.match(tossSecurities, /## Boundary note/);
   assert.match(tossSecurities, /legacy-only/);
@@ -1803,4 +1813,116 @@ test("osm-nearby docs document the Overpass API search workflow", () => {
   assert.match(packageReadme, /searchNearby/);
   assert.match(packageReadme, /searchRestaurants/);
   assert.match(packageReadme, /getPlaceDetails/);
+});
+
+test("seoul-subway-arrival skill documents the official Seoul Open Data real-time arrival workflow", () => {
+  const skill = read(path.join("seoul-subway-arrival", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "seoul-subway-arrival.md"));
+
+  assert.match(skill, /^name: seoul-subway-arrival$/m);
+
+  for (const doc of [skill, featureDoc]) {
+    assert.match(doc, /swopenAPI\.seoul\.go\.kr/);
+    assert.match(doc, /realtimeStationArrival/);
+    assert.match(doc, /SEOUL_OPEN_API_KEY/);
+    assert.match(doc, /real.?time|реальн[а-яё]+ времени|прибыти[а-яё]/i);
+    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /legacy-only/);
+  }
+
+  assert.match(skill, /~\/\.config\/ru-skill\/secrets\.env/);
+  assert.match(skill, /~\/\.config\/k-skill\/secrets\.env/);
+  assert.ok(
+    skill.indexOf("~/.config/ru-skill/secrets.env") < skill.indexOf("~/.config/k-skill/secrets.env"),
+    "expected seoul-subway skill to mention ru-skill secrets path before legacy fallback",
+  );
+});
+
+test("kbo-results skill documents the kbo-game lookup workflow with correct export and date handling", () => {
+  const skill = read(path.join("kbo-results", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "kbo-results.md"));
+
+  assert.match(skill, /^name: kbo-results$/m);
+
+  for (const doc of [skill, featureDoc]) {
+    assert.match(doc, /kbo-game/);
+    assert.match(doc, /getGame/);
+    assert.match(doc, /YYYY-MM-DD/);
+    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /legacy-only/);
+    assert.match(doc, /rpl-results/);
+  }
+
+  assert.match(skill, /преобразовывать в объект `?Date`?|объект `?Date`? перед вызовом|Date.*объект/i);
+  assert.match(featureDoc, /getFullYear|Date.*объект|объект Date/i);
+});
+
+test("lotto-results skill documents the k-lotto draw and number check workflow", () => {
+  const skill = read(path.join("lotto-results", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "lotto-results.md"));
+
+  assert.match(skill, /^name: lotto-results$/m);
+
+  for (const doc of [skill, featureDoc]) {
+    assert.match(doc, /k-lotto/);
+    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /legacy-only/);
+    assert.match(doc, /stoloto-lotto/);
+  }
+
+  assert.match(skill, /getLatestRound/);
+  assert.match(skill, /getDetailResult/);
+  assert.match(skill, /checkNumber/);
+  assert.match(featureDoc, /getDetailResult/);
+});
+
+test("hwp skill and feature doc classify the Korean document utility as target-supporting", () => {
+  const skill = read(path.join("hwp", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "hwp.md"));
+
+  for (const doc of [skill, featureDoc]) {
+    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /target-supporting/);
+    assert.match(doc, /корейский формат|HWP|Хангул/i);
+  }
+});
+
+test("blue-ribbon-nearby routing defers to osm-nearby and zoon-nearby for general queries", () => {
+  const skill = read(path.join("blue-ribbon-nearby", "SKILL.md"));
+
+  assert.match(skill, /osm-nearby/);
+  assert.match(skill, /zoon-nearby/);
+  assert.match(skill, /российск.*nearby.*osm-nearby.*zoon-nearby|osm-nearby.*zoon-nearby.*российск/i);
+  assert.match(skill, /только.*Blue Ribbon|только.*корейск/i);
+});
+
+test("srt-booking skill documents the SRTrain search, reserve and cancel workflow", () => {
+  const skill = read(path.join("srt-booking", "SKILL.md"));
+  const featureDoc = read(path.join("docs", "features", "srt-booking.md"));
+
+  assert.match(skill, /^name: srt-booking$/m);
+
+  for (const doc of [skill, featureDoc]) {
+    assert.match(doc, /SRTrain/);
+    assert.match(doc, /search_train/);
+    assert.match(doc, /KSKILL_SRT_ID/);
+    assert.match(doc, /KSKILL_SRT_PASSWORD/);
+    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /legacy-only/);
+    assert.match(doc, /yandex-rasp/);
+    assert.match(doc, /booking-replacements\.md/);
+    assert.match(doc, /~\/\.config\/ru-skill\/secrets\.env/);
+    assert.match(doc, /~\/\.config\/k-skill\/secrets\.env/);
+  }
+
+  assert.match(skill, /reserve/);
+  assert.match(skill, /get_reservations/);
+  assert.ok(
+    skill.indexOf("~/.config/ru-skill/secrets.env") < skill.indexOf("~/.config/k-skill/secrets.env"),
+    "expected srt-booking skill to mention ru-skill secrets path before legacy fallback",
+  );
+  assert.ok(
+    featureDoc.indexOf("~/.config/ru-skill/secrets.env") < featureDoc.indexOf("~/.config/k-skill/secrets.env"),
+    "expected srt-booking feature doc to mention ru-skill secrets path before legacy fallback",
+  );
 });

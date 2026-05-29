@@ -1,6 +1,6 @@
 ---
 name: ktx-booking
-description: Поиск, бронирование, проверка и отмена билетов KTX или Korail в Корее с помощью Python-пакетов korail2 + pycryptodome. Используйте, когда пользователь запрашивает места KTX, бронирования Korail, изменения поездов или статус бронирования.
+description: Legacy-compatible Korean KTX/Korail booking flow for existing users. Use when the user asks for KTX seat availability, Korail reservations, train changes or booking status, not for new Russian railway integrations.
 license: MIT
 metadata:
   category: travel

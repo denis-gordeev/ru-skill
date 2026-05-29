@@ -143,14 +143,15 @@
 - User-facing Korean текст в feature docs, SKILL.md и package README дополнительно русифицирован: `kakao-bar-nearby`, `blue-ribbon-nearby`, `kleague-results`, `zipcode-search`, `hwp`, `ktx-booking`, `kakaotalk-mac`.
 - Doc-regression расширен на все 13 target-навыков (ранее непокрытые: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby`).
 - `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы: оставшийся Korean в source code и docs - domain-inherent (API parameters, location names, fixture data), следующий приоритет - расширить doc-regression coverage для legacy skills.
+- Skill-level copy audit завершён: 7 мест, где legacy-контекст описывался как operational default, исправлены на backward-compatible fallback (`delivery-tracking`, `toss-securities`, `hwp`, `blue-ribbon-nearby`, `ktx-booking`).
+- Doc-regression теперь покрывает все 13 target-навыков и 4 legacy-навыка с workflow/content assertions (`seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`).
 
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
-- Skill-only drift, legacy feature/skill drift, helper/runtime cleanup и source-level русификация уже закрыты; оставшийся Korean в source code и docs - это domain-inherent (API parameters, location names, fixture data).
-- Doc-regression теперь покрывает все 13 target-навыков; следующий слой - расширить coverage для legacy skills с только boundary-level тестами (workflow/content assertions).
-- User-facing Korean labels в source code переведены на русский (статусы матчей, подсказки вместимости, лотерейные метки, сообщения об ошибках).
+- Skill-only drift, legacy feature/skill drift, helper/runtime cleanup, source-level русификация и skill-level copy audit уже закрыты; оставшийся Korean в source code и docs - это domain-inherent (API parameters, location names, fixture data).
+- Doc-regression теперь покрывает все 13 target-навыков и 4 legacy-навыка с workflow/content assertions; следующий слой - добрать coverage для оставшихся legacy skills (`kakaotalk-mac`, `daiso-product-search`, `delivery-tracking` workflow).
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 

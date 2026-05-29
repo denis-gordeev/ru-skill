@@ -4,6 +4,20 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-29 (раунд 24)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт следующий слой skill-level copy audit: 7 мест, где legacy-контекст ещё описывался как operational default вместо backward-compatible fallback.
+  - `delivery-tracking/SKILL.md`: добавлен `## Boundary note` с `legacy-only` статусом; description заменён с forward-looking на legacy-compatible; формулировки «в будущем можно расширить» заменены на backward-compatible расширяемый паттерн.
+  - `toss-securities/SKILL.md`: добавлен `## Boundary note` с `legacy-only` статусом и ссылкой на `moex-shares`; description заменён на legacy-compatible.
+  - `hwp/SKILL.md` и `docs/features/hwp.md`: добавлен `## Boundary note` с классификацией `target-supporting` — корейский формат без прямого российского аналога, но полезный как утилита.
+  - `blue-ribbon-nearby/SKILL.md`: routing rule исправлен — теперь `osm-nearby` / `zoon-nearby` указаны как primary для российских nearby-запросов, а `blue-ribbon-nearby` только для явных Blue Ribbon запросов.
+  - `ktx-booking/SKILL.md`: description обновлён с добавлением `Legacy-compatible ... not for new Russian railway integrations` по аналогии с `srt-booking`.
+- Doc-regression расширен на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
+- Doc-regression расширен на новый boundary-note coverage: `delivery-tracking/SKILL.md`, `toss-securities/SKILL.md`, `hwp/SKILL.md` + `docs/features/hwp.md`, `blue-ribbon-nearby` routing rule.
+- Полный CI проходит: lint, typecheck, 91 pass / 0 fail / 1 skipped, pack:dry-run.
+- Аудит корейского текста подтверждает: весь оставшийся Korean — domain-inherent (API parameters, location names, fixture data); нет user-facing Korean для перевода.
+
 ## Статус на 2026-05-28 (раунд 23)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -393,9 +407,9 @@
 
 ## Новые пункты плана
 
-- [ ] Расширить package-level audit на остальные legacy/utility surfaces, где README или helper scripts ещё могут продвигать compatibility endpoint как неявный default для новых сценариев.
+- [x] Расширить package-level audit на остальные legacy/utility surfaces, где README или helper scripts ещё могут продвигать compatibility endpoint как неявный default для новых сценариев.
 - [x] Проверить `examples/secrets.env.example` и связанные setup helper'ы на необходимость более явного разделения config override и настоящих credential, не ломая текущую совместимость.
-- [ ] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback.
+- [x] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback.
 
 ## Выполнено в этом раунде (раунд 13)
 
@@ -453,6 +467,25 @@
 - [x] Синхронизировать `README.md`, `TODO.md` и `docs/roadmap.md` после закрытия helper/runtime cleanup, чтобы следующий приоритет больше не ссылался на уже выполненный слой работ.
 - [x] Продолжить русификацию оставшихся feature-doc файлов, где ещё встречаются корейские фрагменты (`docs/features/zipcode-search.md`, `docs/features/kakaotalk-mac.md`, `docs/features/kbo-results.md`, `docs/features/toss-securities.md`, `docs/features/lotto-results.md`, `docs/features/srt-booking.md`, `docs/features/hwp.md`).
 - [x] Распространить user-facing runtime/secrets regression на остальные legacy guides, где сейчас ещё страхуются только boundary notes и replacement copy без operational semantics.
+
+## Выполнено в этом раунде (раунд 24)
+
+- [x] Проведён полный аудит skill-level copy на предмет legacy-контекста, описанного как operational default.
+- [x] `delivery-tracking/SKILL.md`: добавлен `## Boundary note` (`legacy-only`); description заменён на legacy-compatible; forward-looking формулировки удалены.
+- [x] `toss-securities/SKILL.md`: добавлен `## Boundary note` (`legacy-only`, ссылка на `moex-shares`); description заменён на legacy-compatible.
+- [x] `hwp/SKILL.md` и `docs/features/hwp.md`: добавлен `## Boundary note` (`target-supporting`) — корейский формат без прямого российского аналога, но полезен как утилита.
+- [x] `blue-ribbon-nearby/SKILL.md`: routing rule исправлен — `osm-nearby` / `zoon-nearby` теперь primary для российских nearby-запросов.
+- [x] `ktx-booking/SKILL.md`: description обновлён с добавлением `Legacy-compatible ... not for new Russian railway integrations`.
+- [x] Doc-regression расширен на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
+- [x] Doc-regression расширен на boundary-note coverage: `delivery-tracking/SKILL.md`, `toss-securities/SKILL.md`, `hwp/SKILL.md` + `docs/features/hwp.md`, `blue-ribbon-nearby` routing.
+- [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 91 pass / 0 fail / 1 skipped, pack:dry-run.
+
+## Новые пункты плана
+
+- [ ] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла (Korean fixture data в smoke snapshots, Korean location names в code examples).
+- [ ] Расширить doc-regression coverage для legacy skills с boundary-level тестами на workflow/content assertions для оставшихся непокрытых: `kakaotalk-mac`, `daiso-product-search`, `delivery-tracking` (SKILL.md workflow).
+- [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету.
+- [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
 ## Выполнено в этом раунде (раунд 23)
 
