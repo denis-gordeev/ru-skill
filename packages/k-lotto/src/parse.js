@@ -19,7 +19,7 @@ function extractLatestRoundFromHtml(html) {
  * @returns {string}
  */
 function formatWon(value) {
-  return `${value.toLocaleString("ko-KR")}원`;
+  return `${value.toLocaleString("ru-RU")} вон`;
 }
 
 /**

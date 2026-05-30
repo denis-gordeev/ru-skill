@@ -4,8 +4,10 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
-## Статус на 2026-05-29
+## Статус на 2026-05-30
 
+- Последний слой user-facing Korean в source code и docs устранён: форматирование призов `k-lotto` (`원` → `вон`, locale `ru-RU`) и примеры CLI-запросов `kakaotalk-mac` переведены на русский.
+- Аудит подтверждает: весь оставшийся Korean — domain-inherent (API parameters, location names, fixture data, regex patterns); новых user-facing Korean фрагментов для перевода нет.
 - Skill-level copy audit завершён: 7 мест, где legacy-контекст описывался как operational default, исправлены на backward-compatible fallback (`delivery-tracking`, `toss-securities`, `hwp`, `blue-ribbon-nearby`, `ktx-booking`).
 - Doc-regression расширен на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
 - User-facing Korean labels в source code переведены на русский: статусы матчей (`kleague-results`), подсказки вместимости (`kakao-bar-nearby`), лотерейные метки (`k-lotto`), сообщения об ошибках (`blue-ribbon-nearby`).
@@ -189,7 +191,7 @@
 ## Приоритеты следующих раундов
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
-2. Fine-dust/proxy secrets-template drift, skill-only drift, legacy feature/skill drift, helper/runtime cleanup, skill-level copy audit и doc-regression workflow assertions для всех legacy skills уже закрыты; doc-regression покрывает все 13 target-навыков и все legacy-навыки с boundary + workflow/content assertions.
+2. Fine-dust/proxy secrets-template drift, skill-only drift, legacy feature/skill drift, helper/runtime cleanup, skill-level copy audit, полная русификация user-facing Korean и doc-regression workflow assertions для всех legacy skills уже закрыты; doc-regression покрывает все 13 target-навыков и все legacy-навыки с boundary + workflow/content assertions; user-facing Korean полностью устранён.
 3. Runtime/secrets regression для `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking` уже добавлен; workflow/content assertions для `seoul-subway-arrival`, `kbo-results`, `lotto-results` и `srt-booking` тоже добавлены.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README и отсутствию устаревшей release-археологии в README/roadmap.

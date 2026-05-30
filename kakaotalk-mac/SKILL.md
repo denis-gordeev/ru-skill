@@ -106,8 +106,8 @@ kakaocli chats --limit 10 --json
 ### 4. Читать или искать сообщения
 
 ```bash
-kakaocli messages --chat "지수" --since 1h --json
-kakaocli search "점심" --json
+kakaocli messages --chat "Jisoo" --since 1h --json
+kakaocli search "обед" --json
 ```
 
 Получать ответы предпочтительно в JSON-режиме и кратко пересказывать для удобства чтения.

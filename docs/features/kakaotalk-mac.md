@@ -50,10 +50,10 @@ mas install 869223134
 kakaocli status
 kakaocli auth
 kakaocli chats --limit 10 --json
-kakaocli messages --chat "지수" --since 1d --json
-kakaocli search "회의" --json
-kakaocli send --me _ "테스트 메시지"
-kakaocli send --dry-run "팀 공지방" "오늘 3시에 만나요"
+kakaocli messages --chat "Jisoo" --since 1d --json
+kakaocli search "встреча" --json
+kakaocli send --me _ "тестовое сообщение"
+kakaocli send --dry-run "рабочий чат" "встречаемся сегодня в 15:00"
 ```
 
 ## Ограничения

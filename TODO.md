@@ -4,6 +4,13 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-05-30 (раунд 26)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- В этом раунде закрыт последний слой user-facing Korean в source code и docs: форматирование призов в `k-lotto` (`1,234원` → `1 234 вон`, locale `ko-KR` → `ru-RU`) и примеры CLI-запросов в `kakaotalk-mac` (`"지수"` → `"Jisoo"`, `"점심"` → `"обед"`, `"회의"` → `"встреча"`, `"테스트 메시지"` → `"тестовое сообщение"`, `"팀 공지방"` → `"рабочий чат"`, `"오늘 3시에 만나요"` → `"встречаемся сегодня в 15:00"`).
+- Аудит Korean-остатков подтверждает: весь оставшийся Korean — domain-inherent (API parameters, location names, fixture data, regex patterns для Korean API responses); новых user-facing Korean фрагментов для перевода нет.
+- Полный CI проходит: lint, typecheck, 94+ pass / 0 fail / 1 skipped, pack:dry-run.
+
 ## Статус на 2026-05-29 (раунд 25)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -492,7 +499,7 @@
 
 ## Новые пункты плана
 
-- [ ] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла (Korean fixture data в smoke snapshots, Korean location names в code examples).
+- [x] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла — закрыто: после раунда 26 весь оставшийся Korean в source code и docs является domain-inherent (API parameters, location names, fixture data, regex patterns); user-facing Korean полностью устранён.
 - [x] Расширить doc-regression coverage для legacy skills с boundary-level тестами на workflow/content assertions для оставшихся непокрытых: `kakaotalk-mac`, `daiso-product-search`, `delivery-tracking` (SKILL.md workflow).
 - [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету.
 - [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
@@ -507,7 +514,7 @@
 
 ## Новые пункты плана
 
-- [ ] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла (Korean fixture data в smoke snapshots, Korean location names в code examples).
+- [x] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла — закрыто: после раунда 26 весь оставшийся Korean в source code и docs является domain-inherent (API parameters, location names, fixture data, regex patterns); user-facing Korean полностью устранён.
 - [x] Расширить doc-regression coverage для legacy skills с только boundary-level тестами (srt-booking, seoul-subway-arrival, kbo-results, lotto-results): добавить workflow/content assertions.
 - [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету.
 - [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
