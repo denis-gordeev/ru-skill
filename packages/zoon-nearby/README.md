@@ -8,7 +8,7 @@ Supplementary nearby places search via Zoon.ru SSR pages.
 
 ## Why Zoon.ru?
 
-- **SSR pages**: HTML is server-rendered and可以直接 parsed
+- **SSR pages**: HTML is server-rendered and can be parsed directly
 - **No API keys**: Public read-only access without authentication
 - **No anti-bot**: Pages are accessible without CAPTCHA or blocking
 - **Rich data**: Ratings, addresses, phones, categories, hours

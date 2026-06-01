@@ -147,6 +147,9 @@
 - Doc-regression теперь покрывает все 13 target-навыков и 4 legacy-навыка с workflow/content assertions (`seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`).
 - Английские заголовки секций во всех target SKILL.md переведены на русский и приведены к единой схеме; нестандартные русские формулировки в `yandex-rasp` и `yandex-market-search` нормализованы; последние Korean фрагменты в feature docs (`kakao-bar-nearby`, `kleague-results`) переведены на русский.
 - `ru-skill-setup/SKILL.md` переведён на русские секционные заголовки (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`), чтобы предпочтительный setup-alias не оставался последним English-heading outlier.
+- Legacy alias `k-skill-setup/SKILL.md` теперь использует ту же верхнеуровневую heading scheme (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`) без изменения setup-flow, secrets order и compatibility semantics.
+- `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md` приведены к target-канону (`Что делает навык`, `Когда использовать`, `Предварительные условия`, `Входные данные`, `Рабочий процесс`, `Критерии завершения`, `Возможные ошибки`, `Примечания`), чтобы supplementary nearby-source не оставался особым случаем по структуре.
+- `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от смешанного артефакта `可以直接`; doc-regression теперь дополнительно страхует heading scheme для setup alias и `zoon-nearby`, а также отсутствие такого mixed-language drift.
 - `TODO.md` переведён на более строгую top-block модель: актуальный backlog закреплён в верхних блоках `Статус`, `Выполнено в этом раунде` и `Новые пункты плана`, а исторические plan-секции больше не держат живые unchecked-пункты.
 - Doc-regression расширен на preferred setup-skill и hygiene живого backlog: тесты теперь страхуют русские заголовки в `ru-skill-setup` и то, что активные unchecked-пункты живут только в верхнем plan block `TODO.md`.
 
@@ -159,7 +162,8 @@
 - Doc-regression теперь покрывает все 13 target-навыков и все legacy-навыки с workflow/content assertions; непокрытых legacy SKILL.md workflow не осталось.
 - Форматирование призов в `k-lotto` переведено на русский: `1,234원` → `1 234 вон` (locale `ko-KR` → `ru-RU`); примеры CLI-запросов в `kakaotalk-mac` русифицированы (`"점심"` → `"обед"`, `"회의"` → `"встреча"` и т.д.); весь user-facing Korean в source code и docs устранён.
 - Верхний активный блок `TODO.md` теперь зафиксирован как единственный живой backlog; исторические round-секции остаются архивом и не должны снова накапливать открытые checklist-пункты.
-- Продолжить нормализовать оставшиеся неканоничные русские heading schemes вне target-core, прежде всего в setup/legacy skill-docs, не меняя подтверждённые workflow.
+- Продолжить нормализовать оставшиеся неканоничные heading schemes вне уже закрытых setup- и `zoon-nearby`-surface, прежде всего в `packages/osm-nearby/SKILL.md` и feature-guides с формулировками вида `Что умеет этот сценарий`, не меняя подтверждённые workflow.
+- Проверить package README и feature-doc surfaces на смешанные user-facing артефакты не только Korean-типа, но и случайные вставки из других языков или чернового копипаста.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 

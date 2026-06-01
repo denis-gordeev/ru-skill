@@ -24,7 +24,7 @@ const {
   getBusinessDetails
 } = require('zoon-nearby');
 
-// Поиск ресторантов в Москве
+// Поиск ресторанов в Москве
 const restaurants = await searchRestaurants('Москва');
 console.log(restaurants.businesses);
 // [
@@ -56,7 +56,7 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 
 ### `searchRestaurants(city, opts?)`
 
-Поиск ресторантов в городе.
+Поиск ресторанов в городе.
 
 - `city` (string): Название города на русском (например, 'Москва', 'Санкт-Петербург')
 - `opts.page` (number, optional): Номер страницы для пагинации
@@ -128,7 +128,7 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 
 ## Почему Zoon.ru?
 
-- **SSR страницы**: HTML генерируется на сервере и可以直接 парсится
+- **SSR-страницы**: HTML генерируется на сервере и напрямую парсится
 - **Без API ключей**: Публичный доступ без аутентификации
 - **Без anti-bot**: Страницы доступны без CAPTCHA или блокировок
 - **Богатые данные**: Рейтинги, адреса, телефоны, категории, режим работы

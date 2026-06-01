@@ -4,26 +4,28 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-01 (раунд 28)
+## Статус на 2026-06-01 (раунд 29)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- `ru-skill-setup/SKILL.md` переведён на русские секционные заголовки (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`), чтобы preferred setup-alias не оставался последним English-heading outlier.
-- `TODO.md` очищен до top-block governance: верхние блоки `Статус`, `Выполнено в этом раунде` и `Новые пункты плана` закреплены как единственный источник правды, а исторические секции `Новые пункты плана` больше не держат активные unchecked-пункты.
-- Doc-regression тесты расширены на preferred setup-heading scheme и hygiene живого backlog: активные unchecked-пункты теперь обязаны жить только в верхнем plan block `TODO.md`.
-- Полный CI проходит: lint, typecheck, 94 pass / 0 fail / 1 skipped в `node --test scripts/skill-docs.test.js`, все workspace-тесты зелёные, `pack:dry-run` проходит.
+- `k-skill-setup/SKILL.md` выровнен с preferred setup alias: legacy alias теперь использует те же верхнеуровневые русские секции (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`) без изменения setup-flow.
+- `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md` приведены к target-канону русских секций; supplementary nearby-source больше не остаётся отдельным heading outlier.
+- `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от mixed-language артефакта `可以直接`.
+- Doc-regression тесты расширены на legacy setup alias, `zoon-nearby` heading scheme и отсутствие mixed-language drift в Zoon surfaces.
+- Полный CI проходит: lint, typecheck, `node --test scripts/skill-docs.test.js`, все workspace-тесты зелёные, `pack:dry-run` проходит.
 
-## Выполнено в этом раунде (раунд 28)
+## Выполнено в этом раунде (раунд 29)
 
-- [x] `ru-skill-setup/SKILL.md` переведён на русские секционные заголовки без изменения setup-flow, secrets order и compatibility semantics.
-- [x] `scripts/skill-docs.test.js` обновлён: preferred setup-alias теперь страхуется от возврата английских заголовков.
-- [x] `scripts/skill-docs.test.js` дополнен проверкой, что активные unchecked-пункты живут только в верхнем блоке `Новые пункты плана` в `TODO.md`.
+- [x] `k-skill-setup/SKILL.md` приведён к той же top-level heading scheme, что и `ru-skill-setup`, без изменения setup-flow, secrets order и compatibility semantics.
+- [x] `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md` нормализованы к target-канону русских секций.
+- [x] `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от mixed-language артефакта и мелких русскоязычных неточностей.
+- [x] `scripts/skill-docs.test.js` обновлён: setup alias и `zoon-nearby` теперь страхуются регрессиями на heading scheme и отсутствие mixed-language drift.
 - [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [ ] Нормализовать оставшиеся неканоничные русские heading schemes вне target-core, прежде всего в `zoon-nearby` и отдельных setup/legacy skill-docs, не меняя подтверждённые workflow.
-- [ ] Проверить верхнеуровневые planning docs на остаточные формулировки, которые ещё описывают Korean-контекст как текущую user-facing проблему, хотя этот слой уже закрыт.
-- [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету и top-level TODO governance.
+- [ ] Нормализовать оставшиеся неканоничные heading schemes вне уже закрытых setup- и `zoon-nearby`-surface, прежде всего в `packages/osm-nearby/SKILL.md` и feature-guides с формулировками вида `Что умеет этот сценарий`, не меняя подтверждённые workflow.
+- [ ] Проверить package README и feature-doc surfaces на mixed-language user-facing артефакты не только Korean-типа, но и случайные вставки из других языков или чернового копипаста.
+- [ ] Расширять doc-regression в CI дальше: README, roadmap, TODO, booking-research, heading scheme критических skill-surfaces и hygiene package/feature docs должны совпадать по текущему продуктовому приоритету.
 - [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
 ## Статус на 2026-06-01 (раунд 27)

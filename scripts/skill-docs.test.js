@@ -41,6 +41,10 @@ function extractSecondLevelSectionBodies(doc, heading) {
   return bodies;
 }
 
+function extractSecondLevelHeadings(doc) {
+  return [...doc.matchAll(/^## (.+)$/gm)].map(([, heading]) => heading.trim());
+}
+
 function extractFirstTodoStatus(todo) {
   const match = todo.match(/^## Статус на (\d{4}-\d{2}-\d{2}) \(раунд (\d+)\)$/m);
 
@@ -1080,21 +1084,29 @@ test("install docs prefer ru-skill-setup while keeping legacy k-skill-setup as a
   const install = read(path.join("docs", "install.md"));
   const preferredSkill = read(path.join("ru-skill-setup", "SKILL.md"));
   const legacySkill = read(path.join("k-skill-setup", "SKILL.md"));
+  const expectedSetupHeadings = [
+    "Назначение",
+    "Порядок разрешения учётных данных",
+    "Стандартный сценарий",
+    "Совместимость",
+  ];
 
   assert.match(readme, /ru-skill-setup/);
   assert.match(install, /ru-skill-setup/);
   assert.match(install, /k-skill-setup.*alias/i);
   assert.match(preferredSkill, /^name: ru-skill-setup$/m);
-  assert.match(preferredSkill, /## Назначение/);
-  assert.match(preferredSkill, /## Порядок разрешения учётных данных/);
-  assert.match(preferredSkill, /## Стандартный сценарий/);
-  assert.match(preferredSkill, /## Совместимость/);
+  assert.deepEqual(extractSecondLevelHeadings(preferredSkill), expectedSetupHeadings);
   assert.doesNotMatch(preferredSkill, /^## Purpose$/m);
   assert.doesNotMatch(preferredSkill, /^## Resolution order$/m);
   assert.doesNotMatch(preferredSkill, /^## Default flow$/m);
   assert.doesNotMatch(preferredSkill, /^## Compatibility$/m);
   assert.match(legacySkill, /^name: k-skill-setup$/m);
   assert.match(legacySkill, /legacy-compatible alias/i);
+  assert.deepEqual(extractSecondLevelHeadings(legacySkill), expectedSetupHeadings);
+  assert.doesNotMatch(legacySkill, /^## Стандартное расположение файлов$/m);
+  assert.doesNotMatch(legacySkill, /^## Установка$/m);
+  assert.doesNotMatch(legacySkill, /^## Шаги настройки$/m);
+  assert.doesNotMatch(legacySkill, /^## Контрольный список завершения$/m);
 });
 
 test("fine-dust helper python regression tests pass", () => {
@@ -1316,12 +1328,12 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-01");
-  assert.equal(todoStatus.round, 28);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 28\)/);
+  assert.equal(todoStatus.round, 29);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 29\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
-  assert.match(todo, /ru-skill-setup[\s\S]*русские секционные заголовки/i);
-  assert.match(todo, /исторические секции `Новые пункты плана` больше не держат активные unchecked-пункты/i);
+  assert.match(todo, /(ru-skill-setup|k-skill-setup)[\s\S]*русск(ие|их) секци/i);
+  assert.match(todo, /Источником актуального статуса считаются самые верхние блоки/i);
 
   assert.match(bookingResearch, /## Decision matrix/);
   assert.match(bookingResearch, /yandex-rasp/);
@@ -1704,16 +1716,32 @@ test("repository docs advertise the zoon-nearby skill across the documented surf
 
 test("zoon-nearby docs document the nearby search workflow", () => {
   const skill = read(path.join("zoon-nearby", "SKILL.md"));
+  const packageSkill = read(path.join("packages", "zoon-nearby", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "zoon-nearby.md"));
   const packageReadme = read(path.join("packages", "zoon-nearby", "README.md"));
+  const expectedHeadings = [
+    "Что делает навык",
+    "Когда использовать",
+    "Предварительные условия",
+    "Входные данные",
+    "Рабочий процесс",
+    "Критерии завершения",
+    "Возможные ошибки",
+    "Примечания",
+  ];
 
   assert.match(skill, /^name: zoon-nearby$/m);
   assert.match(skill, /npm install zoon-nearby/);
   assert.match(skill, /searchRestaurants/);
+  assert.match(skill, /getBusinessDetails/);
+  assert.deepEqual(extractSecondLevelHeadings(skill), expectedHeadings);
+  assert.deepEqual(extractSecondLevelHeadings(packageSkill), expectedHeadings);
   assert.match(featureDoc, /zoon-nearby/);
   assert.match(packageReadme, /npm install zoon-nearby/);
   assert.match(packageReadme, /searchRestaurants/);
   assert.match(packageReadme, /getBusinessDetails/);
+  assert.doesNotMatch(featureDoc, /可以直接/);
+  assert.doesNotMatch(packageReadme, /可以直接/);
 });
 
 test("repository docs advertise the moex-shares skill across the documented surfaces", () => {

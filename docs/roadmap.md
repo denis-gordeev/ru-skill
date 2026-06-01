@@ -11,6 +11,9 @@
 - Последние Korean фрагменты в feature docs переведены: `근처 술집 조회` → `Поиск баров поблизости`, `K리그 결과 조회` → `Результаты K League`.
 - Doc-regression тесты обновлены под новые заголовки и переводы.
 - `ru-skill-setup` переведён на русские заголовки (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`) и больше не выбивается как preferred setup-skill с английскими секциями.
+- `k-skill-setup` выровнен с тем же верхнеуровневым heading scheme: legacy alias теперь тоже использует `Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`, а прежние отдельные top-level секции (`Установка`, `Шаги настройки`, `Контрольный список завершения`) убраны под вложенные подразделы без изменения workflow.
+- `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md` приведены к target-канону русских секций; supplementary nearby-source больше не выбивается как отдельный стиль документации.
+- `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от случайного mixed-language артефакта `可以直接`; doc-regression теперь страхует не только Korean-boundary, но и отсутствие такого user-facing drift в Zoon surfaces.
 - `TODO.md` переведён на top-block governance: актуальными считаются верхние planning-блоки, а исторические `Новые пункты плана` очищены от активных unchecked-пунктов.
 - Doc-regression дополнительно страхует preferred setup-heading scheme и то, что живой backlog остаётся только в верхнем plan block `TODO.md`.
 - Последний слой user-facing Korean в source code и docs устранён: форматирование призов `k-lotto` (`원` → `вон`, locale `ru-RU`) и примеры CLI-запросов `kakaotalk-mac` переведены на русский.
@@ -199,8 +202,9 @@
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
 2. Fine-dust/proxy secrets-template drift, skill-only drift, legacy feature/skill drift, helper/runtime cleanup, skill-level copy audit, полная русификация user-facing Korean и doc-regression workflow assertions для всех legacy skills уже закрыты; doc-regression покрывает все 13 target-навыков и все legacy-навыки с boundary + workflow/content assertions; user-facing Korean полностью устранён.
-3. Отдельно добирать оставшиеся неканоничные русские heading schemes вне target-core, прежде всего в setup- и legacy-docs, не меняя подтверждённые workflow и compatibility-границы.
+3. Отдельно добирать оставшиеся неканоничные heading schemes вне уже выровненных setup- и `zoon-nearby`-surface, прежде всего в `packages/osm-nearby/SKILL.md` и feature-guides с формулировками вида `Что умеет этот сценарий`, не меняя подтверждённые workflow и compatibility-границы.
 4. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
 5. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
-6. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README, top-level TODO governance и отсутствию устаревшей release-археологии в README/roadmap.
-7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.
+6. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README, top-level TODO governance, heading scheme critical surfaces и отсутствию устаревшей release-археологии в README/roadmap.
+7. Проверять package README и feature-doc surfaces на случайные mixed-language артефакты, даже если они не относятся к Korean domain data.
+8. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.
