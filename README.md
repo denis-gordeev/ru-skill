@@ -145,12 +145,14 @@
 - `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы: оставшийся Korean в source code и docs - domain-inherent (API parameters, location names, fixture data), следующий приоритет - расширить doc-regression coverage для legacy skills.
 - Skill-level copy audit завершён: 7 мест, где legacy-контекст описывался как operational default, исправлены на backward-compatible fallback (`delivery-tracking`, `toss-securities`, `hwp`, `blue-ribbon-nearby`, `ktx-booking`).
 - Doc-regression теперь покрывает все 13 target-навыков и 4 legacy-навыка с workflow/content assertions (`seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`).
+- Английские заголовки секций во всех target SKILL.md переведены на русский и приведены к единой схеме; нестандартные русские формулировки в `yandex-rasp` и `yandex-market-search` нормализованы; последние Korean фрагменты в feature docs (`kakao-bar-nearby`, `kleague-results`) переведены на русский.
 
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + manual external handoff без нового checkout-skill.
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и brittle anti-bot обходов, тогда можно вернуться к идее отдельного target-пакета; до этого write-автоматизацию checkout-потоков не раздувать.
 - Skill-only drift, legacy feature/skill drift, helper/runtime cleanup, source-level русификация и skill-level copy audit уже закрыты; весь user-facing Korean в source code и docs полностью устранён; оставшийся Korean — domain-inherent (API parameters, location names, fixture data, regex patterns).
+- Английские заголовки секций во всех target SKILL.md переведены на русский и приведены к единой схеме; нестандартные русские формулировки в `yandex-rasp` и `yandex-market-search` нормализованы; последние Korean фрагменты в feature docs переведены.
 - Doc-regression теперь покрывает все 13 target-навыков и все legacy-навыки с workflow/content assertions; непокрытых legacy SKILL.md workflow не осталось.
 - Форматирование призов в `k-lotto` переведено на русский: `1,234원` → `1 234 вон` (locale `ko-KR` → `ru-RU`); примеры CLI-запросов в `kakaotalk-mac` русифицированы (`"점심"` → `"обед"`, `"회의"` → `"встреча"` и т.д.); весь user-facing Korean в source code и docs устранён.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.

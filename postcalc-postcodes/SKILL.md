@@ -10,31 +10,31 @@ metadata:
 
 # Postcalc Postcodes
 
-## What this skill does
+## Что делает навык
 
 Пакет `postcalc-postcodes` получает read-only-сводку по отделению Почты России или по населённому пункту через публичные страницы `Postcalc`.
 
-## When to use
+## Когда использовать
 
 - "Покажи карточку отделения 109189"
 - "Дай отделения Почты России для Сыктывкара"
 - "Какой `citykey` и индекс по умолчанию у Сыктывкара"
 
-## Prerequisites
+## Предварительные условия
 
 - Node.js 18+
 - После публикации: `npm install -g postcalc-postcodes`
 - Перед запуском: `export NODE_PATH="$(npm root -g)"`
 - При разработке в этом репозитории: `npm install` в корне
 
-## Inputs
+## Входные данные
 
 - Шестизначный индекс отделения, например `109189` или `167000`
 - `citykey` населённого пункта, например `Сыктывкар` или `Москва`
 
-## Workflow
+## Рабочий процесс
 
-### 0. Install the package globally when missing
+### 0. Установить пакет глобально, если отсутствует
 
 Если `node -e 'require("postcalc-postcodes")'` не проходит, сначала ставится пакет, а не собирается ad-hoc HTML-парсер.
 
@@ -43,7 +43,7 @@ npm install -g postcalc-postcodes
 export NODE_PATH="$(npm root -g)"
 ```
 
-### 1. Get a normalized office card by postal code
+### 1. Получить карточку отделения по почтовому индексу
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -53,7 +53,7 @@ getOfficeOverview("109189").then((result) => console.log(JSON.stringify(result, 
 JS
 ```
 
-### 2. Get a normalized city summary by `citykey`
+### 2. Получить сводку по населённому пункту через `citykey`
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -63,19 +63,19 @@ getCityOverview("Сыктывкар").then((result) => console.log(JSON.stringif
 JS
 ```
 
-## Done when
+## Критерии завершения
 
 - Для индекса показаны `officeName`, адрес, `officeType`, координаты и `cityKey`
 - Для населённого пункта показаны `regId`, `cityKey`, `defaultPostalCode` и список `offices`
 - Источник явно описан как публичный read-only `Postcalc`
 
-## Failure modes
+## Возможные ошибки
 
 - HTML-вёрстка `Postcalc` может измениться
 - Для редких `citykey` возможны неоднозначные названия, поэтому нужно смотреть на `regId` и `cityKeyFull`
 - Некоторые отделения могут отображаться без адреса или с пометкой, что их нет в Паспорте ОПС
 
-## Notes
+## Примечания
 
 - Навык работает только в read-only режиме
 - Пользовательские секреты не нужны

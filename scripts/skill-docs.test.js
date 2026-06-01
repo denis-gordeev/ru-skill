@@ -814,7 +814,7 @@ test("kleague-results skill documents the official JSON flow for date, team, and
     assert.match(doc, /https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
     assert.match(doc, /공식 JSON|공식 API|공식 표면|официальный JSON|официальный API|официальные поверхности API/u);
     assert.match(doc, /현재 순위|текущую турнирную таблицу|standings/i);
-    assert.match(doc, /kleague-results|K리그 결과 조회/u);
+    assert.match(doc, /kleague-results|K리그 결과 조회|Результаты K League/u);
   }
 });
 
@@ -928,7 +928,7 @@ test("kakao-bar-nearby skill documents location-first Kakao Map search with open
     assert.match(doc, /메뉴|меню/i);
     assert.match(doc, /단체석|좌석 옵션|인원 수용|групповые места|варианты размещения|опции посадки|барная стойка/i);
     assert.match(doc, /전화번호|номер телефона|телефон/i);
-    assert.match(doc, /kakao-bar-nearby|근처 술집 조회/u);
+    assert.match(doc, /kakao-bar-nearby|근처 술집 조회|Поиск баров поблизости/u);
   }
 });
 

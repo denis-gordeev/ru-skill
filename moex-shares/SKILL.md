@@ -10,32 +10,32 @@ metadata:
 
 # MOEX Shares
 
-## What this skill does
+## Что делает навык
 
 Пакет `moex-shares` получает по публичному ISS API Московской биржи базовые метаданные акции и отложенный рыночный снимок по тикеру.
 
-## When to use
+## Когда использовать
 
 - "Покажи цену SBER на Московской бирже"
 - "Какой ISIN у GAZP"
 - "Дай lot size и предыдущую цену для LKOH"
 - "Покажи первые тикеры с основной доски TQBR"
 
-## Prerequisites
+## Предварительные условия
 
 - Node.js 18+
 - После публикации: `npm install -g moex-shares`
 - Перед запуском: `export NODE_PATH="$(npm root -g)"`
 - При разработке в этом репозитории: `npm install` в корне
 
-## Inputs
+## Входные данные
 
 - Тикер MOEX, например `SBER`, `GAZP`, `LKOH`
 - Необязательный board id, по умолчанию `TQBR`
 
-## Workflow
+## Рабочий процесс
 
-### 0. Install the package globally when missing
+### 0. Установить пакет глобально, если отсутствует
 
 Если `node -e 'require("moex-shares")'` не проходит, сначала ставится пакет, а не собирается ad-hoc запрос к ISS вручную.
 
@@ -44,7 +44,7 @@ npm install -g moex-shares
 export NODE_PATH="$(npm root -g)"
 ```
 
-### 1. Get a normalized overview by ticker
+### 1. Получить нормализованную сводку по тикеру
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -53,7 +53,7 @@ getSecurityOverview("SBER").then((result) => console.log(JSON.stringify(result, 
 JS
 ```
 
-### 2. List the first page of shares on TQBR
+### 2. Получить первую страницу акций на TQBR
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -62,18 +62,18 @@ listShares().then((result) => console.log(JSON.stringify(result, null, 2)));
 JS
 ```
 
-## Done when
+## Критерии завершения
 
 - Подтверждён тикер MOEX и board
 - Показаны ключевые поля: `shortName`, `isin`, `lotSize`
 - Если нужен рынок, показаны `lastPrice`, `change`, `lastChangePercent` и время обновления
 
-## Failure modes
+## Возможные ошибки
 
 - Публичный ISS может вернуть задержанные данные, а не real-time
 - Для несуществующего тикера или неподдерживаемой доски ответ может быть пустым или с ошибкой HTTP
 
-## Notes
+## Примечания
 
 - Навык работает только в read-only режиме
 - Пользовательские секреты не нужны

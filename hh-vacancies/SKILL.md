@@ -10,7 +10,7 @@ metadata:
 
 # HH Vacancies
 
-## What this skill does
+## Что делает навык
 
 Пакет `hh-vacancies` использует публичный API `api.hh.ru` для трёх read-only сценариев:
 
@@ -18,29 +18,29 @@ metadata:
 - поиск вакансий по тексту и региону
 - нормализованная карточка конкретной вакансии
 
-## When to use
+## Когда использовать
 
 - "Найди frontend вакансии в Москве"
 - "Покажи карточку вакансии hh 131927189"
 - "Какой area id у Москвы"
 - "Дай пару вакансий аналитика данных в Петербурге"
 
-## Prerequisites
+## Предварительные условия
 
 - Node.js 18+
 - После публикации: `npm install -g hh-vacancies`
 - Перед запуском: `export NODE_PATH="$(npm root -g)"`
 - При разработке в этом репозитории: `npm install` в корне
 
-## Inputs
+## Входные данные
 
 - Поисковая строка вакансии, например `frontend react`
 - Необязательный `areaId`, например `1` для Москвы
 - Идентификатор вакансии HH, например `131927189`
 
-## Workflow
+## Рабочий процесс
 
-### 0. Install the package globally when missing
+### 0. Установить пакет глобально, если отсутствует
 
 Если `node -e 'require("hh-vacancies")'` не проходит, сначала ставится пакет, а не пишутся ad-hoc запросы к HH API.
 
@@ -49,7 +49,7 @@ npm install -g hh-vacancies
 export NODE_PATH="$(npm root -g)"
 ```
 
-### 1. Resolve area metadata
+### 1. Получить метаданные региона
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -59,7 +59,7 @@ getAreaOverview(1).then((result) => console.log(JSON.stringify(result, null, 2))
 JS
 ```
 
-### 2. Search vacancies in a specific area
+### 2. Поиск вакансий в указанном регионе
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -70,7 +70,7 @@ searchVacancies("frontend react", { areaId: 1, perPage: 3 })
 JS
 ```
 
-### 3. Read a detailed vacancy card
+### 3. Прочитать подробную карточку вакансии
 
 ```bash
 NODE_PATH="$(npm root -g)" node - <<'JS'
@@ -80,19 +80,19 @@ getVacancyOverview("131927189").then((result) => console.log(JSON.stringify(resu
 JS
 ```
 
-## Done when
+## Критерии завершения
 
 - Для поиска показаны `title`, `salary`, `area`, `employer`, `experience` и `vacancyUrl`
 - Для подробной карточки показаны `descriptionText`, адрес, ближайшее метро и режим работы
 - Источник явно назван публичным read-only API `hh.ru`
 
-## Failure modes
+## Возможные ошибки
 
 - HH может частично скрывать зарплату или вовсе не отдавать её
 - Некоторые вакансии быстро архивируются, поэтому `vacancyId` может перестать открываться
 - HTML-описание вакансии может меняться, поэтому нормализованный `descriptionText` нужно воспринимать как удобную выжимку, а не как pixel-perfect копию карточки
 
-## Notes
+## Примечания
 
 - Навык работает только в read-only режиме
 - Пользовательские секреты не нужны
