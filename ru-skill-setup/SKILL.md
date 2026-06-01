@@ -8,9 +8,9 @@ metadata:
   phase: v1
 ---
 
-# ru-skill Setup
+# Настройка ru-skill
 
-## Purpose
+## Назначение
 
 `ru-skill-setup` - предпочтительный setup-alias для общего post-install потока в этом репозитории.
 
@@ -18,7 +18,7 @@ metadata:
 - Сначала использует `~/.config/ru-skill/secrets.env`
 - Сохраняет совместимость с legacy-именем `k-skill-setup` и fallback-путём `~/.config/k-skill/secrets.env`
 
-## Resolution order
+## Порядок разрешения учётных данных
 
 Все credential-bearing навыки используют один и тот же порядок.
 
@@ -30,7 +30,7 @@ metadata:
 
 Явное переопределение: `RU_SKILL_SECRETS_FILE`, затем `KSKILL_SECRETS_FILE`.
 
-## Default flow
+## Стандартный сценарий
 
 1. Установить навыки из `denis-gordeev/ru-skill`
 2. Выполнить общую настройку по [docs/setup.md](../docs/setup.md)
@@ -44,7 +44,7 @@ bash scripts/check-setup.sh
 
 Для `fine-dust-location` published compatibility proxy остаётся рабочим default без дополнительного credential. `KSKILL_PROXY_BASE_URL` используется только как optional endpoint override, а реальным секретом в direct fallback/self-hosted сценарии остаётся `AIR_KOREA_OPEN_API_KEY`.
 
-## Compatibility
+## Совместимость
 
 - Предпочтительное имя setup-навыка: `ru-skill-setup`
 - Legacy alias: `k-skill-setup`

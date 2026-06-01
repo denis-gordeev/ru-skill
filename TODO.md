@@ -2,7 +2,29 @@
 
 Живой список задач для `ru-skill`. Обновляется по итогам каждого automation round.
 
-Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самый верхний блок `Статус ...`, последний блок `Выполнено в этом раунде` и `Новые пункты плана`.
+Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
+
+## Статус на 2026-06-01 (раунд 28)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- `ru-skill-setup/SKILL.md` переведён на русские секционные заголовки (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`), чтобы preferred setup-alias не оставался последним English-heading outlier.
+- `TODO.md` очищен до top-block governance: верхние блоки `Статус`, `Выполнено в этом раунде` и `Новые пункты плана` закреплены как единственный источник правды, а исторические секции `Новые пункты плана` больше не держат активные unchecked-пункты.
+- Doc-regression тесты расширены на preferred setup-heading scheme и hygiene живого backlog: активные unchecked-пункты теперь обязаны жить только в верхнем plan block `TODO.md`.
+- Полный CI проходит: lint, typecheck, 94 pass / 0 fail / 1 skipped в `node --test scripts/skill-docs.test.js`, все workspace-тесты зелёные, `pack:dry-run` проходит.
+
+## Выполнено в этом раунде (раунд 28)
+
+- [x] `ru-skill-setup/SKILL.md` переведён на русские секционные заголовки без изменения setup-flow, secrets order и compatibility semantics.
+- [x] `scripts/skill-docs.test.js` обновлён: preferred setup-alias теперь страхуется от возврата английских заголовков.
+- [x] `scripts/skill-docs.test.js` дополнен проверкой, что активные unchecked-пункты живут только в верхнем блоке `Новые пункты плана` в `TODO.md`.
+- [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Нормализовать оставшиеся неканоничные русские heading schemes вне target-core, прежде всего в `zoon-nearby` и отдельных setup/legacy skill-docs, не меняя подтверждённые workflow.
+- [ ] Проверить верхнеуровневые planning docs на остаточные формулировки, которые ещё описывают Korean-контекст как текущую user-facing проблему, хотя этот слой уже закрыт.
+- [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету и top-level TODO governance.
+- [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
 ## Статус на 2026-06-01 (раунд 27)
 
@@ -394,12 +416,12 @@
 - [x] Решить, нужен ли отдельный read-only/handoff skill сверх `yandex-rasp`, или railway replacement уже достаточно закрыт текущим discovery + documented external handoff.
 - [x] Если отдельный handoff-layer нужен, проверить только стабильные безлогинные сценарии: deep-link, landing search или export маршрута без оплаты и пользовательских секретов.
 - [x] Явно обновить legacy railway docs, чтобы `srt-booking` и `ktx-booking` были помечены не только как совместимые, но и как нецелевые для новых российских write-интеграций.
-- [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету и не возвращать release-археологию в живые секции.
+- [x] Пункт перенесён в верхний актуальный план TODO: держать doc-regression в CI, чтобы README, roadmap, TODO и booking-research совпадали по следующему продуктовому приоритету и не возвращали release-археологию в живые секции.
 - [x] Проверить, даёт ли какой-либо handoff-сценарий измеримую пользовательскую ценность сверх уже существующего `yandex-rasp`, прежде чем открывать новый target-package.
 - [x] Если handoff-ценность не подтверждается, перевести Milestone 5 в документно закрытое состояние и убрать railway replacement из активного implementation backlog.
 - [x] Довести до конца remaining legacy-only matrix: `seoul-subway-arrival`, `toss-securities` и другие уже закрытые без replacement gaps должны иметь одинаковый статус в README, roadmap и install-flow.
 - [x] Пересмотреть user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs только на предмет реально поддерживаемых российских public surfaces.
-- [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
+- [x] Пункт перенесён в верхний актуальный план TODO: если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
 ## Выполнено в этом раунде (раунд 15)
 
@@ -510,8 +532,8 @@
 
 - [x] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла — закрыто: после раунда 26 весь оставшийся Korean в source code и docs является domain-inherent (API parameters, location names, fixture data, regex patterns); user-facing Korean полностью устранён.
 - [x] Расширить doc-regression coverage для legacy skills с boundary-level тестами на workflow/content assertions для оставшихся непокрытых: `kakaotalk-mac`, `daiso-product-search`, `delivery-tracking` (SKILL.md workflow).
-- [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету.
-- [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
+- [x] Пункт перенесён в верхний актуальный план TODO: держать doc-regression в CI, чтобы README, roadmap, TODO и booking-research совпадали по следующему продуктовому приоритету.
+- [x] Пункт перенесён в верхний актуальный план TODO: если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
 ## Выполнено в этом раунде (раунд 23)
 
@@ -525,8 +547,8 @@
 
 - [x] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла — закрыто: после раунда 26 весь оставшийся Korean в source code и docs является domain-inherent (API parameters, location names, fixture data, regex patterns); user-facing Korean полностью устранён.
 - [x] Расширить doc-regression coverage для legacy skills с только boundary-level тестами (srt-booking, seoul-subway-arrival, kbo-results, lotto-results): добавить workflow/content assertions.
-- [ ] Продолжать держать doc-regression в CI: README, roadmap, TODO и booking-research должны совпадать по следующему продуктовому приоритету.
-- [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
+- [x] Пункт перенесён в верхний актуальный план TODO: держать doc-regression в CI, чтобы README, roadmap, TODO и booking-research совпадали по следующему продуктовому приоритету.
+- [x] Пункт перенесён в верхний актуальный план TODO: если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
 - [x] `scripts/skill-docs.test.js` расширен на user-facing guides `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking`: добавлены проверки `ru-skill`-first secrets order, runtime/secrets semantics и replacement boundary.
 - [x] `README.md` обновлён: helper/runtime cleanup больше не подаётся как следующий шаг, а новый фокус зафиксирован на user-facing regression и оставшейся русификации feature-docs.

@@ -14,6 +14,44 @@ function readJson(relativePath) {
   return JSON.parse(read(relativePath));
 }
 
+function extractSecondLevelSectionBodies(doc, heading) {
+  const lines = doc.split("\n");
+  const bodies = [];
+  const header = `## ${heading}`;
+
+  for (let i = 0; i < lines.length; i += 1) {
+    if (lines[i] !== header) {
+      continue;
+    }
+
+    const body = [];
+
+    for (let j = i + 1; j < lines.length; j += 1) {
+      if (lines[j].startsWith("## ")) {
+        break;
+      }
+
+      body.push(lines[j]);
+      i = j;
+    }
+
+    bodies.push(body.join("\n").trim());
+  }
+
+  return bodies;
+}
+
+function extractFirstTodoStatus(todo) {
+  const match = todo.match(/^## Статус на (\d{4}-\d{2}-\d{2}) \(раунд (\d+)\)$/m);
+
+  assert.ok(match, "expected TODO.md to start with a current status block");
+
+  return {
+    date: match[1],
+    round: Number(match[2]),
+  };
+}
+
 function extractReadmePackageMatrix(readme) {
   const match = readme.match(/## Текущие пакеты\n\n([\s\S]*?)\n## Документация/);
 
@@ -1047,6 +1085,14 @@ test("install docs prefer ru-skill-setup while keeping legacy k-skill-setup as a
   assert.match(install, /ru-skill-setup/);
   assert.match(install, /k-skill-setup.*alias/i);
   assert.match(preferredSkill, /^name: ru-skill-setup$/m);
+  assert.match(preferredSkill, /## Назначение/);
+  assert.match(preferredSkill, /## Порядок разрешения учётных данных/);
+  assert.match(preferredSkill, /## Стандартный сценарий/);
+  assert.match(preferredSkill, /## Совместимость/);
+  assert.doesNotMatch(preferredSkill, /^## Purpose$/m);
+  assert.doesNotMatch(preferredSkill, /^## Resolution order$/m);
+  assert.doesNotMatch(preferredSkill, /^## Default flow$/m);
+  assert.doesNotMatch(preferredSkill, /^## Compatibility$/m);
   assert.match(legacySkill, /^name: k-skill-setup$/m);
   assert.match(legacySkill, /legacy-compatible alias/i);
 });
@@ -1252,10 +1298,13 @@ test("planning docs stay aligned on the next migration priorities", () => {
   const roadmap = read(path.join("docs", "roadmap.md"));
   const todo = read("TODO.md");
   const bookingResearch = read(path.join("docs", "booking-replacements.md"));
+  const todoStatus = extractFirstTodoStatus(todo);
 
   assert.match(readme, /## Что делаем дальше/);
   assert.match(readme, /booking-replacements\.md/);
   assert.match(readme, /manual external handoff/i);
+  assert.match(readme, /активный блок `TODO\.md`/i);
+  assert.match(readme, /ru-skill-setup[\s\S]*русские секционные заголовки/i);
 
   assert.match(roadmap, /### Milestone 5\. Booking replacements и release hygiene/);
   assert.match(roadmap, /Статус: завершён; release-hygiene подзадача закрыта/i);
@@ -1263,19 +1312,42 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /новый target-пакет не открывается/i);
   assert.match(roadmap, /remaining legacy-only matrix.*уже доведена/i);
   assert.match(roadmap, /k-skill-proxy[\s\S]*transition`?-слой/i);
+  assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
+  assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.match(todo, /## Статус на 2026-05-04 \(раунд 12\)/);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 12\)/);
+  assert.equal(todoStatus.date, "2026-06-01");
+  assert.equal(todoStatus.round, 28);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 28\)/);
   assert.match(todo, /## Новые пункты плана/);
-  assert.match(todo, /fine-dust-location.*k-skill-proxy/i);
-  assert.match(todo, /ru-skill`?-first credential order/i);
-  assert.match(todo, /k-skill-proxy.*Transition/i);
+  assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
+  assert.match(todo, /ru-skill-setup[\s\S]*русские секционные заголовки/i);
+  assert.match(todo, /исторические секции `Новые пункты плана` больше не держат активные unchecked-пункты/i);
 
   assert.match(bookingResearch, /## Decision matrix/);
   assert.match(bookingResearch, /yandex-rasp/);
   assert.match(bookingResearch, /Milestone 5 считается закрытым/);
   assert.match(bookingResearch, /Milestone 5 закрыт вторым способом/);
   assert.match(bookingResearch, /Отдельный railway handoff-skill не открывается/);
+});
+
+test("TODO keeps the active unchecked backlog only in the top plan block", () => {
+  const todo = read("TODO.md");
+  const planBlocks = extractSecondLevelSectionBodies(todo, "Новые пункты плана");
+  const allOpenItems = [...todo.matchAll(/^- \[ \] (.+)$/gm)].map((match) => match[1].trim());
+  const topPlanOpenItems = [...(planBlocks[0] ?? "").matchAll(/^- \[ \] (.+)$/gm)].map((match) => match[1].trim());
+
+  assert.ok(planBlocks.length > 0, "expected TODO.md to contain at least one plan block");
+  assert.ok(topPlanOpenItems.length > 0, "expected the top plan block to contain active items");
+  assert.deepEqual(
+    allOpenItems,
+    topPlanOpenItems,
+    "expected unchecked TODO items to live only in the top plan block",
+  );
+  assert.equal(
+    new Set(allOpenItems).size,
+    allOpenItems.length,
+    "expected active TODO items to be unique after historical-plan cleanup",
+  );
 });
 
 test("readme and roadmap stay free from stale release-status archaeology", () => {
