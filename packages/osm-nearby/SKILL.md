@@ -2,43 +2,31 @@
 
 Поиск ближайших заведений (рестораны, кафе, бары) через публичный Overpass API OpenStreetMap.
 
-## Что умеет
+## Что делает навык
+
+Пакет `osm-nearby` использует публичный Overpass API OpenStreetMap для read-only nearby-поиска:
 
 - Искать ближайшие заведения по координатам в радиусе до 40 км
 - Фильтровать по категориям: рестораны, кафе, бары, фастфуд и другие amenity-типы
 - Возвращать детали: название, адрес, телефон, сайт, часы работы, тип кухни
 - Работать без API ключа и без авторизации
 
-## Быстрый старт
+## Когда использовать
 
-```javascript
-const { searchNearby, searchRestaurants, searchCafes, searchBars } = require("osm-nearby");
+- «Найди рестораны рядом со мной»
+- «Покажи кафе в радиусе 1 км от центра Москвы»
+- «Какие бары есть поблизости от 55.75, 37.61»
+- «Нужно бесплатное решение для nearby-поиска без API ключа»
 
-// Рестораны в центре Москвы в радиусе 1 км
-const restaurants = await searchRestaurants(55.7558, 37.6173, {
-  radius: 1000,
-  limit: 15
-});
+## Предварительные условия
 
-// Кафе в центре Петербурга
-const cafes = await searchCafes(59.9343, 30.3351, {
-  radius: 500
-});
+- Node.js 18+
+- После публикации: `npm install -g osm-nearby`
+- Перед запуском: `export NODE_PATH="$(npm root -g)"`
+- При разработке в этом репозитории: `npm install` в корне
 
-// Бары с расширенным поиском
-const bars = await searchBars(55.7558, 37.6173, {
-  radius: 2000,
-  limit: 10
-});
-```
+## Входные данные
 
-## Функции
-
-### `searchNearby(lat, lon, options?)`
-
-Поиск заведений по координатам.
-
-**Параметры:**
 - `lat` (number): Широта
 - `lon` (number): Долгота
 - `options` (object, необязательно):
@@ -46,52 +34,51 @@ const bars = await searchBars(55.7558, 37.6173, {
   - `categories` (string[] | 'restaurant' | 'cafe' | 'bar'): Типы amenity (по умолчанию: ['restaurant', 'cafe', 'bar'])
   - `limit` (number): Максимум результатов (по умолчанию: 20)
 
-**Возвращает:** Массив объектов заведений с полями `name`, `lat`, `lon`, `amenity`, `address?`, `phone?`, `website?`, `openingHours?`, `cuisine?`.
+## Рабочий процесс
 
-### `searchRestaurants(lat, lon, options?)`
+### 0. Установить пакет глобально, если отсутствует
 
-Поиск ресторанов (включает `restaurant`, `fast_food`, `food_court`).
+Если `node -e 'require("osm-nearby")'` не проходит, сначала ставится пакет.
 
-### `searchCafes(lat, lon, options?)`
+```bash
+npm install -g osm-nearby
+export NODE_PATH="$(npm root -g)"
+```
 
-Поиск кафе (включает `cafe`, `biergarten`, `ice_cream`).
+### 1. Поиск ближайших заведений
 
-### `searchBars(lat, lon, options?)`
+```javascript
+const { searchNearby, searchRestaurants, searchCafes, searchBars } = require("osm-nearby");
 
-Поиск баров (включает `bar`, `pub`, `nightclub`).
+const restaurants = await searchRestaurants(55.7558, 37.6173, {
+  radius: 1000,
+  limit: 15
+});
+```
 
-### `getPlaceDetails(osmNodeId)`
+### 2. Детали конкретного заведения
 
-Получить детали заведения по OSM ID.
+```javascript
+const { getPlaceDetails } = require("osm-nearby");
 
-**Возвращает:** Объект заведения или `null`.
+const place = await getPlaceDetails("node/123456789");
+```
 
-## Источник данных
+## Критерии завершения
 
-Используется [Overpass API](https://overpass-api.de/) для запросов к данным OpenStreetMap. API ключ не требуется.
+- Найдены ближайшие заведения по координатам с указанием названия, адреса и типа
+- Результаты отсортированы по расстоянию и содержат доступные метаданные
+- Источник явно назван Overpass API OpenStreetMap
 
-- Основной endpoint: `https://overpass-api.de/api/interpreter`
-- Лимиты: ~10,000 запросов/день
-- Лицензия данных: [ODbL](https://www.openstreetmap.org/copyright)
-
-## Ограничения
+## Возможные ошибки
 
 - Нет рейтингов и отзывов (в отличие от курируемых сервисов)
 - Качество данных варьируется по регионам (лучше в крупных городах)
 - Не все заведения имеют полные метаданные (телефон, сайт и т.д.)
 
-## Пример ответа
+## Примечания
 
-```json
-{
-  "name": "Кафе Пушкинъ",
-  "lat": 55.7558,
-  "lon": 37.6173,
-  "amenity": "restaurant",
-  "address": "Тверской бульвар, 26, Москва",
-  "phone": "+7 495 123-45-67",
-  "website": "https://cafe-pushkin.ru",
-  "openingHours": "Mo-Su 10:00-23:00",
-  "cuisine": "russian"
-}
-```
+- Используется [Overpass API](https://overpass-api.de/) для запросов к данным OpenStreetMap. API ключ не требуется.
+- Основной endpoint: `https://overpass-api.de/api/interpreter`
+- Лимиты: ~10,000 запросов/день
+- Лицензия данных: [ODbL](https://www.openstreetmap.org/copyright)

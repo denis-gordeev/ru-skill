@@ -4,7 +4,7 @@
 
 Этот сценарий остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `kakao-bar-nearby` сохраняется ради backward compatibility и как reference flow по live place lookup, но не должен выглядеть как активный target-backlog.
 
-## Что умеет этот сценарий
+## Что делает навык
 
 - Превращать запросы вроде `Сеульский вокзал`, `Gangnam`, `Sadang` или `Nonhyeon` в поиск баров по Kakao Map.
 - Сначала поднимать заведения, которые сейчас открыты.

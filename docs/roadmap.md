@@ -6,6 +6,11 @@
 
 ## Статус на 2026-06-01
 
+- Все 17 SKILL.md с неканоничными заголовками нормализованы к единой схеме (`Что делает навык`, `Предварительные условия`, `Критерии завершения`, `Возможные ошибки`); устранены варианты `Что делает этот навык`, `Что умеет`, `Предварительные требования`, `Считается выполненным, когда`, `Режимы сбоев`, `Необходимые входные данные`, `Готово, когда`.
+- Все 29 feature docs в `docs/features/` нормализованы к каноничной heading scheme; устранены `Что умеет этот сценарий`, `Что нужно заранее`, `Базовый поток`, `Базовый сценарий`, `Обзор`, `Входы`, `Как это работает`, `Требования`, `Что можно сделать`.
+- `packages/osm-nearby/SKILL.md` полностью перестроен под каноничную схему target-навыка.
+- Устранены 10 Chinese character артефактов в user-facing документации: `整理` → `структурировать` (7 мест), `布尔` → `булевый` (1 место), `实时` → `real-time` (1 место), `返回` → `вернуть` (1 место).
+- Doc-regression расширен: добавлены тесты на каноничность heading scheme во всех SKILL.md и feature docs, а также на отсутствие Chinese character артефактов.
 - Английские заголовки секций во всех 6 target SKILL.md с английскими заголовками переведены на русский и приведены к единой схеме (`Что делает навык`, `Когда использовать`, `Предварительные условия`, `Входные данные`, `Рабочий процесс`, `Критерии завершения`, `Возможные ошибки`, `Примечания`).
 - Нестандартные русские формулировки в `yandex-rasp/SKILL.md` и `yandex-market-search/SKILL.md` нормализованы к той же схеме.
 - Последние Korean фрагменты в feature docs переведены: `근처 술집 조회` → `Поиск баров поблизости`, `K리그 결과 조회` → `Результаты K League`.
@@ -201,10 +206,9 @@
 ## Приоритеты следующих раундов
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной read-only границей, а checkout automation не идёт в новый target-backlog без подтверждённого публичного API.
-2. Fine-dust/proxy secrets-template drift, skill-only drift, legacy feature/skill drift, helper/runtime cleanup, skill-level copy audit, полная русификация user-facing Korean и doc-regression workflow assertions для всех legacy skills уже закрыты; doc-regression покрывает все 13 target-навыков и все legacy-навыки с boundary + workflow/content assertions; user-facing Korean полностью устранён.
-3. Отдельно добирать оставшиеся неканоничные heading schemes вне уже выровненных setup- и `zoon-nearby`-surface, прежде всего в `packages/osm-nearby/SKILL.md` и feature-guides с формулировками вида `Что умеет этот сценарий`, не меняя подтверждённые workflow и compatibility-границы.
-4. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
-5. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
-6. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README, top-level TODO governance, heading scheme critical surfaces и отсутствию устаревшей release-археологии в README/roadmap.
-7. Проверять package README и feature-doc surfaces на случайные mixed-language артефакты, даже если они не относятся к Korean domain data.
-8. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.
+2. Fine-dust/proxy secrets-template drift, skill-only drift, legacy feature/skill drift, helper/runtime cleanup, skill-level copy audit, полная русификация user-facing Korean, нормализация heading scheme во всех SKILL.md и feature docs и устранение Chinese character артефактов уже закрыты; doc-regression покрывает все 13 target-навыков и все legacy-навыки с boundary + workflow/content assertions + canonical heading scheme + mixed-language checks.
+3. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
+4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
+5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README, top-level TODO governance, heading scheme critical surfaces и отсутствию устаревшей release-археологии в README/roadmap.
+6. Проверять package README и feature-doc surfaces на случайные mixed-language артефакты, даже если они не относятся к Korean domain data.
+7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.

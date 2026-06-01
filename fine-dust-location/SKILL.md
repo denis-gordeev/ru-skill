@@ -10,7 +10,7 @@ metadata:
 
 # Fine Dust By Location
 
-## Что делает этот навык
+## Что делает навык
 
 По умолчанию навык обращается к published compatibility endpoint `https://k-skill-proxy.nomadamas.org/v1/fine-dust/report` и возвращает короткую сводку по PM10, PM2.5 и общей категории качества воздуха.
 
@@ -98,7 +98,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
 - итоговая категория качества воздуха
 - режим запроса (`proxy` или `fallback`)
 
-## Режимы сбоев
+## Возможные ошибки
 
 - `regionHint` слишком широкий и не даёт выбрать одну станцию
 - proxy недоступен или upstream key отсутствует

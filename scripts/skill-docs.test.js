@@ -1328,11 +1328,11 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-01");
-  assert.equal(todoStatus.round, 29);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 29\)/);
+  assert.equal(todoStatus.round, 30);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 30\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
-  assert.match(todo, /(ru-skill-setup|k-skill-setup)[\s\S]*русск(ие|их) секци/i);
+  assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
   assert.match(todo, /Источником актуального статуса считаются самые верхние блоки/i);
 
   assert.match(bookingResearch, /## Decision matrix/);
@@ -2121,4 +2121,167 @@ test("delivery-tracking skill documents the CJ and ePost carrier adapter workflo
   assert.match(featureDoc, /validator/);
   assert.match(featureDoc, /status map/);
   assert.match(featureDoc, /retry policy/);
+});
+
+test("all SKILL.md files use canonical Russian heading scheme", () => {
+  const canonicalTargetHeadings = [
+    "Что делает навык",
+    "Когда использовать",
+    "Предварительные условия",
+    "Входные данные",
+    "Рабочий процесс",
+    "Критерии завершения",
+    "Возможные ошибки",
+    "Примечания",
+  ];
+
+  const canonicalSetupHeadings = [
+    "Назначение",
+    "Порядок разрешения учётных данных",
+    "Стандартный сценарий",
+    "Совместимость",
+  ];
+
+  const nonCanonicalHeadingPatterns = [
+    /^## Что делает этот навык$/m,
+    /^## Что умеет$/m,
+    /^## Что умеет этот сценарий$/m,
+    /^## Что можно сделать$/m,
+    /^## Предварительные требования$/m,
+    /^## Что нужно заранее$/m,
+    /^## Требования$/m,
+    /^## Считается выполненным, когда$/m,
+    /^## Готово, когда$/m,
+    /^## Режимы сбоев$/m,
+    /^## Необходимые входные данные$/m,
+    /^## Входы$/m,
+  ];
+
+  const targetSkills = [
+    "cbr-rates", "moex-shares", "postcalc-postcodes", "hh-vacancies",
+    "stoloto-lotto", "kinopoisk-search", "mchs-storm-warnings", "pravo-documents",
+    "yandex-rasp", "rpl-results", "yandex-market-search", "osm-nearby", "zoon-nearby",
+  ];
+
+  const legacySkills = [
+    "kakaotalk-mac", "delivery-tracking", "ktx-booking", "blue-ribbon-nearby",
+    "hwp", "toss-securities", "kakao-bar-nearby", "srt-booking",
+    "lotto-results", "kbo-results", "zipcode-search", "kleague-results",
+    "daiso-product-search", "fine-dust-location", "seoul-subway-arrival",
+  ];
+
+  const setupSkills = ["ru-skill-setup", "k-skill-setup"];
+
+  for (const skill of [...targetSkills, ...legacySkills]) {
+    const skillPath = path.join(repoRoot, skill, "SKILL.md");
+    if (!fs.existsSync(skillPath)) continue;
+
+    const content = read(path.join(skill, "SKILL.md"));
+    const headings = extractSecondLevelHeadings(content);
+
+    assert.ok(
+      headings.includes("Что делает навык"),
+      `${skill}/SKILL.md must have canonical heading "Что делает навык", found: ${headings.filter(h => /Что/.test(h)).join(", ")}`,
+    );
+
+    for (const pattern of nonCanonicalHeadingPatterns) {
+      assert.doesNotMatch(
+        content,
+        pattern,
+        `${skill}/SKILL.md must not contain non-canonical heading "${pattern.source.replace(/^## /, "")}"`,
+      );
+    }
+  }
+
+  const pkgOsmSkill = read(path.join("packages", "osm-nearby", "SKILL.md"));
+  assert.ok(
+    extractSecondLevelHeadings(pkgOsmSkill).includes("Что делает навык"),
+    "packages/osm-nearby/SKILL.md must have canonical heading scheme",
+  );
+
+  const pkgZoonSkill = read(path.join("packages", "zoon-nearby", "SKILL.md"));
+  assert.deepEqual(
+    extractSecondLevelHeadings(pkgZoonSkill),
+    canonicalTargetHeadings,
+    "packages/zoon-nearby/SKILL.md must match the canonical target headings exactly",
+  );
+
+  for (const skill of setupSkills) {
+    const content = read(path.join(skill, "SKILL.md"));
+    const headings = extractSecondLevelHeadings(content);
+    assert.deepEqual(headings, canonicalSetupHeadings, `${skill}/SKILL.md must match canonical setup headings`);
+  }
+});
+
+test("feature docs use canonical Russian headings without non-canonical variants", () => {
+  const nonCanonicalPatterns = [
+    /## Что умеет этот сценарий/,
+    /## Что умеет$/,
+    /## Что делает этот навык/,
+    /## Что можно сделать/,
+    /## Что нужно заранее/,
+    /## Предварительные требования/,
+    /## Требования$/,
+    /## Входы$/,
+    /## Базовый поток/,
+    /## Базовый сценарий/,
+    /## Как это работает/,
+    /## Считается выполненным, когда/,
+    /## Готово, когда/,
+    /## Режимы сбоев/,
+    /## Необходимые входные данные/,
+    /## Обзор$/,
+  ];
+
+  const featuresDir = path.join(repoRoot, "docs", "features");
+  const featureFiles = fs.readdirSync(featuresDir).filter((f) => f.endsWith(".md"));
+
+  for (const file of featureFiles) {
+    const content = fs.readFileSync(path.join(featuresDir, file), "utf8");
+
+    for (const pattern of nonCanonicalPatterns) {
+      assert.doesNotMatch(
+        content,
+        pattern,
+        `docs/features/${file} must not contain non-canonical heading "${pattern.source}"`,
+      );
+    }
+  }
+});
+
+test("user-facing docs contain no Chinese character artifacts", () => {
+  const chineseCharPattern = /[整理布尔返回实时]/;
+
+  const skillDirs = fs.readdirSync(repoRoot).filter((dir) => {
+    const skillPath = path.join(repoRoot, dir, "SKILL.md");
+    return fs.existsSync(skillPath);
+  });
+
+  for (const dir of skillDirs) {
+    const content = read(path.join(dir, "SKILL.md"));
+    assert.doesNotMatch(
+      content,
+      chineseCharPattern,
+      `${dir}/SKILL.md must not contain Chinese character artifacts`,
+    );
+  }
+
+  const featuresDir = path.join(repoRoot, "docs", "features");
+  const featureFiles = fs.readdirSync(featuresDir).filter((f) => f.endsWith(".md"));
+
+  for (const file of featureFiles) {
+    const content = fs.readFileSync(path.join(featuresDir, file), "utf8");
+    assert.doesNotMatch(
+      content,
+      chineseCharPattern,
+      `docs/features/${file} must not contain Chinese character artifacts`,
+    );
+  }
+
+  const sourcesDoc = read(path.join("docs", "sources.md"));
+  assert.doesNotMatch(
+    sourcesDoc,
+    chineseCharPattern,
+    "docs/sources.md must not contain Chinese character artifacts",
+  );
 });

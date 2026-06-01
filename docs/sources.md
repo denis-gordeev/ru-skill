@@ -328,7 +328,7 @@
 
 Что не входит в восьмой scope:
 
-- Полнотекстовый поиск с布尔ными операторами и сложными Query-конструкциями.
+- Полнотекстовый поиск с булевыми операторами и сложными Query-конструкциями.
 - Скачивание и парсинг содержимого PDF документов.
 - Авторизация, избранное, комментарии и любые write-операции.
 - Сравнение редакций документа и история изменений.
@@ -536,7 +536,7 @@
 - Blue Ribbon ближайшие рестораны JSON: https://www.bluer.co.kr/restaurants/map
 - Kakao Map мобильный поиск: https://m.map.kakao.com/actions/searchView
 - Kakao Map панель места JSON: https://place-api.map.kakao.com/places/panel3/<confirmId>
-- Сеул实时 прибытие метро API: https://www.data.go.kr/data/15058052/openapi.do
+- Сеул real-time прибытие метро API: https://www.data.go.kr/data/15058052/openapi.do
 - AirKorea качество воздуха API: https://www.data.go.kr/data/15073861/openapi.do
 - AirKorea станции мониторинга API: https://www.data.go.kr/data/15073877/openapi.do
 - Почтовая служба Кореи поиск адресов: https://parcel.epost.go.kr/parcel/comm/zipcode/comm_newzipcd_list.jsp

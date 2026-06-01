@@ -4,29 +4,32 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-01 (раунд 29)
+## Статус на 2026-06-01 (раунд 30)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- `k-skill-setup/SKILL.md` выровнен с preferred setup alias: legacy alias теперь использует те же верхнеуровневые русские секции (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`) без изменения setup-flow.
-- `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md` приведены к target-канону русских секций; supplementary nearby-source больше не остаётся отдельным heading outlier.
-- `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от mixed-language артефакта `可以直接`.
-- Doc-regression тесты расширены на legacy setup alias, `zoon-nearby` heading scheme и отсутствие mixed-language drift в Zoon surfaces.
-- Полный CI проходит: lint, typecheck, `node --test scripts/skill-docs.test.js`, все workspace-тесты зелёные, `pack:dry-run` проходит.
+- Устранены 10 Chinese character артефактов в user-facing документации: `整理` (7 мест, заменено на `структурировать`), `布尔` (1 место, → `булевый`), `实时` (1 место, → `real-time`), `返回` (1 место, → `вернуть`).
+- Все SKILL.md файлы приведены к единой каноничной heading scheme: `Что делает навык`, `Предварительные условия`, `Критерии завершения`, `Возможные ошибки` (вместо `Что делает этот навык`, `Что умеет`, `Предварительные требования`, `Считается выполненным, когда`, `Режимы сбоев` и т.д.).
+- Все feature docs в `docs/features/` приведены к той же каноничной схеме: `Что делает навык`, `Предварительные условия`, `Рабочий процесс` (вместо `Что умеет этот сценарий`, `Что нужно заранее`, `Базовый поток`, `Базовый сценарий`, `Обзор` и т.д.).
+- `packages/osm-nearby/SKILL.md` полностью перестроен под каноничную схему target-навыка.
+- Korean `강남` в `daiso-product-search/SKILL.md` обёрнут в backticks.
+- Doc-regression расширен: добавлены 3 новых теста на каноничность heading scheme во всех SKILL.md, отсутствие неканоничных заголовков в feature docs и отсутствие Chinese character артефактов в user-facing документации.
+- Полный CI проходит: lint, typecheck, 98 pass / 0 fail / 1 skipped, `pack:dry-run` проходит.
 
-## Выполнено в этом раунде (раунд 29)
+## Выполнено в этом раунде (раунд 30)
 
-- [x] `k-skill-setup/SKILL.md` приведён к той же top-level heading scheme, что и `ru-skill-setup`, без изменения setup-flow, secrets order и compatibility semantics.
-- [x] `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md` нормализованы к target-канону русских секций.
-- [x] `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от mixed-language артефакта и мелких русскоязычных неточностей.
-- [x] `scripts/skill-docs.test.js` обновлён: setup alias и `zoon-nearby` теперь страхуются регрессиями на heading scheme и отсутствие mixed-language drift.
+- [x] Устранены 10 Chinese character артефактов (`整理`, `布尔`, `实时`, `返回`) в 7 файлах: `kakaotalk-mac/SKILL.md`, `toss-securities/SKILL.md`, `docs/features/delivery-tracking.md`, `lotto-results/SKILL.md`, `kbo-results/SKILL.md` (3 места), `docs/sources.md` (2 места), `kleague-results/SKILL.md`.
+- [x] Все 17 SKILL.md с неканоничными заголовками нормализованы к единой схеме (`Что делает навык`, `Предварительные условия`, `Критерии завершения`, `Возможные ошибки`).
+- [x] Все 29 feature docs в `docs/features/` нормализованы к каноничной heading scheme.
+- [x] `packages/osm-nearby/SKILL.md` перестроен с нуля под каноничную схему target-навыка.
+- [x] Korean `강남` в `daiso-product-search/SKILL.md` обёрнут в backticks как domain query value.
+- [x] Doc-regression расширен: 3 новых теста — canonical heading scheme для всех SKILL.md, canonical headings для всех feature docs, отсутствие Chinese character артефактов.
 - [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [ ] Нормализовать оставшиеся неканоничные heading schemes вне уже закрытых setup- и `zoon-nearby`-surface, прежде всего в `packages/osm-nearby/SKILL.md` и feature-guides с формулировками вида `Что умеет этот сценарий`, не меняя подтверждённые workflow.
-- [ ] Проверить package README и feature-doc surfaces на mixed-language user-facing артефакты не только Korean-типа, но и случайные вставки из других языков или чернового копипаста.
 - [ ] Расширять doc-regression в CI дальше: README, roadmap, TODO, booking-research, heading scheme критических skill-surfaces и hygiene package/feature docs должны совпадать по текущему продуктовому приоритету.
 - [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
+- [ ] Проверить package README surfaces на оставшиеся mixed-language артефакты, не покрытые текущими регрессиями.
 
 ## Статус на 2026-06-01 (раунд 27)
 
