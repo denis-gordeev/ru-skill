@@ -4,34 +4,34 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-01 (раунд 30)
+## Статус на 2026-06-02 (раунд 31)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- Устранены 10 Chinese character артефактов в user-facing документации: `整理` (7 мест, заменено на `структурировать`), `布尔` (1 место, → `булевый`), `实时` (1 место, → `real-time`), `返回` (1 место, → `вернуть`).
-- Все SKILL.md файлы приведены к единой каноничной heading scheme: `Что делает навык`, `Предварительные условия`, `Критерии завершения`, `Возможные ошибки` (вместо `Что делает этот навык`, `Что умеет`, `Предварительные требования`, `Считается выполненным, когда`, `Режимы сбоев` и т.д.).
-- Все feature docs в `docs/features/` приведены к той же каноничной схеме: `Что делает навык`, `Предварительные условия`, `Рабочий процесс` (вместо `Что умеет этот сценарий`, `Что нужно заранее`, `Базовый поток`, `Базовый сценарий`, `Обзор` и т.д.).
-- `packages/osm-nearby/SKILL.md` полностью перестроен под каноничную схему target-навыка.
-- Korean `강남` в `daiso-product-search/SKILL.md` обёрнут в backticks.
-- Doc-regression расширен: добавлены 3 новых теста на каноничность heading scheme во всех SKILL.md, отсутствие неканоничных заголовков в feature docs и отсутствие Chinese character артефактов в user-facing документации.
+- Переведён `## Boundary note` → `## Граничное примечание` во всех 31 файлах (15 SKILL.md, 16 docs/features/*.md).
+- Переведены английские h1-заголовки в 9 SKILL.md target-навыков: `CBR Rates` → `Курсы валют ЦБ РФ`, `HH Vacancies` → `Вакансии HH`, `MOEX Shares` → `Акции Мосбиржи`, `MChS Storm Warnings` → `Штормовые предупреждения МЧС`, `Pravo.gov.ru Legal Documents` → `Правовые документы pravo.gov.ru`, `Postcalc Postcodes` → `Почтовые индексы Postcalc`, `Zoon.ru Nearby Search` → `Поиск поблизости Zoon.ru`, `osm-nearby` → `Поиск поблизости OSM`.
+- Переведены английские h1-заголовки в 4 docs/features: `MOEX Shares` → `Акции Мосбиржи`, `OSM Nearby` → `Поиск поблизости OSM`, `Zoon.ru Nearby Search` → `Поиск поблизости Zoon.ru`, `kinopoisk-search` → `Поиск на Кинопоиске`.
+- Переведены на русский все 10 target package README: описания, секционные заголовки (`Install` → `Установка`, `Usage` → `Использование`, `Notes` → `Примечания`), содержимое.
+- Переведены на русский frontmatter `description` в 8 target SKILL.md.
+- Нормализованы неканоничные заголовки в 3 уже-русских package README: `Что умеет` → `Что делает навык`, `Что не умеет` → `Ограничения`, `Что умеет этот навык` → `Что делает навык`, `Готово, когда` → `Критерии завершения`.
 - Полный CI проходит: lint, typecheck, 98 pass / 0 fail / 1 skipped, `pack:dry-run` проходит.
 
-## Выполнено в этом раунде (раунд 30)
+## Выполнено в этом раунде (раунд 31)
 
-- [x] Устранены 10 Chinese character артефактов (`整理`, `布尔`, `实时`, `返回`) в 7 файлах: `kakaotalk-mac/SKILL.md`, `toss-securities/SKILL.md`, `docs/features/delivery-tracking.md`, `lotto-results/SKILL.md`, `kbo-results/SKILL.md` (3 места), `docs/sources.md` (2 места), `kleague-results/SKILL.md`.
-- [x] Все 17 SKILL.md с неканоничными заголовками нормализованы к единой схеме (`Что делает навык`, `Предварительные условия`, `Критерии завершения`, `Возможные ошибки`).
-- [x] Все 29 feature docs в `docs/features/` нормализованы к каноничной heading scheme.
-- [x] `packages/osm-nearby/SKILL.md` перестроен с нуля под каноничную схему target-навыка.
-- [x] Korean `강남` в `daiso-product-search/SKILL.md` обёрнут в backticks как domain query value.
-- [x] Doc-regression расширен: 3 новых теста — canonical heading scheme для всех SKILL.md, canonical headings для всех feature docs, отсутствие Chinese character артефактов.
+- [x] Переведён `## Boundary note` → `## Граничное примечание` в 31 файле (15 SKILL.md + 16 docs/features/*.md).
+- [x] Переведены английские h1-заголовки в 9 target SKILL.md на русский.
+- [x] Переведены английские h1-заголовки в 4 docs/features на русский.
+- [x] Переведены на русский все 10 target package README (описания, секционные заголовки, содержимое).
+- [x] Переведены на русский frontmatter `description` в 8 target SKILL.md.
+- [x] Нормализованы неканоничные заголовки в package README: `Что умеет` → `Что делает навык`, `Что не умеет` → `Ограничения`, `Готово, когда` → `Критерии завершения`.
 - [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
 - [ ] Расширять doc-regression в CI дальше: README, roadmap, TODO, booking-research, heading scheme критических skill-surfaces и hygiene package/feature docs должны совпадать по текущему продуктовому приоритету.
 - [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
-- [ ] Проверить package README surfaces на оставшиеся mixed-language артефакты, не покрытые текущими регрессиями.
+- [ ] Проверить оставшиеся English артефакты в legacy package README и docs/features, не покрытые текущими регрессиями.
 
-## Статус на 2026-06-01 (раунд 27)
+## Статус на 2026-06-01 (раунд 30)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий слой русификации SKILL.md: английские заголовки секций в 6 target-навыках (`mchs-storm-warnings`, `cbr-rates`, `moex-shares`, `postcalc-postcodes`, `hh-vacancies`, `pravo-documents`) переведены на русский (`What this skill does` → `Что делает навык`, `When to use` → `Когда использовать`, `Prerequisites` → `Предварительные условия`, `Inputs` → `Входные данные`, `Workflow` → `Рабочий процесс`, `Done when` → `Критерии завершения`, `Failure modes` → `Возможные ошибки`, `Notes` → `Примечания`).
@@ -61,9 +61,9 @@
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий слой skill-level copy audit: 7 мест, где legacy-контекст ещё описывался как operational default вместо backward-compatible fallback.
-  - `delivery-tracking/SKILL.md`: добавлен `## Boundary note` с `legacy-only` статусом; description заменён с forward-looking на legacy-compatible; формулировки «в будущем можно расширить» заменены на backward-compatible расширяемый паттерн.
-  - `toss-securities/SKILL.md`: добавлен `## Boundary note` с `legacy-only` статусом и ссылкой на `moex-shares`; description заменён на legacy-compatible.
-  - `hwp/SKILL.md` и `docs/features/hwp.md`: добавлен `## Boundary note` с классификацией `target-supporting` — корейский формат без прямого российского аналога, но полезный как утилита.
+  - `delivery-tracking/SKILL.md`: добавлен `## Граничное примечание` с `legacy-only` статусом; description заменён с forward-looking на legacy-compatible; формулировки «в будущем можно расширить» заменены на backward-compatible расширяемый паттерн.
+  - `toss-securities/SKILL.md`: добавлен `## Граничное примечание` с `legacy-only` статусом и ссылкой на `moex-shares`; description заменён на legacy-compatible.
+  - `hwp/SKILL.md` и `docs/features/hwp.md`: добавлен `## Граничное примечание` с классификацией `target-supporting` — корейский формат без прямого российского аналога, но полезный как утилита.
   - `blue-ribbon-nearby/SKILL.md`: routing rule исправлен — теперь `osm-nearby` / `zoon-nearby` указаны как primary для российских nearby-запросов, а `blue-ribbon-nearby` только для явных Blue Ribbon запросов.
   - `ktx-booking/SKILL.md`: description обновлён с добавлением `Legacy-compatible ... not for new Russian railway integrations` по аналогии с `srt-booking`.
 - Doc-regression расширен на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
@@ -124,7 +124,7 @@
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий слой legacy feature/skill drift после skill-only cleanup: user-facing guides и agent-facing skills больше не расходятся по replacement boundaries для nearby, marketplace, football и railway сценариев.
-- `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь явно публикуют `## Boundary note`, а replacement-роли (`osm-nearby`/`zoon-nearby`, `yandex-market-search`, `rpl-results`, `yandex-rasp`) синхронизированы между `docs/features/*` и `*/SKILL.md`.
+- `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь явно публикуют `## Граничное примечание`, а replacement-роли (`osm-nearby`/`zoon-nearby`, `yandex-market-search`, `rpl-results`, `yandex-rasp`) синхронизированы между `docs/features/*` и `*/SKILL.md`.
 - Doc-regression расширен на этот слой, чтобы boundary note и replacement copy не расползались в следующих документных раундах.
 
 ## Статус на 2026-05-22 (раунд 17)
@@ -331,7 +331,7 @@
 - [x] Привести `srt-booking/SKILL.md` и `ktx-booking/SKILL.md` к явному `legacy-only` boundary note, чтобы legacy railway flows не выглядели шаблоном для новых российских write-интеграций.
 - [x] Расширить doc-regression на `fine-dust-location`, `srt-booking` и `ktx-booking`, чтобы `ru-skill`-first secrets order и migration-boundary удерживались не только в feature guides и setup docs.
 - [x] Пройти следующий слой legacy skill-only guides вне railway/fine-dust контура и добавить им явный `legacy-only` boundary note.
-- [x] Пройти следующий слой legacy feature/skill guides и добавить им явный `## Boundary note` с подтверждённым replacement boundary.
+- [x] Пройти следующий слой legacy feature/skill guides и добавить им явный `## Граничное примечание` с подтверждённым replacement boundary.
 - [x] Расширить doc-regression на `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby` и `kleague-results`, чтобы replacement copy не расходился между feature guides и `SKILL.md`.
 - [x] Проверить, не осталось ли в helper/runtime документации других `k-skill`-prefixed operational defaults за пределами уже покрытых setup/proxy/railway сценариев.
 - [x] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
@@ -384,7 +384,7 @@
 
 ## Новые пункты плана
 
-- [x] Добавить явные `## Boundary note` блоки в оставшиеся legacy feature/skill guides без такой секции: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, а также унифицировать форму для `srt-booking` и `ktx-booking`.
+- [x] Добавить явные `## Граничное примечание` блоки в оставшиеся legacy feature/skill guides без такой секции: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, а также унифицировать форму для `srt-booking` и `ktx-booking`.
 - [x] Проверить helper/runtime copy за пределами setup/proxy контура на скрытые `k-skill`-prefixed operational defaults и при необходимости расширить на этот слой doc-regression.
 
 ## Выполнено в этом раунде (раунд 5)
@@ -524,9 +524,9 @@
 ## Выполнено в этом раунде (раунд 24)
 
 - [x] Проведён полный аудит skill-level copy на предмет legacy-контекста, описанного как operational default.
-- [x] `delivery-tracking/SKILL.md`: добавлен `## Boundary note` (`legacy-only`); description заменён на legacy-compatible; forward-looking формулировки удалены.
-- [x] `toss-securities/SKILL.md`: добавлен `## Boundary note` (`legacy-only`, ссылка на `moex-shares`); description заменён на legacy-compatible.
-- [x] `hwp/SKILL.md` и `docs/features/hwp.md`: добавлен `## Boundary note` (`target-supporting`) — корейский формат без прямого российского аналога, но полезен как утилита.
+- [x] `delivery-tracking/SKILL.md`: добавлен `## Граничное примечание` (`legacy-only`); description заменён на legacy-compatible; forward-looking формулировки удалены.
+- [x] `toss-securities/SKILL.md`: добавлен `## Граничное примечание` (`legacy-only`, ссылка на `moex-shares`); description заменён на legacy-compatible.
+- [x] `hwp/SKILL.md` и `docs/features/hwp.md`: добавлен `## Граничное примечание` (`target-supporting`) — корейский формат без прямого российского аналога, но полезен как утилита.
 - [x] `blue-ribbon-nearby/SKILL.md`: routing rule исправлен — `osm-nearby` / `zoon-nearby` теперь primary для российских nearby-запросов.
 - [x] `ktx-booking/SKILL.md`: description обновлён с добавлением `Legacy-compatible ... not for new Russian railway integrations`.
 - [x] Doc-regression расширен на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.

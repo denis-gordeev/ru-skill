@@ -14,7 +14,7 @@ metadata:
 
 По умолчанию навык обращается к published compatibility endpoint `https://k-skill-proxy.nomadamas.org/v1/fine-dust/report` и возвращает короткую сводку по PM10, PM2.5 и общей категории качества воздуха.
 
-## Boundary note
+## Граничное примечание
 
 Этот навык остаётся `legacy/transition utility`, а не новым `target`-направлением `ru-skill`. Он нужен, чтобы сохранить совместимость с AirKorea + `k-skill-proxy`, а published proxy endpoint и legacy naming существуют только как compatibility-layer, а не как новый продуктовый default для русскоязычных сценариев.
 

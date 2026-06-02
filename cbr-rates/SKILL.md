@@ -1,6 +1,6 @@
 ---
 name: cbr-rates
-description: Check official Bank of Russia currency rates from the public XML feed, including a requested date and the previous available published value. Use when the user asks for CBR exchange rates for USD, EUR, CNY, or similar currencies.
+description: Проверка официальных курсов валют Банка России из публичного XML-сервиса, включая запрошенную дату и предыдущее доступное опубликованное значение. Использовать, когда пользователь спрашивает курсы ЦБ РФ для USD, EUR, CNY и других валют.
 license: MIT
 metadata:
   category: finance
@@ -8,7 +8,7 @@ metadata:
   phase: v1
 ---
 
-# CBR Rates
+# Курсы валют ЦБ РФ
 
 ## Что делает навык
 

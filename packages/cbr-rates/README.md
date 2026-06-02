@@ -1,19 +1,19 @@
 # cbr-rates
 
-Read-only Node.js client for the official Bank of Russia XML exchange-rate feeds.
+Read-only-клиент для официальных курсов валют Банка России через публичный XML-сервис.
 
-## Install
+## Установка
 
 ```bash
 npm install cbr-rates
 ```
 
-## Official surfaces
+## Официальные поверхности
 
-- Daily rates XML: `https://www.cbr.ru/scripts/XML_daily.asp`
-- XML services reference: `https://www.cbr.ru/development/SXML/`
+- XML ежедневных курсов: `https://www.cbr.ru/scripts/XML_daily.asp`
+- Справка по XML-сервисам: `https://www.cbr.ru/development/SXML/`
 
-## Usage
+## Использование
 
 ```js
 const { getDailyRates, getRate, getRateWithChange } = require("cbr-rates");
@@ -33,21 +33,21 @@ const { getDailyRates, getRate, getRateWithChange } = require("cbr-rates");
 
 ### `getDailyRates(date?)`
 
-- `date`: `YYYY-MM-DD`, `Date`, or omitted for today
-- Returns normalized metadata plus the full `currencies` array
+- `date`: `YYYY-MM-DD`, `Date` или без аргумента — текущий день
+- Возвращает нормализованные метаданные и массив `currencies`
 
 ### `getRate(charCode, date?)`
 
-- `charCode`: 3-letter ISO code like `USD`, `EUR`, `CNY`
-- Returns one normalized currency row with `requestedDate` and `publishedDate`
+- `charCode`: трёхбуквенный ISO-код, например `USD`, `EUR`, `CNY`
+- Возвращает одну строку валюты с `requestedDate` и `publishedDate`
 
 ### `getRateWithChange(charCode, date?, options?)`
 
-- Adds the previous available published value and day-over-day change
-- `options.maxLookbackDays` defaults to `7`
+- Добавляет предыдущее доступное опубликованное значение и изменение за сутки
+- `options.maxLookbackDays` по умолчанию `7`
 
-## Notes
+## Примечания
 
-- The Bank of Russia feed is read-only and public.
-- Currency names are decoded from Windows-1251 before normalization.
-- Day-over-day change is calculated against the previous available published date, not strictly calendar yesterday.
+- Сервис Банка России — read-only и публично доступен.
+- Названия валют декодируются из Windows-1251 перед нормализацией.
+- Изменение за сутки рассчитывается относительно предыдущей доступной даты публикации, а не строго вчерашнего календарного дня.

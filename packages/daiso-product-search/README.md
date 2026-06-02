@@ -2,7 +2,7 @@
 
 `daiso-product-search` - legacy read-only пакет для поиска товаров и pickup-остатков в Daiso Mall по официальным web-поверхностям.
 
-## Boundary note
+## Граничное примечание
 
 Этот пакет остаётся `legacy-only`: для российского marketplace discovery его replacement уже реализован как `yandex-market-search`. `daiso-product-search` сохраняется ради backward compatibility и как референс по store/product/stock flow, но не должен выглядеть как активный target-трек репозитория.
 

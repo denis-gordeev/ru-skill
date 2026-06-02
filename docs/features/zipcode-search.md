@@ -1,6 +1,6 @@
 # Гайд по поиску почтового индекса
 
-## Boundary note
+## Граничное примечание
 
 Этот сценарий остаётся `legacy-only`: для российских read-only сценариев по индексам и отделениям уже есть `postcalc-postcodes`, а корейский ePost workflow сохраняется только ради backward compatibility. `zipcode-search` не должен выглядеть как скрытый backlog на новый российский postcode skill поверх другого источника.
 

@@ -10,7 +10,7 @@ metadata:
 
 # Результаты K League
 
-## Boundary note
+## Граничное примечание
 
 Этот навык остаётся `legacy-only`: для российских футбольных сводок его replacement уже реализован как `rpl-results`. `kleague-results` сохраняется ради backward compatibility и как reference flow по официальным schedule/standings surfaces, но не должен подаваться как незавершённый target-backlog.
 

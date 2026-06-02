@@ -136,7 +136,7 @@
 - Doc-regression расширен на этот skill-level слой, чтобы railway/fine-dust copy не возвращала legacy defaults или скрытый target-backlog в новые раунды.
 - Следующий слой legacy skill-only guides тоже выровнен: `kakaotalk-mac`, `kbo-results`, `lotto-results` и `zipcode-search` теперь явно фиксируют `legacy-only` boundary и не выглядят как активные target-кандидаты.
 - Doc-regression расширен и на эти skill-only surfaces, чтобы migration-boundary для локальных CLI и корейских utility workflows не терялся между `docs/features/*` и `*/SKILL.md`.
-- Следующий слой legacy feature/skill drift тоже закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь в user-facing guides явно публикуют `## Boundary note`, а их replacement boundaries синхронизированы со связанными `SKILL.md`.
+- Следующий слой legacy feature/skill drift тоже закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь в user-facing guides явно публикуют `## Граничное примечание`, а их replacement boundaries синхронизированы со связанными `SKILL.md`.
 - Doc-regression расширен и на этот feature/skill слой, чтобы replacement copy для nearby, marketplace, football и legacy railway сценариев не расходился между `docs/features/*` и `*/SKILL.md`.
 - Helper/runtime cleanup формально закрыт и на user-facing legacy guides: `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking` теперь дополнительно страхуются регрессиями на `ru-skill`-first secrets order, runtime/secrets semantics и replacement boundary.
 - User-facing Korean labels в source code переведены на русский: статусы матчей (`kleague-results`), подсказки вместимости (`kakao-bar-nearby`), лотерейные метки (`k-lotto`), сообщения об ошибках (`blue-ribbon-nearby`).
@@ -157,6 +157,12 @@
 - Doc-regression расширен: добавлены тесты на каноничность heading scheme во всех SKILL.md и feature docs, а также на отсутствие Chinese character артефактов.
 - `TODO.md` переведён на более строгую top-block модель: актуальный backlog закреплён в верхних блоках `Статус`, `Выполнено в этом раунде` и `Новые пункты плана`, а исторические plan-секции больше не держат живые unchecked-пункты.
 - Doc-regression расширен на preferred setup-skill и hygiene живого backlog: тесты теперь страхуют русские заголовки в `ru-skill-setup` и то, что активные unchecked-пункты живут только в верхнем plan block `TODO.md`.
+- Переведён `## Boundary note` → `## Граничное примечание` во всех 31 файле (15 SKILL.md, 16 docs/features/*.md).
+- Переведены английские h1-заголовки в 9 target SKILL.md на русский: `CBR Rates` → `Курсы валют ЦБ РФ`, `HH Vacancies` → `Вакансии HH`, `MOEX Shares` → `Акции Мосбиржи`, `MChS Storm Warnings` → `Штормовые предупреждения МЧС`, `Pravo.gov.ru Legal Documents` → `Правовые документы pravo.gov.ru`, `Postcalc Postcodes` → `Почтовые индексы Postcalc`, `Zoon.ru Nearby Search` → `Поиск поблизости Zoon.ru`, `osm-nearby` → `Поиск поблизости OSM`.
+- Переведены английские h1-заголовки в 4 docs/features на русский: `MOEX Shares` → `Акции Мосбиржи`, `OSM Nearby` → `Поиск поблизости OSM`, `Zoon.ru Nearby Search` → `Поиск поблизости Zoon.ru`, `kinopoisk-search` → `Поиск на Кинопоиске`.
+- Переведены на русский все 10 target package README: описания, секционные заголовки (`Install` → `Установка`, `Usage` → `Использование`, `Notes` → `Примечания`) и содержимое.
+- Переведены на русский frontmatter `description` в 8 target SKILL.md.
+- Нормализованы неканоничные заголовки в уже-русских package README: `Что умеет` → `Что делает навык`, `Что не умеет` → `Ограничения`, `Готово, когда` → `Критерии завершения`.
 
 ## Что делаем дальше
 
@@ -166,6 +172,7 @@
 - Все SKILL.md и feature docs приведены к единой каноничной heading scheme; неканоничные варианты (`Что делает этот навык`, `Что умеет`, `Предварительные требования`, `Режимы сбоев`, `Что умеет этот сценарий`, `Что нужно заранее`, `Базовый поток`, `Базовый сценарий`, `Обзор`) устранены.
 - Chinese character артефакты (`整理`, `布尔`, `返回`, `实时`) устранены из всей user-facing документации; doc-regression страхует отсутствие таких артефактов.
 - Doc-regression покрывает все 13 target-навыков и все legacy-навыки с workflow/content assertions, каноничность heading scheme и отсутствие mixed-language артефактов.
+- Английские артефакты в target package README, SKILL.md h1-заголовках и секционных заголовках устранены; `## Boundary note` переведён как `## Граничное примечание`.
 - Верхний активный блок `TODO.md` теперь зафиксирован как единственный живой backlog; исторические round-секции остаются архивом и не должны снова накапливать открытые checklist-пункты.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.

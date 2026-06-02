@@ -1,21 +1,21 @@
 # pravo-documents
 
-Read-only Node.js client for official Russian legal documents via pravo.gov.ru publication API.
+Read-only-клиент для официальных правовых документов через API портала pravo.gov.ru.
 
-## Install
+## Установка
 
 ```bash
 npm install pravo-documents
 ```
 
-## Public surfaces
+## Публичные поверхности
 
-- Search endpoint: `https://publication.pravo.gov.ru/api/Documents`
-- Document card: `https://publication.pravo.gov.ru/api/Document?eoNumber=<number>`
-- Blocks reference: `https://publication.pravo.gov.ru/api/PublicBlocks`
-- Source type: official Russian legal information portal, no auth required
+- Эндпоинт поиска: `https://publication.pravo.gov.ru/api/Documents`
+- Карточка документа: `https://publication.pravo.gov.ru/api/Document?eoNumber=<number>`
+- Справочник рубрик: `https://publication.pravo.gov.ru/api/PublicBlocks`
+- Тип источника: официальный портал правовой информации, без авторизации
 
-## Usage
+## Использование
 
 ```js
 const {
@@ -37,59 +37,59 @@ const {
 
 ### `searchPravoDocuments(options?)`
 
-Search for official Russian legal documents with optional filters.
+Поиск официальных правовых документов с опциональными фильтрами.
 
-- `options.name`: search query (e.g. `"федеральный закон"`)
-- `options.documentTypeId`: filter by document type ID
-- `options.blockId`: filter by publication block
-- `options.categoryId`: filter by category
-- `options.signatoryAuthorityId`: filter by signatory authority
-- `options.dateFrom`, `options.dateTo`: date range filters (ISO format)
-- `options.page`: page number, default `1`
-- `options.pageSize`: results per page, `1-100`, default `20`
-- Returns `{ items: Array<object>, pagination: object }`
+- `options.name`: поисковый запрос (например `"федеральный закон"`)
+- `options.documentTypeId`: фильтр по типу документа
+- `options.blockId`: фильтр по рубрике публикации
+- `options.categoryId`: фильтр по категории
+- `options.signatoryAuthorityId`: фильтр по подписавшему органу
+- `options.dateFrom`, `options.dateTo`: фильтр по диапазону дат (ISO-формат)
+- `options.page`: номер страницы, по умолчанию `1`
+- `options.pageSize`: результатов на странице, `1–100`, по умолчанию `20`
+- Возвращает `{ items: Array<object>, pagination: object }`
 
-Each item contains:
-- `eoNumber`: electronic publication number
-- `title`: document title
-- `complexName`: full official name with date
-- `number`: registration number (e.g. `"123-ФЗ"`)
-- `documentDate`: document date
-- `publishDate`: publication date (ISO 8601)
-- `pagesCount`: number of pages
-- `pdfUrl`: link to document page
+Каждый элемент содержит:
+- `eoNumber`: номер электронной публикации
+- `title`: заголовок документа
+- `complexName`: полное официальное название с датой
+- `number`: регистрационный номер (например `"123-ФЗ"`)
+- `documentDate`: дата документа
+- `publishDate`: дата публикации (ISO 8601)
+- `pagesCount`: количество страниц
+- `pdfUrl`: ссылка на страницу документа
 
 ### `getPravoDocument(eoNumber)`
 
-Get full document card metadata.
+Получение полной карточки метаданных документа.
 
-- `eoNumber`: electronic publication number (required)
-- Returns document metadata including:
-  - All fields from search items
-  - `documentType`: type ID and name
-  - `signatoryAuthority`: list of authorities with `isMain` flag
+- `eoNumber`: номер электронной публикации (обязательный)
+- Возвращает метаданные документа, включая:
+  - Все поля из результатов поиска
+  - `documentType`: идентификатор и название типа
+  - `signatoryAuthority`: список органов с флагом `isMain`
 
 ### `listPravoBlocks()`
 
-List publication blocks (categories of documents).
+Список рубрик публикаций (категорий документов).
 
-- Returns array of block objects
+- Возвращает массив объектов-рубрик
 
-### URL builders
+### Построение URL
 
 - `buildSearchUrl(options?)`
 - `buildDocumentUrl(eoNumber)`
 
-## Notes
+## Примечания
 
-- The package stays read-only and does not need secrets.
-- This is metadata-only access; PDF content itself is not downloaded or parsed.
-- All queries hit the official pravo.gov.ru publication API.
+- Пакет остаётся read-only и не требует секретов.
+- Доступ только к метаданным; содержимое PDF не загружается и не парсится.
+- Все запросы направляются к официальному API pravo.gov.ru.
 
-## Tests
+## Тесты
 
 ```bash
 npm test --workspace pravo-documents
 ```
 
-Fixture-based tests pin both search results and a document card, so CI does not depend on live API responses.
+Тесты используют fixture-based подход с сохранёнными результатами поиска и карточками документов, чтобы CI не зависел от живых ответов API.

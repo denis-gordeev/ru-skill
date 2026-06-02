@@ -10,7 +10,7 @@ metadata:
 
 # Бары Kakao поблизости
 
-## Boundary note
+## Граничное примечание
 
 Этот навык остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `kakao-bar-nearby` сохраняется ради backward compatibility и как reference flow по live place lookup, но не должен выглядеть как активный target-backlog.
 

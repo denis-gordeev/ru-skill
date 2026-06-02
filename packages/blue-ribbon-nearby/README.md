@@ -2,7 +2,7 @@
 
 `blue-ribbon-nearby` - legacy read-only пакет для nearby-поиска ресторанов Blue Ribbon по официальным зонам и JSON-поверхностям сервиса.
 
-## Boundary note
+## Граничное примечание
 
 Этот пакет остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `blue-ribbon-nearby` сохраняется ради backward compatibility и как reference flow для location-first поиска, но не должен считаться новым target-направлением.
 

@@ -1,6 +1,6 @@
 # Гайд по поиску товаров Daiso
 
-## Boundary note
+## Граничное примечание
 
 Этот сценарий остаётся `legacy-only`: для российского marketplace discovery его replacement уже реализован как `yandex-market-search`. `daiso-product-search` сохраняется ради backward compatibility и как reference flow по store/product/stock lookup, но не должен выглядеть как активный target-трек репозитория.
 

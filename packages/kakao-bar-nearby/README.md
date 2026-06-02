@@ -2,7 +2,7 @@
 
 `kakao-bar-nearby` - legacy read-only пакет для поиска баров рядом через мобильный поиск Kakao Map и `panel3` JSON.
 
-## Boundary note
+## Граничное примечание
 
 Этот пакет остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `kakao-bar-nearby` сохраняется ради backward compatibility и как reference flow по menu/open/seating hints, но не должен выглядеть как активный target-backlog.
 

@@ -1,6 +1,6 @@
 ---
 name: moex-shares
-description: Check public Moscow Exchange share metadata and delayed market snapshots from the official ISS API. Use when the user asks for MOEX ticker data such as SBER, GAZP, LKOH, lot size, ISIN, previous close, or current delayed price snapshot.
+description: Проверка публичных метаданных акций Московской биржи и задержанных рыночных снимков через официальный ISS API. Использовать, когда пользователь спрашивает данные по тикеру MOEX: SBER, GAZP, LKOH, размер лота, ISIN, предыдущее закрытие или текущий задержанный снимок цены.
 license: MIT
 metadata:
   category: finance
@@ -8,7 +8,7 @@ metadata:
   phase: v1
 ---
 
-# MOEX Shares
+# Акции Мосбиржи
 
 ## Что делает навык
 

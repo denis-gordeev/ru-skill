@@ -1,40 +1,40 @@
 # yandex-rasp
 
-Read-only client for [Yandex Raspisanie](https://yandex.ru/rasp/) transport schedules: long-distance trains, suburban trains (elektrichki), buses, and flights across Russia.
+Read-only-клиент для расписаний транспорта [Яндекс.Расписаний](https://yandex.ru/rasp/): поезда дальнего следования, электрички, автобусы и авиарейсы по России.
 
-## Install
+## Установка
 
 ```bash
 npm install yandex-rasp
 ```
 
-## Usage
+## Использование
 
-### Search for stations by name
+### Поиск станций по названию
 
 ```js
 const { searchStations } = require("yandex-rasp");
 
 const stations = await searchStations("Казанский", {
-  // apiKey: "...",  // or set YANDEX_RASP_API_KEY env
+  // apiKey: "...",  // или задайте YANDEX_RASP_API_KEY в окружении
 });
 // => [{ title, yandexCode, esrCode, stationType, transportType, latitude, longitude, direction }, ...]
 ```
 
-### Get schedule for a station
+### Расписание станции
 
 ```js
 const { getStationSchedule } = require("yandex-rasp");
 
 const schedule = await getStationSchedule("s9600013", {
   date: "2026-04-10",
-  event: "departure",       // "departure" (default) or "arrival"
-  transportType: "train",   // optional: plane, train, suburban, bus
+  event: "departure",       // "departure" (по умолчанию) или "arrival"
+  transportType: "train",   // опционально: plane, train, suburban, bus
 });
 // => { station, date, schedule: [...], pagination }
 ```
 
-### Search trips between two stations or cities
+### Поиск маршрутов между станциями или городами
 
 ```js
 const { searchTrips } = require("yandex-rasp");
@@ -51,49 +51,49 @@ const trips = await searchTrips("c146", "c159", {
 
 ### `searchStations(query, opts?)`
 
-Fetches the full stations directory and filters client-side by `query` (case-insensitive match on `title`).
+Получает полный справочник станций и фильтрует на клиенте по `query` (нечёткое совпадение в `title`).
 
-| Option | Type | Default | Description |
+| Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
-| `apiKey` | string | `YANDEX_RASP_API_KEY` env | API key |
-| `lang` | string | `ru_RU` | Response language |
+| `apiKey` | string | переменная `YANDEX_RASP_API_KEY` | API-ключ |
+| `lang` | string | `ru_RU` | Язык ответа |
 
-Returns `Array<{title, yandexCode, esrCode, stationType, transportType, latitude, longitude, direction}>`.
+Возвращает `Array<{title, yandexCode, esrCode, stationType, transportType, latitude, longitude, direction}>`.
 
 ### `getStationSchedule(stationCode, opts?)`
 
-Gets departures or arrivals for a single station on a given date.
+Получает отправления или прибытия для станции на указанную дату.
 
-| Option | Type | Default | Description |
+| Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
-| `apiKey` | string | `YANDEX_RASP_API_KEY` env | API key |
-| `date` | string | all dates | ISO 8601 date `YYYY-MM-DD` |
-| `event` | string | `departure` | `departure` or `arrival` |
-| `transportType` | string | all | `plane`, `train`, `suburban`, `bus`, `water`, `helicopter` |
-| `direction` | string | — | Suburban direction hint (only for `suburban`) |
-| `lang` | string | `ru_RU` | Response language |
+| `apiKey` | string | переменная `YANDEX_RASP_API_KEY` | API-ключ |
+| `date` | string | все даты | Дата ISO 8601 `YYYY-MM-DD` |
+| `event` | string | `departure` | `departure` или `arrival` |
+| `transportType` | string | все | `plane`, `train`, `suburban`, `bus`, `water`, `helicopter` |
+| `direction` | string | — | Подсказка направления для электричек (только `suburban`) |
+| `lang` | string | `ru_RU` | Язык ответа |
 
-Returns `{station: {code, title, stationType}, date, schedule: [...], pagination: {total, limit, offset}}`.
+Возвращает `{station: {code, title, stationType}, date, schedule: [...], pagination: {total, limit, offset}}`.
 
 ### `searchTrips(fromCode, toCode, opts?)`
 
-Searches for trips between two stations or cities.
+Поиск маршрутов между двумя станциями или городами.
 
-| Option | Type | Default | Description |
+| Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
-| `apiKey` | string | `YANDEX_RASP_API_KEY` env | API key |
-| `date` | string | all dates | ISO 8601 date `YYYY-MM-DD` |
-| `transportType` | string | all | `plane`, `train`, `suburban`, `bus` |
-| `transfers` | boolean | `false` | Include routes with transfers |
-| `offset` | number | `0` | Pagination offset |
-| `limit` | number | `100` | Max results (max 100) |
-| `lang` | string | `ru_RU` | Response language |
+| `apiKey` | string | переменная `YANDEX_RASP_API_KEY` | API-ключ |
+| `date` | string | все даты | Дата ISO 8601 `YYYY-MM-DD` |
+| `transportType` | string | все | `plane`, `train`, `suburban`, `bus` |
+| `transfers` | boolean | `false` | Включить маршруты с пересадками |
+| `offset` | number | `0` | Смещение для пагинации |
+| `limit` | number | `100` | Максимум результатов (не более 100) |
+| `lang` | string | `ru_RU` | Язык ответа |
 
-Returns `{search, segments: [...], intervalSegments: [...], pagination}`.
+Возвращает `{search, segments: [...], intervalSegments: [...], pagination}`.
 
-## Notes
+## Примечания
 
-- An API key is required. Get one free at [Yandex Raspisanie API](https://yandex.ru/dev/rasp/).
-- The `stations_list` endpoint returns the full directory (~40 MB). Consider caching it.
-- This is a read-only client; no ticket purchases or write operations are supported.
-- The deprecated `api.rasp.yandex.net` host is not used; this client uses `api.rasp.yandex-net.ru`.
+- Требуется API-ключ. Бесплатный ключ можно получить на [Яндекс.Расписания API](https://yandex.ru/dev/rasp/).
+- Эндпоинт `stations_list` возвращает полный справочник (~40 МБ). Рекомендуется кэширование.
+- Это read-only-клиент; покупка билетов и write-операции не поддерживаются.
+- Устаревший хост `api.rasp.yandex.net` не используется; клиент работает через `api.rasp.yandex-net.ru`.

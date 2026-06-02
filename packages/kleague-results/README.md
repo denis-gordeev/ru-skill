@@ -2,7 +2,7 @@
 
 `kleague-results` - legacy read-only клиент для официальных K League JSON endpoint'ов. Пакет отдаёт результаты матчей по дате и текущую таблицу, не прибегая к HTML scraping.
 
-## Boundary note
+## Граничное примечание
 
 Этот пакет остаётся `legacy-only`: для российских футбольных сводок его replacement уже реализован как `rpl-results`. `kleague-results` сохраняется ради backward compatibility, но не должен подаваться как незавершённый target-backlog.
 

@@ -1,6 +1,6 @@
 ---
 name: postcalc-postcodes
-description: Check Russian postal indexes and branch cards from public Postcalc city and office pages. Use when the user asks for a specific 6-digit post office index or for a city summary by `citykey`.
+description: Проверка российских почтовых индексов и карточек отделений через публичные страницы Postcalc. Использовать, когда пользователь спрашивает конкретный 6-значный индекс отделения или сводку по населённому пункту через `citykey`.
 license: MIT
 metadata:
   category: location
@@ -8,7 +8,7 @@ metadata:
   phase: v1
 ---
 
-# Postcalc Postcodes
+# Почтовые индексы Postcalc
 
 ## Что делает навык
 

@@ -10,7 +10,7 @@ metadata:
 
 # Бронирование SRT
 
-## Boundary note
+## Граничное примечание
 
 Этот навык сохраняется как `legacy-only` корейский railway flow. Он нужен ради обратной совместимости и не должен использоваться как шаблон для новых российских write-интеграций: для российских поездов базовым read-only discovery остаётся `yandex-rasp`, а replacement boundary закреплён в `docs/booking-replacements.md`.
 

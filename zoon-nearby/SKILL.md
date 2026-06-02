@@ -1,6 +1,6 @@
 ---
 name: zoon-nearby
-description: Search nearby places (restaurants, cafes, bars) in Russian cities via Zoon.ru public SSR pages with ratings, phones, and business details.
+description: Поиск ближайших заведений (рестораны, кафе, бары) в российских городах через публичные SSR-страницы Zoon.ru с рейтингами, телефонами и подробной информацией об организациях.
 license: MIT
 metadata:
   category: local
@@ -8,7 +8,7 @@ metadata:
   phase: v1
 ---
 
-# Zoon.ru Nearby Search
+# Поиск поблизости Zoon.ru
 
 Поиск ближайших заведений и организаций через публичные страницы Zoon.ru.
 

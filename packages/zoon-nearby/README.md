@@ -1,26 +1,26 @@
 # zoon-nearby
 
-Supplementary nearby places search via Zoon.ru SSR pages.
+Дополнительный источник для поиска ближайших заведений через публичные SSR-страницы Zoon.ru.
 
-## Overview
+## Обзор
 
-`zoon-nearby` provides read-only access to Zoon.ru business listings for searching restaurants, cafes, bars, and other establishments by city and category. This package serves as a **supplementary** source to `osm-nearby` (which uses Overpass API), offering richer metadata like ratings, reviews, and detailed business information.
+`zoon-nearby` предоставляет read-only доступ к справочнику организаций Zoon.ru для поиска ресторанов, кафе, баров и других заведений по городу и категории. Пакет служит **дополнительным** источником к `osm-nearby` (который использует Overpass API), предлагая более богатые метаданные: рейтинги, отзывы и подробную информацию об организациях.
 
-## Why Zoon.ru?
+## Преимущества Zoon.ru
 
-- **SSR pages**: HTML is server-rendered and can be parsed directly
-- **No API keys**: Public read-only access without authentication
-- **No anti-bot**: Pages are accessible without CAPTCHA or blocking
-- **Rich data**: Ratings, addresses, phones, categories, hours
-- **Russian focus**: Strong coverage of Russian cities and businesses
+- **SSR-страницы**: HTML генерируется на сервере и парсится напрямую
+- **Без API-ключей**: Публичный read-only доступ без авторизации
+- **Без anti-bot**: Страницы доступны без CAPTCHA и блокировок
+- **Богатые данные**: Рейтинги, адреса, телефоны, категории, часы работы
+- **Российский фокус**: Широкое покрытие российских городов и организаций
 
-## Installation
+## Установка
 
 ```bash
 npm install zoon-nearby
 ```
 
-## Usage
+## Использование
 
 ```javascript
 const { 
@@ -32,7 +32,7 @@ const {
   getBusinessDetails
 } = require('zoon-nearby');
 
-// Search restaurants in Moscow
+// Поиск ресторанов в Москве
 const restaurants = await searchRestaurants('Москва');
 console.log(restaurants.businesses);
 // [
@@ -47,16 +47,16 @@ console.log(restaurants.businesses);
 //   ...
 // ]
 
-// Search cafes in Saint Petersburg
+// Поиск кафе в Санкт-Петербурге
 const cafes = await searchCafes('Санкт-Петербург');
 
-// Search bars with pagination
+// Поиск баров с пагинацией
 const barsPage2 = await searchBars('Москва', { page: 2 });
 
-// General search
+// Общий поиск
 const results = await search('пицца', 'Москва');
 
-// Get business details
+// Детали организации
 const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushkin');
 ```
 
@@ -64,48 +64,48 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 
 ### `searchRestaurants(city, opts?)`
 
-Search restaurants in a city.
+Поиск ресторанов в городе.
 
-- `city` (string): City name in Russian (e.g., 'Москва', 'Санкт-Петербург')
-- `opts.page` (number, optional): Page number for pagination
-- Returns: `{ businesses, totalCount, pagination, query, page }`
+- `city` (string): Название города по-русски (например, 'Москва', 'Санкт-Петербург')
+- `opts.page` (number, опционально): Номер страницы для пагинации
+- Возвращает: `{ businesses, totalCount, pagination, query, page }`
 
 ### `searchCafes(city, opts?)`
 
-Search cafes in a city. Same parameters as `searchRestaurants`.
+Поиск кафе в городе. Параметры аналогичны `searchRestaurants`.
 
 ### `searchBars(city, opts?)`
 
-Search bars in a city. Same parameters as `searchRestaurants`.
+Поиск баров в городе. Параметры аналогичны `searchRestaurants`.
 
 ### `searchByCategory(city, category, opts?)`
 
-Search by arbitrary category.
+Поиск по произвольной категории.
 
-- `city` (string): City name
-- `category` (string): Category slug (e.g., 'restaurants', 'hotels', 'pharmacies')
-- `opts.page` (number, optional): Page number
-- Returns: `{ businesses, totalCount, pagination, query, page }`
+- `city` (string): Название города
+- `category` (string): Slug категории (например, 'restaurants', 'hotels', 'pharmacies')
+- `opts.page` (number, опционально): Номер страницы
+- Возвращает: `{ businesses, totalCount, pagination, query, page }`
 
 ### `search(query, city?, opts?)`
 
-General search on Zoon.ru.
+Общий поиск на Zoon.ru.
 
-- `query` (string): Search term
-- `city` (string, optional): City context
-- `opts.page` (number, optional): Page number
-- Returns: `{ businesses, totalCount, pagination, query, page }`
+- `query` (string): Поисковый запрос
+- `city` (string, опционально): Городской контекст
+- `opts.page` (number, опционально): Номер страницы
+- Возвращает: `{ businesses, totalCount, pagination, query, page }`
 
 ### `getBusinessDetails(businessUrl, opts?)`
 
-Get detailed information about a specific business.
+Подробная информация о конкретной организации.
 
-- `businessUrl` (string): Full Zoon.ru business page URL
-- Returns: `{ name, address, rating, phone, category, description, website, hours, url }`
+- `businessUrl` (string): Полный URL страницы организации на Zoon.ru
+- Возвращает: `{ name, address, rating, phone, category, description, website, hours, url }`
 
-## Response Format
+## Формат ответа
 
-### Business listing
+### Карточка организации
 
 ```javascript
 {
@@ -118,22 +118,22 @@ Get detailed information about a specific business.
 }
 ```
 
-### Search results
+### Результаты поиска
 
 ```javascript
 {
-  businesses: [ /* business listings */ ],
+  businesses: [ /* карточки организаций */ ],
   totalCount: 1234,
   pagination: {
     hasNextPage: true,
     nextPage: 2,
-    pages: [ /* page links */ ]
+    pages: [ /* ссылки на страницы */ ]
   },
   query: 'Москва рестораны',
   page: 1
 }
 ```
 
-## License
+## Лицензия
 
 MIT

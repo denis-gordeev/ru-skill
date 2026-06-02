@@ -1,21 +1,21 @@
 # hh-vacancies
 
-Read-only Node.js client for public hh.ru vacancy search, vacancy details, and area lookup APIs.
+Read-only-клиент для публичного API hh.ru: поиск вакансий, карточки вакансий и справочник регионов.
 
-## Install
+## Установка
 
 ```bash
 npm install hh-vacancies
 ```
 
-## Public surfaces
+## Публичные поверхности
 
-- Vacancy search: `https://api.hh.ru/vacancies`
-- Vacancy card: `https://api.hh.ru/vacancies/{vacancy_id}`
-- Area lookup: `https://api.hh.ru/areas/{area_id}`
-- Public API documentation: `https://api.hh.ru/openapi/redoc`
+- Поиск вакансий: `https://api.hh.ru/vacancies`
+- Карточка вакансии: `https://api.hh.ru/vacancies/{vacancy_id}`
+- Справочник регионов: `https://api.hh.ru/areas/{area_id}`
+- Документация API: `https://api.hh.ru/openapi/redoc`
 
-## Usage
+## Использование
 
 ```js
 const {
@@ -39,24 +39,24 @@ const {
 
 ### `getAreaOverview(areaId)`
 
-- `areaId`: numeric HH area id, for example `1` for Moscow
-- Returns normalized `name`, `parentAreaId`, coordinates, timezone offset, and immediate child areas
+- `areaId`: числовой идентификатор региона HH, например `1` для Москвы
+- Возвращает нормализованные `name`, `parentAreaId`, координаты, смещение часового пояса и дочерние регионы
 
 ### `searchVacancies(text, options?)`
 
-- `text`: non-empty search string such as `frontend react` or `аналитик данных`
-- `options.areaId`: optional numeric area id
-- `options.page`: optional 0-based page
-- `options.perPage`: optional page size from `1` to `100`
-- Returns normalized cards with salary, employer, snippets, work format, and role metadata
+- `text`: непустая строка поиска, например `frontend react` или `аналитик данных`
+- `options.areaId`: числовой идентификатор региона (опционально)
+- `options.page`: номер страницы с нуля (опционально)
+- `options.perPage`: размер страницы от `1` до `100` (опционально)
+- Возвращает нормализованные карточки с зарплатой, работодателем, фрагментами, форматом работы и метаданными роли
 
 ### `getVacancyOverview(vacancyId)`
 
-- `vacancyId`: numeric HH vacancy id
-- Returns normalized detailed vacancy data including `descriptionText`, address, metro, salary, and work-format fields
+- `vacancyId`: числовой идентификатор вакансии HH
+- Возвращает подробные данные вакансии: `descriptionText`, адрес, метро, зарплату и формат работы
 
-## Notes
+## Примечания
 
-- The hh.ru public API is read-only for these flows and does not require user secrets.
-- Salary fields may be absent or partially filled, so callers should handle `null`.
-- Detailed vacancy descriptions are normalized from HTML into readable plain text.
+- Публичный API hh.ru — read-only для этих сценариев и не требует пользовательских секретов.
+- Поля зарплаты могут отсутствовать или быть заполнены частично.
+- Подробные описания вакансий нормализуются из HTML в читаемый текст.

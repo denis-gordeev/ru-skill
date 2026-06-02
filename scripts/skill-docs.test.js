@@ -1050,7 +1050,7 @@ test("fine-dust-location skill documents the official two-api flow and fallback 
   assert.match(skill, /PM10/);
   assert.match(skill, /PM2\.5|PM25/);
   assert.match(skill, /общей категории качества воздуха|통합대기등급/);
-  assert.match(skill, /## Boundary note/);
+  assert.match(skill, /## Граничное примечание/);
   assert.match(skill, /legacy\/transition utility/i);
   assert.match(skill, /~\/\.config\/ru-skill\/secrets\.env/);
   assert.match(skill, /~\/\.config\/k-skill\/secrets\.env/);
@@ -1060,7 +1060,7 @@ test("fine-dust-location skill documents the official two-api flow and fallback 
   );
 
   for (const doc of [featureDoc]) {
-    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /## Граничное примечание/);
     assert.match(doc, /legacy\/transition utility/i);
     assert.match(doc, /скрытый backlog/i);
     assert.match(doc, /AIR_KOREA_OPEN_API_KEY/);
@@ -1327,9 +1327,9 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-01");
-  assert.equal(todoStatus.round, 30);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 30\)/);
+  assert.equal(todoStatus.date, "2026-06-02");
+  assert.equal(todoStatus.round, 31);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 31\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -1379,31 +1379,31 @@ test("legacy-only and transition guides publish explicit boundary notes", () => 
   const tossSecurities = read(path.join("docs", "features", "toss-securities.md"));
   const proxyGuide = read(path.join("docs", "features", "k-skill-proxy.md"));
 
-  assert.match(deliveryTrackingSkill, /## Boundary note/);
+  assert.match(deliveryTrackingSkill, /## Граничное примечание/);
   assert.match(deliveryTrackingSkill, /legacy-only/);
   assert.match(deliveryTrackingSkill, /российск.*target-направлен/i);
 
-  assert.match(deliveryTracking, /## Boundary note/);
+  assert.match(deliveryTracking, /## Граничное примечание/);
   assert.match(deliveryTracking, /legacy-only/);
   assert.match(deliveryTracking, /скрытый backlog/i);
 
-  assert.match(fineDust, /## Boundary note/);
+  assert.match(fineDust, /## Граничное примечание/);
   assert.match(fineDust, /legacy\/transition utility/i);
   assert.match(fineDust, /не считается новым `target`-навыком/i);
 
-  assert.match(seoulSubway, /## Boundary note/);
+  assert.match(seoulSubway, /## Граничное примечание/);
   assert.match(seoulSubway, /legacy-only/);
   assert.match(seoulSubway, /российский replacement не подтверждён/i);
 
-  assert.match(tossSecuritiesSkill, /## Boundary note/);
+  assert.match(tossSecuritiesSkill, /## Граничное примечание/);
   assert.match(tossSecuritiesSkill, /legacy-only/);
   assert.match(tossSecuritiesSkill, /moex-shares/);
 
-  assert.match(tossSecurities, /## Boundary note/);
+  assert.match(tossSecurities, /## Граничное примечание/);
   assert.match(tossSecurities, /legacy-only/);
   assert.match(tossSecurities, /moex-shares/);
 
-  assert.match(proxyGuide, /## Boundary note/);
+  assert.match(proxyGuide, /## Граничное примечание/);
   assert.match(proxyGuide, /transition/);
   assert.match(proxyGuide, /не отдельным пользовательским target-навыком/i);
 });
@@ -1437,7 +1437,7 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
   assert.match(preferredSetupSkill, /реальным секретом.*AIR_KOREA_OPEN_API_KEY/i);
   assert.match(preferredSetupSkill, /~\/\.config\/ru-skill\/logs/);
 
-  assert.match(proxyReadme, /## Boundary note/);
+  assert.match(proxyReadme, /## Граничное примечание/);
   assert.match(proxyReadme, /transition/i);
   assert.match(proxyReadme, /RU_SKILL_SECRETS_FILE/);
   assert.match(proxyReadme, /~\/\.config\/ru-skill\/secrets\.env/);
@@ -1460,7 +1460,7 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
 test("seoul-subway-arrival skill prefers ru-skill secrets before the legacy fallback", () => {
   const skill = read(path.join("seoul-subway-arrival", "SKILL.md"));
 
-  assert.match(skill, /## Boundary note/);
+  assert.match(skill, /## Граничное примечание/);
   assert.match(skill, /legacy-only/);
   assert.match(skill, /~\/\.config\/ru-skill\/secrets\.env/);
   assert.match(skill, /~\/\.config\/k-skill\/secrets\.env/);
@@ -1485,7 +1485,7 @@ test("legacy feature guides keep runtime and secrets semantics aligned with ru-s
     "expected fine-dust feature guide to prefer the ru-skill secrets path before the legacy fallback",
   );
 
-  assert.match(seoulGuide, /## Boundary note/);
+  assert.match(seoulGuide, /## Граничное примечание/);
   assert.match(seoulGuide, /legacy-only/);
   assert.match(seoulGuide, /~\/\.config\/ru-skill\/secrets\.env/);
   assert.match(seoulGuide, /~\/\.config\/k-skill\/secrets\.env/);
@@ -1494,7 +1494,7 @@ test("legacy feature guides keep runtime and secrets semantics aligned with ru-s
     "expected seoul-subway feature guide to prefer the ru-skill secrets path before the legacy fallback",
   );
 
-  assert.match(srtGuide, /## Boundary note/);
+  assert.match(srtGuide, /## Граничное примечание/);
   assert.match(srtGuide, /legacy-only/i);
   assert.match(srtGuide, /yandex-rasp/);
   assert.match(srtGuide, /российских write-интеграций/i);
@@ -1503,7 +1503,7 @@ test("legacy feature guides keep runtime and secrets semantics aligned with ru-s
     "expected srt-booking feature guide to prefer the ru-skill secrets path before the legacy fallback",
   );
 
-  assert.match(ktxGuide, /## Boundary note/);
+  assert.match(ktxGuide, /## Граничное примечание/);
   assert.match(ktxGuide, /legacy-only/i);
   assert.match(ktxGuide, /yandex-rasp/);
   assert.match(ktxGuide, /российских write-интеграций/i);
@@ -1518,7 +1518,7 @@ test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first
   const srtSkill = read(path.join("srt-booking", "SKILL.md"));
   const ktxSkill = read(path.join("ktx-booking", "SKILL.md"));
 
-  assert.match(fineDustSkill, /## Boundary note/);
+  assert.match(fineDustSkill, /## Граничное примечание/);
   assert.match(fineDustSkill, /legacy\/transition utility/i);
   assert.match(fineDustSkill, /optional endpoint override/i);
   assert.match(fineDustSkill, /не считается credential/i);
@@ -1528,7 +1528,7 @@ test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first
     "expected fine-dust skill to mention the ru-skill secrets path before the legacy fallback",
   );
 
-  assert.match(srtSkill, /## Boundary note/);
+  assert.match(srtSkill, /## Граничное примечание/);
   assert.match(srtSkill, /legacy-only/i);
   assert.match(srtSkill, /yandex-rasp/);
   assert.match(srtSkill, /новых российских write-интеграций/i);
@@ -1537,7 +1537,7 @@ test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first
     "expected srt-booking skill to mention the ru-skill secrets path before the legacy fallback",
   );
 
-  assert.match(ktxSkill, /## Boundary note/);
+  assert.match(ktxSkill, /## Граничное примечание/);
   assert.match(ktxSkill, /legacy-only/i);
   assert.match(ktxSkill, /yandex-rasp/);
   assert.match(ktxSkill, /новых российских write-интеграций/i);
@@ -1558,35 +1558,35 @@ test("remaining legacy skill-only guides keep explicit migration boundaries", ()
   const lottoSkill = read(path.join("lotto-results", "SKILL.md"));
   const zipcodeSkill = read(path.join("zipcode-search", "SKILL.md"));
 
-  assert.match(kakaoTalkGuide, /## Boundary note/);
+  assert.match(kakaoTalkGuide, /## Граничное примечание/);
   assert.match(kakaoTalkGuide, /legacy-only/);
   assert.match(kakaoTalkGuide, /скрытый backlog/i);
 
-  assert.match(kboGuide, /## Boundary note/);
+  assert.match(kboGuide, /## Граничное примечание/);
   assert.match(kboGuide, /legacy-only/);
   assert.match(kboGuide, /rpl-results/);
 
-  assert.match(lottoGuide, /## Boundary note/);
+  assert.match(lottoGuide, /## Граничное примечание/);
   assert.match(lottoGuide, /legacy-only/);
   assert.match(lottoGuide, /stoloto-lotto/);
 
-  assert.match(zipcodeGuide, /## Boundary note/);
+  assert.match(zipcodeGuide, /## Граничное примечание/);
   assert.match(zipcodeGuide, /legacy-only/);
   assert.match(zipcodeGuide, /postcalc-postcodes/);
 
-  assert.match(kakaoTalkSkill, /## Boundary note/);
+  assert.match(kakaoTalkSkill, /## Граничное примечание/);
   assert.match(kakaoTalkSkill, /legacy-only/);
   assert.match(kakaoTalkSkill, /target-messaging/i);
 
-  assert.match(kboSkill, /## Boundary note/);
+  assert.match(kboSkill, /## Граничное примечание/);
   assert.match(kboSkill, /legacy-only/);
   assert.match(kboSkill, /rpl-results/);
 
-  assert.match(lottoSkill, /## Boundary note/);
+  assert.match(lottoSkill, /## Граничное примечание/);
   assert.match(lottoSkill, /legacy-only/);
   assert.match(lottoSkill, /stoloto-lotto/);
 
-  assert.match(zipcodeSkill, /## Boundary note/);
+  assert.match(zipcodeSkill, /## Граничное примечание/);
   assert.match(zipcodeSkill, /legacy-only/);
   assert.match(zipcodeSkill, /postcalc-postcodes/);
 });
@@ -1604,47 +1604,47 @@ test("remaining legacy feature and skill guides keep explicit replacement bounda
   const kakaoBarSkill = read(path.join("kakao-bar-nearby", "SKILL.md"));
   const kleagueSkill = read(path.join("kleague-results", "SKILL.md"));
 
-  assert.match(blueRibbonGuide, /## Boundary note/);
+  assert.match(blueRibbonGuide, /## Граничное примечание/);
   assert.match(blueRibbonGuide, /legacy-only/);
   assert.match(blueRibbonGuide, /osm-nearby/);
   assert.match(blueRibbonGuide, /zoon-nearby/);
 
-  assert.match(daisoGuide, /## Boundary note/);
+  assert.match(daisoGuide, /## Граничное примечание/);
   assert.match(daisoGuide, /legacy-only/);
   assert.match(daisoGuide, /yandex-market-search/);
 
-  assert.match(kakaoBarGuide, /## Boundary note/);
+  assert.match(kakaoBarGuide, /## Граничное примечание/);
   assert.match(kakaoBarGuide, /legacy-only/);
   assert.match(kakaoBarGuide, /osm-nearby/);
   assert.match(kakaoBarGuide, /zoon-nearby/);
 
-  assert.match(kleagueGuide, /## Boundary note/);
+  assert.match(kleagueGuide, /## Граничное примечание/);
   assert.match(kleagueGuide, /legacy-only/);
   assert.match(kleagueGuide, /rpl-results/);
 
-  assert.match(srtGuide, /## Boundary note/);
+  assert.match(srtGuide, /## Граничное примечание/);
   assert.match(srtGuide, /legacy-only/);
   assert.match(srtGuide, /yandex-rasp/);
 
-  assert.match(ktxGuide, /## Boundary note/);
+  assert.match(ktxGuide, /## Граничное примечание/);
   assert.match(ktxGuide, /legacy-only/);
   assert.match(ktxGuide, /yandex-rasp/);
 
-  assert.match(blueRibbonSkill, /## Boundary note/);
+  assert.match(blueRibbonSkill, /## Граничное примечание/);
   assert.match(blueRibbonSkill, /legacy-only/);
   assert.match(blueRibbonSkill, /osm-nearby/);
   assert.match(blueRibbonSkill, /zoon-nearby/);
 
-  assert.match(daisoSkill, /## Boundary note/);
+  assert.match(daisoSkill, /## Граничное примечание/);
   assert.match(daisoSkill, /legacy-only/);
   assert.match(daisoSkill, /yandex-market-search/);
 
-  assert.match(kakaoBarSkill, /## Boundary note/);
+  assert.match(kakaoBarSkill, /## Граничное примечание/);
   assert.match(kakaoBarSkill, /legacy-only/);
   assert.match(kakaoBarSkill, /osm-nearby/);
   assert.match(kakaoBarSkill, /zoon-nearby/);
 
-  assert.match(kleagueSkill, /## Boundary note/);
+  assert.match(kleagueSkill, /## Граничное примечание/);
   assert.match(kleagueSkill, /legacy-only/);
   assert.match(kleagueSkill, /rpl-results/);
 });
@@ -1926,7 +1926,7 @@ test("seoul-subway-arrival skill documents the official Seoul Open Data real-tim
     assert.match(doc, /realtimeStationArrival/);
     assert.match(doc, /SEOUL_OPEN_API_KEY/);
     assert.match(doc, /real.?time|реальн[а-яё]+ времени|прибыти[а-яё]/i);
-    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /## Граничное примечание/);
     assert.match(doc, /legacy-only/);
   }
 
@@ -1948,7 +1948,7 @@ test("kbo-results skill documents the kbo-game lookup workflow with correct expo
     assert.match(doc, /kbo-game/);
     assert.match(doc, /getGame/);
     assert.match(doc, /YYYY-MM-DD/);
-    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /## Граничное примечание/);
     assert.match(doc, /legacy-only/);
     assert.match(doc, /rpl-results/);
   }
@@ -1965,7 +1965,7 @@ test("lotto-results skill documents the k-lotto draw and number check workflow",
 
   for (const doc of [skill, featureDoc]) {
     assert.match(doc, /k-lotto/);
-    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /## Граничное примечание/);
     assert.match(doc, /legacy-only/);
     assert.match(doc, /stoloto-lotto/);
   }
@@ -1981,7 +1981,7 @@ test("hwp skill and feature doc classify the Korean document utility as target-s
   const featureDoc = read(path.join("docs", "features", "hwp.md"));
 
   for (const doc of [skill, featureDoc]) {
-    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /## Граничное примечание/);
     assert.match(doc, /target-supporting/);
     assert.match(doc, /корейский формат|HWP|Хангул/i);
   }
@@ -2007,7 +2007,7 @@ test("srt-booking skill documents the SRTrain search, reserve and cancel workflo
     assert.match(doc, /search_train/);
     assert.match(doc, /KSKILL_SRT_ID/);
     assert.match(doc, /KSKILL_SRT_PASSWORD/);
-    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /## Граничное примечание/);
     assert.match(doc, /legacy-only/);
     assert.match(doc, /yandex-rasp/);
     assert.match(doc, /booking-replacements\.md/);
@@ -2034,7 +2034,7 @@ test("kakaotalk-mac skill documents the full macOS kakaocli workflow from instal
   assert.match(skill, /^name: kakaotalk-mac$/m);
 
   for (const doc of [skill, featureDoc]) {
-    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /## Граничное примечание/);
     assert.match(doc, /legacy-only/);
     assert.match(doc, /kakaocli status/);
     assert.match(doc, /kakaocli auth/);
@@ -2067,7 +2067,7 @@ test("daiso-product-search skill documents the store-product-stock workflow end 
   assert.match(skill, /^name: daiso-product-search$/m);
 
   for (const doc of [skill, featureDoc]) {
-    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /## Граничное примечание/);
     assert.match(doc, /legacy-only/);
     assert.match(doc, /yandex-market-search/);
     assert.match(doc, /daisomall\.co\.kr/);
@@ -2094,7 +2094,7 @@ test("delivery-tracking skill documents the CJ and ePost carrier adapter workflo
   assert.match(skill, /^name: delivery-tracking$/m);
 
   for (const doc of [skill, featureDoc]) {
-    assert.match(doc, /## Boundary note/);
+    assert.match(doc, /## Граничное примечание/);
     assert.match(doc, /legacy-only/);
     assert.match(doc, /CJ Logistics/);
     assert.match(doc, /Почтовая служба Кореи|Korea Post/);

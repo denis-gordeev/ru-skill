@@ -4,8 +4,14 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
-## Статус на 2026-06-01
+## Статус на 2026-06-02
 
+- Переведён `## Boundary note` → `## Граничное примечание` во всех 31 файле (15 SKILL.md, 16 docs/features/*.md).
+- Переведены английские h1-заголовки в 9 target SKILL.md на русский.
+- Переведены английские h1-заголовки в 4 docs/features на русский.
+- Переведены на русский все 10 target package README: описания, секционные заголовки и содержимое.
+- Переведены на русский frontmatter `description` в 8 target SKILL.md.
+- Нормализованы неканоничные заголовки в package README: `Что умеет` → `Что делает навык`, `Что не умеет` → `Ограничения`, `Готово, когда` → `Критерии завершения`.
 - Все 17 SKILL.md с неканоничными заголовками нормализованы к единой схеме (`Что делает навык`, `Предварительные условия`, `Критерии завершения`, `Возможные ошибки`); устранены варианты `Что делает этот навык`, `Что умеет`, `Предварительные требования`, `Считается выполненным, когда`, `Режимы сбоев`, `Необходимые входные данные`, `Готово, когда`.
 - Все 29 feature docs в `docs/features/` нормализованы к каноничной heading scheme; устранены `Что умеет этот сценарий`, `Что нужно заранее`, `Базовый поток`, `Базовый сценарий`, `Обзор`, `Входы`, `Как это работает`, `Требования`, `Что можно сделать`.
 - `packages/osm-nearby/SKILL.md` полностью перестроен под каноничную схему target-навыка.
@@ -28,7 +34,7 @@
 - User-facing Korean labels в source code переведены на русский: статусы матчей (`kleague-results`), подсказки вместимости (`kakao-bar-nearby`), лотерейные метки (`k-lotto`), сообщения об ошибках (`blue-ribbon-nearby`).
 - User-facing Korean текст в feature docs, SKILL.md и package README дополнительно русифицирован: `kakao-bar-nearby`, `blue-ribbon-nearby`, `kleague-results`, `zipcode-search`, `hwp`, `ktx-booking`, `kakaotalk-mac`.
 - Doc-regression расширен на все 13 target-навыков: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby` добавлены в этом раунде.
-- Следующий слой legacy feature/skill drift закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь явно публикуют `## Boundary note` и подтверждённые replacement boundaries.
+- Следующий слой legacy feature/skill drift закрыт: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь явно публикуют `## Граничное примечание` и подтверждённые replacement boundaries.
 - Doc-regression расширен и на этот слой, чтобы nearby, marketplace, football и legacy railway replacement copy не расходился между `docs/features/*` и `*/SKILL.md`.
 - Корневой README, install/setup/releasing-документы уже переводятся на русскоязычную терминологию.
 - В рабочем дереве по-прежнему остаются legacy-пакеты и domain-inherent Korean фрагменты (API parameters, location names, fixture data, regex patterns), но user-facing Korean copy уже устранён.

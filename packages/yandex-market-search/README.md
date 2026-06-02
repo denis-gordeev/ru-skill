@@ -1,16 +1,16 @@
 # yandex-market-search
 
-Read-only client for product search and product cards on server-rendered [Yandex Market](https://market.yandex.ru/) pages.
+Read-only-клиент для поиска товаров и карточек товаров на серверно отрендеренных страницах [Яндекс Маркета](https://market.yandex.ru/).
 
-## Install
+## Установка
 
 ```bash
 npm install yandex-market-search
 ```
 
-## Usage
+## Использование
 
-### Search products
+### Поиск товаров
 
 ```js
 const { searchProducts } = require("yandex-market-search");
@@ -30,7 +30,7 @@ console.log(results.results[0]);
 // }
 ```
 
-### Fetch a product card
+### Карточка товара
 
 ```js
 const { getProduct } = require("yandex-market-search");
@@ -47,36 +47,36 @@ console.log(product.title);
 
 ### `searchProducts(query, opts?)`
 
-Searches Yandex Market SERP pages and returns normalized cards from organic results.
+Поиск по страницам выдачи Яндекс Маркета, возвращает нормализованные карточки из органических результатов.
 
-| Option | Type | Default | Description |
+| Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
-| `page` | number | `1` | Results page number |
-| `fetcher` | function | global `fetch` | Custom fetch implementation for tests |
+| `page` | number | `1` | Номер страницы результатов |
+| `fetcher` | function | глобальный `fetch` | Пользовательская реализация fetch для тестов |
 
-Returns `{query, source, page, results}` where each result includes `productId`, `title`, `price`, `rating`, `reviewCount`, `url`, `imageUrl`, and top inline `specs`.
+Возвращает `{query, source, page, results}`, где каждый результат содержит `productId`, `title`, `price`, `rating`, `reviewCount`, `url`, `imageUrl` и топ `specs`.
 
 ### `getProduct(productUrl, opts?)`
 
-Fetches a product card page by full or relative Yandex Market URL.
+Получение карточки товара по полному или относительному URL Яндекс Маркета.
 
-| Option | Type | Default | Description |
+| Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
-| `fetcher` | function | global `fetch` | Custom fetch implementation for tests |
+| `fetcher` | function | глобальный `fetch` | Пользовательская реализация fetch для тестов |
 
-Returns `{productId, title, brand, price, rating, reviewCount, description, specs, source, url}`.
+Возвращает `{productId, title, brand, price, rating, reviewCount, description, specs, source, url}`.
 
 ### `buildSearchUrl(query, opts?)`
 
-Builds a public search URL for Yandex Market.
+Формирование публичного URL поиска на Яндекс Маркете.
 
 ### `buildProductUrl(slug, productId)`
 
-Builds a canonical product card URL from a known slug and product ID.
+Формирование канонического URL карточки товара по slug и ID.
 
-## Notes
+## Примечания
 
-- No API key or authorization is required.
-- This package intentionally works only with publicly accessible server-rendered HTML.
-- Search and card pages include a lot of tracking parameters; returned URLs are normalized to canonical `/card/{slug}/{id}` links.
-- Read-only only: no cart, checkout, favorites, or merchant account actions.
+- API-ключ и авторизация не требуются.
+- Пакет работает только с публичным серверно отрендеренным HTML.
+- Страницы поиска и карточек содержат много трекинг-параметров; возвращаемые URL нормализуются до канонических `/card/{slug}/{id}`.
+- Read-only: нет корзины, оплаты, избранного или действий с аккаунтом продавца.

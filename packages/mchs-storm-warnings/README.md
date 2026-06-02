@@ -1,20 +1,20 @@
 # mchs-storm-warnings
 
-Read-only Node.js client for official regional MChS storm and emergency warning pages.
+Read-only-клиент для официальных региональных страниц МЧС России с экстренными предупреждениями.
 
-## Install
+## Установка
 
 ```bash
 npm install mchs-storm-warnings
 ```
 
-## Public surfaces
+## Публичные поверхности
 
-- Regional warnings index: `https://{region}.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya`
-- Individual warning page: `https://{region}.mchs.gov.ru/.../shtormovye-i-ekstrennye-preduprezhdeniya/{warning_id}`
-- Source type: official regional MChS pages, no auth required
+- Индекс предупреждений региона: `https://{region}.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya`
+- Страница отдельного предупреждения: `https://{region}.mchs.gov.ru/.../shtormovye-i-ekstrennye-preduprezhdeniya/{warning_id}`
+- Тип источника: официальные региональные страницы МЧС, без авторизации
 
-## Usage
+## Использование
 
 ```js
 const {
@@ -36,7 +36,7 @@ const {
 
 ### `lookupRegion(query)`
 
-Look up a region by name or host and return the normalized host and full name.
+Поиск региона по названию или хосту, возвращает нормализованные хост и полное название.
 
 ```js
 const { lookupRegion } = require("mchs-storm-warnings");
@@ -48,13 +48,13 @@ const moscow = lookupRegion("Москва");
 // { name: "г. Москва", host: "moscow" }
 ```
 
-- `query`: region name or host (e.g. `"Курская область"`, `"Москва"`, `"46"`, `"moscow"`)
-- Returns `{ name: string, host: string }` or `null` if not found
-- Supports fuzzy matching on Russian region names
+- `query`: название региона или хост (например `"Курская область"`, `"Москва"`, `"46"`, `"moscow"`)
+- Возвращает `{ name: string, host: string }` или `null`, если не найден
+- Поддерживает нечёткий поиск по русским названиям регионов
 
 ### `listRegions()`
 
-List all available regions with their names and hosts.
+Возвращает список всех доступных регионов с названиями и хостами.
 
 ```js
 const { listRegions } = require("mchs-storm-warnings");
@@ -63,36 +63,36 @@ const regions = listRegions();
 // [{ name: "Республика Адыгея", host: "01" }, ...]
 ```
 
-- Returns an array of `{ name: string, host: string }` sorted by Russian name
-- Covers all 85+ Russian federal subjects
+- Возвращает массив `{ name: string, host: string }`, отсортированный по русскому названию
+- Покрывает все 85+ субъектов Российской Федерации
 
 ### `listStormWarnings(regionHost, options?)`
 
-- `regionHost`: MChS regional host such as `46`, `78`, `moscow`, or a region name like `"Курская область"`
-- `options.page`: optional page number, default `0`
-- Returns a normalized feed with `regionName`, `sectionTitle`, and `items`
+- `regionHost`: хост региона МЧС, например `46`, `78`, `moscow`, или название региона вроде `"Курская область"`
+- `options.page`: номер страницы (опционально), по умолчанию `0`
+- Возвращает нормализованную ленту с `regionName`, `sectionTitle` и `items`
 
 ### `getStormWarning(regionHost, warningPathOrId)`
 
-- `warningPathOrId`: numeric warning id, relative path, or absolute warning URL
-- Returns `title`, `publishedAt`, `publishedAtIso`, `bodyText`, export links, and the canonical warning URL
+- `warningPathOrId`: числовой идентификатор предупреждения, относительный путь или абсолютный URL
+- Возвращает `title`, `publishedAt`, `publishedAtIso`, `bodyText`, ссылки на экспорт и канонический URL предупреждения
 
-### URL builders
+### Построение URL
 
 - `buildWarningsIndexUrl(regionHost, options?)`
 - `buildWarningUrl(regionHost, warningPathOrId)`
 - `buildRegionOrigin(regionHost)`
 
-## Notes
+## Примечания
 
-- The package stays read-only and does not need secrets.
-- `publishedAtIso` is normalized from the public page and does not infer region-specific timezone offsets.
-- Export links (`pdfUrl`, `wordUrl`) are returned when the page exposes them.
+- Пакет остаётся read-only и не требует секретов.
+- `publishedAtIso` нормализуется из публичной страницы и не выводит смещение часового пояса региона.
+- Ссылки на экспорт (`pdfUrl`, `wordUrl`) возвращаются, если страница их предоставляет.
 
-## Tests
+## Тесты
 
 ```bash
 npm test --workspace mchs-storm-warnings
 ```
 
-Fixture-based tests pin both the warning feed and an individual warning page, so CI does not depend on live MChS markup.
+Тесты используют fixture-based подход с сохранёнными страницами предупреждений, чтобы CI не зависел от живой вёрстки МЧС.

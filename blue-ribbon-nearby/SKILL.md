@@ -10,7 +10,7 @@ metadata:
 
 # Blue Ribbon Nearby
 
-## Boundary note
+## Граничное примечание
 
 Этот навык остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `blue-ribbon-nearby` сохраняется ради backward compatibility и как reference flow для location-first restaurant discovery, но не должен считаться новым target-направлением `ru-skill`.
 

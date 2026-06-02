@@ -1,6 +1,6 @@
 ---
 name: hh-vacancies
-description: Search public hh.ru vacancies, inspect vacancy cards, and resolve Russian area ids without authorization. Use when the user asks for Russian-speaking job search results, a specific HH vacancy, or an area like Moscow or Saint Petersburg.
+description: Поиск публичных вакансий hh.ru, просмотр карточек вакансий и разрешение идентификаторов регионов без авторизации. Использовать, когда пользователь ищет русскоязычные вакансии, конкретную вакансию HH или регион вроде Москвы или Санкт-Петербурга.
 license: MIT
 metadata:
   category: jobs
@@ -8,7 +8,7 @@ metadata:
   phase: v1
 ---
 
-# HH Vacancies
+# Вакансии HH
 
 ## Что делает навык
 

@@ -1,6 +1,6 @@
 ---
 name: mchs-storm-warnings
-description: Read official regional MChS storm and emergency warnings without authorization. Use when the user needs the latest official weather hazard bulletin, an individual warning card, or a quick check for a Russian region such as Moscow, Saint Petersburg, or a numbered oblast host.
+description: Чтение официальных региональных штормовых и экстренных предупреждений МЧС без авторизации. Использовать, когда пользователю нужен последний официальный бюллетень опасных метеоявлений, карточка отдельного предупреждения или быстрая проверка для российского региона.
 license: MIT
 metadata:
   category: public-safety
@@ -8,7 +8,7 @@ metadata:
   phase: v1
 ---
 
-# MChS Storm Warnings
+# Штормовые предупреждения МЧС
 
 ## Что делает навык
 

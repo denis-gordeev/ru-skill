@@ -2,7 +2,7 @@
 
 `toss-securities` - это read-only tossctl wrapper, то есть read-only обёртка над `tossctl` из `JungHoonGhae/tossinvest-cli`. Пакет нормализует install/login/read flow, но сознательно не открывает торговые mutation-команды.
 
-## Boundary note
+## Граничное примечание
 
 Этот пакет остаётся `legacy-only`: прямой российский replacement для авторизованных брокерских сценариев не подтверждён, а публичные рыночные read-only сводки уже покрываются `moex-shares`. Поэтому `toss-securities` сохраняется ради backward compatibility и не должен выглядеть как скрытый target-кандидат.
 

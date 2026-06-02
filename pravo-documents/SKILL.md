@@ -1,6 +1,6 @@
 ---
 name: pravo-documents
-description: Search and read official Russian legal documents via pravo.gov.ru publication API without authorization. Use when the user needs to find federal laws, government decrees, or other official Russian legal acts by name, type, or date.
+description: Поиск и чтение официальных правовых документов через API pravo.gov.ru без авторизации. Использовать, когда пользователю нужно найти федеральные законы, постановления правительства или другие официальные правовые акты по названию, типу или дате.
 license: MIT
 metadata:
   category: legal-reference
@@ -8,7 +8,7 @@ metadata:
   phase: v1
 ---
 
-# Pravo.gov.ru Legal Documents
+# Правовые документы pravo.gov.ru
 
 ## Что делает навык
 
