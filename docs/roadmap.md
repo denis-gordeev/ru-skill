@@ -6,6 +6,10 @@
 
 ## Статус на 2026-06-02
 
+- Закрыт следующий слой mixed-language drift в transition/setup surfaces: `docs/setup.md`, `docs/security-and-secrets.md`, `docs/features/fine-dust-location.md`, `docs/features/k-skill-proxy.md`, `fine-dust-location/SKILL.md`, оба setup-skill, `examples/secrets.env.example` и `packages/k-skill-proxy/README.md` выровнены по русской терминологии для резервных путей, endpoint override и слоя совместимости.
+- Все 20 workspace `package.json` descriptions переведены на русский и синхронизированы с текущим target/legacy/transition позиционированием, так что publish metadata не расходится с верхнеуровневой документацией.
+- Doc-regression дополнительно страхует этот слой: тесты проверяют новые русские формулировки вокруг `KSKILL_PROXY_BASE_URL`, `AIR_KOREA_OPEN_API_KEY` и descriptions publishable workspace-пакетов.
+- Полный `npm test` и `validate-skills` проходят после этой синхронизации.
 - Закрыт следующий слой mixed-language drift в legacy package README и feature guides: boundary/product copy на обновлённых surfaces переведён на русский без изменения code identifiers и статус-маркеров `legacy-only` / `transition`.
 - Английский заголовок `## Live smoke snapshot` убран из legacy package README с проверенными smoke-примерами; на этих surfaces теперь используется `## Проверенный live smoke пример`.
 - Doc-regression дополнительно страхует touched legacy surfaces от возврата `backward compatibility`, `reference flow`, `target-backlog`, `public-source replacement` и `adapter-based tracking flow`.
@@ -219,6 +223,6 @@
 2. Fine-dust/proxy secrets-template drift, skill-only drift, legacy feature/skill drift, helper/runtime cleanup, skill-level copy audit, полная русификация user-facing Korean, нормализация heading scheme во всех SKILL.md и feature docs и устранение Chinese character артефактов уже закрыты; doc-regression покрывает все 13 target-навыков и все legacy-навыки с boundary + workflow/content assertions + canonical heading scheme + mixed-language checks.
 3. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
-5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README, top-level TODO governance, heading scheme critical surfaces и отсутствию устаревшей release-археологии в README/roadmap.
-6. Проверять package README и feature-doc surfaces на случайные mixed-language артефакты, даже если они не относятся к Korean domain data.
+5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README, top-level TODO governance, heading scheme critical surfaces, transition/setup copy, package metadata descriptions и отсутствию устаревшей release-археологии в README/roadmap.
+6. Следующий слой mixed-language audit перенести на publish/release surfaces: `CHANGELOG.md`, changeset summaries, skill frontmatter `description` и install/feature-link labels, а не повторно проходить уже выровненные boundary-note и credential surfaces.
 7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.

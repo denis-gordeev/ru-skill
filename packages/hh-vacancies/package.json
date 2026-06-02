@@ -1,7 +1,7 @@
 {
   "name": "hh-vacancies",
   "version": "0.1.0",
-  "description": "Read-only client for public hh.ru vacancy and area APIs",
+  "description": "Клиент только для чтения для публичных API вакансий и регионов hh.ru",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

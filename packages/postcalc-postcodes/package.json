@@ -1,7 +1,7 @@
 {
   "name": "postcalc-postcodes",
   "version": "0.1.0",
-  "description": "Read-only client for Postcalc city and post office reference pages backed by Russian Post index data",
+  "description": "Клиент только для чтения для справочных страниц Postcalc по городам и отделениям на базе данных индексов Почты России",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

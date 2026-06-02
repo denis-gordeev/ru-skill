@@ -1,6 +1,6 @@
 ---
 name: ru-skill-setup
-description: After installing ru-skill, configure shared secrets and runtime checks using the preferred ru-skill naming while keeping compatibility with legacy k-skill-setup.
+description: После установки ru-skill настройте общие секреты и runtime-проверки через предпочтительное имя ru-skill, сохранив совместимость с legacy alias `k-skill-setup`.
 license: MIT
 metadata:
   category: setup
@@ -16,7 +16,7 @@ metadata:
 
 - Готовит shared secrets и runtime-проверки после установки полного набора `ru-skill`
 - Сначала использует `~/.config/ru-skill/secrets.env`
-- Сохраняет совместимость с legacy-именем `k-skill-setup` и fallback-путём `~/.config/k-skill/secrets.env`
+- Сохраняет совместимость с legacy-именем `k-skill-setup` и резервным путём `~/.config/k-skill/secrets.env`
 
 ## Порядок разрешения учётных данных
 
@@ -25,7 +25,7 @@ metadata:
 1. Уже выставленная переменная окружения
 2. Secret vault агента
 3. `~/.config/ru-skill/secrets.env`
-4. Legacy fallback `~/.config/k-skill/secrets.env`
+4. Legacy-резерв `~/.config/k-skill/secrets.env`
 5. Запрос значения у пользователя и сохранение через один из путей выше
 
 Явное переопределение: `RU_SKILL_SECRETS_FILE`, затем `KSKILL_SECRETS_FILE`.
@@ -42,14 +42,14 @@ bash scripts/check-setup.sh
 
 4. При необходимости продолжить с feature-specific навыками
 
-Для `fine-dust-location` published compatibility proxy остаётся рабочим default без дополнительного credential. `KSKILL_PROXY_BASE_URL` используется только как optional endpoint override, а реальным секретом в direct fallback/self-hosted сценарии остаётся `AIR_KOREA_OPEN_API_KEY`.
+Для `fine-dust-location` опубликованный совместимый proxy endpoint остаётся рабочим вариантом по умолчанию без дополнительного секрета. `KSKILL_PROXY_BASE_URL` используется только как необязательное переопределение адреса, а реальным секретом в direct fallback/self-hosted сценарии остаётся `AIR_KOREA_OPEN_API_KEY`.
 
 ## Совместимость
 
 - Предпочтительное имя setup-навыка: `ru-skill-setup`
 - Legacy alias: `k-skill-setup`
 - Предпочтительный secrets path: `~/.config/ru-skill/secrets.env`
-- Legacy fallback path: `~/.config/k-skill/secrets.env`
+- Legacy-резервный путь: `~/.config/k-skill/secrets.env`
 - Предпочтительные runtime-artifacts для update checks и логов: `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`
 
 Оба имени должны вести к одному и тому же setup-потоку без ломающей миграции.

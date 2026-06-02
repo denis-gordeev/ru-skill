@@ -1,7 +1,7 @@
 {
   "name": "yandex-rasp",
   "version": "0.1.0",
-  "description": "Read-only client for Yandex Raspisanie transport schedules (trains, buses, flights, suburban)",
+  "description": "Клиент только для чтения для расписаний Яндекс.Расписаний: поезда, автобусы, самолёты и электрички",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

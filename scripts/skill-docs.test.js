@@ -1023,15 +1023,15 @@ test("repository docs advertise the fine-dust-location skill across the document
   assert.match(sources, /AirKorea станции мониторинга API: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
   assert.match(setup, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(setup, /KSKILL_PROXY_BASE_URL/);
-  assert.match(setup, /published proxy endpoint используется по умолчанию/i);
+  assert.match(setup, /опубликованн.*совместим.*proxy endpoint используется по умолчанию/i);
   assert.match(setup, /не входит в минимальный secrets-шаблон/i);
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(security, /KSKILL_PROXY_BASE_URL/);
-  assert.match(security, /override published proxy endpoint/i);
+  assert.match(security, /необязательн.*переопределен.*опубликованн.*proxy/i);
   assert.match(security, /специально не включён в минимальный secrets-шаблон/i);
   assert.match(secretsExample, /^AIR_KOREA_OPEN_API_KEY=replace-me$/m);
   assert.doesNotMatch(secretsExample, /^KSKILL_PROXY_BASE_URL=/m);
-  assert.match(secretsExample, /optional endpoint override/i);
+  assert.match(secretsExample, /необязательн.*переопределен.*адрес/i);
 });
 
 test("fine-dust-location skill documents the official two-api flow and fallback handling", () => {
@@ -1043,7 +1043,7 @@ test("fine-dust-location skill documents the official two-api flow and fallback 
   const featureDoc = read(path.join("docs", "features", "fine-dust-location.md"));
 
   assert.match(skill, /^name: fine-dust-location$/m);
-  assert.match(skill, /^description: .*PM10\/PM2\.5.*KSKILL_PROXY_BASE_URL.*optional override.*$/m);
+  assert.match(skill, /^description: .*PM10\/PM2\.5.*KSKILL_PROXY_BASE_URL.*необязательн.*переопределен.*$/m);
   assert.match(skill, /k-skill-proxy\.nomadamas\.org\/v1\/fine-dust\/report/);
   assert.match(skill, /административное название|행정구역 이름/u);
   assert.match(skill, /강남구/);
@@ -1054,7 +1054,7 @@ test("fine-dust-location skill documents the official two-api flow and fallback 
   assert.match(skill, /PM2\.5|PM25/);
   assert.match(skill, /общей категории качества воздуха|통합대기등급/);
   assert.match(skill, /## Граничное примечание/);
-  assert.match(skill, /legacy\/transition utility/i);
+  assert.match(skill, /legacy\/transition.*утилит/i);
   assert.match(skill, /~\/\.config\/ru-skill\/secrets\.env/);
   assert.match(skill, /~\/\.config\/k-skill\/secrets\.env/);
   assert.ok(
@@ -1064,7 +1064,7 @@ test("fine-dust-location skill documents the official two-api flow and fallback 
 
   for (const doc of [featureDoc]) {
     assert.match(doc, /## Граничное примечание/);
-    assert.match(doc, /legacy\/transition utility/i);
+    assert.match(doc, /legacy\/transition.*утилит/i);
     assert.match(doc, /скрытый backlog/i);
     assert.match(doc, /AIR_KOREA_OPEN_API_KEY/);
     assert.match(doc, /KSKILL_PROXY_BASE_URL/);
@@ -1104,7 +1104,7 @@ test("install docs prefer ru-skill-setup while keeping legacy k-skill-setup as a
   assert.doesNotMatch(preferredSkill, /^## Default flow$/m);
   assert.doesNotMatch(preferredSkill, /^## Compatibility$/m);
   assert.match(legacySkill, /^name: k-skill-setup$/m);
-  assert.match(legacySkill, /legacy-compatible alias/i);
+  assert.match(legacySkill, /legacy-совместим.*alias/i);
   assert.deepEqual(extractSecondLevelHeadings(legacySkill), expectedSetupHeadings);
   assert.doesNotMatch(legacySkill, /^## Стандартное расположение файлов$/m);
   assert.doesNotMatch(legacySkill, /^## Установка$/m);
@@ -1333,8 +1333,8 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-02");
-  assert.equal(todoStatus.round, 32);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 32\)/);
+  assert.equal(todoStatus.round, 33);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 33\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -1393,7 +1393,7 @@ test("legacy-only and transition guides publish explicit boundary notes", () => 
   assert.match(deliveryTracking, /скрытый backlog/i);
 
   assert.match(fineDust, /## Граничное примечание/);
-  assert.match(fineDust, /legacy\/transition utility/i);
+  assert.match(fineDust, /legacy\/transition.*утилит/i);
   assert.match(fineDust, /не считается новым `target`-навыком/i);
 
   assert.match(seoulSubway, /## Граничное примечание/);
@@ -1423,22 +1423,22 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
   const checkSetup = read(path.join("scripts", "check-setup.sh"));
 
   assert.match(setup, /KSKILL_PROXY_BASE_URL/);
-  assert.match(setup, /optional override для endpoint/i);
+  assert.match(setup, /необязательн.*переопределен.*endpoint/i);
   assert.match(setup, /Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`/);
 
   assert.match(security, /KSKILL_PROXY_BASE_URL/);
   assert.match(security, /не считается секретом/i);
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
 
-  assert.match(setupSkill, /optional endpoint override/i);
-  assert.match(setupSkill, /published compatibility proxy/i);
+  assert.match(setupSkill, /необязательн.*переопределен.*endpoint/i);
+  assert.match(setupSkill, /опубликованн.*совместим.*proxy/i);
   assert.match(setupSkill, /~\/\.config\/ru-skill\/bin/);
   assert.match(setupSkill, /~\/\.config\/ru-skill\/logs/);
   assert.doesNotMatch(setupSkill, /~\/\.config\/k-skill\/bin/);
   assert.doesNotMatch(setupSkill, /~\/\.config\/k-skill\/logs/);
   assert.doesNotMatch(setupSkill, /k-skill-update-check/);
   assert.match(setupSkill, /ru-skill-update-check/);
-  assert.match(preferredSetupSkill, /optional endpoint override/i);
+  assert.match(preferredSetupSkill, /необязательн.*переопределен.*адрес/i);
   assert.match(preferredSetupSkill, /реальным секретом.*AIR_KOREA_OPEN_API_KEY/i);
   assert.match(preferredSetupSkill, /~\/\.config\/ru-skill\/logs/);
 
@@ -1460,6 +1460,37 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
   );
 
   assert.match(checkSetup, /KSKILL_PROXY_BASE_URL only if you need a fine-dust endpoint override/i);
+});
+
+test("workspace package descriptions stay aligned with the Russian migration metadata", () => {
+  const expectedDescriptions = {
+    "blue-ribbon-nearby": "Legacy-клиент поиска nearby-ресторанов Blue Ribbon Survey, сохранённый на время миграции ru-skill",
+    "cbr-rates": "Клиент только для чтения для официальных XML-курсов валют Банка России",
+    "daiso-product-search": "Legacy-клиент поиска магазинов, товаров и pickup-остатков Daiso Mall, сохранённый на время миграции ru-skill",
+    "hh-vacancies": "Клиент только для чтения для публичных API вакансий и регионов hh.ru",
+    "k-lotto": "Legacy-клиент результатов dhlottery, сохранённый на время миграции ru-skill",
+    "k-skill-proxy": "Fastify-прокси для бесплатных upstream API, используемых в ru-skill",
+    "kakao-bar-nearby": "Legacy-клиент поиска nearby-баров через Kakao Map, сохранённый на время миграции ru-skill",
+    "kinopoisk-search": "Клиент только для чтения для публичного поиска фильмов и карточек Кинопоиска",
+    "kleague-results": "Legacy-клиент результатов и таблицы K League, сохранённый на время миграции ru-skill",
+    "mchs-storm-warnings": "Клиент только для чтения для официальных региональных страниц штормовых и экстренных предупреждений МЧС",
+    "moex-shares": "Клиент только для чтения для метаданных акций и задержанных рыночных снимков ISS Московской биржи",
+    "osm-nearby": "Клиент только для чтения для поиска nearby-мест через Overpass API OpenStreetMap",
+    "postcalc-postcodes": "Клиент только для чтения для справочных страниц Postcalc по городам и отделениям на базе данных индексов Почты России",
+    "pravo-documents": "Клиент только для чтения для официальных правовых документов через API публикаций pravo.gov.ru",
+    "rpl-results": "Результаты матчей и турнирная таблица Российской Премьер-Лиги через публичные страницы championat.com",
+    "stoloto-lotto": "Клиент только для чтения для публичного архива результатов тиражей Столото",
+    "toss-securities": "Legacy-обёртка tossctl только для чтения, сохранённая на время миграции ru-skill",
+    "yandex-market-search": "Поиск товаров и карточек товаров только для чтения через серверно отрендеренные страницы Яндекс Маркета",
+    "yandex-rasp": "Клиент только для чтения для расписаний Яндекс.Расписаний: поезда, автобусы, самолёты и электрички",
+    "zoon-nearby": "Дополнительный поиск nearby-мест через SSR-страницы Zoon.ru",
+  };
+
+  for (const [packageName, description] of Object.entries(expectedDescriptions)) {
+    const packageJson = readJson(path.join("packages", packageName, "package.json"));
+
+    assert.equal(packageJson.description, description, `expected ${packageName} description to stay aligned with Russian package metadata copy`);
+  }
 });
 
 test("seoul-subway-arrival skill prefers ru-skill secrets before the legacy fallback", () => {
@@ -1484,7 +1515,7 @@ test("legacy feature guides keep runtime and secrets semantics aligned with ru-s
   assert.match(fineDustGuide, /KSKILL_PROXY_BASE_URL/);
   assert.match(fineDustGuide, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(fineDustGuide, /optional|переопределить/i);
-  assert.match(fineDustGuide, /compatibility endpoint|compatibility-layer/i);
+  assert.match(fineDustGuide, /совместим.*endpoint|сло.*совместимости/i);
   assert.ok(
     fineDustGuide.indexOf("~/.config/ru-skill/secrets.env") < fineDustGuide.indexOf("~/.config/k-skill/secrets.env"),
     "expected fine-dust feature guide to prefer the ru-skill secrets path before the legacy fallback",
@@ -1524,8 +1555,8 @@ test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first
   const ktxSkill = read(path.join("ktx-booking", "SKILL.md"));
 
   assert.match(fineDustSkill, /## Граничное примечание/);
-  assert.match(fineDustSkill, /legacy\/transition utility/i);
-  assert.match(fineDustSkill, /optional endpoint override/i);
+  assert.match(fineDustSkill, /legacy\/transition.*утилит/i);
+  assert.match(fineDustSkill, /необязательн.*переопределен.*endpoint/i);
   assert.match(fineDustSkill, /не считается credential/i);
   assert.match(fineDustSkill, /AIR_KOREA_OPEN_API_KEY/);
   assert.ok(

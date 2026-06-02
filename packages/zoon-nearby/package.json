@@ -1,7 +1,7 @@
 {
   "name": "zoon-nearby",
   "version": "0.1.0",
-  "description": "Supplementary nearby places search via Zoon.ru SSR pages",
+  "description": "Дополнительный поиск nearby-мест через SSR-страницы Zoon.ru",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

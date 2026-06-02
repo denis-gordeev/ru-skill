@@ -1,7 +1,7 @@
 {
   "name": "moex-shares",
   "version": "0.1.0",
-  "description": "Read-only client for Moscow Exchange ISS share metadata and delayed market snapshots",
+  "description": "Клиент только для чтения для метаданных акций и задержанных рыночных снимков ISS Московской биржи",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

@@ -1,6 +1,6 @@
 ---
 name: k-skill-setup
-description: Legacy-compatible setup skill for ru-skill that configures shared secrets and runtime checks, with ru-skill-setup preferred for new installs.
+description: Legacy-совместимый setup-навык для ru-skill, который настраивает общие секреты и runtime-проверки; для новых установок предпочтителен `ru-skill-setup`.
 license: MIT
 metadata:
   category: setup
@@ -10,7 +10,7 @@ metadata:
 
 # Настройка k-skill
 
-`k-skill-setup` сохраняется как legacy-compatible alias. Для новых установок в документации рекомендуется имя `ru-skill-setup`, но сам setup-поток остаётся общим.
+`k-skill-setup` сохраняется как legacy-совместимый alias. Для новых установок в документации рекомендуется имя `ru-skill-setup`, но сам setup-поток остаётся общим.
 
 ## Назначение
 
@@ -31,21 +31,21 @@ metadata:
 
 ## Порядок разрешения учётных данных
 
-Все credential-bearing навыки следуют одному приоритету.
+Все навыки, которым нужны учётные данные, следуют одному приоритету.
 
 1. **Если переменная окружения уже установлена**, использовать её напрямую.
-2. **Если агент использует собственный secret vault** (1Password CLI, Bitwarden CLI, macOS Keychain и т.д.), извлечь оттуда и инжектировать как переменную окружения.
-3. **Сначала `~/.config/ru-skill/secrets.env`**, при отсутствии — legacy fallback **`~/.config/k-skill/secrets.env`**. Оба файла предполагают формат plain dotenv и права `0600`.
+2. **Если агент использует собственный secret vault** (1Password CLI, Bitwarden CLI, macOS Keychain и т.д.), извлечь оттуда и передать как переменную окружения.
+3. **Сначала `~/.config/ru-skill/secrets.env`**, при отсутствии — legacy-резерв **`~/.config/k-skill/secrets.env`**. Оба файла предполагают формат plain dotenv и права `0600`.
 4. **Если ничего нет**, запросит у пользователя и сохранит в пункт 2 или 3.
 
-Сохранение в путь по умолчанию — это fallback, а не требование.
+Сохранение в путь по умолчанию — это резервный механизм, а не требование.
 
 ## Стандартный сценарий
 
 ### Стандартное расположение файлов
 
-- preferred secrets file: `~/.config/ru-skill/secrets.env`
-- legacy fallback: `~/.config/k-skill/secrets.env`
+- предпочтительный secrets file: `~/.config/ru-skill/secrets.env`
+- legacy-резерв: `~/.config/k-skill/secrets.env`
 - явное переопределение: `RU_SKILL_SECRETS_FILE`, затем `KSKILL_SECRETS_FILE`
 
 ### Установка
@@ -79,9 +79,9 @@ EOF
 chmod 0600 ~/.config/ru-skill/secrets.env
 ```
 
-Если вы уже используете `~/.config/k-skill/secrets.env`, можете оставить его как legacy fallback.
+Если вы уже используете `~/.config/k-skill/secrets.env`, можете оставить его как legacy-резерв.
 
-`KSKILL_PROXY_BASE_URL` намеренно не включён в этот минимальный шаблон: для `fine-dust-location` это optional endpoint override, а не credential. Добавляйте его только если нужно заменить published compatibility proxy.
+`KSKILL_PROXY_BASE_URL` намеренно не включён в этот минимальный шаблон: для `fine-dust-location` это необязательное переопределение endpoint, а не credential. Добавляйте его только если нужно заменить опубликованный совместимый proxy.
 
 Запросите у пользователя фактические значения для заполнения.
 
@@ -94,7 +94,7 @@ chmod 0600 ~/.config/ru-skill/secrets.env
 - SRT: `KSKILL_SRT_ID`, `KSKILL_SRT_PASSWORD`
 - KTX: `KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD`
 - Метро Сеула: `SEOUL_OPEN_API_KEY`
-- Проверка пыли по местоположению: обычно ничего, потому что published compatibility proxy используется по умолчанию; для direct fallback нужен `AIR_KOREA_OPEN_API_KEY`, а `KSKILL_PROXY_BASE_URL` остаётся только optional override.
+- Проверка пыли по местоположению: обычно ничего, потому что опубликованный совместимый proxy используется по умолчанию; для direct fallback нужен `AIR_KOREA_OPEN_API_KEY`, а `KSKILL_PROXY_BASE_URL` остаётся только необязательным переопределением.
 
 Не выбирайте автоматически другие сервисы или неофициальные обходные пути из-за отсутствия секретов.
 
@@ -114,7 +114,7 @@ bash scripts/check-setup.sh
 - Изменения системы (`crontab`, `launchd`, `schtasks`) не применяются без согласия
 - Базовая команда проверки: `npx --yes skills check`
 - Только при явном запросе на **автоматические обновления** предлагается отдельное расписание на базе `npx --yes skills update`
-- Даже у legacy alias runtime-artifacts должны по умолчанию жить в `~/.config/ru-skill/*`; путь `~/.config/k-skill/*` допустим только как backward-compatible fallback, если пользователь уже завязал на него свою локальную автоматизацию
+- Даже у legacy alias runtime-artifacts должны по умолчанию жить в `~/.config/ru-skill/*`; путь `~/.config/k-skill/*` допустим только как backward-compatible резерв, если пользователь уже завязал на него свою локальную автоматизацию
 
 Пример для macOS / Linux:
 

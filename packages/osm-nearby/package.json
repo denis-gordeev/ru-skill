@@ -1,7 +1,7 @@
 {
   "name": "osm-nearby",
   "version": "0.1.0",
-  "description": "Read-only client for nearby places search via OpenStreetMap Overpass API",
+  "description": "Клиент только для чтения для поиска nearby-мест через Overpass API OpenStreetMap",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

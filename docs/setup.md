@@ -2,20 +2,20 @@
 
 После установки полного набора `ru-skill` именно эта процедура подготавливает навыки, которым нужны секреты или API-ключи, например `srt-booking`, `ktx-booking`, `seoul-subway-arrival` и `fine-dust-location`.
 
-## Порядок разрешения credential
+## Порядок разрешения учётных данных
 
 Все навыки, которым нужны секреты, придерживаются одного и того же порядка.
 
 1. Если значение уже есть в переменной окружения, используется оно.
 2. Если агент работает с собственным secret vault, например 1Password CLI, Bitwarden CLI или macOS Keychain, секрет можно достать оттуда и пробросить в окружение.
-3. Если vault нет, сначала используется `~/.config/ru-skill/secrets.env`, а при его отсутствии допускается legacy fallback `~/.config/k-skill/secrets.env`; оба файла должны быть в формате dotenv с правами `0600`.
+3. Если vault нет, сначала используется `~/.config/ru-skill/secrets.env`, а при его отсутствии допускается legacy-резерв `~/.config/k-skill/secrets.env`; оба файла должны быть в формате dotenv с правами `0600`.
 4. Если значения нет нигде, агент должен запросить его у пользователя и сохранить через вариант 2 или 3.
 
-Если у агента уже есть штатный secret vault, этап с fallback-файлом можно пропустить.
+Если у агента уже есть штатный secret vault, этап с резервным файлом можно пропустить.
 
 ## Настройка через стандартный путь
 
-Если отдельного vault нет, создайте стандартный fallback-файл.
+Если отдельного vault нет, создайте стандартный резервный файл.
 
 ```bash
 mkdir -p ~/.config/ru-skill
@@ -32,13 +32,13 @@ chmod 0600 ~/.config/ru-skill/secrets.env
 
 Заполните файл реальными значениями.
 
-`KSKILL_PROXY_BASE_URL` не входит в минимальный secrets-шаблон намеренно: это не credential, а только optional override для endpoint. Если вам действительно нужно заменить опубликованный compatibility proxy на свой адрес, добавьте строку отдельно:
+`KSKILL_PROXY_BASE_URL` не входит в минимальный secrets-шаблон намеренно: это не credential, а только необязательное переопределение endpoint. Если вам действительно нужно заменить опубликованный совместимый proxy на свой адрес, добавьте строку отдельно:
 
 ```bash
-printf '\n# Optional endpoint override for fine-dust-location\nKSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org\n' >> ~/.config/ru-skill/secrets.env
+printf '\n# Необязательное переопределение endpoint для fine-dust-location\nKSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org\n' >> ~/.config/ru-skill/secrets.env
 ```
 
-Если у вас уже есть legacy-файл `~/.config/k-skill/secrets.env`, его можно оставить: скрипты репозитория сначала смотрят `~/.config/ru-skill/secrets.env`, затем fallback-ятся на legacy-путь. Для явного переопределения используются `RU_SKILL_SECRETS_FILE` и `KSKILL_SECRETS_FILE`.
+Если у вас уже есть legacy-файл `~/.config/k-skill/secrets.env`, его можно оставить: скрипты репозитория сначала смотрят `~/.config/ru-skill/secrets.env`, затем переходят к legacy-резерву. Для явного переопределения используются `RU_SKILL_SECRETS_FILE` и `KSKILL_SECRETS_FILE`.
 
 ## Проверка
 
@@ -48,7 +48,7 @@ bash scripts/check-setup.sh
 
 ## Если секрета не хватает
 
-Если у навыка с авторизацией нет нужного значения, агент не должен искать неофициальный обходной путь. Нужно действовать по порядку разрешения credential.
+Если у навыка с авторизацией нет нужного значения, агент не должен искать неофициальный обходной путь. Нужно действовать по порядку разрешения учётных данных.
 
 - Явно назвать отсутствующую переменную окружения.
 - Объяснить пользователю, как получить или сохранить её через vault либо `secrets.env`.
@@ -60,9 +60,9 @@ bash scripts/check-setup.sh
 | `srt-booking` | `KSKILL_SRT_ID`, `KSKILL_SRT_PASSWORD` |
 | `ktx-booking` | `KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD` |
 | `seoul-subway-arrival` | `SEOUL_OPEN_API_KEY` |
-| `fine-dust-location` | Обычно ничего: published proxy endpoint используется по умолчанию как compatibility default. Для override нужен `KSKILL_PROXY_BASE_URL`, для direct fallback или self-hosted proxy - `AIR_KOREA_OPEN_API_KEY`. |
+| `fine-dust-location` | Обычно ничего: опубликованный совместимый proxy endpoint используется по умолчанию. Для переопределения нужен `KSKILL_PROXY_BASE_URL`, для direct fallback или self-hosted proxy - `AIR_KOREA_OPEN_API_KEY`. |
 
-Для `fine-dust-location` важно не смешивать конфигурацию и секреты: `KSKILL_PROXY_BASE_URL` - это optional override для endpoint, а не обязательный credential. Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`, если вы уходите с опубликованного compatibility proxy на direct fallback или свой сервер.
+Для `fine-dust-location` важно не смешивать конфигурацию и секреты: `KSKILL_PROXY_BASE_URL` - это необязательное переопределение endpoint, а не обязательный credential. Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`, если вы уходите с опубликованного совместимого proxy на direct fallback или свой сервер.
 
 ## Что читать дальше
 

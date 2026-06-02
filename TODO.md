@@ -4,6 +4,27 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-02 (раунд 33)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- Закрыт следующий слой mixed-language drift в transition/setup surfaces: `docs/setup.md`, `docs/security-and-secrets.md`, `docs/features/fine-dust-location.md`, `docs/features/k-skill-proxy.md`, `fine-dust-location/SKILL.md`, `ru-skill-setup/SKILL.md`, `k-skill-setup/SKILL.md`, `examples/secrets.env.example` и `packages/k-skill-proxy/README.md` выровнены по русской терминологии для резервных путей, endpoint override и compatibility-layer.
+- Все 20 workspace `package.json` descriptions переведены на русский и синхронизированы с текущим target/legacy/transition позиционированием, так что publish metadata больше не расходится с верхнеуровневой документацией.
+- Doc-regression расширен на этот слой: `scripts/skill-docs.test.js` теперь страхует русские формулировки в transition/setup surfaces и descriptions publishable workspace-пакетов.
+- Полный `npm test` проходит; `./scripts/validate-skills.sh` тоже зелёный.
+
+## Выполнено в этом раунде (раунд 33)
+
+- [x] Русифицированы transition/setup surfaces вокруг `fine-dust-location`, `k-skill-proxy`, setup-skills и шаблона `examples/secrets.env.example`.
+- [x] Переведены на русский все workspace `package.json` descriptions для publishable пакетов и transition-инфраструктуры.
+- [x] `scripts/skill-docs.test.js` обновлён под новые русские формулировки и дополнен регрессией на package metadata descriptions.
+- [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проверить `CHANGELOG.md`, `.changeset/*` и другие release surfaces на смешанную терминологию, чтобы publish-summary copy не отставала от README и package metadata.
+- [ ] Расширить doc-regression на skill frontmatter `description` и install/feature-link labels, чтобы русская терминология держалась не только в README и `package.json`.
+- [ ] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
+
 ## Статус на 2026-06-02 (раунд 32)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -22,9 +43,9 @@
 
 ## Новые пункты плана
 
-- [ ] Проверить оставшиеся transition surfaces (`k-skill-proxy`, `fine-dust-location`, setup/security docs) на смешанную терминологию вокруг `read-only`, `fallback`, `compatibility-layer` и `public proxy`.
-- [ ] Расширить doc-regression на package metadata и release surfaces (`package.json` descriptions, package CHANGELOG, feature-link labels), чтобы English copy drift не возвращался вне README/feature docs.
-- [ ] Продолжить чистку legacy/transition copy только там, где это не ломает стабильные статус-маркеры, code identifiers и доменно-обязательные англоязычные термины.
+- [x] Проверить оставшиеся transition surfaces (`k-skill-proxy`, `fine-dust-location`, setup/security docs) на смешанную терминологию вокруг `read-only`, `fallback`, `compatibility-layer` и `public proxy`.
+- [x] Расширить doc-regression на package metadata и release surfaces (`package.json` descriptions, package CHANGELOG, feature-link labels), чтобы English copy drift не возвращался вне README/feature docs.
+- [x] Продолжить чистку legacy/transition copy только там, где это не ломает стабильные статус-маркеры, code identifiers и доменно-обязательные англоязычные термины.
 
 ## Статус на 2026-06-02 (раунд 31)
 

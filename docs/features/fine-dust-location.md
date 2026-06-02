@@ -2,7 +2,7 @@
 
 ## Граничное примечание
 
-Этот сценарий не считается новым `target`-навыком `ru-skill`. Он сохраняется как legacy/transition utility вокруг AirKorea и `k-skill-proxy`, чтобы не ломать совместимость, но не должен выглядеть как скрытый backlog новых русскоязычных public-source интеграций.
+Этот сценарий не считается новым `target`-навыком `ru-skill`. Он сохраняется как `legacy/transition`-утилита вокруг AirKorea и `k-skill-proxy`, чтобы не ломать совместимость, но не должен выглядеть как скрытый backlog новых русскоязычных public-source интеграций.
 
 ## Что делает навык
 
@@ -33,7 +33,7 @@
 
 1. Если переменные уже есть в окружении, использовать их.
 2. Если агент работает через отдельный secret vault, можно брать значения оттуда.
-3. Если env нет, сначала искать `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
+3. Если env нет, сначала искать `~/.config/ru-skill/secrets.env`, затем legacy-резерв `~/.config/k-skill/secrets.env`.
 4. Если источников нет, запросить секрет у пользователя и сохранить его в vault или `secrets.env`.
 
 ## Входные данные
@@ -43,7 +43,7 @@
 
 ## Рабочий процесс
 
-1. Если задан `KSKILL_PROXY_BASE_URL`, сначала вызвать `/v1/fine-dust/report` на этом proxy; если переменная не задана, использовать опубликованный compatibility endpoint `https://k-skill-proxy.nomadamas.org`.
+1. Если задан `KSKILL_PROXY_BASE_URL`, сначала вызвать `/v1/fine-dust/report` на этом proxy; если переменная не задана, использовать опубликованный совместимый endpoint `https://k-skill-proxy.nomadamas.org`.
 2. Если пришёл `regionHint`, proxy сначала выделяет название региона и получает список станций через `getCtprvnRltmMesureDnsty`.
 3. Если токен из региона однозначно соответствует одной станции, proxy вызывает `getMsrstnAcctoRltmMesureDnsty` для неё.
 4. Если однозначности нет, proxy возвращает `ambiguous_location` и `candidate_stations`.
@@ -70,7 +70,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
   --data-urlencode 'stationName=우산동(광주)'
 ```
 
-Если нужен почти raw-доступ к AirKorea, можно использовать passthrough endpoint. При этом proxy сам инжектирует `serviceKey`, а отдельный client API не нужен.
+Если нужен почти raw-доступ к AirKorea, можно использовать passthrough endpoint. При этом proxy сам инжектирует `serviceKey`, а отдельный клиентский API не нужен.
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty' \
@@ -131,4 +131,4 @@ python3 scripts/fine_dust.py report \
 - Если API не прислал `khaiGrade`, интегральный уровень нужно выводить как «Нет данных».
 - `regionHint` описывает место в естественном языке, поэтому неоднозначность там частая.
 - В hosted-режиме upstream AirKorea key должен оставаться только на proxy, а не на клиенте.
-- Public proxy и legacy naming здесь остаются compatibility-layer, а не рекомендацией расширять `ru-skill` новыми корейскими data-source сценариями.
+- Публичный proxy и legacy naming здесь остаются слоем совместимости, а не рекомендацией расширять `ru-skill` новыми корейскими data-source сценариями.

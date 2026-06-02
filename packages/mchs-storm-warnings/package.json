@@ -1,7 +1,7 @@
 {
   "name": "mchs-storm-warnings",
   "version": "0.1.0",
-  "description": "Read-only client for official regional MChS storm and emergency warning pages",
+  "description": "Клиент только для чтения для официальных региональных страниц штормовых и экстренных предупреждений МЧС",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

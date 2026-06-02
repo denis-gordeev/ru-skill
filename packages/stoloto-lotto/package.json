@@ -1,7 +1,7 @@
 {
   "name": "stoloto-lotto",
   "version": "0.1.0",
-  "description": "Read-only client for Stoloto public lottery draw results archive",
+  "description": "Клиент только для чтения для публичного архива результатов тиражей Столото",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

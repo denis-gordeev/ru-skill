@@ -166,6 +166,10 @@
 - Следующий слой legacy user-facing drift тоже закрыт: в package README и feature guides для `blue-ribbon-nearby`, `daiso-product-search`, `k-lotto`, `kakao-bar-nearby`, `kleague-results`, `toss-securities`, `kakaotalk-mac`, `kbo-results`, `lotto-results`, `delivery-tracking`, `seoul-subway-arrival`, `zipcode-search` английские boundary/product формулировки (`backward compatibility`, `reference flow`, `target-backlog`, `public-source replacement`) заменены на русские аналоги без изменения code identifiers.
 - Заголовок `## Live smoke snapshot` убран из legacy package README с проверенными smoke-примерами: на этих surfaces теперь используется `## Проверенный live smoke пример`.
 - Doc-regression дополнительно страхует этот слой: `scripts/skill-docs.test.js` проверяет новые русские формулировки и не даёт touched legacy surfaces вернуть старую английскую boundary/product copy.
+- Следующий слой mixed-language drift закрыт уже на transition/setup surfaces: `docs/setup.md`, `docs/security-and-secrets.md`, `docs/features/fine-dust-location.md`, `docs/features/k-skill-proxy.md`, `fine-dust-location/SKILL.md`, оба setup-skill, `examples/secrets.env.example` и `packages/k-skill-proxy/README.md` теперь используют согласованную русскую терминологию для резервных путей, endpoint override и слоя совместимости.
+- Все 20 workspace `package.json` descriptions переведены на русский и выровнены с текущим target/legacy/transition позиционированием репозитория, чтобы npm/publish metadata не расходилась с README и feature docs.
+- Doc-regression расширен на transition/setup copy и package metadata: тесты теперь страхуют русские формулировки вокруг `KSKILL_PROXY_BASE_URL`, `AIR_KOREA_OPEN_API_KEY` и descriptions во всех publishable workspace-пакетах.
+- Полный `npm test` и `./scripts/validate-skills.sh` проходят после этой синхронизации.
 
 ## Что делаем дальше
 
@@ -177,9 +181,10 @@
 - Doc-regression покрывает все 13 target-навыков и все legacy-навыки с workflow/content assertions, каноничность heading scheme и отсутствие mixed-language артефактов.
 - Английские артефакты в target package README, SKILL.md h1-заголовках и секционных заголовках устранены; `## Boundary note` переведён как `## Граничное примечание`.
 - На обновлённых legacy package README и feature guides снят следующий слой user-facing English drift; следующий проход нужен уже по transition surfaces и package metadata, а не по тем же boundary-note документам.
+- Transition/setup surfaces и package metadata descriptions теперь тоже выровнены; следующий проход нужен уже по publish/release surfaces (`CHANGELOG.md`, changeset summaries, feature-link labels, skill frontmatter descriptions), а не по тем же credential/proxy документам.
 - Верхний активный блок `TODO.md` теперь зафиксирован как единственный живой backlog; исторические round-секции остаются архивом и не должны снова накапливать открытые checklist-пункты.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
-- Держать в CI синхрон README, roadmap, TODO и booking docs, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
+- Держать в CI синхрон README, roadmap, TODO, booking docs и package metadata descriptions, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 
 ## Быстрые ссылки на ключевые функции
 

@@ -1,7 +1,7 @@
 {
   "name": "blue-ribbon-nearby",
   "version": "0.2.0",
-  "description": "Legacy Blue Ribbon Survey nearby restaurant client retained during the ru-skill migration",
+  "description": "Legacy-клиент поиска nearby-ресторанов Blue Ribbon Survey, сохранённый на время миграции ru-skill",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

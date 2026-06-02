@@ -1,7 +1,7 @@
 {
   "name": "pravo-documents",
   "version": "0.1.0",
-  "description": "Read-only client for official Russian legal documents via pravo.gov.ru publication API",
+  "description": "Клиент только для чтения для официальных правовых документов через API публикаций pravo.gov.ru",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

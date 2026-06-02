@@ -1,7 +1,7 @@
 {
   "name": "cbr-rates",
   "version": "0.1.0",
-  "description": "Read-only client for official Bank of Russia exchange rates XML feeds",
+  "description": "Клиент только для чтения для официальных XML-курсов валют Банка России",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

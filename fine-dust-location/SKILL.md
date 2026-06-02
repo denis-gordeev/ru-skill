@@ -1,6 +1,6 @@
 ---
 name: fine-dust-location
-description: Проверяет PM10/PM2.5 по региону или location hint через совместимый `k-skill-proxy` report endpoint; `KSKILL_PROXY_BASE_URL` используется только как optional override.
+description: Проверяет PM10/PM2.5 по региону или подсказке о местоположении через совместимый `k-skill-proxy` report endpoint; `KSKILL_PROXY_BASE_URL` используется только как необязательное переопределение адреса.
 license: MIT
 metadata:
   category: utility
@@ -8,15 +8,15 @@ metadata:
   phase: v1
 ---
 
-# Fine Dust By Location
+# Fine Dust по местоположению
 
 ## Что делает навык
 
-По умолчанию навык обращается к published compatibility endpoint `https://k-skill-proxy.nomadamas.org/v1/fine-dust/report` и возвращает короткую сводку по PM10, PM2.5 и общей категории качества воздуха.
+По умолчанию навык обращается к опубликованному совместимому endpoint `https://k-skill-proxy.nomadamas.org/v1/fine-dust/report` и возвращает короткую сводку по PM10, PM2.5 и общей категории качества воздуха.
 
 ## Граничное примечание
 
-Этот навык остаётся `legacy/transition utility`, а не новым `target`-направлением `ru-skill`. Он нужен, чтобы сохранить совместимость с AirKorea + `k-skill-proxy`, а published proxy endpoint и legacy naming существуют только как compatibility-layer, а не как новый продуктовый default для русскоязычных сценариев.
+Этот навык остаётся `legacy/transition`-утилитой, а не новым `target`-направлением `ru-skill`. Он нужен, чтобы сохранить совместимость с AirKorea + `k-skill-proxy`, а опубликованный proxy endpoint и legacy naming существуют только как слой совместимости, а не как новый продуктовый путь по умолчанию для русскоязычных сценариев.
 
 ## Когда использовать
 
@@ -26,7 +26,7 @@ metadata:
 
 ## Входные данные
 
-- Обычный ввод: название района или location hint
+- Обычный ввод: название района или подсказка о местоположении
 - Для повторного запроса: точное имя станции замера
 
 ## Как задавать регион
@@ -40,7 +40,7 @@ metadata:
 
 ## Путь по умолчанию
 
-Отдельный client-side API layer не нужен: обычно достаточно прямого HTTP-запроса к report endpoint.
+Отдельный клиентский API-слой не нужен: обычно достаточно прямого HTTP-запроса к report endpoint.
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
@@ -56,11 +56,11 @@ python3 scripts/fine_dust.py report --region-hint '서울 강남구' --json
 ## Порядок разрешения учётных данных
 
 1. Если значение уже есть в переменной окружения, использовать его как есть.
-2. Если агент работает с secret vault, извлечь значение оттуда и инжектировать в env.
-3. Если env пуст, сначала искать `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
-4. Если значений нет, запросить у пользователя `AIR_KOREA_OPEN_API_KEY` для direct fallback или self-hosted proxy. `KSKILL_PROXY_BASE_URL` спрашивать только если нужен явный override endpoint.
+2. Если агент работает с secret vault, извлечь значение оттуда и передать в окружение.
+3. Если env пуст, сначала искать `~/.config/ru-skill/secrets.env`, затем legacy-резерв `~/.config/k-skill/secrets.env`.
+4. Если значений нет, запросить у пользователя `AIR_KOREA_OPEN_API_KEY` для direct fallback или self-hosted proxy. `KSKILL_PROXY_BASE_URL` спрашивать только если нужно явное переопределение адреса.
 
-`KSKILL_PROXY_BASE_URL` не считается credential: это только optional endpoint override. Реальным секретом остаётся `AIR_KOREA_OPEN_API_KEY`, если published compatibility proxy не используется.
+`KSKILL_PROXY_BASE_URL` не считается credential: это только необязательное переопределение endpoint. Реальным секретом остаётся `AIR_KOREA_OPEN_API_KEY`, если опубликованный совместимый proxy не используется.
 
 ## Неоднозначные локации
 
@@ -101,13 +101,13 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
 ## Возможные ошибки
 
 - `regionHint` слишком широкий и не даёт выбрать одну станцию
-- proxy недоступен или upstream key отсутствует
-- location hint не совпадает с фактическим названием станции, и нужен direct fallback
+- proxy недоступен или upstream-ключ отсутствует
+- подсказка о местоположении не совпадает с фактическим названием станции, и нужен direct fallback
 
 ## Примечания
 
-- Базовый compatibility path остаётся report endpoint на `k-skill-proxy.nomadamas.org`.
-- `KSKILL_PROXY_BASE_URL` задаётся только если нужно заменить published proxy на другой endpoint; это не секрет и не обязательная часть стартовой настройки.
-- Для location-based lookup сначала получайте кандидатов, а затем при необходимости делайте точный запрос по `stationName`.
+- Базовый путь совместимости остаётся report endpoint на `k-skill-proxy.nomadamas.org`.
+- `KSKILL_PROXY_BASE_URL` задаётся только если нужно заменить опубликованный proxy на другой endpoint; это не секрет и не обязательная часть стартовой настройки.
+- Для поиска по местоположению сначала получайте кандидатов, а затем при необходимости делайте точный запрос по `stationName`.
 - Детали passthrough/direct AirKorea лучше не повторять в каждом ответе пользователю, если они не нужны для решения задачи.
-- Published proxy default не должен интерпретироваться как сигнал, что fine dust снова стал активным target-сценарием репозитория.
+- Proxy по умолчанию не должен интерпретироваться как сигнал, что fine dust снова стал активным target-сценарием репозитория.
