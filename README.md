@@ -182,6 +182,9 @@
 - Английские артефакты в target package README, SKILL.md h1-заголовках и секционных заголовках устранены; `## Boundary note` переведён как `## Граничное примечание`.
 - На обновлённых legacy package README и feature guides снят следующий слой user-facing English drift; следующий проход нужен уже по transition surfaces и package metadata, а не по тем же boundary-note документам.
 - Transition/setup surfaces и package metadata descriptions теперь тоже выровнены; следующий проход нужен уже по publish/release surfaces (`CHANGELOG.md`, changeset summaries, feature-link labels, skill frontmatter descriptions), а не по тем же credential/proxy документам.
+- Все 7 английских changeset-сводок в `.changeset/` переведены на русский, чтобы publish-summary copy не отставала от README и package metadata.
+- Все 5 оставшихся английских SKILL.md frontmatter `description` (toss-securities, srt-booking, seoul-subway-arrival, ktx-booking, delivery-tracking) и смешанная description в blue-ribbon-nearby переведены на русский; добавлен frontmatter в `packages/osm-nearby/SKILL.md`.
+- Doc-regression расширен на changeset summaries и SKILL.md frontmatter descriptions: тесты теперь страхуют русские формулировки на этих publish surfaces.
 - Верхний активный блок `TODO.md` теперь зафиксирован как единственный живой backlog; исторические round-секции остаются архивом и не должны снова накапливать открытые checklist-пункты.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO, booking docs и package metadata descriptions, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.

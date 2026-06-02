@@ -2,7 +2,7 @@
 "osm-nearby": minor
 ---
 
-Add osm-nearby target skill for nearby places search via OpenStreetMap Overpass API
+Добавлен target-навык `osm-nearby` для поиска ближайших заведений через Overpass API OpenStreetMap
 
-This replaces legacy `blue-ribbon-nearby` and `kakao-bar-nearby` with a free, no-key
-Russian-friendly nearby search for restaurants, cafes, and bars using OpenStreetMap data.
+Заменяет legacy-пакеты `blue-ribbon-nearby` и `kakao-bar-nearby` бесплатным поиском
+ресторанов, кафе и баров поблизости без ключа API через данные OpenStreetMap.

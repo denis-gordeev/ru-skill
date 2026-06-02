@@ -2,4 +2,4 @@
 "rpl-results": minor
 ---
 
-Add rpl-results target skill for Russian Premier League standings and match results via championat.com
+Добавлен target-навык `rpl-results` для турнирной таблицы и результатов матчей Российской Премьер-Лиги через championat.com

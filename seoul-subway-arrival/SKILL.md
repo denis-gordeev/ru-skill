@@ -1,6 +1,6 @@
 ---
 name: seoul-subway-arrival
-description: Look up Seoul real-time subway arrival information with the official Seoul Open Data API. Use when the user asks when a train arrives, which trains are approaching a station, or how crowded Seoul subway timing looks right now.
+description: Запрос реального времени прибытия поездов метро Сеула через официальный Seoul Open Data API. Использовать, когда пользователь спрашивает, когда придёт поезд, какие поезда приближаются к станции или насколько загружено метро Сеула прямо сейчас.
 license: MIT
 metadata:
   category: transit

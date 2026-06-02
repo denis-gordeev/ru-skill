@@ -1,6 +1,6 @@
 ---
 name: ktx-booking
-description: Legacy-compatible Korean KTX/Korail booking flow for existing users. Use when the user asks for KTX seat availability, Korail reservations, train changes or booking status, not for new Russian railway integrations.
+description: Legacy-совместимый корейский сценарий бронирования KTX/Korail для существующих пользователей. Использовать, когда пользователь запрашивает места KTX, бронирования Korail, замену поезда или статус бронирования, но не для новых российских железнодорожных интеграций.
 license: MIT
 metadata:
   category: travel

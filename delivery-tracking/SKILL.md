@@ -1,6 +1,6 @@
 ---
 name: delivery-tracking
-description: Legacy-compatible tracking of CJ Logistics and Korea Post parcels. Retained for backward compatibility; not a target direction for new Russian logistics integrations.
+description: Legacy-совместимое отслеживание посылок CJ Logistics и Почтовой службы Кореи. Сохранено для обратной совместимости; не является целевым направлением для новых российских логистических интеграций.
 license: MIT
 metadata:
   category: logistics

@@ -2,8 +2,8 @@
 "kinopoisk-search": minor
 ---
 
-Add kinopoisk-search target skill for public Russian cinema database
+Добавлен target-навык `kinopoisk-search` для публичной российской базы фильмов
 
-New package `kinopoisk-search` provides read-only access to Kinopoisk (Кинопоиск),
-the largest Russian movie database. Supports film card lookup by ID and film search
-by title or keywords. Fixture-based tests included.
+Пакет `kinopoisk-search` предоставляет доступ только для чтения к Кинопоиску —
+крупнейшей российской базе фильмов. Поддерживаются поиск по названию или ключевым словам
+и просмотр карточки фильма по идентификатору. Включены fixture-тесты.

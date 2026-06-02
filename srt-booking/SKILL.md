@@ -1,6 +1,6 @@
 ---
 name: srt-booking
-description: Legacy-compatible Korean SRT booking flow for existing users. Use when the user asks for SRT seat availability, booking, canceling, or sold-out retry plans, not for new Russian railway integrations.
+description: Legacy-совместимый корейский сценарий бронирования SRT для существующих пользователей. Использовать, когда пользователь запрашивает места, бронирование, отмену SRT или повтор при распродаже, но не для новых российских железнодорожных интеграций.
 license: MIT
 metadata:
   category: travel

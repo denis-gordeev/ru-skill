@@ -2,4 +2,4 @@
 "zoon-nearby": minor
 ---
 
-Add zoon-nearby package for supplementary nearby places search via Zoon.ru SSR pages
+Добавлен пакет `zoon-nearby` для дополнительного поиска ближайших заведений через SSR-страницы Zoon.ru

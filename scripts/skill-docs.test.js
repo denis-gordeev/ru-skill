@@ -906,7 +906,7 @@ test("blue-ribbon-nearby skill documents mandatory location prompting and offici
   const featureDoc = read(path.join("docs", "features", "blue-ribbon-nearby.md"));
 
   assert.match(skill, /^name: blue-ribbon-nearby$/m);
-  assert.match(skill, /^description: .*근처 맛집.*블루리본.*$|^description: .*nearby.*Blue Ribbon.*$|^description: .*nearby.*ресторан.*$|^description: .*рестораны рядом.*Blue Ribbon.*$/m);
+  assert.match(skill, /^description: .*근처 맛집.*블루리본.*$|^description: .*nearby.*Blue Ribbon.*$|^description: .*nearby.*ресторан.*$|^description: .*рестораны рядом.*Blue Ribbon.*$|^description: .*ресторан.*поблизости.*Blue Ribbon.*$/m);
 
   for (const doc of [skill, featureDoc]) {
     assert.match(doc, /반드시.*현재 위치|Обязательно.*местоположение|сначала спросите.*местоположение|уточнения текущего местоположения/i);
@@ -2351,4 +2351,76 @@ test("user-facing docs contain no Chinese character artifacts", () => {
     chineseCharPattern,
     "docs/sources.md must not contain Chinese character artifacts",
   );
+});
+
+test("changeset summaries are in Russian", () => {
+  const changesetDir = path.join(repoRoot, ".changeset");
+  const changesetFiles = fs.readdirSync(changesetDir).filter((f) => f.endsWith(".md") && f !== "README.md");
+
+  const englishSentenceStarters = [
+    /^Add\s/i,
+    /^Added\s/i,
+    /^New\s/i,
+    /^This\s/i,
+    /^Refresh\s/i,
+    /^Use\s/i,
+    /^Fix\s/i,
+    /^Update\s/i,
+    /^Removed\s/i,
+    /^Deprecated\s/i,
+  ];
+
+  for (const file of changesetFiles) {
+    const content = fs.readFileSync(path.join(changesetDir, file), "utf8");
+    const summary = content.replace(/^---[\s\S]*?---\n*/, "").trim();
+
+    for (const pattern of englishSentenceStarters) {
+      assert.doesNotMatch(
+        summary,
+        pattern,
+        `.changeset/${file} summary must start with Russian, not English`,
+      );
+    }
+  }
+});
+
+test("SKILL.md frontmatter descriptions are in Russian", () => {
+  const skillDirs = fs.readdirSync(repoRoot).filter((dir) => {
+    const skillPath = path.join(repoRoot, dir, "SKILL.md");
+    return fs.existsSync(skillPath);
+  });
+
+  const englishDescriptionStarters = [
+    /^description:\s*(?:Use|Look|Legacy-compatible\s+(?!.*совместим)|Add|Check|Get|Find|Search|Track|Browse|View|Read|Fetch)\s/i,
+  ];
+
+  for (const dir of skillDirs) {
+    const content = read(path.join(dir, "SKILL.md"));
+
+    for (const pattern of englishDescriptionStarters) {
+      assert.doesNotMatch(
+        content,
+        pattern,
+        `${dir}/SKILL.md description must be in Russian`,
+      );
+    }
+  }
+
+  const packagesDir = path.join(repoRoot, "packages");
+  const packageSkillDirs = fs.readdirSync(packagesDir).filter((dir) => {
+    const skillPath = path.join(packagesDir, dir, "SKILL.md");
+    return fs.existsSync(skillPath);
+  });
+
+  for (const dir of packageSkillDirs) {
+    const content = read(path.join("packages", dir, "SKILL.md"));
+
+    for (const pattern of englishDescriptionStarters) {
+      assert.doesNotMatch(
+        content,
+        pattern,
+        `packages/${dir}/SKILL.md description must be in Russian`,
+      );
+    }
+  }
 });

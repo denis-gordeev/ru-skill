@@ -1,3 +1,13 @@
+---
+name: osm-nearby
+description: Поиск ближайших заведений (рестораны, кафе, бары) через публичный Overpass API OpenStreetMap без API-ключа и авторизации.
+license: MIT
+metadata:
+  category: food
+  locale: ru-RU
+  phase: v1
+---
+
 # Поиск поблизости OSM
 
 Поиск ближайших заведений (рестораны, кафе, бары) через публичный Overpass API OpenStreetMap.
