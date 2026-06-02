@@ -1,10 +1,10 @@
 # toss-securities
 
-`toss-securities` - это read-only tossctl wrapper, то есть read-only обёртка над `tossctl` из `JungHoonGhae/tossinvest-cli`. Пакет нормализует install/login/read flow, но сознательно не открывает торговые mutation-команды.
+`toss-securities` - это обёртка только для чтения над `tossctl` из `JungHoonGhae/tossinvest-cli`. Пакет нормализует сценарий установки, входа и чтения данных, но сознательно не открывает торговые команды изменения состояния.
 
 ## Граничное примечание
 
-Этот пакет остаётся `legacy-only`: прямой российский replacement для авторизованных брокерских сценариев не подтверждён, а публичные рыночные read-only сводки уже покрываются `moex-shares`. Поэтому `toss-securities` сохраняется ради backward compatibility и не должен выглядеть как скрытый target-кандидат.
+Этот пакет остаётся `legacy-only`: прямая российская замена для авторизованных брокерских сценариев не подтверждена, а публичные рыночные сводки только для чтения уже покрываются `moex-shares`. Поэтому `toss-securities` сохраняется ради обратной совместимости и не должен выглядеть как скрытый кандидат целевой линейки.
 
 ## Установка
 
@@ -24,7 +24,7 @@ tossctl auth login
 npm install toss-securities
 ```
 
-## Поддерживаемые read-only helpers
+## Поддерживаемые функции только для чтения
 
 - `listAccounts()`
 - `getAccountSummary()`
@@ -78,4 +78,4 @@ main().catch((error) => {
 - `tossctl order amend`
 - permission grant/revoke
 
-Пакет остаётся только `read-only`. Команды, которые могут повлиять на реальную сделку, не оборачиваются и не обходят upstream safety gate.
+Пакет остаётся только сценарием чтения. Команды, которые могут повлиять на реальную сделку, не оборачиваются и не обходят upstream safety gate.

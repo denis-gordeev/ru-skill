@@ -1,10 +1,10 @@
 # daiso-product-search
 
-`daiso-product-search` - legacy read-only пакет для поиска товаров и pickup-остатков в Daiso Mall по официальным web-поверхностям.
+`daiso-product-search` - устаревший пакет только для чтения для поиска товаров и pickup-остатков в Daiso Mall по официальным веб-поверхностям.
 
 ## Граничное примечание
 
-Этот пакет остаётся `legacy-only`: для российского marketplace discovery его replacement уже реализован как `yandex-market-search`. `daiso-product-search` сохраняется ради backward compatibility и как референс по store/product/stock flow, но не должен выглядеть как активный target-трек репозитория.
+Этот пакет остаётся `legacy-only`: для российского marketplace discovery его замена уже реализована как `yandex-market-search`. `daiso-product-search` сохраняется ради обратной совместимости и как эталонный сценарий для store/product/stock flow, но не должен выглядеть как активный трек целевой линейки репозитория.
 
 ## Установка
 
@@ -50,7 +50,7 @@ main().catch((error) => {
 });
 ```
 
-## Live smoke snapshot
+## Проверенный live smoke пример
 
 На 2026-03-27 комбинация `storeQuery=강남역2호점` и `productQuery=VT 리들샷 100` вернула через официальную поверхность следующие store/product/stock данные:
 

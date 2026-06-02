@@ -803,7 +803,8 @@ test("daiso-product-search package README keeps the legacy-only boundary aligned
 
   assert.match(packageReadme, /legacy-only/i);
   assert.match(packageReadme, /yandex-market-search/);
-  assert.match(packageReadme, /backward compatibility/i);
+  assert.match(packageReadme, /обратн.*совместим/i);
+  assert.match(packageReadme, /эталонный сценарий/i);
   assert.match(packageReadme, /pickup stock|остатки для самовывоза/i);
 });
 
@@ -980,6 +981,8 @@ test("kakao-bar-nearby package README stays aligned with the Kakao Map live look
   assert.match(packageReadme, /legacy-only/i);
   assert.match(packageReadme, /osm-nearby/);
   assert.match(packageReadme, /zoon-nearby/);
+  assert.match(packageReadme, /обратн.*совместим/i);
+  assert.match(packageReadme, /эталонный сценарий/i);
   assert.match(packageReadme, /сначала спрашиваем текущее местоположение|현재 위치를 먼저 물어본다/u);
   assert.match(packageReadme, /서울역 술집/);
   assert.match(packageReadme, /https:\/\/m\.map\.kakao\.com\/actions\/searchView/);
@@ -996,7 +999,7 @@ test("kakao-bar-nearby feature doc keeps the verified 2026-03-29 sadang smoke sn
 
 test("kakao-bar-nearby package README live smoke snapshot matches the verified 2026-03-29 sadang output", () => {
   const packageReadme = read(path.join("packages", "kakao-bar-nearby", "README.md"));
-  const smoke = findJsonFenceAfterLabel(packageReadme, "## Live smoke snapshot");
+  const smoke = findJsonFenceAfterLabel(packageReadme, "## Проверенный live smoke пример");
 
   assertKakaoBarNearbySadangSmokeSnapshot(smoke, "package README smoke snapshot");
 });
@@ -1176,9 +1179,11 @@ test("toss-securities package exposes safe read-only tossctl helpers", () => {
 test("toss-securities package README stays aligned with the read-only tossctl wrapper contract", () => {
   const packageReadme = read(path.join("packages", "toss-securities", "README.md"));
 
-  assert.match(packageReadme, /read-only tossctl wrapper/i);
+  assert.match(packageReadme, /об[её]ртка только для чтения.*tossctl/i);
   assert.match(packageReadme, /legacy-only/i);
   assert.match(packageReadme, /moex-shares/);
+  assert.match(packageReadme, /обратн.*совместим/i);
+  assert.match(packageReadme, /функции только для чтения/i);
   assert.match(packageReadme, /brew tap JungHoonGhae\/tossinvest-cli/);
   assert.match(packageReadme, /account summary/);
   assert.match(packageReadme, /quote get/);
@@ -1328,8 +1333,8 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-02");
-  assert.equal(todoStatus.round, 31);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 31\)/);
+  assert.equal(todoStatus.round, 32);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 32\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -1393,7 +1398,7 @@ test("legacy-only and transition guides publish explicit boundary notes", () => 
 
   assert.match(seoulSubway, /## Граничное примечание/);
   assert.match(seoulSubway, /legacy-only/);
-  assert.match(seoulSubway, /российский replacement не подтверждён/i);
+  assert.match(seoulSubway, /прямая российская замена не подтверждена/i);
 
   assert.match(tossSecuritiesSkill, /## Граничное примечание/);
   assert.match(tossSecuritiesSkill, /legacy-only/);
@@ -1647,6 +1652,37 @@ test("remaining legacy feature and skill guides keep explicit replacement bounda
   assert.match(kleagueSkill, /## Граничное примечание/);
   assert.match(kleagueSkill, /legacy-only/);
   assert.match(kleagueSkill, /rpl-results/);
+});
+
+test("updated legacy docs keep Russian boundary copy on the touched surfaces", () => {
+  const docs = [
+    read(path.join("packages", "blue-ribbon-nearby", "README.md")),
+    read(path.join("packages", "daiso-product-search", "README.md")),
+    read(path.join("packages", "k-lotto", "README.md")),
+    read(path.join("packages", "kakao-bar-nearby", "README.md")),
+    read(path.join("packages", "kleague-results", "README.md")),
+    read(path.join("packages", "toss-securities", "README.md")),
+    read(path.join("docs", "features", "blue-ribbon-nearby.md")),
+    read(path.join("docs", "features", "daiso-product-search.md")),
+    read(path.join("docs", "features", "delivery-tracking.md")),
+    read(path.join("docs", "features", "kakao-bar-nearby.md")),
+    read(path.join("docs", "features", "kakaotalk-mac.md")),
+    read(path.join("docs", "features", "kbo-results.md")),
+    read(path.join("docs", "features", "kleague-results.md")),
+    read(path.join("docs", "features", "lotto-results.md")),
+    read(path.join("docs", "features", "seoul-subway-arrival.md")),
+    read(path.join("docs", "features", "toss-securities.md")),
+    read(path.join("docs", "features", "zipcode-search.md")),
+  ];
+
+  for (const doc of docs) {
+    assert.doesNotMatch(doc, /backward compatibility/i);
+    assert.doesNotMatch(doc, /reference flow/i);
+    assert.doesNotMatch(doc, /target-backlog/i);
+    assert.doesNotMatch(doc, /## Live smoke snapshot/);
+    assert.doesNotMatch(doc, /public-source replacement/i);
+    assert.doesNotMatch(doc, /adapter-based tracking flow/i);
+  }
 });
 
 test("package-lock captures the yandex-market-search workspace metadata for npm ci", () => {

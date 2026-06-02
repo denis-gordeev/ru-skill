@@ -6,6 +6,10 @@
 
 ## Статус на 2026-06-02
 
+- Закрыт следующий слой mixed-language drift в legacy package README и feature guides: boundary/product copy на обновлённых surfaces переведён на русский без изменения code identifiers и статус-маркеров `legacy-only` / `transition`.
+- Английский заголовок `## Live smoke snapshot` убран из legacy package README с проверенными smoke-примерами; на этих surfaces теперь используется `## Проверенный live smoke пример`.
+- Doc-regression дополнительно страхует touched legacy surfaces от возврата `backward compatibility`, `reference flow`, `target-backlog`, `public-source replacement` и `adapter-based tracking flow`.
+- Полный `npm test` проходит: doc-regression зелёный, workspace-тесты и `validate-skills` подтверждают, что документная русификация не сломала publishable пакеты и skill layout.
 - Переведён `## Boundary note` → `## Граничное примечание` во всех 31 файле (15 SKILL.md, 16 docs/features/*.md).
 - Переведены английские h1-заголовки в 9 target SKILL.md на русский.
 - Переведены английские h1-заголовки в 4 docs/features на русский.

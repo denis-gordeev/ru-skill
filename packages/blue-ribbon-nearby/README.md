@@ -1,10 +1,10 @@
 # blue-ribbon-nearby
 
-`blue-ribbon-nearby` - legacy read-only пакет для nearby-поиска ресторанов Blue Ribbon по официальным зонам и JSON-поверхностям сервиса.
+`blue-ribbon-nearby` - устаревший пакет только для чтения для nearby-поиска ресторанов Blue Ribbon по официальным зонам и JSON-поверхностям сервиса.
 
 ## Граничное примечание
 
-Этот пакет остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `blue-ribbon-nearby` сохраняется ради backward compatibility и как reference flow для location-first поиска, но не должен считаться новым target-направлением.
+Этот пакет остаётся `legacy-only`: для российских nearby-сценариев его замена уже реализована как `osm-nearby` и `zoon-nearby`. `blue-ribbon-nearby` сохраняется ради обратной совместимости и как эталонный сценарий для location-first поиска, но не должен считаться новым направлением целевой линейки.
 
 ## Установка
 
@@ -54,7 +54,7 @@ main().catch((error) => {
 });
 ```
 
-## Live smoke snapshot
+## Проверенный live smoke пример
 
 Ниже фрагмент реального ответа, проверенный 2026-03-27 для `광화문`, `distanceMeters=1000`, `limit=5`.
 

@@ -1,10 +1,10 @@
 # kakao-bar-nearby
 
-`kakao-bar-nearby` - legacy read-only пакет для поиска баров рядом через мобильный поиск Kakao Map и `panel3` JSON.
+`kakao-bar-nearby` - устаревший пакет только для чтения для поиска баров рядом через мобильный поиск Kakao Map и `panel3` JSON.
 
 ## Граничное примечание
 
-Этот пакет остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `kakao-bar-nearby` сохраняется ради backward compatibility и как reference flow по menu/open/seating hints, но не должен выглядеть как активный target-backlog.
+Этот пакет остаётся `legacy-only`: для российских nearby-сценариев его замена уже реализована как `osm-nearby` и `zoon-nearby`. `kakao-bar-nearby` сохраняется ради обратной совместимости и как эталонный сценарий для menu/open/seating hints, но не должен выглядеть как активный backlog целевой линейки.
 
 ## Установка
 
@@ -53,7 +53,7 @@ main().catch((error) => {
 });
 ```
 
-## Live smoke snapshot
+## Проверенный live smoke пример
 
 Ниже фрагмент реального ответа, проверенный 2026-03-29 для `사당`, `limit=3`, `panelLimit=8`.
 

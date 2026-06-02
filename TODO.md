@@ -4,6 +4,28 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-02 (раунд 32)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- Закрыт следующий слой mixed-language drift в legacy user-facing docs: русифицированы boundary/product формулировки в 6 package README (`blue-ribbon-nearby`, `daiso-product-search`, `k-lotto`, `kakao-bar-nearby`, `kleague-results`, `toss-securities`) и 11 feature guides (`blue-ribbon-nearby`, `daiso-product-search`, `delivery-tracking`, `kakao-bar-nearby`, `kakaotalk-mac`, `kbo-results`, `kleague-results`, `lotto-results`, `seoul-subway-arrival`, `toss-securities`, `zipcode-search`).
+- В legacy package README устранён английский заголовок `## Live smoke snapshot`: на обновлённых surfaces теперь используется `## Проверенный live smoke пример`.
+- Doc-regression расширен на этот слой: `scripts/skill-docs.test.js` теперь проверяет русскую boundary copy на обновлённых legacy surfaces, новый smoke heading в `kakao-bar-nearby` package README и отсутствие возврата `backward compatibility` / `reference flow` / `target-backlog` / `public-source replacement` / `adapter-based tracking flow` на затронутых документах.
+- Полный `npm test` проходит: doc-regression `99 pass / 0 fail / 1 skipped`, workspace-тесты зелёные, `./scripts/validate-skills.sh` проходит.
+
+## Выполнено в этом раунде (раунд 32)
+
+- [x] Русифицированы boundary/product формулировки в 6 legacy package README без изменения code identifiers и API-имен.
+- [x] Русифицированы boundary/product формулировки в 11 legacy feature guides, где оставались `replacement`, `backward compatibility`, `reference flow`, `target-backlog` и смежные user-facing англицизмы.
+- [x] Заголовок `## Live smoke snapshot` заменён на `## Проверенный live smoke пример` в legacy package README с live-smoke блоками.
+- [x] `scripts/skill-docs.test.js` обновлён под новые русские формулировки и дополнен новой регрессией против возврата английской boundary/product copy на обновлённых surfaces.
+- [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проверить оставшиеся transition surfaces (`k-skill-proxy`, `fine-dust-location`, setup/security docs) на смешанную терминологию вокруг `read-only`, `fallback`, `compatibility-layer` и `public proxy`.
+- [ ] Расширить doc-regression на package metadata и release surfaces (`package.json` descriptions, package CHANGELOG, feature-link labels), чтобы English copy drift не возвращался вне README/feature docs.
+- [ ] Продолжить чистку legacy/transition copy только там, где это не ломает стабильные статус-маркеры, code identifiers и доменно-обязательные англоязычные термины.
+
 ## Статус на 2026-06-02 (раунд 31)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -27,9 +49,9 @@
 
 ## Новые пункты плана
 
-- [ ] Расширять doc-regression в CI дальше: README, roadmap, TODO, booking-research, heading scheme критических skill-surfaces и hygiene package/feature docs должны совпадать по текущему продуктовому приоритету.
-- [ ] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
-- [ ] Проверить оставшиеся English артефакты в legacy package README и docs/features, не покрытые текущими регрессиями.
+- [x] Расширять doc-regression в CI дальше: README, roadmap, TODO, booking-research, heading scheme критических skill-surfaces и hygiene package/feature docs должны совпадать по текущему продуктовому приоритету. Уточнённый вариант перенесён в верхний активный план.
+- [x] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog. Принцип сохранён в верхнем активном плане как постоянное правило миграции.
+- [x] Проверить оставшиеся English артефакты в legacy package README и docs/features, не покрытые текущими регрессиями.
 
 ## Статус на 2026-06-01 (раунд 30)
 

@@ -2,7 +2,7 @@
 
 ## Граничное примечание
 
-Этот сценарий остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `blue-ribbon-nearby` сохраняется ради backward compatibility и как reference flow для location-first поиска, но не должен считаться новым target-направлением `ru-skill`.
+Этот сценарий остаётся `legacy-only`: для российских nearby-сценариев его замена уже реализована как `osm-nearby` и `zoon-nearby`. `blue-ribbon-nearby` сохраняется ради обратной совместимости и как эталонный сценарий для location-first поиска, но не должен считаться новым направлением целевой линейки `ru-skill`.
 
 ## Что делает навык
 

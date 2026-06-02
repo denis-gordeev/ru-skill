@@ -2,7 +2,7 @@
 
 ## Граничное примечание
 
-Этот сценарий остаётся `legacy-only`: для российского marketplace discovery его replacement уже реализован как `yandex-market-search`. `daiso-product-search` сохраняется ради backward compatibility и как reference flow по store/product/stock lookup, но не должен выглядеть как активный target-трек репозитория.
+Этот сценарий остаётся `legacy-only`: для российского marketplace discovery его замена уже реализована как `yandex-market-search`. `daiso-product-search` сохраняется ради обратной совместимости и как эталонный сценарий для store/product/stock lookup, но не должен выглядеть как активный трек целевой линейки репозитория.
 
 ## Что делает навык
 

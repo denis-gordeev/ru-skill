@@ -2,7 +2,7 @@
 
 ## Граничное примечание
 
-Этот сценарий остаётся `legacy-only`: для российских nearby-сценариев его replacement уже реализован как `osm-nearby` и `zoon-nearby`. `kakao-bar-nearby` сохраняется ради backward compatibility и как reference flow по live place lookup, но не должен выглядеть как активный target-backlog.
+Этот сценарий остаётся `legacy-only`: для российских nearby-сценариев его замена уже реализована как `osm-nearby` и `zoon-nearby`. `kakao-bar-nearby` сохраняется ради обратной совместимости и как эталонный сценарий для живого поиска заведений, но не должен выглядеть как активный backlog целевой линейки.
 
 ## Что делает навык
 
