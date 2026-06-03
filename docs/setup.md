@@ -32,10 +32,10 @@ chmod 0600 ~/.config/ru-skill/secrets.env
 
 Заполните файл реальными значениями.
 
-`KSKILL_PROXY_BASE_URL` не входит в минимальный secrets-шаблон намеренно: это не credential, а только необязательное переопределение endpoint. Если вам действительно нужно заменить опубликованный совместимый proxy на свой адрес, добавьте строку отдельно:
+`KSKILL_PROXY_BASE_URL` не входит в минимальный secrets-шаблон намеренно: это не учётные данные, а только необязательное переопределение адреса. Если вам действительно нужно заменить опубликованный совместимый proxy на свой адрес, добавьте строку отдельно:
 
 ```bash
-printf '\n# Необязательное переопределение endpoint для fine-dust-location\nKSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org\n' >> ~/.config/ru-skill/secrets.env
+printf '\n# Необязательное переопределение адреса для fine-dust-location\nKSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org\n' >> ~/.config/ru-skill/secrets.env
 ```
 
 Если у вас уже есть legacy-файл `~/.config/k-skill/secrets.env`, его можно оставить: скрипты репозитория сначала смотрят `~/.config/ru-skill/secrets.env`, затем переходят к legacy-резерву. Для явного переопределения используются `RU_SKILL_SECRETS_FILE` и `KSKILL_SECRETS_FILE`.
@@ -60,9 +60,9 @@ bash scripts/check-setup.sh
 | `srt-booking` | `KSKILL_SRT_ID`, `KSKILL_SRT_PASSWORD` |
 | `ktx-booking` | `KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD` |
 | `seoul-subway-arrival` | `SEOUL_OPEN_API_KEY` |
-| `fine-dust-location` | Обычно ничего: опубликованный совместимый proxy endpoint используется по умолчанию. Для переопределения нужен `KSKILL_PROXY_BASE_URL`, для direct fallback или self-hosted proxy - `AIR_KOREA_OPEN_API_KEY`. |
+| `fine-dust-location` | Обычно ничего: опубликованный совместимый proxy endpoint используется по умолчанию. Для переопределения нужен `KSKILL_PROXY_BASE_URL`, для прямого резервного доступа или прокси на собственном сервере - `AIR_KOREA_OPEN_API_KEY`. |
 
-Для `fine-dust-location` важно не смешивать конфигурацию и секреты: `KSKILL_PROXY_BASE_URL` - это необязательное переопределение endpoint, а не обязательный credential. Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`, если вы уходите с опубликованного совместимого proxy на direct fallback или свой сервер.
+Для `fine-dust-location` важно не смешивать конфигурацию и секреты: `KSKILL_PROXY_BASE_URL` - это необязательное переопределение endpoint, а не обязательный credential. Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`, если вы уходите с опубликованного совместимого proxy на прямой резервный доступ или свой сервер.
 
 ## Что читать дальше
 

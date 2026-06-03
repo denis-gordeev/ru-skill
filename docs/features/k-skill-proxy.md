@@ -82,7 +82,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
   --data-urlencode 'regionHint=서울 강남구'
 ```
 
-AirKorea passthrough:
+Сквозной маршрут AirKorea:
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty' \
@@ -98,7 +98,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSv
 
 - Добавлять только публичные и бесплатные upstream-источники.
 - Сначала фиксировать источник и ограничения в [docs/sources.md](/Users/denis/programming/autowork/ru-skill/docs/sources.md).
-- Затем добавлять узкий endpoint вместо общего универсального passthrough, если это возможно.
+- Затем добавлять узкий endpoint вместо общего универсального сквозного маршрута, если это возможно.
 - По умолчанию нормализовать ответы на русском там, где это улучшает UX и не скрывает важные поля upstream.
 
 ## Ограничения текущей реализации

@@ -138,7 +138,7 @@ if (team) {
 - [x] Возвращается структура standings с rank, team, played, wins, draws, losses, goalsFor/Against, points
 - [x] Возвращается список matches с date, homeTeam, awayTeam, homeScore, awayScore
 - [x] Данные парсятся с championat.com без авторизации и секретов
-- [x] Fixture-based тесты покрывают оба сценария
+- [x] Тесты на основе эталонных данных покрывают оба сценария
 
 ## Связанные навыки
 

@@ -12,7 +12,7 @@ metadata:
 
 ## Граничное примечание
 
-Этот навык остаётся `legacy-only`: для российского marketplace discovery его replacement уже реализован как `yandex-market-search`. `daiso-product-search` сохраняется ради backward compatibility и как reference flow по store/product/stock lookup, но не должен выглядеть как активный target-трек репозитория.
+Этот навык остаётся `legacy-only`: для российского обнаружения на маркетплейсе его replacement уже реализован как `yandex-market-search`. `daiso-product-search` сохраняется ради обратной совместимости и как эталонный сценарий по поиску магазина/товара/наличия, но не должен выглядеть как активный target-трек репозитория.
 
 ## Что делает навык
 

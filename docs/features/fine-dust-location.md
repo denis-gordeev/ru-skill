@@ -25,7 +25,7 @@
 - `KSKILL_PROXY_BASE_URL` задаётся только если нужно переопределить этот endpoint
 - Отдельный клиентский API key в этом режиме не нужен
 
-Только для direct fallback без proxy или для собственного proxy-сервера:
+Только для прямой резервный доступ без proxy или для собственного proxy-сервера:
 
 - `AIR_KOREA_OPEN_API_KEY`
 
@@ -70,7 +70,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
   --data-urlencode 'stationName=우산동(광주)'
 ```
 
-Если нужен почти raw-доступ к AirKorea, можно использовать passthrough endpoint. При этом proxy сам инжектирует `serviceKey`, а отдельный клиентский API не нужен.
+Если нужен почти raw-доступ к AirKorea, можно использовать endpoint сквозного маршрута. При этом proxy сам инжектирует `serviceKey`, а отдельный клиентский API не нужен.
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty' \
@@ -84,7 +84,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSv
 
 ## Примеры
 
-Direct fallback по региону:
+Прямой резервный доступ по региону:
 
 ```bash
 curl -sG "http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc/getMsrstnList" \
@@ -108,7 +108,7 @@ curl -sG "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltm
   --data-urlencode "ver=1.4"
 ```
 
-Проверка helper-скрипта на fixture'ах:
+Проверка helper-скрипта на эталонных данных:
 
 ```bash
 python3 scripts/fine_dust.py report \
@@ -117,7 +117,7 @@ python3 scripts/fine_dust.py report \
   --region-hint "서울 강남구"
 ```
 
-## Резервный поток (fallback)
+## Резервный поток (запасной вариант)
 
 - Сначала принимать район или административную подсказку.
 - Если станцию выбрать нельзя, возвращать список кандидатов (`candidate_stations`).

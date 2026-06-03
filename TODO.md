@@ -4,6 +4,45 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-03 (раунд 36)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- Закрыт крупнейший слой English jargon во всей user-facing документации: `read-only` → `только для чтения` (~90+ вхождений), `supplementary` → `дополнительный` (4 вхождения).
+- Устранён широкий спектр других English jargon артефактов: `fallback` → `запасной вариант`, `baseline` → `основа`, `fixture-based` → `на основе эталонных данных`, `handoff` → `перенаправление`, `checkout` → `оформление заказа`, `write-` → `на запись`/`операции записи`, `discovery` → `обнаружение`, `boundary` → `граница`, `credential` → `учётные данные`, `endpoint override` → `переопределение адреса`, `target-backlog` → `целевой перечень задач`, `compatibility-layer` → `слой совместимости`, `backward-compatible` → `обратно совместимый`, `mutation` → `модифицирующие`, `snapshot` → `снимок`, `thin-wrapper` → `тонкая обёртка`, `nearby-поиск` → `поиск ближайших`, `decision matrix` → `матрица решений`, `live smoke пример` → `проверочный пример`, `operational default` → `рабочее значение по умолчанию`, `delayed-` → `задержанный`, `passthrough` → `сквозной маршрут`, `deep-link` → `прямая ссылка`, `self-hosted` → `на собственном сервере`.
+- Doc-regression обновлён: тесты обновлены на русские формулировки взамен английских паттернов.
+- Полный `npm test` проходит: 105+ pass / 0 fail / 1 skipped, `./scripts/validate-skills.sh` тоже зелёный.
+
+## Выполнено в этом раунде (раунд 36)
+
+- [x] Переведён `supplementary` → `дополнительный` во всех файлах (docs/roadmap.md, README.md, docs/sources.md).
+- [x] Переведён `read-only` → `только для чтения` во всех docs/features, SKILL.md, package README, docs/roadmap.md, docs/sources.md, README.md (~90+ вхождений).
+- [x] Переведён `fallback` → `запасной вариант`/`резервный вариант` в SKILL.md и docs/.
+- [x] Переведён `baseline` → `основа` в docs/roadmap.md и docs/sources.md.
+- [x] Переведён `fixture-based` → `на основе эталонных данных` в docs/sources.md, docs/features, package README.
+- [x] Переведён `handoff` → `перенаправление` в docs/features, SKILL.md, docs/booking-replacements.md.
+- [x] Переведён `checkout` → `оформление заказа` в docs/features, SKILL.md, docs/booking-replacements.md.
+- [x] Переведён `write-` → `на запись`/`операции записи` в SKILL.md, docs/sources.md, README.md.
+- [x] Переведён `discovery` → `обнаружение`/`поиск` в SKILL.md, docs/roadmap.md.
+- [x] Переведён `boundary` → `граница` в README.md, SKILL.md.
+- [x] Переведён `credential` → `учётные данные` в SKILL.md, docs/setup.md, docs/security-and-secrets.md.
+- [x] Переведён `endpoint override` → `переопределение адреса` в README.md, SKILL.md, docs/.
+- [x] Переведён `target-backlog` → `целевой перечень задач` в README.md, SKILL.md.
+- [x] Переведён `compatibility-layer` → `слой совместимости` в README.md, docs/brand-inventory.md.
+- [x] Переведён `backward-compatible` → `обратно совместимый` в SKILL.md.
+- [x] Переведён `mutation-команды` → `модифицирующие команды` в docs/features/toss-securities.md, toss-securities/SKILL.md.
+- [x] Переведён `decision matrix` → `матрица решений` в docs/booking-replacements.md, README.md.
+- [x] Переведён `nearby-поиск` → `поиск ближайших` в SKILL.md, package README, docs/features.
+- [x] Переведён `live smoke пример` → `проверочный пример` в docs/features, package README.
+- [x] Полностью переписан docs/booking-replacements.md с русскими терминами.
+- [x] `scripts/skill-docs.test.js` обновлён под новые русские формулировки.
+- [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
+- [ ] Проверить оставшиеся English jargon артефакты в менее заметных поверхностях (docs/features/stoloto-lotto.md, docs/features/rpl-results.md, лотерейные/футбольные feature docs) на предмет `live smoke`, `smoke test`, `delayed` и других мелких артефактов.
+- [ ] Аудит `## Проверочный пример` заголовков в legacy package README на предмет консистентности с новым названием.
+
 ## Статус на 2026-06-03 (раунд 35)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -27,8 +66,8 @@
 
 ## Новые пункты плана
 
-- [ ] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
-- [ ] Проверить оставшиеся English jargon артефакты в docs/features (например, `supplementary`, `read-only` как технический термин в русском контексте).
+- [x] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
+- [x] Проверить оставшиеся English jargon артефакты в docs/features (например, `supplementary`, `read-only` как технический термин в русском контексте).
 
 ## Статус на 2026-06-02 (раунд 34)
 

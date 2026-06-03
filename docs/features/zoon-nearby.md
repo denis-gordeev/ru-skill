@@ -144,7 +144,7 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 
 ## Связанные навыки
 
-- `osm-nearby` — основной источник для nearby-поиска через Overpass API (OSM)
+- `osm-nearby` — основной источник для поиска ближайших через Overpass API (OSM)
 - `yandex-market-search` — поиск товаров через Яндекс Маркет
 
 ## Лицензия

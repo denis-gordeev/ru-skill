@@ -33,7 +33,7 @@ AIR_KOREA_OPEN_API_KEY=replace-me
 `KSKILL_PROXY_BASE_URL` специально не включён в минимальный secrets-шаблон выше: это не секрет, а необязательное переопределение опубликованного совместимого proxy. Если оно действительно нужно, его можно хранить рядом с остальными значениями в том же dotenv-файле или задавать отдельно через окружение:
 
 ```dotenv
-# Необязательное переопределение endpoint для fine-dust-location
+# Необязательное переопределение адреса для fine-dust-location
 KSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org
 ```
 
@@ -71,6 +71,6 @@ KSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org
 - `AIR_KOREA_OPEN_API_KEY`
 - `KSKILL_PROXY_BASE_URL`
 
-Для `fine-dust-location` переменная `KSKILL_PROXY_BASE_URL` не считается секретом сама по себе: это только необязательное переопределение опубликованного proxy endpoint. Секретным значением в этом сценарии остаётся `AIR_KOREA_OPEN_API_KEY`, если используется direct fallback или self-hosted proxy.
+Для `fine-dust-location` переменная `KSKILL_PROXY_BASE_URL` не считается секретом сама по себе: это только необязательное переопределение опубликованного proxy endpoint. Секретным значением в этом сценарии остаётся `AIR_KOREA_OPEN_API_KEY`, если используется прямой резервный доступ или прокси на собственном сервере.
 
 Все навыки этого репозитория, которым нужны учётные данные, опираются на эту политику. Общий порядок настройки описан в [гайде по setup](setup.md).

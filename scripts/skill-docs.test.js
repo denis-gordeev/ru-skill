@@ -304,7 +304,7 @@ test("legacy railway docs keep the replacement boundary explicit", () => {
   for (const doc of [srtSkill, srtFeature, ktxSkill, ktxFeature]) {
     assert.match(doc, /Legacy-совместимый|legacy-коридору/i);
     assert.match(doc, /yandex-rasp/);
-    assert.match(doc, /новых российских write-интеграций|российский железнодорожный сценарий/i);
+    assert.match(doc, /интеграций на запись|российский железнодорожный сценарий/i);
     assert.match(doc, /booking-replacements\.md/);
   }
 
@@ -992,14 +992,14 @@ test("kakao-bar-nearby package README stays aligned with the Kakao Map live look
 
 test("kakao-bar-nearby feature doc keeps the verified 2026-03-29 sadang smoke snapshot current", () => {
   const featureDoc = read(path.join("docs", "features", "kakao-bar-nearby.md"));
-  const smoke = findJsonFenceAfterLabel(featureDoc, "## Проверенный live smoke пример");
+  const smoke = findJsonFenceAfterLabel(featureDoc, "## Проверочный пример");
 
   assertKakaoBarNearbySadangSmokeSnapshot(smoke, "feature doc smoke snapshot");
 });
 
 test("kakao-bar-nearby package README live smoke snapshot matches the verified 2026-03-29 sadang output", () => {
   const packageReadme = read(path.join("packages", "kakao-bar-nearby", "README.md"));
-  const smoke = findJsonFenceAfterLabel(packageReadme, "## Проверенный live smoke пример");
+  const smoke = findJsonFenceAfterLabel(packageReadme, "## Проверочный пример");
 
   assertKakaoBarNearbySadangSmokeSnapshot(smoke, "package README smoke snapshot");
 });
@@ -1159,7 +1159,7 @@ test("toss-securities skill documents the tossctl install, auth, and read-only w
     assert.match(doc, /portfolio positions/);
     assert.match(doc, /quote get/);
     assert.match(doc, /watchlist list/);
-    assert.match(doc, /read-only|조회 전용/u);
+    assert.match(doc, /только для чтения|조회 전용/u);
     assert.doesNotMatch(doc, /order place/);
   }
 });
@@ -1243,10 +1243,10 @@ test("yandex-rasp docs document the Yandex Raspisanie transport schedule workflo
   assert.match(packageReadme, /searchStations/);
   assert.match(packageReadme, /getStationSchedule/);
   assert.match(packageReadme, /searchTrips/);
-  assert.match(skill, /manual external handoff|вручную/i);
-  assert.match(featureDoc, /railway handoff/i);
+  assert.match(skill, /ручное внешнее перенаправление|вручную/i);
+  assert.match(featureDoc, /навык-перенаправление|железнодорожное перенаправление/i);
   assert.match(featureDoc, /ручн/i);
-  assert.match(featureDoc, /checkout/i);
+  assert.match(featureDoc, /оформлен.*заказ|checkout/i);
 });
 
 test("pack:dry-run includes the yandex-market-search workspace", () => {
@@ -1319,7 +1319,7 @@ test("planning docs stay aligned on the next migration priorities", () => {
 
   assert.match(readme, /## Что делаем дальше/);
   assert.match(readme, /booking-replacements\.md/);
-  assert.match(readme, /manual external handoff/i);
+  assert.match(readme, /ручное внешнее перенаправление/i);
   assert.match(readme, /активный блок `TODO\.md`/i);
   assert.match(readme, /ru-skill-setup[\s\S]*русские секционные заголовки/i);
 
@@ -1333,18 +1333,18 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-03");
-  assert.equal(todoStatus.round, 35);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 35\)/);
+  assert.equal(todoStatus.round, 36);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 36\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
   assert.match(todo, /Источником актуального статуса считаются самые верхние блоки/i);
 
-  assert.match(bookingResearch, /## Decision matrix/);
+  assert.match(bookingResearch, /## Матрица решений/);
   assert.match(bookingResearch, /yandex-rasp/);
-  assert.match(bookingResearch, /Milestone 5 считается закрытым/);
-  assert.match(bookingResearch, /Milestone 5 закрыт вторым способом/);
-  assert.match(bookingResearch, /Отдельный railway handoff-skill не открывается/);
+  assert.match(bookingResearch, /Веха 5 считается закрытой/);
+  assert.match(bookingResearch, /Веха 5 закрыта вторым способом/);
+  assert.match(bookingResearch, /Отдельный навык-перенаправление для railway не открывается/);
 });
 
 test("TODO keeps the active unchecked backlog only in the top plan block", () => {
@@ -1423,14 +1423,14 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
   const checkSetup = read(path.join("scripts", "check-setup.sh"));
 
   assert.match(setup, /KSKILL_PROXY_BASE_URL/);
-  assert.match(setup, /необязательн.*переопределен.*endpoint/i);
+  assert.match(setup, /необязательн.*переопределен.*адрес/i);
   assert.match(setup, /Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`/);
 
   assert.match(security, /KSKILL_PROXY_BASE_URL/);
   assert.match(security, /не считается секретом/i);
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
 
-  assert.match(setupSkill, /необязательн.*переопределен.*endpoint/i);
+  assert.match(setupSkill, /необязательн.*переопределен.*адрес/i);
   assert.match(setupSkill, /опубликованн.*совместим.*proxy/i);
   assert.match(setupSkill, /~\/\.config\/ru-skill\/bin/);
   assert.match(setupSkill, /~\/\.config\/ru-skill\/logs/);
@@ -1533,7 +1533,7 @@ test("legacy feature guides keep runtime and secrets semantics aligned with ru-s
   assert.match(srtGuide, /## Граничное примечание/);
   assert.match(srtGuide, /legacy-only/i);
   assert.match(srtGuide, /yandex-rasp/);
-  assert.match(srtGuide, /российских write-интеграций/i);
+  assert.match(srtGuide, /интеграций на запись/i);
   assert.ok(
     srtGuide.indexOf("~/.config/ru-skill/secrets.env") < srtGuide.indexOf("~/.config/k-skill/secrets.env"),
     "expected srt-booking feature guide to prefer the ru-skill secrets path before the legacy fallback",
@@ -1542,7 +1542,7 @@ test("legacy feature guides keep runtime and secrets semantics aligned with ru-s
   assert.match(ktxGuide, /## Граничное примечание/);
   assert.match(ktxGuide, /legacy-only/i);
   assert.match(ktxGuide, /yandex-rasp/);
-  assert.match(ktxGuide, /российских write-интеграций/i);
+  assert.match(ktxGuide, /интеграций на запись/i);
   assert.ok(
     ktxGuide.indexOf("~/.config/ru-skill/secrets.env") < ktxGuide.indexOf("~/.config/k-skill/secrets.env"),
     "expected ktx-booking feature guide to prefer the ru-skill secrets path before the legacy fallback",
@@ -1556,8 +1556,8 @@ test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first
 
   assert.match(fineDustSkill, /## Граничное примечание/);
   assert.match(fineDustSkill, /legacy\/transition.*утилит/i);
-  assert.match(fineDustSkill, /необязательн.*переопределен.*endpoint/i);
-  assert.match(fineDustSkill, /не считается credential/i);
+  assert.match(fineDustSkill, /необязательн.*переопределен.*адрес/i);
+  assert.match(fineDustSkill, /не считается учётн/i);
   assert.match(fineDustSkill, /AIR_KOREA_OPEN_API_KEY/);
   assert.ok(
     fineDustSkill.indexOf("~/.config/ru-skill/secrets.env") < fineDustSkill.indexOf("~/.config/k-skill/secrets.env"),
@@ -1567,7 +1567,7 @@ test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first
   assert.match(srtSkill, /## Граничное примечание/);
   assert.match(srtSkill, /legacy-only/i);
   assert.match(srtSkill, /yandex-rasp/);
-  assert.match(srtSkill, /новых российских write-интеграций/i);
+  assert.match(srtSkill, /интеграций на запись/i);
   assert.ok(
     srtSkill.indexOf("~/.config/ru-skill/secrets.env") < srtSkill.indexOf("~/.config/k-skill/secrets.env"),
     "expected srt-booking skill to mention the ru-skill secrets path before the legacy fallback",
@@ -1576,7 +1576,7 @@ test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first
   assert.match(ktxSkill, /## Граничное примечание/);
   assert.match(ktxSkill, /legacy-only/i);
   assert.match(ktxSkill, /yandex-rasp/);
-  assert.match(ktxSkill, /новых российских write-интеграций/i);
+  assert.match(ktxSkill, /интеграций на запись/i);
   assert.ok(
     ktxSkill.indexOf("~/.config/ru-skill/secrets.env") < ktxSkill.indexOf("~/.config/k-skill/secrets.env"),
     "expected ktx-booking skill to mention the ru-skill secrets path before the legacy fallback",
@@ -2059,7 +2059,7 @@ test("blue-ribbon-nearby routing defers to osm-nearby and zoon-nearby for genera
 
   assert.match(skill, /osm-nearby/);
   assert.match(skill, /zoon-nearby/);
-  assert.match(skill, /российск.*nearby.*osm-nearby.*zoon-nearby|osm-nearby.*zoon-nearby.*российск/i);
+  assert.match(skill, /российск.*ближайш.*osm-nearby.*zoon-nearby|osm-nearby.*zoon-nearby.*российск.*ближайш/i);
   assert.match(skill, /только.*Blue Ribbon|только.*корейск/i);
 });
 
@@ -2182,7 +2182,7 @@ test("delivery-tracking skill documents the CJ and ePost carrier adapter workflo
   assert.match(skill, /нормализуй.*вход|нормализуйте входные/i);
   assert.match(skill, /curl --http1\.1 --tls-max 1\.2/);
   assert.match(skill, /retry|повторн/i);
-  assert.match(skill, /backward-compatible/i);
+  assert.match(skill, /обратно совместимый/i);
 
   assert.match(featureDoc, /curl --http1\.1 --tls-max 1\.2/);
   assert.match(featureDoc, /validator/);
