@@ -185,6 +185,9 @@
 - Все 7 английских changeset-сводок в `.changeset/` переведены на русский, чтобы publish-summary copy не отставала от README и package metadata.
 - Все 5 оставшихся английских SKILL.md frontmatter `description` (toss-securities, srt-booking, seoul-subway-arrival, ktx-booking, delivery-tracking) и смешанная description в blue-ribbon-nearby переведены на русский; добавлен frontmatter в `packages/osm-nearby/SKILL.md`.
 - Doc-regression расширен на changeset summaries и SKILL.md frontmatter descriptions: тесты теперь страхуют русские формулировки на этих publish surfaces.
+- Milestone headings в `docs/roadmap.md` переведены на русский: `Migration milestones` → `Вехи миграции`, `Milestone N` → `Веха N`, `Legacy packages` → `Legacy-пакеты`.
+- English jargon в `docs/features/osm-nearby.md` устранён: `free/no-key` → `бесплатное решение без API-ключа`, `sparse` → `неполным`.
+- Doc-regression расширен на roadmap milestone headings и osm-nearby English jargon.
 - Верхний активный блок `TODO.md` теперь зафиксирован как единственный живой backlog; исторические round-секции остаются архивом и не должны снова накапливать открытые checklist-пункты.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO, booking docs и package metadata descriptions, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.

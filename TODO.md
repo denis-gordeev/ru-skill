@@ -4,6 +4,32 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-03 (раунд 35)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- Закрыт следующий слой English drift в docs/roadmap.md: `Migration milestones` → `Вехи миграции`, `Milestone N` → `Веха N`, `Legacy packages` → `Legacy-пакеты`.
+- Устранён English jargon в docs/features/osm-nearby.md: `free/no-key` → `бесплатное решение без API-ключа`, `sparse` → `неполным`.
+- Исправлена грамматическая ошибка в kleague-results/SKILL.md: `текущий турнирная` → `текущая турнирная`.
+- Нормализован заголовок в docs/features/rpl-results.md: `Когда НЕ использовать` → `Когда не использовать`.
+- Переведён `free/no-key` → `бесплатный источник без API-ключа` в docs/sources.md.
+- Doc-regression расширен на roadmap milestone headings и osm-nearby English jargon: тесты страхуют русские заголовки вех и отсутствие English drift в feature docs.
+- Полный `npm test` проходит: 104+ pass / 0 fail / 1 skipped, `./scripts/validate-skills.sh` тоже зелёный.
+
+## Выполнено в этом раунде (раунд 35)
+
+- [x] Переведены на русский milestone headings в docs/roadmap.md (`Migration milestones` → `Вехи миграции`, `Milestone N` → `Веха N`, `Legacy packages` → `Legacy-пакеты`).
+- [x] Устранён English jargon в docs/features/osm-nearby.md (`free/no-key` → `бесплатное решение без API-ключа`, `sparse` → `неполным`).
+- [x] Исправлена грамматическая ошибка в kleague-results/SKILL.md (`текущий турнирная` → `текущая турнирная`).
+- [x] Нормализован заголовок в docs/features/rpl-results.md (`Когда НЕ использовать` → `Когда не использовать`).
+- [x] Переведён `free/no-key` в docs/sources.md на русский.
+- [x] `scripts/skill-docs.test.js` дополнен регрессией на roadmap milestone headings и osm-nearby English jargon.
+- [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
+- [ ] Проверить оставшиеся English jargon артефакты в docs/features (например, `supplementary`, `read-only` как технический термин в русском контексте).
+
 ## Статус на 2026-06-02 (раунд 34)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -24,9 +50,9 @@
 
 ## Новые пункты плана
 
-- [ ] Расширить doc-regression на skill frontmatter `description` и install/feature-link labels, чтобы русская терминология держалась не только в README и `package.json`.
-- [ ] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
-- [ ] Проверить `docs/roadmap.md` на устаревшие ссылки на English surfaces, которые теперь русифицированы.
+- [x] Расширить doc-regression на skill frontmatter `description` и install/feature-link labels, чтобы русская терминология держалась не только в README и `package.json`.
+- [x] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
+- [x] Проверить `docs/roadmap.md` на устаревшие ссылки на English surfaces, которые теперь русифицированы.
 
 ## Статус на 2026-06-02 (раунд 33)
 
@@ -46,8 +72,8 @@
 ## Новые пункты плана
 
 - [x] Проверить `CHANGELOG.md`, `.changeset/*` и другие release surfaces на смешанную терминологию, чтобы publish-summary copy не отставала от README и package metadata.
-- [ ] Расширить doc-regression на skill frontmatter `description` и install/feature-link labels, чтобы русская терминология держалась не только в README и `package.json`.
-- [ ] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
+- [x] Расширить doc-regression на skill frontmatter `description` и install/feature-link labels, чтобы русская терминология держалась не только в README и `package.json`.
+- [x] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
 
 ## Статус на 2026-06-02 (раунд 32)
 

@@ -4,6 +4,16 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
+## Статус на 2026-06-03
+
+- Закрыт следующий слой English drift в docs/roadmap.md: `Migration milestones` → `Вехи миграции`, `Milestone N` → `Веха N`, `Legacy packages` → `Legacy-пакеты`.
+- Устранён English jargon в docs/features/osm-nearby.md: `free/no-key` → `бесплатное решение без API-ключа`, `sparse` → `неполным`.
+- Исправлена грамматическая ошибка в kleague-results/SKILL.md: `текущий турнирная` → `текущая турнирная`.
+- Нормализован заголовок в docs/features/rpl-results.md: `Когда НЕ использовать` → `Когда не использовать`.
+- Переведён `free/no-key` → `бесплатный источник без API-ключа` в docs/sources.md.
+- Doc-regression расширен на roadmap milestone headings и osm-nearby English jargon.
+- Полный `npm test` и `validate-skills` проходят после этой синхронизации.
+
 ## Статус на 2026-06-02
 
 - Закрыт следующий слой mixed-language drift в release/publish surfaces: все 7 английских changeset-сводок (`.changeset/zoon-nearby-add.md`, `osm-nearby-add.md`, `rpl-results.md`, `pravo-documents.md`, `stoloto-lotto.md`, `kinopoisk-search.md`, `clever-dingos-think.md`) переведены на русский, чтобы publish-summary copy не отставала от README и package metadata.
@@ -122,9 +132,9 @@
 - Навык поиска nearby-баров
 - Навык поиска товаров Daiso
 
-## Migration milestones
+## Вехи миграции
 
-### Milestone 1. Русификация верхнего уровня
+### Веха 1. Русификация верхнего уровня
 
 Цель: убрать смешение русских и корейских заголовков в корневой документации и сделать репозиторий понятным без знания legacy-контекста.
 
@@ -136,7 +146,7 @@
 
 Статус: завершён.
 
-### Milestone 2. Legacy inventory и новое позиционирование
+### Веха 2. Legacy inventory и новое позиционирование
 
 Цель: развести то, что остаётся ради обратной совместимости, и то, что считается целевым развитием `ru-skill`.
 
@@ -149,7 +159,7 @@
 
 Статус: завершён.
 
-### Milestone 3. Первый русскоязычный навык
+### Веха 3. Первый русскоязычный навык
 
 Цель: добавить новый сценарий поверх публичного API или официального веб-интерфейса, не завязанный на корейские сервисы.
 
@@ -162,7 +172,7 @@
 
 Статус: завершён.
 
-### Milestone 4. Управляемое сворачивание legacy
+### Веха 4. Управляемое сворачивание legacy
 
 Цель: сократить долю legacy-функций в публичной коммуникации, не ломая существующие потоки.
 
@@ -175,7 +185,7 @@
 
 Статус: завершён по документации и migration-governance. Legacy-пакеты сохранены ради совместимости, но документно отделены от target-линейки; незакрытые product gaps вынесены в следующий milestone.
 
-### Milestone 5. Booking replacements и release hygiene
+### Веха 5. Booking replacements и release hygiene
 
 Цель: не просто держать legacy-booking навыки как исторический хвост, а либо найти жизнеспособные российские замены, либо явно зафиксировать, что замена невозможна без авторизации и закрытых API.
 
@@ -194,7 +204,7 @@
 - Базовый railway-discovery сценарий уже покрывается `yandex-rasp`; отдельный target-пакет не открывается, пока он не добавляет устойчивую API-функцию, а не thin-wrapper над внешним checkout.
 - Критерий закрытия milestone вынесен в [отдельный документ по booking replacements](booking-replacements.md).
 
-## Legacy packages и целевые замены
+## Legacy-пакеты и целевые замены
 
 | Пакет | Текущий статус | Что делает сейчас | Целевая замена или направление | Статус замены |
 | --- | --- | --- | --- | --- |
@@ -228,5 +238,5 @@
 3. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, boundary notes, package README, top-level TODO governance, heading scheme critical surfaces, transition/setup copy, package metadata descriptions и отсутствию устаревшей release-археологии в README/roadmap.
-6. Следующий слой mixed-language audit перенести на publish/release surfaces: `CHANGELOG.md`, changeset summaries, skill frontmatter `description` и install/feature-link labels, а не повторно проходить уже выровненные boundary-note и credential surfaces.
+6. Следующий слой mixed-language audit перенести на оставшийся English jargon в feature docs (например, `supplementary`, `read-only` как технический термин в русском контексте), а не повторно проходить уже выровненные milestone/credential/changeset surfaces.
 7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и brittle anti-bot обходов.

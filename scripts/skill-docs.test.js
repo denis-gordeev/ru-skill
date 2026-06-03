@@ -1323,7 +1323,7 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(readme, /активный блок `TODO\.md`/i);
   assert.match(readme, /ru-skill-setup[\s\S]*русские секционные заголовки/i);
 
-  assert.match(roadmap, /### Milestone 5\. Booking replacements и release hygiene/);
+  assert.match(roadmap, /### Веха 5\. Booking replacements и release hygiene/);
   assert.match(roadmap, /Статус: завершён; release-hygiene подзадача закрыта/i);
   assert.match(roadmap, /yandex-rasp/);
   assert.match(roadmap, /новый target-пакет не открывается/i);
@@ -1332,9 +1332,9 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-02");
-  assert.equal(todoStatus.round, 33);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 33\)/);
+  assert.equal(todoStatus.date, "2026-06-03");
+  assert.equal(todoStatus.round, 35);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 35\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -2423,4 +2423,31 @@ test("SKILL.md frontmatter descriptions are in Russian", () => {
       );
     }
   }
+});
+
+test("roadmap uses Russian milestone headings instead of English", () => {
+  const roadmap = read(path.join("docs", "roadmap.md"));
+
+  assert.match(roadmap, /## Вехи миграции/);
+  assert.match(roadmap, /### Веха 1\./);
+  assert.match(roadmap, /### Веха 2\./);
+  assert.match(roadmap, /### Веха 3\./);
+  assert.match(roadmap, /### Веха 4\./);
+  assert.match(roadmap, /### Веха 5\./);
+  assert.match(roadmap, /## Legacy-пакеты и целевые замены/);
+
+  assert.doesNotMatch(roadmap, /^## Migration milestones$/m);
+  assert.doesNotMatch(roadmap, /^### Milestone \d+\./m);
+  assert.doesNotMatch(roadmap, /^## Legacy packages/m);
+});
+
+test("osm-nearby feature doc uses Russian instead of English jargon", () => {
+  const featureDoc = read(path.join("docs", "features", "osm-nearby.md"));
+
+  assert.match(featureDoc, /бесплатн.*решение без API-ключа|решение без API-ключа.*бесплатн/i);
+  assert.match(featureDoc, /может быть неполным/);
+  assert.match(featureDoc, /бесплатн.*вариант без API-ключа/i);
+
+  assert.doesNotMatch(featureDoc, /free.*no.?key/i);
+  assert.doesNotMatch(featureDoc, /\bsparse\b/);
 });
