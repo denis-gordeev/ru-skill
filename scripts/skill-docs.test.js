@@ -1332,9 +1332,9 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-03");
-  assert.equal(todoStatus.round, 36);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 36\)/);
+  assert.equal(todoStatus.date, "2026-06-04");
+  assert.equal(todoStatus.round, 37);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 37\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -1464,18 +1464,18 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
 
 test("workspace package descriptions stay aligned with the Russian migration metadata", () => {
   const expectedDescriptions = {
-    "blue-ribbon-nearby": "Legacy-клиент поиска nearby-ресторанов Blue Ribbon Survey, сохранённый на время миграции ru-skill",
+    "blue-ribbon-nearby": "Legacy-клиент поиска ближайших ресторанов Blue Ribbon Survey, сохранённый на время миграции ru-skill",
     "cbr-rates": "Клиент только для чтения для официальных XML-курсов валют Банка России",
     "daiso-product-search": "Legacy-клиент поиска магазинов, товаров и pickup-остатков Daiso Mall, сохранённый на время миграции ru-skill",
     "hh-vacancies": "Клиент только для чтения для публичных API вакансий и регионов hh.ru",
     "k-lotto": "Legacy-клиент результатов dhlottery, сохранённый на время миграции ru-skill",
     "k-skill-proxy": "Fastify-прокси для бесплатных upstream API, используемых в ru-skill",
-    "kakao-bar-nearby": "Legacy-клиент поиска nearby-баров через Kakao Map, сохранённый на время миграции ru-skill",
+    "kakao-bar-nearby": "Legacy-клиент поиска ближайших баров через Kakao Map, сохранённый на время миграции ru-skill",
     "kinopoisk-search": "Клиент только для чтения для публичного поиска фильмов и карточек Кинопоиска",
     "kleague-results": "Legacy-клиент результатов и таблицы K League, сохранённый на время миграции ru-skill",
     "mchs-storm-warnings": "Клиент только для чтения для официальных региональных страниц штормовых и экстренных предупреждений МЧС",
     "moex-shares": "Клиент только для чтения для метаданных акций и задержанных рыночных снимков ISS Московской биржи",
-    "osm-nearby": "Клиент только для чтения для поиска nearby-мест через Overpass API OpenStreetMap",
+    "osm-nearby": "Клиент только для чтения для поиска ближайших мест через Overpass API OpenStreetMap",
     "postcalc-postcodes": "Клиент только для чтения для справочных страниц Postcalc по городам и отделениям на базе данных индексов Почты России",
     "pravo-documents": "Клиент только для чтения для официальных правовых документов через API публикаций pravo.gov.ru",
     "rpl-results": "Результаты матчей и турнирная таблица Российской Премьер-Лиги через публичные страницы championat.com",
@@ -1483,7 +1483,7 @@ test("workspace package descriptions stay aligned with the Russian migration met
     "toss-securities": "Legacy-обёртка tossctl только для чтения, сохранённая на время миграции ru-skill",
     "yandex-market-search": "Поиск товаров и карточек товаров только для чтения через серверно отрендеренные страницы Яндекс Маркета",
     "yandex-rasp": "Клиент только для чтения для расписаний Яндекс.Расписаний: поезда, автобусы, самолёты и электрички",
-    "zoon-nearby": "Дополнительный поиск nearby-мест через SSR-страницы Zoon.ru",
+    "zoon-nearby": "Дополнительный поиск ближайших мест через SSR-страницы Zoon.ru",
   };
 
   for (const [packageName, description] of Object.entries(expectedDescriptions)) {
@@ -2450,4 +2450,77 @@ test("osm-nearby feature doc uses Russian instead of English jargon", () => {
 
   assert.doesNotMatch(featureDoc, /free.*no.?key/i);
   assert.doesNotMatch(featureDoc, /\bsparse\b/);
+});
+
+test("target package READMEs use Russian instead of Read-only jargon", () => {
+  const targetPackages = [
+    "cbr-rates", "moex-shares", "postcalc-postcodes", "hh-vacancies",
+    "stoloto-lotto", "kinopoisk-search", "mchs-storm-warnings",
+    "pravo-documents", "yandex-rasp", "yandex-market-search", "osm-nearby",
+  ];
+
+  for (const pkg of targetPackages) {
+    const readme = read(path.join("packages", pkg, "README.md"));
+    assert.doesNotMatch(readme, /^Read-only/im, `packages/${pkg}/README.md must not start with English Read-only`);
+    assert.doesNotMatch(readme, /\bRead-only\b/, `packages/${pkg}/README.md must not contain English Read-only`);
+  }
+});
+
+test("docs/sources.md uses Russian instead of English jargon", () => {
+  const sources = read(path.join("docs", "sources.md"));
+
+  assert.doesNotMatch(sources, /Технический baseline/);
+  assert.doesNotMatch(sources, /\bdelayed\b/);
+  assert.doesNotMatch(sources, /\bfallback\b/);
+  assert.doesNotMatch(sources, /nearby-поиск/);
+  assert.doesNotMatch(sources, /availability-страницы/);
+  assert.match(sources, /Техническая основа/);
+  assert.match(sources, /задержанный/);
+  assert.match(sources, /запасной вариант/);
+  assert.match(sources, /поиск ближайших/);
+  assert.match(sources, /страницы наличия/);
+});
+
+test("docs/roadmap.md does not contain English jargon in user-facing surfaces", () => {
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  assert.doesNotMatch(roadmap, /delayed-цены/);
+});
+
+test("delivery-tracking SKILL.md uses Russian instead of live smoke test", () => {
+  const skill = read(path.join("delivery-tracking", "SKILL.md"));
+  assert.doesNotMatch(skill, /live smoke test/);
+  assert.doesNotMatch(skill, /\bsmoke test\b/);
+  assert.match(skill, /проверочный тест/);
+});
+
+test("yandex-rasp SKILL.md uses Russian instead of checkout", () => {
+  const skill = read(path.join("yandex-rasp", "SKILL.md"));
+  assert.doesNotMatch(skill, /\bcheckout\b/);
+  assert.match(skill, /оформление заказа/);
+});
+
+test("fine-dust-location SKILL.md uses Russian instead of fallback", () => {
+  const skill = read(path.join("fine-dust-location", "SKILL.md"));
+  assert.doesNotMatch(skill, /`fallback`/);
+  assert.match(skill, /запасной вариант/);
+});
+
+test("package.json descriptions use Russian instead of nearby- prefix", () => {
+  const packagesDir = path.join(repoRoot, "packages");
+  const nearbyPackages = ["blue-ribbon-nearby", "kakao-bar-nearby", "osm-nearby", "zoon-nearby"];
+
+  for (const pkg of nearbyPackages) {
+    const packageJson = JSON.parse(read(path.join("packages", pkg, "package.json")));
+    assert.doesNotMatch(packageJson.description, /nearby-/, `packages/${pkg}/package.json description must not use nearby- prefix`);
+  }
+});
+
+test("changeset summaries use Russian instead of read-only prefix", () => {
+  const changesetDir = path.join(repoRoot, ".changeset");
+  const changesetFiles = fs.readdirSync(changesetDir).filter((f) => f.endsWith(".md") && f !== "README.md");
+
+  for (const file of changesetFiles) {
+    const content = read(path.join(".changeset", file));
+    assert.doesNotMatch(content, /read-only-/, `.changeset/${file} must not use read-only- prefix`);
+  }
 });

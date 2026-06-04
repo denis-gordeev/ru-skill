@@ -1,6 +1,6 @@
 # osm-nearby
 
-Read-only-клиент для поиска ближайших заведений через публичный Overpass API OpenStreetMap.
+Клиент только для чтения для поиска ближайших заведений через публичный Overpass API OpenStreetMap.
 
 ## Возможности
 

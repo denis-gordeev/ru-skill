@@ -1,7 +1,7 @@
 {
   "name": "kakao-bar-nearby",
   "version": "0.2.0",
-  "description": "Legacy-клиент поиска nearby-баров через Kakao Map, сохранённый на время миграции ru-skill",
+  "description": "Legacy-клиент поиска ближайших баров через Kakao Map, сохранённый на время миграции ru-skill",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
