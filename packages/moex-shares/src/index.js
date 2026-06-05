@@ -14,7 +14,7 @@ function normalizeSecId(secId) {
   const normalized = String(secId).trim().toUpperCase();
 
   if (!/^[A-Z0-9._-]{1,24}$/.test(normalized)) {
-    throw new Error("secId must contain only MOEX ticker characters.");
+    throw new Error("secId должен содержать только символы тикера MOEX.");
   }
 
   return normalized;
@@ -46,7 +46,7 @@ async function fetchJson(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`MOEX ISS request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к MOEX ISS не удался: ${response.status} для ${url}`);
   }
 
   return response.json();

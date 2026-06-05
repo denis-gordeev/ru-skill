@@ -48,7 +48,7 @@ async function searchNearby(lat, lon, options = {}) {
   });
 
   if (!response.ok) {
-    throw new Error(`Overpass API request failed with ${response.status}`);
+    throw new Error(`Запрос к Overpass API не удался: ${response.status}`);
   }
 
   const data = await response.json();
@@ -116,7 +116,7 @@ out body;
   });
 
   if (!response.ok) {
-    throw new Error(`Overpass API request failed with ${response.status}`);
+    throw new Error(`Запрос к Overpass API не удался: ${response.status}`);
   }
 
   const data = await response.json();

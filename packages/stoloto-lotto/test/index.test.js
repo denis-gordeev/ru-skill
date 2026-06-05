@@ -28,7 +28,7 @@ test("normalizeGameSlug maps common aliases to canonical slugs", () => {
   assert.equal(normalizeGameSlug("6 из 45"), "6x45");
   assert.equal(normalizeGameSlug("русское лото"), "ruslotto");
   assert.equal(normalizeGameSlug("топ-3"), "top3");
-  assert.throws(() => normalizeGameSlug("unknown-game"), /Unsupported game slug/);
+  assert.throws(() => normalizeGameSlug("unknown-game"), /Неподдерживаемый идентификатор игры/);
 });
 
 test("SUPPORTED_GAMES lists all canonical game slugs", () => {

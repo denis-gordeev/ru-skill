@@ -184,7 +184,7 @@ function normalizeStoreSearchResponse(payload, query) {
 
 function buildSearchGoodsParams(query, options = {}) {
   if (!String(query || "").trim()) {
-    throw new Error("search term is required.")
+    throw new Error("Поисковый запрос обязателен.")
   }
 
   return {
@@ -329,7 +329,7 @@ function normalizeSearchGoodsResponse(payload, query) {
 
 function normalizeStorePickupStockResponse(payload, request) {
   if (!payload || typeof payload !== "object" || !Array.isArray(payload.data) || payload.data.length === 0) {
-    throw new Error("No Daiso pickup stock rows were returned.")
+    throw new Error("Не получены данные об остатках для самовывоза Daiso.")
   }
 
   const item = payload.data[0]
@@ -347,7 +347,7 @@ function normalizeStorePickupStockResponse(payload, request) {
 
 function normalizeOnlineStockResponse(payload, request) {
   if (!payload || typeof payload !== "object" || !Array.isArray(payload.data) || payload.data.length === 0) {
-    throw new Error("No Daiso online stock rows were returned.")
+    throw new Error("Не получены данные об онлайн-остатках Daiso.")
   }
 
   const item = payload.data[0]

@@ -80,7 +80,7 @@ test("URL builders pin the official ISS endpoints and required query params", ()
     buildSecuritiesListUrl({ start: 100 }),
     "https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities.json?iss.meta=off&securities.columns=SECID%2CSHORTNAME%2CLOTSIZE%2CISIN&start=100"
   );
-  assert.throws(() => buildSecurityUrl("SBER/RM"), /MOEX ticker characters/);
+  assert.throws(() => buildSecurityUrl("SBER/RM"), /символы тикера MOEX/);
 });
 
 test("public helpers fetch and normalize overview and list payloads", async () => {

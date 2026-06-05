@@ -14,7 +14,7 @@ function normalizePostalCode(postalCode) {
   const normalized = String(postalCode).trim();
 
   if (!/^\d{6}$/.test(normalized)) {
-    throw new Error("postalCode must be a 6-digit Russian postal code.");
+    throw new Error("postalCode должен быть 6-значным российским почтовым индексом.");
   }
 
   return normalized;
@@ -28,7 +28,7 @@ function normalizeCityKey(cityKey) {
   const normalized = String(cityKey).trim();
 
   if (!normalized) {
-    throw new Error("cityKey must be a non-empty string.");
+    throw new Error("cityKey должен быть непустой строкой.");
   }
 
   return normalized;
@@ -58,7 +58,7 @@ async function fetchHtml(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`Postcalc request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к Postcalc не удался: ${response.status} для ${url}`);
   }
 
   return response.text();

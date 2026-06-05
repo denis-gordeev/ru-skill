@@ -51,7 +51,7 @@ test("evaluateTicket rejects duplicate numbers", () => {
 
   assert.throws(() => {
     evaluateTicket(detail, [3, 3, 14, 15, 23, 24]);
-  }, /duplicates/);
+  }, /дубликаты/);
 });
 
 test("public fetchers can consume injected fixtures via mocked fetch", async () => {

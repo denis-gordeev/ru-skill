@@ -27,7 +27,7 @@ function normalizeDateInput(value) {
     return new Date(`${value}T00:00:00Z`);
   }
 
-  throw new Error("date must be undefined, a Date, or a YYYY-MM-DD string.");
+  throw new Error("date должен быть undefined, Date или строкой в формате ГГГГ-ММ-ДД.");
 }
 
 /**
@@ -69,7 +69,7 @@ async function fetchXml(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`CBR request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к ЦБ РФ не удался: ${response.status} для ${url}`);
   }
 
   const bytes = new Uint8Array(await response.arrayBuffer());
@@ -138,10 +138,10 @@ async function getRateWithChange(charCode, date, options = {}) {
           absolute: Number((current.unitRate - previous.unitRate).toFixed(4)),
           percent: Number((((current.unitRate - previous.unitRate) / previous.unitRate) * 100).toFixed(4)),
           direction: current.unitRate === previous.unitRate
-            ? "flat"
+            ? "без изменений"
             : current.unitRate > previous.unitRate
-              ? "up"
-              : "down"
+              ? "рост"
+              : "снижение"
         }
       : null
   };

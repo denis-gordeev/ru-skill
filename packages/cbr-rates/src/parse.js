@@ -32,7 +32,7 @@ function extractTagText(xml, tagName) {
   const match = xml.match(new RegExp(`<${tagName}>([\\s\\S]*?)<\\/${tagName}>`, "i"));
 
   if (!match) {
-    throw new Error(`Missing <${tagName}> in CBR XML payload.`);
+    throw new Error(`Отсутствует <${tagName}> в XML-ответе ЦБ РФ.`);
   }
 
   return decodeXmlEntities(match[1].trim());
@@ -47,7 +47,7 @@ function parseDecimal(raw) {
   const value = Number(normalized);
 
   if (!Number.isFinite(value)) {
-    throw new Error(`Unable to parse decimal value from "${raw}".`);
+    throw new Error(`Не удалось разобрать десятичное значение из «${raw}».`);
   }
 
   return value;
@@ -61,7 +61,7 @@ function normalizeCbrDate(raw) {
   const match = raw.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
 
   if (!match) {
-    throw new Error(`Unexpected CBR date format: ${raw}`);
+    throw new Error(`Неожиданный формат даты ЦБ РФ: ${raw}`);
   }
 
   return `${match[3]}-${match[2]}-${match[1]}`;
@@ -74,7 +74,7 @@ function parseDailyRatesXml(xml) {
   const rootMatch = xml.match(VALCURS_PATTERN);
 
   if (!rootMatch) {
-    throw new Error("Unable to locate <ValCurs> root element in the CBR XML payload.");
+    throw new Error("Не удалось найти корневой элемент <ValCurs> в XML-ответе ЦБ РФ.");
   }
 
   const rootAttributes = parseAttributes(rootMatch[1]);
@@ -100,7 +100,7 @@ function parseDailyRatesXml(xml) {
   }
 
   if (currencies.length === 0) {
-    throw new Error("The CBR XML payload did not contain any <Valute> items.");
+    throw new Error("XML-ответ ЦБ РФ не содержит элементов <Valute>.");
   }
 
   return {
@@ -118,13 +118,13 @@ function findCurrencyByCode(payload, charCode) {
   const normalizedCode = String(charCode).trim().toUpperCase();
 
   if (!/^[A-Z]{3}$/.test(normalizedCode)) {
-    throw new Error("charCode must be a 3-letter ISO currency code.");
+    throw new Error("charCode должен быть трёхбуквенным кодом валюты ISO.");
   }
 
   const currency = payload.currencies.find((entry) => entry.charCode === normalizedCode);
 
   if (!currency) {
-    throw new Error(`Currency ${normalizedCode} was not present in the CBR daily rates feed.`);
+    throw new Error(`Валюта ${normalizedCode} отсутствует в ежедневных котировках ЦБ РФ.`);
   }
 
   return currency;

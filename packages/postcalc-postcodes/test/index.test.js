@@ -85,8 +85,8 @@ test("parseCityPage normalizes Postcalc city parameters and offices list", () =>
 test("URL builders pin the public Postcalc endpoints", () => {
   assert.equal(buildOfficeUrl("109189"), "https://postcalc.ru/offices/109189");
   assert.equal(buildCityUrl("Сыктывкар"), "https://postcalc.ru/cities/%D0%A1%D1%8B%D0%BA%D1%82%D1%8B%D0%B2%D0%BA%D0%B0%D1%80");
-  assert.throws(() => buildOfficeUrl("10918"), /6-digit Russian postal code/);
-  assert.throws(() => buildCityUrl(" "), /non-empty string/);
+  assert.throws(() => buildOfficeUrl("10918"), /6-значным российским почтовым индексом/);
+  assert.throws(() => buildCityUrl(" "), /непустой строкой/);
 });
 
 test("public helpers fetch and normalize office and city pages", async () => {

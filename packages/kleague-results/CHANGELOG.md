@@ -2,6 +2,6 @@
 
 ## 0.2.0
 
-### Minor Changes
+### Незначительные изменения
 
-- 83d5f26: Add the first official K League results and standings client package.
+- 83d5f26: Добавление первого официального пакета клиента результатов и турнирной таблицы K League.

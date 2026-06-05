@@ -4,7 +4,7 @@
  */
 function rowsFromBlock(block) {
   if (!block || !Array.isArray(block.columns) || !Array.isArray(block.data)) {
-    throw new Error("Expected an ISS block with columns and data arrays.");
+    throw new Error("Ожидается блок ISS с массивами columns и data.");
   }
 
   return block.data.map((row) => Object.fromEntries(block.columns.map((column, index) => [column, row[index]])));
@@ -117,11 +117,11 @@ function parseSecurityResponse(payload) {
   const dataVersionRow = rowsFromBlock(parsed.dataversion)[0];
 
   if (!securityRow) {
-    throw new Error("MOEX ISS response did not contain a securities row.");
+    throw new Error("Ответ MOEX ISS не содержит строку securities.");
   }
 
   if (!marketDataRow) {
-    throw new Error("MOEX ISS response did not contain a marketdata row.");
+    throw new Error("Ответ MOEX ISS не содержит строку marketdata.");
   }
 
   return {

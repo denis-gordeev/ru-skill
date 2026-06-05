@@ -132,7 +132,7 @@ function resolveApiKey(provided) {
   const fromEnv = process.env.YANDEX_RASP_API_KEY;
   if (fromEnv) return fromEnv;
   throw new Error(
-    "Yandex Raspisanie API key is required. Provide it via opts.apiKey or YANDEX_RASP_API_KEY env variable. Get one at https://yandex.ru/dev/rasp/"
+    "Требуется ключ API Яндекс Расписаний. Укажите его через opts.apiKey или переменную окружения YANDEX_RASP_API_KEY. Получить ключ: https://yandex.ru/dev/rasp/"
   );
 }
 
@@ -145,7 +145,7 @@ async function fetchWithCheck(url) {
     } catch {
       /* ignore */
     }
-    throw new Error(`Yandex Raspisanie API error ${res.status}: ${body || res.statusText}`);
+    throw new Error(`Ошибка API Яндекс Расписаний ${res.status}: ${body || res.statusText}`);
   }
   return res;
 }

@@ -41,7 +41,7 @@ function normalizeLeagueId(value = 1) {
 function normalizeDateInput(value) {
   if (value instanceof Date) {
     if (Number.isNaN(value.getTime())) {
-      throw new Error("date must be a valid Date or YYYY-MM-DD string.");
+      throw new Error("date должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
     }
 
     const formatter = new Intl.DateTimeFormat("en-CA", {
@@ -62,11 +62,11 @@ function normalizeDateInput(value) {
 
   const match = String(value || "").trim().match(/^(\d{4})[-.](\d{2})[-.](\d{2})$/);
   if (!match) {
-    throw new Error("date must be a valid Date or YYYY-MM-DD string.");
+    throw new Error("date должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
   }
 
   if (!isValidCalendarDate(match[1], match[2], match[3])) {
-    throw new Error("date must be a valid Date or YYYY-MM-DD string.");
+    throw new Error("date должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
   }
 
   return buildDateParts(match[1], match[2], match[3]);

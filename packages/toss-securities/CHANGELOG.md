@@ -2,6 +2,6 @@
 
 ## 0.2.0
 
-### Minor Changes
+### Незначительные изменения
 
-- 2700e42: Add the first safe read-only Toss Securities wrapper package and skill docs.
+- 2700e42: Добавление первого безопасного пакета-обёртки Toss Securities только для чтения и документации навыка.

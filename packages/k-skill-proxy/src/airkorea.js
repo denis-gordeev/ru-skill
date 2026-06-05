@@ -161,7 +161,7 @@ function buildReport({ stationItems, measurementItems, regionHint = null, statio
     stationName
   });
   const measurement = findMeasurement(measurementItems, station.stationName);
-  const resolvedLookupMode = lookupMode || "fallback";
+  const resolvedLookupMode = lookupMode || "запасной вариант";
 
   return {
     station_name: station.stationName,
@@ -193,7 +193,7 @@ function buildReport({ stationItems, measurementItems, regionHint = null, statio
 
 async function fetchJson(baseUrl, params, { fetchImpl = global.fetch, headers = {} } = {}) {
   if (typeof fetchImpl !== "function") {
-    throw new Error("A fetch implementation is required.");
+    throw new Error("Требуется реализация fetch.");
   }
 
   const url = new URL(baseUrl);
@@ -220,7 +220,7 @@ async function fetchJson(baseUrl, params, { fetchImpl = global.fetch, headers = 
       );
     }
 
-    throw new Error(`AirKorea request failed with ${response.status} for ${url}${body ? ` :: ${body.slice(0, 200)}` : ""}`);
+    throw new Error(`Запрос к AirKorea не удался с кодом ${response.status} для ${url}${body ? ` :: ${body.slice(0, 200)}` : ""}`);
   }
 
   return JSON.parse(await response.text());
@@ -228,7 +228,7 @@ async function fetchJson(baseUrl, params, { fetchImpl = global.fetch, headers = 
 
 async function fetchStationLookup({ regionHint = null, stationName = null, serviceKey, fetchImpl = global.fetch, headers = {}, stationServiceUrl = STATION_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY is not configured on the proxy server.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.");
   }
 
   const common = {
@@ -240,7 +240,7 @@ async function fetchStationLookup({ regionHint = null, stationName = null, servi
 
   if (regionHint || stationName) {
     return {
-      lookupMode: "fallback",
+      lookupMode: "запасной вариант",
       payload: await fetchJson(`${stationServiceUrl}/getMsrstnList`, {
         ...common,
         addr: regionHint,
@@ -257,7 +257,7 @@ async function fetchStationLookup({ regionHint = null, stationName = null, servi
 
 async function fetchMeasurementPayload({ stationName, serviceKey, fetchImpl = global.fetch, headers = {}, measurementServiceUrl = MEASUREMENT_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY is not configured on the proxy server.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.");
   }
 
   return fetchJson(`${measurementServiceUrl}/getMsrstnAcctoRltmMesureDnsty`, {
@@ -276,7 +276,7 @@ async function fetchMeasurementPayload({ stationName, serviceKey, fetchImpl = gl
 
 async function fetchCtprvnMeasurementPayload({ sidoName, serviceKey, fetchImpl = global.fetch, headers = {}, measurementServiceUrl = MEASUREMENT_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY is not configured on the proxy server.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.");
   }
 
   return fetchJson(`${measurementServiceUrl}/getCtprvnRltmMesureDnsty`, {
@@ -338,7 +338,7 @@ async function fetchFineDustReport({ regionHint = null, stationName = null, serv
           measurementItems,
           regionHint,
           stationName: matchedMeasurement.stationName,
-          lookupMode: "fallback",
+          lookupMode: "запасной вариант",
           selectedStation: { stationName: matchedMeasurement.stationName, addr: null }
         });
       } catch {
@@ -369,7 +369,7 @@ async function fetchFineDustReport({ regionHint = null, stationName = null, serv
           measurementItems: cityItems,
           regionHint,
           stationName: selectedStation.stationName,
-          lookupMode: "fallback",
+          lookupMode: "запасной вариант",
           selectedStation: { stationName: selectedStation.stationName, addr: null }
         });
       }

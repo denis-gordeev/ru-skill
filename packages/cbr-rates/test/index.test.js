@@ -30,8 +30,8 @@ test("parseDailyRatesXml normalizes official CBR XML into numeric currency rows"
 test("findCurrencyByCode rejects invalid codes", () => {
   const parsed = parseDailyRatesXml(daily20260402);
 
-  assert.throws(() => findCurrencyByCode(parsed, "USDT"), /3-letter ISO currency code/);
-  assert.throws(() => findCurrencyByCode(parsed, "CHF"), /was not present/);
+  assert.throws(() => findCurrencyByCode(parsed, "USDT"), /трёхбуквенным кодом валюты ISO/);
+  assert.throws(() => findCurrencyByCode(parsed, "CHF"), /отсутствует в ежедневных котировках/);
 });
 
 test("public fetchers normalize requested and published dates", async () => {
@@ -66,7 +66,7 @@ test("public fetchers normalize requested and published dates", async () => {
     assert.deepEqual(cny.change, {
       absolute: 0.057,
       percent: 0.4893,
-      direction: "up"
+      direction: "рост"
     });
   } finally {
     global.fetch = originalFetch;

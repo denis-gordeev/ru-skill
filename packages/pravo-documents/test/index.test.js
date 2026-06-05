@@ -44,13 +44,13 @@ test("buildSearchUrl applies filters and pagination", () => {
 });
 
 test("buildSearchUrl validates page number", () => {
-  assert.throws(() => buildSearchUrl({ page: 0 }), /page must be an integer greater than or equal to 1/);
-  assert.throws(() => buildSearchUrl({ page: -1 }), /page must be an integer greater than or equal to 1/);
+  assert.throws(() => buildSearchUrl({ page: 0 }), /должен быть целым числом, большим или равным 1/);
+  assert.throws(() => buildSearchUrl({ page: -1 }), /должен быть целым числом, большим или равным 1/);
 });
 
 test("buildSearchUrl validates page size", () => {
-  assert.throws(() => buildSearchUrl({ pageSize: 0 }), /pageSize must be an integer between 1 and 100/);
-  assert.throws(() => buildSearchUrl({ pageSize: 101 }), /pageSize must be an integer between 1 and 100/);
+  assert.throws(() => buildSearchUrl({ pageSize: 0 }), /должен быть целым числом от 1 до 100/);
+  assert.throws(() => buildSearchUrl({ pageSize: 101 }), /должен быть целым числом от 1 до 100/);
 });
 
 test("buildDocumentUrl creates correct URL", () => {
@@ -59,8 +59,8 @@ test("buildDocumentUrl creates correct URL", () => {
 });
 
 test("buildDocumentUrl validates eoNumber", () => {
-  assert.throws(() => buildDocumentUrl(""), /eoNumber must be a non-empty string/);
-  assert.throws(() => buildDocumentUrl(null), /eoNumber must be a non-empty string/);
+  assert.throws(() => buildDocumentUrl(""), /должен быть непустой строкой/);
+  assert.throws(() => buildDocumentUrl(null), /должен быть непустой строкой/);
 });
 
 test("normalizeDocumentItem extracts key fields", () => {

@@ -152,7 +152,7 @@ test("searchStations throws when no API key provided", async () => {
   try {
     await assert.rejects(
       () => searchStations("Москва"),
-      /API key is required/
+      /Требуется ключ API/
     );
   } finally {
     process.env.YANDEX_RASP_API_KEY = originalEnv;

@@ -57,7 +57,7 @@ async function fetchHtml(url, opts = {}) {
   });
 
   if (!response.ok) {
-    throw new Error(`Zoon request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к Zoon не удался: ${response.status} для ${url}`);
   }
 
   return response.text();

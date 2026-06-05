@@ -77,7 +77,7 @@ describe('zoon-nearby parser', () => {
     it('should throw if business name cannot be parsed', () => {
       assert.throws(
         () => parseBusinessPage('<html><body>empty</body></html>'),
-        /Unable to parse business name/
+        /Не удалось извлечь название организации/
       );
     });
   });

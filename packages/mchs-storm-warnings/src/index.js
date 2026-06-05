@@ -30,7 +30,7 @@ function buildWarningsIndexUrl(regionHost, options = {}) {
   const page = options.page ?? 0;
 
   if (!Number.isInteger(page) || page < 0) {
-    throw new Error("page must be an integer greater than or equal to 0.");
+    throw new Error("page должен быть целым числом, большим или равным 0.");
   }
 
   const url = new URL(`${buildRegionOrigin(regionHost)}${WARNINGS_SECTION_PATH}`);
@@ -51,7 +51,7 @@ function buildWarningUrl(regionHost, warningPathOrId) {
   const normalized = String(warningPathOrId).trim();
 
   if (!normalized) {
-    throw new Error("warningPathOrId must be a non-empty string or number.");
+    throw new Error("warningPathOrId должен быть непустой строкой или числом.");
   }
 
   if (/^https?:\/\//i.test(normalized)) {
@@ -66,7 +66,7 @@ function buildWarningUrl(regionHost, warningPathOrId) {
     return new URL(normalized, buildRegionOrigin(regionHost)).toString();
   }
 
-  throw new Error("warningPathOrId must be an absolute MChS URL, a relative path, or a numeric warning id.");
+  throw new Error("warningPathOrId должен быть абсолютным URL МЧС, относительным путём или числовым идентификатором предупреждения.");
 }
 
 /**
@@ -77,7 +77,7 @@ async function fetchHtml(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`MChS request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к МЧС не удался: ${response.status} для ${url}`);
   }
 
   return response.text();

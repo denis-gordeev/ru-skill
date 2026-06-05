@@ -36,13 +36,13 @@ async function getStandings(opts = {}) {
   const res = await fetcher(url, {
     headers: {
       "User-Agent":
-        "Mozilla/5.0 (ru-skill rpl-results; read-only skill for Russian Premier League data)",
+        "Mozilla/5.0 (ru-skill rpl-results; навык только для чтения данных Российской Премьер-Лиги)",
     },
   });
 
   if (!res.ok) {
     throw new Error(
-      `championat.com returned ${res.status} for standings page`
+      `championat.com вернул ${res.status} для страницы турнирной таблицы`
     );
   }
 
@@ -69,13 +69,13 @@ async function getResults(opts = {}) {
   const res = await fetcher(url, {
     headers: {
       "User-Agent":
-        "Mozilla/5.0 (ru-skill rpl-results; read-only skill for Russian Premier League data)",
+        "Mozilla/5.0 (ru-skill rpl-results; навык только для чтения данных Российской Премьер-Лиги)",
     },
   });
 
   if (!res.ok) {
     throw new Error(
-      `championat.com returned ${res.status} for results page`
+      `championat.com вернул ${res.status} для страницы результатов`
     );
   }
 

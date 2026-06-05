@@ -151,8 +151,8 @@ test("URL builders pin public HH endpoints", () => {
     buildVacancySearchUrl("frontend react", { areaId: 1, page: 0, perPage: 2 }),
     "https://api.hh.ru/vacancies?text=frontend+react&area=1&page=0&per_page=2"
   );
-  assert.throws(() => buildVacancyUrl("abc"), /digits only/);
-  assert.throws(() => buildVacancySearchUrl(" ", { areaId: 1 }), /non-empty string/);
+  assert.throws(() => buildVacancyUrl("abc"), /только цифры/);
+  assert.throws(() => buildVacancySearchUrl(" ", { areaId: 1 }), /непустой строкой/);
 });
 
 test("public helpers fetch and normalize HH payloads", async () => {

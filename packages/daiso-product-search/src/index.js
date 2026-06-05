@@ -23,7 +23,7 @@ async function requestJson(url, options = {}) {
   const fetchImpl = options.fetchImpl || global.fetch
 
   if (typeof fetchImpl !== "function") {
-    throw new Error("A fetch implementation is required.")
+    throw new Error("Требуется реализация fetch.")
   }
 
   const method = options.method || "GET"
@@ -45,7 +45,7 @@ async function requestJson(url, options = {}) {
   const response = await fetchImpl(url, init)
 
   if (!response.ok) {
-    throw new Error(`Daiso request failed with ${response.status} for ${url}`)
+    throw new Error(`Запрос к Daiso не удался: ${response.status} для ${url}`)
   }
 
   return response.json()
@@ -124,11 +124,11 @@ async function lookupStoreProductAvailability(options = {}) {
   const productQuery = String(options.productQuery || "").trim()
 
   if (!storeQuery) {
-    throw new Error("storeQuery is required.")
+    throw new Error("storeQuery обязателен.")
   }
 
   if (!productQuery) {
-    throw new Error("productQuery is required.")
+    throw new Error("productQuery обязателен.")
   }
 
   const [storeResult, productResult] = await Promise.all([

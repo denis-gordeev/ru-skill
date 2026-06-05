@@ -158,7 +158,7 @@ function normalizeVacancyCard(item) {
  */
 function parseVacancySearchResponse(payload) {
   if (!Array.isArray(payload?.items)) {
-    throw new Error("HH vacancies payload did not contain an items array.");
+    throw new Error("Ответ HH не содержит массив items.");
   }
 
   return {
@@ -207,7 +207,7 @@ function normalizeAddress(address) {
  */
 function parseVacancyResponse(payload) {
   if (!payload?.id) {
-    throw new Error("HH vacancy payload did not contain vacancy id.");
+    throw new Error("Ответ HH не содержит идентификатор вакансии.");
   }
 
   return {
@@ -243,7 +243,7 @@ function parseVacancyResponse(payload) {
  */
 function parseAreaResponse(payload) {
   if (!payload?.id) {
-    throw new Error("HH area payload did not contain area id.");
+    throw new Error("Ответ HH не содержит идентификатор региона.");
   }
 
   return {

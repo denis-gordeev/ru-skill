@@ -36,7 +36,7 @@ function parseOverpassResponse(data) {
         name: tags.name || 'Без названия',
         lat: element.lat,
         lon: element.lon,
-        amenity: tags.amenity || 'unknown',
+        amenity: tags.amenity || "неизвестно",
         address: formatAddress(tags),
         phone: tags.phone || tags['contact:phone'] || undefined,
         website: tags.website || tags['contact:website'] || undefined,

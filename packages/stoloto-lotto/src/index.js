@@ -48,7 +48,7 @@ function normalizeGameSlug(gameSlug) {
   }
 
   throw new Error(
-    `Unsupported game slug: ${gameSlug}. Supported: ${SUPPORTED_GAMES.join(", ")}`
+    `Неподдерживаемый идентификатор игры: ${gameSlug}. Поддерживаются: ${SUPPORTED_GAMES.join(", ")}`
   );
 }
 
@@ -68,7 +68,7 @@ async function fetchHtml(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`Stoloto request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к Столото не удался: ${response.status} для ${url}`);
   }
 
   return response.text();

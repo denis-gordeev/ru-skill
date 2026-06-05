@@ -37,7 +37,7 @@ async function request(url, options = {}, responseType = "text") {
   const fetchImpl = options.fetchImpl || global.fetch;
 
   if (typeof fetchImpl !== "function") {
-    throw new Error("A fetch implementation is required.");
+    throw new Error("Требуется реализация fetch.");
   }
 
   const response = await fetchImpl(url, {
@@ -167,7 +167,7 @@ async function searchNearbyBarsByLocationQuery(locationQuery, options = {}) {
   const query = String(locationQuery || "").trim();
 
   if (!query) {
-    throw new Error("locationQuery is required.");
+    throw new Error("locationQuery обязателен.");
   }
 
   let { anchor, anchorCandidates } = await resolveAnchor(query, options);

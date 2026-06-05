@@ -1333,8 +1333,8 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-05");
-  assert.equal(todoStatus.round, 38);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 38\)/);
+  assert.equal(todoStatus.round, 39);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 39\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -2539,4 +2539,69 @@ test("changeset summaries use Russian instead of read-only prefix", () => {
     assert.doesNotMatch(content, /read-only-/, `.changeset/${file} must not use read-only- prefix`);
     assert.doesNotMatch(content, /fixture-based/, `.changeset/${file} must not use fixture-based jargon`);
   }
+});
+
+test("CHANGELOG files use Russian headings and descriptions", () => {
+  const changelogPackages = [
+    "toss-securities", "kleague-results", "kakao-bar-nearby",
+    "k-lotto", "daiso-product-search", "blue-ribbon-nearby",
+  ];
+
+  for (const pkg of changelogPackages) {
+    const changelogPath = path.join(repoRoot, "packages", pkg, "CHANGELOG.md");
+    if (!fs.existsSync(changelogPath)) continue;
+
+    const content = read(path.join("packages", pkg, "CHANGELOG.md"));
+    assert.doesNotMatch(content, /^### Minor Changes$/m, `packages/${pkg}/CHANGELOG.md must not use English heading "Minor Changes"`);
+    assert.match(content, /^### Незначительные изменения$/m, `packages/${pkg}/CHANGELOG.md must use Russian heading "Незначительные изменения"`);
+    assert.doesNotMatch(content, /^- [0-9a-f]+: (Add|Publish|Create|Implement|Update)\b/i, `packages/${pkg}/CHANGELOG.md description must be in Russian, not English`);
+  }
+});
+
+test("source code does not contain English jargon in user-facing output", () => {
+  const srcDir = path.join(repoRoot, "packages");
+  const packages = fs.readdirSync(srcDir);
+
+  for (const pkg of packages) {
+    const srcPath = path.join(srcDir, pkg, "src");
+    if (!fs.existsSync(srcPath)) continue;
+
+    const srcFiles = fs.readdirSync(srcPath).filter((f) => f.endsWith(".js"));
+    for (const file of srcFiles) {
+      const content = fs.readFileSync(path.join(srcPath, file), "utf8");
+
+      assert.doesNotMatch(content, /read-only skill for/i, `packages/${pkg}/src/${file} must not use English "read-only skill for" in User-Agent`);
+      assert.doesNotMatch(content, /A fetch implementation is required/i, `packages/${pkg}/src/${file} must not use English "A fetch implementation is required"`);
+      assert.doesNotMatch(content, /AIR_KOREA_OPEN_API_KEY is not configured on the proxy server/i, `packages/${pkg}/src/${file} must not use English AIR_KOREA_OPEN_API_KEY error message`);
+    }
+  }
+});
+
+test("k-skill-proxy uses Russian lookupMode values", () => {
+  const airkorea = read(path.join("packages", "k-skill-proxy", "src", "airkorea.js"));
+
+  assert.doesNotMatch(airkorea, /lookupMode: "fallback"/);
+  assert.match(airkorea, /lookupMode: "запасной вариант"/);
+  assert.match(airkorea, /Требуется реализация fetch/);
+  assert.doesNotMatch(airkorea, /A fetch implementation is required/);
+  assert.match(airkorea, /AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере/);
+  assert.doesNotMatch(airkorea, /AIR_KOREA_OPEN_API_KEY is not configured/);
+});
+
+test("cbr-rates uses Russian direction values", () => {
+  const index = read(path.join("packages", "cbr-rates", "src", "index.js"));
+
+  assert.doesNotMatch(index, /"flat"/);
+  assert.doesNotMatch(index, /"up"/);
+  assert.doesNotMatch(index, /"down"/);
+  assert.match(index, /"без изменений"/);
+  assert.match(index, /"рост"/);
+  assert.match(index, /"снижение"/);
+});
+
+test("osm-nearby uses Russian default amenity value", () => {
+  const query = read(path.join("packages", "osm-nearby", "src", "query.js"));
+
+  assert.doesNotMatch(query, /'unknown'/);
+  assert.match(query, /"неизвестно"/);
 });

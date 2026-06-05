@@ -134,7 +134,7 @@ function selectAnchorCandidate(query, items) {
   });
 
   if (ranked.length === 0) {
-    throw new Error("No Kakao Map place candidate matched that location query.");
+    throw new Error("Ни один кандидат Kakao Map не соответствует этому поисковому запросу местоположения.");
   }
 
   return ranked[0];

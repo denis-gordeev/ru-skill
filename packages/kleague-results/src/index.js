@@ -18,7 +18,7 @@ async function requestJson(url, options = {}) {
   const fetchImpl = options.fetchImpl || global.fetch;
 
   if (typeof fetchImpl !== "function") {
-    throw new Error("A fetch implementation is required.");
+    throw new Error("Требуется реализация fetch.");
   }
 
   const response = await fetchImpl(url, {

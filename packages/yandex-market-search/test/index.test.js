@@ -217,10 +217,10 @@ test("searchProducts and getProduct surface HTTP failures", async () => {
 
   await assert.rejects(
     async () => searchProducts("iphone", { fetcher: mockFetch }),
-    /Yandex Market request failed with 503/
+    /Запрос к Яндекс Маркету не удался: 503/
   );
   await assert.rejects(
     async () => getProduct("https://market.yandex.ru/card/demo/1", { fetcher: mockFetch }),
-    /Yandex Market request failed with 503/
+    /Запрос к Яндекс Маркету не удался: 503/
   );
 });

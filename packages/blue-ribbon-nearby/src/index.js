@@ -26,7 +26,7 @@ async function request(url, options = {}, responseType = "text") {
   const fetchImpl = options.fetchImpl || global.fetch;
 
   if (typeof fetchImpl !== "function") {
-    throw new Error("A fetch implementation is required.");
+    throw new Error("Требуется реализация fetch.");
   }
 
   const headerSet = responseType === "json" ? DEFAULT_JSON_HEADERS : DEFAULT_BROWSER_HEADERS;
@@ -55,7 +55,7 @@ async function fetchJson(url, options = {}) {
 
 function assertDistanceMeters(distanceMeters) {
   if (!Number.isFinite(distanceMeters) || distanceMeters <= 0) {
-    throw new Error("distanceMeters must be a positive number.");
+    throw new Error("distanceMeters должен быть положительным числом.");
   }
 }
 
@@ -88,7 +88,7 @@ function buildNearbySearchParams(options = {}) {
     };
   }
 
-  throw new Error("buildNearbySearchParams requires either a zone or explicit coordinates.");
+  throw new Error("buildNearbySearchParams требует либо зону, либо явные координаты.");
 }
 
 async function fetchZoneCatalog(options = {}) {
@@ -148,7 +148,7 @@ async function searchNearbyByCoordinates(options) {
   const limit = options.limit ?? 10;
 
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-    throw new Error("latitude and longitude must be finite numbers.");
+    throw new Error("latitude и longitude должны быть конечными числами.");
   }
 
   const params = buildNearbySearchParams({

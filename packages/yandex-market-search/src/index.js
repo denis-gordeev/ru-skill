@@ -17,7 +17,7 @@ async function fetchHtml(url, opts = {}) {
   });
 
   if (!response.ok) {
-    throw new Error(`Yandex Market request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к Яндекс Маркету не удался: ${response.status} для ${url}`);
   }
 
   return response.text();
@@ -52,7 +52,7 @@ async function searchProducts(query, opts = {}) {
 async function getProduct(productUrl, opts = {}) {
   const url = normalizeProductUrl(productUrl);
   if (!url) {
-    throw new Error("productUrl is required");
+    throw new Error("productUrl обязателен");
   }
 
   const html = await fetchHtml(url, opts);

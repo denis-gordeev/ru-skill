@@ -186,7 +186,7 @@ test("getStandings throws on non-OK response", async () => {
 
   await assert.rejects(
     async () => getStandings({ fetcher: mockFetch }),
-    /championat\.com returned 500/
+    /championat\.com вернул 500/
   );
 });
 
@@ -218,6 +218,6 @@ test("getResults throws on non-OK response", async () => {
 
   await assert.rejects(
     async () => getResults({ fetcher: mockFetch }),
-    /championat\.com returned 404/
+    /championat\.com вернул 404/
   );
 });

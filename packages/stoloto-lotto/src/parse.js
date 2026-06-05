@@ -68,7 +68,7 @@ function requireGameName(html) {
     || matchOne(html, /<title>([\s\S]*?)<\/title>/i);
 
   if (!heading) {
-    throw new Error("Unable to locate Stoloto archive heading.");
+    throw new Error("Не удалось найти заголовок архива Столото.");
   }
 
   return heading;
@@ -155,11 +155,11 @@ function parseArchivePage(html, gameSlug) {
   const tables = [...html.matchAll(tablePattern)];
 
   if (tables.length === 0) {
-    // Fallback: try to find any table with draw-like content
+    // Запасной вариант: попытка найти любую таблицу с тиражными данными
     const allTables = [...html.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)];
 
     if (allTables.length === 0) {
-      throw new Error(`Unable to locate Stoloto archive table for ${gameSlug}.`);
+      throw new Error(`Не удалось найти таблицу архива Столото для ${gameSlug}.`);
     }
 
     // Use the first table that contains draw rows
@@ -182,7 +182,7 @@ function parseArchivePage(html, gameSlug) {
       }
     }
 
-    throw new Error(`Unable to parse Stoloto archive draws for ${gameSlug}.`);
+    throw new Error(`Не удалось разобрать тиражи архива Столото для ${gameSlug}.`);
   }
 
   // Parse the first matching archive table

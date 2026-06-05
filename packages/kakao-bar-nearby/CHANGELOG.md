@@ -2,6 +2,6 @@
 
 ## 0.2.0
 
-### Minor Changes
+### Незначительные изменения
 
-- 3c4be51: Add the first Kakao Map nearby bar lookup package and skill docs.
+- 3c4be51: Добавление первого пакета поиска ближайших баров через Kakao Map и документации навыка.

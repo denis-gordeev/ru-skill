@@ -138,7 +138,7 @@ test("getMatchResults rejects impossible calendar dates before fetching", async 
           return makeResponse(schedulePayload);
         },
       }),
-    /date must be a valid Date or YYYY-MM-DD string\./,
+    /должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД/,
   );
 
   assert.equal(fetchCalled, false);

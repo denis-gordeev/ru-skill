@@ -101,7 +101,7 @@ function normalizeSymbol(value) {
   const symbol = String(value || "").trim();
 
   if (!symbol) {
-    throw new Error("symbol is required.");
+    throw new Error("symbol обязателен.");
   }
 
   return symbol;
@@ -109,7 +109,7 @@ function normalizeSymbol(value) {
 
 function normalizeSymbols(values) {
   if (!Array.isArray(values) || values.length === 0) {
-    throw new Error("symbols must be a non-empty array.");
+    throw new Error("symbols должен быть непустым массивом.");
   }
 
   return values.map(normalizeSymbol);

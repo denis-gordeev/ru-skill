@@ -18,7 +18,7 @@ function normalizeSearchText(value) {
   const normalized = String(value).trim();
 
   if (!normalized) {
-    throw new Error("search text must be a non-empty string.");
+    throw new Error("Текст поиска должен быть непустой строкой.");
   }
 
   return normalized;
@@ -33,7 +33,7 @@ function normalizeNumericId(value, label) {
   const normalized = String(value).trim();
 
   if (!/^\d+$/.test(normalized)) {
-    throw new Error(`${label} must contain digits only.`);
+    throw new Error(`${label} должен содержать только цифры.`);
   }
 
   return normalized;
@@ -70,7 +70,7 @@ function buildVacancySearchUrl(text, options = {}) {
 
   if (options.page !== undefined) {
     if (!Number.isInteger(options.page) || options.page < 0) {
-      throw new Error("page must be an integer greater than or equal to 0.");
+      throw new Error("page должен быть целым числом, большим или равным 0.");
     }
 
     url.searchParams.set("page", String(options.page));
@@ -78,7 +78,7 @@ function buildVacancySearchUrl(text, options = {}) {
 
   if (options.perPage !== undefined) {
     if (!Number.isInteger(options.perPage) || options.perPage < 1 || options.perPage > 100) {
-      throw new Error("perPage must be an integer between 1 and 100.");
+      throw new Error("perPage должен быть целым числом от 1 до 100.");
     }
 
     url.searchParams.set("per_page", String(options.perPage));
@@ -95,7 +95,7 @@ async function fetchJson(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`HH request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к HH не удался: ${response.status} для ${url}`);
   }
 
   return response.json();

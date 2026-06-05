@@ -99,7 +99,7 @@ function requireOfficeHeading(html) {
   const heading = matchOne(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i);
 
   if (!heading) {
-    throw new Error("Unable to locate Postcalc office heading.");
+    throw new Error("Не удалось найти заголовок отделения Postcalc.");
   }
 
   return heading;
@@ -113,7 +113,7 @@ function extractInfoMap(html) {
   const table = extractTables(html)[0];
 
   if (!table) {
-    throw new Error("Unable to locate Postcalc info table.");
+    throw new Error("Не удалось найти информационную таблицу Postcalc.");
   }
 
   return Object.fromEntries(extractRows(table).map((row) => [row.label, { value: row.value, valueHtml: row.valueHtml }]));
@@ -127,7 +127,7 @@ function parseOfficePage(html) {
   const postalCode = matchOne(heading, /(\d{6})/) || matchOne(html, /\/offices\/(\d{6})/);
 
   if (!postalCode) {
-    throw new Error("Unable to extract office postal code from Postcalc page.");
+    throw new Error("Не удалось извлечь почтовый индекс отделения со страницы Postcalc.");
   }
 
   const officeName = matchOne(heading, /"([^"]+)"/) || heading.replace(/^Отделение Почты России\s+\d{6}\s*/i, "").trim();
@@ -199,14 +199,14 @@ function parseCityPage(html) {
   const infoTable = tables.find((table) => table.includes("Параметры API"));
 
   if (!infoTable) {
-    throw new Error("Unable to locate Postcalc city API table.");
+    throw new Error("Не удалось найти таблицу API Postcalc для города.");
   }
 
   const infoRows = Object.fromEntries(extractRows(infoTable).map((row) => [row.label, { value: row.value, valueHtml: row.valueHtml }]));
   const officesTable = html.match(/<div id="OPSTable"[\s\S]*?<table\b[^>]*>([\s\S]*?)<\/table>/i);
 
   if (!officesTable) {
-    throw new Error("Unable to locate Postcalc city offices table.");
+    throw new Error("Не удалось найти таблицу отделений Postcalc для города.");
   }
 
   const officeRows = [...officesTable[1].matchAll(ROW_PATTERN)]

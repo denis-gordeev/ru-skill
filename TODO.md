@@ -4,28 +4,31 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-05 (раунд 38)
+## Статус на 2026-06-05 (раунд 39)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- Закрыт следующий мелкий слой mixed-language drift в repo-governance и publish surfaces: `packages/zoon-nearby/README.md` переведён с `## Обзор` на каноничный `## Что делает навык`, `AGENTS.md` русифицирован, а оставшиеся `fixture-based` формулировки в `.changeset/fair-steaks-pretend.md` и `.changeset/moex-shares.md` переведены на русский.
-- Doc-regression обновлён: тесты теперь страхуют отсутствие `## Обзор` в `packages/zoon-nearby/README.md`, `Default posture: public read-only endpoint` в `AGENTS.md` и `fixture-based` в changeset-сводках.
+- Закрыт следующий слой English jargon в source code и publish surfaces: все 6 CHANGELOG.md переведены с `### Minor Changes` на `### Незначительные изменения` и английские описания на русский; `"read-only"` в User-Agent rpl-results → `навык только для чтения`; `lookupMode: "fallback"` → `"запасной вариант"` в k-skill-proxy; `"flat"/"up"/"down"` → `"без изменений"/"рост"/"снижение"` в cbr-rates; `"unknown"` → `"неизвестно"` в osm-nearby; английские error messages во всех 20 пакетах переведены на русский; AIR_KOREA_OPEN_API_KEY inconsistency устранена.
+- Doc-regression обновлён: тесты теперь страхуют русские CHANGELOG headings, отсутствие English jargon в source code, русские lookupMode/direction/amenity default значения.
 
-## Выполнено в этом раунде (раунд 38)
+## Выполнено в этом раунде (раунд 39)
 
-- [x] `packages/zoon-nearby/README.md`: `## Обзор` заменён на каноничный заголовок `## Что делает навык`.
-- [x] `AGENTS.md` переведён на русский, включая repo-governance правила и proxy policy.
-- [x] `.changeset/fair-steaks-pretend.md` и `.changeset/moex-shares.md`: `fixture-based` заменён на русские формулировки про тесты на фикстурах.
-- [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
-- [x] `scripts/skill-docs.test.js` расширен регрессиями на package README heading, `AGENTS.md` и changeset `fixture-based` jargon.
+- [x] Все 6 CHANGELOG.md: `### Minor Changes` → `### Незначительные изменения`, английские описания переведены на русский.
+- [x] `packages/rpl-results/src/index.js`: `"read-only skill for Russian Premier League data"` → `"навык только для чтения данных Российской Премьер-Лиги"` в User-Agent; error messages переведены.
+- [x] `packages/k-skill-proxy/src/airkorea.js`: `lookupMode: "fallback"` → `"запасной вариант"` (5 вхождений); AIR_KOREA_OPEN_API_KEY inconsistency устранена (3 английских сообщения → русские); `"A fetch implementation is required"` → `"Требуется реализация fetch"`.
+- [x] `packages/cbr-rates/src/index.js`: direction values `"flat"/"up"/"down"` → `"без изменений"/"рост"/"снижение"`.
+- [x] `packages/osm-nearby/src/query.js`: default amenity `'unknown'` → `"неизвестно"`.
+- [x] Английские error messages переведены на русский во всех 20 пакетах (daiso-product-search, k-lotto, blue-ribbon-nearby, kakao-bar-nearby, kleague-results, toss-securities и другие).
+- [x] Все 13+ package test файлов обновлены для соответствия русским error messages.
+- [x] `scripts/skill-docs.test.js` расширен регрессиями на CHANGELOG headings, source code English jargon, lookupMode/direction/amenity default values.
 - [x] `npm test` и `./scripts/validate-skills.sh` проходят после правок.
 
 ## Новые пункты плана
 
-- [ ] Проверить `CHANGELOG.md` и package-level changelog surfaces на остаточные mixed-language summary-фразы, которые могут возвращать English jargon в publish/user-summary слой.
-- [ ] Проверить user-facing CLI/help/output тексты в `packages/*/src` и связанных README на мелкий English jargon там, где он уже не является domain-inherent identifier.
-- [ ] Расширить doc-regression на критичные repo-governance surfaces за пределами `AGENTS.md`, если в них ещё осталась смешанная терминология.
+- [ ] Настроить custom Changesets changelog formatter, чтобы `changeset version` автоматически генерировал `### Незначительные изменения` вместо `### Minor Changes` для будущих релизов.
+- [ ] Проверить оставшиеся English jargon артефакты в GitHub Actions workflow файлах (`.github/workflows/`), если они есть.
+- [ ] Расширить doc-regression на GitHub Actions workflow files и другие repo-infrastructure surfaces.
 
-## Статус на 2026-06-04 (раунд 37)
+## Статус на 2026-06-05 (раунд 38)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - Закрыт оставшийся слой English jargon в user-facing docs: `Read-only` → `только для чтения` (11 target package README + docs/features + 5 changeset-сводок), `baseline` → `основа` (13 вхождений в docs/sources.md), `fallback` → `запасной вариант` (fine-dust-location/SKILL.md, docs/sources.md), `live smoke test` / `smoke test` → `проверочный тест` (delivery-tracking/SKILL.md, daiso-product-search.md), `checkout` → `оформление заказа` (yandex-rasp/SKILL.md), `delayed` → `задержанный` (docs/sources.md, docs/roadmap.md), `live-матчей` → `текущих матчей` (docs/features/rpl-results.md), `varies` → `варьируется` (docs/features/stoloto-lotto.md), `nearby-поиск` → `поиск ближайших` (docs/sources.md), `nearby-` prefix → `поиск ближайших` (4 package.json descriptions), `availability-страницы` → `страницы наличия` (docs/sources.md), `## Legacy reference block` → `## Справочный блок Legacy` (docs/sources.md).

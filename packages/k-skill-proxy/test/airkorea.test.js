@@ -64,7 +64,7 @@ test("buildReport combines station and measurement summary", () => {
   assert.equal(report.station_name, "강남구");
   assert.deepEqual(report.pm10, { value: "42", grade: "Умеренно" });
   assert.deepEqual(report.pm25, { value: "19", grade: "Умеренно" });
-  assert.equal(report.lookup_mode, "fallback");
+  assert.equal(report.lookup_mode, "запасной вариант");
 });
 
 test("fetchFineDustReport uses station-info lookup before measurement lookup", async () => {
@@ -102,7 +102,7 @@ test("fetchFineDustReport uses station-info lookup before measurement lookup", a
   });
 
   assert.equal(report.station_name, "강남구");
-  assert.equal(report.lookup_mode, "fallback");
+  assert.equal(report.lookup_mode, "запасной вариант");
   assert.deepEqual(calls.map((url) => url.split("/").at(-1)?.split("?")[0]), [
     "getMsrstnList",
     "getMsrstnAcctoRltmMesureDnsty"
@@ -137,7 +137,7 @@ test("fetchFineDustReport falls back to direct measurement lookup when station-i
 
   assert.equal(report.station_name, "강남구");
   assert.equal(report.station_address, null);
-  assert.equal(report.lookup_mode, "fallback");
+  assert.equal(report.lookup_mode, "запасной вариант");
   assert.deepEqual(calls.map((url) => url.split("/").at(-1)?.split("?")[0]), [
     "getMsrstnList",
     "getMsrstnAcctoRltmMesureDnsty"

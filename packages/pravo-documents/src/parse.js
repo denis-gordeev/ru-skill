@@ -91,11 +91,11 @@ function buildSearchUrl(options = {}) {
   const pageSize = options.pageSize ?? 20;
 
   if (!Number.isInteger(page) || page < 1) {
-    throw new Error("page must be an integer greater than or equal to 1.");
+    throw new Error("page должен быть целым числом, большим или равным 1.");
   }
 
   if (!Number.isInteger(pageSize) || pageSize < 1 || pageSize > 100) {
-    throw new Error("pageSize must be an integer between 1 and 100.");
+    throw new Error("pageSize должен быть целым числом от 1 до 100.");
   }
 
   url.searchParams.set("CurrentPage", String(page));
@@ -111,7 +111,7 @@ function buildSearchUrl(options = {}) {
  */
 function buildDocumentUrl(eoNumber) {
   if (!eoNumber || typeof eoNumber !== "string") {
-    throw new Error("eoNumber must be a non-empty string.");
+    throw new Error("eoNumber должен быть непустой строкой.");
   }
 
   const url = new URL(`${BASE_URL}/Document`);
@@ -127,7 +127,7 @@ async function fetchJson(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`Pravo.gov.ru request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к Pravo.gov.ru не удался: ${response.status} для ${url}`);
   }
 
   return response.json();

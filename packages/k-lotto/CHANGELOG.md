@@ -2,6 +2,6 @@
 
 ## 0.2.0
 
-### Minor Changes
+### Незначительные изменения
 
-- 720964c: Add the initial official dhlottery-backed k-lotto package.
+- 720964c: Добавление первого официального пакета k-lotto на базе dhlottery.

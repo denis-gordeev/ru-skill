@@ -157,7 +157,7 @@ function parseBusinessPage(html, url = '') {
                extractText(html, 'organizationCard__title');
   
   if (!name) {
-    throw new Error('Unable to parse business name from Zoon.ru page');
+    throw new Error('Не удалось извлечь название организации со страницы Zoon.ru');
   }
   
   const result = { name };
