@@ -4,29 +4,26 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-05 (раунд 39)
+## Статус на 2026-06-05 (раунд 40)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- Закрыт следующий слой English jargon в source code и publish surfaces: все 6 CHANGELOG.md переведены с `### Minor Changes` на `### Незначительные изменения` и английские описания на русский; `"read-only"` в User-Agent rpl-results → `навык только для чтения`; `lookupMode: "fallback"` → `"запасной вариант"` в k-skill-proxy; `"flat"/"up"/"down"` → `"без изменений"/"рост"/"снижение"` в cbr-rates; `"unknown"` → `"неизвестно"` в osm-nearby; английские error messages во всех 20 пакетах переведены на русский; AIR_KOREA_OPEN_API_KEY inconsistency устранена.
-- Doc-regression обновлён: тесты теперь страхуют русские CHANGELOG headings, отсутствие English jargon в source code, русские lookupMode/direction/amenity default значения.
+- Настроен автоматический перевод CHANGELOG headings через `scripts/fix-changelog-headings.js`: `npm run version-packages` теперь вызывает `changeset version && node scripts/fix-changelog-headings.js`, что гарантирует русские заголовки (`### Крупные изменения`, `### Незначительные изменения`, `### Исправления`) вместо английских при будущих релизах.
+- Русифицированы GitHub Actions workflow files: `release-npm.yml` → `name: Релиз npm-пакетов`, `release-python.yml` → `name: Релиз Python-пакетов`; step names, comments и echo messages переведены на русский.
+- Doc-regression расширен на GitHub Actions workflow files, version-packages script и fix-changelog-headings script: тесты страхуют русские workflow names, русские step names/comments, цепочку version-packages и покрытие всех стандартных английских CHANGELOG headings.
 
-## Выполнено в этом раунде (раунд 39)
+## Выполнено в этом раунде (раунд 40)
 
-- [x] Все 6 CHANGELOG.md: `### Minor Changes` → `### Незначительные изменения`, английские описания переведены на русский.
-- [x] `packages/rpl-results/src/index.js`: `"read-only skill for Russian Premier League data"` → `"навык только для чтения данных Российской Премьер-Лиги"` в User-Agent; error messages переведены.
-- [x] `packages/k-skill-proxy/src/airkorea.js`: `lookupMode: "fallback"` → `"запасной вариант"` (5 вхождений); AIR_KOREA_OPEN_API_KEY inconsistency устранена (3 английских сообщения → русские); `"A fetch implementation is required"` → `"Требуется реализация fetch"`.
-- [x] `packages/cbr-rates/src/index.js`: direction values `"flat"/"up"/"down"` → `"без изменений"/"рост"/"снижение"`.
-- [x] `packages/osm-nearby/src/query.js`: default amenity `'unknown'` → `"неизвестно"`.
-- [x] Английские error messages переведены на русский во всех 20 пакетах (daiso-product-search, k-lotto, blue-ribbon-nearby, kakao-bar-nearby, kleague-results, toss-securities и другие).
-- [x] Все 13+ package test файлов обновлены для соответствия русским error messages.
-- [x] `scripts/skill-docs.test.js` расширен регрессиями на CHANGELOG headings, source code English jargon, lookupMode/direction/amenity default values.
-- [x] `npm test` и `./scripts/validate-skills.sh` проходят после правок.
+- [x] Создан `scripts/fix-changelog-headings.js`: автоматически заменяет `### Major Changes` → `### Крупные изменения`, `### Minor Changes` → `### Незначительные изменения`, `### Patch Changes` → `### Исправления` во всех CHANGELOG.md после `changeset version`.
+- [x] `package.json`: `version-packages` обновлён на `changeset version && node scripts/fix-changelog-headings.js`.
+- [x] `.github/workflows/release-npm.yml`: `name` → `Релиз npm-пакетов`, comment → `Предпочтительный путь...`, step name → `Создание релизного PR или публикация изменившихся пакетов`.
+- [x] `.github/workflows/release-python.yml`: `name` → `Релиз Python-пакетов`, echo messages → русские, step name `Reminder` → `Напоминание`.
+- [x] `scripts/skill-docs.test.js` расширен регрессиями: workflow names на русском, workflow step names и comments на русском, version-packages цепочка, fix-changelog-headings покрытие всех heading mappings.
+- [x] `npm test` проходит: 122 pass / 0 fail / 1 skipped.
 
 ## Новые пункты плана
 
-- [ ] Настроить custom Changesets changelog formatter, чтобы `changeset version` автоматически генерировал `### Незначительные изменения` вместо `### Minor Changes` для будущих релизов.
-- [ ] Проверить оставшиеся English jargon артефакты в GitHub Actions workflow файлах (`.github/workflows/`), если они есть.
-- [ ] Расширить doc-regression на GitHub Actions workflow files и другие repo-infrastructure surfaces.
+- [ ] Проверить оставшиеся English jargon артефакты в `scripts/check-setup.sh`, `scripts/run-k-skill-proxy.sh` и других shell-скриптах, если они есть.
+- [ ] Расширить doc-regression на shell-скрипты и другие repo-infrastructure surfaces, не покрытые текущими регрессиями.
 
 ## Статус на 2026-06-05 (раунд 38)
 

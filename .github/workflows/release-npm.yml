@@ -1,4 +1,4 @@
-name: Release npm packages
+name: Релиз npm-пакетов
 
 on:
   push:
@@ -16,8 +16,8 @@ permissions:
   pull-requests: write
   id-token: write
 
-# Preferred path: npm trusted publishing via GitHub OIDC.
-# Configure each public package as a trusted publisher on npm.
+# Предпочтительный путь: npm trusted publishing через GitHub OIDC.
+# Каждый публичный пакет нужно настроить как trusted publisher на npm.
 
 jobs:
   release:
@@ -36,7 +36,7 @@ jobs:
       - run: npm ci
       - run: npm run ci
 
-      - name: Create npm release PR or publish changed packages
+      - name: Создание релизного PR или публикация изменившихся пакетов
         uses: changesets/action@v1
         with:
           version: npm run version-packages

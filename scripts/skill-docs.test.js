@@ -1333,8 +1333,8 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-05");
-  assert.equal(todoStatus.round, 39);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 39\)/);
+  assert.equal(todoStatus.round, 40);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 40\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -2604,4 +2604,53 @@ test("osm-nearby uses Russian default amenity value", () => {
 
   assert.doesNotMatch(query, /'unknown'/);
   assert.match(query, /"неизвестно"/);
+});
+
+test("GitHub Actions workflow names use Russian", () => {
+  const releaseNpm = read(path.join(".github", "workflows", "release-npm.yml"));
+  const releasePython = read(path.join(".github", "workflows", "release-python.yml"));
+
+  assert.match(releaseNpm, /^name: Релиз npm-пакетов$/m);
+  assert.doesNotMatch(releaseNpm, /^name: Release npm packages$/m);
+
+  assert.match(releasePython, /^name: Релиз Python-пакетов$/m);
+  assert.doesNotMatch(releasePython, /^name: Release Python packages$/m);
+});
+
+test("GitHub Actions workflow step names and comments use Russian instead of English", () => {
+  const releaseNpm = read(path.join(".github", "workflows", "release-npm.yml"));
+  const releasePython = read(path.join(".github", "workflows", "release-python.yml"));
+
+  assert.match(releaseNpm, /Создание релизного PR или публикация изменившихся пакетов/);
+  assert.match(releaseNpm, /Предпочтительный путь.*npm trusted publishing через GitHub OIDC/);
+  assert.doesNotMatch(releaseNpm, /Create npm release PR or publish/);
+  assert.doesNotMatch(releaseNpm, /Preferred path: npm trusted publishing/);
+
+  assert.match(releasePython, /Python-пакет пока не существует/);
+  assert.match(releasePython, /Метаданные релиза Python-пакета созданы/);
+  assert.match(releasePython, /name: Напоминание$/m);
+  assert.doesNotMatch(releasePython, /No Python package exists yet/);
+  assert.doesNotMatch(releasePython, /Python package release metadata was created/);
+  assert.doesNotMatch(releasePython, /name: Reminder$/m);
+});
+
+test("version-packages script chains fix-changelog-headings after changeset version", () => {
+  const packageJson = readJson("package.json");
+
+  assert.match(
+    packageJson.scripts["version-packages"],
+    /changeset version && node scripts\/fix-changelog-headings\.js/,
+  );
+});
+
+test("fix-changelog-headings script exists and handles all standard English headings", () => {
+  const scriptPath = path.join(repoRoot, "scripts", "fix-changelog-headings.js");
+
+  assert.ok(fs.existsSync(scriptPath), "expected scripts/fix-changelog-headings.js to exist");
+
+  const script = read(path.join("scripts", "fix-changelog-headings.js"));
+
+  assert.match(script, /Major Changes.*Крупные изменения|Крупные изменения.*Major Changes/s);
+  assert.match(script, /Minor Changes.*Незначительные изменения|Незначительные изменения.*Minor Changes/s);
+  assert.match(script, /Patch Changes.*Исправления|Исправления.*Patch Changes/s);
 });
