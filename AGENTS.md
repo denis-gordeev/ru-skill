@@ -1,32 +1,32 @@
-# k-skill repository instructions
+# Инструкции для репозитория k-skill
 
-This repository inherits the broader oh-my-codex guidance from the parent environment.
-These rules are repo-specific and apply to everything under this directory.
+Этот репозиторий наследует общие правила `oh-my-codex` из родительского окружения.
+Ниже перечислены правила уровня репозитория, которые действуют для всего содержимого этого каталога.
 
-## Release automation rules
+## Правила релизной автоматизации
 
-- Node packages live under `packages/*` and use npm workspaces.
-- Node package releases use **Changesets**. Do not hand-edit package versions only to cut a release; add a `.changeset/*.md` file instead.
-- npm publish is automated from GitHub Actions and should happen only after the bot-generated **Version Packages** PR is merged into `main`.
-- Python packages live under `python-packages/*` and use **release-please**. Until a real Python package exists, keep the Python release workflow as scaffold-only.
-- PyPI publish should run only when release-please reports `release_created=true` for a concrete package path.
-- Prefer trusted publishing via OIDC for npm and PyPI. Do not introduce long-lived registry tokens unless trusted publishing is unavailable.
+- Node-пакеты лежат в `packages/*` и используют npm workspaces.
+- Для релизов Node-пакетов используется **Changesets**. Не правьте версии вручную только ради релиза; вместо этого добавляйте файл `.changeset/*.md`.
+- Публикация в npm автоматизирована через GitHub Actions и должна происходить только после merge bot-generated PR **Version Packages** в `main`.
+- Python-пакеты лежат в `python-packages/*` и используют **release-please**. Пока реального Python-пакета нет, workflow релиза Python остаётся только scaffold-заготовкой.
+- Публикация в PyPI должна запускаться только когда `release-please` сообщает `release_created=true` для конкретного package path.
+- Предпочитайте trusted publishing через OIDC для npm и PyPI. Не добавляйте long-lived registry tokens, если trusted publishing доступен.
 
-## Verification rules
+## Правила проверки
 
-- For release or packaging changes, run `npm run ci`.
-- Keep release docs, workflow files, and package metadata aligned in the same change.
+- Для релизных изменений и изменений упаковки запускайте `npm run ci`.
+- Релизную документацию, workflow-файлы и package metadata держите синхронными в рамках одного изменения.
 
-## Development skill install rules
+## Правила установки навыков для разработки
 
-- When testing or developing skills from this repository, install or sync the current skill directories into the user's home-directory global skill locations first.
-- Use `~/.claude/skills/<skill-name>` for Claude Code and `~/.agents/skills/<skill-name>` for agents-compatible home installs.
-- Respect existing home-directory indirection such as symlinks when syncing `~/.agents/skills`.
-- Do **not** create repo-local `.claude` or `.agents` directories for skill installation unless the user explicitly asks for a repository-local test fixture.
+- При тестировании или разработке навыков из этого репозитория сначала устанавливайте или синхронизируйте текущие директории навыков в глобальные skill-каталоги домашней директории пользователя.
+- Используйте `~/.claude/skills/<skill-name>` для Claude Code и `~/.agents/skills/<skill-name>` для совместимых с agents home-install сценариев.
+- При синхронизации `~/.agents/skills` учитывайте существующую домашнюю индирекцию, например symlink.
+- Не создавайте repo-local каталоги `.claude` или `.agents` для установки навыков, если пользователь явно не попросил локальную test fixture внутри репозитория.
 
-## Free API proxy policy
+## Политика прокси для бесплатных API
 
-- The built-in `k-skill-proxy` is for **free APIs only**.
-- Default posture: public read-only endpoint, **no proxy auth by default**.
-- Keep free-API proxy surfaces narrow, allowlisted, cache-backed, and rate-limited.
-- If abuse or operational issues appear later, add stricter controls then instead of preemptively requiring auth.
+- Встроенный `k-skill-proxy` предназначен только для **бесплатных API**.
+- Базовая позиция: публичный endpoint только для чтения, **без proxy-auth по умолчанию**.
+- Поверхности прокси для бесплатных API должны оставаться узкими, allowlist-ограниченными, cache-backed и rate-limited.
+- Если позже появятся злоупотребления или операционные проблемы, ужесточайте ограничения тогда, а не вводите обязательную авторизацию заранее.

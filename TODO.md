@@ -4,6 +4,27 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-05 (раунд 38)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- Закрыт следующий мелкий слой mixed-language drift в repo-governance и publish surfaces: `packages/zoon-nearby/README.md` переведён с `## Обзор` на каноничный `## Что делает навык`, `AGENTS.md` русифицирован, а оставшиеся `fixture-based` формулировки в `.changeset/fair-steaks-pretend.md` и `.changeset/moex-shares.md` переведены на русский.
+- Doc-regression обновлён: тесты теперь страхуют отсутствие `## Обзор` в `packages/zoon-nearby/README.md`, `Default posture: public read-only endpoint` в `AGENTS.md` и `fixture-based` в changeset-сводках.
+
+## Выполнено в этом раунде (раунд 38)
+
+- [x] `packages/zoon-nearby/README.md`: `## Обзор` заменён на каноничный заголовок `## Что делает навык`.
+- [x] `AGENTS.md` переведён на русский, включая repo-governance правила и proxy policy.
+- [x] `.changeset/fair-steaks-pretend.md` и `.changeset/moex-shares.md`: `fixture-based` заменён на русские формулировки про тесты на фикстурах.
+- [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
+- [x] `scripts/skill-docs.test.js` расширен регрессиями на package README heading, `AGENTS.md` и changeset `fixture-based` jargon.
+- [x] `npm test` и `./scripts/validate-skills.sh` проходят после правок.
+
+## Новые пункты плана
+
+- [ ] Проверить `CHANGELOG.md` и package-level changelog surfaces на остаточные mixed-language summary-фразы, которые могут возвращать English jargon в publish/user-summary слой.
+- [ ] Проверить user-facing CLI/help/output тексты в `packages/*/src` и связанных README на мелкий English jargon там, где он уже не является domain-inherent identifier.
+- [ ] Расширить doc-regression на критичные repo-governance surfaces за пределами `AGENTS.md`, если в них ещё осталась смешанная терминология.
+
 ## Статус на 2026-06-04 (раунд 37)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -28,9 +49,9 @@
 
 ## Новые пункты плана
 
-- [ ] Проверить оставшиеся English jargon артефакты в менее заметных поверхностях (legacy package README, SKILL.md, helper-скрипты) на предмет `live smoke`, `smoke test`, `read-only`, `fallback`, `baseline`, `checkout`, `delayed` и других мелких артефактов.
-- [ ] Аудит `## Проверочный пример` заголовков в legacy package README на предмет консистентности с новым названием (текущий статус: все 5 файлов используют `## Проверочный пример` — консистентно).
-- [ ] Проверить оставшиеся English jargon в README.md, docs/roadmap.md и docs/sources.md (в том числе `nearby-` в заголовках таблиц и описаниях навыков).
+- [x] Проверить оставшиеся English jargon артефакты в менее заметных поверхностях (legacy package README, SKILL.md, helper-скрипты) на предмет `live smoke`, `smoke test`, `read-only`, `fallback`, `baseline`, `checkout`, `delayed` и других мелких артефактов.
+- [x] Аудит `## Проверочный пример` заголовков в legacy package README на предмет консистентности с новым названием (текущий статус: все 5 файлов используют `## Проверочный пример` — консистентно).
+- [x] Проверить оставшиеся English jargon в README.md, docs/roadmap.md и docs/sources.md (в том числе `nearby-` в заголовках таблиц и описаниях навыков).
 
 ## Статус на 2026-06-03 (раунд 35)
 

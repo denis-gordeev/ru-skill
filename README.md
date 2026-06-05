@@ -109,22 +109,22 @@
 - Добавлен двенадцатый целевой русскоязычный навык `osm-nearby` для поиска ближайших заведений через публичный Overpass API OpenStreetMap.
 - Добавлен тринадцатый целевой русскоязычный навык `zoon-nearby` для поиска ближайших заведений через публичные страницы Zoon.ru.
 - Верхнеуровневая документация и roadmap переведены на единый русскоязычный сценарий с явным разделением `Target` и `Legacy`.
-- `README.md`, `TODO.md`, `docs/install.md` и `docs/roadmap.md` синхронизированы между собой; добавлена регрессия, которая проверяет, что install-flow не пропускает текущие `target` workspace-пакеты.
-- Для setup и shell-скриптов введён dual-path secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
+- `README.md`, `TODO.md`, `docs/install.md` и `docs/roadmap.md` синхронизированы между собой; добавлена регрессия, которая проверяет, что поток установки не пропускает текущие `target` workspace-пакеты.
+- Для setup и shell-скриптов введён двойной путь secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy запасной вариант `~/.config/k-skill/secrets.env`.
 - Setup-поток теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый alias.
 - Плановая документация очищена от устаревших статусов: `README.md`, `TODO.md` и `docs/roadmap.md` теперь синхронно фиксируют 13 реализованных `target`-навыков и текущее состояние migration backlog.
 - В `docs/roadmap.md` обновлён статус Milestone 4: документная миграция, матрица замен и маркировка legacy-пакетов доведены до рабочего завершения; дальше фокус смещён на booking-replacements и release hygiene.
 - Добавлена отдельная doc-regression проверка, которая не даёт README, roadmap и TODO разъехаться по следующим шагам и продуктовым приоритетам.
 - Проведён release-hygiene раунд: подтверждён текущий inventory `.changeset/`, а из верхнеуровневых документов убраны устаревшие релизные ярлыки и сводки расстояния ветки как неустойчивый live-статус.
 - Doc-regression усилен: README и roadmap теперь дополнительно страхуются тестами от возврата устаревшей release-археологии в живые секции.
-- Проведён research-first раунд по railway booking replacements: добавлен отдельный decision matrix-документ, где официальный поток РЖД признан слишком checkout-heavy для MVP, а `tutu.ru` и Яндекс Путешествия зафиксированы как кандидаты только для чтения/перенаправления, а не как подтверждённые public booking API.
+- Проведён исследовательский раунд по railway booking replacements: добавлен отдельный документ с матрицей решений, где официальный поток РЖД признан слишком тяжёлым по части оформления заказа для MVP, а `tutu.ru` и Яндекс Путешествия зафиксированы как кандидаты только для чтения и перенаправления, а не как подтверждённые публичные booking API.
 - Legacy railway docs выровнены с этим решением: `srt-booking` и `ktx-booking` теперь явно помечены как backward-compatible корейские сценарии, а не как направление для новых российских интеграций на запись.
 - Milestone 5 закрыт документно: подтверждено, что `yandex-rasp` уже покрывает стабильный поиск железнодорожных маршрутов, а отдельный навык-перенаправление без публичного booking API не добавляет новой устойчивой функции.
 - `docs/booking-replacements.md`, `docs/sources.md`, `docs/features/yandex-rasp.md` и `yandex-rasp/SKILL.md` обновлены под это решение: внешний переход в поверхности оформления заказа описан как пользовательский ручной шаг, а не как новый `target`-пакет.
 - Доведена до конца `remaining legacy-only matrix`: `seoul-subway-arrival` и `toss-securities` теперь одинаково помечены как документно закрытые `Legacy`, а `k-skill-proxy` — как `Transition` во всех user-facing верхнеуровневых документах.
 - `docs/install.md` больше не смешивает `target`, `legacy-only` и transition-навыки без пояснений: в install-flow зафиксированы границы для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy`.
 - User-facing guides для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy` дополнены явными граничными примечаниями, чтобы legacy/transition сценарии не выглядели как скрытый целевой перечень задач.
-- `fine-dust-location`, `docs/setup.md`, `docs/security-and-secrets.md` и `packages/k-skill-proxy/README.md` выровнены по `ru-skill`-first secret order и transition-boundary: published proxy endpoint описан как слой совместимости, а `AIR_KOREA_OPEN_API_KEY` оставлен только для прямого резервного доступа или прокси на собственном сервере.
+- `fine-dust-location`, `docs/setup.md`, `docs/security-and-secrets.md` и `packages/k-skill-proxy/README.md` выровнены по `ru-skill`-first порядку секретов и transition-boundary: опубликованный proxy endpoint описан как слой совместимости, а `AIR_KOREA_OPEN_API_KEY` оставлен только для прямого резервного доступа или прокси на собственном сервере.
 - Doc-regression расширен на `fine-dust-location` и proxy helper-docs, чтобы граничные примечания, порядок `~/.config/ru-skill/secrets.env` -> `~/.config/k-skill/secrets.env` и различие между переопределением адреса и реальными секретами не разъезжались.
 - `examples/secrets.env.example`, setup-skills и `scripts/check-setup.sh` дополнительно выровнены по той же модели: `KSKILL_PROXY_BASE_URL` теперь везде подан как необязательное переопределение адреса, а не как секрет по умолчанию или обязательный элемент стартового шаблона.
 - Doc-regression расширен ещё на secrets template и setup helper-docs, чтобы необязательное переопределение/настоящие учётные данные не откатывалась в локальных инструкциях и проверках окружения.
@@ -170,6 +170,8 @@
 - Все 20 workspace `package.json` descriptions переведены на русский и выровнены с текущим target/legacy/transition позиционированием репозитория, чтобы npm/publish metadata не расходилась с README и feature docs.
 - Doc-regression расширен на transition/setup copy и package metadata: тесты теперь страхуют русские формулировки вокруг `KSKILL_PROXY_BASE_URL`, `AIR_KOREA_OPEN_API_KEY` и descriptions во всех publishable workspace-пакетах.
 - Полный `npm test` и `./scripts/validate-skills.sh` проходят после этой синхронизации.
+- Закрыт следующий мелкий слой mixed-language drift в repo-governance и publish surfaces: `packages/zoon-nearby/README.md` переведён с неканоничного `## Обзор` на `## Что делает навык`, `AGENTS.md` русифицирован, а оставшиеся `fixture-based` формулировки в `.changeset/fair-steaks-pretend.md` и `.changeset/moex-shares.md` переведены на русский.
+- Doc-regression расширен на package README heading и repo-governance surfaces: тесты страхуют, что `packages/zoon-nearby/README.md` не возвращает `## Обзор`, `AGENTS.md` не возвращает `Default posture: public read-only endpoint`, а changeset-сводки не используют `fixture-based`.
 
 ## Что делаем дальше
 
@@ -177,6 +179,7 @@
 - Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и ненадёжных обходов anti-bot, тогда можно вернуться к идее отдельного target-пакета; до этого автоматизацию записи в потоках оформления заказа не раздувать.
 - Skill-only drift, legacy feature/skill drift, helper/runtime cleanup, source-level русификация и skill-level copy audit уже закрыты; весь user-facing Korean в source code и docs полностью устранён; оставшийся Korean — domain-inherent (API parameters, location names, fixture data, regex patterns).
 - Все SKILL.md и feature docs приведены к единой каноничной heading scheme; неканоничные варианты (`Что делает этот навык`, `Что умеет`, `Предварительные требования`, `Режимы сбоев`, `Что умеет этот сценарий`, `Что нужно заранее`, `Базовый поток`, `Базовый сценарий`, `Обзор`) устранены.
+- Package README на актуальных target-поверхностях тоже доведены до каноничной heading scheme; оставшийся `## Обзор` в `packages/zoon-nearby/README.md` устранён.
 - Chinese character артефакты (`整理`, `布尔`, `返回`, `实时`) устранены из всей user-facing документации; doc-regression страхует отсутствие таких артефактов.
 - Doc-regression покрывает все 13 target-навыков и все legacy-навыки с workflow/content assertions, каноничность heading scheme и отсутствие mixed-language артефактов.
 - Английские артефакты в target package README, SKILL.md h1-заголовках и секционных заголовках устранены; `## Boundary note` переведён как `## Граничное примечание`.

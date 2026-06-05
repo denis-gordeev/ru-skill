@@ -1332,9 +1332,9 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-04");
-  assert.equal(todoStatus.round, 37);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 37\)/);
+  assert.equal(todoStatus.date, "2026-06-05");
+  assert.equal(todoStatus.round, 38);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 38\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -2457,6 +2457,7 @@ test("target package READMEs use Russian instead of Read-only jargon", () => {
     "cbr-rates", "moex-shares", "postcalc-postcodes", "hh-vacancies",
     "stoloto-lotto", "kinopoisk-search", "mchs-storm-warnings",
     "pravo-documents", "yandex-rasp", "yandex-market-search", "osm-nearby",
+    "zoon-nearby",
   ];
 
   for (const pkg of targetPackages) {
@@ -2464,6 +2465,10 @@ test("target package READMEs use Russian instead of Read-only jargon", () => {
     assert.doesNotMatch(readme, /^Read-only/im, `packages/${pkg}/README.md must not start with English Read-only`);
     assert.doesNotMatch(readme, /\bRead-only\b/, `packages/${pkg}/README.md must not contain English Read-only`);
   }
+
+  const zoonReadme = read(path.join("packages", "zoon-nearby", "README.md"));
+  assert.match(zoonReadme, /^## Что делает навык$/m);
+  assert.doesNotMatch(zoonReadme, /^## Обзор$/m);
 });
 
 test("docs/sources.md uses Russian instead of English jargon", () => {
@@ -2484,6 +2489,16 @@ test("docs/sources.md uses Russian instead of English jargon", () => {
 test("docs/roadmap.md does not contain English jargon in user-facing surfaces", () => {
   const roadmap = read(path.join("docs", "roadmap.md"));
   assert.doesNotMatch(roadmap, /delayed-цены/);
+});
+
+test("AGENTS.md uses Russian for repo-governance copy", () => {
+  const agents = read("AGENTS.md");
+
+  assert.match(agents, /^# Инструкции для репозитория k-skill$/m);
+  assert.match(agents, /^## Правила релизной автоматизации$/m);
+  assert.match(agents, /^## Политика прокси для бесплатных API$/m);
+  assert.doesNotMatch(agents, /^# k-skill repository instructions$/m);
+  assert.doesNotMatch(agents, /Default posture: public read-only endpoint/);
 });
 
 test("delivery-tracking SKILL.md uses Russian instead of live smoke test", () => {
@@ -2522,5 +2537,6 @@ test("changeset summaries use Russian instead of read-only prefix", () => {
   for (const file of changesetFiles) {
     const content = read(path.join(".changeset", file));
     assert.doesNotMatch(content, /read-only-/, `.changeset/${file} must not use read-only- prefix`);
+    assert.doesNotMatch(content, /fixture-based/, `.changeset/${file} must not use fixture-based jargon`);
   }
 });

@@ -4,6 +4,12 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
+## Статус на 2026-06-05
+
+- Закрыт следующий мелкий слой mixed-language drift в repo-governance и publish surfaces: `packages/zoon-nearby/README.md` переведён с `## Обзор` на каноничный заголовок `## Что делает навык`, `AGENTS.md` русифицирован, а оставшиеся `fixture-based` формулировки в `.changeset/fair-steaks-pretend.md` и `.changeset/moex-shares.md` переведены на русский.
+- Doc-regression расширен на эти поверхности: тесты теперь страхуют отсутствие `## Обзор` в `packages/zoon-nearby/README.md`, `Default posture: public read-only endpoint` в `AGENTS.md` и `fixture-based` в changeset-сводках.
+- Полный `npm test` и `validate-skills` проходят после этой синхронизации.
+
 ## Статус на 2026-06-03
 
 - Закрыт следующий слой English drift в docs/roadmap.md: `Migration milestones` → `Вехи миграции`, `Milestone N` → `Веха N`, `Legacy packages` → `Legacy-пакеты`.
@@ -25,7 +31,7 @@
 - Doc-regression дополнительно страхует этот слой: тесты проверяют новые русские формулировки вокруг `KSKILL_PROXY_BASE_URL`, `AIR_KOREA_OPEN_API_KEY` и descriptions publishable workspace-пакетов.
 - Полный `npm test` и `validate-skills` проходят после этой синхронизации.
 - Закрыт следующий слой mixed-language drift в legacy package README и feature guides: boundary/product copy на обновлённых surfaces переведён на русский без изменения code identifiers и статус-маркеров `legacy-only` / `transition`.
-- Английский заголовок `## Live smoke snapshot` убран из legacy package README с проверенными smoke-примерами; на этих surfaces теперь используется `## Проверенный live smoke пример`.
+- Английский заголовок `## Live smoke snapshot` убран из legacy package README с проверенными smoke-примерами; на этих surfaces теперь используется `## Проверенный проверочный пример`.
 - Doc-regression дополнительно страхует touched legacy surfaces от возврата `backward compatibility`, `reference flow`, `target-backlog`, `public-source replacement` и `adapter-based tracking flow`.
 - Полный `npm test` проходит: doc-regression зелёный, workspace-тесты и `validate-skills` подтверждают, что документная русификация не сломала publishable пакеты и skill layout.
 - Переведён `## Boundary note` → `## Граничное примечание` во всех 31 файле (15 SKILL.md, 16 docs/features/*.md).
@@ -46,7 +52,7 @@
 - `ru-skill-setup` переведён на русские заголовки (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`) и больше не выбивается как preferred setup-skill с английскими секциями.
 - `k-skill-setup` выровнен с тем же верхнеуровневым heading scheme: legacy alias теперь тоже использует `Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`, а прежние отдельные top-level секции (`Установка`, `Шаги настройки`, `Контрольный список завершения`) убраны под вложенные подразделы без изменения workflow.
 - `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md` приведены к target-канону русских секций; дополнительный nearby-источник больше не выбивается как отдельный стиль документации.
-- `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от случайного mixed-language артефакта `可以直接`; doc-regression теперь страхует не только Korean-boundary, но и отсутствие такого user-facing drift в Zoon surfaces.
+- `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от случайного mixed-language артефакта `可以直接`; doc-regression теперь страхует не только Korean-boundary, но и отсутствие такого user-facing drift в Zoon surfaces, а package README использует каноничный заголовок `## Что делает навык`.
 - `TODO.md` переведён на top-block governance: актуальными считаются верхние planning-блоки, а исторические `Новые пункты плана` очищены от активных unchecked-пунктов.
 - Doc-regression дополнительно страхует preferred setup-heading scheme и то, что живой backlog остаётся только в верхнем plan block `TODO.md`.
 - Последний слой user-facing Korean в source code и docs устранён: форматирование призов `k-lotto` (`원` → `вон`, locale `ru-RU`) и примеры CLI-запросов `kakaotalk-mac` переведены на русский.
@@ -238,5 +244,5 @@
 3. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, граничные примечания, package README, top-level TODO governance, heading scheme critical surfaces, transition/setup copy, package metadata descriptions и отсутствию устаревшей release-археологии в README/roadmap.
-6. Крупный слой English jargon (`read-only`, `supplementary`, `fallback`, `baseline`, `fixture-based`, `handoff`, `checkout`, `write-`, `discovery`, `boundary`, `credential`, `endpoint override`, `target-backlog`, `compatibility-layer`, `backward-compatible`, `mutation`, `decision matrix`, `nearby-поиск`, `live smoke`, `operational default`, `delayed-`, `passthrough`, `self-hosted`) устранён из всей user-facing документации; следующий проход — по мелким артефактам в менее заметных поверхностях.
+6. Крупный слой English jargon (`read-only`, `supplementary`, `fallback`, `baseline`, `fixture-based`, `handoff`, `checkout`, `write-`, `discovery`, `boundary`, `credential`, `endpoint override`, `target-backlog`, `compatibility-layer`, `backward-compatible`, `mutation`, `decision matrix`, `nearby-поиск`, `live smoke`, `operational default`, `delayed-`, `passthrough`, `self-hosted`) устранён из user-facing документации и repo-governance surfaces; следующий проход — по редким артефактам в CLI/help текстах и CHANGELOG user-summary поверхностях.
 7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и ненадёжных обходов anti-bot.
