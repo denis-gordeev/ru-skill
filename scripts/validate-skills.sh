@@ -9,29 +9,29 @@ while IFS= read -r -d '' skill_dir; do
   skill_file="$skill_dir/SKILL.md"
 
   if [[ ! -f "$skill_file" ]]; then
-    echo "missing SKILL.md: $skill_name"
+    echo "Не найден SKILL.md: $skill_name"
     status=1
     continue
   fi
 
   if ! head -n 1 "$skill_file" | grep -qx -- "---"; then
-    echo "missing frontmatter start: $skill_file"
+    echo "Не найдено начало frontmatter: $skill_file"
     status=1
   fi
 
   if ! grep -q '^name: ' "$skill_file"; then
-    echo "missing name field: $skill_file"
+    echo "Не найдено поле name: $skill_file"
     status=1
   fi
 
   if ! grep -q '^description: ' "$skill_file"; then
-    echo "missing description field: $skill_file"
+    echo "Не найдено поле description: $skill_file"
     status=1
   fi
 
   declared_name="$(sed -n 's/^name: //p' "$skill_file" | head -n 1 | tr -d '"')"
   if [[ "$declared_name" != "$skill_name" ]]; then
-    echo "name mismatch: $skill_file declares '$declared_name' but directory is '$skill_name'"
+    echo "Несовпадение name: $skill_file объявляет '$declared_name', а каталог называется '$skill_name'"
     status=1
   fi
 done < <(
@@ -57,4 +57,4 @@ if [[ "$status" -ne 0 ]]; then
   exit "$status"
 fi
 
-echo "skill layout looks valid"
+echo "Структура навыков выглядит корректной"

@@ -1332,9 +1332,9 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-05");
-  assert.equal(todoStatus.round, 40);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 40\)/);
+  assert.equal(todoStatus.date, "2026-06-06");
+  assert.equal(todoStatus.round, 41);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 41\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -1459,7 +1459,9 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
     "expected proxy runner to prefer RU_SKILL_SECRETS_FILE before KSKILL_SECRETS_FILE",
   );
 
-  assert.match(checkSetup, /KSKILL_PROXY_BASE_URL only if you need a fine-dust endpoint override/i);
+  assert.match(checkSetup, /KSKILL_PROXY_BASE_URL только если нужно переопределить адрес fine-dust endpoint/i);
+  assert.match(checkSetup, /Следующие шаги:/);
+  assert.match(checkSetup, /Конфигурация ru-skill выглядит рабочей:/);
 });
 
 test("workspace package descriptions stay aligned with the Russian migration metadata", () => {
@@ -2653,4 +2655,31 @@ test("fix-changelog-headings script exists and handles all standard English head
   assert.match(script, /Major Changes.*Крупные изменения|Крупные изменения.*Major Changes/s);
   assert.match(script, /Minor Changes.*Незначительные изменения|Незначительные изменения.*Minor Changes/s);
   assert.match(script, /Patch Changes.*Исправления|Исправления.*Patch Changes/s);
+});
+
+test("shell infrastructure scripts use Russian user-facing status messages", () => {
+  const checkSetup = read(path.join("scripts", "check-setup.sh"));
+  const validateSkills = read(path.join("scripts", "validate-skills.sh"));
+
+  assert.match(checkSetup, /Файл secrets не найден:/);
+  assert.match(checkSetup, /Небезопасные права доступа/);
+  assert.match(checkSetup, /Следующие шаги:/);
+  assert.match(checkSetup, /Конфигурация ru-skill выглядит рабочей:/);
+  assert.doesNotMatch(checkSetup, /missing secrets file:/);
+  assert.doesNotMatch(checkSetup, /insecure permissions on/);
+  assert.doesNotMatch(checkSetup, /next steps:/);
+  assert.doesNotMatch(checkSetup, /setup looks usable via/);
+
+  assert.match(validateSkills, /Не найден SKILL\.md:/);
+  assert.match(validateSkills, /Не найдено начало frontmatter:/);
+  assert.match(validateSkills, /Не найдено поле name:/);
+  assert.match(validateSkills, /Не найдено поле description:/);
+  assert.match(validateSkills, /Несовпадение name:/);
+  assert.match(validateSkills, /Структура навыков выглядит корректной/);
+  assert.doesNotMatch(validateSkills, /missing SKILL\.md:/);
+  assert.doesNotMatch(validateSkills, /missing frontmatter start:/);
+  assert.doesNotMatch(validateSkills, /missing name field:/);
+  assert.doesNotMatch(validateSkills, /missing description field:/);
+  assert.doesNotMatch(validateSkills, /name mismatch:/);
+  assert.doesNotMatch(validateSkills, /skill layout looks valid/);
 });

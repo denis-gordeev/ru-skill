@@ -33,26 +33,26 @@ secrets_file="$(resolve_secrets_file "${1:-}")"
 missing=0
 
 if [[ ! -f "$secrets_file" ]]; then
-  echo "missing secrets file: $secrets_file"
+  echo "Файл secrets не найден: $secrets_file"
   missing=1
 else
   perms=$(stat -f '%Lp' "$secrets_file" 2>/dev/null || stat -c '%a' "$secrets_file" 2>/dev/null)
   if [[ "$perms" != "600" ]]; then
-    echo "insecure permissions on $secrets_file: $perms (expected 600)"
+    echo "Небезопасные права доступа для $secrets_file: $perms (ожидается 600)"
     missing=1
   fi
 fi
 
 if [[ "$missing" -ne 0 ]]; then
   cat <<EOF
-next steps:
-  1. create ~/.config/ru-skill/secrets.env with your credentials
-  2. chmod 0600 ~/.config/ru-skill/secrets.env
-  3. add KSKILL_PROXY_BASE_URL only if you need a fine-dust endpoint override
-  4. or point RU_SKILL_SECRETS_FILE / KSKILL_SECRETS_FILE to an existing dotenv file
-  5. run this check again
+Следующие шаги:
+  1. создайте ~/.config/ru-skill/secrets.env со своими учётными данными
+  2. выполните chmod 0600 ~/.config/ru-skill/secrets.env
+  3. добавляйте KSKILL_PROXY_BASE_URL только если нужно переопределить адрес fine-dust endpoint
+  4. либо направьте RU_SKILL_SECRETS_FILE / KSKILL_SECRETS_FILE на существующий dotenv-файл
+  5. запустите эту проверку ещё раз
 EOF
   exit 1
 fi
 
-echo "ru-skill setup looks usable via $secrets_file"
+echo "Конфигурация ru-skill выглядит рабочей: $secrets_file"

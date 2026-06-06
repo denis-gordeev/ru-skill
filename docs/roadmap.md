@@ -4,6 +4,13 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
+## Статус на 2026-06-06
+
+- Закрыт следующий узкий слой English jargon в shell/infrastructure surfaces: `scripts/check-setup.sh` и `scripts/validate-skills.sh` теперь используют русские user-facing сообщения вместо `missing`, `insecure`, `next steps`, `skill layout looks valid` и других англоязычных helper-status форм.
+- `scripts/run-k-skill-proxy.sh` повторно проверен как немой launcher без user-facing drift; `ru-skill`-first порядок secrets и legacy fallback в нём сохранён.
+- Doc-regression расширен на shell/infrastructure surfaces: тесты страхуют русские статусы и ошибки в `scripts/check-setup.sh` и `scripts/validate-skills.sh`, а также не дают вернуть старые английские формулировки.
+- Полный `npm test` и `validate-skills` должны подтверждать этот слой синхронизации.
+
 ## Статус на 2026-06-05
 
 - Закрыт следующий мелкий слой mixed-language drift в repo-governance и publish surfaces: `packages/zoon-nearby/README.md` переведён с `## Обзор` на каноничный заголовок `## Что делает навык`, `AGENTS.md` русифицирован, а оставшиеся `fixture-based` формулировки в `.changeset/fair-steaks-pretend.md` и `.changeset/moex-shares.md` переведены на русский.
@@ -244,5 +251,5 @@
 3. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, граничные примечания, package README, top-level TODO governance, heading scheme critical surfaces, transition/setup copy, package metadata descriptions и отсутствию устаревшей release-археологии в README/roadmap.
-6. Крупный слой English jargon (`read-only`, `supplementary`, `fallback`, `baseline`, `fixture-based`, `handoff`, `checkout`, `write-`, `discovery`, `boundary`, `credential`, `endpoint override`, `target-backlog`, `compatibility-layer`, `backward-compatible`, `mutation`, `decision matrix`, `nearby-поиск`, `live smoke`, `operational default`, `delayed-`, `passthrough`, `self-hosted`) устранён из user-facing документации и repo-governance surfaces; следующий проход — по редким артефактам в CLI/help текстах и CHANGELOG user-summary поверхностях.
+6. Крупный слой English jargon (`read-only`, `supplementary`, `fallback`, `baseline`, `fixture-based`, `handoff`, `checkout`, `write-`, `discovery`, `boundary`, `credential`, `endpoint override`, `target-backlog`, `compatibility-layer`, `backward-compatible`, `mutation`, `decision matrix`, `nearby-поиск`, `live smoke`, `operational default`, `delayed-`, `passthrough`, `self-hosted`) устранён из user-facing документации, repo-governance и shell/infrastructure surfaces; следующий проход — по редким артефактам в CLI/help текстах и npm/package helper поверхностях вне shell-скриптов.
 7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и ненадёжных обходов anti-bot.

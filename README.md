@@ -172,6 +172,8 @@
 - Полный `npm test` и `./scripts/validate-skills.sh` проходят после этой синхронизации.
 - Закрыт следующий мелкий слой mixed-language drift в repo-governance и publish surfaces: `packages/zoon-nearby/README.md` переведён с неканоничного `## Обзор` на `## Что делает навык`, `AGENTS.md` русифицирован, а оставшиеся `fixture-based` формулировки в `.changeset/fair-steaks-pretend.md` и `.changeset/moex-shares.md` переведены на русский.
 - Doc-regression расширен на package README heading и repo-governance surfaces: тесты страхуют, что `packages/zoon-nearby/README.md` не возвращает `## Обзор`, `AGENTS.md` не возвращает `Default posture: public read-only endpoint`, а changeset-сводки не используют `fixture-based`.
+- Закрыт следующий слой English jargon в shell/infrastructure surfaces: `scripts/check-setup.sh` и `scripts/validate-skills.sh` теперь выдают русские user-facing статусы, ошибки и подсказки вместо `missing`, `insecure`, `next steps`, `skill layout looks valid`.
+- Doc-regression расширен на shell/infrastructure surfaces: тесты страхуют русские сообщения в `scripts/check-setup.sh` и `scripts/validate-skills.sh`, а также не дают вернуть английские helper/status формулировки в эти CLI-скрипты.
 
 ## Что делаем дальше
 
@@ -192,8 +194,10 @@
 - English jargon в `docs/features/osm-nearby.md` устранён: `free/no-key` → `бесплатное решение без API-ключа`, `sparse` → `неполным`.
 - Doc-regression расширен на roadmap milestone headings и osm-nearby English jargon.
 - Верхний активный блок `TODO.md` теперь зафиксирован как единственный живой backlog; исторические round-секции остаются архивом и не должны снова накапливать открытые checklist-пункты.
+- Shell/infrastructure surfaces больше не выбиваются по языку: `scripts/check-setup.sh` и `scripts/validate-skills.sh` синхронизированы с русскоязычным setup/runtime контуром и застрахованы doc-regression тестами.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO, booking docs и package metadata descriptions, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
+- Следующий проход делать уже по оставшимся user-facing CLI/help/output поверхностям вне shell-скриптов: npm/package scripts, helper JS utilities и другим редким repo-infrastructure сообщениям.
 
 ## Быстрые ссылки на ключевые функции
 

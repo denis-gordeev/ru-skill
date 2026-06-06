@@ -4,6 +4,25 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-06 (раунд 41)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- Закрыт следующий узкий слой English jargon в shell/infrastructure surfaces: `scripts/check-setup.sh` и `scripts/validate-skills.sh` переведены на русский в user-facing сообщениях (`missing`, `insecure`, `next steps`, `skill layout looks valid`, `name mismatch` и др.).
+- `scripts/run-k-skill-proxy.sh` повторно проверен: он остаётся немым launcher-скриптом без user-facing English drift и уже корректно держит `ru-skill`-first порядок secrets с legacy fallback.
+- Doc-regression расширен на shell/infrastructure surfaces: тесты страхуют русские статусы и ошибки в `scripts/check-setup.sh` и `scripts/validate-skills.sh`, а также отсутствие возврата прежних английских helper/status сообщений.
+
+## Выполнено в этом раунде (раунд 41)
+
+- [x] `scripts/check-setup.sh`: переведены на русский сообщения про отсутствие файла secrets, небезопасные права доступа, блок `Следующие шаги` и успешный итоговый статус.
+- [x] `scripts/validate-skills.sh`: переведены на русский сообщения про отсутствие `SKILL.md`, frontmatter, полей `name`/`description`, несовпадение имени и успешную валидацию структуры навыков.
+- [x] `scripts/skill-docs.test.js` расширен регрессиями на shell/infrastructure surfaces: добавлены проверки новых русских сообщений и запрет на возврат старых английских формулировок.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проверить оставшиеся user-facing CLI/help/output артефакты вне shell-скриптов: `package.json` scripts, helper JS utilities и другие редкие repo-infrastructure сообщения.
+- [ ] Расширить doc-regression на эти CLI/help/output surfaces, чтобы русская терминология держалась не только в docs и shell-helpers.
+
 ## Статус на 2026-06-05 (раунд 40)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
@@ -22,8 +41,8 @@
 
 ## Новые пункты плана
 
-- [ ] Проверить оставшиеся English jargon артефакты в `scripts/check-setup.sh`, `scripts/run-k-skill-proxy.sh` и других shell-скриптах, если они есть.
-- [ ] Расширить doc-regression на shell-скрипты и другие repo-infrastructure surfaces, не покрытые текущими регрессиями.
+- [x] Проверить оставшиеся English jargon артефакты в `scripts/check-setup.sh`, `scripts/run-k-skill-proxy.sh` и других shell-скриптах, если они есть.
+- [x] Расширить doc-regression на shell-скрипты и другие repo-infrastructure surfaces, не покрытые текущими регрессиями.
 
 ## Статус на 2026-06-05 (раунд 38)
 
