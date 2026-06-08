@@ -869,6 +869,17 @@ test("kleague-results package exports reusable results and standings helpers", (
   assert.equal(typeof pkg.getKLeagueSummary, "function");
 });
 
+test("kleague-results source uses Russian error messages", () => {
+  const parse = read(path.join("packages", "kleague-results", "src", "parse.js"));
+  const index = read(path.join("packages", "kleague-results", "src", "index.js"));
+
+  assert.match(parse, /leagueId должен разрешаться в K League 1 или 2/);
+  assert.match(index, /Запрос к K League завершился ошибкой/);
+
+  assert.doesNotMatch(parse, /leagueId must resolve to K League/);
+  assert.doesNotMatch(index, /K League request failed with/);
+});
+
 test("kleague-results package README stays aligned with the official K League JSON lookup flow", () => {
   const packageReadme = read(path.join("packages", "kleague-results", "README.md"));
 
@@ -1002,6 +1013,49 @@ test("kakao-bar-nearby package README live smoke snapshot matches the verified 2
   const smoke = findJsonFenceAfterLabel(packageReadme, "## Проверочный пример");
 
   assertKakaoBarNearbySadangSmokeSnapshot(smoke, "package README smoke snapshot");
+});
+
+test("kakao-bar-nearby source uses Russian error messages", () => {
+  const index = read(path.join("packages", "kakao-bar-nearby", "src", "index.js"));
+
+  assert.match(index, /Запрос к Kakao bar завершился ошибкой/);
+  assert.match(index, /Не удалось получить пригодную панель места Kakao Map/);
+
+  assert.doesNotMatch(index, /Kakao bar lookup request failed with/);
+  assert.doesNotMatch(index, /No usable Kakao Map place panel/);
+});
+
+test("blue-ribbon-nearby source uses Russian error messages", () => {
+  const index = read(path.join("packages", "blue-ribbon-nearby", "src", "index.js"));
+
+  assert.match(index, /Запрос к Blue Ribbon завершился ошибкой/);
+  assert.match(index, /Ни одна официальная зона Blue Ribbon не соответствует/);
+
+  assert.doesNotMatch(index, /Blue Ribbon request failed with/);
+  assert.doesNotMatch(index, /No official Blue Ribbon zone matched/);
+});
+
+test("k-lotto source uses Russian error messages", () => {
+  const parse = read(path.join("packages", "k-lotto", "src", "parse.js"));
+  const index = read(path.join("packages", "k-lotto", "src", "index.js"));
+
+  assert.match(parse, /Нет результатов лотереи для тиража/);
+  assert.match(parse, /Тираж.*отсутствует в ответе dhlottery/);
+  assert.match(index, /Запрос к dhlottery завершился ошибкой/);
+
+  assert.doesNotMatch(parse, /No lotto result items were returned/);
+  assert.doesNotMatch(parse, /was not present in the dhlottery response/);
+  assert.doesNotMatch(index, /dhlottery request failed with/);
+});
+
+test("daiso-product-search source uses Russian error messages", () => {
+  const parse = read(path.join("packages", "daiso-product-search", "src", "parse.js"));
+
+  assert.match(parse, /Магазины Daiso не найдены/);
+  assert.match(parse, /Товары Daiso не найдены/);
+
+  assert.doesNotMatch(parse, /No Daiso store candidates were returned/);
+  assert.doesNotMatch(parse, /No Daiso product candidates were returned/);
 });
 
 test("repository docs advertise the fine-dust-location skill across the documented surfaces", () => {
@@ -1176,6 +1230,23 @@ test("toss-securities package exposes safe read-only tossctl helpers", () => {
   assert.equal(typeof pkg.listWatchlist, "function");
 });
 
+test("toss-securities source uses Russian error messages", () => {
+  const parse = read(path.join("packages", "toss-securities", "src", "parse.js"));
+  const index = read(path.join("packages", "toss-securities", "src", "index.js"));
+
+  assert.match(parse, /Неподдерживаемая команда tossctl только для чтения/);
+  assert.match(parse, /вернул пустой вывод/);
+  assert.match(parse, /Не удалось разобрать JSON-вывод tossctl/);
+  assert.match(parse, /market должен быть одним из/);
+  assert.match(index, /завершился с ошибкой/);
+
+  assert.doesNotMatch(parse, /Unsupported read-only tossctl command/);
+  assert.doesNotMatch(parse, /returned empty output/);
+  assert.doesNotMatch(parse, /Failed to parse tossctl JSON output/);
+  assert.doesNotMatch(parse, /market must be one of/);
+  assert.doesNotMatch(index, /tossctl.*failed:/);
+});
+
 test("toss-securities package README stays aligned with the read-only tossctl wrapper contract", () => {
   const packageReadme = read(path.join("packages", "toss-securities", "README.md"));
 
@@ -1332,9 +1403,9 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-06");
-  assert.equal(todoStatus.round, 41);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 41\)/);
+  assert.equal(todoStatus.date, "2026-06-08");
+  assert.equal(todoStatus.round, 42);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 42\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -2575,6 +2646,18 @@ test("source code does not contain English jargon in user-facing output", () => 
       assert.doesNotMatch(content, /read-only skill for/i, `packages/${pkg}/src/${file} must not use English "read-only skill for" in User-Agent`);
       assert.doesNotMatch(content, /A fetch implementation is required/i, `packages/${pkg}/src/${file} must not use English "A fetch implementation is required"`);
       assert.doesNotMatch(content, /AIR_KOREA_OPEN_API_KEY is not configured on the proxy server/i, `packages/${pkg}/src/${file} must not use English AIR_KOREA_OPEN_API_KEY error message`);
+      assert.doesNotMatch(content, /Unsupported read-only tossctl command/i, `packages/${pkg}/src/${file} must not use English "Unsupported read-only tossctl command"`);
+      assert.doesNotMatch(content, /returned empty output/i, `packages/${pkg}/src/${file} must not use English "returned empty output"`);
+      assert.doesNotMatch(content, /Failed to parse tossctl JSON output/i, `packages/${pkg}/src/${file} must not use English "Failed to parse tossctl JSON output"`);
+      assert.doesNotMatch(content, /market must be one of/i, `packages/${pkg}/src/${file} must not use English "market must be one of"`);
+      assert.doesNotMatch(content, /must resolve to K League/i, `packages/${pkg}/src/${file} must not use English "must resolve to K League"`);
+      assert.doesNotMatch(content, /request failed with \$\{response\.status\}/i, `packages/${pkg}/src/${file} must not use English "request failed with" error pattern`);
+      assert.doesNotMatch(content, /No usable Kakao Map place panel/i, `packages/${pkg}/src/${file} must not use English "No usable Kakao Map place panel"`);
+      assert.doesNotMatch(content, /No official Blue Ribbon zone matched/i, `packages/${pkg}/src/${file} must not use English "No official Blue Ribbon zone matched"`);
+      assert.doesNotMatch(content, /No lotto result items were returned/i, `packages/${pkg}/src/${file} must not use English "No lotto result items were returned"`);
+      assert.doesNotMatch(content, /was not present in the dhlottery response/i, `packages/${pkg}/src/${file} must not use English "was not present in the dhlottery response"`);
+      assert.doesNotMatch(content, /No Daiso store candidates were returned/i, `packages/${pkg}/src/${file} must not use English "No Daiso store candidates were returned"`);
+      assert.doesNotMatch(content, /No Daiso product candidates were returned/i, `packages/${pkg}/src/${file} must not use English "No Daiso product candidates were returned"`);
     }
   }
 });
@@ -2682,4 +2765,32 @@ test("shell infrastructure scripts use Russian user-facing status messages", () 
   assert.doesNotMatch(validateSkills, /missing description field:/);
   assert.doesNotMatch(validateSkills, /name mismatch:/);
   assert.doesNotMatch(validateSkills, /skill layout looks valid/);
+});
+
+test("Python helper scripts use Russian user-facing messages", () => {
+  const ktxBooking = read(path.join("scripts", "ktx_booking.py"));
+  const fineDust = read(path.join("scripts", "fine_dust.py"));
+
+  assert.match(ktxBooking, /train_id недействителен/);
+  assert.match(ktxBooking, /train_id больше не соответствует/);
+  assert.match(ktxBooking, /требует дополнительные Python-пакеты/);
+  assert.match(ktxBooking, /неподдерживаемая опция бронирования/);
+  assert.match(ktxBooking, /создано, но не удалось перезагрузить/);
+  assert.match(ktxBooking, /train_id должен начинаться с ktx:v1:/);
+  assert.match(ktxBooking, /бронирование.*не найдено/);
+  assert.match(ktxBooking, /Вспомогательный скрипт бронирования KTX\/Korail/);
+  assert.match(ktxBooking, /стабильный train_id из результатов поиска/);
+
+  assert.doesNotMatch(ktxBooking, /train_id is invalid/);
+  assert.doesNotMatch(ktxBooking, /train_id no longer matches/);
+  assert.doesNotMatch(ktxBooking, /requires additional Python packages/);
+  assert.doesNotMatch(ktxBooking, /unsupported reserve option/);
+  assert.doesNotMatch(ktxBooking, /was created but could not be reloaded/);
+  assert.doesNotMatch(ktxBooking, /train_id must start with ktx:v1:/);
+  assert.doesNotMatch(ktxBooking, /reservation.*not found/);
+  assert.doesNotMatch(ktxBooking, /Patched KTX\/Korail booking helper/);
+  assert.doesNotMatch(ktxBooking, /stable train_id из/);
+
+  assert.match(fineDust, /неподдерживаемая команда/);
+  assert.doesNotMatch(fineDust, /unsupported command/);
 });

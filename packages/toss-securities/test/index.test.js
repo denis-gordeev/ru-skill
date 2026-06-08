@@ -37,7 +37,7 @@ test("buildReadOnlyCommand assembles tossctl args for supported read-only comman
 
 test("read-only command validation rejects unsupported or dangerous command names", () => {
   assert.equal(assertReadOnlyCommandName("accountSummary"), "accountSummary");
-  assert.throws(() => assertReadOnlyCommandName("orderPlace"), /Unsupported read-only tossctl command/);
+  assert.throws(() => assertReadOnlyCommandName("orderPlace"), /Неподдерживаемая команда tossctl только для чтения/);
 });
 
 test("parseJsonOutput annotates JSON payloads with the originating command", () => {

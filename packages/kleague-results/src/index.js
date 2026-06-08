@@ -32,7 +32,7 @@ async function requestJson(url, options = {}) {
   });
 
   if (!response.ok) {
-    throw new Error(`K League request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к K League завершился ошибкой ${response.status} для ${url}`);
   }
 
   return response.json();

@@ -39,7 +39,7 @@ const READ_ONLY_COMMANDS = Object.freeze({
 
 function assertReadOnlyCommandName(commandName) {
   if (!READ_ONLY_COMMANDS[commandName]) {
-    throw new Error(`Unsupported read-only tossctl command: ${commandName}`);
+    throw new Error(`Неподдерживаемая команда tossctl только для чтения: ${commandName}`);
   }
 
   return commandName;
@@ -71,7 +71,7 @@ function parseJsonOutput(stdout, commandName) {
   const text = String(stdout || "").trim();
 
   if (!text) {
-    throw new Error(`tossctl ${commandName} returned empty output.`);
+    throw new Error(`tossctl ${commandName} вернул пустой вывод.`);
   }
 
   try {
@@ -81,7 +81,7 @@ function parseJsonOutput(stdout, commandName) {
     };
   } catch (error) {
     throw new Error(
-      `Failed to parse tossctl JSON output for ${commandName}: ${error.message}`,
+      `Не удалось разобрать JSON-вывод tossctl для ${commandName}: ${error.message}`,
       { cause: error }
     );
   }
@@ -91,7 +91,7 @@ function normalizeMarket(value) {
   const market = String(value || "").trim().toLowerCase();
 
   if (!["all", "us", "kr"].includes(market)) {
-    throw new Error(`market must be one of all, us, kr. Received: ${value}`);
+    throw new Error(`market должен быть одним из: all, us, kr. Получено: ${value}`);
   }
 
   return market;

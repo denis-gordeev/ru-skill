@@ -48,13 +48,13 @@ function selectRoundItem(payload, round) {
   const list = data?.list;
 
   if (!Array.isArray(list) || list.length === 0) {
-    throw new Error(`No lotto result items were returned for round ${round}.`);
+    throw new Error(`Нет результатов лотереи для тиража ${round}.`);
   }
 
   const item = list.find((entry) => Number(entry.ltEpsd) === round);
 
   if (!item) {
-    throw new Error(`Round ${round} was not present in the dhlottery response.`);
+    throw new Error(`Тираж ${round} отсутствует в ответе dhlottery.`);
   }
 
   return item;

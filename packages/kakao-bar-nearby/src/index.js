@@ -49,7 +49,7 @@ async function request(url, options = {}, responseType = "text") {
   });
 
   if (!response.ok) {
-    throw new Error(`Kakao bar lookup request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к Kakao bar завершился ошибкой ${response.status} для ${url}`);
   }
 
   return responseType === "json" ? response.json() : response.text();
@@ -153,7 +153,7 @@ async function resolveAnchor(query, options = {}) {
     }
   }
 
-  throw new Error(`No usable Kakao Map place panel was available for ${query}.`);
+  throw new Error(`Не удалось получить пригодную панель места Kakao Map для ${query}.`);
 }
 
 function shouldRetryWithStationQuery(query, anchor) {

@@ -32,7 +32,7 @@ function normalizeLeagueId(value = 1) {
   const leagueId = LEAGUE_ALIAS_MAP.get(token);
 
   if (!leagueId) {
-    throw new Error(`leagueId must resolve to K League 1 or 2. Received: ${value}`);
+    throw new Error(`leagueId должен разрешаться в K League 1 или 2. Получено: ${value}`);
   }
 
   return leagueId;

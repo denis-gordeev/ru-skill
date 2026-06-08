@@ -1,8 +1,8 @@
 const BASE_API_URL = "https://www.daisomall.co.kr/api"
 const BASE_SEARCH_URL = "https://www.daisomall.co.kr/ssn/search"
 const NON_WORD_PATTERN = /[^\p{L}\p{N}]+/gu
-const STORE_EMPTY_RESULT_ERROR = "No Daiso store candidates were returned."
-const PRODUCT_EMPTY_RESULT_ERROR = "No Daiso product candidates were returned."
+const STORE_EMPTY_RESULT_ERROR = "Магазины Daiso не найдены."
+const PRODUCT_EMPTY_RESULT_ERROR = "Товары Daiso не найдены."
 
 function normalizeText(value) {
   return String(value || "")

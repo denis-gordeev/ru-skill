@@ -21,7 +21,7 @@ async function fetchText(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`dhlottery request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к dhlottery завершился ошибкой ${response.status} для ${url}`);
   }
 
   return response.text();
@@ -35,7 +35,7 @@ async function fetchJson(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`dhlottery request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к dhlottery завершился ошибкой ${response.status} для ${url}`);
   }
 
   return response.json();

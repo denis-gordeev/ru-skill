@@ -39,7 +39,7 @@ async function request(url, options = {}, responseType = "text") {
   });
 
   if (!response.ok) {
-    throw new Error(`Blue Ribbon request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к Blue Ribbon завершился ошибкой ${response.status} для ${url}`);
   }
 
   return responseType === "json" ? response.json() : response.text();
@@ -206,7 +206,7 @@ async function searchNearbyByLocationQuery(locationQuery, options = {}) {
 
   if (matches.length === 0) {
     throw new Error(
-      "No official Blue Ribbon zone matched that location query. Ask the user for a nearby район, станция, достопримечательность, or lat/lng.",
+      "Ни одна официальная зона Blue Ribbon не соответствует этому запросу. Уточните район, станцию, достопримечательность или координаты (lat/lng).",
     );
   }
 

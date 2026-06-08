@@ -536,7 +536,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "report":
         command_report(args)
         return 0
-    raise SystemExit(f"unsupported command: {args.command}")
+    raise SystemExit(f"неподдерживаемая команда: {args.command}")
 
 
 if __name__ == "__main__":

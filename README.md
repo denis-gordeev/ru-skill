@@ -195,9 +195,10 @@
 - Doc-regression расширен на roadmap milestone headings и osm-nearby English jargon.
 - Верхний активный блок `TODO.md` теперь зафиксирован как единственный живой backlog; исторические round-секции остаются архивом и не должны снова накапливать открытые checklist-пункты.
 - Shell/infrastructure surfaces больше не выбиваются по языку: `scripts/check-setup.sh` и `scripts/validate-skills.sh` синхронизированы с русскоязычным setup/runtime контуром и застрахованы doc-regression тестами.
+- Source-code error messages и Python helper messages в legacy-пакетах (`toss-securities`, `kleague-results`, `kakao-bar-nearby`, `blue-ribbon-nearby`, `k-lotto`, `daiso-product-search`, `ktx_booking.py`, `fine_dust.py`) переведены на русский и застрахованы doc-regression тестами.
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO, booking docs и package metadata descriptions, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
-- Следующий проход делать уже по оставшимся user-facing CLI/help/output поверхностям вне shell-скриптов: npm/package scripts, helper JS utilities и другим редким repo-infrastructure сообщениям.
+- Следующий проход делать уже по оставшимся edge-case поверхностям: npm script output, helper JS utilities (`fix-changelog-headings.js`), и другим редким repo-infrastructure сообщениям.
 
 ## Быстрые ссылки на ключевые функции
 

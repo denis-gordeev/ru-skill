@@ -116,8 +116,8 @@ RESERVE_OPTION_MAP = {
     "special-only": ReserveOption.SPECIAL_ONLY,
 }
 TRAIN_ID_PREFIX = "ktx:v1:"
-TRAIN_ID_INVALID_MESSAGE = "train_id is invalid; rerun search and copy a fresh train_id"
-TRAIN_ID_STALE_MESSAGE = "train_id no longer matches any current search result; rerun search and choose a fresh train_id"
+TRAIN_ID_INVALID_MESSAGE = "train_id недействителен; повторите поиск и скопируйте свежий train_id"
+TRAIN_ID_STALE_MESSAGE = "train_id больше не соответствует текущим результатам поиска; повторите поиск и выберите свежий train_id"
 TRAIN_ID_FIELDS = (
     "train_no",
     "dep_date",
@@ -140,8 +140,8 @@ def ensure_runtime_dependencies() -> None:
     if missing:
         install_command = f"python3 -m pip install {' '.join(missing)}"
         raise SystemExit(
-            "scripts/ktx_booking.py requires additional Python packages "
-            f"({', '.join(missing)}). Install them before running this helper: {install_command}"
+            "scripts/ktx_booking.py требует дополнительные Python-пакеты "
+            f"({', '.join(missing)}). Установите их перед запуском: {install_command}"
         )
 
 
@@ -423,7 +423,7 @@ class PatchedKorail(Korail):
             elif option == ReserveOption.SPECIAL_FIRST:
                 seat_type = "2" if train.has_special_seat() else "1"
             else:
-                raise ValueError(f"unsupported reserve option: {option}")
+                raise ValueError(f"неподдерживаемая опция бронирования: {option}")
         except SoldOutError:
             if try_waiting and option != ReserveOption.SPECIAL_ONLY and train.has_general_waiting_list():
                 reserving_seat = False
@@ -491,7 +491,7 @@ class PatchedKorail(Korail):
             matches = [reservation for reservation in self.reservations() if reservation.rsv_id == reservation_id]
             if len(matches) == 1:
                 return matches[0]
-            raise KorailError(f"reservation {reservation_id} was created but could not be reloaded")
+            raise KorailError(f"бронирование {reservation_id} создано, но не удалось перезагрузить")
 
     def reservations(self):
         payload = {"Device": self._device, "Version": self._version, "Key": self._key}
@@ -553,7 +553,7 @@ def build_train_id(train) -> str:
 
 def parse_train_id(train_id: str) -> dict[str, str]:
     if not train_id.startswith(TRAIN_ID_PREFIX):
-        raise SystemExit("train_id must start with ktx:v1:")
+        raise SystemExit("train_id должен начинаться с ktx:v1:")
     encoded = train_id.removeprefix(TRAIN_ID_PREFIX)
     padded = encoded + ("=" * ((4 - len(encoded) % 4) % 4))
     try:
@@ -693,7 +693,7 @@ def command_cancel(args: argparse.Namespace) -> None:
     reservations = client.reservations()
     match = next((reservation for reservation in reservations if reservation.rsv_id == args.reservation_id), None)
     if match is None:
-        raise SystemExit(f"reservation {args.reservation_id} not found")
+        raise SystemExit(f"бронирование {args.reservation_id} не найдено")
     client.cancel(match)
     print_json({"cancelled": True, "reservation_id": args.reservation_id})
 
@@ -710,7 +710,7 @@ def add_common_trip_args(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Patched KTX/Korail booking helper for ru-skill")
+    parser = argparse.ArgumentParser(description="Вспомогательный скрипт бронирования KTX/Korail для ru-skill")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     search_parser = subparsers.add_parser("search", help="Поиск поездов KTX")
@@ -722,7 +722,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     reserve_parser = subparsers.add_parser("reserve", help="Забронировать один из найденных поездов")
     add_common_trip_args(reserve_parser)
-    reserve_parser.add_argument("--train-id", required=True, help="stable train_id из результатов поиска")
+    reserve_parser.add_argument("--train-id", required=True, help="стабильный train_id из результатов поиска")
     reserve_parser.add_argument("--seat-option", choices=sorted(RESERVE_OPTION_MAP), default="general-first")
     reserve_parser.add_argument("--include-no-seats", action="store_true", help="Включить распроданные поезда при поиске")
     reserve_parser.add_argument("--include-waiting-list", action="store_true", help="Включить лист ожидания при поиске")
