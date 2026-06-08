@@ -723,7 +723,7 @@ def build_parser() -> argparse.ArgumentParser:
     reserve_parser = subparsers.add_parser("reserve", help="Забронировать один из найденных поездов")
     add_common_trip_args(reserve_parser)
     reserve_parser.add_argument("--train-id", required=True, help="стабильный train_id из результатов поиска")
-    reserve_parser.add_argument("--seat-option", choices=sorted(RESERVE_OPTION_MAP), default="general-first")
+    reserve_parser.add_argument("--seat-option", choices=sorted(RESERVE_OPTION_MAP), default="general-first", help="Опция выбора места: общий приоритет, только общий, спец-приоритет, только спец")
     reserve_parser.add_argument("--include-no-seats", action="store_true", help="Включить распроданные поезда при поиске")
     reserve_parser.add_argument("--include-waiting-list", action="store_true", help="Включить лист ожидания при поиске")
     reserve_parser.add_argument(

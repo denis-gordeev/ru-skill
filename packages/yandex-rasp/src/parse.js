@@ -50,7 +50,7 @@ function groupByTransportType(entries) {
   /** @type {Record<string, Array<object>>} */
   const groups = {};
   for (const entry of entries) {
-    const tt = entry.thread?.transportType || "unknown";
+    const tt = entry.thread?.transportType || "неизвестно";
     if (!groups[tt]) groups[tt] = [];
     groups[tt].push(entry);
   }

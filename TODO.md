@@ -4,34 +4,28 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-08 (раунд 42)
+## Статус на 2026-06-08 (раунд 43)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- Закрыт следующий слой English jargon в CLI/help/output surfaces вне shell-скриптов: 23 английских user-facing сообщения в JS source (`toss-securities`, `kleague-results`, `kakao-bar-nearby`, `blue-ribbon-nearby`, `k-lotto`, `daiso-product-search`) и Python helpers (`ktx_booking.py`, `fine_dust.py`) переведены на русский.
-- Doc-regression расширен на эти CLI/help/output surfaces: тесты страхуют русские сообщения в source code и Python helpers, а также запрет на возврат прежних английских error/help/status формулировок.
+- Закрыт последний оставшийся слой English drift в source code fallback values: `packages/yandex-rasp/src/parse.js` `"unknown"` → `"неизвестно"` (консистентно с `packages/osm-nearby/src/query.js`).
+- Русифицирован argparse `--seat-option` help text в `scripts/ktx_booking.py`: добавлен явный `help="Опция выбора места: общий приоритет, только общий, спец-приоритет, только спец"`.
+- Doc-regression расширен на yandex-rasp default transport type и ktx_booking `--seat-option` help: тесты страхуют русские значения и запрет на возврат `"unknown"` / отсутствующий help.
+- Аудит package.json script output, helper JS utilities (`fix-changelog-headings.js`), и других редких repo-infrastructure поверхностей подтвердил: оставшийся English — только code identifiers и domain-inherent термины; новых user-facing English фрагментов для перевода нет.
+- Полный CI проходит: 131 pass / 0 fail / 1 skipped, pack:dry-run зелёный.
 
-## Выполнено в этом раунде (раунд 42)
+## Выполнено в этом раунде (раунд 43)
 
-- [x] `packages/toss-securities/src/parse.js`: переведены на русский `Unsupported read-only tossctl command` → `Неподдерживаемая команда tossctl только для чтения`, `returned empty output` → `вернул пустой вывод`, `Failed to parse tossctl JSON output` → `Не удалось разобрать JSON-вывод tossctl`, `market must be one of` → `market должен быть одним из`.
-- [x] `packages/toss-securities/src/index.js`: переведено `tossctl ... failed:` → `tossctl ... завершился с ошибкой`.
-- [x] `packages/kleague-results/src/parse.js`: переведено `leagueId must resolve to K League 1 or 2` → `leagueId должен разрешаться в K League 1 или 2`.
-- [x] `packages/kleague-results/src/index.js`: переведено `K League request failed with` → `Запрос к K League завершился ошибкой`.
-- [x] `packages/kakao-bar-nearby/src/index.js`: переведены `Kakao bar lookup request failed with` → `Запрос к Kakao bar завершился ошибкой`, `No usable Kakao Map place panel` → `Не удалось получить пригодную панель места Kakao Map`.
-- [x] `packages/blue-ribbon-nearby/src/index.js`: переведены `Blue Ribbon request failed with` → `Запрос к Blue Ribbon завершился ошибкой`, `No official Blue Ribbon zone matched` → `Ни одна официальная зона Blue Ribbon не соответствует`.
-- [x] `packages/k-lotto/src/parse.js`: переведены `No lotto result items were returned` → `Нет результатов лотереи для тиража`, `Round ... was not present in the dhlottery response` → `Тираж ... отсутствует в ответе dhlottery`.
-- [x] `packages/k-lotto/src/index.js`: переведено `dhlottery request failed with` → `Запрос к dhlottery завершился ошибкой`.
-- [x] `packages/daiso-product-search/src/parse.js`: переведены `No Daiso store candidates were returned` → `Магазины Daiso не найдены`, `No Daiso product candidates were returned` → `Товары Daiso не найдены`.
-- [x] `scripts/ktx_booking.py`: переведены 9 English user-facing сообщений (train_id validation, dependency check, reserve option, reservation reload, cancel, argparse description и help).
-- [x] `scripts/fine_dust.py`: переведено `unsupported command` → `неподдерживаемая команда`.
-- [x] `packages/toss-securities/test/index.test.js`: обновлён regex для русской ошибки валидации команды.
-- [x] `scripts/skill-docs.test.js` расширен регрессиями на CLI/help/output surfaces: добавлены проверки русских error messages в source code 6 legacy-пакетов и Python helpers, а также запрет на возврат английских формулировок.
+- [x] `packages/yandex-rasp/src/parse.js`: переведён fallback `"unknown"` → `"неизвестно"` в `groupByTransportType()`.
+- [x] `scripts/ktx_booking.py`: добавлен явный русский `help=` текст для `--seat-option` argparse argument.
+- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русский default transport type value в yandex-rasp parse.js (`"неизвестно"`, запрет `"unknown"`).
+- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русский `--seat-option` help text в ktx_booking.py.
+- [x] Аудит edge-case surfaces (package.json scripts, `fix-changelog-headings.js`, repo-infrastructure сообщения): новых user-facing English фрагментов не обнаружено.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [ ] Проверить оставшиеся edge-case surfaces: `package.json` script output (если есть `echo`/`console.log` в npm scripts), helper JS utilities в `scripts/` (например, `fix-changelog-headings.js`), и другие редкие repo-infrastructure сообщения, не покрытые текущими регрессиями.
-- [ ] Проверить, что `scripts/ktx_booking.py` argparse `--seat-option` help text можно также русифицировать (сейчас это `choices=sorted(RESERVE_OPTION_MAP)` без явного help-текста).
 - [ ] Продолжить расширять doc-regression coverage на оставшиеся JS/Python source surfaces по мере их обнаружения.
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-05 (раунд 40)
 

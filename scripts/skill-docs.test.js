@@ -2691,6 +2691,13 @@ test("osm-nearby uses Russian default amenity value", () => {
   assert.match(query, /"неизвестно"/);
 });
 
+test("yandex-rasp uses Russian default transport type value", () => {
+  const parse = read(path.join("packages", "yandex-rasp", "src", "parse.js"));
+
+  assert.doesNotMatch(parse, /"unknown"/);
+  assert.match(parse, /"неизвестно"/);
+});
+
 test("GitHub Actions workflow names use Russian", () => {
   const releaseNpm = read(path.join(".github", "workflows", "release-npm.yml"));
   const releasePython = read(path.join(".github", "workflows", "release-python.yml"));
@@ -2780,6 +2787,7 @@ test("Python helper scripts use Russian user-facing messages", () => {
   assert.match(ktxBooking, /бронирование.*не найдено/);
   assert.match(ktxBooking, /Вспомогательный скрипт бронирования KTX\/Korail/);
   assert.match(ktxBooking, /стабильный train_id из результатов поиска/);
+  assert.match(ktxBooking, /--seat-option.*Опция выбора места/);
 
   assert.doesNotMatch(ktxBooking, /train_id is invalid/);
   assert.doesNotMatch(ktxBooking, /train_id no longer matches/);
