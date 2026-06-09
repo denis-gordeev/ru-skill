@@ -7,7 +7,7 @@ const DEFAULT_HEADERS = {
 };
 
 /**
- * Supported Stoloto game slugs.
+ * Поддерживаемые идентификаторы игр Столото.
  * @type {string[]}
  */
 const SUPPORTED_GAMES = ["4x20", "5x36", "6x45", "7x49", "12x24", "ruslotto", "top3", "5x2"];
@@ -19,7 +19,7 @@ const SUPPORTED_GAMES = ["4x20", "5x36", "6x45", "7x49", "12x24", "ruslotto", "t
 function normalizeGameSlug(gameSlug) {
   const normalized = String(gameSlug).trim().toLowerCase();
 
-  // Map common aliases
+  // Соответствие распространённых псевдонимов
   const aliases = {
     "4x20": "4x20",
     "4 из 20": "4x20",
@@ -75,8 +75,8 @@ async function fetchHtml(url) {
 }
 
 /**
- * Fetch the latest archive draws for a Stoloto game.
- * @param {string} gameSlug - e.g. "4x20", "6x45", "ruslotto"
+ * Загрузить последние архивные тиражи для игры Столото.
+ * @param {string} gameSlug - например "4x20", "6x45", "ruslotto"
  * @returns {Promise<{ gameName: string, gameSlug: string, draws: Array<{ drawNumber: number | null, date: string | null, numbers: number[], prize: string | null }> }>}
  */
 async function getArchiveDraws(gameSlug) {
@@ -88,14 +88,14 @@ async function getArchiveDraws(gameSlug) {
 }
 
 /**
- * Fetch archive draws for a specific draw number (if supported by the page).
+ * Загрузить архивные тиражи по конкретному номеру тиража (если поддерживается страницей).
  * @param {string} gameSlug
  * @param {number} drawNumber
  * @returns {Promise<{ gameName: string, gameSlug: string, draws: Array<{ drawNumber: number | null, date: string | null, numbers: number[], prize: string | null }> }>}
  */
 async function getDrawById(gameSlug, drawNumber) {
   const normalizedSlug = normalizeGameSlug(gameSlug);
-  // Some Stoloto pages support filtering by draw ID via query param
+  // Некоторые страницы Столото поддерживают фильтрацию по номеру тиража через параметр запроса
   const url = `${STOLOTO_BASE_URL}/${normalizedSlug}/archive?drawId=${drawNumber}`;
   const html = await fetchHtml(url);
 

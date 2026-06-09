@@ -1,6 +1,6 @@
 /**
  * rpl-results
- * Russian Premier League standings and match results via championat.com
+ * Турнирная таблица и результаты матчей Российской Премьер-Лиги через championat.com
  */
 
 const { parseStandings, parseMatchResults } = require("./parse");
@@ -8,7 +8,7 @@ const { parseStandings, parseMatchResults } = require("./parse");
 const BASE_URL = "https://www.championat.com/football/_russiapl/tournament/5980/";
 
 /**
- * Build URL for the RPL standings page
+ * Построить URL страницы турнирной таблицы РПЛ
  * @returns {string}
  */
 function buildStandingsUrl() {
@@ -16,7 +16,7 @@ function buildStandingsUrl() {
 }
 
 /**
- * Build URL for the RPL match results page
+ * Построить URL страницы результатов матчей РПЛ
  * @returns {string}
  */
 function buildResultsUrl() {
@@ -24,9 +24,9 @@ function buildResultsUrl() {
 }
 
 /**
- * Fetch and parse RPL standings
- * @param {object} [opts] - Optional fetch overrides
- * @param {typeof fetch} [opts.fetcher] - Custom fetch implementation
+ * Загрузить и разобрать турнирную таблицу РПЛ
+ * @param {object} [opts] - Необязательные переопределения fetch
+ * @param {typeof fetch} [opts.fetcher] - Пользовательская реализация fetch
  * @returns {Promise<{season: string, standings: Array}>}
  */
 async function getStandings(opts = {}) {
@@ -57,9 +57,9 @@ async function getStandings(opts = {}) {
 }
 
 /**
- * Fetch and parse RPL match results
- * @param {object} [opts] - Optional fetch overrides
- * @param {typeof fetch} [opts.fetcher] - Custom fetch implementation
+ * Загрузить и разобрать результаты матчей РПЛ
+ * @param {object} [opts] - Необязательные переопределения fetch
+ * @param {typeof fetch} [opts.fetcher] - Пользовательская реализация fetch
  * @returns {Promise<{season: string, matches: Array}>}
  */
 async function getResults(opts = {}) {

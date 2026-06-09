@@ -180,7 +180,7 @@ async function searchNearbyBarsByLocationQuery(locationQuery, options = {}) {
         anchorCandidates = stationResolution.anchorCandidates;
       }
     } catch (_error) {
-      // Keep the original anchor when the station fallback is unavailable.
+      // Сохранить исходную привязку, когда запасной вариант со станцией недоступен.
     }
   }
 

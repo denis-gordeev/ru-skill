@@ -57,45 +57,45 @@ function matchOne(html, pattern) {
 }
 
 /**
- * Extract movie info from a Kinopoisk film page.
+ * Извлечь информацию о фильме со страницы Кинопоиска.
  * @param {string} html
  * @param {string} filmId
  * @returns {{ filmId: string, title: string, year: string | null, rating: string | null, description: string | null, genres: string[], director: string | null, actors: string[] }}
  */
 function parseFilmPage(html, filmId) {
-  // Title: typically in h1 or title tag
+  // Название: обычно в h1 или теге title
   const title = matchOne(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i)
     || matchOne(html, /<title>([\s\S]*?)<\/title>/i)
     || "Неизвестный фильм";
 
-  // Year: often in a meta block or near the title
+  // Год: часто в мета-блоке или рядом с названием
   const year = matchOne(html, /<span\b[^>]*class="[^"]*year[^"]*"[^>]*>(\d{4})/i)
     || matchOne(html, /,\s*(\d{4})\s*,/i)
     || null;
 
-  // Rating: Kinopoisk rating is usually prominently displayed
+  // Рейтинг: обычно prominently отображается на Кинопоиске
   const rating = matchOne(html, /class="[^"]*rating[^"]*"[^>]*>([\d.]+)/i)
     || matchOne(html, /Кинопоиск\s*([\d.]+)/i)
     || null;
 
-  // Description: prefer body synopsis over meta description
+  // Описание: предпочесть синопсис из тела страницы мета-описанию
   const description = matchOne(html, /<div\s+class="brand_words">\s*<p>([\s\S]*?)<\/p>/i)
     || matchOne(html, /<p\b[^>]*class="[^"]*synopsis[^"]*"[^>]*>([\s\S]*?)<\/p>/i)
     || matchOne(html, /<meta\b[^>]*name="description"[^>]*content="([\s\S]*?)"/i)
     || null;
 
-  // Genres: typically in a info block with links
+  // Жанры: обычно в информационном блоке со ссылками
   const genreLinks = [...html.matchAll(/<span\b[^>]*class="[^"]*genre[^"]*"[^>]*><a[^>]*>([^<]+)<\/a><\/span>/gi)];
   const genres = genreLinks.map(m => m[1].trim()).filter(Boolean);
 
-  // Director: listed in a crew section or info table
+  // Режиссёр: указан в секции съёмочной группы или информационной таблице
   const director = matchOne(html, /режиссёр[^:]*:\s*<a[^>]*>([^<]+)<\/a>/i)
     || matchOne(html, /Режиссер[^:]*:\s*<a[^>]*>([^<]+)<\/a>/i)
     || matchOne(html, /Режиссёр[^:]*:\s*<a[^>]*>([^<]+)<\/a>/i)
     || matchOne(html, /<td>[\s]*Режисс[её]р[\s]*<\/td>[\s]*<td[^>]*>[\s]*<a[^>]*>([^<]+)<\/a>/i)
     || null;
 
-  // Actors: listed in a cast section
+  // Актёры: указаны в секции каста
   const actorsList = [...html.matchAll(/<div\b[^>]*class="[^"]*actors[^"]*"[^>]*>([\s\S]*?)<\/div>/gi)];
   const actorsHtml = actorsList.length > 0 ? actorsList[0][1] : "";
   const actors = actorsHtml
@@ -110,12 +110,12 @@ function parseFilmPage(html, filmId) {
     description: description ? stripTags(description) : null,
     genres: [...new Set(genres)],
     director: director ? stripTags(director) : null,
-    actors: actors.slice(0, 10) // limit to top 10 actors
+    actors: actors.slice(0, 10) // ограничение до 10 актёров
   };
 }
 
 /**
- * Parse Kinopoisk search results page.
+ * Разобрать страницу результатов поиска Кинопоиска.
  * @param {string} html
  * @param {string} query
  * @returns {{ query: string, results: Array<{ filmId: string, title: string, year: string | null, rating: string | null, url: string }> }}
@@ -123,8 +123,8 @@ function parseFilmPage(html, filmId) {
 function parseSearchResults(html, query) {
   const results = [];
 
-  // Kinopoisk search results typically have film cards with links
-  // Pattern: find film result blocks
+  // Результаты поиска Кинопоиска обычно содержат карточки фильмов со ссылками
+  // Паттерн: найти блоки результатов фильмов
   const resultPattern = /<a[^>]*href="\/film\/(\d+)\/?"[^>]*>([\s\S]*?)<\/a>/gi;
   let match;
 
@@ -132,16 +132,16 @@ function parseSearchResults(html, query) {
     const filmId = match[1];
     const linkContent = match[2];
 
-    // Extract title from the link content or surrounding context
+    // Извлечь название из содержимого ссылки или окружающего контекста
     const titleMatch = linkContent.match(/<span[^>]*class="[^"]*name[^"]*"[^>]*>([^<]+)<\/span>/i)
       || linkContent.match(/>([^<]{3,})</i);
     const title = titleMatch ? stripTags(titleMatch[1]) : `Фильм #${filmId}`;
 
-    // Try to find year near the result
+    // Попробовать найти год рядом с результатом
     const yearMatch = linkContent.match(/(\d{4})/);
     const year = yearMatch ? yearMatch[1] : null;
 
-    // Try to find rating
+    // Попробовать найти рейтинг
     const ratingMatch = linkContent.match(/class="[^"]*rating[^"]*"[^>]*>([\d.]+)/i);
     const rating = ratingMatch ? ratingMatch[1] : null;
 
@@ -154,7 +154,7 @@ function parseSearchResults(html, query) {
     });
   }
 
-  // Deduplicate by filmId
+  // Удалить дубликаты по filmId
   const seen = new Set();
   const uniqueResults = results.filter(r => {
     if (seen.has(r.filmId)) return false;
@@ -164,7 +164,7 @@ function parseSearchResults(html, query) {
 
   return {
     query,
-    results: uniqueResults.slice(0, 10) // limit to top 10 results
+    results: uniqueResults.slice(0, 10) // ограничение до 10 результатов
   };
 }
 

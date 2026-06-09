@@ -1,10 +1,10 @@
 /**
- * HTML parsing utilities for RPL data from championat.com
- * Uses regex-based extraction (no DOM parser dependency)
+ * Утилиты парсинга HTML для данных РПЛ с championat.com
+ * Использует извлечение на основе регулярных выражений (без зависимости от DOM-парсера)
  */
 
 /**
- * Decode HTML entities in strings
+ * Декодирование HTML-сущностей в строках
  */
 function decodeHtmlEntities(str) {
   if (!str) return str;
@@ -21,7 +21,7 @@ function decodeHtmlEntities(str) {
 }
 
 /**
- * Strip HTML tags and normalize whitespace
+ * Удаление HTML-тегов и нормализация пробелов
  */
 function stripTags(html) {
   return decodeHtmlEntities(html)
@@ -31,7 +31,7 @@ function stripTags(html) {
 }
 
 /**
- * Extract a single regex match or return null
+ * Извлечь одно совпадение регулярного выражения или вернуть null
  */
 function matchOne(regex, str) {
   const m = str.match(regex);
@@ -39,7 +39,7 @@ function matchOne(regex, str) {
 }
 
 /**
- * Convert string to number or return null
+ * Преобразовать строку в число или вернуть null
  */
 function toNumberOrNull(str) {
   if (!str) return null;
@@ -48,28 +48,28 @@ function toNumberOrNull(str) {
 }
 
 /**
- * Parse the standings table HTML into structured data
- * @param {string} html - Full page or table HTML
+ * Разобрать HTML таблицы турнирной таблицы в структурированные данные
+ * @param {string} html - Полная страница или HTML таблицы
  * @returns {Array<{rank: number, team: string, played: number, wins: number, draws: number, losses: number, goalsFor: number, goalsAgainst: number, goalDifference: number, points: number}>}
  */
 function parseStandings(html) {
   const rows = [];
-  // Match each table row in the standings
+  // Совпадение с каждой строкой таблицы в турнирной таблице
   const rowRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/g;
   let rowMatch;
 
   while ((rowMatch = rowRegex.exec(html)) !== null) {
     const rowHtml = rowMatch[1];
 
-    // Extract rank from first cell
+    // Извлечь ранг из первой ячейки
     const cells = rowHtml.match(/<td[^>]*>([\s\S]*?)<\/td>/g);
     if (!cells || cells.length < 8) continue;
 
     const rankText = stripTags(cells[0]);
     const rank = toNumberOrNull(rankText);
-    if (!rank) continue; // Skip header rows
+    if (!rank) continue; // Пропустить строки заголовков
 
-    // Extract team name from second cell
+    // Извлечь название команды из второй ячейки
     const teamHtml = cells[1];
     let team = matchOne(/>([^<]+)<\/a>/, teamHtml);
     if (!team) {
@@ -77,13 +77,13 @@ function parseStandings(html) {
     }
     if (!team) continue;
 
-    // Extract numeric columns
+    // Извлечь числовые столбцы
     const played = toNumberOrNull(stripTags(cells[2]));
     const wins = toNumberOrNull(stripTags(cells[3]));
     const draws = toNumberOrNull(stripTags(cells[4]));
     const losses = toNumberOrNull(stripTags(cells[5]));
 
-    // Parse goals (format: "59-23")
+    // Разобрать голы (формат: "59-23")
     const goalsText = stripTags(cells[6]);
     const goalsMatch = goalsText.match(/^(\d+)-(\d+)$/);
     const goalsFor = goalsMatch ? toNumberOrNull(goalsMatch[1]) : null;
@@ -113,27 +113,27 @@ function parseStandings(html) {
 }
 
 /**
- * Parse match results from a page section
- * @param {string} html - HTML containing match results
+ * Разобрать результаты матчей из секции страницы
+ * @param {string} html - HTML с результатами матчей
  * @returns {Array<{date: string, homeTeam: string, awayTeam: string, homeScore: number|null, awayScore: number|null}>}
  */
 function parseMatchResults(html) {
   const matches = [];
 
-  // Look for match-item blocks specifically
+  // Искать блоки match-item
   const matchBlockRegex = /<div[^>]*class="match-item"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/g;
   let blockMatch;
 
   while ((blockMatch = matchBlockRegex.exec(html)) !== null) {
     const block = blockMatch[1];
 
-    // Extract date
+    // Извлечь дату
     const date =
       matchOne(/data-date=["']([^"']+)["']/, blockMatch[0]) ||
       matchOne(/class="match-date"[^>]*>([^<]+)<\/span>/, block) ||
       matchOne(/(\d{2}\.\d{2}\.\d{4})/, block);
 
-    // Extract team names from anchor tags
+    // Извлечь названия команд из ссылок
     const teamLinks = block.match(/<a[^>]*>([^<]+)<\/a>/g);
     if (!teamLinks || teamLinks.length < 2) continue;
 
@@ -142,7 +142,7 @@ function parseMatchResults(html) {
 
     if (!homeTeam || !awayTeam) continue;
 
-    // Extract score (formats: "2:1", "2-1", "2 — 1")
+    // Извлечь счёт (форматы: "2:1", "2-1", "2 — 1")
     const scoreText = matchOne(/class="score"[^>]*>([^<]+)<\/span>/, block);
     let homeScore = null;
     let awayScore = null;

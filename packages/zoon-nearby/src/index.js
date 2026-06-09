@@ -7,7 +7,7 @@ const DEFAULT_HEADERS = {
   "user-agent": "ru-skill/zoon-nearby",
 };
 
-// Category mappings for common search types
+// Соответствие категорий для распространённых типов поиска
 const CATEGORY_MAP = {
   restaurant: 'restaurants',
   cafe: 'cafes',
@@ -64,9 +64,9 @@ async function fetchHtml(url, opts = {}) {
 }
 
 /**
- * Search businesses by category in a city
- * @param {string} city - City name (e.g., 'Москва', 'Санкт-Петербург')
- * @param {string} category - Category (e.g., 'restaurants', 'cafes', 'bars')
+ * Поиск организаций по категории в городе
+ * @param {string} city - Название города (например, 'Москва', 'Санкт-Петербург')
+ * @param {string} category - Категория (например, 'restaurants', 'cafes', 'bars')
  * @param {{ page?: number }} opts
  * @returns {Promise<{ businesses: Array<{name: string, address?: string, rating?: string, phone?: string, category?: string, url?: string}>, totalCount?: number, pagination: {hasNextPage: boolean, nextPage?: number}, query: string }>}
  */
@@ -82,7 +82,7 @@ async function searchByCategory(city, category, opts = {}) {
 }
 
 /**
- * Search restaurants in a city
+ * Поиск ресторанов в городе
  * @param {string} city
  * @param {{ page?: number }} opts
  */
@@ -91,7 +91,7 @@ async function searchRestaurants(city, opts = {}) {
 }
 
 /**
- * Search cafes in a city
+ * Поиск кафе в городе
  * @param {string} city
  * @param {{ page?: number }} opts
  */
@@ -100,7 +100,7 @@ async function searchCafes(city, opts = {}) {
 }
 
 /**
- * Search bars in a city
+ * Поиск баров в городе
  * @param {string} city
  * @param {{ page?: number }} opts
  */
@@ -109,9 +109,9 @@ async function searchBars(city, opts = {}) {
 }
 
 /**
- * General search on Zoon.ru
- * @param {string} query - Search term
- * @param {string} [city] - Optional city for context
+ * Общий поиск на Zoon.ru
+ * @param {string} query - Поисковый запрос
+ * @param {string} [city] - Необязательный город для контекста
  * @param {{ page?: number }} opts
  */
 async function search(query, city, opts = {}) {
@@ -126,8 +126,8 @@ async function search(query, city, opts = {}) {
 }
 
 /**
- * Get business details from Zoon.ru page
- * @param {string} businessUrl - Full Zoon.ru business page URL
+ * Получить детали организации со страницы Zoon.ru
+ * @param {string} businessUrl - Полный URL страницы организации на Zoon.ru
  * @param {{}} opts
  */
 async function getBusinessDetails(businessUrl, opts = {}) {

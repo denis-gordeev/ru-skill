@@ -1,11 +1,11 @@
 /**
- * Helpers for normalizing Yandex Raspisanie API responses.
- * Most normalization happens in index.js; this module
- * provides reusable utilities for validation and formatting.
+ * Утилиты нормализации ответов API Яндекс Расписаний.
+ * Основная нормализация происходит в index.js; этот модуль
+ * предоставляет переиспользуемые утилиты для валидации и форматирования.
  */
 
 /**
- * Validate a Yandex station code format (s + digits, or c + digits for cities).
+ * Проверить формат кода станции Яндекс (s + цифры, или c + цифры для городов).
  * @param {string} code
  * @returns {boolean}
  */
@@ -15,7 +15,7 @@ function isValidStationCode(code) {
 }
 
 /**
- * Format a duration in seconds into a human-readable string.
+ * Форматировать длительность в секундах в читаемую строку.
  * @param {number} seconds
  * @returns {string}
  */
@@ -28,7 +28,7 @@ function formatDuration(seconds) {
 }
 
 /**
- * Extract unique transport types from a list of schedule entries or segments.
+ * Извлечь уникальные типы транспорта из списка записей расписания или сегментов.
  * @param {Array<object>} entries
  * @returns {string[]}
  */
@@ -42,7 +42,7 @@ function extractTransportTypes(entries) {
 }
 
 /**
- * Group schedule entries by transport type.
+ * Сгруппировать записи расписания по типу транспорта.
  * @param {Array<object>} entries
  * @returns {Record<string, Array<object>>}
  */

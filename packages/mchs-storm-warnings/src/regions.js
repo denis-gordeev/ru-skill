@@ -1,12 +1,12 @@
 /**
- * Mapping of Russian region names to their MChS regional hosts.
+ * Соответствие названий российских регионов их региональным хостам МЧС.
  *
- * Sources:
+ * Источники:
  * - https://mchs.gov.ru/ministerstvo/glavnye-upravleniya-po-subektam-rossiyskoy-federacii
- * - Regional site patterns like https://XX.mchs.gov.ru or https://name.mchs.gov.ru
+ * - Паттерны региональных сайтов вида https://XX.mchs.gov.ru или https://name.mchs.gov.ru
  *
- * Numeric hosts correspond to OKATO-like regional codes used by MChS CMS.
- * Named hosts are used for federal cities and special cases.
+ * Числовые хосты соответствуют OKATO-подобным региональным кодам, используемым CMS МЧС.
+ * Именованные хосты используются для городов федерального значения и особых случаев.
  */
 
 const REGIONS = {
@@ -201,21 +201,21 @@ const REGIONS = {
 };
 
 /**
- * Build a lookup map from region name (lowercase) to region info.
+ * Построение карты поиска: название региона (в нижнем регистре) → информация о регионе.
  */
 const NAME_TO_REGION = {};
 for (const [key, info] of Object.entries(REGIONS)) {
-  // Index all keys, but prioritize non-numeric ones for name lookups
+  // Индексируем все ключи, но приоритет отдаём нечисловым для поиска по названию
   const keyLower = key.toLowerCase();
   if (!NAME_TO_REGION[keyLower]) {
     NAME_TO_REGION[keyLower] = info;
   }
 }
 
-// Additionally index by full Russian names
+// Дополнительно индексируем по полным русским названиям
 for (const [key, info] of Object.entries(REGIONS)) {
   if (/^\d+$/.test(key)) {
-    // For numeric keys, index by the Russian name
+    // Для числовых ключей индексируем по русскому названию
     const nameLower = info.name.toLowerCase();
     if (!NAME_TO_REGION[nameLower]) {
       NAME_TO_REGION[nameLower] = info;
@@ -224,8 +224,8 @@ for (const [key, info] of Object.entries(REGIONS)) {
 }
 
 /**
- * Look up a region by name or host and return the normalized host.
- * @param {string} query - Region name or host (e.g. "Москва", "moscow", "46", "Курская область")
+ * Поиск региона по названию или хосту, возвращает нормализованный хост.
+ * @param {string} query - Название региона или хост (например "Москва", "moscow", "46", "Курская область")
  * @returns {{ name: string, host: string } | null}
  */
 function lookupRegion(query) {
@@ -235,20 +235,20 @@ function lookupRegion(query) {
 
   const trimmed = query.trim();
 
-  // Direct host match (numeric or named)
+  // Прямое совпадение по хосту (числовой или именованный)
   const directMatch = REGIONS[trimmed.toLowerCase()];
   if (directMatch) {
     return { name: directMatch.name, host: directMatch.host };
   }
 
-  // Name-based lookup
+  // Поиск по названию
   const nameLower = trimmed.toLowerCase();
   const nameMatch = NAME_TO_REGION[nameLower];
   if (nameMatch) {
     return { name: nameMatch.name, host: nameMatch.host };
   }
 
-  // Fuzzy substring match against region names
+  // Нечёткий поиск по подстроке в названиях регионов
   for (const [nameKey, info] of Object.entries(NAME_TO_REGION)) {
     if (nameKey.includes(nameLower) || nameLower.includes(nameKey)) {
       return { name: info.name, host: info.host };
@@ -259,7 +259,7 @@ function lookupRegion(query) {
 }
 
 /**
- * List all available regions with their names and hosts.
+ * Возвращает список всех доступных регионов с названиями и хостами.
  * @returns {Array<{ name: string, host: string }>}
  */
 function listRegions() {

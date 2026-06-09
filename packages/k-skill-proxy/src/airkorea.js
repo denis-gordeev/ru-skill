@@ -342,7 +342,7 @@ async function fetchFineDustReport({ regionHint = null, stationName = null, serv
           selectedStation: { stationName: matchedMeasurement.stationName, addr: null }
         });
       } catch {
-        // try next candidate
+        // попробовать следующего кандидата
       }
     }
 

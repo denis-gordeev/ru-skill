@@ -4,22 +4,28 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-08 (раунд 43)
+## Статус на 2026-06-09 (раунд 44)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- Закрыт последний оставшийся слой English drift в source code fallback values: `packages/yandex-rasp/src/parse.js` `"unknown"` → `"неизвестно"` (консистентно с `packages/osm-nearby/src/query.js`).
-- Русифицирован argparse `--seat-option` help text в `scripts/ktx_booking.py`: добавлен явный `help="Опция выбора места: общий приоритет, только общий, спец-приоритет, только спец"`.
-- Doc-regression расширен на yandex-rasp default transport type и ktx_booking `--seat-option` help: тесты страхуют русские значения и запрет на возврат `"unknown"` / отсутствующий help.
-- Аудит package.json script output, helper JS utilities (`fix-changelog-headings.js`), и других редких repo-infrastructure поверхностей подтвердил: оставшийся English — только code identifiers и domain-inherent термины; новых user-facing English фрагментов для перевода нет.
-- Полный CI проходит: 131 pass / 0 fail / 1 skipped, pack:dry-run зелёный.
+- Переведены на русский все английские комментарии и JSDoc в исходном коде всех target-пакетов: `mchs-storm-warnings`, `rpl-results`, `kinopoisk-search`, `stoloto-lotto`, `zoon-nearby`, `osm-nearby`, `pravo-documents`, `yandex-rasp`, а также в legacy-пакетах `kakao-bar-nearby` и `k-skill-proxy`.
+- Переведены на русский все английские описания тестов в `packages/mchs-storm-warnings/test/index.test.js`.
+- Добавлена doc-regression проверка на русские сообщения об ошибках в `mchs-storm-warnings` (`page должен быть целым числом`, `warningPathOrId должен быть непустой строкой`, `Запрос к МЧС не удался`, `regionHost должен быть региональным хостом МЧС`), а также запрет на возврат английских эквивалентов.
+- Аудит исходного кода подтверждает: все английские комментарии и JSDoc в пакетах `packages/*/src/` переведены на русский; оставшийся English — только code identifiers и domain-inherent термины.
 
-## Выполнено в этом раунде (раунд 43)
+## Выполнено в этом раунде (раунд 44)
 
-- [x] `packages/yandex-rasp/src/parse.js`: переведён fallback `"unknown"` → `"неизвестно"` в `groupByTransportType()`.
-- [x] `scripts/ktx_booking.py`: добавлен явный русский `help=` текст для `--seat-option` argparse argument.
-- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русский default transport type value в yandex-rasp parse.js (`"неизвестно"`, запрет `"unknown"`).
-- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русский `--seat-option` help text в ktx_booking.py.
-- [x] Аудит edge-case surfaces (package.json scripts, `fix-changelog-headings.js`, repo-infrastructure сообщения): новых user-facing English фрагментов не обнаружено.
+- [x] `packages/mchs-storm-warnings/src/regions.js`: переведены на русский все английские JSDoc-описания и встроенные комментарии (6 комментариев + 7 строк JSDoc).
+- [x] `packages/mchs-storm-warnings/test/index.test.js`: переведены на русский все 12 английских описаний тестов и 1 встроенный комментарий.
+- [x] `packages/rpl-results/src/parse.js` и `src/index.js`: переведены на русский все английские JSDoc и встроенные комментарии (9 комментариев + 6 строк JSDoc в parse.js, 3 JSDoc в index.js).
+- [x] `packages/kinopoisk-search/src/parse.js`: переведены на русский все английские JSDoc и встроенные комментарии (13 комментариев + 2 строки JSDoc).
+- [x] `packages/stoloto-lotto/src/parse.js` и `src/index.js`: переведены на русский все английские JSDoc и встроенные комментарии (12 комментариев + 4 JSDoc в parse.js, 2 комментария + 3 JSDoc в index.js).
+- [x] `packages/zoon-nearby/src/parse.js` и `src/index.js`: переведены на русский все английские JSDoc и встроенные комментарии (10 комментариев + 5 JSDoc в parse.js, 1 комментарий + 6 JSDoc в index.js).
+- [x] `packages/osm-nearby/src/index.js` и `src/query.js`: переведены на русский все английские JSDoc (5 в index.js + 4 в query.js).
+- [x] `packages/pravo-documents/src/parse.js` и `src/index.js`: переведены на русский все английские JSDoc (4 в parse.js + 3 в index.js).
+- [x] `packages/yandex-rasp/src/parse.js` и `src/index.js`: переведены на русский все английские JSDoc и встроенные комментарии (5 JSDoc в parse.js + 3 JSDoc + 1 комментарий в index.js).
+- [x] `packages/kakao-bar-nearby/src/index.js`: переведён на русский английский встроенный комментарий.
+- [x] `packages/k-skill-proxy/src/airkorea.js`: переведён на русский английский встроенный комментарий.
+- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русские сообщения об ошибках в `mchs-storm-warnings`.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана

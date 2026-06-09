@@ -13,7 +13,7 @@ const DEFAULT_HEADERS = {
 };
 
 /**
- * Search for official Russian legal documents.
+ * Поиск официальных российских правовых документов.
  * @param {{ name?: string, documentTypeId?: string, blockId?: string, categoryId?: string, signatoryAuthorityId?: string, dateFrom?: string, dateTo?: string, page?: number, pageSize?: number }} options
  * @returns {Promise<{ items: Array<object>, pagination: object }>}
  */
@@ -33,8 +33,8 @@ async function searchPravoDocuments(options = {}) {
 }
 
 /**
- * Get a specific legal document card by eoNumber.
- * @param {string} eoNumber - Electronic publication number
+ * Получить карточку конкретного правового документа по eoNumber.
+ * @param {string} eoNumber - Номер электронной публикации
  * @returns {Promise<object>}
  */
 async function getPravoDocument(eoNumber) {
@@ -45,7 +45,7 @@ async function getPravoDocument(eoNumber) {
 }
 
 /**
- * List publication blocks (categories of documents).
+ * Список рубрик публикации (категорий документов).
  * @returns {Promise<Array<object>>}
  */
 async function listPravoBlocks() {

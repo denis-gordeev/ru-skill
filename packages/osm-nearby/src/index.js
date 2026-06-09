@@ -13,9 +13,9 @@ const AMENITY_CATEGORIES = {
 };
 
 /**
- * Search nearby places by coordinates
- * @param {number} lat - latitude
- * @param {number} lon - longitude
+ * Поиск ближайших мест по координатам
+ * @param {number} lat - широта
+ * @param {number} lon - долгота
  * @param {{ radius?: number, categories?: string[] | 'restaurant' | 'cafe' | 'bar', limit?: number }} options
  * @returns {Promise<Array<{name: string, lat: number, lon: number, amenity: string, address?: string, phone?: string, website?: string, openingHours?: string, cuisine?: string}>>}
  */
@@ -56,7 +56,7 @@ async function searchNearby(lat, lon, options = {}) {
 }
 
 /**
- * Search nearby restaurants specifically
+ * Поиск ближайших ресторанов
  * @param {number} lat
  * @param {number} lon
  * @param {{ radius?: number, limit?: number }} options
@@ -69,7 +69,7 @@ async function searchRestaurants(lat, lon, options = {}) {
 }
 
 /**
- * Search nearby cafes specifically
+ * Поиск ближайших кафе
  * @param {number} lat
  * @param {number} lon
  * @param {{ radius?: number, limit?: number }} options
@@ -82,7 +82,7 @@ async function searchCafes(lat, lon, options = {}) {
 }
 
 /**
- * Search nearby bars specifically
+ * Поиск ближайших баров
  * @param {number} lat
  * @param {number} lon
  * @param {{ radius?: number, limit?: number }} options
@@ -95,8 +95,8 @@ async function searchBars(lat, lon, options = {}) {
 }
 
 /**
- * Get place details by OSM element ID (re-fetches from Overpass)
- * @param {number} id - OSM node ID
+ * Получить детали места по идентификатору элемента OSM (повторный запрос к Overpass)
+ * @param {number} id - ID узла OSM
  * @returns {Promise<{name: string, lat: number, lon: number, amenity: string, address?: string, phone?: string, website?: string, openingHours?: string, cuisine?: string} | null>}
  */
 async function getPlaceDetails(id) {

@@ -75,31 +75,31 @@ function requireGameName(html) {
 }
 
 /**
- * Extract draw numbers from a table row.
- * Numbers are typically in <span> or <div> elements with ball-like styling.
+ * Извлечь выигрышные номера из строки таблицы.
+ * Номера обычно в элементах <span> или <div> со стилизацией в виде шариков.
  * @param {string} rowHtml
  * @returns {number[]}
  */
 function extractWinningNumbers(rowHtml) {
-  // Pattern: look for number-like values in cells, typically <td> elements
-  // containing <span> or <div> with single/double digit numbers
+  // Паттерн: искать числоподобные значения в ячейках, обычно в элементах <td>,
+  // содержащих <span> или <div> с одно- или двузначными числами
   const numberPattern = />(\d{1,2})</g;
   const numbers = [];
   let m;
 
   while ((m = numberPattern.exec(rowHtml)) !== null) {
     const num = Number(m[1]);
-    // Lottery numbers are typically 1-99
+    // Лотерейные номера обычно от 1 до 99
     if (num >= 1 && num <= 99) {
       numbers.push(num);
     }
   }
 
-  return [...new Set(numbers)]; // deduplicate while preserving order
+  return [...new Set(numbers)]; // удалить дубликаты с сохранением порядка
 }
 
 /**
- * Parse a single draw row from the Stoloto archive table.
+ * Разобрать одну строку тиража из таблицы архива Столото.
  * @param {string} rowHtml
  * @returns {{ drawNumber: number | null, date: string | null, numbers: number[], prize: string | null } | null}
  */
@@ -110,25 +110,25 @@ function parseDrawRow(rowHtml) {
     return null;
   }
 
-  // Stoloto archive rows typically have: draw number, date, winning numbers, prize
+  // Строки архива Столото обычно содержат: номер тиража, дату, выигрышные номера, приз
   const fullRowHtml = cells.join("");
 
-  // Try to extract draw number
+  // Попробовать извлечь номер тиража
   const drawNumberMatch = matchOne(cells[0], /(\d+)/) || matchOne(fullRowHtml, /тираж\s*(\d+)/i);
   const drawNumber = toNumberOrNull(drawNumberMatch);
 
-  // Try to extract date - typically in format DD.MM.YYYY or similar
+  // Попробовать извлечь дату — обычно в формате DD.MM.YYYY или подобном
   const dateMatch = matchOne(fullRowHtml, /(\d{2}\.\d{2}\.\d{4})/)
     || matchOne(fullRowHtml, /(\d{2}\.\d{2}\.\d{2})/);
   const date = dateMatch || null;
 
-  // Extract winning numbers from the numbers cell (usually the largest cell with many numbers)
+  // Извлечь выигрышные номера из ячейки с номерами (обычно самая большая ячейка с множеством чисел)
   const numbersCell = cells.reduce((largest, cell) =>
     cell.length > largest.length ? cell : largest, ""
   );
   const numbers = extractWinningNumbers(numbersCell);
 
-  // Try to extract prize/superprize amount
+  // Попробовать извлечь сумму приза/суперприза
   const prizeMatch = matchOne(fullRowHtml, /([\d\s]+)\s*руб/i)
     || matchOne(fullRowHtml, /суперприз[\s\S]*?([\d\s]+)/i);
   const prize = prizeMatch ? stripTags(prizeMatch) : null;
@@ -142,15 +142,15 @@ function parseDrawRow(rowHtml) {
 }
 
 /**
- * Parse the Stoloto archive page for a specific game.
+ * Разобрать страницу архива Столото для конкретной игры.
  * @param {string} html
- * @param {string} gameSlug - e.g. "4x20", "5x36", "6x45", "7x49"
+ * @param {string} gameSlug - например "4x20", "5x36", "6x45", "7x49"
  * @returns {{ gameName: string, gameSlug: string, draws: Array<{ drawNumber: number | null, date: string | null, numbers: number[], prize: string | null }> }}
  */
 function parseArchivePage(html, gameSlug) {
   const gameName = requireGameName(html);
 
-  // Find the archive table - typically contains draw rows
+  // Найти таблицу архива — обычно содержит строки тиражей
   const tablePattern = /<table\b[^>]*class="[^"]*archive[^"]*"[^>]*>([\s\S]*?)<\/table>/gi;
   const tables = [...html.matchAll(tablePattern)];
 
@@ -162,13 +162,13 @@ function parseArchivePage(html, gameSlug) {
       throw new Error(`Не удалось найти таблицу архива Столото для ${gameSlug}.`);
     }
 
-    // Use the first table that contains draw rows
+    // Использовать первую таблицу, содержащую строки тиражей
     for (const tableMatch of allTables) {
       const rows = [...tableMatch[1].matchAll(ROW_PATTERN)];
 
       if (rows.length > 1) {
         const draws = rows
-          .slice(1) // skip header row
+          .slice(1) // пропустить строку заголовков
           .map((rowMatch) => parseDrawRow(rowMatch[0]))
           .filter(Boolean);
 
@@ -185,10 +185,10 @@ function parseArchivePage(html, gameSlug) {
     throw new Error(`Не удалось разобрать тиражи архива Столото для ${gameSlug}.`);
   }
 
-  // Parse the first matching archive table
+  // Разобрать первую подходящую таблицу архива
   const rows = [...tables[0][1].matchAll(ROW_PATTERN)];
   const draws = rows
-    .slice(1) // skip header row
+    .slice(1) // пропустить строку заголовков
     .map((rowMatch) => parseDrawRow(rowMatch[0]))
     .filter(Boolean);
 

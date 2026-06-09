@@ -495,6 +495,21 @@ test("mchs-storm-warnings docs document the official regional MChS warning workf
   assert.match(packageReadme, /getStormWarning/);
 });
 
+test("mchs-storm-warnings source uses Russian error messages", () => {
+  const index = read(path.join("packages", "mchs-storm-warnings", "src", "index.js"));
+  const parse = read(path.join("packages", "mchs-storm-warnings", "src", "parse.js"));
+
+  assert.match(index, /page должен быть целым числом/);
+  assert.match(index, /warningPathOrId должен быть непустой строкой/);
+  assert.match(index, /Запрос к МЧС не удался/);
+  assert.match(parse, /regionHost должен быть региональным хостом МЧС/);
+
+  assert.doesNotMatch(index, /page must be an integer/);
+  assert.doesNotMatch(index, /warningPathOrId must be a non-empty/);
+  assert.doesNotMatch(index, /MChS request failed/);
+  assert.doesNotMatch(parse, /regionHost must be a valid MChS/);
+});
+
 test("zipcode-search docs lock the official ePost extraction flow and reliable transport example", () => {
   const skillPath = path.join(repoRoot, "zipcode-search", "SKILL.md");
 
@@ -1403,9 +1418,9 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-08");
-  assert.equal(todoStatus.round, 42);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 42\)/);
+  assert.equal(todoStatus.date, "2026-06-09");
+  assert.equal(todoStatus.round, 44);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 44\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);

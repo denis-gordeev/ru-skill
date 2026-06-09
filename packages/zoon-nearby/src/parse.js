@@ -1,14 +1,14 @@
 /**
- * Parse Zoon.ru HTML responses for business listings
- * 
- * Zoon.ru provides SSR pages with structured HTML containing:
- * - Business names
- * - Addresses
- * - Ratings
- * - Phone numbers
- * - Categories
- * 
- * This parser extracts business cards from category/city pages.
+ * Разбор HTML-ответов Zoon.ru для списков организаций
+ *
+ * Zoon.ru предоставляет SSR-страницы со структурированным HTML, содержащим:
+ * - Названия организаций
+ * - Адреса
+ * - Рейтинги
+ * - Телефоны
+ * - Категории
+ *
+ * Этот парсер извлекает карточки организаций из страниц категорий/городов.
  */
 
 const NAME_SELECTOR = '[data-item-type="organization"] [itemprop="name"], .catalogItem__title';
@@ -63,25 +63,25 @@ function extractPagination(html) {
 }
 
 /**
- * Parse a Zoon.ru category page HTML and extract business listings
- * @param {string} html - Raw HTML from Zoon.ru
- * @param {string} query - Original search query for context
+ * Разобрать HTML страницы категории Zoon.ru и извлечь список организаций
+ * @param {string} html - Исходный HTML с Zoon.ru
+ * @param {string} query - Исходный поисковый запрос для контекста
  * @returns {{ businesses: Array<{name: string, address?: string, rating?: string, phone?: string, category?: string, url?: string}>, totalCount?: number, pagination: {hasNextPage: boolean, nextPage?: number} }}
  */
 function parseSearchResults(html, query = '') {
   const businesses = [];
   
-  // Split by organization containers - match from start to next container or end
+  // Разделение по контейнерам организаций — совпадение от начала до следующего контейнера или конца
   const containerStartRegex = /<div[^>]*data-item-type="organization"[^>]*>/gi;
   const starts = [...html.matchAll(containerStartRegex)];
   
   for (let i = 0; i < starts.length; i++) {
     const startIndex = starts.index;
-    // Find the next container start or use end of HTML
+    // Найти начало следующего контейнера или использовать конец HTML
     const endIndex = i + 1 < starts.length ? starts[i + 1].index : html.length;
     const container = html.substring(startIndex, endIndex);
     
-    // Extract name
+    // Извлечь название
     const nameMatch = container.match(/itemprop="name">([^<]+)</i);
     const name = nameMatch ? nameMatch[1].trim() : null;
     
@@ -89,23 +89,23 @@ function parseSearchResults(html, query = '') {
     
     const business = { name };
     
-    // Extract address
+    // Извлечь адрес
     const addressMatch = container.match(/itemprop="address"[^>]*>([^<]+)</i);
     if (addressMatch) business.address = addressMatch[1].trim();
     
-    // Extract rating
+    // Извлечь рейтинг
     const ratingMatch = container.match(/itemprop="ratingValue"[^>]*>([^<]+)</i);
     if (ratingMatch) business.rating = ratingMatch[1].trim();
     
-    // Extract phone
+    // Извлечь телефон
     const phoneMatch = container.match(/itemprop="telephone"[^>]*>([^<]+)</i);
     if (phoneMatch) business.phone = phoneMatch[1].trim();
     
-    // Extract category
+    // Извлечь категорию
     const categoryMatch = container.match(/itemprop="servesCuisine"[^>]*>([^<]+)</i);
     if (categoryMatch) business.category = categoryMatch[1].trim();
     
-    // Extract URL
+    // Извлечь URL
     const urlMatch = container.match(/itemprop="url"[^>]*href="([^"]+)"/i);
     if (urlMatch) {
       business.url = urlMatch[1].startsWith('http') ? urlMatch[1] : `https://zoon.ru${urlMatch[1]}`;
@@ -126,14 +126,14 @@ function parseSearchResults(html, query = '') {
 }
 
 /**
- * Normalize a Zoon.ru business URL
- * @param {string} url - Raw URL
+ * Нормализовать URL организации на Zoon.ru
+ * @param {string} url - Исходный URL
  * @returns {string|null}
  */
 function normalizeBusinessUrl(url) {
   if (!url) return null;
   
-  // If it looks like a valid Zoon.ru path, normalize it
+  // Если похоже на допустимый путь Zoon.ru, нормализовать
   if (url.startsWith('/')) {
     return `https://zoon.ru${url}`;
   }
@@ -147,9 +147,9 @@ function normalizeBusinessUrl(url) {
 }
 
 /**
- * Parse a business detail page from Zoon.ru
- * @param {string} html - Raw HTML from Zoon.ru business page
- * @param {string} url - Page URL for context
+ * Разобрать страницу организации на Zoon.ru
+ * @param {string} html - Исходный HTML со страницы организации на Zoon.ru
+ * @param {string} url - URL страницы для контекста
  * @returns {{name: string, address?: string, rating?: string, phone?: string, category?: string, description?: string, website?: string, hours?: string}}
  */
 function parseBusinessPage(html, url = '') {
@@ -195,7 +195,7 @@ module.exports = {
   parseSearchResults,
   parseBusinessPage,
   normalizeBusinessUrl,
-  // Internal utilities exposed for testing
+  // Внутренние утилиты, открытые для тестирования
   extractText,
   extractHref,
   parseItemCount,

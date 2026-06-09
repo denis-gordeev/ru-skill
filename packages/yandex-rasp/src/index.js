@@ -1,13 +1,13 @@
 const BASE_URL = "https://api.rasp.yandex-net.ru/v3.0";
 
 /**
- * Search for stations by name.
- * Fetches the full stations directory and filters client-side by title match.
+ * Поиск станций по названию.
+ * Загружает полный справочник станций и фильтрует на стороне клиента по совпадению названия.
  *
- * @param {string} query - Station name substring to match (case-insensitive).
+ * @param {string} query - Подстрока названия станции для поиска (без учёта регистра).
  * @param {object} [opts]
- * @param {string} [opts.apiKey] - Yandex Raspisanie API key. Falls back to YANDEX_RASP_API_KEY env.
- * @param {string} [opts.lang] - Response language (default: ru_RU).
+ * @param {string} [opts.apiKey] - Ключ API Яндекс Расписаний. Запасной вариант: переменная окружения YANDEX_RASP_API_KEY.
+ * @param {string} [opts.lang] - Язык ответа (по умолчанию: ru_RU).
  * @returns {Promise<Array<{title: string, yandexCode: string, esrCode: string|null, stationType: string, transportType: string, latitude: number, longitude: number, direction: string}>>}
  */
 async function searchStations(query, opts = {}) {
@@ -36,16 +36,16 @@ async function searchStations(query, opts = {}) {
 }
 
 /**
- * Get schedule for a single station.
+ * Получить расписание для одной станции.
  *
- * @param {string} stationCode - Yandex station code (e.g. s9600213).
+ * @param {string} stationCode - Код станции Яндекс (например s9600213).
  * @param {object} [opts]
- * @param {string} [opts.apiKey] - Yandex Raspisanie API key.
- * @param {string} [opts.date] - Target date in ISO 8601 (YYYY-MM-DD). Omit for all dates.
- * @param {string} [opts.event] - "departure" (default) or "arrival".
- * @param {string} [opts.transportType] - Filter: plane, train, suburban, bus, water, helicopter.
- * @param {string} [opts.direction] - Suburban direction hint (e.g. "на Москву"). Only for suburban.
- * @param {string} [opts.lang] - Response language (default: ru_RU).
+ * @param {string} [opts.apiKey] - Ключ API Яндекс Расписаний.
+ * @param {string} [opts.date] - Целевая дата в ISO 8601 (YYYY-MM-DD). Опустить для всех дат.
+ * @param {string} [opts.event] - "departure" (по умолчанию) или "arrival".
+ * @param {string} [opts.transportType] - Фильтр: plane, train, suburban, bus, water, helicopter.
+ * @param {string} [opts.direction] - Подсказка направления для электричек (например "на Москву"). Только для suburban.
+ * @param {string} [opts.lang] - Язык ответа (по умолчанию: ru_RU).
  * @returns {Promise<{station: {code: string, title: string, stationType: string}, date: string|null, schedule: Array<object>, pagination: {total: number, limit: number, offset: number}}>}
  */
 async function getStationSchedule(stationCode, opts = {}) {
@@ -81,18 +81,18 @@ async function getStationSchedule(stationCode, opts = {}) {
 }
 
 /**
- * Search for trips between two stations or cities.
+ * Поиск поездок между двумя станциями или городами.
  *
- * @param {string} fromCode - Departure station/city code (e.g. c146 or s9600213).
- * @param {string} toCode - Arrival station/city code.
+ * @param {string} fromCode - Код станции/города отправления (например c146 или s9600213).
+ * @param {string} toCode - Код станции/города прибытия.
  * @param {object} [opts]
- * @param {string} [opts.apiKey] - Yandex Raspisanie API key.
- * @param {string} [opts.date] - Target date in ISO 8601 (YYYY-MM-DD).
- * @param {string} [opts.transportType] - Filter: plane, train, suburban, bus, water, helicopter.
- * @param {boolean} [opts.transfers] - Include routes with transfers (default: false).
- * @param {number} [opts.offset] - Pagination offset (default: 0).
- * @param {number} [opts.limit] - Max results (default/max: 100).
- * @param {string} [opts.lang] - Response language (default: ru_RU).
+ * @param {string} [opts.apiKey] - Ключ API Яндекс Расписаний.
+ * @param {string} [opts.date] - Целевая дата в ISO 8601 (YYYY-MM-DD).
+ * @param {string} [opts.transportType] - Фильтр: plane, train, suburban, bus, water, helicopter.
+ * @param {boolean} [opts.transfers] - Включить маршруты с пересадками (по умолчанию: false).
+ * @param {number} [opts.offset] - Смещение для пагинации (по умолчанию: 0).
+ * @param {number} [opts.limit] - Максимальное количество результатов (по умолчанию/максимум: 100).
+ * @param {string} [opts.lang] - Язык ответа (по умолчанию: ru_RU).
  * @returns {Promise<{search: object, segments: Array<object>, intervalSegments: Array<object>, pagination: {total: number, limit: number, offset: number}}>}
  */
 async function searchTrips(fromCode, toCode, opts = {}) {
@@ -125,7 +125,7 @@ async function searchTrips(fromCode, toCode, opts = {}) {
   };
 }
 
-// --- internal helpers ---
+// --- внутренние помощники ---
 
 function resolveApiKey(provided) {
   if (provided) return provided;

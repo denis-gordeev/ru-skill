@@ -1,10 +1,10 @@
 /**
- * Build Overpass QL query for nearby places
+ * Построить запрос Overpass QL для поиска ближайших мест
  * @param {number} lat
  * @param {number} lon
- * @param {number} radius - meters (default 1000)
- * @param {string[]} categories - amenity types (default ['restaurant', 'cafe', 'bar'])
- * @param {number} limit - max results (default 20)
+ * @param {number} radius - метры (по умолчанию 1000)
+ * @param {string[]} categories - типы amenity (по умолчанию ['restaurant', 'cafe', 'bar'])
+ * @param {number} limit - максимальное количество результатов (по умолчанию 20)
  * @returns {string}
  */
 function buildOverpassQuery(lat, lon, radius = 1000, categories = ['restaurant', 'cafe', 'bar'], limit = 20) {
@@ -18,8 +18,8 @@ out body ${limit};`;
 }
 
 /**
- * Parse Overpass API response into normalized place objects
- * @param {Object} data - parsed JSON from Overpass API
+ * Разобрать ответ Overpass API в нормализованные объекты мест
+ * @param {Object} data - разобранный JSON из Overpass API
  * @returns {Array<{name: string, lat: number, lon: number, amenity: string, address?: string, phone?: string, website?: string, openingHours?: string, cuisine?: string}>}
  */
 function parseOverpassResponse(data) {
@@ -48,7 +48,7 @@ function parseOverpassResponse(data) {
 }
 
 /**
- * Format address from OSM tags
+ * Форматировать адрес из тегов OSM
  * @param {Object} tags
  * @returns {string|undefined}
  */

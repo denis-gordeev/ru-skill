@@ -23,18 +23,18 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const warningsIndexFixture = fs.readFileSync(path.join(fixturesDir, "warnings-index.html"), "utf8");
 const warningDetailFixture = fs.readFileSync(path.join(fixturesDir, "warning-5695266.html"), "utf8");
 
-test("normalizeRegionHost accepts numeric and named MChS hosts", () => {
+test("normalizeRegionHost принимает числовые и именованные хосты МЧС", () => {
   assert.equal(normalizeRegionHost("46"), "46");
   assert.equal(normalizeRegionHost("https://moscow.mchs.gov.ru/news"), "moscow");
   assert.throws(() => normalizeRegionHost("bad host"), /regionHost/);
 });
 
-test("normalizeRussianDateTime converts Russian textual timestamps", () => {
+test("normalizeRussianDateTime преобразует русские текстовые временные метки", () => {
   assert.equal(normalizeRussianDateTime("14 февраля 2026, 13:29"), "2026-02-14T13:29:00");
   assert.equal(normalizeRussianDateTime("2026-02-14 13:29"), "2026-02-14T13:29:00");
 });
 
-test("URL builders pin the official regional MChS warning paths", () => {
+test("построители URL формируют официальные региональные пути предупреждений МЧС", () => {
   assert.equal(buildRegionOrigin("46"), "https://46.mchs.gov.ru");
   assert.equal(
     buildWarningsIndexUrl("46"),
@@ -50,7 +50,7 @@ test("URL builders pin the official regional MChS warning paths", () => {
   );
 });
 
-test("parseStormWarningsIndex extracts a normalized warning feed", () => {
+test("parseStormWarningsIndex извлекает нормализованную ленту предупреждений", () => {
   const parsed = parseStormWarningsIndex(
     warningsIndexFixture,
     "https://46.mchs.gov.ru",
@@ -71,7 +71,7 @@ test("parseStormWarningsIndex extracts a normalized warning feed", () => {
   );
 });
 
-test("parseStormWarningPage extracts a normalized warning card", () => {
+test("parseStormWarningPage извлекает нормализованную карточку предупреждения", () => {
   const parsed = parseStormWarningPage(
     warningDetailFixture,
     "https://46.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya/5695266",
@@ -91,7 +91,7 @@ test("parseStormWarningPage extracts a normalized warning card", () => {
   assert.match(parsed.imageUrl, /65991f0bd3415be0144564e40d47a13f\.jpg/);
 });
 
-test("public helpers fetch and normalize the MChS warning feed and detail page", async () => {
+test("публичные помощники загружают и нормализуют ленту и карточку предупреждений МЧС", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {
@@ -125,13 +125,13 @@ test("public helpers fetch and normalize the MChS warning feed and detail page",
   }
 });
 
-test("lookupRegion resolves numeric hosts", () => {
+test("lookupRegion находит регионы по числовому хосту", () => {
   const result = lookupRegion("46");
   assert.equal(result.host, "46");
   assert.equal(result.name, "Курская область");
 });
 
-test("lookupRegion resolves named hosts", () => {
+test("lookupRegion находит регионы по именованному хосту", () => {
   const moscow = lookupRegion("moscow");
   assert.equal(moscow.host, "moscow");
   assert.equal(moscow.name, "г. Москва");
@@ -141,7 +141,7 @@ test("lookupRegion resolves named hosts", () => {
   assert.equal(spb.name, "г. Санкт-Петербург");
 });
 
-test("lookupRegion resolves Russian region names", () => {
+test("lookupRegion находит регионы по русскому названию", () => {
   const kursk = lookupRegion("Курская область");
   assert.equal(kursk.host, "46");
   assert.equal(kursk.name, "Курская область");
@@ -155,7 +155,7 @@ test("lookupRegion resolves Russian region names", () => {
   assert.equal(spbResult.name, "г. Санкт-Петербург");
 });
 
-test("lookupRegion supports fuzzy matching", () => {
+test("lookupRegion поддерживает нечёткий поиск", () => {
   const result = lookupRegion("Курская");
   assert.equal(result.host, "46");
 
@@ -163,17 +163,17 @@ test("lookupRegion supports fuzzy matching", () => {
   assert.equal(tatarstan.host, "16");
 });
 
-test("lookupRegion returns null for unknown regions", () => {
+test("lookupRegion возвращает null для неизвестных регионов", () => {
   assert.equal(lookupRegion("unknown"), null);
   assert.equal(lookupRegion(""), null);
 });
 
-test("listRegions returns all unique regions sorted by Russian name", () => {
+test("listRegions возвращает все уникальные регионы, отсортированные по русскому названию", () => {
   const regions = listRegions();
   assert.ok(regions.length > 70);
   assert.equal(regions[0].name, "Алтайский край");
   
-  // Check for duplicates - each host should appear once
+  // Проверка на дубликаты — каждый хост должен встречаться один раз
   const hosts = new Set(regions.map(r => r.host));
   assert.equal(hosts.size, regions.length);
 });

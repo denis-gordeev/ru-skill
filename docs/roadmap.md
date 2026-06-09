@@ -4,6 +4,14 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
+## Статус на 2026-06-09
+
+- Переведены на русский все английские комментарии и JSDoc в исходном коде всех target-пакетов: `mchs-storm-warnings`, `rpl-results`, `kinopoisk-search`, `stoloto-lotto`, `zoon-nearby`, `osm-nearby`, `pravo-documents`, `yandex-rasp`, а также в legacy-пакетах `kakao-bar-nearby` и `k-skill-proxy`.
+- Переведены на русский все английские описания тестов в `packages/mchs-storm-warnings/test/index.test.js`.
+- Добавлена doc-regression проверка на русские сообщения об ошибках в `mchs-storm-warnings`.
+- Аудит подтверждает: оставшийся English в `packages/*/src/` — только code identifiers и domain-inherent термины.
+- Полный `npm test` и `validate-skills` проходят после этой синхронизации.
+
 ## Статус на 2026-06-06
 
 - Закрыт следующий узкий слой English jargon в shell/infrastructure surfaces: `scripts/check-setup.sh` и `scripts/validate-skills.sh` теперь используют русские user-facing сообщения вместо `missing`, `insecure`, `next steps`, `skill layout looks valid` и других англоязычных helper-status форм.

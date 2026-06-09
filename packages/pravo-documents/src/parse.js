@@ -5,8 +5,8 @@ const DEFAULT_HEADERS = {
 };
 
 /**
- * Normalize a document search result item.
- * @param {object} item - Raw API document item
+ * Нормализовать элемент результата поиска документов.
+ * @param {object} item - Исходный элемент документа из API
  * @returns {object}
  */
 function normalizeDocumentItem(item) {
@@ -29,8 +29,8 @@ function normalizeDocumentItem(item) {
 }
 
 /**
- * Normalize a full document card.
- * @param {object} doc - Raw API document
+ * Нормализовать полную карточку документа.
+ * @param {object} doc - Исходный документ из API
  * @returns {object}
  */
 function normalizeDocumentCard(doc) {
@@ -51,7 +51,7 @@ function normalizeDocumentCard(doc) {
 }
 
 /**
- * Build search URL with optional filters.
+ * Построить URL поиска с необязательными фильтрами.
  * @param {{ name?: string, documentTypeId?: string, blockId?: string, categoryId?: string, signatoryAuthorityId?: string, dateFrom?: string, dateTo?: string, page?: number, pageSize?: number }} options
  * @returns {string}
  */
@@ -105,8 +105,8 @@ function buildSearchUrl(options = {}) {
 }
 
 /**
- * Build document card URL.
- * @param {string} eoNumber - Electronic publication number
+ * Построить URL карточки документа.
+ * @param {string} eoNumber - Номер электронной публикации
  * @returns {string}
  */
 function buildDocumentUrl(eoNumber) {
