@@ -22,7 +22,7 @@ async function fetchHtml(url) {
 }
 
 /**
- * Build URL for a film page by Kinopoisk ID.
+ * Построить URL страницы фильма по идентификатору Кинопоиска.
  * @param {string} filmId
  * @returns {string}
  */
@@ -31,7 +31,7 @@ function buildFilmUrl(filmId) {
 }
 
 /**
- * Build URL for Kinopoisk search page.
+ * Построить URL страницы поиска Кинопоиска.
  * @param {string} query
  * @returns {string}
  */
@@ -41,8 +41,8 @@ function buildSearchUrl(query) {
 }
 
 /**
- * Fetch film info by Kinopoisk ID.
- * @param {string} filmId - e.g. "326" for "Брат 2"
+ * Получить информацию о фильме по идентификатору Кинопоиска.
+ * @param {string} filmId - например "326" для «Брат 2»
  * @returns {Promise<{ filmId: string, title: string, year: string | null, rating: string | null, description: string | null, genres: string[], director: string | null, actors: string[] }>}
  */
 async function getFilmById(filmId) {
@@ -53,8 +53,8 @@ async function getFilmById(filmId) {
 }
 
 /**
- * Search films by query string.
- * @param {string} query - e.g. "Брат 2"
+ * Поиск фильмов по строке запроса.
+ * @param {string} query - например "Брат 2"
  * @returns {Promise<{ query: string, results: Array<{ filmId: string, title: string, year: string | null, rating: string | null, url: string }> }>}
  */
 async function searchFilms(query) {

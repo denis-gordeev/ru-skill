@@ -23,7 +23,7 @@
 
 ## Официальные поверхности
 
-Здесь используется не HTML scraping, а официальный JSON и официальные поверхности API.
+Здесь используется не HTML-парсинг, а официальный JSON и официальные поверхности API.
 
 - Расписание и результаты: `https://www.kleague.com/getScheduleList.do`
 - Таблица команд: `https://www.kleague.com/record/teamRank.do`

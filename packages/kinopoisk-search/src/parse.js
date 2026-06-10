@@ -73,7 +73,7 @@ function parseFilmPage(html, filmId) {
     || matchOne(html, /,\s*(\d{4})\s*,/i)
     || null;
 
-  // Рейтинг: обычно prominently отображается на Кинопоиске
+  // Рейтинг: обычно выделяется на Кинопоиске
   const rating = matchOne(html, /class="[^"]*rating[^"]*"[^>]*>([\d.]+)/i)
     || matchOne(html, /Кинопоиск\s*([\d.]+)/i)
     || null;

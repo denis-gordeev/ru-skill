@@ -4,6 +4,48 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-10 (раунд 45)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
+- Закрыт следующий слой English jargon в source code, SKILL.md, feature docs и top-level docs: `lookup` → `поиск` (hh-vacancies, yandex-rasp, docs/sources.md, docs/roadmap.md), `real-time` → `в реальном времени` (moex-shares, fine-dust-location, seoul-subway-arrival, docs/sources.md), `nearby` → `ближайших` (blue-ribbon-nearby, docs/roadmap.md), `Sold out` → `Места распроданы` (srt-booking), `Write-операции` → `Операции записи` (yandex-market-search), `aggressive polling` → `агрессивного опроса` (srt-booking), `HTML scraping/crawling` → `HTML-парсинг` (kleague-results).
+- Переведены на русский все оставшиеся английские JSDoc и комментарии в source code: `kinopoisk-search/src/index.js` (4 JSDoc блока + 2 @param), `yandex-market-search/src/parse.js` (1 файловый JSDoc), `yandex-rasp/src/index.js` (`/* ignore */` → `/* пропустить */`), `kinopoisk-search/src/parse.js` (`prominently` → `выделяется`).
+- Переведены на русский h1-заголовки в 2 SKILL.md: `# Fine Dust по местоположению` → `# Мелкая пыль по местоположению`, `# Blue Ribbon Nearby` → `# Рестораны Blue Ribbon поблизости`.
+- Исправлен changelog entry в README.md: `实时 → real-time` → `实时 → в реальном времени`.
+- Doc-regression расширен на этот слой: добавлены тесты на отсутствие `lookup`, `real-time`, `nearby endpoint`, `Sold out`, `Write-операции`, `aggressive polling`, `HTML scraping/crawling`, `prominently`, английских JSDoc и `/* ignore */` в затронутых поверхностях.
+- Аудит подтверждает: оставшийся English в source code — только code identifiers и domain-inherent термины; оставшийся English в документации — только link labels к документам и навыкам с английскими именами.
+- Полный `npm test` проходит: 137 pass / 0 fail / 1 skipped.
+
+## Выполнено в этом раунде (раунд 45)
+
+- [x] `packages/kinopoisk-search/src/index.js`: переведены на русский 4 JSDoc блока и 2 @param описания (`Build URL for a film page` → `Построить URL страницы фильма` и т.д.).
+- [x] `packages/kinopoisk-search/src/parse.js`: устранён English `prominently` в комментарии → `выделяется`.
+- [x] `packages/yandex-market-search/src/parse.js`: переведён на русский файловый JSDoc (`HTML parsing utilities` → `Утилиты парсинга HTML`).
+- [x] `packages/yandex-rasp/src/index.js`: переведён комментарий `/* ignore */` → `/* пропустить */`.
+- [x] `fine-dust-location/SKILL.md`: переведён h1 `# Fine Dust по местоположению` → `# Мелкая пыль по местоположению`.
+- [x] `blue-ribbon-nearby/SKILL.md`: переведён h1 `# Blue Ribbon Nearby` → `# Рестораны Blue Ribbon поблизости`; `nearby рестораны` → `ближайшие рестораны`; `nearby endpoint` → `endpoint поиска ближайших`.
+- [x] `yandex-rasp/SKILL.md`: `lookup станции` → `поиск станции`.
+- [x] `hh-vacancies/SKILL.md`: `lookup area` → `поиск региона`.
+- [x] `yandex-market-search/SKILL.md`: `Write-операции` → `Операции записи`.
+- [x] `srt-booking/SKILL.md`: `Sold out` → `Места распроданы`; `aggressive polling` → `агрессивного опроса`.
+- [x] `moex-shares/SKILL.md`: `а не real-time` → `а не в реальном времени`.
+- [x] `seoul-subway-arrival/SKILL.md`: `real-time metro replacement` → `навык метро реального времени`.
+- [x] `docs/features/hh-vacancies.md`: `lookup'а региона` → `поиск региона`; `## Пример: lookup региона` → `## Пример: поиск региона`.
+- [x] `docs/features/fine-dust-location.md`: `значения real-time` → `значения поступают в реальном времени`.
+- [x] `docs/features/seoul-subway-arrival.md`: `сопоставимого real-time API` → `сопоставимого API реального времени`; `Данные real-time` → `Данные поступают в реальном времени`.
+- [x] `docs/features/srt-booking.md`: `sold out` → `распродаже мест`.
+- [x] `docs/features/kleague-results.md`: `HTML scraping` → `HTML-парсинг`.
+- [x] `docs/roadmap.md`: `nearby-ресторанов` → `ближайших ресторанов`; `nearby-баров` → `ближайших баров`; `lookup регионов` → `поиск регионов`.
+- [x] `docs/sources.md`: `area lookup` → `поиск региона`; `lookup региона` → `поиск региона`; `real-time прибытие метро` → `API прибытия метро в реальном времени`; `Seoul real-time subway arrival API` → `Сеул API метро реального времени`; `Korea Post postcode lookup` → `Korea Post поиск почтовых индексов`.
+- [x] `README.md`: `lookup регионов` → `поиск регионов`; `Поиск ресторанов Blue Ribbon nearby` → `Поиск ближайших ресторанов Blue Ribbon`; `实时 → real-time` → `实时 → в реальном времени`.
+- [x] `packages/kleague-results/README.md`: `HTML scraping` → `HTML-парсинг`; `HTML crawling` → `HTML-парсинг`.
+- [x] `scripts/skill-docs.test.js`: обновлены существующие тесты (roadmap nearby/lookup assertions); добавлены 4 новых теста на отсутствие English jargon в source code, SKILL.md, feature docs и top-level docs.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Продолжить расширять doc-regression coverage на оставшиеся JS/Python source surfaces по мере их обнаружения.
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+
 ## Статус на 2026-06-09 (раунд 44)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.

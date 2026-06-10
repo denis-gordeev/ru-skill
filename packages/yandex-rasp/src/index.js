@@ -143,7 +143,7 @@ async function fetchWithCheck(url) {
     try {
       body = await res.text();
     } catch {
-      /* ignore */
+      /* пропустить */
     }
     throw new Error(`Ошибка API Яндекс Расписаний ${res.status}: ${body || res.statusText}`);
   }

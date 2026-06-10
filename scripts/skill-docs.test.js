@@ -918,7 +918,7 @@ test("repository docs advertise the blue-ribbon-nearby skill across the document
   assert.match(readme, /\| `blue-ribbon-nearby` \|/);
   assert.match(readme, /\[Гайд по Blue Ribbon nearby\]\(docs\/features\/blue-ribbon-nearby\.md\)/);
   assert.match(install, /--skill blue-ribbon-nearby/);
-  assert.match(roadmap, /Навык поиска nearby-ресторанов Blue Ribbon/);
+  assert.match(roadmap, /Навык поиска ближайших ресторанов Blue Ribbon/);
   assert.match(sources, /Blue Ribbon поиск по зоне: https:\/\/www\.bluer\.co\.kr\/search\/zone/);
   assert.match(sources, /Blue Ribbon ближайшие рестораны JSON: https:\/\/www\.bluer\.co\.kr\/restaurants\/map/);
 });
@@ -974,7 +974,7 @@ test("repository docs advertise the kakao-bar-nearby skill across the documented
   assert.match(readme, /\| `kakao-bar-nearby` \|/);
   assert.match(readme, /\[Гайд по Kakao bar nearby\]\(docs\/features\/kakao-bar-nearby\.md\)/);
   assert.match(install, /--skill kakao-bar-nearby/);
-  assert.match(roadmap, /Навык поиска nearby-баров/);
+  assert.match(roadmap, /Навык поиска ближайших баров/);
   assert.match(sources, /Kakao Map мобильный поиск: https:\/\/m\.map\.kakao\.com\/actions\/searchView/);
   assert.match(sources, /Kakao Map панель места JSON: https:\/\/place-api\.map\.kakao\.com\/places\/panel3\//);
 });
@@ -2816,4 +2816,127 @@ test("Python helper scripts use Russian user-facing messages", () => {
 
   assert.match(fineDust, /неподдерживаемая команда/);
   assert.doesNotMatch(fineDust, /unsupported command/);
+});
+
+test("source code JSDoc and comments are in Russian, not English", () => {
+  const kinopoiskIndex = read(path.join("packages", "kinopoisk-search", "src", "index.js"));
+  const kinopoiskParse = read(path.join("packages", "kinopoisk-search", "src", "parse.js"));
+  const yandexMarketParse = read(path.join("packages", "yandex-market-search", "src", "parse.js"));
+  const yandexRaspIndex = read(path.join("packages", "yandex-rasp", "src", "index.js"));
+
+  assert.doesNotMatch(kinopoiskIndex, /Build URL for a film page/);
+  assert.doesNotMatch(kinopoiskIndex, /Build URL for Kinopoisk search/);
+  assert.doesNotMatch(kinopoiskIndex, /Fetch film info by Kinopoisk ID/);
+  assert.doesNotMatch(kinopoiskIndex, /Search films by query string/);
+  assert.doesNotMatch(kinopoiskIndex, /e\.g\./);
+  assert.match(kinopoiskIndex, /Построить URL страницы фильма/);
+  assert.match(kinopoiskIndex, /Построить URL страницы поиска/);
+  assert.match(kinopoiskIndex, /Получить информацию о фильме/);
+  assert.match(kinopoiskIndex, /Поиск фильмов по строке/);
+
+  assert.doesNotMatch(kinopoiskParse, /\bprominently\b/);
+
+  assert.doesNotMatch(yandexMarketParse, /HTML parsing utilities for Yandex Market/);
+  assert.match(yandexMarketParse, /Утилиты парсинга HTML для страниц поиска и карточек товаров Яндекс Маркета/);
+
+  assert.doesNotMatch(yandexRaspIndex, /\/\* ignore \*\//);
+  assert.match(yandexRaspIndex, /\/\* пропустить \*\//);
+});
+
+test("SKILL.md files use Russian instead of English jargon: lookup, nearby, real-time, Sold out, Write-, aggressive polling", () => {
+  const hhSkill = read(path.join("hh-vacancies", "SKILL.md"));
+  const yandexRaspSkill = read(path.join("yandex-rasp", "SKILL.md"));
+  const yandexMarketSkill = read(path.join("yandex-market-search", "SKILL.md"));
+  const srtSkill = read(path.join("srt-booking", "SKILL.md"));
+  const moexSkill = read(path.join("moex-shares", "SKILL.md"));
+  const seoulSkill = read(path.join("seoul-subway-arrival", "SKILL.md"));
+  const blueRibbonSkill = read(path.join("blue-ribbon-nearby", "SKILL.md"));
+  const fineDustSkill = read(path.join("fine-dust-location", "SKILL.md"));
+
+  assert.doesNotMatch(hhSkill, /lookup area/i);
+  assert.match(hhSkill, /поиск региона/);
+
+  assert.doesNotMatch(yandexRaspSkill, /lookup станции/);
+  assert.match(yandexRaspSkill, /поиск станции/);
+
+  assert.doesNotMatch(yandexMarketSkill, /Write-операции/);
+  assert.match(yandexMarketSkill, /Операции записи/);
+
+  assert.doesNotMatch(srtSkill, /Sold out/);
+  assert.doesNotMatch(srtSkill, /aggressive polling/);
+  assert.match(srtSkill, /Места распроданы/);
+  assert.match(srtSkill, /агрессивного опроса/);
+
+  assert.doesNotMatch(moexSkill, /а не real-time/);
+  assert.match(moexSkill, /а не в реальном времени/);
+
+  assert.doesNotMatch(seoulSkill, /real-time metro replacement/);
+  assert.match(seoulSkill, /навык метро реального времени/);
+
+  assert.doesNotMatch(blueRibbonSkill, /nearby endpoint/);
+  assert.doesNotMatch(blueRibbonSkill, /Найди nearby/);
+  assert.match(blueRibbonSkill, /endpoint поиска ближайших/);
+  assert.match(blueRibbonSkill, /Найди ближайшие/);
+
+  assert.match(fineDustSkill, /# Мелкая пыль по местоположению/);
+  assert.doesNotMatch(fineDustSkill, /# Fine Dust по местоположению/);
+
+  assert.match(blueRibbonSkill, /# Рестораны Blue Ribbon поблизости/);
+  assert.doesNotMatch(blueRibbonSkill, /# Blue Ribbon Nearby/);
+});
+
+test("feature docs use Russian instead of English jargon: lookup, real-time, HTML scraping, Sold out", () => {
+  const hhFeature = read(path.join("docs", "features", "hh-vacancies.md"));
+  const fineDustFeature = read(path.join("docs", "features", "fine-dust-location.md"));
+  const seoulFeature = read(path.join("docs", "features", "seoul-subway-arrival.md"));
+  const srtFeature = read(path.join("docs", "features", "srt-booking.md"));
+  const kleagueFeature = read(path.join("docs", "features", "kleague-results.md"));
+
+  assert.doesNotMatch(hhFeature, /lookup'а региона/);
+  assert.doesNotMatch(hhFeature, /lookup региона/);
+  assert.match(hhFeature, /поиск региона/);
+  assert.match(hhFeature, /## Пример: поиск региона/);
+
+  assert.doesNotMatch(fineDustFeature, /значения real-time/);
+  assert.match(fineDustFeature, /значения поступают в реальном времени/);
+
+  assert.doesNotMatch(seoulFeature, /сопоставимого real-time API/);
+  assert.match(seoulFeature, /сопоставимого API реального времени/);
+
+  assert.doesNotMatch(seoulFeature, /Данные real-time/);
+  assert.match(seoulFeature, /Данные поступают в реальном времени/);
+
+  assert.doesNotMatch(srtFeature, /sold out/);
+
+  assert.doesNotMatch(kleagueFeature, /HTML scraping/);
+  assert.match(kleagueFeature, /HTML-парсинг/);
+});
+
+test("top-level docs use Russian instead of English jargon: lookup, real-time, nearby-", () => {
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const readme = read("README.md");
+
+  assert.doesNotMatch(roadmap, /nearby-ресторанов/);
+  assert.doesNotMatch(roadmap, /nearby-баров/);
+  assert.doesNotMatch(roadmap, /lookup регионов/);
+
+  assert.doesNotMatch(sources, /area lookup/);
+  assert.doesNotMatch(sources, /lookup региона/);
+  assert.doesNotMatch(sources, /real-time прибытие/);
+  assert.match(sources, /поиск региона/);
+  assert.match(sources, /API прибытия метро в реальном времени/);
+
+  assert.doesNotMatch(readme, /Поиск ресторанов Blue Ribbon nearby/);
+  assert.match(readme, /Поиск ближайших ресторанов Blue Ribbon/);
+  assert.doesNotMatch(readme, /lookup регионов через публичный API/);
+  assert.match(readme, /поиск регионов через публичный API/);
+});
+
+test("package README files use Russian instead of HTML scraping/crawling", () => {
+  const kleagueReadme = read(path.join("packages", "kleague-results", "README.md"));
+
+  assert.doesNotMatch(kleagueReadme, /HTML scraping/);
+  assert.doesNotMatch(kleagueReadme, /HTML crawling/);
+  assert.match(kleagueReadme, /HTML-парсинг/);
 });

@@ -1,5 +1,5 @@
 /**
- * HTML parsing utilities for Yandex Market search and product pages.
+ * Утилиты парсинга HTML для страниц поиска и карточек товаров Яндекс Маркета.
  */
 
 function decodeHtmlEntities(value) {

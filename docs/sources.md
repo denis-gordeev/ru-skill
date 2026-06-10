@@ -19,7 +19,7 @@
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
 - `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
 - `korail2` anti-bot bypass PR #54: https://github.com/carpedm20/korail2/pull/54
-- Seoul real-time subway arrival API: https://www.data.go.kr/data/15058052/openapi.do
+- Сеул API метро реального времени: https://www.data.go.kr/data/15058052/openapi.do
 
 ### Спорт
 
@@ -42,7 +42,7 @@
 
 - Dhlottery result page: https://www.dhlottery.co.kr/lt645/result
 - Dhlottery past rounds JSON: https://www.dhlottery.co.kr/lt645/selectPstLt645InfoNew.do
-- Korea Post postcode lookup: https://parcel.epost.go.kr/parcel/comm/zipcode/comm_newzipcd_list.jsp
+- Korea Post поиск почтовых индексов: https://parcel.epost.go.kr/parcel/comm/zipcode/comm_newzipcd_list.jsp
 - CJ Logistics tracking page: https://www.cjlogistics.com/ko/tool/parcel/tracking
 - CJ Logistics tracking detail JSON: https://www.cjlogistics.com/ko/tool/parcel/tracking-detail
 - Korea Post tracking summary: https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=
@@ -191,14 +191,14 @@
 - Это русскоязычный сценарий вне финансов и логистики, полезный сам по себе.
 - Публичный API только для чтения доступен без пользовательской авторизации для поисковых сценариев.
 - Источник добавляет в target-линейку отдельный вертикальный домен: рынок труда и вакансии.
-- Для MVP достаточно трёх стабильных чтений: area lookup, vacancy search и vacancy detail.
+- Для MVP достаточно трёх стабильных чтений: поиск региона, поиск вакансий и карточка вакансии.
 
 Минимальный scope четвёртого навыка:
 
 - Вход: поисковая строка вакансии, необязательный `areaId`, либо конкретный `vacancyId`.
 - Выход для поиска: список вакансий с `title`, `salary`, `employer`, `experience`, `workFormats` и `vacancyUrl`.
 - Выход для карточки: `descriptionText`, адрес, ближайшее метро, режим занятости и режим работы.
-- Дополнительно: lookup региона по `areaId`, чтобы можно было явно связывать поиск с Москвой, Санкт-Петербургом и другими регионами.
+- Дополнительно: поиск региона по `areaId`, чтобы можно было явно связывать поиск с Москвой, Санкт-Петербургом и другими регионами.
 - Техническая основа: skill + пакет только для чтения + на основе эталонных данных JSON-тесты.
 - Выбранное имя пакета: `hh-vacancies`.
 
@@ -536,7 +536,7 @@
 - Blue Ribbon ближайшие рестораны JSON: https://www.bluer.co.kr/restaurants/map
 - Kakao Map мобильный поиск: https://m.map.kakao.com/actions/searchView
 - Kakao Map панель места JSON: https://place-api.map.kakao.com/places/panel3/<confirmId>
-- Сеул real-time прибытие метро API: https://www.data.go.kr/data/15058052/openapi.do
+- Сеул API прибытия метро в реальном времени: https://www.data.go.kr/data/15058052/openapi.do
 - AirKorea качество воздуха API: https://www.data.go.kr/data/15073861/openapi.do
 - AirKorea станции мониторинга API: https://www.data.go.kr/data/15073877/openapi.do
 - Почтовая служба Кореи поиск адресов: https://parcel.epost.go.kr/parcel/comm/zipcode/comm_newzipcd_list.jsp
