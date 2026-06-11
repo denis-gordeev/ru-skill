@@ -66,7 +66,7 @@ listStormWarnings(region.host).then((result) => {
 
 // Или список всех регионов
 const allRegions = listRegions();
-console.log(allRegions.length); // 85+ регионов
+console.log(allRegions.length); // 85 регионов
 JS
 ```
 
@@ -80,5 +80,5 @@ JS
 
 - Это сценарий только для чтения
 - Источник данных: официальные страницы вида `https://{region}.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya`
-- lookupRegion покрывает все основные российские регионы, но если какой-то регион отсутствует, его можно добавить в `src/regions.js`
+- lookupRegion покрывает все 85 российских регионов, включая разговорные сокращения (`"Удмуртия"`, `"Питер"`, `"Подмосковье"` и т.д.), но если какой-то регион отсутствует, его можно добавить в `src/regions.js`
 - `publishedAtIso` нормализуется из публичной строки даты или `itemprop="datePublished"` и не добавляет региональную временную зону

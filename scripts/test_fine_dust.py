@@ -209,7 +209,7 @@ class FineDustTests(unittest.TestCase):
 
         rendered = json.loads(stdout.getvalue())
         self.assertEqual(rendered["station_name"], "강남구")
-        self.assertEqual(rendered["lookup_mode"], "fallback")
+        self.assertEqual(rendered["lookup_mode"], "запасной вариант")
 
     def test_cli_json_report_uses_station_name_directly_when_station_lookup_is_empty(self):
         stdout = io.StringIO()
@@ -250,7 +250,7 @@ class FineDustTests(unittest.TestCase):
         rendered = json.loads(stdout.getvalue())
         self.assertEqual(rendered["station_name"], "중구")
         self.assertIsNone(rendered["station_address"])
-        self.assertEqual(rendered["lookup_mode"], "fallback")
+        self.assertEqual(rendered["lookup_mode"], "запасной вариант")
         self.assertEqual([url.rsplit("/", 1)[-1] for url, _ in recorded_calls], ["getMsrstnList", "getMsrstnAcctoRltmMesureDnsty"])
         self.assertEqual(recorded_calls[1][1]["stationName"], "중구")
 
@@ -259,7 +259,7 @@ class FineDustTests(unittest.TestCase):
         proxy_report = {
             "station_name": "강남구",
             "station_address": "서울 강남구 학동로 426",
-            "lookup_mode": "fallback",
+            "lookup_mode": "запасной вариант",
             "measured_at": "2026-03-27 21:00",
             "pm10": {"value": "42", "grade": "Удовлетворительно"},
             "pm25": {"value": "19", "grade": "Удовлетворительно"},

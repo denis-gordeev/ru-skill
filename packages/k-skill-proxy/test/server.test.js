@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 
 const { buildServer, proxyAirKoreaRequest } = require("../src/server");
 
-test("health endpoint stays public and reports auth/upstream status", async (t) => {
+test("endpoint health остаётся общедоступным и сообщает статус аутентификации/upstream", async (t) => {
   const app = buildServer({
     provider: async () => {
       throw new Error("provider should not be called");
@@ -26,7 +26,7 @@ test("health endpoint stays public and reports auth/upstream status", async (t) 
   assert.equal(body.upstreams.airKoreaConfigured, false);
 });
 
-test("fine dust endpoint stays publicly callable without proxy auth", async (t) => {
+test("endpoint мелкой пыли остаётся общедоступным без аутентификации прокси", async (t) => {
   let providerCalls = 0;
   const app = buildServer({
     env: {
@@ -52,7 +52,7 @@ test("fine dust endpoint stays publicly callable without proxy auth", async (t) 
   assert.equal(providerCalls, 1);
 });
 
-test("fine dust endpoint returns candidate stations when region resolution is ambiguous", async (t) => {
+test("endpoint мелкой пыли возвращает станции-кандидаты, когда разрешение региона неоднозначно", async (t) => {
   const app = buildServer({
     env: {
       AIR_KOREA_OPEN_API_KEY: "airkorea-key"
@@ -82,7 +82,7 @@ test("fine dust endpoint returns candidate stations when region resolution is am
   assert.deepEqual(response.json().candidate_stations, ["평동", "오선동"]);
 });
 
-test("fine dust endpoint caches successful provider responses", async (t) => {
+test("endpoint мелкой пыли кэширует успешные ответы провайдера", async (t) => {
   let providerCalls = 0;
   const app = buildServer({
     env: {
@@ -122,7 +122,7 @@ test("fine dust endpoint caches successful provider responses", async (t) => {
   assert.equal(second.json().proxy.cache.hit, true);
 });
 
-test("proxyAirKoreaRequest injects serviceKey and preserves caller query params", async () => {
+test("proxyAirKoreaRequest внедряет serviceKey и сохраняет параметры запроса вызывающего", async () => {
   let calledUrl;
   const result = await proxyAirKoreaRequest({
     service: "ArpltnInforInqireSvc",
@@ -149,7 +149,7 @@ test("proxyAirKoreaRequest injects serviceKey and preserves caller query params"
   assert.match(calledUrl, /serviceKey=test-service-key/);
 });
 
-test("public AirKorea passthrough route forwards allowed upstream responses", async (t) => {
+test("общедоступный маршрут сквозной передачи AirKorea пересылает разрешённые upstream-ответы", async (t) => {
   const originalFetch = global.fetch;
   global.fetch = async () =>
     new Response('{"response":{"header":{"resultCode":"00"}}}', {

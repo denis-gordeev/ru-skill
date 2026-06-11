@@ -14,7 +14,7 @@ const {
 
 const fixturesDir = path.join(__dirname, 'fixtures');
 
-describe('zoon-nearby parser', () => {
+describe('парсер zoon-nearby', () => {
   let restaurantsHtml;
   let businessDetailHtml;
 
@@ -30,7 +30,7 @@ describe('zoon-nearby parser', () => {
   });
 
   describe('parseSearchResults', () => {
-    it('should extract business listings from category page', () => {
+    it('извлекает список организаций со страницы категории', () => {
       const result = parseSearchResults(restaurantsHtml, 'Москва рестораны');
       
       assert.strictEqual(result.businesses.length, 3);
@@ -41,12 +41,12 @@ describe('zoon-nearby parser', () => {
       assert.strictEqual(result.businesses[0].category, 'Русская кухня');
     });
 
-    it('should parse total count from HTML', () => {
+    it('разбирает общее количество из HTML', () => {
       const count = parseItemCount(restaurantsHtml);
       assert.strictEqual(count, 1234);
     });
 
-    it('should extract pagination info', () => {
+    it('извлекает информацию о пагинации', () => {
       const pagination = extractPagination(restaurantsHtml);
       
       assert.strictEqual(pagination.hasNextPage, true);
@@ -54,14 +54,14 @@ describe('zoon-nearby parser', () => {
       assert.strictEqual(pagination.pages.length, 3);
     });
 
-    it('should include query in result', () => {
+    it('включает запрос в результат', () => {
       const result = parseSearchResults(restaurantsHtml, 'test query');
       assert.strictEqual(result.query, 'test query');
     });
   });
 
   describe('parseBusinessPage', () => {
-    it('should extract business details from detail page', () => {
+    it('извлекает данные организации со страницы деталей', () => {
       const result = parseBusinessPage(businessDetailHtml, 'https://zoon.ru/msk/restaurants/pushkin');
       
       assert.strictEqual(result.name, 'Кафе Пушкинъ');
@@ -74,7 +74,7 @@ describe('zoon-nearby parser', () => {
       assert.strictEqual(result.url, 'https://zoon.ru/msk/restaurants/pushkin');
     });
 
-    it('should throw if business name cannot be parsed', () => {
+    it('выбрасывает ошибку, если название организации не удалось разобрать', () => {
       assert.throws(
         () => parseBusinessPage('<html><body>empty</body></html>'),
         /Не удалось извлечь название организации/
@@ -83,22 +83,22 @@ describe('zoon-nearby parser', () => {
   });
 
   describe('normalizeBusinessUrl', () => {
-    it('should normalize relative URLs', () => {
+    it('нормализует относительные URL', () => {
       const result = normalizeBusinessUrl('/msk/restaurants/pushkin');
       assert.ok(result && result.includes('zoon.ru'));
     });
 
-    it('should keep absolute URLs as-is', () => {
+    it('оставляет абсолютные URL без изменений', () => {
       const result = normalizeBusinessUrl('https://zoon.ru/msk/restaurants/pushkin');
       assert.strictEqual(result, 'https://zoon.ru/msk/restaurants/pushkin');
     });
 
-    it('should return null for invalid URLs', () => {
+    it('возвращает null для некорректных URL', () => {
       const result = normalizeBusinessUrl('not-a-url');
       assert.strictEqual(result, null);
     });
 
-    it('should return null for empty input', () => {
+    it('возвращает null для пустого ввода', () => {
       const result = normalizeBusinessUrl('');
       assert.strictEqual(result, null);
     });

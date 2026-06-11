@@ -19,20 +19,20 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const searchFixture = fs.readFileSync(path.join(fixturesDir, "search-results.json"), "utf8");
 const cardFixture = fs.readFileSync(path.join(fixturesDir, "document-card.json"), "utf8");
 
-test("buildSearchUrl creates correct URL with defaults", () => {
+test("buildSearchUrl создаёт корректный URL с параметрами по умолчанию", () => {
   const url = buildSearchUrl();
   assert.ok(url.includes("/api/Documents"));
   assert.ok(url.includes("CurrentPage=1"));
   assert.ok(url.includes("PageSize=20"));
 });
 
-test("buildSearchUrl applies name search parameter", () => {
+test("buildSearchUrl применяет параметр поиска по названию", () => {
   const url = buildSearchUrl({ name: "федеральный закон" });
   assert.ok(url.includes("NameSearchType=0"));
   assert.ok(url.includes("Name=%D1%84%D0%B5%D0%B4%D0%B5%D1%80%D0%B0%D0%BB") || url.includes("Name="));
 });
 
-test("buildSearchUrl applies filters and pagination", () => {
+test("buildSearchUrl применяет фильтры и пагинацию", () => {
   const url = buildSearchUrl({
     documentTypeId: "type-1",
     page: 2,
@@ -43,27 +43,27 @@ test("buildSearchUrl applies filters and pagination", () => {
   assert.ok(url.includes("PageSize=50"));
 });
 
-test("buildSearchUrl validates page number", () => {
+test("buildSearchUrl проверяет номер страницы", () => {
   assert.throws(() => buildSearchUrl({ page: 0 }), /должен быть целым числом, большим или равным 1/);
   assert.throws(() => buildSearchUrl({ page: -1 }), /должен быть целым числом, большим или равным 1/);
 });
 
-test("buildSearchUrl validates page size", () => {
+test("buildSearchUrl проверяет размер страницы", () => {
   assert.throws(() => buildSearchUrl({ pageSize: 0 }), /должен быть целым числом от 1 до 100/);
   assert.throws(() => buildSearchUrl({ pageSize: 101 }), /должен быть целым числом от 1 до 100/);
 });
 
-test("buildDocumentUrl creates correct URL", () => {
+test("buildDocumentUrl создаёт корректный URL", () => {
   const url = buildDocumentUrl("0001202501010001");
   assert.equal(url, "https://publication.pravo.gov.ru/api/Document?eoNumber=0001202501010001");
 });
 
-test("buildDocumentUrl validates eoNumber", () => {
+test("buildDocumentUrl проверяет eoNumber", () => {
   assert.throws(() => buildDocumentUrl(""), /должен быть непустой строкой/);
   assert.throws(() => buildDocumentUrl(null), /должен быть непустой строкой/);
 });
 
-test("normalizeDocumentItem extracts key fields", () => {
+test("normalizeDocumentItem извлекает ключевые поля", () => {
   const searchResults = JSON.parse(searchFixture);
   const item = normalizeDocumentItem(searchResults.items[0]);
 
@@ -76,7 +76,7 @@ test("normalizeDocumentItem extracts key fields", () => {
   assert.ok(item.pdfUrl);
 });
 
-test("normalizeDocumentCard extracts full metadata", () => {
+test("normalizeDocumentCard извлекает полные метаданные", () => {
   const cardData = JSON.parse(cardFixture);
   const card = normalizeDocumentCard(cardData);
 
@@ -87,7 +87,7 @@ test("normalizeDocumentCard extracts full metadata", () => {
   assert.equal(card.signatoryAuthority[0].isMain, true);
 });
 
-test("public helpers search and fetch document cards", async () => {
+test("публичные помощники ищут и получают карточки документов", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {

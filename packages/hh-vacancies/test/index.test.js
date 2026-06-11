@@ -23,7 +23,7 @@ const areaFixture = JSON.parse(fs.readFileSync(path.join(fixturesDir, "area-mosc
 const vacanciesFixture = JSON.parse(fs.readFileSync(path.join(fixturesDir, "vacancies-frontend-moscow.json"), "utf8"));
 const vacancyFixture = JSON.parse(fs.readFileSync(path.join(fixturesDir, "vacancy-131927189.json"), "utf8"));
 
-test("parseAreaResponse normalizes an HH area payload", () => {
+test("parseAreaResponse нормализует данные HH о регионе", () => {
   assert.deepEqual(parseAreaResponse(areaFixture), {
     areaId: "1",
     parentAreaId: "113",
@@ -35,7 +35,7 @@ test("parseAreaResponse normalizes an HH area payload", () => {
   });
 });
 
-test("parseVacancySearchResponse normalizes an HH vacancies page", () => {
+test("parseVacancySearchResponse нормализует страницу вакансий HH", () => {
   const parsed = parseVacancySearchResponse(vacanciesFixture);
 
   assert.equal(parsed.found, 895);
@@ -76,7 +76,7 @@ test("parseVacancySearchResponse normalizes an HH vacancies page", () => {
   assert.equal(parsed.items[1].salary.period, "За месяц");
 });
 
-test("parseVacancyResponse normalizes a detailed HH vacancy payload", () => {
+test("parseVacancyResponse нормализует детальные данные HH о вакансии", () => {
   assert.deepEqual(parseVacancyResponse(vacancyFixture), {
     vacancyId: "131927189",
     title: "Middle Frontend-разработчик (React / React Admin)",
@@ -144,7 +144,7 @@ test("parseVacancyResponse normalizes a detailed HH vacancy payload", () => {
   });
 });
 
-test("URL builders pin public HH endpoints", () => {
+test("построители URL фиксируют публичные эндпоинты HH", () => {
   assert.equal(buildAreaUrl(1), "https://api.hh.ru/areas/1");
   assert.equal(buildVacancyUrl("131927189"), "https://api.hh.ru/vacancies/131927189");
   assert.equal(
@@ -155,7 +155,7 @@ test("URL builders pin public HH endpoints", () => {
   assert.throws(() => buildVacancySearchUrl(" ", { areaId: 1 }), /непустой строкой/);
 });
 
-test("public helpers fetch and normalize HH payloads", async () => {
+test("публичные помощники загружают и нормализуют данные HH", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {
@@ -198,7 +198,7 @@ test("public helpers fetch and normalize HH payloads", async () => {
   }
 });
 
-test("stripHtml keeps readable paragraphs and bullet lists", () => {
+test("stripHtml сохраняет читаемые абзацы и маркированные списки", () => {
   assert.equal(
     stripHtml("<p>Текст</p><ul><li>Пункт 1</li><li>Пункт 2</li></ul>"),
     "Текст\n\n- Пункт 1\n- Пункт 2"

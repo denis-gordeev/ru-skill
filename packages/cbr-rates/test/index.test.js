@@ -10,7 +10,7 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const daily20260402 = fs.readFileSync(path.join(fixturesDir, "daily-2026-04-02.xml"), "utf8");
 const daily20260401 = fs.readFileSync(path.join(fixturesDir, "daily-2026-04-01.xml"), "utf8");
 
-test("parseDailyRatesXml normalizes official CBR XML into numeric currency rows", () => {
+test("parseDailyRatesXml нормализует официальный XML ЦБ РФ в числовые строки валют", () => {
   const parsed = parseDailyRatesXml(daily20260402);
 
   assert.equal(parsed.date, "2026-04-02");
@@ -27,14 +27,14 @@ test("parseDailyRatesXml normalizes official CBR XML into numeric currency rows"
   });
 });
 
-test("findCurrencyByCode rejects invalid codes", () => {
+test("findCurrencyByCode отклоняет недопустимые коды", () => {
   const parsed = parseDailyRatesXml(daily20260402);
 
   assert.throws(() => findCurrencyByCode(parsed, "USDT"), /трёхбуквенным кодом валюты ISO/);
   assert.throws(() => findCurrencyByCode(parsed, "CHF"), /отсутствует в ежедневных котировках/);
 });
 
-test("public fetchers normalize requested and published dates", async () => {
+test("публичные загрузчики нормализуют запрошенную и опубликованную даты", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {

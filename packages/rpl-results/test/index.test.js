@@ -23,7 +23,7 @@ const {
 // Unit tests for parse utilities
 //
 
-test("decodeHtmlEntities decodes common entities", () => {
+test("decodeHtmlEntities декодирует типичные сущности", () => {
   assert.equal(decodeHtmlEntities("&amp;"), "&");
   assert.equal(decodeHtmlEntities("&quot;"), '"');
   assert.equal(decodeHtmlEntities("&lt;"), "<");
@@ -33,18 +33,18 @@ test("decodeHtmlEntities decodes common entities", () => {
   assert.equal(decodeHtmlEntities("a&nbsp;b"), "a b");
 });
 
-test("stripTags removes HTML and normalizes whitespace", () => {
+test("stripTags удаляет HTML и нормализует пробелы", () => {
   assert.equal(stripTags("<p>Hello</p>"), "Hello");
   assert.equal(stripTags("<a href='/x'>Link</a>"), "Link");
   assert.equal(stripTags("<span>  multiple   spaces  </span>"), "multiple spaces");
 });
 
-test("matchOne returns first capture group or null", () => {
+test("matchOne возвращает первую группу захвата или null", () => {
   assert.equal(matchOne(/value="([^"]+)"/, 'value="test"'), "test");
   assert.equal(matchOne(/value="([^"]+)"/, "no match here"), null);
 });
 
-test("toNumberOrNull converts strings to numbers", () => {
+test("toNumberOrNull преобразует строки в числа", () => {
   assert.equal(toNumberOrNull("42"), 42);
   assert.equal(toNumberOrNull("3.14"), 3.14);
   assert.equal(toNumberOrNull(""), null);
@@ -56,12 +56,12 @@ test("toNumberOrNull converts strings to numbers", () => {
 // URL builder tests
 //
 
-test("buildStandingsUrl returns championat.com RPL table URL", () => {
+test("buildStandingsUrl возвращает URL таблицы РПЛ на championat.com", () => {
   const url = buildStandingsUrl();
   assert.equal(url, "https://www.championat.com/football/_russiapl/tournament/5980/table/");
 });
 
-test("buildResultsUrl returns championat.com RPL results URL", () => {
+test("buildResultsUrl возвращает URL результатов РПЛ на championat.com", () => {
   const url = buildResultsUrl();
   assert.equal(url, "https://www.championat.com/football/_russiapl/tournament/5980/results/");
 });
@@ -70,7 +70,7 @@ test("buildResultsUrl returns championat.com RPL results URL", () => {
 // Fixture-based parser tests
 //
 
-test("parseStandings parses fixture HTML correctly", () => {
+test("parseStandings корректно разбирает HTML-фикстуру", () => {
   const fixturePath = path.join(__dirname, "fixtures", "standings.html");
   const html = fs.readFileSync(fixturePath, "utf-8");
   const standings = parseStandings(html);
@@ -120,7 +120,7 @@ test("parseStandings parses fixture HTML correctly", () => {
   });
 });
 
-test("parseMatchResults parses fixture HTML correctly", () => {
+test("parseMatchResults корректно разбирает HTML-фикстуру", () => {
   const fixturePath = path.join(__dirname, "fixtures", "results.html");
   const html = fs.readFileSync(fixturePath, "utf-8");
   const matches = parseMatchResults(html);
@@ -159,7 +159,7 @@ test("parseMatchResults parses fixture HTML correctly", () => {
 // Integration tests with mocked fetch
 //
 
-test("getStandings fetches and parses standings via mocked fetch", async () => {
+test("getStandings получает и разбирает турнирную таблицу через мок-запрос", async () => {
   const fixturePath = path.join(__dirname, "fixtures", "standings.html");
   const html = fs.readFileSync(fixturePath, "utf-8");
 
@@ -178,7 +178,7 @@ test("getStandings fetches and parses standings via mocked fetch", async () => {
   assert.equal(result.standings[0].team, "Краснодар");
 });
 
-test("getStandings throws on non-OK response", async () => {
+test("getStandings выбрасывает ошибку при неуспешном ответе", async () => {
   const mockFetch = async () => ({
     ok: false,
     status: 500,
@@ -190,7 +190,7 @@ test("getStandings throws on non-OK response", async () => {
   );
 });
 
-test("getResults fetches and parses results via mocked fetch", async () => {
+test("getResults получает и разбирает результаты через мок-запрос", async () => {
   const fixturePath = path.join(__dirname, "fixtures", "results.html");
   const html = fs.readFileSync(fixturePath, "utf-8");
 
@@ -210,7 +210,7 @@ test("getResults fetches and parses results via mocked fetch", async () => {
   assert.equal(result.matches[0].awayTeam, "Зенит");
 });
 
-test("getResults throws on non-OK response", async () => {
+test("getResults выбрасывает ошибку при неуспешном ответе", async () => {
   const mockFetch = async () => ({
     ok: false,
     status: 404,

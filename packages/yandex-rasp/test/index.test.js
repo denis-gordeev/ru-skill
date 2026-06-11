@@ -18,21 +18,21 @@ const searchTripsJson = fs.readFileSync(path.join(fixturesDir, "search-trips.jso
 
 // --- parse.js tests ---
 
-test("isValidStationCode accepts valid s- and c-codes", () => {
+test("isValidStationCode принимает корректные s- и c-коды", () => {
   assert.equal(isValidStationCode("s9600013"), true);
   assert.equal(isValidStationCode("c146"), true);
   assert.equal(isValidStationCode("s1"), true);
   assert.equal(isValidStationCode("c999"), true);
 });
 
-test("isValidStationCode rejects invalid codes", () => {
+test("isValidStationCode отклоняет некорректные коды", () => {
   assert.equal(isValidStationCode("abc"), false);
   assert.equal(isValidStationCode(""), false);
   assert.equal(isValidStationCode("9600013"), false);
   assert.equal(isValidStationCode(null), false);
 });
 
-test("formatDuration produces Russian-language output", () => {
+test("formatDuration выдаёт результат на русском языке", () => {
   assert.equal(formatDuration(0), "0 мин");
   assert.equal(formatDuration(60), "1 мин");
   assert.equal(formatDuration(3660), "1 ч 1 мин");
@@ -41,7 +41,7 @@ test("formatDuration produces Russian-language output", () => {
   assert.equal(formatDuration(null), "");
 });
 
-test("extractTransportTypes returns unique types from entries", () => {
+test("extractTransportTypes возвращает уникальные типы из записей", () => {
   const entries = [
     { thread: { transportType: "suburban" } },
     { thread: { transportType: "train" } },
@@ -51,7 +51,7 @@ test("extractTransportTypes returns unique types from entries", () => {
   assert.deepEqual(types.sort(), ["suburban", "train"].sort());
 });
 
-test("groupByTransportType groups entries by transport type", () => {
+test("groupByTransportType группирует записи по типу транспорта", () => {
   const entries = [
     { thread: { transportType: "suburban" }, departure: "06:35" },
     { thread: { transportType: "train" }, departure: "12:15" },
@@ -63,7 +63,7 @@ test("groupByTransportType groups entries by transport type", () => {
 
 // --- index.js mock-based tests ---
 
-test("searchStations filters stations by query from full directory", async () => {
+test("searchStations фильтрует станции по запросу из полного справочника", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async () => makeJsonResponse(JSON.parse(stationsListJson));
@@ -87,7 +87,7 @@ test("searchStations filters stations by query from full directory", async () =>
   }
 });
 
-test("getStationSchedule normalizes schedule entries", async () => {
+test("getStationSchedule нормализует записи расписания", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async () => makeJsonResponse(JSON.parse(scheduleJson));
@@ -116,7 +116,7 @@ test("getStationSchedule normalizes schedule entries", async () => {
   }
 });
 
-test("searchTrips normalizes segments and pagination", async () => {
+test("searchTrips нормализует сегменты и пагинацию", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async () => makeJsonResponse(JSON.parse(searchTripsJson));
@@ -145,7 +145,7 @@ test("searchTrips normalizes segments and pagination", async () => {
   }
 });
 
-test("searchStations throws when no API key provided", async () => {
+test("searchStations выбрасывает ошибку при отсутствии ключа API", async () => {
   const originalEnv = process.env.YANDEX_RASP_API_KEY;
   delete process.env.YANDEX_RASP_API_KEY;
 
@@ -159,7 +159,7 @@ test("searchStations throws when no API key provided", async () => {
   }
 });
 
-test("searchStations uses YANDEX_RASP_API_KEY env variable", async () => {
+test("searchStations использует переменную окружения YANDEX_RASP_API_KEY", async () => {
   const originalFetch = global.fetch;
   const originalEnv = process.env.YANDEX_RASP_API_KEY;
 

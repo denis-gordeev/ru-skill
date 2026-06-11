@@ -200,28 +200,70 @@ const REGIONS = {
   "87": { name: "Чукотский АО", host: "87" }
 };
 
+const ALIASES = {
+  "удмуртия": { name: "Удмуртская Республика", host: "18" },
+  "башкирия": { name: "Республика Башкортостан", host: "02" },
+  "чувашия": { name: "Чувашская Республика", host: "21" },
+  "кабардино-балкария": { name: "Кабардино-Балкарская Республика", host: "07" },
+  "карачаево-черкесия": { name: "Карачаево-Черкесская Республика", host: "09" },
+  "северная осетия": { name: "Республика Северная Осетия - Алания", host: "15" },
+  "осетия": { name: "Республика Северная Осетия - Алания", host: "15" },
+  "питер": { name: "г. Санкт-Петербург", host: "78" },
+  "спб": { name: "г. Санкт-Петербург", host: "78" },
+  "подмосковье": { name: "Московская область", host: "50" },
+  "чукотка": { name: "Чукотский АО", host: "87" },
+  "кемерово": { name: "Кемеровская область - Кузбасс", host: "42" },
+  "кузбасс": { name: "Кемеровская область - Кузбасс", host: "42" },
+  "тюмень": { name: "Тюменская область", host: "72" },
+  "якутия": { name: "Республика Саха (Якутия)", host: "14" },
+  "тыва": { name: "Республика Тыва", host: "17" },
+  "дагестан": { name: "Республика Дагестан", host: "05" },
+  "ингушетия": { name: "Республика Ингушетия", host: "06" },
+  "чечня": { name: "Чеченская Республика", host: "20" },
+  "адыгея": { name: "Республика Адыгея", host: "01" },
+  "калмыкия": { name: "Республика Калмыкия", host: "08" },
+  "крым": { name: "Республика Крым", host: "91" },
+  "бурятия": { name: "Республика Бурятия", host: "03" },
+  "хакасия": { name: "Республика Хакасия", host: "19" },
+  "карелия": { name: "Республика Карелия", host: "10" },
+  "коми": { name: "Республика Коми", host: "11" },
+  "мордовия": { name: "Республика Мордовия", host: "13" },
+  "татарстан": { name: "Республика Татарстан", host: "16" },
+  "марий эл": { name: "Республика Марий Эл", host: "12" },
+  "москва": { name: "г. Москва", host: "moscow" },
+  "санкт-петербург": { name: "г. Санкт-Петербург", host: "78" },
+  "севастополь": { name: "г. Севастополь", host: "92" }
+};
+
 /**
  * Построение карты поиска: название региона (в нижнем регистре) → информация о регионе.
  */
 const NAME_TO_REGION = {};
 for (const [key, info] of Object.entries(REGIONS)) {
-  // Индексируем все ключи, но приоритет отдаём нечисловым для поиска по названию
   const keyLower = key.toLowerCase();
   if (!NAME_TO_REGION[keyLower]) {
     NAME_TO_REGION[keyLower] = info;
   }
 }
 
-// Дополнительно индексируем по полным русским названиям
 for (const [key, info] of Object.entries(REGIONS)) {
   if (/^\d+$/.test(key)) {
-    // Для числовых ключей индексируем по русскому названию
     const nameLower = info.name.toLowerCase();
     if (!NAME_TO_REGION[nameLower]) {
       NAME_TO_REGION[nameLower] = info;
     }
   }
 }
+
+for (const [alias, info] of Object.entries(ALIASES)) {
+  if (!NAME_TO_REGION[alias]) {
+    NAME_TO_REGION[alias] = info;
+  }
+}
+
+const MIN_FUZZY_LENGTH = 3;
+
+const TRIVIAL_SUFFIXES = /^(республика|область|край|ао|округ|г\s*\.)$/i;
 
 /**
  * Поиск региона по названию или хосту, возвращает нормализованный хост.
@@ -235,24 +277,48 @@ function lookupRegion(query) {
 
   const trimmed = query.trim();
 
-  // Прямое совпадение по хосту (числовой или именованный)
   const directMatch = REGIONS[trimmed.toLowerCase()];
   if (directMatch) {
     return { name: directMatch.name, host: directMatch.host };
   }
 
-  // Поиск по названию
   const nameLower = trimmed.toLowerCase();
+
+  const aliasMatch = ALIASES[nameLower];
+  if (aliasMatch) {
+    return { name: aliasMatch.name, host: aliasMatch.host };
+  }
+
   const nameMatch = NAME_TO_REGION[nameLower];
   if (nameMatch) {
     return { name: nameMatch.name, host: nameMatch.host };
   }
 
-  // Нечёткий поиск по подстроке в названиях регионов
+  if (nameLower.length < MIN_FUZZY_LENGTH || TRIVIAL_SUFFIXES.test(nameLower)) {
+    return null;
+  }
+
+  let bestMatch = null;
+  let bestScore = 0;
+
   for (const [nameKey, info] of Object.entries(NAME_TO_REGION)) {
-    if (nameKey.includes(nameLower) || nameLower.includes(nameKey)) {
-      return { name: info.name, host: info.host };
+    if (nameKey.includes(nameLower)) {
+      const score = nameLower.length / nameKey.length;
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = info;
+      }
+    } else if (nameLower.includes(nameKey) && nameKey.length >= MIN_FUZZY_LENGTH) {
+      const score = nameKey.length / nameLower.length;
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = info;
+      }
     }
+  }
+
+  if (bestMatch && bestScore >= 0.4) {
+    return { name: bestMatch.name, host: bestMatch.host };
   }
 
   return null;

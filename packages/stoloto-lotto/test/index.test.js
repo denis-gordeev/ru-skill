@@ -21,7 +21,7 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const archive4x20Fixture = fs.readFileSync(path.join(fixturesDir, "archive-4x20.html"), "utf8");
 const archive6x45Fixture = fs.readFileSync(path.join(fixturesDir, "archive-6x45.html"), "utf8");
 
-test("normalizeGameSlug maps common aliases to canonical slugs", () => {
+test("normalizeGameSlug отображает распространённые псевдонимы в канонические слаги", () => {
   assert.equal(normalizeGameSlug("4x20"), "4x20");
   assert.equal(normalizeGameSlug("4 из 20"), "4x20");
   assert.equal(normalizeGameSlug("6x45"), "6x45");
@@ -31,7 +31,7 @@ test("normalizeGameSlug maps common aliases to canonical slugs", () => {
   assert.throws(() => normalizeGameSlug("unknown-game"), /Неподдерживаемый идентификатор игры/);
 });
 
-test("SUPPORTED_GAMES lists all canonical game slugs", () => {
+test("SUPPORTED_GAMES перечисляет все канонические слаги игр", () => {
   assert.ok(SUPPORTED_GAMES.includes("4x20"));
   assert.ok(SUPPORTED_GAMES.includes("6x45"));
   assert.ok(SUPPORTED_GAMES.includes("5x36"));
@@ -39,13 +39,13 @@ test("SUPPORTED_GAMES lists all canonical game slugs", () => {
   assert.ok(SUPPORTED_GAMES.includes("ruslotto"));
 });
 
-test("buildArchiveUrl pins the public Stoloto archive endpoint", () => {
+test("buildArchiveUrl фиксирует публичный эндпоинт архива Столото", () => {
   assert.equal(buildArchiveUrl("4x20"), "https://www.stoloto.ru/4x20/archive");
   assert.equal(buildArchiveUrl("6x45"), "https://www.stoloto.ru/6x45/archive");
   assert.equal(buildArchiveUrl("ruslotto"), "https://www.stoloto.ru/ruslotto/archive");
 });
 
-test("extractWinningNumbers extracts ball numbers from HTML", () => {
+test("extractWinningNumbers извлекает номера шаров из HTML", () => {
   const html = `
     <td class="numbers">
       <span class="ball">3</span>
@@ -58,7 +58,7 @@ test("extractWinningNumbers extracts ball numbers from HTML", () => {
   assert.deepEqual(numbers, [3, 7, 12, 18]);
 });
 
-test("parseDrawRow extracts structured data from a Stoloto archive row", () => {
+test("parseDrawRow извлекает структурированные данные из строки архива Столото", () => {
   const rowHtml = `
     <tr>
       <td><span class="draw-number">12345</span></td>
@@ -81,7 +81,7 @@ test("parseDrawRow extracts structured data from a Stoloto archive row", () => {
   assert.ok(parsed.prize.includes("100"));
 });
 
-test("parseArchivePage normalizes a Stoloto 4x20 archive page", () => {
+test("parseArchivePage нормализует страницу архива Столото 4x20", () => {
   const parsed = parseArchivePage(archive4x20Fixture, "4x20");
 
   assert.equal(parsed.gameSlug, "4x20");
@@ -110,7 +110,7 @@ test("parseArchivePage normalizes a Stoloto 4x20 archive page", () => {
   });
 });
 
-test("parseArchivePage normalizes a Stoloto 6x45 archive page", () => {
+test("parseArchivePage нормализует страницу архива Столото 6x45", () => {
   const parsed = parseArchivePage(archive6x45Fixture, "6x45");
 
   assert.equal(parsed.gameSlug, "6x45");
@@ -132,7 +132,7 @@ test("parseArchivePage normalizes a Stoloto 6x45 archive page", () => {
   });
 });
 
-test("public helpers fetch and normalize Stoloto archive pages", async () => {
+test("публичные помощники загружают и нормализуют страницы архива Столото", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {

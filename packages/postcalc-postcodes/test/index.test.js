@@ -18,7 +18,7 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const officeFixture = fs.readFileSync(path.join(fixturesDir, "office-109189.html"), "utf8");
 const cityFixture = fs.readFileSync(path.join(fixturesDir, "city-syktyvkar.html"), "utf8");
 
-test("parseOfficePage normalizes a Postcalc office card", () => {
+test("parseOfficePage нормализует карточку отделения Postcalc", () => {
   assert.deepEqual(parseOfficePage(officeFixture), {
     postalCode: "109189",
     officeName: "Москва 189",
@@ -38,7 +38,7 @@ test("parseOfficePage normalizes a Postcalc office card", () => {
   });
 });
 
-test("parseCityPage normalizes Postcalc city parameters and offices list", () => {
+test("parseCityPage нормализует параметры города Postcalc и список отделений", () => {
   const parsed = parseCityPage(cityFixture);
 
   assert.equal(parsed.cityName, "Сыктывкар");
@@ -82,14 +82,14 @@ test("parseCityPage normalizes Postcalc city parameters and offices list", () =>
   ]);
 });
 
-test("URL builders pin the public Postcalc endpoints", () => {
+test("построители URL фиксируют публичные эндпоинты Postcalc", () => {
   assert.equal(buildOfficeUrl("109189"), "https://postcalc.ru/offices/109189");
   assert.equal(buildCityUrl("Сыктывкар"), "https://postcalc.ru/cities/%D0%A1%D1%8B%D0%BA%D1%82%D1%8B%D0%B2%D0%BA%D0%B0%D1%80");
   assert.throws(() => buildOfficeUrl("10918"), /6-значным российским почтовым индексом/);
   assert.throws(() => buildCityUrl(" "), /непустой строкой/);
 });
 
-test("public helpers fetch and normalize office and city pages", async () => {
+test("публичные помощники загружают и нормализуют страницы отделений и городов", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {

@@ -20,29 +20,29 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const film326Fixture = fs.readFileSync(path.join(fixturesDir, "film-326.html"), "utf8");
 const searchBratFixture = fs.readFileSync(path.join(fixturesDir, "search-brat.html"), "utf8");
 
-test("decodeHtmlEntities handles common HTML entities", () => {
+test("decodeHtmlEntities обрабатывает типичные HTML-сущности", () => {
   assert.equal(decodeHtmlEntities("&lt;div&gt;"), "<div>");
   assert.equal(decodeHtmlEntities("&nbsp;"), " ");
   assert.equal(decodeHtmlEntities("&#65;"), "A");
 });
 
-test("stripTags removes HTML and normalizes whitespace", () => {
+test("stripTags удаляет HTML и нормализует пробелы", () => {
   assert.equal(stripTags("<p>Hello <b>World</b></p>"), "Hello World");
   assert.equal(stripTags("  multiple   spaces  "), "multiple spaces");
 });
 
-test("buildFilmUrl pins the Kinopoisk film page URL", () => {
+test("buildFilmUrl фиксирует URL страницы фильма на Kinopoisk", () => {
   assert.equal(buildFilmUrl("326"), "https://www.kinopoisk.ru/film/326/");
   assert.equal(buildFilmUrl("117"), "https://www.kinopoisk.ru/film/117/");
 });
 
-test("buildSearchUrl pins the Kinopoisk search URL with encoded query", () => {
+test("buildSearchUrl фиксирует URL поиска Kinopoisk с закодированным запросом", () => {
   const url = buildSearchUrl("Брат 2");
   assert.ok(url.startsWith("https://www.kinopoisk.ru/index/standalone_search/?query="));
   assert.ok(url.includes("Брат") || url.includes("%D0%91%D1%80%D0%B0%D1%82"));
 });
 
-test("parseFilmPage extracts structured data from a film page", () => {
+test("parseFilmPage извлекает структурированные данные со страницы фильма", () => {
   const parsed = parseFilmPage(film326Fixture, "326");
 
   assert.equal(parsed.filmId, "326");
@@ -57,7 +57,7 @@ test("parseFilmPage extracts structured data from a film page", () => {
   assert.ok(parsed.actors.some(a => a.includes("Бодров")));
 });
 
-test("parseSearchResults extracts film list from search page", () => {
+test("parseSearchResults извлекает список фильмов со страницы поиска", () => {
   const parsed = parseSearchResults(searchBratFixture, "Брат");
 
   assert.equal(parsed.query, "Брат");
@@ -76,7 +76,7 @@ test("parseSearchResults extracts film list from search page", () => {
   assert.equal(secondResult.year, "1997");
 });
 
-test("public helpers fetch and normalize Kinopoisk pages", async () => {
+test("публичные помощники загружают и нормализуют страницы Kinopoisk", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {

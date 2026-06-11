@@ -307,7 +307,7 @@ def build_report(
     )
     measurement = find_measurement(measurement_items, station["stationName"])
 
-    resolved_lookup_mode = lookup_mode or ("coordinates" if lat is not None and lon is not None else "fallback")
+    resolved_lookup_mode = lookup_mode or ("координаты" if lat is not None and lon is not None else "запасной вариант")
 
     return {
         "station_name": station["stationName"],
@@ -414,7 +414,7 @@ def fetch_proxy_report(args: argparse.Namespace) -> dict | None:
 
 def fetch_station_lookup(args: argparse.Namespace) -> tuple[dict, str]:
     if args.station_file:
-        return load_json_file(args.station_file), "coordinates" if args.lat is not None and args.lon is not None else "fallback"
+        return load_json_file(args.station_file), "координаты" if args.lat is not None and args.lon is not None else "запасной вариант"
 
     service_key = get_required_secret()
     common = {
@@ -436,7 +436,7 @@ def fetch_station_lookup(args: argparse.Namespace) -> tuple[dict, str]:
             },
         )
         if extract_items(nearby_payload):
-            return nearby_payload, "coordinates"
+            return nearby_payload, "координаты"
 
     if args.region_hint or args.station_name:
         return (
@@ -448,7 +448,7 @@ def fetch_station_lookup(args: argparse.Namespace) -> tuple[dict, str]:
                     "stationName": args.station_name,
                 },
             ),
-            "fallback",
+            "запасной вариант",
         )
 
     raise SystemExit("Необходимы координаты (широта/долгота) или подсказка региона.")

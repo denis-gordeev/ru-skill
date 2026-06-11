@@ -102,25 +102,25 @@ const PRODUCT_FIXTURE = `
 </html>
 `;
 
-test("decodeHtmlEntities and stripTags normalize market HTML fragments", () => {
+test("decodeHtmlEntities и stripTags нормализуют HTML-фрагменты Маркета", () => {
   assert.equal(decodeHtmlEntities("6.1&quot; &amp; more"), '6.1" & more');
   assert.equal(stripTags("<div><span>  Apple&nbsp;iPhone </span></div>"), "Apple iPhone");
 });
 
-test("parsePrice extracts integer ruble amounts", () => {
+test("parsePrice извлекает целые суммы в рублях", () => {
   assert.equal(parsePrice("65 172 ₽"), 65172);
   assert.equal(parsePrice("101 999 ₽"), 101999);
   assert.equal(parsePrice(""), null);
 });
 
-test("normalizeProductUrl strips tracking query params", () => {
+test("normalizeProductUrl убирает отслеживающие параметры запроса", () => {
   assert.equal(
     normalizeProductUrl("/card/demo-product/12345?from=search&clid=1"),
     "https://market.yandex.ru/card/demo-product/12345"
   );
 });
 
-test("buildSearchUrl and buildProductUrl return Yandex Market URLs", () => {
+test("buildSearchUrl и buildProductUrl возвращают URL Яндекс Маркета", () => {
   assert.equal(
     buildSearchUrl("iphone 16"),
     "https://market.yandex.ru/search?text=iphone+16"
@@ -135,7 +135,7 @@ test("buildSearchUrl and buildProductUrl return Yandex Market URLs", () => {
   );
 });
 
-test("parseSearchResults extracts product cards from Yandex Market SERP HTML", () => {
+test("parseSearchResults извлекает карточки товаров из HTML выдачи Яндекс Маркета", () => {
   const parsed = parseSearchResults(SEARCH_FIXTURE, "iphone");
 
   assert.equal(parsed.query, "iphone");
@@ -156,7 +156,7 @@ test("parseSearchResults extracts product cards from Yandex Market SERP HTML", (
   });
 });
 
-test("parseProductPage extracts title price rating and full specs", () => {
+test("parseProductPage извлекает название, цену, рейтинг и полные характеристики", () => {
   const parsed = parseProductPage(
     PRODUCT_FIXTURE,
     "https://market.yandex.ru/card/smartfon-apple-iphone-16-256gb-belyy-white-nano-sim--esim/5268004944?from=search"
@@ -182,7 +182,7 @@ test("parseProductPage extracts title price rating and full specs", () => {
   });
 });
 
-test("searchProducts fetches and parses search HTML via mocked fetch", async () => {
+test("searchProducts получает и разбирает HTML поиска через мок-запрос", async () => {
   const mockFetch = async () => ({
     ok: true,
     status: 200,
@@ -194,7 +194,7 @@ test("searchProducts fetches and parses search HTML via mocked fetch", async () 
   assert.equal(result.results[0].productId, "103572164696");
 });
 
-test("getProduct fetches and parses a product card via mocked fetch", async () => {
+test("getProduct получает и разбирает карточку товара через мок-запрос", async () => {
   const mockFetch = async () => ({
     ok: true,
     status: 200,
@@ -209,7 +209,7 @@ test("getProduct fetches and parses a product card via mocked fetch", async () =
   assert.equal(result.price.amount, 79262);
 });
 
-test("searchProducts and getProduct surface HTTP failures", async () => {
+test("searchProducts и getProduct сообщают об ошибках HTTP", async () => {
   const mockFetch = async () => ({
     ok: false,
     status: 503,

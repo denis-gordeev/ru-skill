@@ -69,18 +69,32 @@ function buildWarningUrl(regionHost, warningPathOrId) {
   throw new Error("warningPathOrId должен быть абсолютным URL МЧС, относительным путём или числовым идентификатором предупреждения.");
 }
 
+const FETCH_TIMEOUT_MS = 15_000;
+
 /**
  * @param {string} url
  * @returns {Promise<string>}
  */
 async function fetchHtml(url) {
-  const response = await fetch(url, { headers: DEFAULT_HEADERS });
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
-  if (!response.ok) {
-    throw new Error(`Запрос к МЧС не удался: ${response.status} для ${url}`);
+  try {
+    const response = await fetch(url, { headers: DEFAULT_HEADERS, signal: controller.signal });
+
+    if (!response.ok) {
+      throw new Error(`Запрос к МЧС не удался: ${response.status} для ${url}`);
+    }
+
+    return response.text();
+  } catch (err) {
+    if (err.name === "AbortError") {
+      throw new Error(`Запрос к МЧС превысил лимит времени (${FETCH_TIMEOUT_MS / 1000} с): ${url}`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
   }
-
-  return response.text();
 }
 
 /**

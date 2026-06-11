@@ -9,7 +9,7 @@ const { buildOverpassQuery, parseOverpassResponse, formatAddress } = require("..
 const fixturesDir = path.join(__dirname, "fixtures");
 const moscowCenterFixture = JSON.parse(fs.readFileSync(path.join(fixturesDir, "moscow_center.json"), "utf8"));
 
-test("buildOverpassQuery generates valid Overpass QL for default categories", () => {
+test("buildOverpassQuery генерирует корректный Overpass QL для категорий по умолчанию", () => {
   const query = buildOverpassQuery(55.7558, 37.6173, 1000, ['restaurant', 'cafe', 'bar'], 20);
   
   assert.ok(query.includes('[out:json]'));
@@ -20,7 +20,7 @@ test("buildOverpassQuery generates valid Overpass QL for default categories", ()
   assert.ok(query.includes('out body 20'));
 });
 
-test("buildOverpassQuery respects custom radius and categories", () => {
+test("buildOverpassQuery учитывает произвольный радиус и категории", () => {
   const query = buildOverpassQuery(59.9343, 30.3351, 500, ['restaurant'], 10);
   
   assert.ok(query.includes('around:500,59.9343,30.3351'));
@@ -29,7 +29,7 @@ test("buildOverpassQuery respects custom radius and categories", () => {
   assert.ok(query.includes('out body 10'));
 });
 
-test("parseOverpassResponse normalizes OSM elements into place objects", () => {
+test("parseOverpassResponse нормализует элементы OSM в объекты мест", () => {
   const places = parseOverpassResponse(moscowCenterFixture);
   
   assert.equal(places.length, 4);
@@ -58,14 +58,14 @@ test("parseOverpassResponse normalizes OSM elements into place objects", () => {
   assert.equal(unnamed.operator, "Теремок");
 });
 
-test("parseOverpassResponse handles empty or invalid input", () => {
+test("parseOverpassResponse обрабатывает пустой или некорректный ввод", () => {
   assert.deepEqual(parseOverpassResponse({}), []);
   assert.deepEqual(parseOverpassResponse({ elements: [] }), []);
   assert.deepEqual(parseOverpassResponse(null), []);
   assert.deepEqual(parseOverpassResponse(undefined), []);
 });
 
-test("formatAddress constructs address from OSM tags", () => {
+test("formatAddress формирует адрес из тегов OSM", () => {
   const tags1 = {
     'addr:street': 'Тверская улица',
     'addr:housenumber': '15',
@@ -83,7 +83,7 @@ test("formatAddress constructs address from OSM tags", () => {
   assert.equal(formatAddress(tags3), undefined);
 });
 
-test("public fetchers call Overpass API with correct parameters", async () => {
+test("публичные функции вызывают Overpass API с корректными параметрами", async () => {
   const originalFetch = global.fetch;
   let capturedBody = null;
 
@@ -123,7 +123,7 @@ test("public fetchers call Overpass API with correct parameters", async () => {
   }
 });
 
-test("getPlaceDetails fetches single OSM element", async () => {
+test("getPlaceDetails получает единственный элемент OSM", async () => {
   const originalFetch = global.fetch;
   
   global.fetch = async () => {
@@ -161,7 +161,7 @@ test("getPlaceDetails fetches single OSM element", async () => {
   }
 });
 
-test("getPlaceDetails returns null for non-existent element", async () => {
+test("getPlaceDetails возвращает null для несуществующего элемента", async () => {
   const originalFetch = global.fetch;
   
   global.fetch = async () => {

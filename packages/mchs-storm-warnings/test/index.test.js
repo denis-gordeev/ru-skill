@@ -91,6 +91,26 @@ test("parseStormWarningPage извлекает нормализованную к
   assert.match(parsed.imageUrl, /65991f0bd3415be0144564e40d47a13f\.jpg/);
 });
 
+test("normalizeRussianDateTime возвращает null для некорректного ввода", () => {
+  assert.equal(normalizeRussianDateTime(null), null);
+  assert.equal(normalizeRussianDateTime(""), null);
+  assert.equal(normalizeRussianDateTime("не дата"), null);
+});
+
+test("buildWarningsIndexUrl отклоняет отрицательный номер страницы", () => {
+  assert.throws(() => buildWarningsIndexUrl("46", { page: -1 }), /page/);
+});
+
+test("buildWarningUrl отклоняет пустой идентификатор предупреждения", () => {
+  assert.throws(() => buildWarningUrl("46", ""), /warningPathOrId/);
+  assert.throws(() => buildWarningUrl("46", "  "), /warningPathOrId/);
+});
+
+test("buildWarningUrl принимает абсолютный URL предупреждения", () => {
+  const absolute = "https://46.mchs.gov.ru/some/path/123";
+  assert.equal(buildWarningUrl("46", absolute), absolute);
+});
+
 test("публичные помощники загружают и нормализуют ленту и карточку предупреждений МЧС", async () => {
   const originalFetch = global.fetch;
 
@@ -161,6 +181,33 @@ test("lookupRegion поддерживает нечёткий поиск", () => 
 
   const tatarstan = lookupRegion("Татарстан");
   assert.equal(tatarstan.host, "16");
+});
+
+test("lookupRegion находит регионы по разговорным названиям и сокращениям", () => {
+  assert.equal(lookupRegion("Удмуртия").host, "18");
+  assert.equal(lookupRegion("Башкирия").host, "02");
+  assert.equal(lookupRegion("Чувашия").host, "21");
+  assert.equal(lookupRegion("Кабардино-Балкария").host, "07");
+  assert.equal(lookupRegion("Карачаево-Черкесия").host, "09");
+  assert.equal(lookupRegion("Питер").host, "78");
+  assert.equal(lookupRegion("СПб").host, "78");
+  assert.equal(lookupRegion("Подмосковье").host, "50");
+  assert.equal(lookupRegion("Чукотка").host, "87");
+  assert.equal(lookupRegion("Кемерово").host, "42");
+  assert.equal(lookupRegion("Кузбасс").host, "42");
+  assert.equal(lookupRegion("Тюмень").host, "72");
+  assert.equal(lookupRegion("Якутия").host, "14");
+  assert.equal(lookupRegion("Чечня").host, "20");
+  assert.equal(lookupRegion("Дагестан").host, "05");
+  assert.equal(lookupRegion("Крым").host, "91");
+});
+
+test("lookupRegion отклоняет тривиально короткие и бессмысленные запросы", () => {
+  assert.equal(lookupRegion("ия"), null);
+  assert.equal(lookupRegion("ская"), null);
+  assert.equal(lookupRegion("Республика"), null);
+  assert.equal(lookupRegion("область"), null);
+  assert.equal(lookupRegion("край"), null);
 });
 
 test("lookupRegion возвращает null для неизвестных регионов", () => {

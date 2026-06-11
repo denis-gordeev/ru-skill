@@ -18,7 +18,7 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const securityFixture = JSON.parse(fs.readFileSync(path.join(fixturesDir, "security-sber.json"), "utf8"));
 const listFixture = JSON.parse(fs.readFileSync(path.join(fixturesDir, "securities-page-0.json"), "utf8"));
 
-test("parseSecurityResponse normalizes a MOEX ISS security payload", () => {
+test("parseSecurityResponse нормализует данные MOEX ISS о ценной бумаге", () => {
   const parsed = parseSecurityResponse(securityFixture);
 
   assert.deepEqual(parsed.security, {
@@ -48,7 +48,7 @@ test("parseSecurityResponse normalizes a MOEX ISS security payload", () => {
   assert.equal(parsed.dataVersion.tradeDate, "2026-04-05");
 });
 
-test("parseSecuritiesListResponse normalizes a page of share rows", () => {
+test("parseSecuritiesListResponse нормализует страницу строк акций", () => {
   assert.deepEqual(parseSecuritiesListResponse(listFixture), [
     {
       secId: "ABIO",
@@ -71,7 +71,7 @@ test("parseSecuritiesListResponse normalizes a page of share rows", () => {
   ]);
 });
 
-test("URL builders pin the official ISS endpoints and required query params", () => {
+test("построители URL фиксируют официальные эндпоинты ISS и обязательные параметры запроса", () => {
   assert.equal(
     buildSecurityUrl("sber"),
     "https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.json?iss.meta=off"
@@ -83,7 +83,7 @@ test("URL builders pin the official ISS endpoints and required query params", ()
   assert.throws(() => buildSecurityUrl("SBER/RM"), /символы тикера MOEX/);
 });
 
-test("public helpers fetch and normalize overview and list payloads", async () => {
+test("публичные помощники загружают и нормализуют данные обзора и списка", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {

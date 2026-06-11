@@ -1418,9 +1418,9 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-09");
-  assert.equal(todoStatus.round, 44);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 44\)/);
+  assert.equal(todoStatus.date, "2026-06-11");
+  assert.equal(todoStatus.round, 46);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 46\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -2686,6 +2686,15 @@ test("k-skill-proxy uses Russian lookupMode values", () => {
   assert.doesNotMatch(airkorea, /A fetch implementation is required/);
   assert.match(airkorea, /AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере/);
   assert.doesNotMatch(airkorea, /AIR_KOREA_OPEN_API_KEY is not configured/);
+});
+
+test("fine_dust.py uses Russian lookup_mode values", () => {
+  const fineDust = read(path.join("scripts", "fine_dust.py"));
+
+  assert.doesNotMatch(fineDust, /"coordinates"/);
+  assert.doesNotMatch(fineDust, /"fallback"/);
+  assert.match(fineDust, /"координаты"/);
+  assert.match(fineDust, /"запасной вариант"/);
 });
 
 test("cbr-rates uses Russian direction values", () => {

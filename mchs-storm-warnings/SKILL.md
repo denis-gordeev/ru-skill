@@ -52,9 +52,19 @@ console.log(kursk); // { name: "Курская область", host: "46" }
 const moscow = lookupRegion("Москва");
 console.log(moscow); // { name: "г. Москва", host: "moscow" }
 
+// Разговорные сокращения
+const udmurtia = lookupRegion("Удмуртия");
+console.log(udmurtia); // { name: "Удмуртская Республика", host: "18" }
+
+const pitr = lookupRegion("Питер");
+console.log(pitr); // { name: "г. Санкт-Петербург", host: "78" }
+
+const podmoskovye = lookupRegion("Подмосковье");
+console.log(podmoskovye); // { name: "Московская область", host: "50" }
+
 // Список всех регионов
 const all = listRegions();
-console.log(all.length); // 85+ регионов
+console.log(all.length); // 85 регионов
 JS
 ```
 

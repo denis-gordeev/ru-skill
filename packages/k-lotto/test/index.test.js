@@ -21,11 +21,11 @@ const round1216Payload = JSON.parse(
   fs.readFileSync(path.join(fixturesDir, "round-1216.json"), "utf8")
 );
 
-test("extractLatestRoundFromHtml parses the latest round from the official result page", () => {
+test("extractLatestRoundFromHtml анализирует последний тираж на официальной странице результатов", () => {
   assert.equal(extractLatestRoundFromHtml(latestResultHtml), 1216);
 });
 
-test("normalizeRoundItem maps official JSON into the public detail shape", () => {
+test("normalizeRoundItem преобразует официальный JSON в общедоступную структуру деталей", () => {
   const detail = normalizeRoundItem(selectRoundItem(round1216Payload, 1216));
 
   assert.equal(detail.round, 1216);
@@ -37,7 +37,7 @@ test("normalizeRoundItem maps official JSON into the public detail shape", () =>
   assert.equal(detail.winnersByPurchaseType?.auto, 8);
 });
 
-test("evaluateTicket returns the right rank for an exact match", () => {
+test("evaluateTicket возвращает правильный ранг при точном совпадении", () => {
   const detail = normalizeRoundItem(selectRoundItem(round1216Payload, 1216));
   const checked = evaluateTicket(detail, [3, 10, 14, 15, 23, 24]);
 
@@ -46,7 +46,7 @@ test("evaluateTicket returns the right rank for an exact match", () => {
   assert.deepEqual(checked.matchedNumbers, [3, 10, 14, 15, 23, 24]);
 });
 
-test("evaluateTicket rejects duplicate numbers", () => {
+test("evaluateTicket отклоняет дубликаты номеров", () => {
   const detail = normalizeRoundItem(selectRoundItem(round1216Payload, 1216));
 
   assert.throws(() => {
@@ -54,7 +54,7 @@ test("evaluateTicket rejects duplicate numbers", () => {
   }, /дубликаты/);
 });
 
-test("public fetchers can consume injected fixtures via mocked fetch", async () => {
+test("публичные загрузчики могут использовать внедрённые фикстуры через имитацию fetch", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {
