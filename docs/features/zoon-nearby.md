@@ -52,7 +52,7 @@ const results = await search('пицца', 'Москва');
 const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushkin');
 ```
 
-## API
+## API-справочник
 
 ### `searchRestaurants(city, opts?)`
 

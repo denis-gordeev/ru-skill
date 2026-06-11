@@ -4,6 +4,35 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-11 (раунд 47)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Переведены на русский все английские описания тестов в `scripts/skill-docs.test.js` (~90 описаний `test()`).
+- Переведены на русский все английские имена тестовых методов в `scripts/test_fine_dust.py` (13 методов) и `scripts/test_ktx_booking.py` (6 методов).
+- Переведены на русский английские секционные комментарии и аннотации в `packages/rpl-results/test/index.test.js` (9 комментариев), `packages/yandex-rasp/test/index.test.js` (2 комментария), `packages/osm-nearby/test/index.test.js` (1 комментарий).
+- Переведены на русский английские сообщения утверждений в `packages/kleague-results/test/index.test.js` (2 сообщения) и `packages/blue-ribbon-nearby/test/index.test.js` (1 сообщение).
+- Переведены заголовки `## API` → `## API-справочник` в `docs/features/zoon-nearby.md` и `docs/features/kinopoisk-search.md`.
+- Полный `npm test` проходит: 138 pass / 0 fail / 1 skipped.
+
+## Выполнено в этом раунде (раунд 47)
+
+- [x] `scripts/skill-docs.test.js`: переведены на русский ~90 описаний `test()` (все английские test descriptions теперь на русском).
+- [x] `scripts/test_fine_dust.py`: переведены на русский 13 имён тестовых методов (например, `test_wgs84_coordinates_are_converted_to_air_korea_tm` → `test_wgs84_координаты_конвертируются_в_air_korea_tm`).
+- [x] `scripts/test_ktx_booking.py`: переведены на русский 6 имён тестовых методов (например, `test_normalize_train_emits_stable_train_id` → `test_normalize_train_формирует_стабильный_train_id`).
+- [x] `packages/rpl-results/test/index.test.js`: переведены 9 английских комментариев (секционные разделители и inline-аннотации).
+- [x] `packages/yandex-rasp/test/index.test.js`: переведены 2 английских секционных комментария.
+- [x] `packages/osm-nearby/test/index.test.js`: переведён 1 английский пояснительный комментарий.
+- [x] `packages/kleague-results/test/index.test.js`: переведены 2 английских сообщения утверждений.
+- [x] `packages/blue-ribbon-nearby/test/index.test.js`: переведено 1 английское сообщение утверждения.
+- [x] `docs/features/zoon-nearby.md`: заголовок `## API` → `## API-справочник`.
+- [x] `docs/features/kinopoisk-search.md`: заголовок `## API` → `## API-справочник`.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [ ] Проверить оставшиеся английские assert-сообщения в `scripts/skill-docs.test.js` (внутренние сообщения ошибках assert.ok/assert.equal) на предмет русификации.
+
 ## Статус на 2026-06-11 (раунд 46)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
@@ -29,8 +58,7 @@
 
 ## Новые пункты плана
 
-- [ ] Расширить doc-regression coverage на английские описания тестов в `scripts/skill-docs.test.js` и Python-тестах (`test_fine_dust.py`, `test_ktx_booking.py`), чтобы предотвратить возврат английских описаний тестов.
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Расширить doc-regression coverage на английские описания тестов в `scripts/skill-docs.test.js` и Python-тестах (`test_fine_dust.py`, `test_ktx_booking.py`), чтобы предотвратить возврат английских описаний тестов.
 
 ## Статус на 2026-06-10 (раунд 45)
 

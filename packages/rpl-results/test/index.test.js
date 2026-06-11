@@ -20,7 +20,7 @@ const {
 } = require("../src/index");
 
 //
-// Unit tests for parse utilities
+// Модульные тесты утилит парсинга
 //
 
 test("decodeHtmlEntities декодирует типичные сущности", () => {
@@ -53,7 +53,7 @@ test("toNumberOrNull преобразует строки в числа", () => {
 });
 
 //
-// URL builder tests
+// Тесты построения URL
 //
 
 test("buildStandingsUrl возвращает URL таблицы РПЛ на championat.com", () => {
@@ -67,7 +67,7 @@ test("buildResultsUrl возвращает URL результатов РПЛ н�
 });
 
 //
-// Fixture-based parser tests
+// Тесты парсера на фикстурах
 //
 
 test("parseStandings корректно разбирает HTML-фикстуру", () => {
@@ -77,7 +77,7 @@ test("parseStandings корректно разбирает HTML-фикстуру
 
   assert.equal(standings.length, 5);
 
-  // First place: Краснодар
+  // Первое место: Краснодар
   assert.deepEqual(standings[0], {
     rank: 1,
     team: "Краснодар",
@@ -91,7 +91,7 @@ test("parseStandings корректно разбирает HTML-фикстуру
     points: 67,
   });
 
-  // Second place: Зенит
+  // Второе место: Зенит
   assert.deepEqual(standings[1], {
     rank: 2,
     team: "Зенит",
@@ -105,7 +105,7 @@ test("parseStandings корректно разбирает HTML-фикстуру
     points: 66,
   });
 
-  // Fifth place: Локомотив
+  // Пятое место: Локомотив
   assert.deepEqual(standings[4], {
     rank: 5,
     team: "Локомотив",
@@ -127,7 +127,7 @@ test("parseMatchResults корректно разбирает HTML-фиксту�
 
   assert.equal(matches.length, 5);
 
-  // First match: Краснодар 2:1 Зенит
+  // Первый матч: Краснодар 2:1 Зенит
   assert.deepEqual(matches[0], {
     date: "20.07.2024",
     homeTeam: "Краснодар",
@@ -136,7 +136,7 @@ test("parseMatchResults корректно разбирает HTML-фиксту�
     awayScore: 1,
   });
 
-  // Third match: Локомотив 1:1 Динамо
+  // Третий матч: Локомотив 1:1 Динамо
   assert.deepEqual(matches[2], {
     date: "21.07.2024",
     homeTeam: "Локомотив",
@@ -145,7 +145,7 @@ test("parseMatchResults корректно разбирает HTML-фиксту�
     awayScore: 1,
   });
 
-  // Last match: Спартак М 2:0 Локомотив
+  // Последний матч: Спартак М 2:0 Локомотив
   assert.deepEqual(matches[4], {
     date: "28.07.2024",
     homeTeam: "Спартак М",
@@ -156,7 +156,7 @@ test("parseMatchResults корректно разбирает HTML-фиксту�
 });
 
 //
-// Integration tests with mocked fetch
+// Интеграционные тесты с мок-запросами
 //
 
 test("getStandings получает и разбирает турнирную таблицу через мок-запрос", async () => {

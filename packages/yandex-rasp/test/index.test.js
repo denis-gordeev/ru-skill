@@ -16,7 +16,7 @@ const stationsListJson = fs.readFileSync(path.join(fixturesDir, "stations-list.j
 const scheduleJson = fs.readFileSync(path.join(fixturesDir, "schedule-departure.json"), "utf8");
 const searchTripsJson = fs.readFileSync(path.join(fixturesDir, "search-trips.json"), "utf8");
 
-// --- parse.js tests ---
+// --- тесты parse.js ---
 
 test("isValidStationCode принимает корректные s- и c-коды", () => {
   assert.equal(isValidStationCode("s9600013"), true);
@@ -61,7 +61,7 @@ test("groupByTransportType группирует записи по типу тр�
   assert.equal(groups.train.length, 1);
 });
 
-// --- index.js mock-based tests ---
+// --- тесты index.js с моками ---
 
 test("searchStations фильтрует станции по запросу из полного справочника", async () => {
   const originalFetch = global.fetch;

@@ -177,13 +177,13 @@ function assertKakaoBarNearbySadangSmokeSnapshot(smoke, label) {
   );
 }
 
-test("root npm test script includes the skill docs regression suite", () => {
+test("корневой npm-скрипт test включает регрессионный набор проверки навыков", () => {
   const packageJson = JSON.parse(read("package.json"));
 
   assert.match(packageJson.scripts.test, /node --test scripts\/skill-docs\.test\.js/);
 });
 
-test("hwp skill documents environment-aware routing and supported operations", () => {
+test("навык hwp документирует маршрутизацию с учётом окружения и поддерживаемые операции", () => {
   const skillPath = path.join(repoRoot, "hwp", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected hwp/SKILL.md to exist");
@@ -201,7 +201,7 @@ test("hwp skill documents environment-aware routing and supported operations", (
   assert.match(skill, /batch/i);
 });
 
-test("hwp skill documents inline image verification for markdown output", () => {
+test("навык hwp документирует проверку встроенных изображений для вывода Markdown", () => {
   const skill = read(path.join("hwp", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "hwp.md"));
 
@@ -216,7 +216,7 @@ test("hwp skill documents inline image verification for markdown output", () => 
   assert.doesNotMatch(featureDoc, /вывод Markdown.*이미지/);
 });
 
-test("repository docs advertise the kakaotalk-mac skill", () => {
+test("документация репозитория рекламирует навык kakaotalk-mac", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const featureDocPath = path.join(repoRoot, "docs", "features", "kakaotalk-mac.md");
@@ -227,7 +227,7 @@ test("repository docs advertise the kakaotalk-mac skill", () => {
   assert.match(install, /--skill kakaotalk-mac/);
 });
 
-test("kakaotalk-mac skill documents safe macOS kakaocli usage", () => {
+test("навык kakaotalk-mac документирует безопасное использование kakaocli на macOS", () => {
   const skillPath = path.join(repoRoot, "kakaotalk-mac", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected kakaotalk-mac/SKILL.md to exist");
@@ -244,7 +244,7 @@ test("kakaotalk-mac skill documents safe macOS kakaocli usage", () => {
   assert.match(skill, /confirm before sending|подтверди перед отправкой/i);
 });
 
-test("repository docs advertise the KTX booking skill as supported", () => {
+test("документация репозитория рекламирует навык бронирования KTX как поддерживаемый", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const featureDocPath = path.join(repoRoot, "docs", "features", "ktx-booking.md");
@@ -257,7 +257,7 @@ test("repository docs advertise the KTX booking skill as supported", () => {
   assert.match(install, /--skill ktx-booking/);
 });
 
-test("ktx-booking docs document the helper-based live Korail workflow", () => {
+test("документация ktx-booking описывает рабочий процесс Korail через helper", () => {
   const skillPath = path.join(repoRoot, "ktx-booking", "SKILL.md");
   const helperPath = path.join(repoRoot, "scripts", "ktx_booking.py");
 
@@ -293,7 +293,7 @@ test("ktx-booking docs document the helper-based live Korail workflow", () => {
   assert.match(helper, /train_id/);
 });
 
-test("legacy railway docs keep the replacement boundary explicit", () => {
+test("документация legacy railway удерживает явную границу замен", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
   const srtSkill = read(path.join("srt-booking", "SKILL.md"));
@@ -313,7 +313,7 @@ test("legacy railway docs keep the replacement boundary explicit", () => {
   assert.match(roadmap, /legacy railway docs выровнены с replacement boundary/i);
 });
 
-test("ktx-booking helper python regression tests pass", () => {
+test("регрессионные тесты Python-хелпера ktx-booking проходят", () => {
   const result = childProcess.spawnSync(
     "python3",
     ["-m", "unittest", "discover", "-s", "scripts", "-p", "test_ktx_booking.py"],
@@ -331,7 +331,7 @@ test("ktx-booking helper python regression tests pass", () => {
   );
 });
 
-test("repository docs advertise the zipcode-search skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык zipcode-search на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -346,7 +346,7 @@ test("repository docs advertise the zipcode-search skill across the documented s
   assert.match(sources, /Почтовая служба Кореи поиск адресов: https:\/\/parcel\.epost\.go\.kr\/parcel\/comm\/zipcode\/comm_newzipcd_list\.jsp/);
 });
 
-test("repository docs advertise the cbr-rates skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык cbr-rates на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -359,7 +359,7 @@ test("repository docs advertise the cbr-rates skill across the documented surfac
   assert.match(roadmap, /cbr-rates/);
 });
 
-test("repository docs advertise the postcalc-postcodes skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык postcalc-postcodes на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -374,7 +374,7 @@ test("repository docs advertise the postcalc-postcodes skill across the document
   assert.match(sources, /postcalc\.ru\/offices\/109189/);
 });
 
-test("repository docs advertise the hh-vacancies skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык hh-vacancies на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -389,7 +389,7 @@ test("repository docs advertise the hh-vacancies skill across the documented sur
   assert.match(sources, /api\.hh\.ru\/vacancies/);
 });
 
-test("repository docs advertise the mchs-storm-warnings skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык mchs-storm-warnings на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -404,7 +404,7 @@ test("repository docs advertise the mchs-storm-warnings skill across the documen
   assert.match(sources, /46\.mchs\.gov\.ru\/deyatelnost\/press-centr\/operativnaya-informaciya\/shtormovye-i-ekstrennye-preduprezhdeniya/);
 });
 
-test("cbr-rates docs document the official Bank of Russia XML workflow", () => {
+test("документация cbr-rates описывает официальный XML-сервис Банка России", () => {
   const skillPath = path.join(repoRoot, "cbr-rates", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "cbr-rates", "README.md");
 
@@ -427,7 +427,7 @@ test("cbr-rates docs document the official Bank of Russia XML workflow", () => {
   assert.match(packageReadme, /getRateWithChange/);
 });
 
-test("postcalc-postcodes docs document the Postcalc office and city workflows", () => {
+test("документация postcalc-postcodes описывает рабочие процессы отделений и городов Postcalc", () => {
   const skillPath = path.join(repoRoot, "postcalc-postcodes", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "postcalc-postcodes", "README.md");
 
@@ -449,7 +449,7 @@ test("postcalc-postcodes docs document the Postcalc office and city workflows", 
   assert.match(packageReadme, /getCityOverview/);
 });
 
-test("hh-vacancies docs document the public HH vacancy workflow", () => {
+test("документация hh-vacancies описывает публичный API-сценарий вакансий HH", () => {
   const skillPath = path.join(repoRoot, "hh-vacancies", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "hh-vacancies", "README.md");
 
@@ -473,7 +473,7 @@ test("hh-vacancies docs document the public HH vacancy workflow", () => {
   assert.match(packageReadme, /getVacancyOverview/);
 });
 
-test("mchs-storm-warnings docs document the official regional MChS warning workflow", () => {
+test("документация mchs-storm-warnings описывает официальный сценарий региональных предупреждений МЧС", () => {
   const skillPath = path.join(repoRoot, "mchs-storm-warnings", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "mchs-storm-warnings", "README.md");
 
@@ -495,7 +495,7 @@ test("mchs-storm-warnings docs document the official regional MChS warning workf
   assert.match(packageReadme, /getStormWarning/);
 });
 
-test("mchs-storm-warnings source uses Russian error messages", () => {
+test("исходный код mchs-storm-warnings использует русские сообщения об ошибках", () => {
   const index = read(path.join("packages", "mchs-storm-warnings", "src", "index.js"));
   const parse = read(path.join("packages", "mchs-storm-warnings", "src", "parse.js"));
 
@@ -510,7 +510,7 @@ test("mchs-storm-warnings source uses Russian error messages", () => {
   assert.doesNotMatch(parse, /regionHost must be a valid MChS/);
 });
 
-test("zipcode-search docs lock the official ePost extraction flow and reliable transport example", () => {
+test("документация zipcode-search фиксирует официальный поток извлечения ePost и надёжный транспортный пример", () => {
   const skillPath = path.join(repoRoot, "zipcode-search", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected zipcode-search/SKILL.md to exist");
@@ -547,7 +547,7 @@ test("zipcode-search docs lock the official ePost extraction flow and reliable t
   assert.match(featureDoc, /`curl` 자체 제한|ограничения самого `curl`/);
 });
 
-test("repository docs advertise the delivery-tracking skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык delivery-tracking на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -563,7 +563,7 @@ test("repository docs advertise the delivery-tracking skill across the documente
   assert.match(sources, /Почтовая служба Кореи отслеживание: https:\/\/service\.epost\.go\.kr\/trace\.RetrieveRegiPrclDeliv\.postal\?sid1=/);
 });
 
-test("delivery-tracking skill documents official CJ and ePost flows with extension guidance", () => {
+test("навык delivery-tracking документирует официальные потоки CJ и ePost с руководством по расширению", () => {
   const skillPath = path.join(repoRoot, "delivery-tracking", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected delivery-tracking/SKILL.md to exist");
@@ -596,7 +596,7 @@ test("delivery-tracking skill documents official CJ and ePost flows with extensi
   assert.match(featureDoc, /HTML/);
 });
 
-test("delivery-tracking published examples lock a shared normalized non-PII schema", () => {
+test("опубликованные примеры delivery-tracking фиксируют общую нормализованную схему без PII", () => {
   const skill = read(path.join("delivery-tracking", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "delivery-tracking.md"));
   const expectedTopLevelEntries = {
@@ -712,7 +712,7 @@ test("delivery-tracking published examples lock a shared normalized non-PII sche
   assert.doesNotMatch(featureDoc, /print\(\{\s*"tracking_no"/);
 });
 
-test("delivery-tracking docs publish aligned sample normalized outputs for both carriers", () => {
+test("документация delivery-tracking публикует согласованные нормализованные примеры для обоих перевозчиков", () => {
   const expectedSamples = readJson(
     path.join("scripts", "fixtures", "delivery-tracking-public-samples.json"),
   );
@@ -763,7 +763,7 @@ test.skip("delivery-tracking docs pin sample provenance to the verified smoke-te
 //   }
 });
 
-test("repository docs advertise the daiso-product-search skill", () => {
+test("документация репозитория рекламирует навык daiso-product-search", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const featureDocPath = path.join(repoRoot, "docs", "features", "daiso-product-search.md");
@@ -774,7 +774,7 @@ test("repository docs advertise the daiso-product-search skill", () => {
   assert.match(install, /--skill daiso-product-search/);
 });
 
-test("daiso-product-search skill documents the official Daiso Mall lookup flow", () => {
+test("навык daiso-product-search документирует официальный поток поиска Daiso Mall", () => {
   const skillPath = path.join(repoRoot, "daiso-product-search", "SKILL.md");
   const featureDoc = read(path.join("docs", "features", "daiso-product-search.md"));
 
@@ -794,7 +794,7 @@ test("daiso-product-search skill documents the official Daiso Mall lookup flow",
   assert.match(featureDoc, /selStrPkupStck/);
 });
 
-test("daiso-product-search package exposes reusable store, product, and stock helpers", () => {
+test("пакет daiso-product-search экспортирует переиспользуемые помощники для магазинов, товаров и остатков", () => {
   const pkg = require(path.join(repoRoot, "packages", "daiso-product-search", "src", "index.js"));
 
   assert.equal(typeof pkg.searchStores, "function");
@@ -803,7 +803,7 @@ test("daiso-product-search package exposes reusable store, product, and stock he
   assert.equal(typeof pkg.lookupStoreProductAvailability, "function");
 });
 
-test("daiso-product-search docs record the shipped feature and official sources", () => {
+test("документация daiso-product-search фиксирует реализованную функцию и официальные источники", () => {
   const roadmap = read(path.join("docs", "roadmap.md"));
   const sources = read(path.join("docs", "sources.md"));
 
@@ -813,7 +813,7 @@ test("daiso-product-search docs record the shipped feature and official sources"
   assert.match(sources, /https:\/\/www\.daisomall\.co\.kr\/api\/pd\/pdh\/selStrPkupStck/);
 });
 
-test("daiso-product-search package README keeps the legacy-only boundary aligned with the repository migration", () => {
+test("package README daiso-product-search удерживает границу legacy-only в соответствии с миграцией репозитория", () => {
   const packageReadme = read(path.join("packages", "daiso-product-search", "README.md"));
 
   assert.match(packageReadme, /legacy-only/i);
@@ -823,7 +823,7 @@ test("daiso-product-search package README keeps the legacy-only boundary aligned
   assert.match(packageReadme, /pickup stock|остатки для самовывоза/i);
 });
 
-test("root pack:dry-run script covers all publishable workspaces", () => {
+test("корневой скрипт pack:dry-run покрывает все публикуемые workspace-пакеты", () => {
   const packageJson = readJson("package.json");
 
   assert.match(packageJson.scripts["pack:dry-run"], /workspace cbr-rates/);
@@ -837,7 +837,7 @@ test("root pack:dry-run script covers all publishable workspaces", () => {
   assert.match(packageJson.scripts["pack:dry-run"], /workspace kleague-results/);
 });
 
-test("repository docs advertise the kleague-results skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык kleague-results на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -853,7 +853,7 @@ test("repository docs advertise the kleague-results skill across the documented 
   assert.match(sources, /K League командный рейтинг JSON: https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
 });
 
-test("kleague-results skill documents the official JSON flow for date, team, and standings lookups", () => {
+test("навык kleague-results документирует официальный JSON-поток для поиска по дате, команде и турнирной таблице", () => {
   const skillPath = path.join(repoRoot, "kleague-results", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected kleague-results/SKILL.md to exist");
@@ -876,7 +876,7 @@ test("kleague-results skill documents the official JSON flow for date, team, and
   }
 });
 
-test("kleague-results package exports reusable results and standings helpers", () => {
+test("пакет kleague-results экспортирует переиспользуемые помощники для результатов и турнирной таблицы", () => {
   const pkg = require(path.join(repoRoot, "packages", "kleague-results", "src", "index.js"));
 
   assert.equal(typeof pkg.getMatchResults, "function");
@@ -884,7 +884,7 @@ test("kleague-results package exports reusable results and standings helpers", (
   assert.equal(typeof pkg.getKLeagueSummary, "function");
 });
 
-test("kleague-results source uses Russian error messages", () => {
+test("исходный код kleague-results использует русские сообщения об ошибках", () => {
   const parse = read(path.join("packages", "kleague-results", "src", "parse.js"));
   const index = read(path.join("packages", "kleague-results", "src", "index.js"));
 
@@ -895,7 +895,7 @@ test("kleague-results source uses Russian error messages", () => {
   assert.doesNotMatch(index, /K League request failed with/);
 });
 
-test("kleague-results package README stays aligned with the official K League JSON lookup flow", () => {
+test("package README kleague-results соответствует официальному JSON-потоку K League", () => {
   const packageReadme = read(path.join("packages", "kleague-results", "README.md"));
 
   assert.match(packageReadme, /legacy-only/i);
@@ -907,7 +907,7 @@ test("kleague-results package README stays aligned with the official K League JS
   assert.match(packageReadme, /FC서울/);
 });
 
-test("repository docs advertise the blue-ribbon-nearby skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык blue-ribbon-nearby на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -923,7 +923,7 @@ test("repository docs advertise the blue-ribbon-nearby skill across the document
   assert.match(sources, /Blue Ribbon ближайшие рестораны JSON: https:\/\/www\.bluer\.co\.kr\/restaurants\/map/);
 });
 
-test("blue-ribbon-nearby skill documents mandatory location prompting and official Blue Ribbon nearby search flow", () => {
+test("навык blue-ribbon-nearby документирует обязательный запрос местоположения и официальный поток поиска Blue Ribbon", () => {
   const skillPath = path.join(repoRoot, "blue-ribbon-nearby", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected blue-ribbon-nearby/SKILL.md to exist");
@@ -948,7 +948,7 @@ test("blue-ribbon-nearby skill documents mandatory location prompting and offici
   }
 });
 
-test("blue-ribbon-nearby package README stays aligned with the location-first and official-surface guidance", () => {
+test("package README blue-ribbon-nearby соответствует подходу «сначала местоположение» и официальным поверхностям", () => {
   const packageReadme = read(path.join("packages", "blue-ribbon-nearby", "README.md"));
 
   assert.match(packageReadme, /legacy-only/i);
@@ -963,7 +963,7 @@ test("blue-ribbon-nearby package README stays aligned with the location-first an
 
 
 
-test("repository docs advertise the kakao-bar-nearby skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык kakao-bar-nearby на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -979,7 +979,7 @@ test("repository docs advertise the kakao-bar-nearby skill across the documented
   assert.match(sources, /Kakao Map панель места JSON: https:\/\/place-api\.map\.kakao\.com\/places\/panel3\//);
 });
 
-test("kakao-bar-nearby skill documents location-first Kakao Map search with open-now/menu/seating hints", () => {
+test("навык kakao-bar-nearby документирует поиск баров через Kakao Map с подсказками «открыто сейчас»/меню/вместимость", () => {
   const skillPath = path.join(repoRoot, "kakao-bar-nearby", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected kakao-bar-nearby/SKILL.md to exist");
@@ -1001,7 +1001,7 @@ test("kakao-bar-nearby skill documents location-first Kakao Map search with open
   }
 });
 
-test("kakao-bar-nearby package README stays aligned with the Kakao Map live lookup flow", () => {
+test("package README kakao-bar-nearby соответствует потоку поиска Kakao Map", () => {
   const packageReadme = read(path.join("packages", "kakao-bar-nearby", "README.md"));
 
   assert.match(packageReadme, /legacy-only/i);
@@ -1016,21 +1016,21 @@ test("kakao-bar-nearby package README stays aligned with the Kakao Map live look
   assert.match(packageReadme, /searchNearbyBarsByLocationQuery/);
 });
 
-test("kakao-bar-nearby feature doc keeps the verified 2026-03-29 sadang smoke snapshot current", () => {
+test("feature doc kakao-bar-nearby фиксирует проверочный пример sadang от 2026-03-29", () => {
   const featureDoc = read(path.join("docs", "features", "kakao-bar-nearby.md"));
   const smoke = findJsonFenceAfterLabel(featureDoc, "## Проверочный пример");
 
   assertKakaoBarNearbySadangSmokeSnapshot(smoke, "feature doc smoke snapshot");
 });
 
-test("kakao-bar-nearby package README live smoke snapshot matches the verified 2026-03-29 sadang output", () => {
+test("проверочный пример в package README kakao-bar-nearby совпадает с выводом sadang от 2026-03-29", () => {
   const packageReadme = read(path.join("packages", "kakao-bar-nearby", "README.md"));
   const smoke = findJsonFenceAfterLabel(packageReadme, "## Проверочный пример");
 
   assertKakaoBarNearbySadangSmokeSnapshot(smoke, "package README smoke snapshot");
 });
 
-test("kakao-bar-nearby source uses Russian error messages", () => {
+test("исходный код kakao-bar-nearby использует русские сообщения об ошибках", () => {
   const index = read(path.join("packages", "kakao-bar-nearby", "src", "index.js"));
 
   assert.match(index, /Запрос к Kakao bar завершился ошибкой/);
@@ -1040,7 +1040,7 @@ test("kakao-bar-nearby source uses Russian error messages", () => {
   assert.doesNotMatch(index, /No usable Kakao Map place panel/);
 });
 
-test("blue-ribbon-nearby source uses Russian error messages", () => {
+test("исходный код blue-ribbon-nearby использует русские сообщения об ошибках", () => {
   const index = read(path.join("packages", "blue-ribbon-nearby", "src", "index.js"));
 
   assert.match(index, /Запрос к Blue Ribbon завершился ошибкой/);
@@ -1050,7 +1050,7 @@ test("blue-ribbon-nearby source uses Russian error messages", () => {
   assert.doesNotMatch(index, /No official Blue Ribbon zone matched/);
 });
 
-test("k-lotto source uses Russian error messages", () => {
+test("исходный код k-lotto использует русские сообщения об ошибках", () => {
   const parse = read(path.join("packages", "k-lotto", "src", "parse.js"));
   const index = read(path.join("packages", "k-lotto", "src", "index.js"));
 
@@ -1063,7 +1063,7 @@ test("k-lotto source uses Russian error messages", () => {
   assert.doesNotMatch(index, /dhlottery request failed with/);
 });
 
-test("daiso-product-search source uses Russian error messages", () => {
+test("исходный код daiso-product-search использует русские сообщения об ошибках", () => {
   const parse = read(path.join("packages", "daiso-product-search", "src", "parse.js"));
 
   assert.match(parse, /Магазины Daiso не найдены/);
@@ -1073,7 +1073,7 @@ test("daiso-product-search source uses Russian error messages", () => {
   assert.doesNotMatch(parse, /No Daiso product candidates were returned/);
 });
 
-test("repository docs advertise the fine-dust-location skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык fine-dust-location на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -1103,7 +1103,7 @@ test("repository docs advertise the fine-dust-location skill across the document
   assert.match(secretsExample, /необязательн.*переопределен.*адрес/i);
 });
 
-test("fine-dust-location skill documents the official two-api flow and fallback handling", () => {
+test("навык fine-dust-location документирует официальный двух-API сценарий и обработку запасного варианта", () => {
   const skillPath = path.join(repoRoot, "fine-dust-location", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected fine-dust-location/SKILL.md to exist");
@@ -1151,7 +1151,7 @@ test("fine-dust-location skill documents the official two-api flow and fallback 
   }
 });
 
-test("install docs prefer ru-skill-setup while keeping legacy k-skill-setup as alias", () => {
+test("документация установки предпочитает ru-skill-setup, сохраняя k-skill-setup как совместимый alias", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const preferredSkill = read(path.join("ru-skill-setup", "SKILL.md"));
@@ -1181,7 +1181,7 @@ test("install docs prefer ru-skill-setup while keeping legacy k-skill-setup as a
   assert.doesNotMatch(legacySkill, /^## Контрольный список завершения$/m);
 });
 
-test("fine-dust helper python regression tests pass", () => {
+test("регрессионные тесты Python-хелпера fine-dust проходят", () => {
   const result = childProcess.spawnSync(
     "python3",
     ["-m", "unittest", "discover", "-s", "scripts", "-p", "test_fine_dust.py"],
@@ -1195,7 +1195,7 @@ test("fine-dust helper python regression tests pass", () => {
   );
 });
 
-test("repository docs advertise the toss-securities skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык toss-securities на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -1210,7 +1210,7 @@ test("repository docs advertise the toss-securities skill across the documented 
   assert.match(sources, /tossinvest-cli: https:\/\/github\.com\/JungHoonGhae\/tossinvest-cli/);
 });
 
-test("toss-securities skill documents the tossctl install, auth, and read-only workflow", () => {
+test("навык toss-securities документирует установку tossctl, авторизацию и сценарий только для чтения", () => {
   const skillPath = path.join(repoRoot, "toss-securities", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected toss-securities/SKILL.md to exist");
@@ -1233,7 +1233,7 @@ test("toss-securities skill documents the tossctl install, auth, and read-only w
   }
 });
 
-test("toss-securities package exposes safe read-only tossctl helpers", () => {
+test("пакет toss-securities экспортирует безопасные помощники tossctl только для чтения", () => {
   const pkg = require(path.join(repoRoot, "packages", "toss-securities", "src", "index.js"));
 
   assert.equal(typeof pkg.buildReadOnlyCommand, "function");
@@ -1245,7 +1245,7 @@ test("toss-securities package exposes safe read-only tossctl helpers", () => {
   assert.equal(typeof pkg.listWatchlist, "function");
 });
 
-test("toss-securities source uses Russian error messages", () => {
+test("исходный код toss-securities использует русские сообщения об ошибках", () => {
   const parse = read(path.join("packages", "toss-securities", "src", "parse.js"));
   const index = read(path.join("packages", "toss-securities", "src", "index.js"));
 
@@ -1262,7 +1262,7 @@ test("toss-securities source uses Russian error messages", () => {
   assert.doesNotMatch(index, /tossctl.*failed:/);
 });
 
-test("toss-securities package README stays aligned with the read-only tossctl wrapper contract", () => {
+test("package README toss-securities соответствует контракту обёртки tossctl только для чтения", () => {
   const packageReadme = read(path.join("packages", "toss-securities", "README.md"));
 
   assert.match(packageReadme, /об[её]ртка только для чтения.*tossctl/i);
@@ -1277,13 +1277,13 @@ test("toss-securities package README stays aligned with the read-only tossctl wr
   assert.match(packageReadme, /не поддерживается|not supported/u);
 });
 
-test("pack:dry-run includes the toss-securities workspace", () => {
+test("pack:dry-run включает workspace toss-securities", () => {
   const packageJson = JSON.parse(read("package.json"));
 
   assert.match(packageJson.scripts["pack:dry-run"], /workspace toss-securities/);
 });
 
-test("package-lock captures the toss-securities workspace metadata for npm ci", () => {
+test("package-lock фиксирует метаданные workspace toss-securities для npm ci", () => {
   const packageLock = readJson("package-lock.json");
 
   assert.deepEqual(packageLock.packages[""].workspaces, ["packages/*"]);
@@ -1296,7 +1296,7 @@ test("package-lock captures the toss-securities workspace metadata for npm ci", 
   assert.equal(packageLock.packages["packages/toss-securities"].engines.node, ">=18");
 });
 
-test("repository docs advertise the yandex-rasp skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык yandex-rasp на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
   const sources = read(path.join("docs", "sources.md"));
@@ -1311,7 +1311,7 @@ test("repository docs advertise the yandex-rasp skill across the documented surf
   assert.match(sources, /yandex-rasp/);
 });
 
-test("yandex-rasp docs document the Yandex Raspisanie transport schedule workflow", () => {
+test("документация yandex-rasp описывает сценарий расписаний транспорта Яндекс.Расписания", () => {
   const skillPath = path.join(repoRoot, "yandex-rasp", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "yandex-rasp", "README.md");
 
@@ -1335,13 +1335,13 @@ test("yandex-rasp docs document the Yandex Raspisanie transport schedule workflo
   assert.match(featureDoc, /оформлен.*заказ|checkout/i);
 });
 
-test("pack:dry-run includes the yandex-market-search workspace", () => {
+test("pack:dry-run включает workspace yandex-market-search", () => {
   const packageJson = JSON.parse(read("package.json"));
 
   assert.match(packageJson.scripts["pack:dry-run"], /workspace yandex-market-search/);
 });
 
-test("install docs enumerate every current target workspace in the explicit skills snippet", () => {
+test("документация установки перечисляет все текущие target workspace в явном фрагменте skills", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const targetPackages = extractReadmePackageMatrix(readme)
@@ -1357,7 +1357,7 @@ test("install docs enumerate every current target workspace in the explicit skil
   }
 });
 
-test("install docs npm snippet covers every current target workspace package", () => {
+test("npm-фрагмент в документации установки покрывает все текущие target workspace-пакеты", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const targetPackages = extractReadmePackageMatrix(readme)
@@ -1373,7 +1373,7 @@ test("install docs npm snippet covers every current target workspace package", (
   }
 });
 
-test("README package matrix keeps legacy and transition statuses aligned with the roadmap", () => {
+test("матрица пакетов README удерживает статусы legacy и transition в соответствии с roadmap", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
   const packageMatrix = extractReadmePackageMatrix(readme);
@@ -1385,7 +1385,7 @@ test("README package matrix keeps legacy and transition statuses aligned with th
   assert.match(roadmap, /\| `k-skill-proxy` \| `transition` \|/);
 });
 
-test("install docs explain target vs legacy-only vs transition boundaries", () => {
+test("документация установки объясняет границы target, legacy-only и transition", () => {
   const install = read(path.join("docs", "install.md"));
 
   assert.match(install, /target[\s`-]*линейк/i);
@@ -1396,7 +1396,7 @@ test("install docs explain target vs legacy-only vs transition boundaries", () =
   assert.match(install, /seoul-subway-arrival.*legacy-only/i);
 });
 
-test("planning docs stay aligned on the next migration priorities", () => {
+test("плановая документация согласована по следующим приоритетам миграции", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
   const todo = read("TODO.md");
@@ -1419,8 +1419,8 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-11");
-  assert.equal(todoStatus.round, 46);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 46\)/);
+  assert.equal(todoStatus.round, 47);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 47\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -1433,7 +1433,7 @@ test("planning docs stay aligned on the next migration priorities", () => {
   assert.match(bookingResearch, /Отдельный навык-перенаправление для railway не открывается/);
 });
 
-test("TODO keeps the active unchecked backlog only in the top plan block", () => {
+test("TODO держит активные незакрытые задачи только в верхнем блоке плана", () => {
   const todo = read("TODO.md");
   const planBlocks = extractSecondLevelSectionBodies(todo, "Новые пункты плана");
   const allOpenItems = [...todo.matchAll(/^- \[ \] (.+)$/gm)].map((match) => match[1].trim());
@@ -1453,7 +1453,7 @@ test("TODO keeps the active unchecked backlog only in the top plan block", () =>
   );
 });
 
-test("readme and roadmap stay free from stale release-status archaeology", () => {
+test("README и roadmap не содержат устаревшей релизной археологии", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
 
@@ -1461,7 +1461,7 @@ test("readme and roadmap stay free from stale release-status archaeology", () =>
   assertNoStaleReleaseStatus(roadmap, "docs/roadmap.md");
 });
 
-test("legacy-only and transition guides publish explicit boundary notes", () => {
+test("руководства legacy-only и transition публикуют явные граничные примечания", () => {
   const deliveryTrackingSkill = read(path.join("delivery-tracking", "SKILL.md"));
   const deliveryTracking = read(path.join("docs", "features", "delivery-tracking.md"));
   const fineDust = read(path.join("docs", "features", "fine-dust-location.md"));
@@ -1499,7 +1499,7 @@ test("legacy-only and transition guides publish explicit boundary notes", () => 
   assert.match(proxyGuide, /не отдельным пользовательским target-навыком/i);
 });
 
-test("fine-dust and proxy docs distinguish endpoint override from real secrets", () => {
+test("документация fine-dust и proxy различает переопределение адреса endpoint и настоящие секреты", () => {
   const setup = read(path.join("docs", "setup.md"));
   const security = read(path.join("docs", "security-and-secrets.md"));
   const setupSkill = read(path.join("k-skill-setup", "SKILL.md"));
@@ -1550,7 +1550,7 @@ test("fine-dust and proxy docs distinguish endpoint override from real secrets",
   assert.match(checkSetup, /Конфигурация ru-skill выглядит рабочей:/);
 });
 
-test("workspace package descriptions stay aligned with the Russian migration metadata", () => {
+test("описания workspace-пакетов соответствуют русскоязычной миграционной метадате", () => {
   const expectedDescriptions = {
     "blue-ribbon-nearby": "Legacy-клиент поиска ближайших ресторанов Blue Ribbon Survey, сохранённый на время миграции ru-skill",
     "cbr-rates": "Клиент только для чтения для официальных XML-курсов валют Банка России",
@@ -1581,7 +1581,7 @@ test("workspace package descriptions stay aligned with the Russian migration met
   }
 });
 
-test("seoul-subway-arrival skill prefers ru-skill secrets before the legacy fallback", () => {
+test("навык seoul-subway-arrival предпочитает секреты ru-skill перед legacy-запасным вариантом", () => {
   const skill = read(path.join("seoul-subway-arrival", "SKILL.md"));
 
   assert.match(skill, /## Граничное примечание/);
@@ -1594,7 +1594,7 @@ test("seoul-subway-arrival skill prefers ru-skill secrets before the legacy fall
   );
 });
 
-test("legacy feature guides keep runtime and secrets semantics aligned with ru-skill-first defaults", () => {
+test("руководства legacy features удерживают семантику runtime и секретов в соответствии с ru-skill-first", () => {
   const fineDustGuide = read(path.join("docs", "features", "fine-dust-location.md"));
   const seoulGuide = read(path.join("docs", "features", "seoul-subway-arrival.md"));
   const srtGuide = read(path.join("docs", "features", "srt-booking.md"));
@@ -1637,7 +1637,7 @@ test("legacy feature guides keep runtime and secrets semantics aligned with ru-s
   );
 });
 
-test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first credential defaults", () => {
+test("навыки legacy railway и fine-dust удерживают граничные примечания и ru-skill-first учётные данные", () => {
   const fineDustSkill = read(path.join("fine-dust-location", "SKILL.md"));
   const srtSkill = read(path.join("srt-booking", "SKILL.md"));
   const ktxSkill = read(path.join("ktx-booking", "SKILL.md"));
@@ -1671,7 +1671,7 @@ test("legacy railway and fine-dust skills keep boundary notes and ru-skill-first
   );
 });
 
-test("remaining legacy skill-only guides keep explicit migration boundaries", () => {
+test("оставшиеся legacy skill-only руководства удерживают явные границы миграции", () => {
   const kakaoTalkGuide = read(path.join("docs", "features", "kakaotalk-mac.md"));
   const kboGuide = read(path.join("docs", "features", "kbo-results.md"));
   const lottoGuide = read(path.join("docs", "features", "lotto-results.md"));
@@ -1715,7 +1715,7 @@ test("remaining legacy skill-only guides keep explicit migration boundaries", ()
   assert.match(zipcodeSkill, /postcalc-postcodes/);
 });
 
-test("remaining legacy feature and skill guides keep explicit replacement boundaries", () => {
+test("оставшиеся legacy feature и skill руководства удерживают явные границы замен", () => {
   const blueRibbonGuide = read(path.join("docs", "features", "blue-ribbon-nearby.md"));
   const daisoGuide = read(path.join("docs", "features", "daiso-product-search.md"));
   const kakaoBarGuide = read(path.join("docs", "features", "kakao-bar-nearby.md"));
@@ -1773,7 +1773,7 @@ test("remaining legacy feature and skill guides keep explicit replacement bounda
   assert.match(kleagueSkill, /rpl-results/);
 });
 
-test("updated legacy docs keep Russian boundary copy on the touched surfaces", () => {
+test("обновлённая legacy-документация удерживает русскую граничную копию на затронутых поверхностях", () => {
   const docs = [
     read(path.join("packages", "blue-ribbon-nearby", "README.md")),
     read(path.join("packages", "daiso-product-search", "README.md")),
@@ -1804,7 +1804,7 @@ test("updated legacy docs keep Russian boundary copy on the touched surfaces", (
   }
 });
 
-test("package-lock captures the yandex-market-search workspace metadata for npm ci", () => {
+test("package-lock фиксирует метаданные workspace yandex-market-search для npm ci", () => {
   const packageLock = readJson("package-lock.json");
 
   assert.deepEqual(packageLock.packages["node_modules/yandex-market-search"], {
@@ -1816,7 +1816,7 @@ test("package-lock captures the yandex-market-search workspace metadata for npm 
   assert.equal(packageLock.packages["packages/yandex-market-search"].engines.node, ">=18");
 });
 
-test("repository docs advertise the yandex-market-search skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык yandex-market-search на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -1833,7 +1833,7 @@ test("repository docs advertise the yandex-market-search skill across the docume
   assert.match(sources, /Яндекс Маркет/);
 });
 
-test("yandex-market-search docs document the marketplace workflow", () => {
+test("документация yandex-market-search описывает сценарий маркетплейса", () => {
   const skill = read(path.join("yandex-market-search", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "yandex-market-search.md"));
   const packageReadme = read(path.join("packages", "yandex-market-search", "README.md"));
@@ -1848,13 +1848,13 @@ test("yandex-market-search docs document the marketplace workflow", () => {
   assert.match(packageReadme, /getProduct/);
 });
 
-test("pack:dry-run includes the zoon-nearby workspace", () => {
+test("pack:dry-run включает workspace zoon-nearby", () => {
   const packageJson = JSON.parse(read("package.json"));
 
   assert.match(packageJson.scripts["pack:dry-run"], /workspace zoon-nearby/);
 });
 
-test("repository docs advertise the zoon-nearby skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык zoon-nearby на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
   const sources = read(path.join("docs", "sources.md"));
@@ -1869,7 +1869,7 @@ test("repository docs advertise the zoon-nearby skill across the documented surf
   assert.match(sources, /Zoon/);
 });
 
-test("zoon-nearby docs document the nearby search workflow", () => {
+test("документация zoon-nearby описывает сценарий поиска ближайших заведений", () => {
   const skill = read(path.join("zoon-nearby", "SKILL.md"));
   const packageSkill = read(path.join("packages", "zoon-nearby", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "zoon-nearby.md"));
@@ -1899,7 +1899,7 @@ test("zoon-nearby docs document the nearby search workflow", () => {
   assert.doesNotMatch(packageReadme, /可以直接/);
 });
 
-test("repository docs advertise the moex-shares skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык moex-shares на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -1914,7 +1914,7 @@ test("repository docs advertise the moex-shares skill across the documented surf
   assert.match(sources, /iss\.moex\.com/);
 });
 
-test("moex-shares docs document the official MOEX ISS workflow", () => {
+test("документация moex-shares описывает официальный сценарий ISS МОEX", () => {
   const skillPath = path.join(repoRoot, "moex-shares", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected moex-shares/SKILL.md to exist");
@@ -1931,7 +1931,7 @@ test("moex-shares docs document the official MOEX ISS workflow", () => {
   assert.match(packageReadme, /listShares/);
 });
 
-test("repository docs advertise the stoloto-lotto skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык stoloto-lotto на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -1946,7 +1946,7 @@ test("repository docs advertise the stoloto-lotto skill across the documented su
   assert.match(sources, /stoloto\.ru/);
 });
 
-test("stoloto-lotto docs document the public archive workflow", () => {
+test("документация stoloto-lotto описывает сценарий публичного архива тиражей", () => {
   const featureDoc = read(path.join("docs", "features", "stoloto-lotto.md"));
   const packageReadme = read(path.join("packages", "stoloto-lotto", "README.md"));
 
@@ -1956,7 +1956,7 @@ test("stoloto-lotto docs document the public archive workflow", () => {
   assert.match(packageReadme, /SUPPORTED_GAMES/);
 });
 
-test("repository docs advertise the kinopoisk-search skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык kinopoisk-search на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -1971,7 +1971,7 @@ test("repository docs advertise the kinopoisk-search skill across the documented
   assert.match(sources, /kinopoisk\.ru/);
 });
 
-test("kinopoisk-search docs document the search and film card workflow", () => {
+test("документация kinopoisk-search описывает сценарий поиска и карточки фильма", () => {
   const featureDoc = read(path.join("docs", "features", "kinopoisk-search.md"));
   const packageReadme = read(path.join("packages", "kinopoisk-search", "README.md"));
 
@@ -1982,7 +1982,7 @@ test("kinopoisk-search docs document the search and film card workflow", () => {
   assert.match(packageReadme, /searchFilms/);
 });
 
-test("repository docs advertise the pravo-documents skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык pravo-documents на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -1999,7 +1999,7 @@ test("repository docs advertise the pravo-documents skill across the documented 
   assert.match(sources, /pravo\.gov\.ru/);
 });
 
-test("pravo-documents docs document the official pravo.gov.ru API workflow", () => {
+test("документация pravo-documents описывает официальный сценарий API pravo.gov.ru", () => {
   const skill = read(path.join("pravo-documents", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "pravo-documents.md"));
   const packageReadme = read(path.join("packages", "pravo-documents", "README.md"));
@@ -2013,7 +2013,7 @@ test("pravo-documents docs document the official pravo.gov.ru API workflow", () 
   assert.match(packageReadme, /getPravoDocument/);
 });
 
-test("repository docs advertise the rpl-results skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык rpl-results на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -2028,7 +2028,7 @@ test("repository docs advertise the rpl-results skill across the documented surf
   assert.match(sources, /championat\.com/);
 });
 
-test("rpl-results docs document the championat.com standings and results workflow", () => {
+test("документация rpl-results описывает сценарий турнирной таблицы и результатов championat.com", () => {
   const featureDoc = read(path.join("docs", "features", "rpl-results.md"));
   const packageReadme = read(path.join("packages", "rpl-results", "README.md"));
 
@@ -2039,7 +2039,7 @@ test("rpl-results docs document the championat.com standings and results workflo
   assert.match(packageReadme, /getResults/);
 });
 
-test("repository docs advertise the osm-nearby skill across the documented surfaces", () => {
+test("документация репозитория рекламирует навык osm-nearby на всех задокументированных поверхностях", () => {
   const readme = read("README.md");
   const install = read(path.join("docs", "install.md"));
   const roadmap = read(path.join("docs", "roadmap.md"));
@@ -2054,7 +2054,7 @@ test("repository docs advertise the osm-nearby skill across the documented surfa
   assert.match(sources, /overpass|OpenStreetMap/i);
 });
 
-test("osm-nearby docs document the Overpass API search workflow", () => {
+test("документация osm-nearby описывает сценарий поиска через Overpass API", () => {
   const skillPath = path.join(repoRoot, "packages", "osm-nearby", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "expected packages/osm-nearby/SKILL.md to exist");
@@ -2070,7 +2070,7 @@ test("osm-nearby docs document the Overpass API search workflow", () => {
   assert.match(packageReadme, /getPlaceDetails/);
 });
 
-test("seoul-subway-arrival skill documents the official Seoul Open Data real-time arrival workflow", () => {
+test("навык seoul-subway-arrival документирует официальный сценарий прибытия в реальном времени Seoul Open Data", () => {
   const skill = read(path.join("seoul-subway-arrival", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "seoul-subway-arrival.md"));
 
@@ -2093,7 +2093,7 @@ test("seoul-subway-arrival skill documents the official Seoul Open Data real-tim
   );
 });
 
-test("kbo-results skill documents the kbo-game lookup workflow with correct export and date handling", () => {
+test("навык kbo-results документирует сценарий поиска kbo-game с корректным экспортом и обработкой дат", () => {
   const skill = read(path.join("kbo-results", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "kbo-results.md"));
 
@@ -2112,7 +2112,7 @@ test("kbo-results skill documents the kbo-game lookup workflow with correct expo
   assert.match(featureDoc, /getFullYear|Date.*объект|объект Date/i);
 });
 
-test("lotto-results skill documents the k-lotto draw and number check workflow", () => {
+test("навык lotto-results документирует сценарий проверки тиражей и номеров k-lotto", () => {
   const skill = read(path.join("lotto-results", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "lotto-results.md"));
 
@@ -2131,7 +2131,7 @@ test("lotto-results skill documents the k-lotto draw and number check workflow",
   assert.match(featureDoc, /getDetailResult/);
 });
 
-test("hwp skill and feature doc classify the Korean document utility as target-supporting", () => {
+test("навык hwp и feature doc классифицируют корейскую документную утилиту как target-supporting", () => {
   const skill = read(path.join("hwp", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "hwp.md"));
 
@@ -2142,7 +2142,7 @@ test("hwp skill and feature doc classify the Korean document utility as target-s
   }
 });
 
-test("blue-ribbon-nearby routing defers to osm-nearby and zoon-nearby for general queries", () => {
+test("маршрутизация blue-ribbon-nearby отдаёт предпочтение osm-nearby и zoon-nearby для общих запросов", () => {
   const skill = read(path.join("blue-ribbon-nearby", "SKILL.md"));
 
   assert.match(skill, /osm-nearby/);
@@ -2151,7 +2151,7 @@ test("blue-ribbon-nearby routing defers to osm-nearby and zoon-nearby for genera
   assert.match(skill, /только.*Blue Ribbon|только.*корейск/i);
 });
 
-test("srt-booking skill documents the SRTrain search, reserve and cancel workflow", () => {
+test("навык srt-booking документирует сценарий поиска, бронирования и отмены SRTrain", () => {
   const skill = read(path.join("srt-booking", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "srt-booking.md"));
 
@@ -2182,7 +2182,7 @@ test("srt-booking skill documents the SRTrain search, reserve and cancel workflo
   );
 });
 
-test("kakaotalk-mac skill documents the full macOS kakaocli workflow from install to safe send", () => {
+test("навык kakaotalk-mac документирует полный сценарий kakaocli на macOS от установки до безопасной отправки", () => {
   const skill = read(path.join("kakaotalk-mac", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "kakaotalk-mac.md"));
 
@@ -2215,7 +2215,7 @@ test("kakaotalk-mac skill documents the full macOS kakaocli workflow from instal
   assert.match(featureDoc, /kakaocli send/);
 });
 
-test("daiso-product-search skill documents the store-product-stock workflow end to end", () => {
+test("навык daiso-product-search документирует сценарий магазин-товар-остатки от начала до конца", () => {
   const skill = read(path.join("daiso-product-search", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "daiso-product-search.md"));
 
@@ -2242,7 +2242,7 @@ test("daiso-product-search skill documents the store-product-stock workflow end 
   assert.match(featureDoc, /официальн.*поверхност.*не.*расположен/i);
 });
 
-test("delivery-tracking skill documents the CJ and ePost carrier adapter workflow with boundary note", () => {
+test("навык delivery-tracking документирует сценарий адаптеров перевозчиков CJ и ePost с граничным примечанием", () => {
   const skill = read(path.join("delivery-tracking", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "delivery-tracking.md"));
 
@@ -2278,7 +2278,7 @@ test("delivery-tracking skill documents the CJ and ePost carrier adapter workflo
   assert.match(featureDoc, /retry policy/);
 });
 
-test("all SKILL.md files use canonical Russian heading scheme", () => {
+test("все файлы SKILL.md используют каноничную русскую схему заголовков", () => {
   const canonicalTargetHeadings = [
     "Что делает навык",
     "Когда использовать",
@@ -2368,7 +2368,7 @@ test("all SKILL.md files use canonical Russian heading scheme", () => {
   }
 });
 
-test("feature docs use canonical Russian headings without non-canonical variants", () => {
+test("feature docs используют каноничные русские заголовки без неканоничных вариантов", () => {
   const nonCanonicalPatterns = [
     /## Что умеет этот сценарий/,
     /## Что умеет$/,
@@ -2404,7 +2404,7 @@ test("feature docs use canonical Russian headings without non-canonical variants
   }
 });
 
-test("user-facing docs contain no Chinese character artifacts", () => {
+test("пользовательская документация не содержит артефактов китайских иероглифов", () => {
   const chineseCharPattern = /[整理布尔返回实时]/;
 
   const skillDirs = fs.readdirSync(repoRoot).filter((dir) => {
@@ -2441,7 +2441,7 @@ test("user-facing docs contain no Chinese character artifacts", () => {
   );
 });
 
-test("changeset summaries are in Russian", () => {
+test("сводки changeset на русском языке", () => {
   const changesetDir = path.join(repoRoot, ".changeset");
   const changesetFiles = fs.readdirSync(changesetDir).filter((f) => f.endsWith(".md") && f !== "README.md");
 
@@ -2472,7 +2472,7 @@ test("changeset summaries are in Russian", () => {
   }
 });
 
-test("SKILL.md frontmatter descriptions are in Russian", () => {
+test("описания frontmatter в SKILL.md на русском языке", () => {
   const skillDirs = fs.readdirSync(repoRoot).filter((dir) => {
     const skillPath = path.join(repoRoot, dir, "SKILL.md");
     return fs.existsSync(skillPath);
@@ -2513,7 +2513,7 @@ test("SKILL.md frontmatter descriptions are in Russian", () => {
   }
 });
 
-test("roadmap uses Russian milestone headings instead of English", () => {
+test("roadmap использует русские заголовки вех вместо английских", () => {
   const roadmap = read(path.join("docs", "roadmap.md"));
 
   assert.match(roadmap, /## Вехи миграции/);
@@ -2529,7 +2529,7 @@ test("roadmap uses Russian milestone headings instead of English", () => {
   assert.doesNotMatch(roadmap, /^## Legacy packages/m);
 });
 
-test("osm-nearby feature doc uses Russian instead of English jargon", () => {
+test("feature doc osm-nearby использует русский вместо английского жаргона", () => {
   const featureDoc = read(path.join("docs", "features", "osm-nearby.md"));
 
   assert.match(featureDoc, /бесплатн.*решение без API-ключа|решение без API-ключа.*бесплатн/i);
@@ -2540,7 +2540,7 @@ test("osm-nearby feature doc uses Russian instead of English jargon", () => {
   assert.doesNotMatch(featureDoc, /\bsparse\b/);
 });
 
-test("target package READMEs use Russian instead of Read-only jargon", () => {
+test("target package README используют русский вместо жаргона Read-only", () => {
   const targetPackages = [
     "cbr-rates", "moex-shares", "postcalc-postcodes", "hh-vacancies",
     "stoloto-lotto", "kinopoisk-search", "mchs-storm-warnings",
@@ -2559,7 +2559,7 @@ test("target package READMEs use Russian instead of Read-only jargon", () => {
   assert.doesNotMatch(zoonReadme, /^## Обзор$/m);
 });
 
-test("docs/sources.md uses Russian instead of English jargon", () => {
+test("docs/sources.md использует русский вместо английского жаргона", () => {
   const sources = read(path.join("docs", "sources.md"));
 
   assert.doesNotMatch(sources, /Технический baseline/);
@@ -2574,12 +2574,12 @@ test("docs/sources.md uses Russian instead of English jargon", () => {
   assert.match(sources, /страницы наличия/);
 });
 
-test("docs/roadmap.md does not contain English jargon in user-facing surfaces", () => {
+test("docs/roadmap.md не содержит английского жаргона на пользовательских поверхностях", () => {
   const roadmap = read(path.join("docs", "roadmap.md"));
   assert.doesNotMatch(roadmap, /delayed-цены/);
 });
 
-test("AGENTS.md uses Russian for repo-governance copy", () => {
+test("AGENTS.md использует русский для repo-governance текста", () => {
   const agents = read("AGENTS.md");
 
   assert.match(agents, /^# Инструкции для репозитория k-skill$/m);
@@ -2589,26 +2589,26 @@ test("AGENTS.md uses Russian for repo-governance copy", () => {
   assert.doesNotMatch(agents, /Default posture: public read-only endpoint/);
 });
 
-test("delivery-tracking SKILL.md uses Russian instead of live smoke test", () => {
+test("SKILL.md delivery-tracking использует русский вместо live smoke test", () => {
   const skill = read(path.join("delivery-tracking", "SKILL.md"));
   assert.doesNotMatch(skill, /live smoke test/);
   assert.doesNotMatch(skill, /\bsmoke test\b/);
   assert.match(skill, /проверочный тест/);
 });
 
-test("yandex-rasp SKILL.md uses Russian instead of checkout", () => {
+test("SKILL.md yandex-rasp использует русский вместо checkout", () => {
   const skill = read(path.join("yandex-rasp", "SKILL.md"));
   assert.doesNotMatch(skill, /\bcheckout\b/);
   assert.match(skill, /оформление заказа/);
 });
 
-test("fine-dust-location SKILL.md uses Russian instead of fallback", () => {
+test("SKILL.md fine-dust-location использует русский вместо fallback", () => {
   const skill = read(path.join("fine-dust-location", "SKILL.md"));
   assert.doesNotMatch(skill, /`fallback`/);
   assert.match(skill, /запасной вариант/);
 });
 
-test("package.json descriptions use Russian instead of nearby- prefix", () => {
+test("описания package.json используют русский вместо префикса nearby-", () => {
   const packagesDir = path.join(repoRoot, "packages");
   const nearbyPackages = ["blue-ribbon-nearby", "kakao-bar-nearby", "osm-nearby", "zoon-nearby"];
 
@@ -2618,7 +2618,7 @@ test("package.json descriptions use Russian instead of nearby- prefix", () => {
   }
 });
 
-test("changeset summaries use Russian instead of read-only prefix", () => {
+test("сводки changeset используют русский вместо префикса read-only", () => {
   const changesetDir = path.join(repoRoot, ".changeset");
   const changesetFiles = fs.readdirSync(changesetDir).filter((f) => f.endsWith(".md") && f !== "README.md");
 
@@ -2629,7 +2629,7 @@ test("changeset summaries use Russian instead of read-only prefix", () => {
   }
 });
 
-test("CHANGELOG files use Russian headings and descriptions", () => {
+test("файлы CHANGELOG используют русские заголовки и описания", () => {
   const changelogPackages = [
     "toss-securities", "kleague-results", "kakao-bar-nearby",
     "k-lotto", "daiso-product-search", "blue-ribbon-nearby",
@@ -2646,7 +2646,7 @@ test("CHANGELOG files use Russian headings and descriptions", () => {
   }
 });
 
-test("source code does not contain English jargon in user-facing output", () => {
+test("исходный код не содержит английского жаргона в пользовательском выводе", () => {
   const srcDir = path.join(repoRoot, "packages");
   const packages = fs.readdirSync(srcDir);
 
@@ -2677,7 +2677,7 @@ test("source code does not contain English jargon in user-facing output", () => 
   }
 });
 
-test("k-skill-proxy uses Russian lookupMode values", () => {
+test("k-skill-proxy использует русские значения lookupMode", () => {
   const airkorea = read(path.join("packages", "k-skill-proxy", "src", "airkorea.js"));
 
   assert.doesNotMatch(airkorea, /lookupMode: "fallback"/);
@@ -2688,7 +2688,7 @@ test("k-skill-proxy uses Russian lookupMode values", () => {
   assert.doesNotMatch(airkorea, /AIR_KOREA_OPEN_API_KEY is not configured/);
 });
 
-test("fine_dust.py uses Russian lookup_mode values", () => {
+test("fine_dust.py использует русские значения lookup_mode", () => {
   const fineDust = read(path.join("scripts", "fine_dust.py"));
 
   assert.doesNotMatch(fineDust, /"coordinates"/);
@@ -2697,7 +2697,7 @@ test("fine_dust.py uses Russian lookup_mode values", () => {
   assert.match(fineDust, /"запасной вариант"/);
 });
 
-test("cbr-rates uses Russian direction values", () => {
+test("cbr-rates использует русские значения направления", () => {
   const index = read(path.join("packages", "cbr-rates", "src", "index.js"));
 
   assert.doesNotMatch(index, /"flat"/);
@@ -2708,21 +2708,21 @@ test("cbr-rates uses Russian direction values", () => {
   assert.match(index, /"снижение"/);
 });
 
-test("osm-nearby uses Russian default amenity value", () => {
+test("osm-nearby использует русское значение amenity по умолчанию", () => {
   const query = read(path.join("packages", "osm-nearby", "src", "query.js"));
 
   assert.doesNotMatch(query, /'unknown'/);
   assert.match(query, /"неизвестно"/);
 });
 
-test("yandex-rasp uses Russian default transport type value", () => {
+test("yandex-rasp использует русское значение типа транспорта по умолчанию", () => {
   const parse = read(path.join("packages", "yandex-rasp", "src", "parse.js"));
 
   assert.doesNotMatch(parse, /"unknown"/);
   assert.match(parse, /"неизвестно"/);
 });
 
-test("GitHub Actions workflow names use Russian", () => {
+test("имена workflow GitHub Actions на русском", () => {
   const releaseNpm = read(path.join(".github", "workflows", "release-npm.yml"));
   const releasePython = read(path.join(".github", "workflows", "release-python.yml"));
 
@@ -2733,7 +2733,7 @@ test("GitHub Actions workflow names use Russian", () => {
   assert.doesNotMatch(releasePython, /^name: Release Python packages$/m);
 });
 
-test("GitHub Actions workflow step names and comments use Russian instead of English", () => {
+test("имена шагов и комментарии в workflow GitHub Actions на русском вместо английского", () => {
   const releaseNpm = read(path.join(".github", "workflows", "release-npm.yml"));
   const releasePython = read(path.join(".github", "workflows", "release-python.yml"));
 
@@ -2750,7 +2750,7 @@ test("GitHub Actions workflow step names and comments use Russian instead of Eng
   assert.doesNotMatch(releasePython, /name: Reminder$/m);
 });
 
-test("version-packages script chains fix-changelog-headings after changeset version", () => {
+test("скрипт version-packages вызывает fix-changelog-headings после changeset version", () => {
   const packageJson = readJson("package.json");
 
   assert.match(
@@ -2759,7 +2759,7 @@ test("version-packages script chains fix-changelog-headings after changeset vers
   );
 });
 
-test("fix-changelog-headings script exists and handles all standard English headings", () => {
+test("скрипт fix-changelog-headings существует и обрабатывает все стандартные английские заголовки", () => {
   const scriptPath = path.join(repoRoot, "scripts", "fix-changelog-headings.js");
 
   assert.ok(fs.existsSync(scriptPath), "expected scripts/fix-changelog-headings.js to exist");
@@ -2771,7 +2771,7 @@ test("fix-changelog-headings script exists and handles all standard English head
   assert.match(script, /Patch Changes.*Исправления|Исправления.*Patch Changes/s);
 });
 
-test("shell infrastructure scripts use Russian user-facing status messages", () => {
+test("shell-скрипты инфраструктуры используют русские пользовательские статусные сообщения", () => {
   const checkSetup = read(path.join("scripts", "check-setup.sh"));
   const validateSkills = read(path.join("scripts", "validate-skills.sh"));
 
@@ -2798,7 +2798,7 @@ test("shell infrastructure scripts use Russian user-facing status messages", () 
   assert.doesNotMatch(validateSkills, /skill layout looks valid/);
 });
 
-test("Python helper scripts use Russian user-facing messages", () => {
+test("Python-хелперы используют русские пользовательские сообщения", () => {
   const ktxBooking = read(path.join("scripts", "ktx_booking.py"));
   const fineDust = read(path.join("scripts", "fine_dust.py"));
 
@@ -2827,7 +2827,7 @@ test("Python helper scripts use Russian user-facing messages", () => {
   assert.doesNotMatch(fineDust, /unsupported command/);
 });
 
-test("source code JSDoc and comments are in Russian, not English", () => {
+test("JSDoc и комментарии в исходном коде на русском, а не на английском", () => {
   const kinopoiskIndex = read(path.join("packages", "kinopoisk-search", "src", "index.js"));
   const kinopoiskParse = read(path.join("packages", "kinopoisk-search", "src", "parse.js"));
   const yandexMarketParse = read(path.join("packages", "yandex-market-search", "src", "parse.js"));
@@ -2852,7 +2852,7 @@ test("source code JSDoc and comments are in Russian, not English", () => {
   assert.match(yandexRaspIndex, /\/\* пропустить \*\//);
 });
 
-test("SKILL.md files use Russian instead of English jargon: lookup, nearby, real-time, Sold out, Write-, aggressive polling", () => {
+test("файлы SKILL.md используют русский вместо английского жаргона: lookup, nearby, real-time, Sold out, Write-, aggressive polling", () => {
   const hhSkill = read(path.join("hh-vacancies", "SKILL.md"));
   const yandexRaspSkill = read(path.join("yandex-rasp", "SKILL.md"));
   const yandexMarketSkill = read(path.join("yandex-market-search", "SKILL.md"));
@@ -2894,7 +2894,7 @@ test("SKILL.md files use Russian instead of English jargon: lookup, nearby, real
   assert.doesNotMatch(blueRibbonSkill, /# Blue Ribbon Nearby/);
 });
 
-test("feature docs use Russian instead of English jargon: lookup, real-time, HTML scraping, Sold out", () => {
+test("feature docs используют русский вместо английского жаргона: lookup, real-time, HTML scraping, Sold out", () => {
   const hhFeature = read(path.join("docs", "features", "hh-vacancies.md"));
   const fineDustFeature = read(path.join("docs", "features", "fine-dust-location.md"));
   const seoulFeature = read(path.join("docs", "features", "seoul-subway-arrival.md"));
@@ -2921,7 +2921,7 @@ test("feature docs use Russian instead of English jargon: lookup, real-time, HTM
   assert.match(kleagueFeature, /HTML-парсинг/);
 });
 
-test("top-level docs use Russian instead of English jargon: lookup, real-time, nearby-", () => {
+test("верхнеуровневая документация использует русский вместо английского жаргона: lookup, real-time, nearby-", () => {
   const roadmap = read(path.join("docs", "roadmap.md"));
   const sources = read(path.join("docs", "sources.md"));
   const readme = read("README.md");
@@ -2942,10 +2942,57 @@ test("top-level docs use Russian instead of English jargon: lookup, real-time, n
   assert.match(readme, /поиск регионов через публичный API/);
 });
 
-test("package README files use Russian instead of HTML scraping/crawling", () => {
+test("package README используют русский вместо HTML scraping/crawling", () => {
   const kleagueReadme = read(path.join("packages", "kleague-results", "README.md"));
 
   assert.doesNotMatch(kleagueReadme, /HTML scraping/);
   assert.doesNotMatch(kleagueReadme, /HTML crawling/);
   assert.match(kleagueReadme, /HTML-парсинг/);
+});
+
+test("описания тестов в skill-docs.test.js на русском, а не на английском", () => {
+  const skillDocs = read(path.join("scripts", "skill-docs.test.js"));
+  const testDescriptions = [...skillDocs.matchAll(/test\("([^"]+)"/g)].map(([, d]) => d);
+
+  const clearlyEnglishPattern = /^(?:root|repository|all|user|changeset|source|roadmap|delivery|version|fix|shell|top-level|readme|install|TODO|CHANGELOG|docs|GitHub|Python)\b.*\b(?:skill|docs|doc|package|uses|keeps|stays|documents|advertise|publish|include|capture|cover|enumerate|explain|prefer|lock|use|are|is|have|has|does|should|must|can|will|would)\b/i;
+
+  const englishDescriptions = testDescriptions.filter((desc) => clearlyEnglishPattern.test(desc));
+
+  assert.equal(
+    englishDescriptions.length,
+    0,
+    `Ожидалось, что все описания тестов в skill-docs.test.js на русском, но найдены английские: ${englishDescriptions.slice(0, 5).join("; ")}`,
+  );
+});
+
+test("имена тестовых методов Python на русском, а не на английском", () => {
+  const fineDustTests = read(path.join("scripts", "test_fine_dust.py"));
+  const ktxTests = read(path.join("scripts", "test_ktx_booking.py"));
+
+  const englishTestPattern = /^\s+def test_[a-z]+_[a-z_]+\(self\):/m;
+
+  assert.doesNotMatch(
+    fineDustTests,
+    englishTestPattern,
+    "test_fine_dust.py не должен содержать английских имён тестовых методов",
+  );
+  assert.doesNotMatch(
+    ktxTests,
+    englishTestPattern,
+    "test_ktx_booking.py не должен содержать английских имён тестовых методов",
+  );
+});
+
+test("feature docs не содержат заголовок ## API без русского уточнения", () => {
+  const featuresDir = path.join(repoRoot, "docs", "features");
+  const featureFiles = fs.readdirSync(featuresDir).filter((f) => f.endsWith(".md"));
+
+  for (const file of featureFiles) {
+    const content = fs.readFileSync(path.join(featuresDir, file), "utf8");
+    assert.doesNotMatch(
+      content,
+      /^## API$/m,
+      `docs/features/${file} не должен содержать голый заголовок "## API" — используйте "## API-справочник"`,
+    );
+  }
 });

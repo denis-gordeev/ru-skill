@@ -142,7 +142,7 @@ test("searchNearbyByLocationQuery находит совпадение зоны, 
     assert.doesNotMatch(
       JSON.stringify(result.items),
       /정통삼계탕/,
-      "non-ribbon restaurants should be filtered out even if the upstream payload includes them",
+      "рестораны без ленты должны быть отфильтрованы, даже если upstream-payload их включает",
     );
   } finally {
     global.fetch = originalFetch;
