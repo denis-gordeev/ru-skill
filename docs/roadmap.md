@@ -1,8 +1,16 @@
-# Roadmap
+# Дорожная карта
 
 ## Цель миграции
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
+
+## Статус на 2026-06-12
+
+- Переведены на русский все оставшиеся английские assert-сообщения в `scripts/skill-docs.test.js` (~107 сообщений).
+- Переведены на русский английские h1-заголовки в верхнеуровневых документах: `# Brand Inventory` → `# Инвентарь бренда`, `# Sources` → `# Источники`, `# Roadmap` → `# Дорожная карта`.
+- Устранён оставшийся English jargon в feature docs: `production`, `live-проверке`, `live-вёрстку`, `live-данные`, `export`, `discovery` → русские аналоги.
+- Doc-regression расширен на русские h1-заголовки и отсутствие English jargon в feature docs.
+- Полный `npm test` и `validate-skills` проходят после этой синхронизации.
 
 ## Статус на 2026-06-11
 
@@ -277,5 +285,5 @@
 3. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, граничные примечания, package README, top-level TODO governance, heading scheme critical surfaces, transition/setup copy, package metadata descriptions и отсутствию устаревшей release-археологии в README/roadmap.
-6. Крупный слой English jargon (`read-only`, `supplementary`, `fallback`, `baseline`, `fixture-based`, `handoff`, `checkout`, `write-`, `discovery`, `boundary`, `credential`, `endpoint override`, `target-backlog`, `compatibility-layer`, `backward-compatible`, `mutation`, `decision matrix`, `nearby-поиск`, `live smoke`, `operational default`, `delayed-`, `passthrough`, `self-hosted`) устранён из user-facing документации, repo-governance и shell/infrastructure surfaces; следующий проход — по редким артефактам в CLI/help текстах и npm/package helper поверхностях вне shell-скриптов.
+6. Крупный слой English jargon (`read-only`, `supplementary`, `fallback`, `baseline`, `fixture-based`, `handoff`, `checkout`, `write-`, `discovery`, `boundary`, `credential`, `endpoint override`, `target-backlog`, `compatibility-layer`, `backward-compatible`, `mutation`, `decision matrix`, `nearby-поиск`, `live smoke`, `operational default`, `delayed-`, `passthrough`, `self-hosted`, `production`, `live-`, `export`) устранён из user-facing документации, repo-governance и shell/infrastructure surfaces; английские assert-сообщения в тестах и h1-заголовки верхнеуровневых документов тоже русифицированы; следующий проход — по редким артефактам в CLI/help текстах и npm/package helper поверхностях вне shell-скриптов.
 7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и ненадёжных обходов anti-bot.

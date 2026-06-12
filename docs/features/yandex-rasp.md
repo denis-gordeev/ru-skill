@@ -25,7 +25,7 @@
 
 ## Как использовать для железнодорожного перенаправления
 
-- Для российского железнодорожного discovery достаточно `searchTrips(from, to, opts)` и полей `thread.number`, `carrier`, `departure`, `arrival`, `duration`, `hasTransfers`, `ticketsInfo.places`.
+- Для российского железнодорожного обнаружения достаточно `searchTrips(from, to, opts)` и полей `thread.number`, `carrier`, `departure`, `arrival`, `duration`, `hasTransfers`, `ticketsInfo.places`.
 - Если пользователю нужен именно билет, пакет возвращает данные для выбора рейса, но само оформление заказа не автоматизирует: покупку нужно завершать вручную во внешнем пользовательском потоке РЖД или агрегатора.
 - Отдельный навык-перенаправление поверх `yandex-rasp` сейчас не заводится: в репозитории это зафиксировано как документная граница replacement-а для legacy-навыков `srt-booking` и `ktx-booking`.
 

@@ -174,6 +174,9 @@
 - Doc-regression расширен на package README heading и repo-governance surfaces: тесты страхуют, что `packages/zoon-nearby/README.md` не возвращает `## Обзор`, `AGENTS.md` не возвращает `Default posture: public read-only endpoint`, а changeset-сводки не используют `fixture-based`.
 - Закрыт следующий слой English jargon в shell/infrastructure surfaces: `scripts/check-setup.sh` и `scripts/validate-skills.sh` теперь выдают русские user-facing статусы, ошибки и подсказки вместо `missing`, `insecure`, `next steps`, `skill layout looks valid`.
 - Doc-regression расширен на shell/infrastructure surfaces: тесты страхуют русские сообщения в `scripts/check-setup.sh` и `scripts/validate-skills.sh`, а также не дают вернуть английские helper/status формулировки в эти CLI-скрипты.
+- Переведены на русский все оставшиеся английские assert-сообщения в `scripts/skill-docs.test.js` (~107 сообщений); внутренних английских сообщений об ошибках в тестах больше нет.
+- Переведены на русский английские h1-заголовки в верхнеуровневых документах: `# Brand Inventory` → `# Инвентарь бренда`, `# Sources` → `# Источники`, `# Roadmap` → `# Дорожная карта`.
+- Устранён оставшийся English jargon в feature docs: `production` → `промышленного использования`, `live-проверке` → `проверке в реальном времени`, `live-вёрстку` → `актуальную вёрстку`, `live-данные` → `данные в реальном времени`, `export` → `экспорт`, `discovery` → `обнаружение`.
 
 ## Что делаем дальше
 
@@ -199,6 +202,7 @@
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO, booking docs и package metadata descriptions, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 - Следующий проход делать уже по оставшимся edge-case поверхностям: npm script output, helper JS utilities (`fix-changelog-headings.js`), и другим редким repo-infrastructure сообщениям.
+- Английские assert-сообщения в `scripts/skill-docs.test.js` полностью переведены на русский; h1-заголовки верхнеуровневых документов (`Brand Inventory`, `Sources`, `Roadmap`) русифицированы; English jargon в feature docs (`production`, `live-`, `discovery`, `export`) устранён.
 
 ## Быстрые ссылки на ключевые функции
 

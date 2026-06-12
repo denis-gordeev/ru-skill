@@ -4,34 +4,33 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-11 (раунд 47)
+## Статус на 2026-06-12 (раунд 48)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Переведены на русский все английские описания тестов в `scripts/skill-docs.test.js` (~90 описаний `test()`).
-- Переведены на русский все английские имена тестовых методов в `scripts/test_fine_dust.py` (13 методов) и `scripts/test_ktx_booking.py` (6 методов).
-- Переведены на русский английские секционные комментарии и аннотации в `packages/rpl-results/test/index.test.js` (9 комментариев), `packages/yandex-rasp/test/index.test.js` (2 комментария), `packages/osm-nearby/test/index.test.js` (1 комментарий).
-- Переведены на русский английские сообщения утверждений в `packages/kleague-results/test/index.test.js` (2 сообщения) и `packages/blue-ribbon-nearby/test/index.test.js` (1 сообщение).
-- Переведены заголовки `## API` → `## API-справочник` в `docs/features/zoon-nearby.md` и `docs/features/kinopoisk-search.md`.
-- Полный `npm test` проходит: 138 pass / 0 fail / 1 skipped.
+- Переведены на русский все оставшиеся английские assert-сообщения в `scripts/skill-docs.test.js` (~107 сообщений: `"expected X to exist"`, `"must not X"`, `"must keep X"`, `"should stay X"` и др.).
+- Переведены на русский английские h1-заголовки в верхнеуровневых документах: `# Brand Inventory` → `# Инвентарь бренда`, `# Sources` → `# Источники`, `# Roadmap` → `# Дорожная карта`.
+- Устранён оставшийся English jargon в feature docs: `production` → `промышленного использования`, `live-проверке` → `проверке в реальном времени`, `live-вёрстку` → `актуальную вёрстку`, `live-данные` → `данные в реальном времени`, `export` → `экспорт`, `discovery` → `обнаружение`.
+- Doc-regression расширен: добавлены тесты на русские h1-заголовки в верхнеуровневых документах и отсутствие English jargon (`production`, `live-`, `discovery`, `export`) в feature docs.
+- Полный `npm test` проходит: 143 pass / 0 fail / 1 skipped.
 
-## Выполнено в этом раунде (раунд 47)
+## Выполнено в этом раунде (раунд 48)
 
-- [x] `scripts/skill-docs.test.js`: переведены на русский ~90 описаний `test()` (все английские test descriptions теперь на русском).
-- [x] `scripts/test_fine_dust.py`: переведены на русский 13 имён тестовых методов (например, `test_wgs84_coordinates_are_converted_to_air_korea_tm` → `test_wgs84_координаты_конвертируются_в_air_korea_tm`).
-- [x] `scripts/test_ktx_booking.py`: переведены на русский 6 имён тестовых методов (например, `test_normalize_train_emits_stable_train_id` → `test_normalize_train_формирует_стабильный_train_id`).
-- [x] `packages/rpl-results/test/index.test.js`: переведены 9 английских комментариев (секционные разделители и inline-аннотации).
-- [x] `packages/yandex-rasp/test/index.test.js`: переведены 2 английских секционных комментария.
-- [x] `packages/osm-nearby/test/index.test.js`: переведён 1 английский пояснительный комментарий.
-- [x] `packages/kleague-results/test/index.test.js`: переведены 2 английских сообщения утверждений.
-- [x] `packages/blue-ribbon-nearby/test/index.test.js`: переведено 1 английское сообщение утверждения.
-- [x] `docs/features/zoon-nearby.md`: заголовок `## API` → `## API-справочник`.
-- [x] `docs/features/kinopoisk-search.md`: заголовок `## API` → `## API-справочник`.
+- [x] `scripts/skill-docs.test.js`: переведены на русский ~107 assert-сообщений (внутренние сообщения ошибок assert.ok/assert.equal/assert.match/assert.doesNotMatch/assert.deepEqual).
+- [x] `docs/brand-inventory.md`: h1 `# Brand Inventory` → `# Инвентарь бренда`.
+- [x] `docs/sources.md`: h1 `# Sources` → `# Источники`.
+- [x] `docs/roadmap.md`: h1 `# Roadmap` → `# Дорожная карта`.
+- [x] `docs/features/osm-nearby.md`: `## Альтернативы для production` → `## Альтернативы для промышленного использования`.
+- [x] `docs/features/daiso-product-search.md`: `## Заметка по live-проверке` → `## Заметка по проверке в реальном времени`.
+- [x] `docs/features/postcalc-postcodes.md`: `live-вёрстку` → `актуальную вёрстку`.
+- [x] `docs/features/seoul-subway-arrival.md`: `live-данные` → `данные в реальном времени`.
+- [x] `docs/features/kbo-results.md`: `export` → `экспорт`.
+- [x] `docs/features/yandex-rasp.md`: `discovery` → `обнаружение`.
+- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русские h1-заголовки в верхнеуровневых документах и отсутствие English jargon в feature docs.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
 - [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
-- [ ] Проверить оставшиеся английские assert-сообщения в `scripts/skill-docs.test.js` (внутренние сообщения ошибках assert.ok/assert.equal) на предмет русификации.
 
 ## Статус на 2026-06-11 (раунд 46)
 
