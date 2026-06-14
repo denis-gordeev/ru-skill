@@ -42,7 +42,7 @@ metadata:
 - Homebrew
 - Вход в Mac App Store (при использовании `mas`)
 - `kakaocli` установлен
-- Предоставлены разрешения **Full Disk Access** и **Accessibility** для приложения терминала
+- Предоставлены разрешения **Full Disk Access (Полный доступ к диску)** и **Accessibility (Универсальный доступ)** для приложения терминала
 
 ## Входные данные
 
@@ -81,15 +81,15 @@ kakaocli status
 
 ### 2. Предоставить необходимые разрешения macOS
 
-В **System Settings > Privacy & Security** предоставьте текущему приложению терминала (iTerm, Terminal, Warp и т.д.) следующие разрешения:
+В **System Settings > Privacy & Security (Системные настройки > Конфиденциальность и защита)** предоставьте текущему приложению терминала (iTerm, Terminal, Warp и т.д.) следующие разрешения:
 
-- **Full Disk Access**: для чтения локальной базы данных KakaoTalk
-- **Accessibility**: для UI-автоматизации — отправка сообщений, harvest, inspect
+- **Full Disk Access (Полный доступ к диску)**: для чтения локальной базы данных KakaoTalk
+- **Accessibility (Универсальный доступ)**: для UI-автоматизации — отправка сообщений, harvest, inspect
 
 Основные правила:
 
-- Команды чтения (`status`, `auth`, `chats`) также требуют Full Disk Access.
-- Команды `send`, `harvest`, `inspect` дополнительно требуют Accessibility.
+- Команды чтения (`status`, `auth`, `chats`) также требуют Full Disk Access (Полный доступ к диску).
+- Команды `send`, `harvest`, `inspect` дополнительно требуют Accessibility (Универсальный доступ).
 
 ### 3. Проверить доступ на чтение перед side effects
 
@@ -160,8 +160,8 @@ kakaocli login --status
 
 - KakaoTalk для Mac не установлен
 - `mas install` не удался из-за отсутствия входа в App Store
-- Full Disk Access не предоставлен
-- Accessibility не предоставлен
+- Full Disk Access (Полный доступ к диску) не предоставлен
+- Accessibility (Универсальный доступ) не предоставлен
 - Подстрока названия чата неоднозначна, найдено несколько неверных кандидатов
 
 ## Примечания

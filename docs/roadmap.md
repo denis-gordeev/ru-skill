@@ -4,6 +4,22 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
+## Статус на 2026-06-14 (раунд 50)
+
+- Переведены на русский английские метки URL в `docs/sources.md` (25 меток): `K League schedule/results JSON` → `K League расписание/результаты JSON`, `Dhlottery result page` → `Dhlottery страница результатов лотереи`, `CJ Logistics tracking page` → `CJ Logistics отслеживание доставки`, `Korea Post tracking summary` → `Почтовая служба Кореи отслеживание`, `Daiso store search` → `Daisomall поиск магазинов`, `Blue Ribbon Survey main site` → `Blue Ribbon главная страница`, `Kakao Map mobile search` → `Kakao Map мобильный поиск`, `AirKorea air quality API` → `AirKorea качество воздуха API` и др.
+- Устранён English jargon в `docs/brand-inventory.md`: `legacy surface area` → `legacy-поверхностей`, `Public proxy URL` → `Публичный URL прокси`.
+- Добавлены русские переводы для macOS-разрешений в `kakaotalk-mac/SKILL.md` и `docs/features/kakaotalk-mac.md`: `Full Disk Access (Полный доступ к диску)`, `Accessibility (Универсальный доступ)`, `System Settings > Privacy & Security (Системные настройки > Конфиденциальность и защита)`, `KakaoTalk for Mac` → `KakaoTalk для Mac`.
+- Синхронизирован справочный блок Legacy в `docs/sources.md` с новыми русскими метками; устранено расхождение `Daisomall остатки пикап-запасов` → `Daisomall остатки для самовывоза`.
+- Doc-regression расширен: добавлены тесты на русские метки URL, на отсутствие английского жаргона в brand-inventory и на русские переводы macOS-разрешений.
+- Полный `npm test` и `validate-skills` проходят после этой синхронизации.
+
+## Статус на 2026-06-14 (раунд 49)
+
+- Переведены на русский английские сообщения об ошибках в имитированных ответах тестов: `Unexpected mocked URL` → `Неожиданный имитированный URL` (8 файлов), `provider should not be called` → `провайдер не должен вызываться` (1 файл).
+- Добавлены русские ключевые слова (keywords) во все 13 target package.json для обнаружения русскоязычными пользователями npm.
+- Doc-regression расширен: добавлены тесты на отсутствие английских сообщений в имитированных ответах тестов и на наличие русских keywords в target package.json.
+- Полный `npm test` и `validate-skills` проходят после этой синхронизации.
+
 ## Статус на 2026-06-12
 
 - Переведены на русский все оставшиеся английские assert-сообщения в `scripts/skill-docs.test.js` (~107 сообщений).
@@ -174,7 +190,7 @@
 - Навык с результатами K League
 - Навык для отслеживания доставки
 - Навык для Toss Securities
-- Навык по проверке fine dust по местоположению
+- Навык по проверке мелкой пыли по местоположению
 - Навык поиска ближайших ресторанов Blue Ribbon
 - Навык поиска ближайших баров
 - Навык поиска товаров Daiso
@@ -285,5 +301,5 @@
 3. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, граничные примечания, package README, top-level TODO governance, heading scheme critical surfaces, transition/setup copy, package metadata descriptions и отсутствию устаревшей release-археологии в README/roadmap.
-6. Крупный слой English jargon (`read-only`, `supplementary`, `fallback`, `baseline`, `fixture-based`, `handoff`, `checkout`, `write-`, `discovery`, `boundary`, `credential`, `endpoint override`, `target-backlog`, `compatibility-layer`, `backward-compatible`, `mutation`, `decision matrix`, `nearby-поиск`, `live smoke`, `operational default`, `delayed-`, `passthrough`, `self-hosted`, `production`, `live-`, `export`) устранён из user-facing документации, repo-governance и shell/infrastructure surfaces; английские assert-сообщения в тестах и h1-заголовки верхнеуровневых документов тоже русифицированы; следующий проход — по редким артефактам в CLI/help текстах и npm/package helper поверхностях вне shell-скриптов.
+6. Крупный слой English jargon (`read-only`, `supplementary`, `fallback`, `baseline`, `fixture-based`, `handoff`, `checkout`, `write-`, `discovery`, `boundary`, `credential`, `endpoint override`, `target-backlog`, `compatibility-layer`, `backward-compatible`, `mutation`, `decision matrix`, `nearby-поиск`, `live smoke`, `operational default`, `delayed-`, `passthrough`, `self-hosted`, `production`, `live-`, `export`) устранён из user-facing документации, repo-governance и shell/infrastructure surfaces; английские assert-сообщения в тестах и h1-заголовки верхнеуровневых документов тоже русифицированы; английские сообщения в имитированных ответах тестов (`Unexpected mocked URL`, `provider should not be called`) переведены на русский; русские keywords добавлены во все 13 target package.json; следующий проход — по редким артефактам в npm script output и других непокрытых helper-поверхностях.
 7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и ненадёжных обходов anti-bot.

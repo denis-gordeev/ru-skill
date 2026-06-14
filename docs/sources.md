@@ -10,7 +10,7 @@
 
 ## Базовые источники по платформе и экосистеме
 
-- Vercel agent skills package structure: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
+- Vercel структура пакетов навыков агента: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
 
 ## Источники для текущих legacy-навыков
 
@@ -18,14 +18,14 @@
 
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
 - `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
-- `korail2` anti-bot bypass PR #54: https://github.com/carpedm20/korail2/pull/54
+- `korail2` обход anti-bot PR #54: https://github.com/carpedm20/korail2/pull/54
 - Сеул API метро реального времени: https://www.data.go.kr/data/15058052/openapi.do
 
 ### Спорт
 
 - `kbo-game`: https://github.com/vkehfdl1/kbo-game
-- K League schedule/results JSON: https://www.kleague.com/getScheduleList.do
-- K League standings JSON: https://www.kleague.com/record/teamRank.do
+- K League расписание/результаты JSON: https://www.kleague.com/getScheduleList.do
+- K League командный рейтинг JSON: https://www.kleague.com/record/teamRank.do
 
 ### Финансы
 
@@ -36,38 +36,38 @@
 - `@ohah/hwpjs`: https://github.com/ohah/hwpjs
 - `hwp-mcp`: https://github.com/jkf87/hwp-mcp
 - `silver-flight-group/kakaocli`: https://github.com/silver-flight-group/kakaocli
-- KakaoTalk Mac install reference via `mas`: https://velog.io/@bonjugi/%EB%A7%A5%EB%B6%81-M1%EC%97%90-homebrew%EB%A1%9C-node-vscode-%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+- KakaoTalk Mac установка через `mas`: https://velog.io/@bonjugi/%EB%A7%A5%EB%B6%81-M1%EC%97%90-homebrew%EB%A1%9C-node-vscode-%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
 
 ### Лотереи, адреса и доставка
 
-- Dhlottery result page: https://www.dhlottery.co.kr/lt645/result
-- Dhlottery past rounds JSON: https://www.dhlottery.co.kr/lt645/selectPstLt645InfoNew.do
-- Korea Post поиск почтовых индексов: https://parcel.epost.go.kr/parcel/comm/zipcode/comm_newzipcd_list.jsp
-- CJ Logistics tracking page: https://www.cjlogistics.com/ko/tool/parcel/tracking
-- CJ Logistics tracking detail JSON: https://www.cjlogistics.com/ko/tool/parcel/tracking-detail
-- Korea Post tracking summary: https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=
-- Korea Post tracking detail HTML: https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm
+- Dhlottery страница результатов лотереи: https://www.dhlottery.co.kr/lt645/result
+- Dhlottery прошлые тиражи JSON: https://www.dhlottery.co.kr/lt645/selectPstLt645InfoNew.do
+- Почтовая служба Кореи поиск почтовых индексов: https://parcel.epost.go.kr/parcel/comm/zipcode/comm_newzipcd_list.jsp
+- CJ Logistics отслеживание доставки: https://www.cjlogistics.com/ko/tool/parcel/tracking
+- CJ Logistics детали доставки JSON: https://www.cjlogistics.com/ko/tool/parcel/tracking-detail
+- Почтовая служба Кореи отслеживание: https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=
+- Почтовая служба Кореи детали доставки HTML: https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm
 
 ### Локации, еда и товары
 
-- Daiso store search: https://www.daisomall.co.kr/api/ms/msg/selStr
-- Daiso store search keywords: https://www.daisomall.co.kr/api/ms/msg/selStrSrchKeyword
-- Daiso store details: https://www.daisomall.co.kr/api/dl/dla-api/selStrInfo
-- Daiso product search page: https://www.daisomall.co.kr/ssn/search/Search
-- Daiso product search JSON: https://www.daisomall.co.kr/ssn/search/SearchGoods
-- Daiso product summary JSON: https://www.daisomall.co.kr/ssn/search/GoodsMummResult
-- Daiso pickup stock JSON: https://www.daisomall.co.kr/api/pd/pdh/selStrPkupStck
-- Daiso online stock JSON: https://www.daisomall.co.kr/api/pdo/selOnlStck
-- Blue Ribbon Survey main site: https://www.bluer.co.kr/
-- Blue Ribbon zone search: https://www.bluer.co.kr/search/zone
-- Blue Ribbon nearby restaurants JSON: https://www.bluer.co.kr/restaurants/map
-- Kakao Map mobile search: https://m.map.kakao.com/actions/searchView
-- Kakao Map place panel JSON: https://place-api.map.kakao.com/places/panel3/<confirmId>
+- Daisomall поиск магазинов: https://www.daisomall.co.kr/api/ms/msg/selStr
+- Daisomall ключевые слова поиска магазинов: https://www.daisomall.co.kr/api/ms/msg/selStrSrchKeyword
+- Daisomall детали магазина: https://www.daisomall.co.kr/api/dl/dla-api/selStrInfo
+- Daisomall страница поиска товаров: https://www.daisomall.co.kr/ssn/search/Search
+- Daisomall поиск товаров JSON: https://www.daisomall.co.kr/ssn/search/SearchGoods
+- Daisomall сводка товаров JSON: https://www.daisomall.co.kr/ssn/search/GoodsMummResult
+- Daisomall остатки для самовывоза JSON: https://www.daisomall.co.kr/api/pd/pdh/selStrPkupStck
+- Daisomall онлайн-остатки JSON: https://www.daisomall.co.kr/api/pdo/selOnlStck
+- Blue Ribbon главная страница: https://www.bluer.co.kr/
+- Blue Ribbon поиск по зоне: https://www.bluer.co.kr/search/zone
+- Blue Ribbon ближайшие рестораны JSON: https://www.bluer.co.kr/restaurants/map
+- Kakao Map мобильный поиск: https://m.map.kakao.com/actions/searchView
+- Kakao Map панель места JSON: https://place-api.map.kakao.com/places/panel3/<confirmId>
 
 ### Экология и погода
 
-- AirKorea air quality API: https://www.data.go.kr/data/15073861/openapi.do
-- AirKorea station info API: https://www.data.go.kr/data/15073877/openapi.do
+- AirKorea качество воздуха API: https://www.data.go.kr/data/15073861/openapi.do
+- AirKorea станции мониторинга API: https://www.data.go.kr/data/15073877/openapi.do
 
 ## Источники-кандидаты для русскоязычной миграции
 
@@ -509,10 +509,10 @@
 
 Этот блок сохранён для справки, поскольку текущие regression-тесты и часть legacy-документации опираются на эти источники.
 
-- Vercel skills package structure: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
+- Vercel структура пакетов навыков агента: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
 - `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
-- `korail2` anti-bot bypass PR #54: https://github.com/carpedm20/korail2/pull/54
+- `korail2` обход anti-bot PR #54: https://github.com/carpedm20/korail2/pull/54
 - `kbo-game`: https://github.com/vkehfdl1/kbo-game
 - tossinvest-cli: https://github.com/JungHoonGhae/tossinvest-cli
 - K League расписание/результаты JSON: https://www.kleague.com/getScheduleList.do
@@ -529,7 +529,7 @@
 - Daisomall страница поиска товаров: https://www.daisomall.co.kr/ssn/search/Search
 - Daisomall поиск товаров JSON: https://www.daisomall.co.kr/ssn/search/SearchGoods
 - Daisomall сводка товаров JSON: https://www.daisomall.co.kr/ssn/search/GoodsMummResult
-- Daisomall остатки пикап-запасов JSON: https://www.daisomall.co.kr/api/pd/pdh/selStrPkupStck
+- Daisomall остатки для самовывоза JSON: https://www.daisomall.co.kr/api/pd/pdh/selStrPkupStck
 - Daisomall онлайн-остатки JSON: https://www.daisomall.co.kr/api/pdo/selOnlStck
 - Blue Ribbon главная страница: https://www.bluer.co.kr/
 - Blue Ribbon поиск по зоне: https://www.bluer.co.kr/search/zone

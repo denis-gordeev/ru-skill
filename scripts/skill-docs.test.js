@@ -820,7 +820,7 @@ test("package README daiso-product-search удерживает границу le
   assert.match(packageReadme, /yandex-market-search/);
   assert.match(packageReadme, /обратн.*совместим/i);
   assert.match(packageReadme, /эталонный сценарий/i);
-  assert.match(packageReadme, /pickup stock|остатки для самовывоза/i);
+  assert.match(packageReadme, /остатки для самовывоза/i);
 });
 
 test("корневой скрипт pack:dry-run покрывает все публикуемые workspace-пакеты", () => {
@@ -1085,9 +1085,9 @@ test("документация репозитория рекламирует н�
 
   assert.ok(fs.existsSync(featureDocPath), "ожидалось, что docs/features/fine-dust-location.md существует");
   assert.match(readme, /\| `fine-dust-location` \|/);
-  assert.match(readme, /\[Гайд по fine dust\]\(docs\/features\/fine-dust-location\.md\)/);
+  assert.match(readme, /\[Гайд по мелкой пыли\]\(docs\/features\/fine-dust-location\.md\)/);
   assert.match(install, /--skill fine-dust-location/);
-  assert.match(roadmap, /Навык по проверке fine dust по местоположению/);
+  assert.match(roadmap, /Навык по проверке мелкой пыли по местоположению/);
   assert.match(sources, /AirKorea качество воздуха API: https:\/\/www\.data\.go\.kr\/data\/15073861\/openapi\.do/);
   assert.match(sources, /AirKorea станции мониторинга API: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
   assert.match(setup, /AIR_KOREA_OPEN_API_KEY/);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-12");
-  assert.equal(todoStatus.round, 48);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 48\)/);
+  assert.equal(todoStatus.date, "2026-06-14");
+  assert.equal(todoStatus.round, 50);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 50\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -1554,10 +1554,10 @@ test("описания workspace-пакетов соответствуют ру�
   const expectedDescriptions = {
     "blue-ribbon-nearby": "Legacy-клиент поиска ближайших ресторанов Blue Ribbon Survey, сохранённый на время миграции ru-skill",
     "cbr-rates": "Клиент только для чтения для официальных XML-курсов валют Банка России",
-    "daiso-product-search": "Legacy-клиент поиска магазинов, товаров и pickup-остатков Daiso Mall, сохранённый на время миграции ru-skill",
+    "daiso-product-search": "Legacy-клиент поиска магазинов, товаров и остатков для самовывоза Daiso Mall, сохранённый на время миграции ru-skill",
     "hh-vacancies": "Клиент только для чтения для публичных API вакансий и регионов hh.ru",
     "k-lotto": "Legacy-клиент результатов dhlottery, сохранённый на время миграции ru-skill",
-    "k-skill-proxy": "Fastify-прокси для бесплатных upstream API, используемых в ru-skill",
+    "k-skill-proxy": "Fastify-прокси для бесплатных и публичных API, используемых в ru-skill",
     "kakao-bar-nearby": "Legacy-клиент поиска ближайших баров через Kakao Map, сохранённый на время миграции ru-skill",
     "kinopoisk-search": "Клиент только для чтения для публичного поиска фильмов и карточек Кинопоиска",
     "kleague-results": "Legacy-клиент результатов и таблицы K League, сохранённый на время миграции ru-skill",
@@ -2884,7 +2884,7 @@ test("файлы SKILL.md используют русский вместо ан�
 
   assert.doesNotMatch(blueRibbonSkill, /nearby endpoint/);
   assert.doesNotMatch(blueRibbonSkill, /Найди nearby/);
-  assert.match(blueRibbonSkill, /endpoint поиска ближайших/);
+  assert.match(blueRibbonSkill, /эндпоинт поиска ближайших/);
   assert.match(blueRibbonSkill, /Найди ближайшие/);
 
   assert.match(fineDustSkill, /# Мелкая пыль по местоположению/);
@@ -3037,4 +3037,116 @@ test("feature docs используют русский вместо англий
 
   assert.doesNotMatch(yandexRasp, /discovery достаточно/);
   assert.match(yandexRasp, /обнаружения достаточно/);
+});
+
+test("тесты пакетов не содержат английских сообщений об ошибках в имитированных ответах", () => {
+  const packagesDir = path.join(repoRoot, "packages");
+  const packages = fs.readdirSync(packagesDir);
+
+  for (const pkg of packages) {
+    const testDir = path.join(packagesDir, pkg, "test");
+    if (!fs.existsSync(testDir)) continue;
+
+    const testFiles = fs.readdirSync(testDir).filter((f) => f.endsWith(".test.js"));
+    for (const file of testFiles) {
+      const content = fs.readFileSync(path.join(testDir, file), "utf8");
+      assert.doesNotMatch(content, /Unexpected mocked URL/, `packages/${pkg}/test/${file} не должен использовать английское «Unexpected mocked URL»`);
+      assert.doesNotMatch(content, /Unexpected mocked date_req/, `packages/${pkg}/test/${file} не должен использовать английское «Unexpected mocked date_req»`);
+      assert.doesNotMatch(content, /provider should not be called/, `packages/${pkg}/test/${file} не должен использовать английское «provider should not be called»`);
+    }
+  }
+});
+
+test("ключевые слова package.json target-пакетов содержат русские теги", () => {
+  const targetPackages = [
+    "cbr-rates", "moex-shares", "postcalc-postcodes", "hh-vacancies",
+    "stoloto-lotto", "kinopoisk-search", "mchs-storm-warnings",
+    "pravo-documents", "yandex-rasp", "rpl-results",
+    "yandex-market-search", "osm-nearby", "zoon-nearby",
+  ];
+
+  for (const pkg of targetPackages) {
+    const packageJson = JSON.parse(read(path.join("packages", pkg, "package.json")));
+    const keywords = packageJson.keywords || [];
+    const hasRussianKeyword = keywords.some((k) => /[а-яё]/i.test(k));
+    assert.ok(hasRussianKeyword, `packages/${pkg}/package.json keywords должен содержать хотя бы один русский тег для обнаружения`);
+  }
+});
+
+test("docs/sources.md использует русские метки URL вместо английских", () => {
+  const sources = read(path.join("docs", "sources.md"));
+
+  assert.doesNotMatch(sources, /K League schedule\/results JSON/);
+  assert.doesNotMatch(sources, /K League standings JSON/);
+  assert.doesNotMatch(sources, /KakaoTalk Mac install reference via/);
+  assert.doesNotMatch(sources, /Dhlottery result page/);
+  assert.doesNotMatch(sources, /Dhlottery past rounds JSON/);
+  assert.doesNotMatch(sources, /CJ Logistics tracking page/);
+  assert.doesNotMatch(sources, /CJ Logistics tracking detail JSON/);
+  assert.doesNotMatch(sources, /Korea Post tracking summary/);
+  assert.doesNotMatch(sources, /Korea Post tracking detail HTML/);
+  assert.doesNotMatch(sources, /Daiso store search/);
+  assert.doesNotMatch(sources, /Daiso store search keywords/);
+  assert.doesNotMatch(sources, /Daiso store details/);
+  assert.doesNotMatch(sources, /Daiso product search page/);
+  assert.doesNotMatch(sources, /Daiso product search JSON/);
+  assert.doesNotMatch(sources, /Daiso product summary JSON/);
+  assert.doesNotMatch(sources, /Daiso online stock JSON/);
+  assert.doesNotMatch(sources, /Blue Ribbon Survey main site/);
+  assert.doesNotMatch(sources, /Blue Ribbon zone search/);
+  assert.doesNotMatch(sources, /Blue Ribbon nearby restaurants JSON/);
+  assert.doesNotMatch(sources, /Kakao Map mobile search/);
+  assert.doesNotMatch(sources, /Kakao Map place panel JSON/);
+  assert.doesNotMatch(sources, /AirKorea air quality API/);
+  assert.doesNotMatch(sources, /AirKorea station info API/);
+  assert.doesNotMatch(sources, /Vercel agent skills package structure/);
+  assert.doesNotMatch(sources, /anti-bot bypass/);
+
+  assert.match(sources, /K League расписание\/результаты JSON/);
+  assert.match(sources, /K League командный рейтинг JSON/);
+  assert.match(sources, /KakaoTalk Mac установка через/);
+  assert.match(sources, /Dhlottery страница результатов лотереи/);
+  assert.match(sources, /Dhlottery прошлые тиражи JSON/);
+  assert.match(sources, /CJ Logistics отслеживание доставки/);
+  assert.match(sources, /CJ Logistics детали доставки JSON/);
+  assert.match(sources, /Почтовая служба Кореи отслеживание/);
+  assert.match(sources, /Почтовая служба Кореи детали доставки HTML/);
+  assert.match(sources, /Daisomall поиск магазинов/);
+  assert.match(sources, /Daisomall ключевые слова поиска магазинов/);
+  assert.match(sources, /Daisomall детали магазина/);
+  assert.match(sources, /Daisomall страница поиска товаров/);
+  assert.match(sources, /Daisomall поиск товаров JSON/);
+  assert.match(sources, /Daisomall сводка товаров JSON/);
+  assert.match(sources, /Daisomall онлайн-остатки JSON/);
+  assert.match(sources, /Blue Ribbon главная страница/);
+  assert.match(sources, /Blue Ribbon поиск по зоне/);
+  assert.match(sources, /Blue Ribbon ближайшие рестораны JSON/);
+  assert.match(sources, /Kakao Map мобильный поиск/);
+  assert.match(sources, /Kakao Map панель места JSON/);
+  assert.match(sources, /AirKorea качество воздуха API/);
+  assert.match(sources, /AirKorea станции мониторинга API/);
+  assert.match(sources, /Vercel структура пакетов навыков агента/);
+  assert.match(sources, /обход anti-bot/);
+});
+
+test("docs/brand-inventory.md использует русский вместо английского жаргона", () => {
+  const brand = read(path.join("docs", "brand-inventory.md"));
+
+  assert.doesNotMatch(brand, /legacy surface area/);
+  assert.doesNotMatch(brand, /Public proxy URL/);
+  assert.match(brand, /legacy-поверхностей/);
+  assert.match(brand, /Публичный URL прокси/);
+});
+
+test("kakaotalk-mac документирует разрешения macOS с русским переводом", () => {
+  const skill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  const feature = read(path.join("docs", "features", "kakaotalk-mac.md"));
+
+  assert.match(skill, /Full Disk Access \(Полный доступ к диску\)/);
+  assert.match(skill, /Accessibility \(Универсальный доступ\)/);
+  assert.match(skill, /Конфиденциальность и защита/);
+  assert.match(feature, /Full Disk Access \(Полный доступ к диску\)/);
+  assert.match(feature, /Accessibility \(Универсальный доступ\)/);
+  assert.doesNotMatch(feature, /KakaoTalk for Mac/);
+  assert.match(feature, /KakaoTalk для Mac/);
 });

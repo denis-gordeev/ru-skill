@@ -4,6 +4,59 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-14 (раунд 50)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Переведены на русский английские метки URL в `docs/sources.md` (25 меток): `K League schedule/results JSON` → `K League расписание/результаты JSON`, `Dhlottery result page` → `Dhlottery страница результатов лотереи`, `CJ Logistics tracking page` → `CJ Logistics отслеживание доставки`, `Korea Post tracking summary` → `Почтовая служба Кореи отслеживание`, `Daiso store search` → `Daisomall поиск магазинов`, `Blue Ribbon Survey main site` → `Blue Ribbon главная страница`, `Kakao Map mobile search` → `Kakao Map мобильный поиск`, `AirKorea air quality API` → `AirKorea качество воздуха API` и др.
+- Устранён English jargon в `docs/brand-inventory.md`: `legacy surface area` → `legacy-поверхностей`, `Public proxy URL` → `Публичный URL прокси`.
+- Добавлены русские переводы для macOS-разрешений в `kakaotalk-mac/SKILL.md` и `docs/features/kakaotalk-mac.md`: `Full Disk Access` → `Full Disk Access (Полный доступ к диску)`, `Accessibility` → `Accessibility (Универсальный доступ)`, `System Settings > Privacy & Security` → `System Settings > Privacy & Security (Системные настройки > Конфиденциальность и защита)`, `KakaoTalk for Mac` → `KakaoTalk для Mac`.
+- Синхронизирован справочный блок Legacy в `docs/sources.md` с новыми русскими метками; устранено расхождение `Daisomall остатки пикап-запасов` → `Daisomall остатки для самовывоза`.
+- Doc-regression расширен: добавлены тесты на русские метки URL в `docs/sources.md`, на отсутствие английского жаргона в `docs/brand-inventory.md` и на русские переводы macOS-разрешений в `kakaotalk-mac`.
+- Полный `npm test` проходит: 148 pass / 0 fail / 1 skipped.
+
+## Выполнено в этом раунде (раунд 50)
+
+- [x] `docs/sources.md`: переведены на русский 25 английских меток URL в основном блоке и справочном блоке Legacy.
+- [x] `docs/sources.md`: синхронизированы метки основного и справочного блоков; устранено расхождение `Daisomall остатки пикап-запасов`.
+- [x] `docs/brand-inventory.md`: `legacy surface area` → `legacy-поверхностей`, `Public proxy URL` → `Публичный URL прокси`.
+- [x] `kakaotalk-mac/SKILL.md`: добавлены русские переводы macOS-разрешений (Full Disk Access, Accessibility, Privacy & Security).
+- [x] `docs/features/kakaotalk-mac.md`: добавлены русские переводы macOS-разрешений; `KakaoTalk for Mac` → `KakaoTalk для Mac`.
+- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русские метки URL в sources.md, английский жаргон в brand-inventory.md и русские переводы macOS-разрешений в kakaotalk-mac.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+
+## Статус на 2026-06-14 (раунд 49)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Переведены на русский английские сообщения об ошибках в имитированных ответах тестов: `Unexpected mocked URL` → `Неожиданный имитированный URL` (8 файлов), `Unexpected mocked date_req` → `Неожиданный имитированный date_req` (1 файл), `provider should not be called` → `провайдер не должен вызываться` (1 файл).
+- Добавлены русские ключевые слова (keywords) во все 13 target package.json для обнаружения русскоязычными пользователями npm.
+- Исправлен отставший regression-тест: `daiso-product-search` description обновлён с `pickup-остатков` на `остатков для самовывоза`; `blue-ribbon-nearby` assertion обновлён с `endpoint` на `эндпоинт`.
+- Doc-regression расширен: добавлены тесты на отсутствие английских сообщений в имитированных ответах тестов и на наличие русских keywords в target package.json.
+- Полный `npm test` проходит: 145 pass / 0 fail / 1 skipped.
+
+## Выполнено в этом раунде (раунд 49)
+
+- [x] `packages/kinopoisk-search/test/index.test.js`: `Unexpected mocked URL` → `Неожиданный имитированный URL`.
+- [x] `packages/stoloto-lotto/test/index.test.js`: `Unexpected mocked URL` → `Неожиданный имитированный URL`.
+- [x] `packages/pravo-documents/test/index.test.js`: `Unexpected mocked URL` → `Неожиданный имитированный URL`.
+- [x] `packages/hh-vacancies/test/index.test.js`: `Unexpected mocked URL` → `Неожиданный имитированный URL`.
+- [x] `packages/postcalc-postcodes/test/index.test.js`: `Unexpected mocked URL` → `Неожиданный имитированный URL`.
+- [x] `packages/moex-shares/test/index.test.js`: `Unexpected mocked URL` → `Неожиданный имитированный URL`.
+- [x] `packages/cbr-rates/test/index.test.js`: `Unexpected mocked date_req` → `Неожиданный имитированный date_req`.
+- [x] `packages/mchs-storm-warnings/test/index.test.js`: `Unexpected mocked URL` → `Неожиданный имитированный URL`.
+- [x] `packages/k-skill-proxy/test/server.test.js`: `provider should not be called` → `провайдер не должен вызываться`.
+- [x] Добавлены русские keywords во все 13 target package.json (`cbr-rates`, `moex-shares`, `postcalc-postcodes`, `hh-vacancies`, `stoloto-lotto`, `kinopoisk-search`, `mchs-storm-warnings`, `pravo-documents`, `yandex-rasp`, `rpl-results`, `yandex-market-search`, `osm-nearby`, `zoon-nearby`).
+- [x] `scripts/skill-docs.test.js`: добавлена регрессия на отсутствие английских сообщений в имитированных ответах тестов и на наличие русских keywords в target package.json.
+- [x] `scripts/skill-docs.test.js`: исправлен отставший regression-тест `daiso-product-search` description и `blue-ribbon-nearby` endpoint-assertion.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана (раунд 49)
+
+- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+
 ## Статус на 2026-06-12 (раунд 48)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
@@ -30,7 +83,7 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-11 (раунд 46)
 
