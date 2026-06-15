@@ -19,7 +19,7 @@
 - Выполненный `tossctl auth login`
 - Node.js 18+
 
-## Установка upstream и логин
+## Установка `tossctl` и логин
 
 Здесь используется готовый `tossctl` из `JungHoonGhae/tossinvest-cli`.
 

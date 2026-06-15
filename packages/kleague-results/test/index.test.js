@@ -89,7 +89,7 @@ test("публичные загрузчики составляют резуль�
       return makeResponse(standingsPayload);
     }
 
-    throw new Error(`unexpected url: ${target}`);
+    throw new Error(`неожиданный URL: ${target}`);
   };
 
   try {

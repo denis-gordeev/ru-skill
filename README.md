@@ -37,10 +37,10 @@
 | `osm-nearby` | Поиск ближайших заведений через Overpass API OpenStreetMap | Нет | [Гайд по OSM nearby](docs/features/osm-nearby.md) |
 | `zoon-nearby` | Поиск ближайших заведений через публичные страницы Zoon.ru | Нет | [Гайд по Zoon.ru](docs/features/zoon-nearby.md) |
 | `srt-booking` | Legacy-совместимый корейский сценарий поиска поездов SRT и бронирования | Да | [Гайд по SRT](docs/features/srt-booking.md) |
-| `ktx-booking` | Legacy-совместимый корейский сценарий KTX/Korail через helper с обходом Dynapath anti-bot | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
+| `ktx-booking` | Legacy-совместимый корейский сценарий KTX/Korail через helper с обходом антибота Dynapath | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
 | `seoul-subway-arrival` | Просмотр ожидаемого времени прибытия поездов метро Сеула по станции | Да | [Гайд по метро Сеула](docs/features/seoul-subway-arrival.md) |
-| `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Гайд по fine dust](docs/features/fine-dust-location.md) |
+| `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Гайд по мелкой пыли](docs/features/fine-dust-location.md) |
 | `kbo-results` | Результаты и расписание матчей KBO по датам и командам | Нет | [Гайд по KBO](docs/features/kbo-results.md) |
 | `kleague-results` | Результаты матчей и таблица K League 1/2 | Нет | [Гайд по K League](docs/features/kleague-results.md) |
 | `toss-securities` | Сводки только для чтения по счёту, портфелю, котировкам и watchlist через `tossctl` | Да | [Гайд по Toss Securities](docs/features/toss-securities.md) |
@@ -49,7 +49,7 @@
 | `blue-ribbon-nearby` | Поиск ближайших ресторанов Blue Ribbon Survey после уточнения местоположения | Нет | [Гайд по Blue Ribbon nearby](docs/features/blue-ribbon-nearby.md) |
 | `kakao-bar-nearby` | Поиск ближайших баров по данным Kakao Map с режимом работы и контактами | Нет | [Гайд по Kakao bar nearby](docs/features/kakao-bar-nearby.md) |
 | `zipcode-search` | Поиск официального почтового индекса по адресу | Нет | [Гайд по postcode search](docs/features/zipcode-search.md) |
-| `daiso-product-search` | Поиск магазинов, товаров и pickup-остатков в Daiso Mall | Нет | [Гайд по Daiso product search](docs/features/daiso-product-search.md) |
+| `daiso-product-search` | Поиск магазинов, товаров и остатков для самовывоза в Daiso Mall | Нет | [Гайд по Daiso product search](docs/features/daiso-product-search.md) |
 | `delivery-tracking` | Отслеживание доставки через официальные поверхности CJ Logistics и Korea Post | Нет | [Гайд по delivery tracking](docs/features/delivery-tracking.md) |
 
 Список выше сейчас смешанный: первые target-навыки уже переведены на российские сценарии, а заметная часть остального набора всё ещё остаётся legacy-наследием корейских интеграций. Legacy-функции сохранены, чтобы не ломать существующие рабочие потоки, пока репозиторий переориентируется на русскоязычное использование.
@@ -181,7 +181,7 @@
 ## Что делаем дальше
 
 - Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + ручное внешнее перенаправление без нового навыка оформления заказа.
-- Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и ненадёжных обходов anti-bot, тогда можно вернуться к идее отдельного target-пакета; до этого автоматизацию записи в потоках оформления заказа не раздувать.
+- Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и ненадёжных обходов антибота, тогда можно вернуться к идее отдельного target-пакета; до этого автоматизацию записи в потоках оформления заказа не раздувать.
 - Skill-only drift, legacy feature/skill drift, helper/runtime cleanup, source-level русификация и skill-level copy audit уже закрыты; весь user-facing Korean в source code и docs полностью устранён; оставшийся Korean — domain-inherent (API parameters, location names, fixture data, regex patterns).
 - Все SKILL.md и feature docs приведены к единой каноничной heading scheme; неканоничные варианты (`Что делает этот навык`, `Что умеет`, `Предварительные требования`, `Режимы сбоев`, `Что умеет этот сценарий`, `Что нужно заранее`, `Базовый поток`, `Базовый сценарий`, `Обзор`) устранены.
 - Package README на актуальных target-поверхностях тоже доведены до каноничной heading scheme; оставшийся `## Обзор` в `packages/zoon-nearby/README.md` устранён.

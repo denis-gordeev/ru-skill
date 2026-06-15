@@ -8,7 +8,7 @@
 
 ## Установка
 
-Сначала поставить upstream CLI и пройти логин:
+Сначала поставить исходный CLI и пройти логин:
 
 ```bash
 brew tap JungHoonGhae/tossinvest-cli
@@ -36,9 +36,9 @@ npm install toss-securities
 - `listCompletedOrders({ market })`
 - `listWatchlist()`
 
-Каждый helper внутри вызывает `tossctl ... --output json` и возвращает `commandName`, `bin`, `args`, `data`.
+Каждая вспомогательная функция внутри вызывает `tossctl ... --output json` и возвращает `commandName`, `bin`, `args`, `data`.
 
-Базовые upstream команды:
+Базовые команды `tossctl`:
 
 - `tossctl account summary --output json`
 - `tossctl quote get TSLA --output json`
@@ -78,4 +78,4 @@ main().catch((error) => {
 - `tossctl order amend`
 - permission grant/revoke
 
-Пакет остаётся только сценарием чтения. Команды, которые могут повлиять на реальную сделку, не оборачиваются и не обходят upstream safety gate.
+Пакет остаётся только сценарием чтения. Команды, которые могут повлиять на реальную сделку, не оборачиваются и не обходят защитный механизм исходного CLI.

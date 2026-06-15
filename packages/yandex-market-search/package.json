@@ -13,7 +13,11 @@
     "shopping",
     "russia",
     "search",
-    "ecommerce"
+    "ecommerce",
+    "яндекс-маркет",
+    "маркетплейс",
+    "покупки",
+    "поиск-товаров"
   ],
   "main": "src/index.js",
   "files": [

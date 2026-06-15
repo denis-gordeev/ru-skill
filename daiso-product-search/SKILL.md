@@ -123,7 +123,7 @@ const stock = await getStorePickupStock({
 console.log(stock)
 ```
 
-### 4. Используйте сквозной helper, когда оба названия уже известны
+### 4. Используйте сквозной вспомогательный скрипт, когда оба названия уже известны
 
 ```js
 const { lookupStoreProductAvailability } = require("daiso-product-search")

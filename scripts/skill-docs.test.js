@@ -1092,11 +1092,11 @@ test("документация репозитория рекламирует н�
   assert.match(sources, /AirKorea станции мониторинга API: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
   assert.match(setup, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(setup, /KSKILL_PROXY_BASE_URL/);
-  assert.match(setup, /опубликованн.*совместим.*proxy endpoint используется по умолчанию/i);
+  assert.match(setup, /опубликованн.*совместим.*прокси-эндпоинт используется по умолчанию/i);
   assert.match(setup, /не входит в минимальный secrets-шаблон/i);
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(security, /KSKILL_PROXY_BASE_URL/);
-  assert.match(security, /необязательн.*переопределен.*опубликованн.*proxy/i);
+  assert.match(security, /необязательн.*переопределен.*опубликованн.*прокси-эндпоинт/i);
   assert.match(security, /специально не включён в минимальный secrets-шаблон/i);
   assert.match(secretsExample, /^AIR_KOREA_OPEN_API_KEY=replace-me$/m);
   assert.doesNotMatch(secretsExample, /^KSKILL_PROXY_BASE_URL=/m);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-14");
-  assert.equal(todoStatus.round, 50);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 50\)/);
+  assert.equal(todoStatus.date, "2026-06-15");
+  assert.equal(todoStatus.round, 51);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 51\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -3100,7 +3100,7 @@ test("docs/sources.md использует русские метки URL вме�
   assert.doesNotMatch(sources, /AirKorea air quality API/);
   assert.doesNotMatch(sources, /AirKorea station info API/);
   assert.doesNotMatch(sources, /Vercel agent skills package structure/);
-  assert.doesNotMatch(sources, /anti-bot bypass/);
+  assert.doesNotMatch(sources, /обход anti-bot/);
 
   assert.match(sources, /K League расписание\/результаты JSON/);
   assert.match(sources, /K League командный рейтинг JSON/);
@@ -3126,7 +3126,7 @@ test("docs/sources.md использует русские метки URL вме�
   assert.match(sources, /AirKorea качество воздуха API/);
   assert.match(sources, /AirKorea станции мониторинга API/);
   assert.match(sources, /Vercel структура пакетов навыков агента/);
-  assert.match(sources, /обход anti-bot/);
+  assert.match(sources, /обход антибота/);
 });
 
 test("docs/brand-inventory.md использует русский вместо английского жаргона", () => {
@@ -3134,8 +3134,10 @@ test("docs/brand-inventory.md использует русский вместо �
 
   assert.doesNotMatch(brand, /legacy surface area/);
   assert.doesNotMatch(brand, /Public proxy URL/);
+  assert.doesNotMatch(brand, /legacy endpoint/);
   assert.match(brand, /legacy-поверхностей/);
   assert.match(brand, /Публичный URL прокси/);
+  assert.match(brand, /устаревший эндпоинт/);
 });
 
 test("kakaotalk-mac документирует разрешения macOS с русским переводом", () => {
@@ -3149,4 +3151,71 @@ test("kakaotalk-mac документирует разрешения macOS с р�
   assert.match(feature, /Accessibility \(Универсальный доступ\)/);
   assert.doesNotMatch(feature, /KakaoTalk for Mac/);
   assert.match(feature, /KakaoTalk для Mac/);
+});
+
+test("user-facing surfaces не содержат английский жаргон endpoint, anti-bot, scaffold, credential, upstream", () => {
+  const agents = read("AGENTS.md");
+  const setup = read(path.join("docs", "setup.md"));
+  const security = read(path.join("docs", "security-and-secrets.md"));
+  const releasing = read(path.join("docs", "releasing.md"));
+  const pythonReadme = read(path.join("python-packages", "README.md"));
+  const zoonReadme = read(path.join("packages", "zoon-nearby", "README.md"));
+  const zoonFeature = read(path.join("docs", "features", "zoon-nearby.md"));
+
+  assert.doesNotMatch(agents, /\bendpoint\b/);
+  assert.doesNotMatch(agents, /proxy-auth/);
+  assert.doesNotMatch(agents, /scaffold/);
+  assert.match(agents, /эндпоинт/);
+  assert.match(agents, /авторизации прокси/);
+  assert.match(agents, /каркасной заготовкой/);
+
+  assert.doesNotMatch(setup, /\bproxy endpoint\b/);
+  assert.doesNotMatch(setup, /\bcredential\b/);
+  assert.match(setup, /прокси-эндпоинт/);
+  assert.match(setup, /учётные данные/);
+
+  assert.doesNotMatch(security, /proxy endpoint/);
+  assert.match(security, /прокси-эндпоинт/);
+
+  assert.doesNotMatch(releasing, /scaffold/);
+  assert.match(releasing, /каркасной заготовкой/);
+
+  assert.doesNotMatch(pythonReadme, /scaffold/);
+  assert.match(pythonReadme, /Каркас/);
+
+  assert.doesNotMatch(zoonReadme, /anti-bot/);
+  assert.match(zoonReadme, /антибота/);
+
+  assert.doesNotMatch(zoonFeature, /anti-bot/);
+  assert.match(zoonFeature, /антибота/);
+});
+
+test("тестовые файлы используют русские сообщения об ошибках вместо unexpected url/URL", () => {
+  const kleagueTest = read(path.join("packages", "kleague-results", "test", "index.test.js"));
+  const kakaoBarTest = read(path.join("packages", "kakao-bar-nearby", "test", "index.test.js"));
+  const airkoreaTest = read(path.join("packages", "k-skill-proxy", "test", "airkorea.test.js"));
+
+  assert.doesNotMatch(kleagueTest, /unexpected url/i);
+  assert.match(kleagueTest, /неожиданный URL/);
+
+  assert.doesNotMatch(kakaoBarTest, /unexpected url/i);
+  assert.match(kakaoBarTest, /неожиданный URL/);
+
+  assert.doesNotMatch(airkoreaTest, /unexpected URL/i);
+  assert.match(airkoreaTest, /неожиданный URL/);
+});
+
+test("описания тестов не содержат английский жаргон мок-запрос, upstream-payload", () => {
+  const rplTest = read(path.join("packages", "rpl-results", "test", "index.test.js"));
+  const ymTest = read(path.join("packages", "yandex-market-search", "test", "index.test.js"));
+  const brTest = read(path.join("packages", "blue-ribbon-nearby", "test", "index.test.js"));
+
+  assert.doesNotMatch(rplTest, /мок-запрос/);
+  assert.match(rplTest, /имитированный запрос/);
+
+  assert.doesNotMatch(ymTest, /мок-запрос/);
+  assert.match(ymTest, /имитированный запрос/);
+
+  assert.doesNotMatch(brTest, /upstream-payload/);
+  assert.match(brTest, /вышестоящий ответ/);
 });

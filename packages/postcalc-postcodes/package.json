@@ -23,7 +23,10 @@
     "postcalc",
     "russian-post",
     "postal-code",
-    "post-office"
+    "post-office",
+    "почта-россии",
+    "почтовый-индекс",
+    "отделение-связи"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",

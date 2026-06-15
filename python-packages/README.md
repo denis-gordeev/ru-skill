@@ -1,4 +1,4 @@
-# Python package release scaffold
+# Каркас релиза Python-пакета
 
 Пакеты Python в этом репозитории размещаются под `python-packages/*`.
 

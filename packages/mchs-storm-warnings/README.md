@@ -32,7 +32,7 @@ const {
 })();
 ```
 
-## API
+## API-справочник
 
 ### `lookupRegion(query)`
 

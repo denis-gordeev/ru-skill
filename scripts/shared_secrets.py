@@ -59,6 +59,6 @@ def build_missing_secret_message(names: list[str] | tuple[str, ...]) -> str:
     return (
         f"Для этой операции нужны переменные окружения: {joined}. "
         f"Если они не заданы, сначала добавьте их в {DEFAULT_RU_SKILL_SECRETS_FILE}, "
-        f"затем при необходимости используйте legacy fallback {DEFAULT_LEGACY_SECRETS_FILE} "
+        f"затем при необходимости используйте устаревший запасной вариант {DEFAULT_LEGACY_SECRETS_FILE} "
         "или секретное хранилище агента."
     )

@@ -81,7 +81,7 @@ test("searchNearbyBarsByLocationQuery в первую очередь возвр�
 
     const response = responses.get(resolved);
     if (!response) {
-      throw new Error(`unexpected url: ${resolved}`);
+      throw new Error(`неожиданный URL: ${resolved}`);
     }
 
     return response;
@@ -169,7 +169,7 @@ test("searchNearbyBarsByLocationQuery пропускает непригодны�
     fetchImpl: async (url) => {
       const response = responses.get(String(url));
       if (!response) {
-        throw new Error(`unexpected url: ${url}`);
+        throw new Error(`неожиданный URL: ${url}`);
       }
 
       return response;
@@ -306,7 +306,7 @@ test("searchNearbyBarsByLocationQuery сохраняет пригодный як
       calls.push(resolved);
       const response = responses.get(resolved);
       if (!response) {
-        throw new Error(`unexpected url: ${resolved}`);
+        throw new Error(`неожиданный URL: ${resolved}`);
       }
 
       return response;
@@ -414,7 +414,7 @@ test("searchNearbyBarsByLocationQuery сохраняет запросы стан
     fetchImpl: async (url) => {
       const response = responses.get(String(url));
       if (!response) {
-        throw new Error(`unexpected url: ${url}`);
+        throw new Error(`неожиданный URL: ${url}`);
       }
 
       return response;

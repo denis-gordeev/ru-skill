@@ -23,7 +23,11 @@
     "cbr",
     "exchange-rates",
     "bank-of-russia",
-    "currency"
+    "currency",
+    "курс-валют",
+    "банк-россии",
+    "валюта",
+    "центробанк"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",

@@ -60,16 +60,16 @@ bash scripts/check-setup.sh
 | `srt-booking` | `KSKILL_SRT_ID`, `KSKILL_SRT_PASSWORD` |
 | `ktx-booking` | `KSKILL_KTX_ID`, `KSKILL_KTX_PASSWORD` |
 | `seoul-subway-arrival` | `SEOUL_OPEN_API_KEY` |
-| `fine-dust-location` | Обычно ничего: опубликованный совместимый proxy endpoint используется по умолчанию. Для переопределения нужен `KSKILL_PROXY_BASE_URL`, для прямого резервного доступа или прокси на собственном сервере - `AIR_KOREA_OPEN_API_KEY`. |
+| `fine-dust-location` | Обычно ничего: опубликованный совместимый прокси-эндпоинт используется по умолчанию. Для переопределения нужен `KSKILL_PROXY_BASE_URL`, для прямого резервного доступа или прокси на собственном сервере - `AIR_KOREA_OPEN_API_KEY`. |
 
-Для `fine-dust-location` важно не смешивать конфигурацию и секреты: `KSKILL_PROXY_BASE_URL` - это необязательное переопределение endpoint, а не обязательный credential. Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`, если вы уходите с опубликованного совместимого proxy на прямой резервный доступ или свой сервер.
+Для `fine-dust-location` важно не смешивать конфигурацию и секреты: `KSKILL_PROXY_BASE_URL` - это необязательное переопределение эндпоинта, а не обязательные учётные данные. Секретом остаётся только `AIR_KOREA_OPEN_API_KEY`, если вы уходите с опубликованного совместимого прокси на прямой резервный доступ или свой сервер.
 
 ## Что читать дальше
 
 - [Гайд по SRT](features/srt-booking.md)
 - [Гайд по KTX](features/ktx-booking.md)
 - [Гайд по метро Сеула](features/seoul-subway-arrival.md)
-- [Гайд по fine dust](features/fine-dust-location.md)
+- [Гайд по мелкой пыли](features/fine-dust-location.md)
 - [Политика секретов](security-and-secrets.md)
 
 Базовый поток остаётся таким: сначала установка полного набора, потом общая настройка, потом запуск нужных навыков.

@@ -23,7 +23,10 @@
     "moex",
     "moscow-exchange",
     "shares",
-    "market-data"
+    "market-data",
+    "московская-биржа",
+    "акции",
+    "рыночные-данные"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",

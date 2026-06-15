@@ -24,7 +24,10 @@
     "lottery",
     "gosloto",
     "lotto",
-    "russian-lottery"
+    "russian-lottery",
+    "лотерея",
+    "столото",
+    "российская-лотерея"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",

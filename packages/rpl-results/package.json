@@ -10,7 +10,12 @@
     "russian-premier-league",
     "sports",
     "standings",
-    "results"
+    "results",
+    "рпл",
+    "футбол",
+    "российская-премьер-лига",
+    "турнирная-таблица",
+    "результаты"
   ],
   "main": "src/index.js",
   "files": [

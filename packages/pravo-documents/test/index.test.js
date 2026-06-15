@@ -107,7 +107,7 @@ test("публичные помощники ищут и получают кар�
       });
     }
 
-    throw new Error(`Unexpected mocked URL: ${value}`);
+    throw new Error(`Неожиданный имитированный URL: ${value}`);
   };
 
   try {

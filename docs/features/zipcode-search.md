@@ -93,7 +93,7 @@ PY
 
 Ограничения протокола и клиента остаются теми же и после русификации.
 
-- У текущего ePost endpoint'а нативный `urllib` иногда ломается на TLS/HTTP negotiation и получает reset.
+- У текущего ePost эндпоинта нативный `urllib` иногда ломается на TLS/HTTP negotiation и получает reset.
 - Даже с `curl` возможны редкие timeout/reset, поэтому базовый пример включает `--retry 3 --retry-all-errors --retry-delay 1`.
 - В документации рекомендуется путь `curl --http1.1 --tls-max 1.2`, а Python используется только для парсинга.
 - Общий timeout лучше контролировать через `curl` (`--max-time` и `--retry`), а не внешним Python timeout. Иными словами, важны именно ограничения самого `curl` и его retry-механика.

@@ -31,7 +31,7 @@ const restaurants = await searchRestaurants(55.7558, 37.6173, {
 const details = await getPlaceDetails(1234567890);
 ```
 
-## API
+## API-справочник
 
 ### `searchNearby(lat, lon, options?)`
 

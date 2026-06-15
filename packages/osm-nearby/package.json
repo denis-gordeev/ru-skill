@@ -25,7 +25,10 @@
     "nearby",
     "places",
     "restaurants",
-    "openstreetmap"
+    "openstreetmap",
+    "поблизости",
+    "места",
+    "рестораны"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/query.js && node --check test/index.test.js",

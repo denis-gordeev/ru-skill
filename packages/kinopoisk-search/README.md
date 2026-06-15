@@ -90,7 +90,7 @@ console.log(buildSearchUrl("Брат 2"));
 // "https://www.kinopoisk.ru/index/standalone_search/?query=Брат+2"
 ```
 
-## API
+## API-справочник
 
 | Функция | Описание |
 | --- | --- |

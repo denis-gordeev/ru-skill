@@ -92,7 +92,7 @@ metadata:
 tmp_body="$(mktemp)"
 tmp_cookie="$(mktemp)"
 tmp_json="$(mktemp)"
-invoice="1234567890"  # официальная страница, placeholder для smoke-test
+invoice="1234567890"  # официальная страница, заглушка для проверочного теста
 
 curl -sS -L -c "$tmp_cookie" \
   "https://www.cjlogistics.com/ko/tool/parcel/tracking" \
@@ -217,7 +217,7 @@ import re
 import subprocess
 import sys
 
-invoice = "1234567890123"  # официальная страница, placeholder для smoke-test
+invoice = "1234567890123"  # официальная страница, заглушка для проверочного теста
 output_path = sys.argv[1]
 
 cmd = [

@@ -24,7 +24,11 @@
     "nearby",
     "places",
     "restaurants",
-    "supplementary"
+    "supplementary",
+    "поблизости",
+    "места",
+    "рестораны",
+    "зун"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",

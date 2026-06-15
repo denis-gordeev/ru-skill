@@ -74,7 +74,7 @@ console.log(buildArchiveUrl("4x20"));
 // "https://www.stoloto.ru/4x20/archive"
 ```
 
-## API
+## API-справочник
 
 | Функция | Описание |
 | --- | --- |

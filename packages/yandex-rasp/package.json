@@ -26,7 +26,12 @@
     "schedules",
     "trains",
     "buses",
-    "flights"
+    "flights",
+    "расписание",
+    "транспорт",
+    "поезда",
+    "автобусы",
+    "рейсы"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",

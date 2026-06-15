@@ -271,7 +271,7 @@ class FineDustTests(unittest.TestCase):
             redirect_stdout(stdout),
             mock.patch.dict(fine_dust.os.environ, {"KSKILL_PROXY_BASE_URL": "https://k-skill-proxy.nomadamas.org"}),
             mock.patch.object(fine_dust, "fetch_proxy_report", return_value=proxy_report),
-            mock.patch.object(fine_dust, "fetch_station_lookup", side_effect=AssertionError("direct lookup should not run")),
+            mock.patch.object(fine_dust, "fetch_station_lookup", side_effect=AssertionError("прямой поиск не должен выполняться")),
         ):
             fine_dust.main(["report", "--region-hint", "서울 강남구", "--json"])
 

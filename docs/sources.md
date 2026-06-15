@@ -18,7 +18,7 @@
 
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
 - `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
-- `korail2` обход anti-bot PR #54: https://github.com/carpedm20/korail2/pull/54
+- `korail2` обход антибота PR #54: https://github.com/carpedm20/korail2/pull/54
 - Сеул API метро реального времени: https://www.data.go.kr/data/15058052/openapi.do
 
 ### Спорт
@@ -124,7 +124,7 @@
 ### Московская биржа: ISS API по акциям
 
 - Страница ISS API: https://www.moex.com/a8531
-- Публичный endpoint по тикеру акции: https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.json
+- Публичный эндпоинт по тикеру акции: https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.json
 - Публичный список акций на основной доске: https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities.json
 
 Почему этот источник выбран следующим:
@@ -184,7 +184,7 @@
 - Публичная документация API: https://api.hh.ru/openapi/redoc
 - Поиск вакансий: https://api.hh.ru/vacancies
 - Карточка вакансии: https://api.hh.ru/vacancies/131927189
-- Lookup региона: https://api.hh.ru/areas/1
+- Поиск региона: https://api.hh.ru/areas/1
 
 Почему этот источник выбран четвёртым:
 
@@ -290,7 +290,7 @@
 
 - Вход: `regionHost`, например `46`, `78` или `moscow`, и необязательный `warningId`.
 - Выход для списка: `title`, `publishedAt`, `publishedAtIso`, `tag`, `warningId`, `url`.
-- Выход для карточки: `title`, `bodyText`, дата публикации и export-ссылки `pdfUrl`/`wordUrl`, если они доступны на странице.
+- Выход для карточки: `title`, `bodyText`, дата публикации и экспорт-ссылки `pdfUrl`/`wordUrl`, если они доступны на странице.
 - Техническая основа: skill + пакет только для чтения + на основе эталонных данных HTML-тесты для списка предупреждений и одной карточки.
 - Выбранное имя пакета: `mchs-storm-warnings`.
 
@@ -428,7 +428,7 @@
 
 - Корзина, покупка, сравнение магазинов, отзывы и merchant-facing сценарии.
 - Авторизация, избранное и персонализированные списки.
-- Гарантия долгосрочной стабильности, если Маркет переведёт выдачу в чистый CSR или усилит антибот-слой.
+- Гарантия долгосрочной стабильности, если Маркет переведёт выдачу в чистый клиентский рендеринг (CSR) или усилит антибот-слой.
 
 Статус реализации: пакет `yandex-market-search` создан в `packages/yandex-market-search` с двумя функциями (`searchProducts`, `getProduct`), на основе эталонных данных HTML-тестами и документацией.
 
@@ -437,7 +437,7 @@
 ### Overpass API: поиск ближайших заведений через OpenStreetMap
 
 - Главная страница: https://overpass-api.de/
-- API endpoint: https://overpass-api.de/api/interpreter
+- API-эндпоинт: https://overpass-api.de/api/interpreter
 - Документация Overpass QL: https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL
 - OpenStreetMap данные: https://www.openstreetmap.org/
 
@@ -477,8 +477,8 @@
 
 - 2GIS Catalog API требует API key (docs.2gis.com).
 - Яндекс.Карты Geosearch API требует API key.
-- Zoon.ru — публичный справочник организаций, SSR страницы, без anti-bot, без API keys.
-- **Решение**: реализован `osm-nearby` через Overpass API как основной бесплатный источник без API-ключа; реализован `zoon-nearby` как дополнительный источник с рейтингами, телефонами и режимами работы; 2GIS/Яндекс.Карты остаются опцией для production.
+- Zoon.ru — публичный справочник организаций, SSR страницы, без антибота, без API keys.
+- **Решение**: реализован `osm-nearby` через Overpass API как основной бесплатный источник без API-ключа; реализован `zoon-nearby` как дополнительный источник с рейтингами, телефонами и режимами работы; 2GIS/Яндекс.Карты остаются опцией для промышленного использования.
 
 ### Бытовые и городские данные
 
@@ -512,7 +512,7 @@
 - Vercel структура пакетов навыков агента: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
 - `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
-- `korail2` обход anti-bot PR #54: https://github.com/carpedm20/korail2/pull/54
+- `korail2` обход антибота PR #54: https://github.com/carpedm20/korail2/pull/54
 - `kbo-game`: https://github.com/vkehfdl1/kbo-game
 - tossinvest-cli: https://github.com/JungHoonGhae/tossinvest-cli
 - K League расписание/результаты JSON: https://www.kleague.com/getScheduleList.do

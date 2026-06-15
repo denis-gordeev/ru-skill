@@ -1,4 +1,4 @@
-# Гайд по fine dust для текущего местоположения
+# Гайд по мелкой пыли для текущего местоположения
 
 ## Граничное примечание
 
@@ -22,7 +22,7 @@
 Предпочтительный клиентский режим:
 
 - Внешний proxy URL по умолчанию: `https://k-skill-proxy.nomadamas.org`
-- `KSKILL_PROXY_BASE_URL` задаётся только если нужно переопределить этот endpoint
+- `KSKILL_PROXY_BASE_URL` задаётся только если нужно переопределить этот эндпоинт
 - Отдельный клиентский API key в этом режиме не нужен
 
 Только для прямой резервный доступ без proxy или для собственного proxy-сервера:
@@ -43,7 +43,7 @@
 
 ## Рабочий процесс
 
-1. Если задан `KSKILL_PROXY_BASE_URL`, сначала вызвать `/v1/fine-dust/report` на этом proxy; если переменная не задана, использовать опубликованный совместимый endpoint `https://k-skill-proxy.nomadamas.org`.
+1. Если задан `KSKILL_PROXY_BASE_URL`, сначала вызвать `/v1/fine-dust/report` на этом proxy; если переменная не задана, использовать опубликованный совместимый эндпоинт `https://k-skill-proxy.nomadamas.org`.
 2. Если пришёл `regionHint`, proxy сначала выделяет название региона и получает список станций через `getCtprvnRltmMesureDnsty`.
 3. Если токен из региона однозначно соответствует одной станции, proxy вызывает `getMsrstnAcctoRltmMesureDnsty` для неё.
 4. Если однозначности нет, proxy возвращает `ambiguous_location` и `candidate_stations`.
@@ -70,7 +70,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
   --data-urlencode 'stationName=우산동(광주)'
 ```
 
-Если нужен почти raw-доступ к AirKorea, можно использовать endpoint сквозного маршрута. При этом proxy сам инжектирует `serviceKey`, а отдельный клиентский API не нужен.
+Если нужен почти raw-доступ к AirKorea, можно использовать эндпоинт сквозного маршрута. При этом proxy сам инжектирует `serviceKey`, а отдельный клиентский API не нужен.
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty' \
@@ -108,7 +108,7 @@ curl -sG "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltm
   --data-urlencode "ver=1.4"
 ```
 
-Проверка helper-скрипта на эталонных данных:
+Проверка вспомогательного скрипта на эталонных данных:
 
 ```bash
 python3 scripts/fine_dust.py report \
@@ -130,5 +130,5 @@ python3 scripts/fine_dust.py report \
 - Если PM10 или PM2.5 приходят как `-` или выглядят некорректно, нужно перепроверять уровень вместе со значением.
 - Если API не прислал `khaiGrade`, интегральный уровень нужно выводить как «Нет данных».
 - `regionHint` описывает место в естественном языке, поэтому неоднозначность там частая.
-- В hosted-режиме upstream AirKorea key должен оставаться только на proxy, а не на клиенте.
+- При развёртывании на сервере ключ вышестоящего API AirKorea должен оставаться только на proxy, а не на клиенте.
 - Публичный proxy и legacy naming здесь остаются слоем совместимости, а не рекомендацией расширять `ru-skill` новыми корейскими data-source сценариями.

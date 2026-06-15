@@ -152,7 +152,7 @@ test("публичные помощники загружают и нормали
       });
     }
 
-    throw new Error(`Unexpected mocked URL: ${value}`);
+    throw new Error(`Неожиданный имитированный URL: ${value}`);
   };
 
   try {

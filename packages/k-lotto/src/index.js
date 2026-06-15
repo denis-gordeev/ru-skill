@@ -7,7 +7,7 @@ const {
 
 const DEFAULT_HEADERS = {
   accept: "application/json, text/html;q=0.9",
-  "user-agent": "k-skill/k-lotto"
+  "user-agent": "ru-skill/k-lotto"
 };
 
 const LATEST_RESULT_URL = "https://www.dhlottery.co.kr/lt645/result";

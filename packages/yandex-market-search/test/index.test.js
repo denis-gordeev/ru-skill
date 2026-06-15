@@ -182,7 +182,7 @@ test("parseProductPage извлекает название, цену, рейти
   });
 });
 
-test("searchProducts получает и разбирает HTML поиска через мок-запрос", async () => {
+test("searchProducts получает и разбирает HTML поиска через имитированный запрос", async () => {
   const mockFetch = async () => ({
     ok: true,
     status: 200,
@@ -194,7 +194,7 @@ test("searchProducts получает и разбирает HTML поиска ч
   assert.equal(result.results[0].productId, "103572164696");
 });
 
-test("getProduct получает и разбирает карточку товара через мок-запрос", async () => {
+test("getProduct получает и разбирает карточку товара через имитированный запрос", async () => {
   const mockFetch = async () => ({
     ok: true,
     status: 200,

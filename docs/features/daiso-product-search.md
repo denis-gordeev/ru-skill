@@ -8,7 +8,7 @@
 
 - Искать официальные магазины Daiso по названию.
 - Искать товары по названию или общему поисковому запросу.
-- Проверять pickup-остатки в конкретном магазине.
+- Проверять остатки для самовывоза в конкретном магазине.
 - При необходимости добавлять ориентир по онлайн-наличию.
 
 ## Предварительные условия
@@ -31,7 +31,7 @@
 - Детали магазина: `https://www.daisomall.co.kr/api/dl/dla-api/selStrInfo`
 - Поиск товаров: `https://www.daisomall.co.kr/ssn/search/SearchGoods`
 - Сводка по товарам: `https://www.daisomall.co.kr/ssn/search/GoodsMummResult`
-- Pickup-остатки магазина: `https://www.daisomall.co.kr/api/pd/pdh/selStrPkupStck`
+- Остатки для самовывоза: `https://www.daisomall.co.kr/api/pd/pdh/selStrPkupStck`
 - Необязательная онлайн-проверка: `https://www.daisomall.co.kr/api/pdo/selOnlStck`
 
 ## Рабочий процесс

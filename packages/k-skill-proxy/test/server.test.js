@@ -3,10 +3,10 @@ const assert = require("node:assert/strict");
 
 const { buildServer, proxyAirKoreaRequest } = require("../src/server");
 
-test("endpoint health остаётся общедоступным и сообщает статус аутентификации/upstream", async (t) => {
+test("endpoint health остаётся общедоступным и сообщает статус аутентификации/вышестоящего API", async (t) => {
   const app = buildServer({
     provider: async () => {
-      throw new Error("provider should not be called");
+      throw new Error("провайдер не должен вызываться");
     }
   });
 
@@ -94,7 +94,7 @@ test("endpoint мелкой пыли кэширует успешные отве�
       return {
         station_name: "강남구",
         station_address: "서울 강남구 학동로 426",
-        lookup_mode: "fallback",
+        lookup_mode: "запасной вариант",
         measured_at: "2026-03-27 21:00",
         pm10: { value: "42", grade: "Умеренно" },
         pm25: { value: "19", grade: "Умеренно" },

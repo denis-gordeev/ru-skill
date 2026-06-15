@@ -24,7 +24,11 @@
     "legal",
     "law",
     "legislation",
-    "documents"
+    "documents",
+    "право",
+    "закон",
+    "законодательство",
+    "документы"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",

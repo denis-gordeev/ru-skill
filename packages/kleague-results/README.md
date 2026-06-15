@@ -45,7 +45,7 @@ const { getKLeagueSummary, getMatchResults, getStandings } = require("kleague-re
 })();
 ```
 
-## API
+## API-справочник
 
 ### `getMatchResults(date, options)`
 

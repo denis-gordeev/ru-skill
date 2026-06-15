@@ -156,10 +156,10 @@ test("parseMatchResults корректно разбирает HTML-фиксту�
 });
 
 //
-// Интеграционные тесты с мок-запросами
+// Интеграционные тесты с имитированными запросами
 //
 
-test("getStandings получает и разбирает турнирную таблицу через мок-запрос", async () => {
+test("getStandings получает и разбирает турнирную таблицу через имитированный запрос", async () => {
   const fixturePath = path.join(__dirname, "fixtures", "standings.html");
   const html = fs.readFileSync(fixturePath, "utf-8");
 
@@ -190,7 +190,7 @@ test("getStandings выбрасывает ошибку при неуспешно
   );
 });
 
-test("getResults получает и разбирает результаты через мок-запрос", async () => {
+test("getResults получает и разбирает результаты через имитированный запрос", async () => {
   const fixturePath = path.join(__dirname, "fixtures", "results.html");
   const html = fs.readFileSync(fixturePath, "utf-8");
 

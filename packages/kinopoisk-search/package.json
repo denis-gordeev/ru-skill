@@ -24,7 +24,10 @@
     "cinema",
     "movies",
     "film",
-    "russian-cinema"
+    "russian-cinema",
+    "кино",
+    "фильмы",
+    "кинопоиск"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",

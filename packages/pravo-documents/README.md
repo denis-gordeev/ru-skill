@@ -33,7 +33,7 @@ const {
 })();
 ```
 
-## API
+## API-справочник
 
 ### `searchPravoDocuments(options?)`
 

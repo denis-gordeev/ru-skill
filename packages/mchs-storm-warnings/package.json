@@ -23,7 +23,11 @@
     "mchs",
     "weather",
     "warnings",
-    "emergency"
+    "emergency",
+    "мчс",
+    "погода",
+    "предупреждения",
+    "штормовое-предупреждение"
   ],
   "scripts": {
     "lint": "node --check src/index.js && node --check src/parse.js && node --check src/regions.js && node --check test/index.test.js",

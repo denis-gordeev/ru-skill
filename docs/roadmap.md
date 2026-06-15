@@ -4,13 +4,12 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
-## Статус на 2026-06-14 (раунд 50)
+## Статус на 2026-06-15 (раунд 51)
 
-- Переведены на русский английские метки URL в `docs/sources.md` (25 меток): `K League schedule/results JSON` → `K League расписание/результаты JSON`, `Dhlottery result page` → `Dhlottery страница результатов лотереи`, `CJ Logistics tracking page` → `CJ Logistics отслеживание доставки`, `Korea Post tracking summary` → `Почтовая служба Кореи отслеживание`, `Daiso store search` → `Daisomall поиск магазинов`, `Blue Ribbon Survey main site` → `Blue Ribbon главная страница`, `Kakao Map mobile search` → `Kakao Map мобильный поиск`, `AirKorea air quality API` → `AirKorea качество воздуха API` и др.
-- Устранён English jargon в `docs/brand-inventory.md`: `legacy surface area` → `legacy-поверхностей`, `Public proxy URL` → `Публичный URL прокси`.
-- Добавлены русские переводы для macOS-разрешений в `kakaotalk-mac/SKILL.md` и `docs/features/kakaotalk-mac.md`: `Full Disk Access (Полный доступ к диску)`, `Accessibility (Универсальный доступ)`, `System Settings > Privacy & Security (Системные настройки > Конфиденциальность и защита)`, `KakaoTalk for Mac` → `KakaoTalk для Mac`.
-- Синхронизирован справочный блок Legacy в `docs/sources.md` с новыми русскими метками; устранено расхождение `Daisomall остатки пикап-запасов` → `Daisomall остатки для самовывоза`.
-- Doc-regression расширен: добавлены тесты на русские метки URL, на отсутствие английского жаргона в brand-inventory и на русские переводы macOS-разрешений.
+- Устранён следующий слой English jargon в user-facing surfaces: `endpoint` → `эндпоинт` (AGENTS.md, docs/setup.md, docs/security-and-secrets.md, docs/brand-inventory.md, docs/sources.md), `anti-bot` → `антибот` (README.md, docs/booking-replacements.md, docs/features/ktx-booking.md, ktx-booking/SKILL.md, packages/zoon-nearby/README.md, docs/features/zoon-nearby.md, docs/sources.md, docs/roadmap.md, TODO.md), `proxy endpoint` → `прокси-эндпоинт` (docs/setup.md, docs/security-and-secrets.md), `credential` → `учётные данные` (docs/setup.md), `scaffold` → `каркас/каркасная заготовка` (AGENTS.md, docs/releasing.md, python-packages/README.md).
+- Устранён English jargon в тестовых файлах: `unexpected url/URL` → `неожиданный URL` (3 файла), `upstream-payload` → `вышестоящий ответ`, `мок-запрос` → `имитированный запрос` (2 файла), `upstream` → `вышестоящего API`, `fallback` → `запасной вариант` (mock data), `direct lookup should not run` → `прямой поиск не должен выполняться`.
+- Устранён English jargon в helper-скриптах, changeset-сводках и docs/sources.md: `fallback-поиск` → `резервный поиск`, `fixture-тесты` → `тесты на эталонных данных`, `export-ссылки` → `экспорт-ссылки`, `production` → `промышленного использования`, `CSR` → `клиентский рендеринг (CSR)`, `supplementary` → `дополнительный`.
+- Doc-regression расширен: добавлены 4 новых теста на отсутствие English jargon в user-facing surfaces, тестовых файлах и описаниях тестов.
 - Полный `npm test` и `validate-skills` проходят после этой синхронизации.
 
 ## Статус на 2026-06-14 (раунд 49)
@@ -262,7 +261,7 @@
 
 Текущее решение по направлению:
 
-- Полноценный `rzd-booking` не идёт в MVP, пока не подтверждён устойчивый официальный интерфейс без автоматизации оформления заказа, логина и ненадёжных обходов anti-bot.
+- Полноценный `rzd-booking` не идёт в MVP, пока не подтверждён устойчивый официальный интерфейс без автоматизации оформления заказа, логина и ненадёжных обходов антибота.
 - `tutu.ru` и Яндекс Путешествия фиксируются как кандидаты на только для чтения/перенаправление сценарий, а не как подтверждённые public booking API.
 - Базовый поиск железнодорожных маршрутов сценарий уже покрывается `yandex-rasp`; отдельный target-пакет не открывается, пока он не добавляет устойчивую API-функцию, а не тонкую обёртку над внешним checkout.
 - Критерий закрытия milestone вынесен в [отдельный документ по booking replacements](booking-replacements.md).
@@ -302,4 +301,4 @@
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, граничные примечания, package README, top-level TODO governance, heading scheme critical surfaces, transition/setup copy, package metadata descriptions и отсутствию устаревшей release-археологии в README/roadmap.
 6. Крупный слой English jargon (`read-only`, `supplementary`, `fallback`, `baseline`, `fixture-based`, `handoff`, `checkout`, `write-`, `discovery`, `boundary`, `credential`, `endpoint override`, `target-backlog`, `compatibility-layer`, `backward-compatible`, `mutation`, `decision matrix`, `nearby-поиск`, `live smoke`, `operational default`, `delayed-`, `passthrough`, `self-hosted`, `production`, `live-`, `export`) устранён из user-facing документации, repo-governance и shell/infrastructure surfaces; английские assert-сообщения в тестах и h1-заголовки верхнеуровневых документов тоже русифицированы; английские сообщения в имитированных ответах тестов (`Unexpected mocked URL`, `provider should not be called`) переведены на русский; русские keywords добавлены во все 13 target package.json; следующий проход — по редким артефактам в npm script output и других непокрытых helper-поверхностях.
-7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и ненадёжных обходов anti-bot.
+7. Подбирать только такие новые российские replacement-сценарии, которые реально можно поддерживать без логина, приватных токенов и ненадёжных обходов антибота.

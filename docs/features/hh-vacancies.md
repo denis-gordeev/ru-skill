@@ -69,5 +69,5 @@ JS
 ## Ограничения
 
 - Это сценарий только для чтения
-- Источник данных: публичные endpoints `https://api.hh.ru/vacancies`, `https://api.hh.ru/vacancies/{vacancy_id}` и `https://api.hh.ru/areas/{area_id}`
+- Источник данных: публичные эндпоинты `https://api.hh.ru/vacancies`, `https://api.hh.ru/vacancies/{vacancy_id}` и `https://api.hh.ru/areas/{area_id}`
 - Зарплата и часть полей могут отсутствовать, потому что работодатель их не заполнил

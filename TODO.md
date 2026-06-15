@@ -4,24 +4,47 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-14 (раунд 50)
+## Статус на 2026-06-15 (раунд 51)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Переведены на русский английские метки URL в `docs/sources.md` (25 меток): `K League schedule/results JSON` → `K League расписание/результаты JSON`, `Dhlottery result page` → `Dhlottery страница результатов лотереи`, `CJ Logistics tracking page` → `CJ Logistics отслеживание доставки`, `Korea Post tracking summary` → `Почтовая служба Кореи отслеживание`, `Daiso store search` → `Daisomall поиск магазинов`, `Blue Ribbon Survey main site` → `Blue Ribbon главная страница`, `Kakao Map mobile search` → `Kakao Map мобильный поиск`, `AirKorea air quality API` → `AirKorea качество воздуха API` и др.
-- Устранён English jargon в `docs/brand-inventory.md`: `legacy surface area` → `legacy-поверхностей`, `Public proxy URL` → `Публичный URL прокси`.
-- Добавлены русские переводы для macOS-разрешений в `kakaotalk-mac/SKILL.md` и `docs/features/kakaotalk-mac.md`: `Full Disk Access` → `Full Disk Access (Полный доступ к диску)`, `Accessibility` → `Accessibility (Универсальный доступ)`, `System Settings > Privacy & Security` → `System Settings > Privacy & Security (Системные настройки > Конфиденциальность и защита)`, `KakaoTalk for Mac` → `KakaoTalk для Mac`.
-- Синхронизирован справочный блок Legacy в `docs/sources.md` с новыми русскими метками; устранено расхождение `Daisomall остатки пикап-запасов` → `Daisomall остатки для самовывоза`.
-- Doc-regression расширен: добавлены тесты на русские метки URL в `docs/sources.md`, на отсутствие английского жаргона в `docs/brand-inventory.md` и на русские переводы macOS-разрешений в `kakaotalk-mac`.
-- Полный `npm test` проходит: 148 pass / 0 fail / 1 skipped.
+- Устранён следующий слой English jargon в user-facing surfaces: `endpoint` → `эндпоинт` (AGENTS.md, docs/setup.md, docs/security-and-secrets.md, docs/brand-inventory.md, docs/sources.md), `anti-bot` → `антибот` (README.md, docs/booking-replacements.md, docs/features/ktx-booking.md, ktx-booking/SKILL.md, packages/zoon-nearby/README.md, docs/features/zoon-nearby.md, docs/sources.md, docs/roadmap.md, TODO.md), `proxy endpoint` → `прокси-эндпоинт` (docs/setup.md, docs/security-and-secrets.md), `credential` → `учётные данные` (docs/setup.md), `scaffold` → `каркас/каркасная заготовка` (AGENTS.md, docs/releasing.md, python-packages/README.md).
+- Устранён English jargon в тестовых файлах: `unexpected url/URL` → `неожиданный URL` (kleague-results, kakao-bar-nearby, k-skill-proxy/airkorea), `upstream-payload` → `вышестоящий ответ` (blue-ribbon-nearby), `мок-запрос` → `имитированный запрос` (rpl-results, yandex-market-search), `upstream` → `вышестоящего API` (k-skill-proxy/server.test.js), `fallback` → `запасной вариант` (k-skill-proxy/server.test.js mock data), `direct lookup should not run` → `прямой поиск не должен выполняться` (test_fine_dust.py).
+- Устранён English jargon в helper-скриптах: `fallback-поиск` → `резервный поиск` (fine_dust.py).
+- Устранён English jargon в changeset-сводках: `fixture-тесты` → `тесты на эталонных данных` (kinopoisk-search changeset).
+- Устранён English jargon в docs/sources.md: `export-ссылки` → `экспорт-ссылки`, `production` → `промышленного использования`, `CSR` → `клиентский рендеринг (CSR)`.
+- Устранён English jargon в TODO.md: `supplementary` → `дополнительный` (3 вхождения).
+- Doc-regression расширен: добавлены тесты на отсутствие English jargon (`endpoint`, `anti-bot`, `scaffold`, `credential`, `proxy endpoint`, `upstream-payload`, `мок-запрос`, `unexpected url/URL`) в user-facing surfaces и тестовых файлах; добавлен тест на наличие русских эквивалентов (`эндпоинт`, `антибота`, `каркас`, `учётные данные`, `прокси-эндпоинт`, `вышестоящий ответ`, `имитированный запрос`, `неожиданный URL`).
+- Полный `npm test` проходит: 151 pass / 0 fail / 1 skipped.
 
-## Выполнено в этом раунде (раунд 50)
+## Выполнено в этом раунде (раунд 51)
 
-- [x] `docs/sources.md`: переведены на русский 25 английских меток URL в основном блоке и справочном блоке Legacy.
-- [x] `docs/sources.md`: синхронизированы метки основного и справочного блоков; устранено расхождение `Daisomall остатки пикап-запасов`.
-- [x] `docs/brand-inventory.md`: `legacy surface area` → `legacy-поверхностей`, `Public proxy URL` → `Публичный URL прокси`.
-- [x] `kakaotalk-mac/SKILL.md`: добавлены русские переводы macOS-разрешений (Full Disk Access, Accessibility, Privacy & Security).
-- [x] `docs/features/kakaotalk-mac.md`: добавлены русские переводы macOS-разрешений; `KakaoTalk for Mac` → `KakaoTalk для Mac`.
-- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русские метки URL в sources.md, английский жаргон в brand-inventory.md и русские переводы macOS-разрешений в kakaotalk-mac.
+- [x] `AGENTS.md`: `endpoint` → `эндпоинт`, `proxy-auth` → `авторизации прокси`, `scaffold-заготовкой` → `каркасной заготовкой`.
+- [x] `docs/setup.md`: `proxy endpoint` → `прокси-эндпоинт`, `credential` → `учётные данные`, `endpoint` → `эндпоинта`.
+- [x] `docs/security-and-secrets.md`: `proxy endpoint` → `прокси-эндпоинт`.
+- [x] `docs/brand-inventory.md`: `legacy endpoint` → `устаревший эндпоинт`.
+- [x] `docs/sources.md`: `endpoint` → `эндпоинт` (2 вхождения), `anti-bot` → `антибота` (2 вхождения), `export-ссылки` → `экспорт-ссылки`, `production` → `промышленного использования`, `CSR` → `клиентский рендеринг (CSR)`, `Lookup региона` → `Поиск региона`.
+- [x] `docs/releasing.md`: `scaffold-only` → `каркасной заготовкой`.
+- [x] `python-packages/README.md`: `Python package release scaffold` → `Каркас релиза Python-пакета`.
+- [x] `README.md`: `anti-bot` → `антибота` (2 вхождения).
+- [x] `docs/booking-replacements.md`: `anti-bot` → `антибота`.
+- [x] `docs/features/ktx-booking.md`: `anti-bot` → `антибота` (2 вхождения).
+- [x] `ktx-booking/SKILL.md`: `anti-bot` → `антибота` (3 вхождения).
+- [x] `packages/zoon-nearby/README.md`: `anti-bot` → `антибота`.
+- [x] `docs/features/zoon-nearby.md`: `anti-bot` → `антибота`.
+- [x] `docs/roadmap.md`: `anti-bot` → `антибота` (2 вхождения).
+- [x] `packages/kleague-results/test/index.test.js`: `unexpected url` → `неожиданный URL`.
+- [x] `packages/kakao-bar-nearby/test/index.test.js`: `unexpected url` → `неожиданный URL` (4 вхождения).
+- [x] `packages/k-skill-proxy/test/airkorea.test.js`: `unexpected URL` → `неожиданный URL` (3 вхождения).
+- [x] `packages/k-skill-proxy/test/server.test.js`: `upstream` → `вышестоящего API`, `fallback` → `запасной вариант` (mock data).
+- [x] `packages/blue-ribbon-nearby/test/index.test.js`: `upstream-payload` → `вышестоящий ответ`.
+- [x] `packages/rpl-results/test/index.test.js`: `мок-запрос` → `имитированный запрос` (3 вхождения).
+- [x] `packages/yandex-market-search/test/index.test.js`: `мок-запрос` → `имитированный запрос` (2 вхождения).
+- [x] `scripts/fine_dust.py`: `fallback-поиск` → `резервный поиск`.
+- [x] `scripts/test_fine_dust.py`: `direct lookup should not run` → `прямой поиск не должен выполняться`.
+- [x] `.changeset/kinopoisk-search.md`: `fixture-тесты` → `тесты на эталонных данных`.
+- [x] `yandex-market-search/SKILL.md`: `CSR` → `клиентский рендеринг (CSR)`.
+- [x] `TODO.md`: `supplementary` → `дополнительный` (3 вхождения), `anti-bot` → `антибота` (3 вхождения).
+- [x] `scripts/skill-docs.test.js`: обновлены регрессии на `прокси-эндпоинт` и `антибота`; добавлены 4 новых теста на отсутствие English jargon в user-facing surfaces, тестовых файлах и описаниях тестов.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
@@ -541,7 +564,7 @@
 - Open PR: автоматическая проверка недоступна без `gh auth login`, поэтому в этом раунде PR backlog не подтверждён.
 - Ветка `feat/mchs-storm-warnings`: 10 коммитов ahead of main, 164 файла изменено (12K+ строк), CI проходит полностью.
 - Тринадцать target-навыков реализованы: `cbr-rates`, `moex-shares`, `postcalc-postcodes`, `hh-vacancies`, `stoloto-lotto`, `kinopoisk-search`, `mchs-storm-warnings`, `pravo-documents`, `yandex-rasp`, `rpl-results`, `yandex-market-search`, `osm-nearby`, `zoon-nearby`.
-- Исследование Zoon.ru подтверждено: SSR, без anti-bot, HTML напрямую парсится — viable supplementary источник для nearby-поиска.
+- Исследование Zoon.ru подтверждено: SSR, без антибота, HTML напрямую парсится — подходящий дополнительный источник для nearby-поиска.
 - Исследование 13-го источника (metro/urban-transit): закрыто как нежизнеспособное — реального времени нет, только статические справочники.
 - Исследование 14-го источника (broker/invest): закрыто как избыточное — MOEX ISS уже покрыт через `moex-shares`, брокерские API требуют авторизации.
 
@@ -549,7 +572,7 @@
 
 - [x] Проведён research-first раунд по railway booking replacements вместо premature implementation.
 - [x] Добавлен `docs/booking-replacements.md` с decision matrix для `rzd-booking`, `tutu.ru`, Яндекс Путешествий и текущего baseline `yandex-rasp`.
-- [x] Зафиксирован replacement boundary: full booking automation не идёт в target-MVP без устойчивого official/public interface без логина и anti-bot обходов.
+- [x] Зафиксирован replacement boundary: full booking automation не идёт в target-MVP без устойчивого official/public interface без логина и обходов антибота.
 - [x] README обновлён: в блоках `Что уже сделано по миграции` и `Что делаем дальше` отражён новый статус Milestone 5 и добавлена ссылка на decision matrix.
 - [x] `docs/roadmap.md` обновлён: Milestone 5 переведён из абстрактного research backlog в конкретное решение по границе replacement-а.
 - [x] `docs/sources.md` дополнен отдельным блоком по кандидатам на railway booking replacement.
@@ -599,7 +622,7 @@
 
 ## Выполнено в этом раунде (раунд 3)
 
-- [x] Реализован пакет `zoon-nearby` как supplementary источник для nearby-поиска с рейтингами, телефонами и режимами работы.
+- [x] Реализован пакет `zoon-nearby` как дополнительный источник для nearby-поиска с рейтингами, телефонами и режимами работы.
 - [x] Подготовлены fixture-based JSON-тесты для Zoon.ru HTML ответов с московскими ресторанами.
 - [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/install.md`, `docs/features/zoon-nearby.md`, чтобы 13-й target-skill был встроен в основной пользовательский путь.
 - [x] Обновлён `package.json`, чтобы `zoon-nearby` входил в `pack:dry-run`.
@@ -670,7 +693,7 @@
 - [x] Реализовать пакет `osm-nearby` для поиска ближайших заведений (рестораны, кафе, бары) через Overpass API.
 - [x] Выбрать 13-й российский источник в домене городского транспорта/метро для замены `seoul-subway-arrival` — **закрыто**: реального времени нет, возможны только статические справочники (низкая ценность).
 - [x] Выбрать 14-й российский источник в домене брокерских и инвестиционных read-only сценариев для замены `toss-securities` — **закрыто**: MOEX ISS уже через `moex-shares`, реальные брокерские API требуют авторизации.
-- [x] Проверить Zoon для nearby-replacement — **подтверждено**: SSR/HTML-поверхность, category + city pages, без anti-bot, без API keys, структурированный HTML с названиями/адресами/рейтингами/телефонами.
+- [x] Проверить Zoon для nearby-replacement — **подтверждено**: SSR/HTML-поверхность, category + city pages, без антибота, без API keys, структурированный HTML с названиями/адресами/рейтингами/телефонами.
 - [x] Подготовить fixture-first исследование по metro/urban-transit источникам — **закрыто**: Moscow Metro и SPb Metro не имеют публичного real-time API.
 - [x] Уточнить минимальный scope российского read-only invest skill — **закрыто**: рыночные сводки через MOEX ISS уже покрыты, портфельные симуляции без логина не имеют публичного источника.
 
@@ -692,7 +715,7 @@
 - Ветка `feat/mchs-storm-warnings` готова к merge в main: 20 коммитов, CI проходит, все 13 target-навыков реализованы.
 - Следующий продуктовый шаг: рассмотреть `rzd-booking` или `tutu-ru` для замены legacy `srt-booking` и `ktx-booking` (российские ЖД-билеты).
 - Замены `seoul-subway-arrival` и `toss-securities` закрыты как нежизнеспособные через публичные free API — legacy-пакеты останутся без прямых российских аналогов.
-- Nearby-поиск теперь покрыт двумя источниками: `osm-nearby` (базовый, free/no-key) и `zoon-nearby` (supplementary, с рейтингами и контактами).
+- Nearby-поиск теперь покрыт двумя источниками: `osm-nearby` (базовый, free/no-key) и `zoon-nearby` (дополнительный, с рейтингами и контактами).
 - Legacy-пакеты с корейским контекстом сохранены как backward-compatible, не продвигаются в документации, маркированы как `Legacy` в таблицах.
 - Основной фокус миграции достигнут: 13 из 28 навыков — российские target-навыки, покрытие ~50% функциональности репозитория.
 
