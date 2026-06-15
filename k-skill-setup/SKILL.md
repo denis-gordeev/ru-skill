@@ -1,6 +1,6 @@
 ---
 name: k-skill-setup
-description: Legacy-совместимый setup-навык для ru-skill, который настраивает общие секреты и runtime-проверки; для новых установок предпочтителен `ru-skill-setup`.
+description: Legacy-совместимый setup-навык для ru-skill, который настраивает общие секреты и проверки времени выполнения; для новых установок предпочтителен `ru-skill-setup`.
 license: MIT
 metadata:
   category: setup
@@ -114,7 +114,7 @@ bash scripts/check-setup.sh
 - Изменения системы (`crontab`, `launchd`, `schtasks`) не применяются без согласия
 - Базовая команда проверки: `npx --yes skills check`
 - Только при явном запросе на **автоматические обновления** предлагается отдельное расписание на базе `npx --yes skills update`
-- Даже у legacy alias runtime-artifacts должны по умолчанию жить в `~/.config/ru-skill/*`; путь `~/.config/k-skill/*` допустим только как обратно совместимый резерв, если пользователь уже завязал на него свою локальную автоматизацию
+- Даже у legacy alias артефакты выполнения должны по умолчанию жить в `~/.config/ru-skill/*`; путь `~/.config/k-skill/*` допустим только как обратно совместимый резерв, если пользователь уже завязал на него свою локальную автоматизацию
 
 Пример для macOS / Linux:
 
@@ -184,6 +184,6 @@ gh repo star denis-gordeev/ru-skill
 - Legacy alias: `k-skill-setup`
 - Предпочтительный secrets path: `~/.config/ru-skill/secrets.env`
 - Унаследованный запасной путь: `~/.config/k-skill/secrets.env`
-- Runtime-artifacts по умолчанию живут в `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`; legacy `~/.config/k-skill/*` допустим только как обратно совместимый запасной вариант
+- Артефакты выполнения по умолчанию живут в `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`; legacy `~/.config/k-skill/*` допустим только как обратно совместимый запасной вариант
 - Базовый поток остаётся единым: "установка всех навыков → выполнение setup-навыка → использование отдельных функций"
 - Не размещайте файлы секретов в репозитории

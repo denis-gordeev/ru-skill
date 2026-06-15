@@ -4,6 +4,13 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
+## Статус на 2026-06-15 (раунд 52)
+
+- Устранён следующий слой English jargon в user-facing surfaces: `Anti-bot` → `Антибот` (zoon-nearby SKILL.md и docs), `retry policy` → `политика повторных попыток` (delivery-tracking), `retry-циклы` → `циклы повторных попыток` (srt-booking), `timeout` → `тайм-аут` (zipcode-search), `tracking query` → `отслеживающих параметров запроса` (yandex-market-search), `runtime-проверки` → `проверки времени выполнения`, `runtime-artifacts` → `артефакты выполнения` (setup SKILL.md), `bot-generated` → `сгенерированного ботом` (AGENTS.md, docs/releasing.md), `helpers` → `вспомогательные утилиты` (docs/brand-inventory.md), `helper` → `вспомогательный скрипт` (README.md), `live-обновления` → `обновления в реальном времени` (docs/sources.md).
+- Устранён English jargon в тестовых файлах: `payload` → `данные`, `live-запросы` → `запросы в реальном времени` (kleague-results), `upstream-ответы` → `вышестоящие ответы` (k-skill-proxy).
+- Doc-regression расширен: добавлены 3 новых теста на отсутствие English jargon и наличие русских эквивалентов.
+- Полный `npm run ci` проходит.
+
 ## Статус на 2026-06-15 (раунд 51)
 
 - Устранён следующий слой English jargon в user-facing surfaces: `endpoint` → `эндпоинт` (AGENTS.md, docs/setup.md, docs/security-and-secrets.md, docs/brand-inventory.md, docs/sources.md), `anti-bot` → `антибот` (README.md, docs/booking-replacements.md, docs/features/ktx-booking.md, ktx-booking/SKILL.md, packages/zoon-nearby/README.md, docs/features/zoon-nearby.md, docs/sources.md, docs/roadmap.md, TODO.md), `proxy endpoint` → `прокси-эндпоинт` (docs/setup.md, docs/security-and-secrets.md), `credential` → `учётные данные` (docs/setup.md), `scaffold` → `каркас/каркасная заготовка` (AGENTS.md, docs/releasing.md, python-packages/README.md).

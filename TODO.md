@@ -4,7 +4,40 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-15 (раунд 51)
+## Статус на 2026-06-15 (раунд 52)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён следующий слой English jargon в user-facing surfaces: `Anti-bot` → `Антибот` (zoon-nearby/SKILL.md, packages/zoon-nearby/SKILL.md, docs/features/zoon-nearby.md), `retry policy` → `политика повторных попыток` (delivery-tracking/SKILL.md, docs/features/delivery-tracking.md ×2), `retry-циклы` → `циклы повторных попыток` (srt-booking/SKILL.md), `retry` → `повторные попытки` (zipcode-search/SKILL.md), `timeout` → `тайм-аут` (zipcode-search/SKILL.md, docs/features/zipcode-search.md ×4), `retry-флагами` → `флагами повторных попыток` (docs/features/zipcode-search.md), `retry-механика` → `механизм повторных попыток` (docs/features/zipcode-search.md), `tracking query` → `отслеживающих параметров запроса` (yandex-market-search/SKILL.md, docs/features/yandex-market-search.md), `runtime-проверки` → `проверки времени выполнения` (ru-skill-setup/SKILL.md ×2, k-skill-setup/SKILL.md), `runtime-artifacts` / `Runtime-artifacts` → `артефакты выполнения` / `Артефакты выполнения` (ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md ×2), `bot-generated` → `сгенерированного ботом` (AGENTS.md, docs/releasing.md), `helpers` / `helper'ах` → `вспомогательные утилиты` / `вспомогательных скриптах` (docs/brand-inventory.md), `helper` → `вспомогательный скрипт` (README.md), `live-обновления` → `обновления в реальном времени` (docs/sources.md), `payload` → `данные` (kleague-results/test), `live-запросы` → `запросы в реальном времени` (kleague-results/test), `upstream-ответы` → `вышестоящие ответы` (k-skill-proxy/test).
+- Doc-regression расширен: добавлены 3 новых теста на отсутствие English jargon (`retry policy`, `tracking query`, `runtime-`, `bot-generated`, `helper`, `Anti-bot`, `payload`, `live-запросы`, `upstream-ответы`, `timeout`, `retry-`) в user-facing surfaces и тестовых файлах; добавлены тесты на наличие русских эквивалентов.
+- Полный `npm run ci` проходит: 0 fail.
+
+## Выполнено в этом раунде (раунд 52)
+
+- [x] `zoon-nearby/SKILL.md`: `Anti-bot` → `Антибот`.
+- [x] `packages/zoon-nearby/SKILL.md`: `Anti-bot` → `Антибот`.
+- [x] `docs/features/zoon-nearby.md`: `Anti-bot` → `Антибот`.
+- [x] `delivery-tracking/SKILL.md`: `retry policy` → `политика повторных попыток`.
+- [x] `srt-booking/SKILL.md`: `retry-циклы` → `циклы повторных попыток`.
+- [x] `zipcode-search/SKILL.md`: `retry` → `повторные попытки`, `timeout` → `тайм-аут` (вне кодовых блоков).
+- [x] `yandex-market-search/SKILL.md`: `tracking query` → `отслеживающих параметров запроса`.
+- [x] `ru-skill-setup/SKILL.md`: `runtime-проверки` → `проверки времени выполнения` (2 вхождения), `runtime-artifacts` → `артефакты выполнения`, `update checks` → `проверки обновлений`.
+- [x] `k-skill-setup/SKILL.md`: `runtime-проверки` → `проверки времени выполнения`, `runtime-artifacts` / `Runtime-artifacts` → `артефакты выполнения` / `Артефакты выполнения` (2 вхождения).
+- [x] `AGENTS.md`: `bot-generated` → `сгенерированного ботом`.
+- [x] `docs/releasing.md`: `bot-generated` → `сгенерированного ботом`.
+- [x] `docs/brand-inventory.md`: `helpers` / `helper'ах` → `вспомогательные утилиты` / `вспомогательных скриптах`.
+- [x] `README.md`: `helper` → `вспомогательный скрипт`.
+- [x] `docs/sources.md`: `live-обновления` → `обновления в реальном времени`.
+- [x] `docs/features/delivery-tracking.md`: `retry policy` → `политика повторных попыток` (2 вхождения).
+- [x] `docs/features/zipcode-search.md`: `timeout` → `тайм-аут` (4 вхождения), `retry-флагами` → `флагами повторных попыток`, `retry-механика` → `механизм повторных попыток`.
+- [x] `docs/features/yandex-market-search.md`: `tracking query` → `отслеживающих параметров запроса`.
+- [x] `packages/kleague-results/test/index.test.js`: `payload с месяцем` → `официальные данные с месяцем`, `live-запросы` → `запросы в реальном времени`, `корейскоязычные payload` → `корейскоязычные данные`.
+- [x] `packages/k-skill-proxy/test/server.test.js`: `upstream-ответы` → `вышестоящие ответы`.
+- [x] `scripts/skill-docs.test.js`: обновлён тест delivery-tracking на `политика повторных попыток`; обновлён тест ktx-booking с `anti-bot` → `антибота`; добавлены 3 новых теста на отсутствие English jargon и наличие русских эквивалентов.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
 - Устранён следующий слой English jargon в user-facing surfaces: `endpoint` → `эндпоинт` (AGENTS.md, docs/setup.md, docs/security-and-secrets.md, docs/brand-inventory.md, docs/sources.md), `anti-bot` → `антибот` (README.md, docs/booking-replacements.md, docs/features/ktx-booking.md, ktx-booking/SKILL.md, packages/zoon-nearby/README.md, docs/features/zoon-nearby.md, docs/sources.md, docs/roadmap.md, TODO.md), `proxy endpoint` → `прокси-эндпоинт` (docs/setup.md, docs/security-and-secrets.md), `credential` → `учётные данные` (docs/setup.md), `scaffold` → `каркас/каркасная заготовка` (AGENTS.md, docs/releasing.md, python-packages/README.md).

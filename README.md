@@ -37,7 +37,7 @@
 | `osm-nearby` | Поиск ближайших заведений через Overpass API OpenStreetMap | Нет | [Гайд по OSM nearby](docs/features/osm-nearby.md) |
 | `zoon-nearby` | Поиск ближайших заведений через публичные страницы Zoon.ru | Нет | [Гайд по Zoon.ru](docs/features/zoon-nearby.md) |
 | `srt-booking` | Legacy-совместимый корейский сценарий поиска поездов SRT и бронирования | Да | [Гайд по SRT](docs/features/srt-booking.md) |
-| `ktx-booking` | Legacy-совместимый корейский сценарий KTX/Korail через helper с обходом антибота Dynapath | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
+| `ktx-booking` | Legacy-совместимый корейский сценарий KTX/Korail через вспомогательный скрипт с обходом антибота Dynapath | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
 | `seoul-subway-arrival` | Просмотр ожидаемого времени прибытия поездов метро Сеула по станции | Да | [Гайд по метро Сеула](docs/features/seoul-subway-arrival.md) |
 | `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Гайд по мелкой пыли](docs/features/fine-dust-location.md) |

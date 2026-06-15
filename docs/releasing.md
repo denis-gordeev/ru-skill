@@ -7,7 +7,7 @@
 - Расположение: `packages/*`
 - Управление версиями: Changesets
 - Workflow публикации: `.github/workflows/release-npm.yml`
-- Момент публикации: после merge bot-generated PR `Version Packages` в `main`
+- Момент публикации: после merge сгенерированного ботом PR `Version Packages` в `main`
 - Предпочтительный способ аутентификации: trusted publishing через GitHub OIDC
 - Базовое правило: версии пакетов не редактируются вручную для релиза, вместо этого в PR добавляется `.changeset/*.md`
 

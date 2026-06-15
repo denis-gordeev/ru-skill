@@ -115,11 +115,11 @@ test("публичные загрузчики составляют резуль�
     );
     assert.ok(
       calls.some((call) => call.body && String(call.body).includes('"month":"03"')),
-      "ожидается, что запрос расписания отправит официальный payload с месяцем"
+      "ожидается, что запрос расписания отправит официальные данные с месяцем"
     );
     assert.ok(
       calls.every((call) => call.headers["accept-language"]?.includes("ko-KR")),
-      "ожидается, что live-запросы фиксируют корейскоязычные payload",
+      "ожидается, что запросы в реальном времени фиксируют корейскоязычные данные",
     );
   } finally {
     global.fetch = originalFetch;

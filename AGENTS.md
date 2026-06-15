@@ -7,7 +7,7 @@
 
 - Node-пакеты лежат в `packages/*` и используют npm workspaces.
 - Для релизов Node-пакетов используется **Changesets**. Не правьте версии вручную только ради релиза; вместо этого добавляйте файл `.changeset/*.md`.
-- Публикация в npm автоматизирована через GitHub Actions и должна происходить только после merge bot-generated PR **Version Packages** в `main`.
+- Публикация в npm автоматизирована через GitHub Actions и должна происходить только после merge сгенерированного ботом PR **Version Packages** в `main`.
 - Python-пакеты лежат в `python-packages/*` и используют **release-please**. Пока реального Python-пакета нет, workflow релиза Python остаётся только каркасной заготовкой.
 - Публикация в PyPI должна запускаться только когда `release-please` сообщает `release_created=true` для конкретного package path.
 - Предпочитайте trusted publishing через OIDC для npm и PyPI. Не добавляйте long-lived registry tokens, если trusted publishing доступен.

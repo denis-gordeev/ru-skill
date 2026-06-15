@@ -149,7 +149,7 @@ test("proxyAirKoreaRequest внедряет serviceKey и сохраняет п�
   assert.match(calledUrl, /serviceKey=test-service-key/);
 });
 
-test("общедоступный маршрут сквозной передачи AirKorea пересылает разрешённые upstream-ответы", async (t) => {
+test("общедоступный маршрут сквозной передачи AirKorea пересылает разрешённые вышестоящие ответы", async (t) => {
   const originalFetch = global.fetch;
   global.fetch = async () =>
     new Response('{"response":{"header":{"resultCode":"00"}}}', {

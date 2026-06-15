@@ -1,6 +1,6 @@
 ---
 name: ru-skill-setup
-description: После установки ru-skill настройте общие секреты и runtime-проверки через предпочтительное имя ru-skill, сохранив совместимость с legacy alias `k-skill-setup`.
+description: После установки ru-skill настройте общие секреты и проверки времени выполнения через предпочтительное имя ru-skill, сохранив совместимость с legacy alias `k-skill-setup`.
 license: MIT
 metadata:
   category: setup
@@ -14,7 +14,7 @@ metadata:
 
 `ru-skill-setup` - предпочтительный setup-alias для общего post-install потока в этом репозитории.
 
-- Готовит shared secrets и runtime-проверки после установки полного набора `ru-skill`
+- Готовит shared secrets и проверки времени выполнения после установки полного набора `ru-skill`
 - Сначала использует `~/.config/ru-skill/secrets.env`
 - Сохраняет совместимость с legacy-именем `k-skill-setup` и резервным путём `~/.config/k-skill/secrets.env`
 
@@ -50,6 +50,6 @@ bash scripts/check-setup.sh
 - Legacy alias: `k-skill-setup`
 - Предпочтительный secrets path: `~/.config/ru-skill/secrets.env`
 - Legacy-резервный путь: `~/.config/k-skill/secrets.env`
-- Предпочтительные runtime-artifacts для update checks и логов: `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`
+- Предпочтительные артефакты выполнения для проверок обновлений и логов: `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`
 
 Оба имени должны вести к одному и тому же setup-потоку без ломающей миграции.

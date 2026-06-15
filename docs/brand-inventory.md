@@ -22,7 +22,7 @@
 | --- | --- | --- |
 | Корневые документы | `README.md`, `docs/install.md`, `docs/setup.md`, `docs/security-and-secrets.md`, `docs/roadmap.md` | Здесь бренд должен упоминаться только как legacy-контекст или переходный слой |
 | Feature guides | `docs/features/k-skill-proxy.md` и remaining guides с корейскими заголовками | Часть упоминаний технически корректна, но ещё не везде выровнен русский тон и legacy-маркировка |
-| Скрипты и helpers | `scripts/run-k-skill-proxy.sh`, отдельные help/default URL в legacy helper'ах | Dual-path по secrets уже внедрён, но proxy naming и часть legacy help-текстов ещё остаются |
+| Скрипты и вспомогательные утилиты | `scripts/run-k-skill-proxy.sh`, отдельные help/default URL в legacy вспомогательных скриптах | Dual-path по secrets уже внедрён, но proxy naming и часть legacy help-текстов ещё остаются |
 | Тесты | `scripts/skill-docs.test.js`, `scripts/test_fine_dust.py` | Эти тесты фиксируют текущее поведение и должны меняться только вместе с совместимостью |
 | User-Agent | `packages/k-lotto/src/index.js`, `packages/kleague-results/src/index.js` | Это безопасный хвост legacy-бренда; можно оставить до выноса или архивирования пакетов |
 

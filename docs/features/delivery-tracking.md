@@ -32,7 +32,7 @@
 2. Для CJ прочитать `_csrf` с официальной страницы и только потом вызвать JSON эндпоинт `tracking-detail`.
 3. Для Korea Post отправить `sid1` в `trace.RetrieveDomRigiTraceList.comm` и распарсить HTML.
 4. Нормализовать ответы в общий формат.
-5. При добавлении нового перевозчика придерживаться той же схемы adapter fields: `validator / entrypoint / transport / parser / status map / retry policy`.
+5. При добавлении нового перевозчика придерживаться той же схемы adapter fields: `validator / entrypoint / transport / parser / status map / политика повторных попыток`.
 
 ## Пример для CJ Logistics
 
@@ -295,7 +295,7 @@ rm -f "$tmp_html"
 - transport (`JSON / HTML / CLI`)
 - parser
 - status map
-- retry policy
+- политика повторных попыток
 
 ## Ограничения
 

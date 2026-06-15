@@ -281,7 +281,7 @@ test("документация ktx-booking описывает рабочий п�
     assert.match(doc, /--include-waiting-list/);
     assert.match(doc, /--try-waiting/);
     assert.match(doc, /credential resolution order|KSKILL_KTX_ID/);
-    assert.match(doc, /anti-bot|Dynapath|x-dynapath-m-token/i);
+    assert.match(doc, /антибота|Dynapath|x-dynapath-m-token/i);
     // Accept both Korean original and Russian translation for payment automation note
     assert.match(doc, /Оплата не автоматизируется|Оплата до завершения не автоматизируется|не закрывает оплату/);
     assert.doesNotMatch(doc, /예약 시 선택할 `--train-index`/);
@@ -2275,7 +2275,7 @@ test("навык delivery-tracking документирует сценарий �
   assert.match(featureDoc, /curl --http1\.1 --tls-max 1\.2/);
   assert.match(featureDoc, /validator/);
   assert.match(featureDoc, /status map/);
-  assert.match(featureDoc, /retry policy/);
+  assert.match(featureDoc, /политика повторных попыток/);
 });
 
 test("все файлы SKILL.md используют каноничную русскую схему заголовков", () => {
@@ -3218,4 +3218,97 @@ test("описания тестов не содержат английский �
 
   assert.doesNotMatch(brTest, /upstream-payload/);
   assert.match(brTest, /вышестоящий ответ/);
+});
+
+test("user-facing surfaces не содержат английский жаргон retry policy, tracking query, runtime-, bot-generated, helper", () => {
+  const agents = read("AGENTS.md");
+  const releasing = read(path.join("docs", "releasing.md"));
+  const brandInventory = read(path.join("docs", "brand-inventory.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const deliveryFeature = read(path.join("docs", "features", "delivery-tracking.md"));
+  const deliverySkill = read(path.join("delivery-tracking", "SKILL.md"));
+  const srtSkill = read(path.join("srt-booking", "SKILL.md"));
+  const zipcodeFeature = read(path.join("docs", "features", "zipcode-search.md"));
+  const zipcodeSkill = read(path.join("zipcode-search", "SKILL.md"));
+  const ymSkill = read(path.join("yandex-market-search", "SKILL.md"));
+  const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
+  const ruSetup = read(path.join("ru-skill-setup", "SKILL.md"));
+  const kSetup = read(path.join("k-skill-setup", "SKILL.md"));
+  const readme = read("README.md");
+
+  assert.doesNotMatch(agents, /bot-generated/);
+  assert.match(agents, /сгенерированного ботом/);
+
+  assert.doesNotMatch(releasing, /bot-generated/);
+  assert.match(releasing, /сгенерированного ботом/);
+
+  assert.doesNotMatch(deliveryFeature, /retry policy/);
+  assert.match(deliveryFeature, /политика повторных попыток/);
+
+  assert.doesNotMatch(deliverySkill, /retry policy/);
+  assert.match(deliverySkill, /политика повторных попыток/);
+
+  assert.doesNotMatch(srtSkill, /retry-циклы/);
+  assert.match(srtSkill, /циклы повторных попыток/);
+
+  assert.doesNotMatch(zipcodeFeature, /\btimeout\b/);
+  assert.doesNotMatch(zipcodeFeature, /retry-флагами/);
+  assert.doesNotMatch(zipcodeFeature, /retry-механика/);
+  assert.match(zipcodeFeature, /тайм-аут/);
+  assert.match(zipcodeFeature, /флагами повторных попыток/);
+  assert.match(zipcodeFeature, /механизм повторных попыток/);
+
+  assert.doesNotMatch(zipcodeSkill, /\btimeout\b/);
+  assert.doesNotMatch(zipcodeSkill.replace(/```[\s\S]*?```/g, ""), /\bretry\b/);
+  assert.match(zipcodeSkill, /повторн/);
+
+  assert.doesNotMatch(ymSkill, /tracking query/);
+  assert.match(ymSkill, /отслеживающих параметров запроса/);
+
+  assert.doesNotMatch(ymFeature, /tracking query/);
+  assert.match(ymFeature, /отслеживающих параметров запроса/);
+
+  assert.doesNotMatch(ruSetup, /runtime-проверки/);
+  assert.doesNotMatch(ruSetup, /runtime-artifacts/);
+  assert.match(ruSetup, /проверки времени выполнения/);
+  assert.match(ruSetup, /артефакты выполнения/);
+
+  assert.doesNotMatch(kSetup, /runtime-проверки/);
+  assert.doesNotMatch(kSetup, /runtime-artifacts/);
+  assert.match(kSetup, /проверки времени выполнения/);
+  assert.match(kSetup, /артефакты выполнения/);
+
+  assert.doesNotMatch(brandInventory, /helper'ах/);
+  assert.doesNotMatch(brandInventory, /helpers/);
+  assert.match(brandInventory, /вспомогательные утилиты/);
+
+  assert.doesNotMatch(sources, /live-обновления/);
+  assert.match(sources, /обновления.*в реальном времени/);
+
+  assert.doesNotMatch(readme, /\bhelper\b.*с обходом/);
+  assert.match(readme, /вспомогательный скрипт.*антибота/);
+});
+
+test("SKILL.md файлы zoon-nearby не содержат Anti-bot", () => {
+  const zoonSkill = read(path.join("zoon-nearby", "SKILL.md"));
+  const zoonPkgSkill = read(path.join("packages", "zoon-nearby", "SKILL.md"));
+
+  assert.doesNotMatch(zoonSkill, /Anti-bot/);
+  assert.match(zoonSkill, /Антибот/);
+
+  assert.doesNotMatch(zoonPkgSkill, /Anti-bot/);
+  assert.match(zoonPkgSkill, /Антибот/);
+});
+
+test("тестовые файлы не содержат английский жаргон payload, live-запросы, upstream-ответы", () => {
+  const kleagueTest = read(path.join("packages", "kleague-results", "test", "index.test.js"));
+  const proxyTest = read(path.join("packages", "k-skill-proxy", "test", "server.test.js"));
+
+  assert.doesNotMatch(kleagueTest, /payload с месяцем/);
+  assert.doesNotMatch(kleagueTest, /live-запросы/);
+  assert.match(kleagueTest, /официальные данные с месяцем/);
+  assert.match(kleagueTest, /запросы в реальном времени/);
+
+  assert.doesNotMatch(proxyTest, /upstream-ответы/);
+  assert.match(proxyTest, /вышестоящие ответы/);
 });
