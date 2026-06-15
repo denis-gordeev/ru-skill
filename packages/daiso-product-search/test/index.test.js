@@ -139,7 +139,7 @@ const pickupSelectionSearchGoodsPayload = {
   }
 }
 
-test("normalizeStoreSearchResponse prefers the closest exact-name store match", () => {
+test("normalizeStoreSearchResponse предпочитает ближайшее точное совпадение названия магазина", () => {
   const items = normalizeStoreSearchResponse(storeSearchPayload, "강남역2호점")
 
   assert.equal(items[0].strCd, "10224")
@@ -148,7 +148,7 @@ test("normalizeStoreSearchResponse prefers the closest exact-name store match", 
   assert.equal(items[0].openTime, "10:00")
 })
 
-test("buildSearchGoodsParams keeps the official SearchGoods query contract", () => {
+test("buildSearchGoodsParams сохраняет официальный контракт поискового запроса SearchGoods", () => {
   assert.deepEqual(buildSearchGoodsParams("리들샷", { limit: 30, pickupOnly: true }), {
     searchTerm: "리들샷",
     searchQuery: "",
@@ -166,7 +166,7 @@ test("buildSearchGoodsParams keeps the official SearchGoods query contract", () 
   })
 })
 
-test("normalizeSearchGoodsResponse surfaces reusable product candidates", () => {
+test("normalizeSearchGoodsResponse предоставляет повторно используемые кандидаты товаров", () => {
   const result = normalizeSearchGoodsResponse(searchGoodsPayload, "VT 리들샷 100")
 
   assert.equal(result.totalSize, 25)
@@ -176,7 +176,7 @@ test("normalizeSearchGoodsResponse surfaces reusable product candidates", () => 
   assert.equal(result.items[0].pickupAvailable, true)
 })
 
-test("normalizeSearchGoodsResponse accepts live Daiso field aliases and preserves the online stock identifier", () => {
+test("normalizeSearchGoodsResponse принимает псевдонимы полей Daiso в реальном времени и сохраняет идентификатор онлайн-запасов", () => {
   const result = normalizeSearchGoodsResponse(liveSearchGoodsPayload, "VT 리들샷 100")
 
   assert.equal(result.items[0].pdNo, "B202503122133")
@@ -185,7 +185,7 @@ test("normalizeSearchGoodsResponse accepts live Daiso field aliases and preserve
   assert.equal(result.items[0].smallCategoryName, "에센스/세럼/앰플")
 })
 
-test("normalizeSearchGoodsResponse ignores placeholder online stock identifiers from live SearchGoods rows", () => {
+test("normalizeSearchGoodsResponse игнорирует фиктивные идентификаторы онлайн-запасов из строк SearchGoods в реальном времени", () => {
   const result = normalizeSearchGoodsResponse(liveLookupSearchGoodsPayload, "VT 리들샷 100")
 
   assert.equal(result.items[0].pdNo, "1049275")
@@ -193,7 +193,7 @@ test("normalizeSearchGoodsResponse ignores placeholder online stock identifiers 
   assert.equal(result.items[0].quickAvailable, true)
 })
 
-test("normalizeStorePickupStockResponse maps stock rows into a public availability shape", () => {
+test("normalizeStorePickupStockResponse преобразует строки запасов в общедоступную структуру наличия", () => {
   const stock = normalizeStorePickupStockResponse(storePickupStockPayload, {
     pdNo: "1049275",
     strCd: "10224"
@@ -204,7 +204,7 @@ test("normalizeStorePickupStockResponse maps stock rows into a public availabili
   assert.equal(stock.saleStatusCode, "1")
 })
 
-test("public client helpers can consume injected fetch fixtures", async () => {
+test("публичные клиентские помощники могут использовать внедрённые фикстуры fetch", async () => {
   const originalFetch = global.fetch
 
   global.fetch = async (url) => {
@@ -260,7 +260,7 @@ test("public client helpers can consume injected fetch fixtures", async () => {
   }
 })
 
-test("lookupStoreProductAvailability falls back to pdNo when live SearchGoods returns placeholder online stock ids", async () => {
+test("lookupStoreProductAvailability возвращается к pdNo, когда SearchGoods в реальном времени возвращает фиктивные идентификаторы онлайн-запасов", async () => {
   const originalFetch = global.fetch
 
   global.fetch = async (url, init = {}) => {
@@ -309,7 +309,7 @@ test("lookupStoreProductAvailability falls back to pdNo when live SearchGoods re
   }
 })
 
-test("lookupStoreProductAvailability prefers pickup-capable products over higher-ranked non-pickup matches", async () => {
+test("lookupStoreProductAvailability предпочитает товары с самовывозом более высоко ранжированным совпадениям без самовывоза", async () => {
   const originalFetch = global.fetch
 
   global.fetch = async (url, init = {}) => {
@@ -377,7 +377,7 @@ test("lookupStoreProductAvailability prefers pickup-capable products over higher
   }
 })
 
-test("lookupStoreProductAvailability reuses a product candidate's online stock identifier", async () => {
+test("lookupStoreProductAvailability повторно использует идентификатор онлайн-запасов кандидата товара", async () => {
   const originalFetch = global.fetch
   const expectedOnlineRequest = {
     pdNo: "B202503122133",

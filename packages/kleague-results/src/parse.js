@@ -10,13 +10,13 @@ const LEAGUE_ALIAS_MAP = new Map([
 ]);
 
 const STATUS_MAP = {
-  FE: { state: "finished", label: "종료" },
-  NS: { state: "scheduled", label: "예정" },
-  LIVE: { state: "live", label: "진행 중" },
-  IN: { state: "live", label: "진행 중" },
-  HT: { state: "halftime", label: "하프타임" },
-  PP: { state: "postponed", label: "연기" },
-  CAN: { state: "cancelled", label: "취소" },
+  FE: { state: "finished", label: "Завершён" },
+  NS: { state: "scheduled", label: "Запланирован" },
+  LIVE: { state: "live", label: "В процессе" },
+  IN: { state: "live", label: "В процессе" },
+  HT: { state: "halftime", label: "Перерыв" },
+  PP: { state: "postponed", label: "Отложен" },
+  CAN: { state: "cancelled", label: "Отменён" },
 };
 
 function normalizeLeagueId(value = 1) {
@@ -32,7 +32,7 @@ function normalizeLeagueId(value = 1) {
   const leagueId = LEAGUE_ALIAS_MAP.get(token);
 
   if (!leagueId) {
-    throw new Error(`leagueId must resolve to K League 1 or 2. Received: ${value}`);
+    throw new Error(`leagueId должен разрешаться в K League 1 или 2. Получено: ${value}`);
   }
 
   return leagueId;
@@ -41,7 +41,7 @@ function normalizeLeagueId(value = 1) {
 function normalizeDateInput(value) {
   if (value instanceof Date) {
     if (Number.isNaN(value.getTime())) {
-      throw new Error("date must be a valid Date or YYYY-MM-DD string.");
+      throw new Error("date должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
     }
 
     const formatter = new Intl.DateTimeFormat("en-CA", {
@@ -62,11 +62,11 @@ function normalizeDateInput(value) {
 
   const match = String(value || "").trim().match(/^(\d{4})[-.](\d{2})[-.](\d{2})$/);
   if (!match) {
-    throw new Error("date must be a valid Date or YYYY-MM-DD string.");
+    throw new Error("date должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
   }
 
   if (!isValidCalendarDate(match[1], match[2], match[3])) {
-    throw new Error("date must be a valid Date or YYYY-MM-DD string.");
+    throw new Error("date должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
   }
 
   return buildDateParts(match[1], match[2], match[3]);
@@ -269,7 +269,7 @@ function normalizeMatchStatus(item) {
   const code = item.gameStatus || (item.endYn === "Y" ? "FE" : "NS");
   const mapped = STATUS_MAP[code] || {
     state: item.endYn === "Y" ? "finished" : "scheduled",
-    label: item.endYn === "Y" ? "종료" : "예정",
+    label: item.endYn === "Y" ? "Завершён" : "Запланирован",
   };
 
   return {

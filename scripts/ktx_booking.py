@@ -12,6 +12,8 @@ import sys
 import time
 from functools import reduce
 
+from shared_secrets import build_missing_secret_message, resolve_secret_value
+
 try:
     from Crypto.Cipher import AES
     from Crypto.Util.Padding import pad
@@ -114,8 +116,8 @@ RESERVE_OPTION_MAP = {
     "special-only": ReserveOption.SPECIAL_ONLY,
 }
 TRAIN_ID_PREFIX = "ktx:v1:"
-TRAIN_ID_INVALID_MESSAGE = "train_id is invalid; rerun search and copy a fresh train_id"
-TRAIN_ID_STALE_MESSAGE = "train_id no longer matches any current search result; rerun search and choose a fresh train_id"
+TRAIN_ID_INVALID_MESSAGE = "train_id недействителен; повторите поиск и скопируйте свежий train_id"
+TRAIN_ID_STALE_MESSAGE = "train_id больше не соответствует текущим результатам поиска; повторите поиск и выберите свежий train_id"
 TRAIN_ID_FIELDS = (
     "train_no",
     "dep_date",
@@ -138,8 +140,8 @@ def ensure_runtime_dependencies() -> None:
     if missing:
         install_command = f"python3 -m pip install {' '.join(missing)}"
         raise SystemExit(
-            "scripts/ktx_booking.py requires additional Python packages "
-            f"({', '.join(missing)}). Install them before running this helper: {install_command}"
+            "scripts/ktx_booking.py требует дополнительные Python-пакеты "
+            f"({', '.join(missing)}). Установите их перед запуском: {install_command}"
         )
 
 
@@ -421,7 +423,7 @@ class PatchedKorail(Korail):
             elif option == ReserveOption.SPECIAL_FIRST:
                 seat_type = "2" if train.has_special_seat() else "1"
             else:
-                raise ValueError(f"unsupported reserve option: {option}")
+                raise ValueError(f"неподдерживаемая опция бронирования: {option}")
         except SoldOutError:
             if try_waiting and option != ReserveOption.SPECIAL_ONLY and train.has_general_waiting_list():
                 reserving_seat = False
@@ -489,7 +491,7 @@ class PatchedKorail(Korail):
             matches = [reservation for reservation in self.reservations() if reservation.rsv_id == reservation_id]
             if len(matches) == 1:
                 return matches[0]
-            raise KorailError(f"reservation {reservation_id} was created but could not be reloaded")
+            raise KorailError(f"бронирование {reservation_id} создано, но не удалось перезагрузить")
 
     def reservations(self):
         payload = {"Device": self._device, "Version": self._version, "Key": self._key}
@@ -551,7 +553,7 @@ def build_train_id(train) -> str:
 
 def parse_train_id(train_id: str) -> dict[str, str]:
     if not train_id.startswith(TRAIN_ID_PREFIX):
-        raise SystemExit("train_id must start with ktx:v1:")
+        raise SystemExit("train_id должен начинаться с ktx:v1:")
     encoded = train_id.removeprefix(TRAIN_ID_PREFIX)
     padded = encoded + ("=" * ((4 - len(encoded) % 4) % 4))
     try:
@@ -621,14 +623,10 @@ def print_json(payload: dict[str, object]) -> None:
 
 def build_client() -> PatchedKorail:
     ensure_runtime_dependencies()
-    korail_id = os.environ.get("KSKILL_KTX_ID")
-    korail_pw = os.environ.get("KSKILL_KTX_PASSWORD")
+    korail_id = resolve_secret_value("KSKILL_KTX_ID")
+    korail_pw = resolve_secret_value("KSKILL_KTX_PASSWORD")
     if not korail_id or not korail_pw:
-        raise SystemExit(
-            "이 작업에는 KSKILL_KTX_ID, KSKILL_KTX_PASSWORD 환경변수가 필요합니다. "
-            "환경변수가 설정되어 있지 않으면 ~/.config/k-skill/secrets.env 에 추가하거나 "
-            "에이전트의 secret vault에서 주입해 주세요."
-        )
+        raise SystemExit(build_missing_secret_message(["KSKILL_KTX_ID", "KSKILL_KTX_PASSWORD"]))
     client = PatchedKorail(korail_id, korail_pw)
     if not client.logined:
         raise NeedToLoginError()
@@ -695,51 +693,51 @@ def command_cancel(args: argparse.Namespace) -> None:
     reservations = client.reservations()
     match = next((reservation for reservation in reservations if reservation.rsv_id == args.reservation_id), None)
     if match is None:
-        raise SystemExit(f"reservation {args.reservation_id} not found")
+        raise SystemExit(f"бронирование {args.reservation_id} не найдено")
     client.cancel(match)
     print_json({"cancelled": True, "reservation_id": args.reservation_id})
 
 
 def add_common_trip_args(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("dep", help="출발역")
-    parser.add_argument("arr", help="도착역")
-    parser.add_argument("date", help="출발일 YYYYMMDD")
-    parser.add_argument("time", help="희망 시작 시각 HHMMSS")
-    parser.add_argument("--adults", type=int, default=1, help="성인 수")
-    parser.add_argument("--children", type=int, default=0, help="어린이 수")
-    parser.add_argument("--toddlers", type=int, default=0, help="유아 수")
-    parser.add_argument("--seniors", type=int, default=0, help="경로 수")
+    parser.add_argument("dep", help="Станция отправления")
+    parser.add_argument("arr", help="Станция прибытия")
+    parser.add_argument("date", help="Дата отправления YYYYMMDD")
+    parser.add_argument("time", help="Желаемое время отправления HHMMSS")
+    parser.add_argument("--adults", type=int, default=1, help="Количество взрослых")
+    parser.add_argument("--children", type=int, default=0, help="Количество детей")
+    parser.add_argument("--toddlers", type=int, default=0, help="Количество малышей")
+    parser.add_argument("--seniors", type=int, default=0, help="Количество пенсионеров")
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Patched KTX/Korail booking helper for k-skill")
+    parser = argparse.ArgumentParser(description="Вспомогательный скрипт бронирования KTX/Korail для ru-skill")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    search_parser = subparsers.add_parser("search", help="KTX 열차를 조회합니다")
+    search_parser = subparsers.add_parser("search", help="Поиск поездов KTX")
     add_common_trip_args(search_parser)
-    search_parser.add_argument("--limit", type=int, default=5, help="출력할 최대 열차 수")
-    search_parser.add_argument("--include-no-seats", action="store_true", help="매진 열차도 포함")
-    search_parser.add_argument("--include-waiting-list", action="store_true", help="예약 대기 가능 열차도 포함")
+    search_parser.add_argument("--limit", type=int, default=5, help="Максимальное количество поездов")
+    search_parser.add_argument("--include-no-seats", action="store_true", help="Включить распроданные поезда")
+    search_parser.add_argument("--include-waiting-list", action="store_true", help="Включить поезда с листом ожидания")
     search_parser.set_defaults(func=command_search)
 
-    reserve_parser = subparsers.add_parser("reserve", help="조회 결과 중 하나를 예약합니다")
+    reserve_parser = subparsers.add_parser("reserve", help="Забронировать один из найденных поездов")
     add_common_trip_args(reserve_parser)
-    reserve_parser.add_argument("--train-id", required=True, help="search 결과에서 복사한 stable train_id")
-    reserve_parser.add_argument("--seat-option", choices=sorted(RESERVE_OPTION_MAP), default="general-first")
-    reserve_parser.add_argument("--include-no-seats", action="store_true", help="검색 시 매진 열차도 포함")
-    reserve_parser.add_argument("--include-waiting-list", action="store_true", help="검색 시 예약대기 열차도 포함")
+    reserve_parser.add_argument("--train-id", required=True, help="стабильный train_id из результатов поиска")
+    reserve_parser.add_argument("--seat-option", choices=sorted(RESERVE_OPTION_MAP), default="general-first", help="Опция выбора места: общий приоритет, только общий, спец-приоритет, только спец")
+    reserve_parser.add_argument("--include-no-seats", action="store_true", help="Включить распроданные поезда при поиске")
+    reserve_parser.add_argument("--include-waiting-list", action="store_true", help="Включить лист ожидания при поиске")
     reserve_parser.add_argument(
         "--try-waiting",
         action="store_true",
-        help="좌석이 없으면 예약대기를 시도 (reserve 재조회 시 예약대기 열차 자동 포함)",
+        help="Если мест нет, попытаться встать в лист ожидания",
     )
     reserve_parser.set_defaults(func=command_reserve)
 
-    reservations_parser = subparsers.add_parser("reservations", help="현재 예약 목록을 조회합니다")
+    reservations_parser = subparsers.add_parser("reservations", help="Показать текущие бронирования")
     reservations_parser.set_defaults(func=command_reservations)
 
-    cancel_parser = subparsers.add_parser("cancel", help="예약번호로 예약을 취소합니다")
-    cancel_parser.add_argument("reservation_id", help="취소할 예약번호")
+    cancel_parser = subparsers.add_parser("cancel", help="Отменить бронирование по номеру")
+    cancel_parser.add_argument("reservation_id", help="Номер бронирования для отмены")
     cancel_parser.set_defaults(func=command_cancel)
 
     return parser

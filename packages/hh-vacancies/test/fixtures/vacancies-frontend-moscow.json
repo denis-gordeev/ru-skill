@@ -1,0 +1,123 @@
+{
+  "items": [
+    {
+      "id": "131942268",
+      "name": "Frontend - разработчик (ЭКИ)",
+      "area": {
+        "id": "1",
+        "name": "Москва",
+        "url": "https://api.hh.ru/areas/1"
+      },
+      "salary": null,
+      "salary_range": null,
+      "published_at": "2026-04-08T10:20:33+0300",
+      "alternate_url": "https://hh.ru/vacancy/131942268",
+      "employer": {
+        "id": "24209",
+        "name": "СберЛизинг",
+        "alternate_url": "https://hh.ru/employer/24209",
+        "accredited_it_employer": false,
+        "trusted": true
+      },
+      "snippet": {
+        "requirement": "Опыт FE-разработки более 4 лет. Навык владения JavaScript / ES6 / 7 / 8 / 9, TypeScript (обязательно). Опыт работы с React...",
+        "responsibility": "Разрабатывать новые и дорабатывать существующие бизнес-процессы в части UI по требованиям заказчиков. Осуществлять поддержку пользователей по возникающим вопросам. "
+      },
+      "schedule": {
+        "id": "fullDay",
+        "name": "Полный день"
+      },
+      "experience": {
+        "id": "between3And6",
+        "name": "От 3 до 6 лет"
+      },
+      "employment": {
+        "id": "full",
+        "name": "Полная занятость"
+      },
+      "work_format": [
+        {
+          "id": "ON_SITE",
+          "name": "На\u00a0месте работодателя"
+        }
+      ],
+      "professional_roles": [
+        {
+          "id": "96",
+          "name": "Программист, разработчик"
+        }
+      ]
+    },
+    {
+      "id": "131927189",
+      "name": "Middle Frontend-разработчик (React / React Admin)",
+      "area": {
+        "id": "1",
+        "name": "Москва",
+        "url": "https://api.hh.ru/areas/1"
+      },
+      "salary": {
+        "from": 180000,
+        "to": null,
+        "currency": "RUR",
+        "gross": false
+      },
+      "salary_range": {
+        "from": 180000,
+        "to": null,
+        "currency": "RUR",
+        "gross": false,
+        "mode": {
+          "id": "MONTH",
+          "name": "За\u00a0месяц"
+        },
+        "frequency": {
+          "id": "TWICE_PER_MONTH",
+          "name": "Два раза в\u00a0месяц"
+        }
+      },
+      "published_at": "2026-04-07T17:21:28+0300",
+      "alternate_url": "https://hh.ru/vacancy/131927189",
+      "employer": {
+        "id": "5574166",
+        "name": "Бизнес Совет",
+        "alternate_url": "https://hh.ru/employer/5574166",
+        "accredited_it_employer": false,
+        "trusted": true
+      },
+      "snippet": {
+        "requirement": "React (хуки, функциональные компоненты, работа с состоянием). Уверенное знание JavaScript (ES6+) / TypeScript (будет плюсом). Опыт работы с REST...",
+        "responsibility": "Разработка SPA на React для админской панели / личного кабинета пользователя. Интеграция с готовым RESTful API (Axios, React Query, SWR ). "
+      },
+      "schedule": {
+        "id": "fullDay",
+        "name": "Полный день"
+      },
+      "experience": {
+        "id": "between1And3",
+        "name": "От 1 года до 3 лет"
+      },
+      "employment": {
+        "id": "full",
+        "name": "Полная занятость"
+      },
+      "work_format": [
+        {
+          "id": "HYBRID",
+          "name": "Гибрид"
+        }
+      ],
+      "professional_roles": [
+        {
+          "id": "96",
+          "name": "Программист, разработчик"
+        }
+      ]
+    }
+  ],
+  "found": 895,
+  "pages": 448,
+  "page": 0,
+  "per_page": 2,
+  "alternate_url": "https://hh.ru/search/vacancy?area=1&enable_snippets=true&items_on_page=2&text=frontend"
+}

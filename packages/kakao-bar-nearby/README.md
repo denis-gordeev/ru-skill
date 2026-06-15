@@ -1,35 +1,39 @@
 # kakao-bar-nearby
 
-카카오맵 검색 + 장소 패널 JSON 을 사용해 근처 술집을 찾는 Node.js 패키지입니다.
+`kakao-bar-nearby` - устаревший пакет только для чтения для поиска баров рядом через мобильный поиск Kakao Map и `panel3` JSON.
 
-## 설치
+## Граничное примечание
 
-배포 후:
+Этот пакет остаётся `legacy-only`: для российских сценариев поиска ближайших его замена уже реализована как `osm-nearby` и `zoon-nearby`. `kakao-bar-nearby` сохраняется ради обратной совместимости и как эталонный сценарий для подсказки по меню/часам/рассадке, но не должен выглядеть как активный backlog целевой линейки.
+
+## Установка
+
+После публикации:
 
 ```bash
 npm install kakao-bar-nearby
 ```
 
-이 저장소에서 개발할 때:
+При локальной разработке в этом репозитории:
 
 ```bash
 npm install
 ```
 
-## 사용 원칙
+## Принципы использования
 
-- 유저 위치는 자동으로 추적하지 않습니다.
-- 먼저 **현재 위치를 먼저 물어본다** 는 규칙을 지키세요.
-- `서울역 술집`, `강남 술집`, `사당 술집` 같은 질의를 카카오맵 모바일 검색으로 조회합니다.
-- 영업 중인 결과를 먼저 정렬하고, 대표 메뉴·좌석 힌트·전화번호를 함께 반환합니다.
+- Пользовательское местоположение не отслеживается автоматически.
+- Сначала нужно спросить, где пользователь находится сейчас; историческая формулировка для регрессий: `сначала спрашиваем текущее местоположение`.
+- Рабочие запросы выглядят как `서울역 술집`, `강남 술집`, `사당 술집`.
+- Если есть открытые места, их стоит поднимать первыми.
 
-## 공식 Kakao Map 표면
+## Официальные поверхности Kakao Map
 
-- 모바일 검색: `https://m.map.kakao.com/actions/searchView`
-- 장소 패널 JSON: `https://place-api.map.kakao.com/places/panel3/<confirmId>`
-- 장소 상세 페이지: `https://place.map.kakao.com/<confirmId>`
+- Мобильный поиск: `https://m.map.kakao.com/actions/searchView`
+- JSON панели места: `https://place-api.map.kakao.com/places/panel3/<confirmId>`
+- Страница места: `https://place.map.kakao.com/<confirmId>`
 
-## 사용 예시
+## Пример
 
 ```js
 const { searchNearbyBarsByLocationQuery } = require("kakao-bar-nearby");
@@ -49,25 +53,40 @@ main().catch((error) => {
 });
 ```
 
-## Live smoke snapshot
+## Проверочный пример
 
-2026-03-29 에 `사당`, `limit=3`, `panelLimit=8` 로 실제 호출했을 때 상위 결과 예시는 아래와 같았습니다.
+Ниже фрагмент реального ответа, проверенный 2026-03-29 для `사당`, `limit=3`, `panelLimit=8`.
 
 ```json
 {
-  "anchor": { "name": "사당1동먹자골목상점가" },
-  "meta": { "openNowCount": 4 },
+  "anchor": {
+    "name": "사당1동먹자골목상점가"
+  },
+  "meta": {
+    "openNowCount": 4
+  },
   "items": [
-    { "name": "우미노식탁", "open": "영업 중", "detail": "24:00 까지" },
-    { "name": "방배을지로골뱅이술집포차 사당역점", "open": "영업 중", "detail": "24:00 까지" },
-    { "name": "커먼테이블", "open": "영업 중", "detail": "01:00 까지" }
+    {
+      "name": "우미노식탁",
+      "openStatus": { "label": "영업 중", "detail": "24:00 까지" },
+      "seatingKeywords": ["단체석", "케이크 반입 가능", "바테이블"]
+    },
+    {
+      "name": "방배을지로골뱅이술집포차 사당역점",
+      "openStatus": { "label": "영업 중", "detail": "24:00 까지" },
+      "menuSamples": ["을지로골뱅이(골뱅이무침)", "백골뱅이탕 (중)", "먹태"]
+    },
+    {
+      "name": "커먼테이블",
+      "openStatus": { "label": "영업 중", "detail": "01:00 까지" },
+      "phone": "010-7730-1056"
+    }
   ]
 }
 ```
 
-## 공개 API
+## API-справочник
 
-- `parseSearchResultsHtml(html)`
-- `selectAnchorCandidate(locationQuery, items)`
-- `normalizePlacePanel(panel, searchItem, anchorPoint)`
-- `searchNearbyBarsByLocationQuery(locationQuery, options?)`
+- `searchNearbyBarsByLocationQuery(query, options?)`
+- `searchNearbyBarsByCoordinates({ latitude, longitude }, options?)`
+- `searchAnchorCandidates(query, options?)`

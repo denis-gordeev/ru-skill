@@ -37,7 +37,7 @@ async function request(url, options = {}, responseType = "text") {
   const fetchImpl = options.fetchImpl || global.fetch;
 
   if (typeof fetchImpl !== "function") {
-    throw new Error("A fetch implementation is required.");
+    throw new Error("Требуется реализация fetch.");
   }
 
   const response = await fetchImpl(url, {
@@ -49,7 +49,7 @@ async function request(url, options = {}, responseType = "text") {
   });
 
   if (!response.ok) {
-    throw new Error(`Kakao bar lookup request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к Kakao bar завершился ошибкой ${response.status} для ${url}`);
   }
 
   return responseType === "json" ? response.json() : response.text();
@@ -153,7 +153,7 @@ async function resolveAnchor(query, options = {}) {
     }
   }
 
-  throw new Error(`No usable Kakao Map place panel was available for ${query}.`);
+  throw new Error(`Не удалось получить пригодную панель места Kakao Map для ${query}.`);
 }
 
 function shouldRetryWithStationQuery(query, anchor) {
@@ -167,7 +167,7 @@ async function searchNearbyBarsByLocationQuery(locationQuery, options = {}) {
   const query = String(locationQuery || "").trim();
 
   if (!query) {
-    throw new Error("locationQuery is required.");
+    throw new Error("locationQuery обязателен.");
   }
 
   let { anchor, anchorCandidates } = await resolveAnchor(query, options);
@@ -180,7 +180,7 @@ async function searchNearbyBarsByLocationQuery(locationQuery, options = {}) {
         anchorCandidates = stationResolution.anchorCandidates;
       }
     } catch (_error) {
-      // Keep the original anchor when the station fallback is unavailable.
+      // Сохранить исходную привязку, когда запасной вариант со станцией недоступен.
     }
   }
 

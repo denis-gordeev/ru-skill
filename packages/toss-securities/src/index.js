@@ -35,7 +35,7 @@ async function runReadOnlyCommand(commandName, options = {}) {
     const stderr = String(error.stderr || "").trim();
     const detail = stderr || error.message;
 
-    throw new Error(`tossctl ${commandName} failed: ${detail}`, {
+    throw new Error(`tossctl ${commandName} завершился с ошибкой: ${detail}`, {
       cause: error
     });
   }

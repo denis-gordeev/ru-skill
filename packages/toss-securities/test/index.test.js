@@ -14,7 +14,7 @@ const {
   parseJsonOutput
 } = require("../src/parse");
 
-test("buildReadOnlyCommand assembles tossctl args for supported read-only commands", () => {
+test("buildReadOnlyCommand собирает аргументы tossctl для поддерживаемых команд только для чтения", () => {
   const command = buildReadOnlyCommand("quoteGet", {
     symbol: "TSLA",
     configDir: "/tmp/toss",
@@ -35,12 +35,12 @@ test("buildReadOnlyCommand assembles tossctl args for supported read-only comman
   ]);
 });
 
-test("read-only command validation rejects unsupported or dangerous command names", () => {
+test("валидация команд только для чтения отклоняет неподдерживаемые или опасные имена команд", () => {
   assert.equal(assertReadOnlyCommandName("accountSummary"), "accountSummary");
-  assert.throws(() => assertReadOnlyCommandName("orderPlace"), /Unsupported read-only tossctl command/);
+  assert.throws(() => assertReadOnlyCommandName("orderPlace"), /Неподдерживаемая команда tossctl только для чтения/);
 });
 
-test("parseJsonOutput annotates JSON payloads with the originating command", () => {
+test("parseJsonOutput аннотирует JSON-нагрузку исходной командой", () => {
   const result = parseJsonOutput('{"ok":true,"items":[1,2]}', "watchlistList");
 
   assert.equal(result.commandName, "watchlistList");
@@ -50,7 +50,7 @@ test("parseJsonOutput annotates JSON payloads with the originating command", () 
   });
 });
 
-test("buildReadOnlyCommand adds the completed-orders market filter", () => {
+test("buildReadOnlyCommand добавляет фильтр рынка для завершённых ордеров", () => {
   const command = buildReadOnlyCommand("ordersCompleted", {
     market: "us"
   });
@@ -63,7 +63,7 @@ test("buildReadOnlyCommand adds the completed-orders market filter", () => {
   ]);
 });
 
-test("public helpers execute a mock tossctl binary and parse its JSON output", async () => {
+test("публичные помощники выполняют имитацию бинарного файла tossctl и анализируют его JSON-вывод", async () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "toss-securities-"));
   const binDir = path.join(tempDir, "bin");
   const logFile = path.join(tempDir, "invocation.json");

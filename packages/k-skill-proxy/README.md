@@ -1,31 +1,57 @@
 # k-skill-proxy
 
-`k-skill`용 Fastify 기반 프록시 서버입니다. 지금은 AirKorea 미세먼지 조회를 먼저 감싸고, 이후 무료/공공 API adapter를 추가하는 베이스로 씁니다.
+`k-skill-proxy` - Fastify-прокси для бесплатных и публичных API, который пока используется как базовый серверный слой во время миграции `ru-skill` на российские и русскоязычные сценарии.
 
-## 현재 제공 엔드포인트
+Сейчас пакет в основном обслуживает legacy-кейс с AirKorea и мелкой пылью, но его архитектура рассчитана на добавление других адаптеров только для чтения с узкой разрешённой поверхностью.
+
+## Граничное примечание
+
+Этот пакет остаётся `transition`-инфраструктурой и слоем совместимости, а не отдельным пользовательским `target`-продуктом. Legacy эндпоинт и имя `k-skill-proxy` сохраняются ради совместимости; это не означает, что AirKorea/fine-dust снова становятся основным направлением развития `ru-skill`.
+
+## Текущие адреса
 
 - `GET /health`
 - `GET /v1/fine-dust/report`
+- `GET /B552584/:service/:operation`
 
-## 환경변수
+`/B552584/:service/:operation` ограничен набором разрешённых AirKorea маршрутов и не является общим произвольным проксированием.
 
-- `AIR_KOREA_OPEN_API_KEY` — 프록시 서버 쪽 AirKorea upstream key
-- `KSKILL_PROXY_HOST` — 기본 `127.0.0.1`
-- `KSKILL_PROXY_PORT` — 기본 `4020`
-- `KSKILL_PROXY_CACHE_TTL_MS` — 기본 `300000`
-- `KSKILL_PROXY_RATE_LIMIT_WINDOW_MS` — 기본 `60000`
-- `KSKILL_PROXY_RATE_LIMIT_MAX` — 기본 `60`
+## Переменные окружения
 
-기본 정책은 **무료 API 공개 프록시 = 무인증** 이다. 대신 endpoint scope 를 좁게 유지하고, cache + rate limit 으로 남용을 늦춘다.
+- `AIR_KOREA_OPEN_API_KEY` - ключ вышестоящего API для AirKorea на стороне сервера
+- `KSKILL_PROXY_HOST` - по умолчанию `127.0.0.1`
+- `KSKILL_PROXY_PORT` - по умолчанию `4020`
+- `KSKILL_PROXY_CACHE_TTL_MS` - по умолчанию `300000`
+- `KSKILL_PROXY_RATE_LIMIT_WINDOW_MS` - по умолчанию `60000`
+- `KSKILL_PROXY_RATE_LIMIT_MAX` - по умолчанию `60`
+- `KSKILL_PROXY_NAME` - имя сервиса для `/health`, по умолчанию `k-skill-proxy`
 
-## 로컬 실행
+Базовая политика пакета: бесплатный API proxy по умолчанию остаётся публичным и без аутентификации, но с узким списком маршрутов, кэшем и ограничением частоты запросов.
+
+## Локальный запуск
 
 ```bash
 node packages/k-skill-proxy/src/server.js
 ```
 
-환경변수(`AIR_KOREA_OPEN_API_KEY` 등)가 이미 설정되어 있거나 `~/.config/k-skill/secrets.env`를 source한 상태에서 실행한다.
+Перед запуском нужно подготовить переменные окружения, включая `AIR_KOREA_OPEN_API_KEY`, если нужен legacy fine-dust сценарий.
 
-## PM2 실행
+Если использовать репозиторный вспомогательный скрипт `scripts/run-k-skill-proxy.sh`, порядок разрешения будет таким:
 
-루트의 `ecosystem.config.cjs` + `scripts/run-k-skill-proxy.sh` 조합을 사용하면 재부팅 이후에도 같은 환경변수로 다시 올라옵니다.
+1. `RU_SKILL_SECRETS_FILE`
+2. `KSKILL_SECRETS_FILE`
+3. `~/.config/ru-skill/secrets.env`
+4. `~/.config/k-skill/secrets.env`
+
+То есть `ru-skill`-first путь считается основным, а legacy-файл остаётся только резервным механизмом.
+
+## Операционная модель
+
+- ключи вышестоящих API не выдаются клиенту
+- клиент обращается только к прокси
+- новые вышестоящие источники добавляются как узкие адаптеры для бесплатных API
+- приоритет у адресов только для чтения с понятным источником данных
+
+## Развёртывание
+
+Для фонового запуска в репозитории используются `ecosystem.config.cjs` и `scripts/run-k-skill-proxy.sh`.

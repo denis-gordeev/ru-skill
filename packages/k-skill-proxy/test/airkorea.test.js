@@ -46,7 +46,7 @@ const measurementPayload = {
   }
 };
 
-test("pickStation prefers specific region token matches", () => {
+test("pickStation предпочитает специфичные совпадения токенов региона", () => {
   const station = pickStation(stationPayload.response.body.items, {
     regionHint: "서울 강남구"
   });
@@ -54,7 +54,7 @@ test("pickStation prefers specific region token matches", () => {
   assert.equal(station.stationName, "강남구");
 });
 
-test("buildReport combines station and measurement summary", () => {
+test("buildReport объединяет сводку станции и измерений", () => {
   const report = buildReport({
     stationItems: stationPayload.response.body.items,
     measurementItems: measurementPayload.response.body.items,
@@ -62,12 +62,12 @@ test("buildReport combines station and measurement summary", () => {
   });
 
   assert.equal(report.station_name, "강남구");
-  assert.deepEqual(report.pm10, { value: "42", grade: "보통" });
-  assert.deepEqual(report.pm25, { value: "19", grade: "보통" });
-  assert.equal(report.lookup_mode, "fallback");
+  assert.deepEqual(report.pm10, { value: "42", grade: "Умеренно" });
+  assert.deepEqual(report.pm25, { value: "19", grade: "Умеренно" });
+  assert.equal(report.lookup_mode, "запасной вариант");
 });
 
-test("fetchFineDustReport uses station-info lookup before measurement lookup", async () => {
+test("fetchFineDustReport использует поиск информации о станции перед поиском измерений", async () => {
   const calls = [];
   const fetchImpl = async (url) => {
     calls.push(String(url));
@@ -92,7 +92,7 @@ test("fetchFineDustReport uses station-info lookup before measurement lookup", a
       });
     }
 
-    throw new Error(`unexpected URL: ${url}`);
+    throw new Error(`неожиданный URL: ${url}`);
   };
 
   const report = await fetchFineDustReport({
@@ -102,14 +102,14 @@ test("fetchFineDustReport uses station-info lookup before measurement lookup", a
   });
 
   assert.equal(report.station_name, "강남구");
-  assert.equal(report.lookup_mode, "fallback");
+  assert.equal(report.lookup_mode, "запасной вариант");
   assert.deepEqual(calls.map((url) => url.split("/").at(-1)?.split("?")[0]), [
     "getMsrstnList",
     "getMsrstnAcctoRltmMesureDnsty"
   ]);
 });
 
-test("fetchFineDustReport falls back to direct measurement lookup when station-info access is forbidden", async () => {
+test("fetchFineDustReport возвращается к прямому поиску измерений, когда доступ к информации о станции запрещён", async () => {
   const calls = [];
   const fetchImpl = async (url) => {
     const text = String(url);
@@ -126,7 +126,7 @@ test("fetchFineDustReport falls back to direct measurement lookup when station-i
       });
     }
 
-    throw new Error(`unexpected URL: ${url}`);
+    throw new Error(`неожиданный URL: ${url}`);
   };
 
   const report = await fetchFineDustReport({
@@ -137,14 +137,14 @@ test("fetchFineDustReport falls back to direct measurement lookup when station-i
 
   assert.equal(report.station_name, "강남구");
   assert.equal(report.station_address, null);
-  assert.equal(report.lookup_mode, "fallback");
+  assert.equal(report.lookup_mode, "запасной вариант");
   assert.deepEqual(calls.map((url) => url.split("/").at(-1)?.split("?")[0]), [
     "getMsrstnList",
     "getMsrstnAcctoRltmMesureDnsty"
   ]);
 });
 
-test("fetchFineDustReport returns a helpful 400 when district tokens do not map to station names", async () => {
+test("fetchFineDustReport возвращает информативный 400, когда токены района не сопоставляются с названиями станций", async () => {
   const fetchImpl = async (url) => {
     const text = String(url);
 
@@ -175,7 +175,7 @@ test("fetchFineDustReport returns a helpful 400 when district tokens do not map 
       });
     }
 
-    throw new Error(`unexpected URL: ${url}`);
+    throw new Error(`неожиданный URL: ${url}`);
   };
 
   await assert.rejects(

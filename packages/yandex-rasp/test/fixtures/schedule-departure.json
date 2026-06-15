@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-10",
+  "pagination": {
+    "total": 42,
+    "limit": 100,
+    "offset": 0
+  },
+  "station": {
+    "code": "s9600013",
+    "title": "Москва, Казанский вокзал",
+    "station_type": "station"
+  },
+  "schedule": [
+    {
+      "arrival": "2026-04-10T06:30:00+03:00",
+      "departure": "2026-04-10T06:35:00+03:00",
+      "thread": {
+        "uid": "thread_6482_1",
+        "title": "Москва — Рязань",
+        "number": "6482",
+        "transport_type": "suburban",
+        "carrier": {
+          "code": 153,
+          "title": "ЦППК"
+        },
+        "transport_subtype": {
+          "code": "suburban",
+          "title": "Пригородный поезд"
+        }
+      },
+      "days": "daily",
+      "stops": "все остановки",
+      "is_fuzzy": false,
+      "platform": "3",
+      "terminal": null
+    },
+    {
+      "arrival": null,
+      "departure": "2026-04-10T12:15:00+03:00",
+      "thread": {
+        "uid": "thread_026М",
+        "title": "Москва — Самара",
+        "number": "026М",
+        "transport_type": "train",
+        "carrier": {
+          "code": 196,
+          "title": "ФПК"
+        },
+        "transport_subtype": {
+          "code": "train",
+          "title": "Пассажирский поезд"
+        }
+      },
+      "days": "по некоторым дням",
+      "stops": "без остановок",
+      "is_fuzzy": false,
+      "platform": "7",
+      "terminal": null
+    }
+  ]
+}

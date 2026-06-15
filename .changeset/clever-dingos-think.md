@@ -7,4 +7,4 @@
 "toss-securities": patch
 ---
 
-Refresh package metadata for the `ru-skill` repository migration and point published packages at the current GitHub repository.
+Обновление метаданных пакетов для миграции репозитория `ru-skill` и перенаправление опубликованных пакетов на текущий репозиторий GitHub.

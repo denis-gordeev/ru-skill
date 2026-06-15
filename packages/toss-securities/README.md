@@ -1,10 +1,14 @@
 # toss-securities
 
-`JungHoonGhae/tossinvest-cli` 의 `tossctl` 바이너리를 감싸는 **read-only tossctl wrapper** 입니다. 이 패키지는 설치/로그인/조회 흐름만 정리하고, 거래 mutation 은 공개 API에서 지원하지 않습니다.
+`toss-securities` - это обёртка только для чтения над `tossctl` из `JungHoonGhae/tossinvest-cli`. Пакет нормализует сценарий установки, входа и чтения данных, но сознательно не открывает торговые команды изменения состояния.
 
-## Install
+## Граничное примечание
 
-먼저 upstream CLI 를 설치합니다.
+Этот пакет остаётся `legacy-only`: прямая российская замена для авторизованных брокерских сценариев не подтверждена, а публичные рыночные сводки только для чтения уже покрываются `moex-shares`. Поэтому `toss-securities` сохраняется ради обратной совместимости и не должен выглядеть как скрытый кандидат целевой линейки.
+
+## Установка
+
+Сначала поставить исходный CLI и пройти логин:
 
 ```bash
 brew tap JungHoonGhae/tossinvest-cli
@@ -14,13 +18,13 @@ tossctl auth doctor
 tossctl auth login
 ```
 
-그 다음 배포된 패키지를 설치합니다.
+Затем установить пакет:
 
 ```bash
 npm install toss-securities
 ```
 
-## Supported read-only helpers
+## Поддерживаемые функции только для чтения
 
 - `listAccounts()`
 - `getAccountSummary()`
@@ -32,11 +36,15 @@ npm install toss-securities
 - `listCompletedOrders({ market })`
 - `listWatchlist()`
 
-모든 helper 는 내부적으로 `tossctl ... --output json` 을 실행하고, `commandName`, `bin`, `args`, `data` 를 반환합니다.
+Каждая вспомогательная функция внутри вызывает `tossctl ... --output json` и возвращает `commandName`, `bin`, `args`, `data`.
 
-대응되는 대표 CLI 는 `tossctl account summary --output json`, `tossctl quote get TSLA --output json`, `tossctl watchlist list --output json` 입니다.
+Базовые команды `tossctl`:
 
-## Usage
+- `tossctl account summary --output json`
+- `tossctl quote get TSLA --output json`
+- `tossctl watchlist list --output json`
+
+## Пример
 
 ```js
 const {
@@ -63,11 +71,11 @@ main().catch((error) => {
 });
 ```
 
-## What is intentionally not supported
+## Что намеренно не поддерживается
 
 - `tossctl order place`
 - `tossctl order cancel`
 - `tossctl order amend`
 - permission grant/revoke
 
-이 패키지는 조회 전용이다. 실거래에 영향을 주는 명령은 upstream safety gate 를 우회하지 않도록 래핑하지 않는다.
+Пакет остаётся только сценарием чтения. Команды, которые могут повлиять на реальную сделку, не оборачиваются и не обходят защитный механизм исходного CLI.

@@ -1,0 +1,76 @@
+{
+  "pagination": {
+    "total": 5,
+    "limit": 100,
+    "offset": 0
+  },
+  "segments": [
+    {
+      "from": {
+        "code": "s9600013",
+        "title": "Москва, Казанский вокзал",
+        "transport_type": "train",
+        "type": "station"
+      },
+      "to": {
+        "code": "s9600213",
+        "title": "Санкт-Петербург, Московский вокзал",
+        "transport_type": "train",
+        "type": "station"
+      },
+      "thread": {
+        "uid": "thread_054Ч",
+        "title": "Москва — Санкт-Петербург",
+        "number": "054Ч",
+        "transport_type": "train",
+        "carrier": {
+          "code": 196,
+          "title": "ФПК"
+        },
+        "vehicle": "СВ"
+      },
+      "departure": "2026-04-10T23:45:00+03:00",
+      "arrival": "2026-04-11T07:55:00+03:00",
+      "duration": 29400,
+      "departure_platform": "5",
+      "arrival_terminal": null,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": true,
+        "places": [
+          {
+            "currency": "RUB",
+            "price": {
+              "whole": 3500,
+              "cents": 0
+            },
+            "name": "плацкарт"
+          },
+          {
+            "currency": "RUB",
+            "price": {
+              "whole": 5200,
+              "cents": 0
+            },
+            "name": "купе"
+          }
+        ]
+      },
+      "start_date": "2026-04-10"
+    }
+  ],
+  "interval_segments": [],
+  "search": {
+    "date": "2026-04-10",
+    "from": {
+      "code": "c146",
+      "type": "settlement",
+      "title": "Москва"
+    },
+    "to": {
+      "code": "c159",
+      "type": "settlement",
+      "title": "Санкт-Петербург"
+    }
+  }
+}

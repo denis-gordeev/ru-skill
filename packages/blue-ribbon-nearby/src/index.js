@@ -26,7 +26,7 @@ async function request(url, options = {}, responseType = "text") {
   const fetchImpl = options.fetchImpl || global.fetch;
 
   if (typeof fetchImpl !== "function") {
-    throw new Error("A fetch implementation is required.");
+    throw new Error("Требуется реализация fetch.");
   }
 
   const headerSet = responseType === "json" ? DEFAULT_JSON_HEADERS : DEFAULT_BROWSER_HEADERS;
@@ -39,7 +39,7 @@ async function request(url, options = {}, responseType = "text") {
   });
 
   if (!response.ok) {
-    throw new Error(`Blue Ribbon request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к Blue Ribbon завершился ошибкой ${response.status} для ${url}`);
   }
 
   return responseType === "json" ? response.json() : response.text();
@@ -55,7 +55,7 @@ async function fetchJson(url, options = {}) {
 
 function assertDistanceMeters(distanceMeters) {
   if (!Number.isFinite(distanceMeters) || distanceMeters <= 0) {
-    throw new Error("distanceMeters must be a positive number.");
+    throw new Error("distanceMeters должен быть положительным числом.");
   }
 }
 
@@ -88,7 +88,7 @@ function buildNearbySearchParams(options = {}) {
     };
   }
 
-  throw new Error("buildNearbySearchParams requires either a zone or explicit coordinates.");
+  throw new Error("buildNearbySearchParams требует либо зону, либо явные координаты.");
 }
 
 async function fetchZoneCatalog(options = {}) {
@@ -148,7 +148,7 @@ async function searchNearbyByCoordinates(options) {
   const limit = options.limit ?? 10;
 
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-    throw new Error("latitude and longitude must be finite numbers.");
+    throw new Error("latitude и longitude должны быть конечными числами.");
   }
 
   const params = buildNearbySearchParams({
@@ -206,7 +206,7 @@ async function searchNearbyByLocationQuery(locationQuery, options = {}) {
 
   if (matches.length === 0) {
     throw new Error(
-      "No official Blue Ribbon zone matched that location query. Ask the user for a nearby 동네, 역명, 랜드마크, or lat/lng.",
+      "Ни одна официальная зона Blue Ribbon не соответствует этому запросу. Уточните район, станцию, достопримечательность или координаты (lat/lng).",
     );
   }
 

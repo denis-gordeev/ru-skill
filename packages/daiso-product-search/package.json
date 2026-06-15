@@ -1,7 +1,7 @@
 {
   "name": "daiso-product-search",
   "version": "0.2.0",
-  "description": "Legacy Daiso Mall store/product search and pickup-stock client retained during the ru-skill migration",
+  "description": "Legacy-клиент поиска магазинов, товаров и остатков для самовывоза Daiso Mall, сохранённый на время миграции ru-skill",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

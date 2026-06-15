@@ -1,0 +1,36 @@
+{
+  "name": "cbr-rates",
+  "version": "0.1.0",
+  "description": "Клиент только для чтения для официальных XML-курсов валют Банка России",
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denis-gordeev/ru-skill.git"
+  },
+  "keywords": [
+    "ru-skill",
+    "cbr",
+    "exchange-rates",
+    "bank-of-russia",
+    "currency",
+    "курс-валют",
+    "банк-россии",
+    "валюта",
+    "центробанк"
+  ],
+  "scripts": {
+    "lint": "node --check src/index.js && node --check src/parse.js && node --check test/index.test.js",
+    "test": "node --test"
+  }
+}

@@ -125,7 +125,7 @@ function parseZoneCatalogHtml(html) {
   }
 
   if (zones.length === 0) {
-    throw new Error("Unable to parse any official Blue Ribbon zones from /search/zone.");
+    throw new Error("Не удалось извлечь официальные зоны Blue Ribbon из /search/zone.");
   }
 
   return zones;

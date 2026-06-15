@@ -11,6 +11,11 @@ import urllib.parse
 import urllib.request
 from math import atan2, cos, radians, sin, sqrt, tan
 
+from shared_secrets import (
+    build_missing_secret_message as build_shared_missing_secret_message,
+    resolve_secret_value,
+)
+
 STATION_SERVICE_URL = "http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc"
 MEASUREMENT_SERVICE_URL = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc"
 SECRET_NAME = "AIR_KOREA_OPEN_API_KEY"
@@ -27,27 +32,27 @@ AIR_KOREA_TM_FALSE_NORTHING = 500000.0
 AIR_KOREA_TM_SCALE = 1.0
 AIR_KOREA_WGS84_TO_BESSEL = (146.43, -507.89, -681.46)
 GRADE_LABELS = {
-    "1": "좋음",
-    "2": "보통",
-    "3": "나쁨",
-    "4": "매우나쁨",
+    "1": "Хорошо",
+    "2": "Удовлетворительно",
+    "3": "Плохо",
+    "4": "Очень плохо",
 }
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Summarize Air Korea PM10/PM2.5 data from location or fallback hints.",
+        description="Сводка PM10/PM2.5 по данным Air Korea по координатам или подсказке региона.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    report = subparsers.add_parser("report", help="build a PM10/PM2.5 report")
-    report.add_argument("--lat", type=float, help="WGS84 latitude")
-    report.add_argument("--lon", type=float, help="WGS84 longitude")
-    report.add_argument("--region-hint", help="fallback region/administrative-area hint")
-    report.add_argument("--station-name", help="explicit station name fallback")
-    report.add_argument("--station-file", help="offline station JSON fixture")
-    report.add_argument("--measurement-file", help="offline measurement JSON fixture")
-    report.add_argument("--json", action="store_true", help="print JSON instead of text")
+    report = subparsers.add_parser("report", help="Получить сводку PM10/PM2.5")
+    report.add_argument("--lat", type=float, help="Широта WGS84")
+    report.add_argument("--lon", type=float, help="Долгота WGS84")
+    report.add_argument("--region-hint", help="Подсказка региона для резервного поиска")
+    report.add_argument("--station-name", help="Явное название станции")
+    report.add_argument("--station-file", help="Локальный JSON-файл со станциями")
+    report.add_argument("--measurement-file", help="Локальный JSON-файл с замерами")
+    report.add_argument("--json", action="store_true", help="Вывести JSON вместо текста")
     return parser.parse_args(argv)
 
 
@@ -175,7 +180,7 @@ def pick_station(
     station_name: str | None = None,
 ) -> dict:
     if not station_items:
-        raise SystemExit("측정소 후보가 없습니다.")
+        raise SystemExit("Нет станций-кандидатов.")
 
     if station_name:
         exact_match = next((item for item in station_items if item.get("stationName") == station_name), None)
@@ -244,7 +249,7 @@ def resolve_station(
     if station_name:
         return {"stationName": station_name, "addr": None}
 
-    raise SystemExit("측정소 후보가 없습니다.")
+    raise SystemExit("Нет станций-кандидатов.")
 
 
 def find_measurement(measurement_items: list[dict], station_name: str) -> dict:
@@ -259,7 +264,7 @@ def find_measurement(measurement_items: list[dict], station_name: str) -> dict:
     if partial_match:
         return partial_match
 
-    raise SystemExit(f"측정값 응답에서 측정소 '{station_name}' 를 찾지 못했습니다.")
+    raise SystemExit(f"Станция '{station_name}' не найдена в ответе с замерами.")
 
 
 def grade_to_label(raw_grade: object, *, pollutant: str, value: object) -> str:
@@ -269,17 +274,17 @@ def grade_to_label(raw_grade: object, *, pollutant: str, value: object) -> str:
 
     numeric_value = to_float(value)
     if numeric_value is None:
-        return "정보없음"
+        return "Нет данных"
 
     thresholds = {
-        "pm10": [(30, "좋음"), (80, "보통"), (150, "나쁨")],
-        "pm25": [(15, "좋음"), (35, "보통"), (75, "나쁨")],
+        "pm10": [(30, "Хорошо"), (80, "Удовлетворительно"), (150, "Плохо")],
+        "pm25": [(15, "Хорошо"), (35, "Удовлетворительно"), (75, "Плохо")],
     }[pollutant]
 
     for threshold, label in thresholds:
         if numeric_value <= threshold:
             return label
-    return "매우나쁨"
+    return "Очень плохо"
 
 
 def build_report(
@@ -302,7 +307,7 @@ def build_report(
     )
     measurement = find_measurement(measurement_items, station["stationName"])
 
-    resolved_lookup_mode = lookup_mode or ("coordinates" if lat is not None and lon is not None else "fallback")
+    resolved_lookup_mode = lookup_mode or ("координаты" if lat is not None and lon is not None else "запасной вариант")
 
     return {
         "station_name": station["stationName"],
@@ -325,7 +330,7 @@ def build_report(
                 value=measurement.get("pm25Value"),
             ),
         },
-        "khai_grade": "정보없음"
+        "khai_grade": "Нет данных"
         if measurement.get("khaiGrade") in (None, "")
         else grade_to_label(
             measurement.get("khaiGrade"),
@@ -336,16 +341,12 @@ def build_report(
 
 
 def build_missing_secret_message() -> str:
-    return (
-        f"이 작업에는 {SECRET_NAME} 환경변수가 필요합니다.\n"
-        "환경변수가 설정되어 있지 않으면 ~/.config/k-skill/secrets.env 에 추가하거나\n"
-        "에이전트의 secret vault에서 주입해 주세요."
-    )
+    return build_shared_missing_secret_message([SECRET_NAME])
 
 
 def get_required_secret() -> str:
-    value = os.environ.get(SECRET_NAME)
-    if not value or value == "replace-me":
+    value = resolve_secret_value(SECRET_NAME)
+    if not value:
         raise SystemExit(build_missing_secret_message())
     return value
 
@@ -374,15 +375,15 @@ def read_json_response(request: urllib.request.Request | str) -> dict:
         if isinstance(payload, dict) and payload.get("error") == "ambiguous_location":
             candidates = payload.get("candidate_stations") or []
             sido_name = payload.get("sido_name")
-            detail = [message or "단일 측정소를 확정하지 못했습니다."]
+            detail = [message or "Не удалось определить единственную станцию."]
             if sido_name:
-                detail.append(f"시도: {sido_name}")
+                detail.append(f"Регион: {sido_name}")
             if candidates:
-                detail.append(f"후보 측정소: {', '.join(candidates)}")
-                detail.append("위 후보 중 정확한 측정소명으로 --station-name 재조회하세요.")
+                detail.append(f"Станции-кандидаты: {', '.join(candidates)}")
+                detail.append("Уточните название станции через --station-name.")
             raise SystemExit("\n".join(detail)) from exc
 
-        raise SystemExit(message or f"요청이 실패했습니다: HTTP {exc.code}") from exc
+        raise SystemExit(message or f"Запрос не удался: HTTP {exc.code}") from exc
 
 
 def fetch_json(url: str, params: dict[str, object]) -> dict:
@@ -413,7 +414,7 @@ def fetch_proxy_report(args: argparse.Namespace) -> dict | None:
 
 def fetch_station_lookup(args: argparse.Namespace) -> tuple[dict, str]:
     if args.station_file:
-        return load_json_file(args.station_file), "coordinates" if args.lat is not None and args.lon is not None else "fallback"
+        return load_json_file(args.station_file), "координаты" if args.lat is not None and args.lon is not None else "запасной вариант"
 
     service_key = get_required_secret()
     common = {
@@ -435,7 +436,7 @@ def fetch_station_lookup(args: argparse.Namespace) -> tuple[dict, str]:
             },
         )
         if extract_items(nearby_payload):
-            return nearby_payload, "coordinates"
+            return nearby_payload, "координаты"
 
     if args.region_hint or args.station_name:
         return (
@@ -447,10 +448,10 @@ def fetch_station_lookup(args: argparse.Namespace) -> tuple[dict, str]:
                     "stationName": args.station_name,
                 },
             ),
-            "fallback",
+            "запасной вариант",
         )
 
-    raise SystemExit("위도/경도 또는 region fallback 이 필요합니다.")
+    raise SystemExit("Необходимы координаты (широта/долгота) или подсказка региона.")
 
 
 def fetch_station_payload(args: argparse.Namespace) -> dict:
@@ -480,13 +481,13 @@ def fetch_measurement_payload(args: argparse.Namespace, station_name: str) -> di
 def render_text(report: dict) -> str:
     return "\n".join(
         [
-            f"측정소: {report['station_name']}",
-            f"주소: {report['station_address'] or '-'}",
-            f"조회 시각: {report['measured_at']}",
-            f"조회 방식: {report['lookup_mode']}",
+            f"Станция: {report['station_name']}",
+            f"Адрес: {report['station_address'] or '-'}",
+            f"Время замера: {report['measured_at']}",
+            f"Способ поиска: {report['lookup_mode']}",
             f"PM10: {report['pm10']['value']} ({report['pm10']['grade']})",
             f"PM2.5: {report['pm25']['value']} ({report['pm25']['grade']})",
-            f"통합대기등급: {report['khai_grade']}",
+            f"Общая оценка: {report['khai_grade']}",
         ],
     )
 
@@ -535,7 +536,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "report":
         command_report(args)
         return 0
-    raise SystemExit(f"unsupported command: {args.command}")
+    raise SystemExit(f"неподдерживаемая команда: {args.command}")
 
 
 if __name__ == "__main__":

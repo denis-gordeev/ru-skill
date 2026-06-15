@@ -1,8 +1,8 @@
 const BASE_API_URL = "https://www.daisomall.co.kr/api"
 const BASE_SEARCH_URL = "https://www.daisomall.co.kr/ssn/search"
 const NON_WORD_PATTERN = /[^\p{L}\p{N}]+/gu
-const STORE_EMPTY_RESULT_ERROR = "No Daiso store candidates were returned."
-const PRODUCT_EMPTY_RESULT_ERROR = "No Daiso product candidates were returned."
+const STORE_EMPTY_RESULT_ERROR = "Магазины Daiso не найдены."
+const PRODUCT_EMPTY_RESULT_ERROR = "Товары Daiso не найдены."
 
 function normalizeText(value) {
   return String(value || "")
@@ -184,7 +184,7 @@ function normalizeStoreSearchResponse(payload, query) {
 
 function buildSearchGoodsParams(query, options = {}) {
   if (!String(query || "").trim()) {
-    throw new Error("search term is required.")
+    throw new Error("Поисковый запрос обязателен.")
   }
 
   return {
@@ -329,7 +329,7 @@ function normalizeSearchGoodsResponse(payload, query) {
 
 function normalizeStorePickupStockResponse(payload, request) {
   if (!payload || typeof payload !== "object" || !Array.isArray(payload.data) || payload.data.length === 0) {
-    throw new Error("No Daiso pickup stock rows were returned.")
+    throw new Error("Не получены данные об остатках для самовывоза Daiso.")
   }
 
   const item = payload.data[0]
@@ -347,7 +347,7 @@ function normalizeStorePickupStockResponse(payload, request) {
 
 function normalizeOnlineStockResponse(payload, request) {
   if (!payload || typeof payload !== "object" || !Array.isArray(payload.data) || payload.data.length === 0) {
-    throw new Error("No Daiso online stock rows were returned.")
+    throw new Error("Не получены данные об онлайн-остатках Daiso.")
   }
 
   const item = payload.data[0]

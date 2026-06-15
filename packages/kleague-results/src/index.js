@@ -11,14 +11,14 @@ const DEFAULT_HEADERS = {
   accept: "application/json, text/plain, */*",
   "accept-language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
   "content-type": "application/json; charset=utf-8",
-  "user-agent": "k-skill/kleague-results",
+  "user-agent": "ru-skill/kleague-results",
 };
 
 async function requestJson(url, options = {}) {
   const fetchImpl = options.fetchImpl || global.fetch;
 
   if (typeof fetchImpl !== "function") {
-    throw new Error("A fetch implementation is required.");
+    throw new Error("Требуется реализация fetch.");
   }
 
   const response = await fetchImpl(url, {
@@ -32,7 +32,7 @@ async function requestJson(url, options = {}) {
   });
 
   if (!response.ok) {
-    throw new Error(`K League request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к K League завершился ошибкой ${response.status} для ${url}`);
   }
 
   return response.json();

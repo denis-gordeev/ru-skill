@@ -1,10 +1,10 @@
 const STATION_SERVICE_URL = "http://apis.data.go.kr/B552584/MsrstnInfoInqireSvc";
 const MEASUREMENT_SERVICE_URL = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc";
 const GRADE_LABELS = {
-  "1": "좋음",
-  "2": "보통",
-  "3": "나쁨",
-  "4": "매우나쁨"
+  "1": "Хорошо",
+  "2": "Умеренно",
+  "3": "Плохо",
+  "4": "Очень плохо"
 };
 
 function extractItems(payload) {
@@ -36,7 +36,7 @@ function toFloat(raw) {
 
 function pickStation(stationItems, { regionHint = null, stationName = null } = {}) {
   if (!stationItems.length) {
-    throw new Error("측정소 후보가 없습니다.");
+    throw new Error("Нет подходящих станций мониторинга.");
   }
 
   if (stationName) {
@@ -84,7 +84,7 @@ function resolveStation(stationItems, options = {}) {
     };
   }
 
-  throw new Error("측정소 후보가 없습니다.");
+  throw new Error("Нет подходящих станций мониторинга.");
 }
 
 function buildStationNameCandidates({ stationName = null, regionHint = null } = {}) {
@@ -128,7 +128,7 @@ function findMeasurement(measurementItems, stationName) {
     return partialMatch;
   }
 
-  throw new Error(`측정값 응답에서 측정소 '${stationName}' 를 찾지 못했습니다.`);
+  throw new Error(`Станция мониторинга '${stationName}' не найдена в ответе с измерениями.`);
 }
 
 function gradeToLabel(rawGrade, { pollutant, value }) {
@@ -139,12 +139,12 @@ function gradeToLabel(rawGrade, { pollutant, value }) {
 
   const numericValue = toFloat(value);
   if (numericValue === null) {
-    return "정보없음";
+    return "Нет данных";
   }
 
   const thresholds = pollutant === "pm10"
-    ? [[30, "좋음"], [80, "보통"], [150, "나쁨"]]
-    : [[15, "좋음"], [35, "보통"], [75, "나쁨"]];
+    ? [[30, "Хорошо"], [80, "Умеренно"], [150, "Плохо"]]
+    : [[15, "Хорошо"], [35, "Умеренно"], [75, "Плохо"]];
 
   for (const [threshold, label] of thresholds) {
     if (numericValue <= threshold) {
@@ -152,7 +152,7 @@ function gradeToLabel(rawGrade, { pollutant, value }) {
     }
   }
 
-  return "매우나쁨";
+  return "Очень плохо";
 }
 
 function buildReport({ stationItems, measurementItems, regionHint = null, stationName = null, lookupMode = null, selectedStation = null }) {
@@ -161,7 +161,7 @@ function buildReport({ stationItems, measurementItems, regionHint = null, statio
     stationName
   });
   const measurement = findMeasurement(measurementItems, station.stationName);
-  const resolvedLookupMode = lookupMode || "fallback";
+  const resolvedLookupMode = lookupMode || "запасной вариант";
 
   return {
     station_name: station.stationName,
@@ -183,7 +183,7 @@ function buildReport({ stationItems, measurementItems, regionHint = null, statio
       })
     },
     khai_grade: measurement.khaiGrade === null || measurement.khaiGrade === undefined || measurement.khaiGrade === ""
-      ? "정보없음"
+      ? "Нет данных"
       : gradeToLabel(measurement.khaiGrade, {
         pollutant: "pm10",
         value: measurement.pm10Value
@@ -193,7 +193,7 @@ function buildReport({ stationItems, measurementItems, regionHint = null, statio
 
 async function fetchJson(baseUrl, params, { fetchImpl = global.fetch, headers = {} } = {}) {
   if (typeof fetchImpl !== "function") {
-    throw new Error("A fetch implementation is required.");
+    throw new Error("Требуется реализация fetch.");
   }
 
   const url = new URL(baseUrl);
@@ -216,11 +216,11 @@ async function fetchJson(baseUrl, params, { fetchImpl = global.fetch, headers = 
 
     if (response.status === 403) {
       throw new Error(
-        "AirKorea upstream returned 403 Forbidden. 기술문서 기준 후보 원인: 활용신청 후 동기화 대기(1~2시간), 활용신청하지 않은 API 호출, 서비스키 인코딩/서비스키 오류, 등록하지 않은 도메인 또는 IP.",
+        "AirKorea вернул 403 Forbidden. Возможные причины: ожидание синхронизации после регистрации приложения (1–2 часа), вызов незарегистрированного API, ошибка кодировки/значения сервисного ключа, незарегистрированный домен или IP.",
       );
     }
 
-    throw new Error(`AirKorea request failed with ${response.status} for ${url}${body ? ` :: ${body.slice(0, 200)}` : ""}`);
+    throw new Error(`Запрос к AirKorea не удался с кодом ${response.status} для ${url}${body ? ` :: ${body.slice(0, 200)}` : ""}`);
   }
 
   return JSON.parse(await response.text());
@@ -228,7 +228,7 @@ async function fetchJson(baseUrl, params, { fetchImpl = global.fetch, headers = 
 
 async function fetchStationLookup({ regionHint = null, stationName = null, serviceKey, fetchImpl = global.fetch, headers = {}, stationServiceUrl = STATION_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY is not configured on the proxy server.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.");
   }
 
   const common = {
@@ -240,7 +240,7 @@ async function fetchStationLookup({ regionHint = null, stationName = null, servi
 
   if (regionHint || stationName) {
     return {
-      lookupMode: "fallback",
+      lookupMode: "запасной вариант",
       payload: await fetchJson(`${stationServiceUrl}/getMsrstnList`, {
         ...common,
         addr: regionHint,
@@ -252,12 +252,12 @@ async function fetchStationLookup({ regionHint = null, stationName = null, servi
     };
   }
 
-  throw new Error("regionHint 또는 stationName 이 필요합니다.");
+  throw new Error("Необходимо указать regionHint или stationName.");
 }
 
 async function fetchMeasurementPayload({ stationName, serviceKey, fetchImpl = global.fetch, headers = {}, measurementServiceUrl = MEASUREMENT_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY is not configured on the proxy server.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.");
   }
 
   return fetchJson(`${measurementServiceUrl}/getMsrstnAcctoRltmMesureDnsty`, {
@@ -276,7 +276,7 @@ async function fetchMeasurementPayload({ stationName, serviceKey, fetchImpl = gl
 
 async function fetchCtprvnMeasurementPayload({ sidoName, serviceKey, fetchImpl = global.fetch, headers = {}, measurementServiceUrl = MEASUREMENT_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY is not configured on the proxy server.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.");
   }
 
   return fetchJson(`${measurementServiceUrl}/getCtprvnRltmMesureDnsty`, {
@@ -338,11 +338,11 @@ async function fetchFineDustReport({ regionHint = null, stationName = null, serv
           measurementItems,
           regionHint,
           stationName: matchedMeasurement.stationName,
-          lookupMode: "fallback",
+          lookupMode: "запасной вариант",
           selectedStation: { stationName: matchedMeasurement.stationName, addr: null }
         });
       } catch {
-        // try next candidate
+        // попробовать следующего кандидата
       }
     }
 
@@ -369,7 +369,7 @@ async function fetchFineDustReport({ regionHint = null, stationName = null, serv
           measurementItems: cityItems,
           regionHint,
           stationName: selectedStation.stationName,
-          lookupMode: "fallback",
+          lookupMode: "запасной вариант",
           selectedStation: { stationName: selectedStation.stationName, addr: null }
         });
       }
@@ -379,7 +379,7 @@ async function fetchFineDustReport({ regionHint = null, stationName = null, serv
         .map((item) => item.stationName)
         .filter(Boolean);
       const lookupError = new Error(
-        `'${regionHint}' 는 현재 바로 매핑되는 단일 측정소를 확정하지 못했습니다. 아래 후보 중 정확한 측정소명으로 다시 조회해 주세요.`,
+        `Для '${regionHint}' не удалось однозначно определить станцию мониторинга. Повторите запрос с точным названием станции из списка ниже.`,
       );
       lookupError.statusCode = 400;
       lookupError.code = "ambiguous_location";

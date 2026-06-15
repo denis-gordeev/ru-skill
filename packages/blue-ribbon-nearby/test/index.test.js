@@ -21,7 +21,7 @@ const landmarkZoneHtml = `
   <a href="/search?query=&zone1=${encodeURIComponent("서울 강북")}&zone2=${encodeURIComponent("남대문/서울역/후암동")}&zone2Lat=37.555000&zone2Lng=126.972000">남대문/서울역/후암동</a>
 `;
 
-test("parseZoneCatalogHtml extracts official zone anchors and coordinates", () => {
+test("parseZoneCatalogHtml извлекает официальные якоря зон и координаты", () => {
   const zones = parseZoneCatalogHtml(zoneHtml);
 
   assert.equal(zones.length, 3);
@@ -35,7 +35,7 @@ test("parseZoneCatalogHtml extracts official zone anchors and coordinates", () =
   });
 });
 
-test("findZoneMatches prefers exact and partial official-zone matches", () => {
+test("findZoneMatches предпочитает точные и частичные совпадения с официальными зонами", () => {
   const zones = parseZoneCatalogHtml(zoneHtml);
   const exact = findZoneMatches("광화문", zones, { limit: 1 });
   const partial = findZoneMatches("서울 성수", zones, { limit: 1 });
@@ -45,14 +45,14 @@ test("findZoneMatches prefers exact and partial official-zone matches", () => {
   assert.ok(exact[0].score > partial[0].score / 2);
 });
 
-test("findZoneMatches resolves documented landmark aliases like 코엑스 to the nearest official zone", () => {
+test("findZoneMatches разрешает документированные псевдонимы ориентиров, такие как 코엑스, до ближайшей официальной зоны", () => {
   const zones = parseZoneCatalogHtml(landmarkZoneHtml);
   const [match] = findZoneMatches("코엑스", zones, { limit: 1 });
 
   assert.equal(match.zone.zone2, "삼성동/대치동");
 });
 
-test("buildNearbySearchParams encodes the official nearby ribbon query for a matched zone", () => {
+test("buildNearbySearchParams кодирует официальный поисковый запрос nearby ribbon для совпадающей зоны", () => {
   const [firstZone] = parseZoneCatalogHtml(zoneHtml);
   const params = buildNearbySearchParams({ zone: firstZone, distanceMeters: 1000, sort: "distance" });
 
@@ -67,7 +67,7 @@ test("buildNearbySearchParams encodes the official nearby ribbon query for a mat
   assert.equal(params.sort, "distance");
 });
 
-test("normalizeNearbyItem exposes the public restaurant summary with computed distance", () => {
+test("normalizeNearbyItem предоставляет сводку ресторана с вычисленным расстоянием", () => {
   const item = normalizeNearbyItem(mapPayload.items[0], {
     latitude: 37.57371315593711,
     longitude: 126.97833785777944
@@ -82,7 +82,7 @@ test("normalizeNearbyItem exposes the public restaurant summary with computed di
   assert.deepEqual(item.foodTypes.slice(0, 2), ["중식", "광동식중식"]);
 });
 
-test("searchNearbyByLocationQuery resolves documented landmark aliases like 코엑스", async () => {
+test("searchNearbyByLocationQuery разрешает документированные псевдонимы ориентиров, такие как 코엑스", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {
@@ -112,7 +112,7 @@ test("searchNearbyByLocationQuery resolves documented landmark aliases like 코�
   }
 });
 
-test("searchNearbyByLocationQuery resolves a zone match, fetches the official nearby map payload, and normalizes the top results", async () => {
+test("searchNearbyByLocationQuery находит совпадение зоны, получает официальную карту ближайших объектов и нормализует лучшие результаты", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async (url) => {
@@ -142,7 +142,7 @@ test("searchNearbyByLocationQuery resolves a zone match, fetches the official ne
     assert.doesNotMatch(
       JSON.stringify(result.items),
       /정통삼계탕/,
-      "non-ribbon restaurants should be filtered out even if the upstream payload includes them",
+      "рестораны без ленты должны быть отфильтрованы, даже если вышестоящий ответ их включает",
     );
   } finally {
     global.fetch = originalFetch;

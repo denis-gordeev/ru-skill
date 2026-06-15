@@ -1,0 +1,75 @@
+{
+  "countries": [
+    {
+      "title": "Россия",
+      "title_en": "Russia",
+      "codes": { "iso": "RU" },
+      "regions": [
+        {
+          "title": "Москва и область",
+          "title_en": "Moscow region",
+          "settlements": [
+            {
+              "title": "Москва",
+              "title_en": "Moscow",
+              "codes": { "yandex_code": "c146" },
+              "type": "city",
+              "stations": [
+                {
+                  "title": "Москва, Казанский вокзал",
+                  "codes": {
+                    "yandex_code": "s9600013",
+                    "esr_code": "191416"
+                  },
+                  "station_type": "station",
+                  "transport_type": "train",
+                  "latitude": 55.773398,
+                  "longitude": 37.657803,
+                  "direction": ""
+                },
+                {
+                  "title": "Москва, Ярославский вокзал",
+                  "codes": {
+                    "yandex_code": "s9600014",
+                    "esr_code": "191400"
+                  },
+                  "station_type": "station",
+                  "transport_type": "suburban",
+                  "latitude": 55.775455,
+                  "longitude": 37.651569,
+                  "direction": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Санкт-Петербург и область",
+          "title_en": "Saint Petersburg region",
+          "settlements": [
+            {
+              "title": "Санкт-Петербург",
+              "title_en": "Saint Petersburg",
+              "codes": { "yandex_code": "c159" },
+              "type": "city",
+              "stations": [
+                {
+                  "title": "Санкт-Петербург, Московский вокзал",
+                  "codes": {
+                    "yandex_code": "s9600213",
+                    "esr_code": "040310"
+                  },
+                  "station_type": "station",
+                  "transport_type": "train",
+                  "latitude": 59.927856,
+                  "longitude": 30.359562,
+                  "direction": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

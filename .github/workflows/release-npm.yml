@@ -1,4 +1,4 @@
-name: Release npm packages
+name: Релиз npm-пакетов
 
 on:
   push:
@@ -16,8 +16,8 @@ permissions:
   pull-requests: write
   id-token: write
 
-# npm publishes authenticate with the repository-level NPM_TOKEN secret.
-# id-token stays enabled so npm can still attach provenance when supported.
+# Предпочтительный путь: npm trusted publishing через GitHub OIDC.
+# Каждый публичный пакет нужно настроить как trusted publisher на npm.
 
 jobs:
   release:
@@ -36,7 +36,7 @@ jobs:
       - run: npm ci
       - run: npm run ci
 
-      - name: Create npm release PR or publish changed packages
+      - name: Создание релизного PR или публикация изменившихся пакетов
         uses: changesets/action@v1
         with:
           version: npm run version-packages
@@ -46,5 +46,4 @@ jobs:
           createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"

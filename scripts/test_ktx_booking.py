@@ -119,7 +119,7 @@ class KtxBookingTests(unittest.TestCase):
             try_waiting=False,
         )
 
-    def test_normalize_train_emits_stable_train_id(self):
+    def test_normalize_train_формирует_стабильный_train_id(self):
         train = FakeTrain(train_no="009", dep_time="090000", arr_time="113000")
 
         normalized = ktx_booking.normalize_train(train, index=2)
@@ -128,7 +128,7 @@ class KtxBookingTests(unittest.TestCase):
         resolved = ktx_booking.find_train_by_id([train], normalized["train_id"])
         self.assertIs(resolved, train)
 
-    def test_build_parser_requires_train_id_for_reserve(self):
+    def test_build_parser_требует_train_id_для_бронирования(self):
         args = ktx_booking.build_parser().parse_args([
             "reserve",
             "서울",
@@ -141,7 +141,7 @@ class KtxBookingTests(unittest.TestCase):
 
         self.assertEqual(args.train_id, "ktx:v1:test")
 
-    def test_command_reserve_targets_exact_train_id_even_if_order_changes(self):
+    def test_command_reserve_выбирает_точный_train_id_даже_при_изменении_порядка(self):
         sold_out_first = FakeTrain(
             train_no="001",
             dep_time="050000",
@@ -160,7 +160,7 @@ class KtxBookingTests(unittest.TestCase):
 
         self.assertIs(client.reserved_train, user_selected)
 
-    def test_command_reserve_fails_if_selected_train_is_no_longer_available(self):
+    def test_command_reserve_завершается_ошибкой_если_выбранный_поезд_больше_недоступен(self):
         user_selected = FakeTrain(train_no="009", dep_time="090000", arr_time="113000", label="user-selected")
         other_train = FakeTrain(train_no="011", dep_time="093000", arr_time="120000", label="other-train")
         train_id = ktx_booking.normalize_train(user_selected, index=2)["train_id"]
@@ -173,7 +173,7 @@ class KtxBookingTests(unittest.TestCase):
 
         self.assertIn("train_id", str(exc.exception))
 
-    def test_command_reserve_try_waiting_replays_search_with_waiting_list_enabled(self):
+    def test_command_reserve_try_waiting_повторяет_поиск_с_включённым_списком_ожидания(self):
         waiting_only = FakeTrain(
             train_no="003",
             dep_time="070000",
@@ -198,6 +198,19 @@ class KtxBookingTests(unittest.TestCase):
         self.assertTrue(client.search_calls)
         self.assertTrue(client.search_calls[-1]["include_waiting_list"])
         self.assertIs(client.reserved_train, waiting_only)
+
+    def test_build_client_использует_общее_разрешение_секретов(self):
+        with (
+            patch.object(ktx_booking, "ensure_runtime_dependencies"),
+            patch.object(ktx_booking, "resolve_secret_value", side_effect=["user", "password"]) as resolver,
+            patch.object(ktx_booking, "PatchedKorail") as patched_korail,
+        ):
+            patched_korail.return_value.logined = True
+            client = ktx_booking.build_client()
+
+        self.assertIs(client, patched_korail.return_value)
+        self.assertEqual([call.args[0] for call in resolver.call_args_list], ["KSKILL_KTX_ID", "KSKILL_KTX_PASSWORD"])
+        patched_korail.assert_called_once_with("user", "password")
 
 
 if __name__ == "__main__":

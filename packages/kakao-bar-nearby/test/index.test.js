@@ -18,7 +18,7 @@ const openBarPanel = JSON.parse(fs.readFileSync(path.join(fixturesDir, "open-bar
 const closedBarPanel = JSON.parse(fs.readFileSync(path.join(fixturesDir, "closed-bar-panel.json"), "utf8"));
 const nonBarPanel = JSON.parse(fs.readFileSync(path.join(fixturesDir, "non-bar-panel.json"), "utf8"));
 
-test("parseSearchResultsHtml extracts Kakao mobile search cards with open-status and phone fields", () => {
+test("parseSearchResultsHtml извлекает карточки мобильного поиска Kakao с полями статуса работы и телефона", () => {
   const items = parseSearchResultsHtml(barSearchHtml);
 
   assert.equal(items.length, 3);
@@ -33,7 +33,7 @@ test("parseSearchResultsHtml extracts Kakao mobile search cards with open-status
   });
 });
 
-test("selectAnchorCandidate prefers the obvious station/landmark match for the location query", () => {
+test("selectAnchorCandidate предпочитает очевидное совпадение станции/ориентира для поискового запроса местоположения", () => {
   const anchor = selectAnchorCandidate("서울역", parseSearchResultsHtml(anchorSearchHtml));
 
   assert.equal(anchor.id, "1001");
@@ -41,7 +41,7 @@ test("selectAnchorCandidate prefers the obvious station/landmark match for the l
   assert.equal(anchor.category, "기차역");
 });
 
-test("normalizePlacePanel keeps menu, seating, phone, distance, and open-now hints", () => {
+test("normalizePlacePanel сохраняет меню, рассадку, телефон, расстояние и подсказки о текущей работе", () => {
   const item = normalizePlacePanel(openBarPanel, {
     id: "2001",
     phone: "02-1111-2222",
@@ -60,11 +60,11 @@ test("normalizePlacePanel keeps menu, seating, phone, distance, and open-now hin
   assert.equal(item.openStatus.detail, "23:30 라스트오더");
   assert.deepEqual(item.menuSamples, ["수제맥주 샘플러", "감바스", "페퍼로니 피자"]);
   assert.deepEqual(item.seatingKeywords, ["단체석", "바테이블"]);
-  assert.equal(item.capacityHint, "단체 방문 가능");
+  assert.equal(item.capacityHint, "Групповые места доступны");
   assert.ok(item.distanceMeters > 0);
 });
 
-test("searchNearbyBarsByLocationQuery returns open bars first and drops non-bar categories", async () => {
+test("searchNearbyBarsByLocationQuery в первую очередь возвращает открытые бары и отбрасывает не-барные категории", async () => {
   const responses = new Map([
     [buildSearchUrl("서울역"), makeResponse(anchorSearchHtml, "text/html")],
     [buildSearchUrl("서울역 술집"), makeResponse(barSearchHtml, "text/html")],
@@ -81,7 +81,7 @@ test("searchNearbyBarsByLocationQuery returns open bars first and drops non-bar 
 
     const response = responses.get(resolved);
     if (!response) {
-      throw new Error(`unexpected url: ${resolved}`);
+      throw new Error(`неожиданный URL: ${resolved}`);
     }
 
     return response;
@@ -107,7 +107,7 @@ test("searchNearbyBarsByLocationQuery returns open bars first and drops non-bar 
   assert.ok(calls.some((url) => url.endsWith("/places/panel3/2001")));
 });
 
-test("searchNearbyBarsByLocationQuery skips unusable station-like anchor panels and keeps distances", async () => {
+test("searchNearbyBarsByLocationQuery пропускает непригодные станции-подобные якорные панели и сохраняет расстояния", async () => {
   const query = "사당";
   const fallbackAnchorSearchHtml = buildSearchResultsHtml([
     {
@@ -169,7 +169,7 @@ test("searchNearbyBarsByLocationQuery skips unusable station-like anchor panels 
     fetchImpl: async (url) => {
       const response = responses.get(String(url));
       if (!response) {
-        throw new Error(`unexpected url: ${url}`);
+        throw new Error(`неожиданный URL: ${url}`);
       }
 
       return response;
@@ -183,7 +183,7 @@ test("searchNearbyBarsByLocationQuery skips unusable station-like anchor panels 
   assert.ok(Number.isFinite(result.items[0].distanceMeters));
 });
 
-test("searchNearbyBarsByLocationQuery keeps a usable landmark anchor for area queries instead of overwriting it with a station-business fallback", async () => {
+test("searchNearbyBarsByLocationQuery сохраняет пригодный якорь-ориентир для запросов по районам вместо замены его запасным вариантом станция-бизнес", async () => {
   const query = "사당";
   const areaAnchorSearchHtml = buildSearchResultsHtml([
     {
@@ -306,7 +306,7 @@ test("searchNearbyBarsByLocationQuery keeps a usable landmark anchor for area qu
       calls.push(resolved);
       const response = responses.get(resolved);
       if (!response) {
-        throw new Error(`unexpected url: ${resolved}`);
+        throw new Error(`неожиданный URL: ${resolved}`);
       }
 
       return response;
@@ -319,7 +319,7 @@ test("searchNearbyBarsByLocationQuery keeps a usable landmark anchor for area qu
   assert.ok(!calls.includes(buildSearchUrl("사당역")));
 });
 
-test("searchNearbyBarsByLocationQuery keeps station-like queries on public anchors instead of unrelated businesses", async () => {
+test("searchNearbyBarsByLocationQuery сохраняет запросы станций на общественных якорях вместо нерелевантных бизнесов", async () => {
   const query = "사당역";
   const stationSearchHtml = buildSearchResultsHtml([
     {
@@ -414,7 +414,7 @@ test("searchNearbyBarsByLocationQuery keeps station-like queries on public ancho
     fetchImpl: async (url) => {
       const response = responses.get(String(url));
       if (!response) {
-        throw new Error(`unexpected url: ${url}`);
+        throw new Error(`неожиданный URL: ${url}`);
       }
 
       return response;

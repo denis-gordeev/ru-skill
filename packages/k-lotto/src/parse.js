@@ -8,7 +8,7 @@ function extractLatestRoundFromHtml(html) {
   const match = html.match(LATEST_ROUND_PATTERN);
 
   if (!match) {
-    throw new Error("Unable to locate the latest round on the dhlottery result page.");
+    throw new Error("Не удалось найти последний тираж на странице результатов dhlottery.");
   }
 
   return Number.parseInt(match[1], 10);
@@ -19,7 +19,7 @@ function extractLatestRoundFromHtml(html) {
  * @returns {string}
  */
 function formatWon(value) {
-  return `${value.toLocaleString("ko-KR")}원`;
+  return `${value.toLocaleString("ru-RU")} вон`;
 }
 
 /**
@@ -28,7 +28,7 @@ function formatWon(value) {
  */
 function formatYmd(raw) {
   if (!/^\d{8}$/.test(raw)) {
-    throw new Error(`Unexpected date format: ${raw}`);
+    throw new Error(`Неожиданный формат даты: ${raw}`);
   }
 
   return `${raw.slice(0, 4)}-${raw.slice(4, 6)}-${raw.slice(6, 8)}`;
@@ -41,20 +41,20 @@ function formatYmd(raw) {
  */
 function selectRoundItem(payload, round) {
   if (!payload || typeof payload !== "object") {
-    throw new Error("Expected a JSON object from dhlottery.");
+    throw new Error("Ожидается JSON-объект от dhlottery.");
   }
 
   const data = /** @type {{ data?: { list?: Array<Record<string, any>> } }} */ (payload).data;
   const list = data?.list;
 
   if (!Array.isArray(list) || list.length === 0) {
-    throw new Error(`No lotto result items were returned for round ${round}.`);
+    throw new Error(`Нет результатов лотереи для тиража ${round}.`);
   }
 
   const item = list.find((entry) => Number(entry.ltEpsd) === round);
 
   if (!item) {
-    throw new Error(`Round ${round} was not present in the dhlottery response.`);
+    throw new Error(`Тираж ${round} отсутствует в ответе dhlottery.`);
   }
 
   return item;
@@ -131,18 +131,18 @@ function buildPayoutRow(rank, winners, prizeAmount, totalPrizeAmount) {
  */
 function normalizeTicket(ticketNumbers) {
   if (!Array.isArray(ticketNumbers) || ticketNumbers.length !== 6) {
-    throw new Error("ticketNumbers must contain exactly 6 values.");
+    throw new Error("ticketNumbers должен содержать ровно 6 значений.");
   }
 
   const normalized = ticketNumbers.map((value) => Number(value));
 
   if (normalized.some((value) => !Number.isInteger(value) || value < 1 || value > 45)) {
-    throw new Error("ticketNumbers must be integers between 1 and 45.");
+    throw new Error("ticketNumbers должен содержать целые числа от 1 до 45.");
   }
 
   const uniqueCount = new Set(normalized).size;
   if (uniqueCount !== 6) {
-    throw new Error("ticketNumbers must not contain duplicates.");
+    throw new Error("ticketNumbers не должен содержать дубликаты.");
   }
 
   return normalized.sort((left, right) => left - right);
@@ -168,7 +168,7 @@ function evaluateTicket(detail, ticketNumbers) {
     bonusMatched,
     matchCount: matchedNumbers.length,
     rank,
-    outcome: rank === null ? "낙첨" : `${rank}등`
+    outcome: rank === null ? "Не выиграно" : `${rank}-й приз`
   };
 }
 

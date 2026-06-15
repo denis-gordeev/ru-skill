@@ -5,17 +5,17 @@
 Рекомендуемый порядок такой.
 
 1. Сначала установить весь текущий набор навыков из репозитория.
-2. Затем запустить `k-skill-setup` и завершить общую настройку окружения.
+2. Затем запустить `ru-skill-setup` и завершить общую настройку окружения.
 3. После этого вызывать только нужные прикладные навыки.
 
-Установку не делим на отдельные ветки только из-за авторизации. Базовый подход такой: сначала ставится весь комплект, а подготовка секретов и переменных окружения передаётся `k-skill-setup`.
+Установку не делим на отдельные ветки только из-за авторизации. Базовый подход такой: сначала ставится весь комплект, а подготовка секретов и переменных окружения передаётся `ru-skill-setup`. Legacy-имя `k-skill-setup` остаётся совместимым alias.
 
 ## Если поручить установку агенту
 
 В Codex или Claude Code можно вставить эту фразу без изменений.
 
 ```text
-Прочитай документацию по установке в этом репозитории и сначала установи все доступные навыки. После установки используй навык k-skill-setup, чтобы проверить credential и переменные окружения. В конце коротко перечисли установленные навыки и следующий шаг.
+Прочитай документацию по установке в этом репозитории и сначала установи все доступные навыки. После установки используй навык ru-skill-setup, чтобы проверить учётные данные и переменные окружения. Если среда знает только legacy-имя, используй k-skill-setup как alias. В конце коротко перечисли установленные навыки и следующий шаг.
 ```
 
 ## Ручная установка
@@ -34,16 +34,29 @@ bunx skills add denis-gordeev/ru-skill --list
 npx --yes skills add denis-gordeev/ru-skill --all -g
 ```
 
-После установки запустите `k-skill-setup` для общей настройки.
+После установки запустите `ru-skill-setup` для общей настройки. Legacy-имя `k-skill-setup` можно использовать как alias, но основной поток теперь описывается через `ru-skill-setup`, а стандартный secrets-файл живёт в `~/.config/ru-skill/secrets.env` с запасным вариантом на `~/.config/k-skill/secrets.env`.
 
 ```text
-Используй навык k-skill-setup и выполни общую настройку окружения.
+Используй навык ru-skill-setup и выполни общую настройку окружения. Если среда знает только legacy-имя, используй k-skill-setup как alias.
 ```
 
-Точечную установку имеет смысл делать только если это действительно нужно, например для быстрого теста read-only-навыков.
+Точечную установку имеет смысл делать только если это действительно нужно, например для быстрого теста навыков только для чтения.
 
 ```bash
 npx --yes skills add denis-gordeev/ru-skill \
+  --skill cbr-rates \
+  --skill moex-shares \
+  --skill postcalc-postcodes \
+  --skill hh-vacancies \
+  --skill stoloto-lotto \
+  --skill kinopoisk-search \
+  --skill mchs-storm-warnings \
+  --skill pravo-documents \
+  --skill yandex-rasp \
+  --skill rpl-results \
+  --skill yandex-market-search \
+  --skill osm-nearby \
+  --skill zoon-nearby \
   --skill hwp \
   --skill kbo-results \
   --skill kleague-results \
@@ -58,11 +71,17 @@ npx --yes skills add denis-gordeev/ru-skill \
   --skill delivery-tracking
 ```
 
-Если ставите только навыки с авторизацией, `k-skill-setup` всё равно должен идти вместе с ними.
+Как читать этот список:
+
+- `cbr-rates` ... `zoon-nearby` — текущая `target`-линейка русскоязычных навыков, которую и нужно считать основным продуктовым направлением репозитория.
+- `seoul-subway-arrival`, `toss-securities`, `delivery-tracking`, `kbo-results`, `kleague-results`, `lotto-results` и похожие корейско-специфичные сценарии — `legacy-only`: они сохраняются для совместимости, но не являются backlog'ом на новые российские реализации без подтверждённого публичного источника.
+- `k-skill-proxy` не является отдельным конечным пользовательским skill в этом install-flow: это `transition`-инфраструктура для бесплатных API, которую имеет смысл поднимать только когда конкретный сценарий вроде `fine-dust-location` действительно требует proxy-слоя.
+
+Если ставите только навыки с авторизацией, `ru-skill-setup` всё равно должен идти вместе с ними.
 
 ```bash
 npx --yes skills add denis-gordeev/ru-skill \
-  --skill k-skill-setup \
+  --skill ru-skill-setup \
   --skill srt-booking \
   --skill ktx-booking \
   --skill seoul-subway-arrival \
@@ -103,9 +122,18 @@ npm run ci
 ### Node-пакеты
 
 ```bash
-npm install -g @ohah/hwpjs kbo-game kleague-results toss-securities k-lotto
+npm install -g @ohah/hwpjs \
+  cbr-rates moex-shares postcalc-postcodes hh-vacancies stoloto-lotto \
+  kinopoisk-search mchs-storm-warnings pravo-documents yandex-rasp \
+  rpl-results yandex-market-search osm-nearby zoon-nearby \
+  k-lotto daiso-product-search blue-ribbon-nearby kakao-bar-nearby \
+  kleague-results toss-securities kbo-game
 export NODE_PATH="$(npm root -g)"
 ```
+
+Здесь намеренно перечислены отдельно и текущие `target` workspace-пакеты, и legacy npm-пакеты. Навыки вроде `kbo-results`, `hwp`, `kakaotalk-mac`, `zipcode-search` и `delivery-tracking`, которые опираются на внешние CLI, Python-пакеты или skill-only workflow, продолжают устанавливаться через `skills add`, а не через этот `npm install -g`.
+
+Важно: присутствие `toss-securities` или других legacy npm-пакетов в этой команде не означает, что они считаются следующими target-заменами. Для `toss-securities` и `seoul-subway-arrival` документная граница уже закрыта как `legacy-only`, а `k-skill-proxy` остаётся transition-слоем, а не отдельным направлением продукта.
 
 ### Бинарники для macOS
 
@@ -135,7 +163,7 @@ python3 -m pip install SRTrain korail2 pycryptodome
 
 ## Навыки, которым нужен setup
 
-Перед запуском этих навыков сначала пройдите через `k-skill-setup`:
+Перед запуском этих навыков сначала пройдите через `ru-skill-setup`:
 
 - `srt-booking`
 - `ktx-booking`

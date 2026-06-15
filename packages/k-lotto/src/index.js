@@ -7,7 +7,7 @@ const {
 
 const DEFAULT_HEADERS = {
   accept: "application/json, text/html;q=0.9",
-  "user-agent": "k-skill/k-lotto"
+  "user-agent": "ru-skill/k-lotto"
 };
 
 const LATEST_RESULT_URL = "https://www.dhlottery.co.kr/lt645/result";
@@ -21,7 +21,7 @@ async function fetchText(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`dhlottery request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к dhlottery завершился ошибкой ${response.status} для ${url}`);
   }
 
   return response.text();
@@ -35,7 +35,7 @@ async function fetchJson(url) {
   const response = await fetch(url, { headers: DEFAULT_HEADERS });
 
   if (!response.ok) {
-    throw new Error(`dhlottery request failed with ${response.status} for ${url}`);
+    throw new Error(`Запрос к dhlottery завершился ошибкой ${response.status} для ${url}`);
   }
 
   return response.json();
@@ -94,7 +94,7 @@ async function checkNumber(round, ticketNumbers) {
  */
 function assertValidRound(round) {
   if (!Number.isInteger(round) || round < 1) {
-    throw new Error("round must be a positive integer.");
+    throw new Error("round должен быть положительным целым числом.");
   }
 }
 

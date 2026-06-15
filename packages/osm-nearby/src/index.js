@@ -1,0 +1,134 @@
+const { buildOverpassQuery, parseOverpassResponse } = require("./query");
+
+const OVERPASS_API_URL = "https://overpass-api.de/api/interpreter";
+const DEFAULT_HEADERS = {
+  accept: "application/json",
+  "user-agent": "ru-skill/osm-nearby"
+};
+
+const AMENITY_CATEGORIES = {
+  restaurant: ['restaurant', 'fast_food', 'food_court'],
+  cafe: ['cafe', 'biergarten', 'ice_cream'],
+  bar: ['bar', 'pub', 'nightclub']
+};
+
+/**
+ * Поиск ближайших мест по координатам
+ * @param {number} lat - широта
+ * @param {number} lon - долгота
+ * @param {{ radius?: number, categories?: string[] | 'restaurant' | 'cafe' | 'bar', limit?: number }} options
+ * @returns {Promise<Array<{name: string, lat: number, lon: number, amenity: string, address?: string, phone?: string, website?: string, openingHours?: string, cuisine?: string}>>}
+ */
+async function searchNearby(lat, lon, options = {}) {
+  const radius = options.radius ?? 1000;
+  const limit = options.limit ?? 20;
+  
+  let categories;
+  if (options.categories) {
+    if (typeof options.categories === 'string' && AMENITY_CATEGORIES[options.categories]) {
+      categories = AMENITY_CATEGORIES[options.categories];
+    } else if (Array.isArray(options.categories)) {
+      categories = options.categories;
+    } else {
+      categories = ['restaurant', 'cafe', 'bar'];
+    }
+  } else {
+    categories = ['restaurant', 'cafe', 'bar'];
+  }
+
+  const query = buildOverpassQuery(lat, lon, radius, categories, limit);
+  
+  const response = await fetch(OVERPASS_API_URL, {
+    method: 'POST',
+    headers: {
+      ...DEFAULT_HEADERS,
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    body: `data=${encodeURIComponent(query)}`
+  });
+
+  if (!response.ok) {
+    throw new Error(`Запрос к Overpass API не удался: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return parseOverpassResponse(data);
+}
+
+/**
+ * Поиск ближайших ресторанов
+ * @param {number} lat
+ * @param {number} lon
+ * @param {{ radius?: number, limit?: number }} options
+ */
+async function searchRestaurants(lat, lon, options = {}) {
+  return searchNearby(lat, lon, {
+    ...options,
+    categories: 'restaurant'
+  });
+}
+
+/**
+ * Поиск ближайших кафе
+ * @param {number} lat
+ * @param {number} lon
+ * @param {{ radius?: number, limit?: number }} options
+ */
+async function searchCafes(lat, lon, options = {}) {
+  return searchNearby(lat, lon, {
+    ...options,
+    categories: 'cafe'
+  });
+}
+
+/**
+ * Поиск ближайших баров
+ * @param {number} lat
+ * @param {number} lon
+ * @param {{ radius?: number, limit?: number }} options
+ */
+async function searchBars(lat, lon, options = {}) {
+  return searchNearby(lat, lon, {
+    ...options,
+    categories: 'bar'
+  });
+}
+
+/**
+ * Получить детали места по идентификатору элемента OSM (повторный запрос к Overpass)
+ * @param {number} id - ID узла OSM
+ * @returns {Promise<{name: string, lat: number, lon: number, amenity: string, address?: string, phone?: string, website?: string, openingHours?: string, cuisine?: string} | null>}
+ */
+async function getPlaceDetails(id) {
+  const query = `
+[out:json][timeout:25];
+node(${id});
+out body;
+`;
+
+  const response = await fetch(OVERPASS_API_URL, {
+    method: 'POST',
+    headers: {
+      ...DEFAULT_HEADERS,
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    body: `data=${encodeURIComponent(query)}`
+  });
+
+  if (!response.ok) {
+    throw new Error(`Запрос к Overpass API не удался: ${response.status}`);
+  }
+
+  const data = await response.json();
+  const places = parseOverpassResponse(data);
+  
+  return places.length > 0 ? places[0] : null;
+}
+
+module.exports = {
+  searchNearby,
+  searchRestaurants,
+  searchCafes,
+  searchBars,
+  getPlaceDetails
+};

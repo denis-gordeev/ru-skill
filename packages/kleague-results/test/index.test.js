@@ -22,7 +22,7 @@ const standingsPayload = JSON.parse(
   fs.readFileSync(path.join(fixturesDir, "standings-kleague1-2026.json"), "utf8")
 );
 
-test("normalizeLeagueId accepts K League numeric and Korean aliases", () => {
+test("normalizeLeagueId принимает числовые и корейские псевдонимы K League", () => {
   assert.equal(normalizeLeagueId(1), 1);
   assert.equal(normalizeLeagueId("K리그1"), 1);
   assert.equal(normalizeLeagueId("k league 2"), 2);
@@ -30,7 +30,7 @@ test("normalizeLeagueId accepts K League numeric and Korean aliases", () => {
   assert.throws(() => normalizeLeagueId("K리그3"), /leagueId/);
 });
 
-test("normalizeScheduleResponse filters a date and team alias from the official monthly payload", () => {
+test("normalizeScheduleResponse фильтрует дату и псевдоним команды из официальной ежемесячной нагрузки", () => {
   const result = normalizeScheduleResponse(schedulePayload, {
     date: "2026-03-22",
     leagueId: 1,
@@ -43,7 +43,7 @@ test("normalizeScheduleResponse filters a date and team alias from the official 
   assert.equal(result.matches[0].competitionName, "하나은행 K리그1 2026");
   assert.equal(result.matches[0].round, 5);
   assert.equal(result.matches[0].status.code, "FE");
-  assert.equal(result.matches[0].status.label, "종료");
+  assert.equal(result.matches[0].status.label, "Завершён");
   assert.equal(result.matches[0].homeTeam.code, "K09");
   assert.equal(result.matches[0].homeTeam.name, "서울");
   assert.equal(result.matches[0].homeTeam.fullName, "FC서울");
@@ -53,7 +53,7 @@ test("normalizeScheduleResponse filters a date and team alias from the official 
   assert.equal(result.filteredTeam.normalized, "FC서울");
 });
 
-test("normalizeStandingsResponse keeps the official K League table shape", () => {
+test("normalizeStandingsResponse сохраняет официальную структуру таблицы K League", () => {
   const table = normalizeStandingsResponse(standingsPayload, { leagueId: 1, year: 2026 });
   const seoul = table.rows.find((row) => row.team.code === "K09");
 
@@ -68,7 +68,7 @@ test("normalizeStandingsResponse keeps the official K League table shape", () =>
   assert.deepEqual(seoul.form.slice(0, 4), ["승", "승", "승", "승"]);
 });
 
-test("public fetchers compose day results with current standings via mocked fetch", async () => {
+test("публичные загрузчики составляют результаты дня с текущей таблицей через имитацию fetch", async () => {
   const originalFetch = global.fetch;
   const calls = [];
 
@@ -89,7 +89,7 @@ test("public fetchers compose day results with current standings via mocked fetc
       return makeResponse(standingsPayload);
     }
 
-    throw new Error(`unexpected url: ${target}`);
+    throw new Error(`неожиданный URL: ${target}`);
   };
 
   try {
@@ -115,18 +115,18 @@ test("public fetchers compose day results with current standings via mocked fetc
     );
     assert.ok(
       calls.some((call) => call.body && String(call.body).includes('"month":"03"')),
-      "expected schedule fetch to send the official month payload"
+      "ожидается, что запрос расписания отправит официальный payload с месяцем"
     );
     assert.ok(
       calls.every((call) => call.headers["accept-language"]?.includes("ko-KR")),
-      "expected live requests to pin Korean-language payloads",
+      "ожидается, что live-запросы фиксируют корейскоязычные payload",
     );
   } finally {
     global.fetch = originalFetch;
   }
 });
 
-test("getMatchResults rejects impossible calendar dates before fetching", async () => {
+test("getMatchResults отклоняет невозможные календарные даты до выполнения запроса", async () => {
   let fetchCalled = false;
 
   await assert.rejects(
@@ -138,7 +138,7 @@ test("getMatchResults rejects impossible calendar dates before fetching", async 
           return makeResponse(schedulePayload);
         },
       }),
-    /date must be a valid Date or YYYY-MM-DD string\./,
+    /должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД/,
   );
 
   assert.equal(fetchCalled, false);

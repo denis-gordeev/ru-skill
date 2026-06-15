@@ -2,6 +2,6 @@
 
 ## 0.2.0
 
-### Minor Changes
+### Незначительные изменения
 
-- 4121e08: Add the first reusable Blue Ribbon nearby restaurant client and skill docs.
+- 4121e08: Добавление первого переиспользуемого клиента ближайших ресторанов Blue Ribbon и документации навыка.
