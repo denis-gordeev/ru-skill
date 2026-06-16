@@ -8,7 +8,7 @@ metadata:
   phase: v1.5
 ---
 
-# KakaoTalk Mac CLI
+# CLI для KakaoTalk на macOS
 
 ## Что делает навык
 

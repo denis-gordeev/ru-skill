@@ -4,6 +4,43 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-16 (раунд 54)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён следующий слой English jargon в user-facing surfaces: `proxy` → `прокси` (~25 вхождений в docs/features/fine-dust-location.md, fine-dust-location/SKILL.md, docs/features/yandex-market-search.md, docs/features/k-skill-proxy.md, docs/brand-inventory.md, docs/sources.md, docs/install.md, docs/setup.md, docs/security-and-secrets.md, k-skill-setup/SKILL.md), `workflow` → `процесс/сценарий` (docs/releasing.md, AGENTS.md, python-packages/README.md, docs/features/zipcode-search.md, docs/install.md, docs/roadmap.md), `batch` → `пакетная обработка/пакетных задач` (docs/features/hwp.md), `plan` → `план` (docs/brand-inventory.md), `Standings (турнирная таблица)` → `Турнирная таблица` (docs/features/rpl-results.md), `Match results (результаты матчей)` → `Результаты матчей` (docs/features/rpl-results.md).
+- Переведены английские h1-заголовки в 2 SKILL.md: `# KakaoTalk Mac CLI` → `# CLI для KakaoTalk на macOS` (kakaotalk-mac/SKILL.md), `# Toss Securities` → `# Брокерские данные Toss Securities` (toss-securities/SKILL.md).
+- Doc-regression расширен: добавлены 6 новых тестов на отсутствие English jargon (`proxy`, `workflow`, `batch`, `plan`, `Standings/Match results`) и перевод h1 SKILL.md.
+- Полный `npm run ci` проходит: 0 fail.
+
+## Выполнено в этом раунде (раунд 54)
+
+- [x] `docs/features/fine-dust-location.md`: `proxy` → `прокси` (7 вхождений).
+- [x] `fine-dust-location/SKILL.md`: `proxy` → `прокси` (5 вхождений).
+- [x] `docs/features/yandex-market-search.md`: `proxy` → `прокси`.
+- [x] `docs/features/k-skill-proxy.md`: `proxy-адаптеры` → `прокси-адаптеры`.
+- [x] `docs/brand-inventory.md`: `proxy-сценария` → `прокси-сценария`, `Практический plan` → `Практический план`.
+- [x] `docs/sources.md`: `proxy` → `прокси` (5 вхождений).
+- [x] `docs/install.md`: `proxy-слоя` → `прокси-слоя`, `skill-only workflow` → `skill-only сценарии`.
+- [x] `docs/setup.md`: `совместимый proxy` → `совместимый прокси`.
+- [x] `docs/security-and-secrets.md`: `совместимого proxy` → `совместимого прокси`.
+- [x] `k-skill-setup/SKILL.md`: `совместимый proxy` → `совместимый прокси` (2 вхождения).
+- [x] `docs/releasing.md`: `Workflow публикации` → `Процесс публикации` (2), `workflow должен` → `процесс должен`, `workflow остаётся` → `процесс остаётся`, `release/workflow/package` → `release/процесс/package`.
+- [x] `AGENTS.md`: `workflow релиза Python` → `процесс релиза Python`, `workflow-файлы` → `файлы автоматизации`.
+- [x] `python-packages/README.md`: `workflow release-please` → `процесс release-please`, `reusable workflow` → `повторно используемого процесса`, `top-level workflow` → `верхнеуровневом процессе`.
+- [x] `docs/features/zipcode-search.md`: `ePost workflow` → `ePost-сценарий`.
+- [x] `docs/roadmap.md`: `workflow` → `сценарий/процесс` (4 вхождения).
+- [x] `docs/features/hwp.md`: `Для batch:` → `Для пакетной обработки:`, `batch-задач` → `пакетных задач`.
+- [x] `kakaotalk-mac/SKILL.md`: h1 `# KakaoTalk Mac CLI` → `# CLI для KakaoTalk на macOS`.
+- [x] `toss-securities/SKILL.md`: h1 `# Toss Securities` → `# Брокерские данные Toss Securities`.
+- [x] `docs/features/rpl-results.md`: `### Standings (турнирная таблица)` → `### Турнирная таблица`, `### Match results (результаты матчей)` → `### Результаты матчей`.
+- [x] `README.md`: `workflow/content assertions` → `проверки сценария и содержимого` (2), `proxy endpoint` → `прокси-эндпоинт`, `proxy helper-docs` → `прокси helper-docs`.
+- [x] `scripts/skill-docs.test.js`: добавлены 6 новых тестов на отсутствие English jargon (`proxy`, `workflow`, `batch`, `plan`, `Standings/Match results`) и перевод h1 SKILL.md; обновлён существующий тест на `совместимый прокси`.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+
 ## Статус на 2026-06-16 (раунд 53)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.

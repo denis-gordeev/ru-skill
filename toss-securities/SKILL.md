@@ -8,7 +8,7 @@ metadata:
   phase: v1
 ---
 
-# Toss Securities
+# Брокерские данные Toss Securities
 
 ## Граничное примечание
 

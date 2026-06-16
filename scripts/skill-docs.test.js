@@ -1517,7 +1517,7 @@ test("документация fine-dust и proxy различает перео�
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
 
   assert.match(setupSkill, /необязательн.*переопределен.*адрес/i);
-  assert.match(setupSkill, /опубликованн.*совместим.*proxy/i);
+  assert.match(setupSkill, /опубликованн.*совместим.*прокси/i);
   assert.match(setupSkill, /~\/\.config\/ru-skill\/bin/);
   assert.match(setupSkill, /~\/\.config\/ru-skill\/logs/);
   assert.doesNotMatch(setupSkill, /~\/\.config\/k-skill\/bin/);
@@ -3473,4 +3473,92 @@ test("SSR-терминология нормализована: серверно 
 
   assert.doesNotMatch(ymFeature, /SSR-вёрстка/);
   assert.match(ymFeature, /серверно отрендерен/);
+});
+
+test("proxy как описательное слово заменён на прокси в user-facing документации", () => {
+  const fineDustFeature = read(path.join("docs", "features", "fine-dust-location.md"));
+  const fineDustSkill = read(path.join("fine-dust-location", "SKILL.md"));
+  const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
+  const proxyFeature = read(path.join("docs", "features", "k-skill-proxy.md"));
+  const brand = read(path.join("docs", "brand-inventory.md"));
+  const install = read(path.join("docs", "install.md"));
+  const setup = read(path.join("docs", "setup.md"));
+  const security = read(path.join("docs", "security-and-secrets.md"));
+  const sources = read(path.join("docs", "sources.md"));
+
+  const proseFiles = [fineDustFeature, fineDustSkill, ymFeature, brand, install, setup, security, sources];
+  for (const content of proseFiles) {
+    const lines = content.split("\n");
+    for (const line of lines) {
+      if (line.includes("`k-skill-proxy`") || line.includes("`k-skill-proxy.nomadamas.org`") || line.includes("`KSKILL_PROXY_BASE_URL`") || line.includes("k-skill-proxy/") || line.includes("k-skill-proxy\\") || line.includes("node packages/k-skill-proxy") || line.startsWith("```")) continue;
+      if (/\bproxy\b/.test(line) && !line.includes("k-skill-proxy") && !line.includes("KSKILL_PROXY")) {
+        assert.fail(`Найден непереведённый "proxy" в строке: ${line.trim()}`);
+      }
+    }
+  }
+
+  assert.match(fineDustFeature, /прокси/);
+  assert.match(fineDustSkill, /прокси/);
+  assert.match(ymFeature, /прокси/);
+  assert.match(brand, /прокси-сценария/);
+  assert.match(install, /прокси-слоя/);
+  assert.match(setup, /совместимый прокси/);
+  assert.match(security, /совместимого прокси/);
+  assert.match(sources, /прокси-поверхност/);
+});
+
+test("workflow как описательное слово заменён на процесс/сценарий в user-facing документации", () => {
+  const releasing = read(path.join("docs", "releasing.md"));
+  const agents = read("AGENTS.md");
+  const pythonReadme = read(path.join("python-packages", "README.md"));
+  const zipcodeFeature = read(path.join("docs", "features", "zipcode-search.md"));
+  const install = read(path.join("docs", "install.md"));
+  const roadmap = read(path.join("docs", "roadmap.md"));
+
+  assert.doesNotMatch(releasing, /\bworkflow публикации\b/);
+  assert.match(releasing, /Процесс публикации/);
+
+  assert.doesNotMatch(agents, /\bworkflow релиза Python\b/);
+  assert.match(agents, /процесс релиза Python/);
+
+  assert.doesNotMatch(pythonReadme, /\bworkflow release-please\b/);
+  assert.doesNotMatch(pythonReadme, /\breusable workflow\b/);
+  assert.doesNotMatch(pythonReadme, /\btop-level workflow\b/);
+
+  assert.doesNotMatch(zipcodeFeature, /ePost workflow/);
+  assert.match(zipcodeFeature, /ePost-сценарий/);
+
+  assert.doesNotMatch(install, /skill-only workflow/);
+  assert.match(install, /skill-only сценарии/);
+});
+
+test("batch как описательное слово заменён на пакетная обработка в docs/features/hwp.md", () => {
+  const hwpFeature = read(path.join("docs", "features", "hwp.md"));
+  assert.doesNotMatch(hwpFeature, /Для batch:/);
+  assert.doesNotMatch(hwpFeature, /batch-задач/);
+  assert.match(hwpFeature, /пакетной обработки/);
+  assert.match(hwpFeature, /пакетных задач/);
+});
+
+test("plan как описательное слово заменён на план в docs/brand-inventory.md", () => {
+  const brand = read(path.join("docs", "brand-inventory.md"));
+  assert.doesNotMatch(brand, /Практический plan/);
+  assert.match(brand, /Практический план/);
+});
+
+test("английские подзаголовки в docs/features/rpl-results.md переведены", () => {
+  const rplFeature = read(path.join("docs", "features", "rpl-results.md"));
+  assert.doesNotMatch(rplFeature, /### Standings/);
+  assert.doesNotMatch(rplFeature, /### Match results/);
+  assert.match(rplFeature, /### Турнирная таблица/);
+  assert.match(rplFeature, /### Результаты матчей/);
+});
+
+test("английские h1 в SKILL.md legacy-навыков переведены", () => {
+  const kakaotalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  const tossSkill = read(path.join("toss-securities", "SKILL.md"));
+  assert.doesNotMatch(kakaotalkSkill, /^# KakaoTalk Mac CLI$/m);
+  assert.match(kakaotalkSkill, /^# CLI для KakaoTalk на macOS$/m);
+  assert.doesNotMatch(tossSkill, /^# Toss Securities$/m);
+  assert.match(tossSkill, /^# Брокерские данные Toss Securities$/m);
 });

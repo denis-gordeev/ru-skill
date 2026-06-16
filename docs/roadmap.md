@@ -4,7 +4,15 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
-## Статус на 2026-06-15 (раунд 52)
+## Статус на 2026-06-16 (раунд 54)
+
+- Устранён следующий слой English jargon в user-facing surfaces: `proxy` → `прокси` (~25 вхождений в docs, SKILL.md, setup docs), `workflow` → `процесс/сценарий` (docs/releasing.md, AGENTS.md, python-packages/README.md, docs/features/zipcode-search.md, docs/install.md, docs/roadmap.md), `batch` → `пакетная обработка/пакетных задач` (docs/features/hwp.md), `plan` → `план` (docs/brand-inventory.md).
+- Переведены английские h1-заголовки в 2 SKILL.md: `# KakaoTalk Mac CLI` → `# CLI для KakaoTalk на macOS`, `# Toss Securities` → `# Брокерские данные Toss Securities`.
+- Переведены английские подзаголовки в docs/features/rpl-results.md: `### Standings (турнирная таблица)` → `### Турнирная таблица`, `### Match results (результаты матчей)` → `### Результаты матчей`.
+- Doc-regression расширен: добавлены 6 новых тестов на отсутствие English jargon и наличие русских эквивалентов.
+- Полный `npm run ci` проходит.
+
+## Статус на 2026-06-16 (раунд 53)
 
 - Устранён следующий слой English jargon в user-facing surfaces: `Anti-bot` → `Антибот` (zoon-nearby SKILL.md и docs), `retry policy` → `политика повторных попыток` (delivery-tracking), `retry-циклы` → `циклы повторных попыток` (srt-booking), `timeout` → `тайм-аут` (zipcode-search), `tracking query` → `отслеживающих параметров запроса` (yandex-market-search), `runtime-проверки` → `проверки времени выполнения`, `runtime-artifacts` → `артефакты выполнения` (setup SKILL.md), `bot-generated` → `сгенерированного ботом` (AGENTS.md, docs/releasing.md), `helpers` → `вспомогательные утилиты` (docs/brand-inventory.md), `helper` → `вспомогательный скрипт` (README.md), `live-обновления` → `обновления в реальном времени` (docs/sources.md).
 - Устранён English jargon в тестовых файлах: `payload` → `данные`, `live-запросы` → `запросы в реальном времени` (kleague-results), `upstream-ответы` → `вышестоящие ответы` (k-skill-proxy).
@@ -113,7 +121,7 @@
 - Последние Korean фрагменты в feature docs переведены: `근처 술집 조회` → `Поиск баров поблизости`, `K리그 결과 조회` → `Результаты K League`.
 - Doc-regression тесты обновлены под новые заголовки и переводы.
 - `ru-skill-setup` переведён на русские заголовки (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`) и больше не выбивается как preferred setup-skill с английскими секциями.
-- `k-skill-setup` выровнен с тем же верхнеуровневым heading scheme: legacy alias теперь тоже использует `Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`, а прежние отдельные top-level секции (`Установка`, `Шаги настройки`, `Контрольный список завершения`) убраны под вложенные подразделы без изменения workflow.
+- `k-skill-setup` выровнен с тем же верхнеуровневым heading scheme: legacy alias теперь тоже использует `Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`, а прежние отдельные top-level секции (`Установка`, `Шаги настройки`, `Контрольный список завершения`) убраны под вложенные подразделы без изменения сценария.
 - `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md` приведены к target-канону русских секций; дополнительный nearby-источник больше не выбивается как отдельный стиль документации.
 - `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от случайного mixed-language артефакта `可以直接`; doc-regression теперь страхует не только Korean-boundary, но и отсутствие такого user-facing drift в Zoon surfaces, а package README использует каноничный заголовок `## Что делает навык`.
 - `TODO.md` переведён на top-block governance: актуальными считаются верхние planning-блоки, а исторические `Новые пункты плана` очищены от активных unchecked-пунктов.
@@ -121,7 +129,7 @@
 - Последний слой user-facing Korean в source code и docs устранён: форматирование призов `k-lotto` (`원` → `вон`, locale `ru-RU`) и примеры CLI-запросов `kakaotalk-mac` переведены на русский.
 - Аудит подтверждает: весь оставшийся Korean — domain-inherent (API parameters, location names, fixture data, regex patterns); новых user-facing Korean фрагментов для перевода нет.
 - Skill-level copy audit завершён: 7 мест, где legacy-контекст описывался как рабочее значение по умолчанию, исправлены на обратно совместимый запасной вариант (`delivery-tracking`, `toss-securities`, `hwp`, `blue-ribbon-nearby`, `ktx-booking`).
-- Doc-regression расширен на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
+- Doc-regression расширен на 4 legacy-навыка с проверками сценария и содержимого: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
 - User-facing Korean labels в source code переведены на русский: статусы матчей (`kleague-results`), подсказки вместимости (`kakao-bar-nearby`), лотерейные метки (`k-lotto`), сообщения об ошибках (`blue-ribbon-nearby`).
 - User-facing Korean текст в feature docs, SKILL.md и package README дополнительно русифицирован: `kakao-bar-nearby`, `blue-ribbon-nearby`, `kleague-results`, `zipcode-search`, `hwp`, `ktx-booking`, `kakaotalk-mac`.
 - Doc-regression расширен на все 13 target-навыков: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby` добавлены в этом раунде.
@@ -235,7 +243,7 @@
 Критерии готовности:
 
 - Есть выбранный источник в `docs/sources.md`.
-- Есть рабочий skill/package или документированный skill-only workflow.
+- Есть рабочий skill/package или документированный skill-only сценарий.
 - Есть README/feature-guide, тесты или проверка на основе эталонных данных.
 - Навык можно установить из репозитория по той же схеме, что и текущие skills.
 
@@ -303,7 +311,7 @@
 ## Приоритеты следующих раундов
 
 1. Railway replacement закрыт документно: `yandex-rasp` остаётся конечной границей только для чтения, а автоматизация оформления заказа не идёт в новый целевой перечень задач без подтверждённого публичного API.
-2. Fine-dust/proxy secrets-template drift, skill-only drift, legacy feature/skill drift, helper/runtime cleanup, skill-level copy audit, полная русификация user-facing Korean, нормализация heading scheme во всех SKILL.md и feature docs и устранение Chinese character артефактов уже закрыты; doc-regression покрывает все 13 target-навыков и все legacy-навыки с boundary + workflow/content assertions + canonical heading scheme + mixed-language checks.
+2. Fine-dust/proxy secrets-template drift, skill-only drift, legacy feature/skill drift, helper/runtime cleanup, skill-level copy audit, полная русификация user-facing Korean, нормализация heading scheme во всех SKILL.md и feature docs и устранение Chinese character артефактов уже закрыты; doc-regression покрывает все 13 target-навыков и все legacy-навыки с проверками границ, сценария, содержимого, каноничной схемы заголовков и отсутствия смешанных языков.
 3. Держать `TODO.md` источником правды через верхние planning-блоки; исторические round-секции сохранять как архив и не возвращать туда активные unchecked-пункты.
 4. Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 5. Держать в CI синхрон верхнеуровневой документации не только по install-flow, но и по package-status matrix, граничные примечания, package README, top-level TODO governance, heading scheme critical surfaces, transition/setup copy, package metadata descriptions и отсутствию устаревшей release-археологии в README/roadmap.
