@@ -4,50 +4,47 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-06-15 (раунд 52)
+## Статус на 2026-06-16 (раунд 53)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой English jargon в user-facing surfaces: `Anti-bot` → `Антибот` (zoon-nearby/SKILL.md, packages/zoon-nearby/SKILL.md, docs/features/zoon-nearby.md), `retry policy` → `политика повторных попыток` (delivery-tracking/SKILL.md, docs/features/delivery-tracking.md ×2), `retry-циклы` → `циклы повторных попыток` (srt-booking/SKILL.md), `retry` → `повторные попытки` (zipcode-search/SKILL.md), `timeout` → `тайм-аут` (zipcode-search/SKILL.md, docs/features/zipcode-search.md ×4), `retry-флагами` → `флагами повторных попыток` (docs/features/zipcode-search.md), `retry-механика` → `механизм повторных попыток` (docs/features/zipcode-search.md), `tracking query` → `отслеживающих параметров запроса` (yandex-market-search/SKILL.md, docs/features/yandex-market-search.md), `runtime-проверки` → `проверки времени выполнения` (ru-skill-setup/SKILL.md ×2, k-skill-setup/SKILL.md), `runtime-artifacts` / `Runtime-artifacts` → `артефакты выполнения` / `Артефакты выполнения` (ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md ×2), `bot-generated` → `сгенерированного ботом` (AGENTS.md, docs/releasing.md), `helpers` / `helper'ах` → `вспомогательные утилиты` / `вспомогательных скриптах` (docs/brand-inventory.md), `helper` → `вспомогательный скрипт` (README.md), `live-обновления` → `обновления в реальном времени` (docs/sources.md), `payload` → `данные` (kleague-results/test), `live-запросы` → `запросы в реальном времени` (kleague-results/test), `upstream-ответы` → `вышестоящие ответы` (k-skill-proxy/test).
-- Doc-regression расширен: добавлены 3 новых теста на отсутствие English jargon (`retry policy`, `tracking query`, `runtime-`, `bot-generated`, `helper`, `Anti-bot`, `payload`, `live-запросы`, `upstream-ответы`, `timeout`, `retry-`) в user-facing surfaces и тестовых файлах; добавлены тесты на наличие русских эквивалентов.
+- Устранён следующий слой English jargon в user-facing surfaces: `replacement` → `замена` (7 SKILL.md), `backlog` → `перечень задач` (6 feature docs/SKILL.md, docs/install.md, docs/booking-replacements.md), `railway flow` → `железнодорожный сценарий` (srt-booking/SKILL.md, ktx-booking/SKILL.md, docs/features/ktx-booking.md, docs/features/srt-booking.md), `report эндпоинт` → `отчётный эндпоинт` (fine-dust-location/SKILL.md ×4), `legacy naming` → `устаревшее именование` (fine-dust-location/SKILL.md, docs/features/fine-dust-location.md), `carrier adapter` → `адаптер перевозчика` (docs/features/delivery-tracking.md), `adapter fields` → `поля адаптера` (docs/features/delivery-tracking.md), `carrier id` → `идентификатор перевозчика`, `validator` → `валидатор`, `entrypoint` → `точка входа`, `transport` → `транспорт`, `parser` → `парсер`, `status map` → `таблица статусов` (delivery-tracking/SKILL.md, docs/features/delivery-tracking.md), `product boundary` → `продуктовая граница` (docs/features/ktx-booking.md, docs/features/srt-booking.md), `automation reference` → `эталон автоматизации`, `target-messaging` → `целевое направление обмена сообщениями`, `booking API` → `API бронирования`, `legacy replacement` → `замена legacy-навыков` (yandex-rasp/SKILL.md), `free API` → `бесплатные API` (delivery-tracking/SKILL.md), `research` → `исследование` (docs/sources.md), `railway replacement` → `замена железнодорожных навыков` (docs/sources.md), `replacement-gap` → `пробел в замене` (docs/sources.md), `antibot flow` → `антибот-поток`, `antibot challenge` → `антибот-проверка` (docs/sources.md), `open data` → `открытые данные` (docs/sources.md), `legacy-compatible` → `обратно совместимое`, `transition-layer` → `переходный слой`, `Dual-path` → `Двойной путь`, `proxy naming` → `именование прокси` (docs/brand-inventory.md), `install-flow` → `поток установки` (docs/install.md), `watchlist` → `список наблюдения` (README.md), `backward-compatible` → `обратно совместимые` (README.md), `implementation backlog` → `перечень задач по реализации` (README.md), `booking source` → `источник бронирования` (README.md), `travel inventory` → `база туристических данных` (docs/booking-replacements.md), `train-booking` → `бронирование поездов` (docs/booking-replacements.md), `downstream` → `нисходящий поток` (zipcode-search/SKILL.md, docs/features/zipcode-search.md), `data-source` → `источник данных` (docs/features/fine-dust-location.md), `SSR-страницы` / `SSR-вёрстка` → `серверно отрендеренные страницы (SSR)` / `серверно отрендеренная вёрстка (SSR)` (zoon-nearby SKILL.md ×2, packages/zoon-nearby SKILL.md ×2, packages/zoon-nearby/README.md ×2, docs/features/zoon-nearby.md ×2, docs/features/yandex-market-search.md).
+- Doc-regression расширен: добавлены 8 новых тестов на отсутствие English jargon (`replacement`, `backlog`, `railway flow`, `product boundary`, `entrypoint`, `status map`, `carrier adapter`, `adapter fields`, `report эндпоинт`, `legacy naming`, `research`, `railway replacement`, `antibot flow`, `antibot challenge`, `open data`, `legacy-compatible`, `transition-layer`, `Dual-path`, `watchlist`, `backward-compatible`, `implementation backlog`, `booking source`, `SSR-страницы`, `SSR-вёрстка`) в user-facing surfaces и наличие русских эквивалентов.
 - Полный `npm run ci` проходит: 0 fail.
 
-## Выполнено в этом раунде (раунд 52)
+## Выполнено в этом раунде (раунд 53)
 
-- [x] `zoon-nearby/SKILL.md`: `Anti-bot` → `Антибот`.
-- [x] `packages/zoon-nearby/SKILL.md`: `Anti-bot` → `Антибот`.
-- [x] `docs/features/zoon-nearby.md`: `Anti-bot` → `Антибот`.
-- [x] `delivery-tracking/SKILL.md`: `retry policy` → `политика повторных попыток`.
-- [x] `srt-booking/SKILL.md`: `retry-циклы` → `циклы повторных попыток`.
-- [x] `zipcode-search/SKILL.md`: `retry` → `повторные попытки`, `timeout` → `тайм-аут` (вне кодовых блоков).
-- [x] `yandex-market-search/SKILL.md`: `tracking query` → `отслеживающих параметров запроса`.
-- [x] `ru-skill-setup/SKILL.md`: `runtime-проверки` → `проверки времени выполнения` (2 вхождения), `runtime-artifacts` → `артефакты выполнения`, `update checks` → `проверки обновлений`.
-- [x] `k-skill-setup/SKILL.md`: `runtime-проверки` → `проверки времени выполнения`, `runtime-artifacts` / `Runtime-artifacts` → `артефакты выполнения` / `Артефакты выполнения` (2 вхождения).
-- [x] `AGENTS.md`: `bot-generated` → `сгенерированного ботом`.
-- [x] `docs/releasing.md`: `bot-generated` → `сгенерированного ботом`.
-- [x] `docs/brand-inventory.md`: `helpers` / `helper'ах` → `вспомогательные утилиты` / `вспомогательных скриптах`.
-- [x] `README.md`: `helper` → `вспомогательный скрипт`.
-- [x] `docs/sources.md`: `live-обновления` → `обновления в реальном времени`.
-- [x] `docs/features/delivery-tracking.md`: `retry policy` → `политика повторных попыток` (2 вхождения).
-- [x] `docs/features/zipcode-search.md`: `timeout` → `тайм-аут` (4 вхождения), `retry-флагами` → `флагами повторных попыток`, `retry-механика` → `механизм повторных попыток`.
-- [x] `docs/features/yandex-market-search.md`: `tracking query` → `отслеживающих параметров запроса`.
-- [x] `packages/kleague-results/test/index.test.js`: `payload с месяцем` → `официальные данные с месяцем`, `live-запросы` → `запросы в реальном времени`, `корейскоязычные payload` → `корейскоязычные данные`.
-- [x] `packages/k-skill-proxy/test/server.test.js`: `upstream-ответы` → `вышестоящие ответы`.
-- [x] `scripts/skill-docs.test.js`: обновлён тест delivery-tracking на `политика повторных попыток`; обновлён тест ktx-booking с `anti-bot` → `антибота`; добавлены 3 новых теста на отсутствие English jargon и наличие русских эквивалентов.
+- [x] `srt-booking/SKILL.md`: `railway flow` → `железнодорожный сценарий`.
+- [x] `ktx-booking/SKILL.md`: `railway flow` → `железнодорожный сценарий`.
+- [x] `blue-ribbon-nearby/SKILL.md`: `replacement` → `замена`.
+- [x] `kakao-bar-nearby/SKILL.md`: `replacement` → `замена`.
+- [x] `kleague-results/SKILL.md`: `replacement` → `замена`.
+- [x] `daiso-product-search/SKILL.md`: `replacement` → `замена`.
+- [x] `toss-securities/SKILL.md`: `replacement` → `замена`.
+- [x] `delivery-tracking/SKILL.md`: `replacement` → `замена`, `free API` → `бесплатные API`, `backlog` → `перечень задач`, `carrier id` → `идентификатор перевозчика`, `validator` → `валидатор`, `entrypoint` → `точка входа`, `transport` → `транспорт`, `parser` → `парсер`, `status map` → `таблица статусов`.
+- [x] `fine-dust-location/SKILL.md`: `report эндпоинт` → `отчётный эндпоинт` (4 вхождения), `legacy naming` → `устаревшее именование`.
+- [x] `yandex-rasp/SKILL.md`: `booking API` → `API бронирования`, `legacy replacement` → `замена legacy-навыков`.
+- [x] `kakaotalk-mac/SKILL.md`: `automation reference` → `эталон автоматизации`, `target-messaging` → `целевое направление обмена сообщениями`, `backlog` → `перечень задач`.
+- [x] `docs/features/delivery-tracking.md`: `carrier adapter` → `адаптер перевозчика`, `adapter fields` → `поля адаптера`, `validator` → `валидатор`, `entrypoint` → `точка входа`, `transport` → `транспорт`, `parser` → `парсер`, `status map` → `таблица статусов`, `backlog` → `перечень задач`.
+- [x] `docs/features/ktx-booking.md`: `flow` → `железнодорожный сценарий`, `product boundary` → `продуктовая граница`, `replacement` → `замена`.
+- [x] `docs/features/srt-booking.md`: `flow` → `железнодорожный сценарий`, `product boundary` → `продуктовая граница`, `replacement` → `замена`.
+- [x] `docs/features/seoul-subway-arrival.md`: `backlog` → `перечень задач`.
+- [x] `docs/features/kbo-results.md`: `backlog` → `перечень задач`.
+- [x] `docs/features/kakao-bar-nearby.md`: `backlog` → `перечень задач`.
+- [x] `docs/features/zipcode-search.md`: `downstream` → `нисходящий поток`.
+- [x] `zipcode-search/SKILL.md`: `downstream` → `нисходящий поток`.
+- [x] `docs/features/fine-dust-location.md`: `legacy naming` → `устаревшее именование`, `data-source` → `источник данных`.
+- [x] `docs/sources.md`: `research` → `исследование`, `railway replacement` → `замена железнодорожных навыков`, `replacement-gap` → `пробел в замене`, `antibot flow` → `антибот-поток`, `antibot challenge` → `антибот-проверка`, `open data` → `открытые данные`, `SSR-поверхность` → `серверно отрендеренная поверхность (SSR)`, `SSR-страницы` → `серверно отрендеренные страницы (SSR)`.
+- [x] `docs/brand-inventory.md`: `legacy-compatible` → `обратно совместимое`, `transition-layer` → `переходный слой`, `Dual-path` → `Двойной путь`, `proxy naming` → `именование прокси`.
+- [x] `docs/install.md`: `backlog` → `перечень задач`, `install-flow` → `поток установки`.
+- [x] `docs/booking-replacements.md`: `travel inventory` → `база туристических данных`, `train-booking` → `бронирование поездов`, `backlog` → `перечень задач`.
+- [x] `README.md`: `watchlist` → `список наблюдения`, `backward-compatible` → `обратно совместимые`, `implementation backlog` → `перечень задач по реализации`, `booking source` → `источник бронирования`.
+- [x] Нормализована SSR-терминология: `SSR-страницы` / `SSR-вёрстка` → `серверно отрендеренные страницы (SSR)` / `серверно отрендеренная вёрстка (SSR)` во всех zoon-nearby SKILL.md/README.md и yandex-market-search feature doc.
+- [x] `scripts/skill-docs.test.js`: добавлены 8 новых тестов на отсутствие English jargon и наличие русских эквивалентов; обновлены существующие тесты на новые русские термины.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
 - [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
-
-- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой English jargon в user-facing surfaces: `endpoint` → `эндпоинт` (AGENTS.md, docs/setup.md, docs/security-and-secrets.md, docs/brand-inventory.md, docs/sources.md), `anti-bot` → `антибот` (README.md, docs/booking-replacements.md, docs/features/ktx-booking.md, ktx-booking/SKILL.md, packages/zoon-nearby/README.md, docs/features/zoon-nearby.md, docs/sources.md, docs/roadmap.md, TODO.md), `proxy endpoint` → `прокси-эндпоинт` (docs/setup.md, docs/security-and-secrets.md), `credential` → `учётные данные` (docs/setup.md), `scaffold` → `каркас/каркасная заготовка` (AGENTS.md, docs/releasing.md, python-packages/README.md).
-- Устранён English jargon в тестовых файлах: `unexpected url/URL` → `неожиданный URL` (kleague-results, kakao-bar-nearby, k-skill-proxy/airkorea), `upstream-payload` → `вышестоящий ответ` (blue-ribbon-nearby), `мок-запрос` → `имитированный запрос` (rpl-results, yandex-market-search), `upstream` → `вышестоящего API` (k-skill-proxy/server.test.js), `fallback` → `запасной вариант` (k-skill-proxy/server.test.js mock data), `direct lookup should not run` → `прямой поиск не должен выполняться` (test_fine_dust.py).
-- Устранён English jargon в helper-скриптах: `fallback-поиск` → `резервный поиск` (fine_dust.py).
-- Устранён English jargon в changeset-сводках: `fixture-тесты` → `тесты на эталонных данных` (kinopoisk-search changeset).
-- Устранён English jargon в docs/sources.md: `export-ссылки` → `экспорт-ссылки`, `production` → `промышленного использования`, `CSR` → `клиентский рендеринг (CSR)`.
-- Устранён English jargon в TODO.md: `supplementary` → `дополнительный` (3 вхождения).
-- Doc-regression расширен: добавлены тесты на отсутствие English jargon (`endpoint`, `anti-bot`, `scaffold`, `credential`, `proxy endpoint`, `upstream-payload`, `мок-запрос`, `unexpected url/URL`) в user-facing surfaces и тестовых файлах; добавлен тест на наличие русских эквивалентов (`эндпоинт`, `антибота`, `каркас`, `учётные данные`, `прокси-эндпоинт`, `вышестоящий ответ`, `имитированный запрос`, `неожиданный URL`).
-- Полный `npm test` проходит: 151 pass / 0 fail / 1 skipped.
 
 ## Выполнено в этом раунде (раунд 51)
 
@@ -82,7 +79,7 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-14 (раунд 49)
 

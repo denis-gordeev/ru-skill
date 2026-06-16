@@ -10,9 +10,9 @@
 
 | Поверхность | Текущее имя или путь | Почему пока остаётся | Что делать дальше |
 | --- | --- | --- | --- |
-| Workspace package | `packages/k-skill-proxy` / npm name `k-skill-proxy` | Это внутренний переходный пакет, уже описанный как инфраструктурная база | Сохранить имя как legacy-compatible, но в документации продвигать его только как transition-layer внутри `ru-skill` |
+| Workspace package | `packages/k-skill-proxy` / npm name `k-skill-proxy` | Это внутренний переходный пакет, уже описанный как инфраструктурная база | Сохранить имя как обратно совместимое, но в документации продвигать его только как переходный слой внутри `ru-skill` |
 | Skill | `k-skill-setup` | Legacy-имя всё ещё может быть вызвано во внешних средах | Alias `ru-skill-setup` уже добавлен; дальше продвигать только новое имя, оставляя legacy alias ради совместимости |
-| Secrets path | `~/.config/k-skill/secrets.env` | Legacy-путь всё ещё может существовать у текущих пользователей | Dual-path уже внедрён: сначала `ru-skill`, затем запасной вариант на `k-skill`; дальше убирать жёсткие упоминания из remaining legacy-docs |
+| Secrets path | `~/.config/k-skill/secrets.env` | Legacy-путь всё ещё может существовать у текущих пользователей | Двойной путь уже внедрён: сначала `ru-skill`, затем запасной вариант на `k-skill`; дальше убирать жёсткие упоминания из remaining legacy-docs |
 | Env prefix | `KSKILL_*` | Префикс используется в shell/Python/Node коде и тестах | Менять только вместе с обратной совместимостью или явным слоем совместимости |
 | Публичный URL прокси | `k-skill-proxy.nomadamas.org` | Используется как опубликованный устаревший эндпоинт | Оставить как устаревший эндпоинт, новые русскоязычные adapter'ы описывать как `ru-skill` capabilities поверх этого слоя |
 
@@ -22,7 +22,7 @@
 | --- | --- | --- |
 | Корневые документы | `README.md`, `docs/install.md`, `docs/setup.md`, `docs/security-and-secrets.md`, `docs/roadmap.md` | Здесь бренд должен упоминаться только как legacy-контекст или переходный слой |
 | Feature guides | `docs/features/k-skill-proxy.md` и remaining guides с корейскими заголовками | Часть упоминаний технически корректна, но ещё не везде выровнен русский тон и legacy-маркировка |
-| Скрипты и вспомогательные утилиты | `scripts/run-k-skill-proxy.sh`, отдельные help/default URL в legacy вспомогательных скриптах | Dual-path по secrets уже внедрён, но proxy naming и часть legacy help-текстов ещё остаются |
+| Скрипты и вспомогательные утилиты | `scripts/run-k-skill-proxy.sh`, отдельные help/default URL в legacy вспомогательных скриптах | Двойной путь по секретам уже внедрён, но именование прокси и часть legacy help-текстов ещё остаются |
 | Тесты | `scripts/skill-docs.test.js`, `scripts/test_fine_dust.py` | Эти тесты фиксируют текущее поведение и должны меняться только вместе с совместимостью |
 | User-Agent | `packages/k-lotto/src/index.js`, `packages/kleague-results/src/index.js` | Это безопасный хвост legacy-бренда; можно оставить до выноса или архивирования пакетов |
 

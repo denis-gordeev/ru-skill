@@ -43,7 +43,7 @@
 | `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Гайд по мелкой пыли](docs/features/fine-dust-location.md) |
 | `kbo-results` | Результаты и расписание матчей KBO по датам и командам | Нет | [Гайд по KBO](docs/features/kbo-results.md) |
 | `kleague-results` | Результаты матчей и таблица K League 1/2 | Нет | [Гайд по K League](docs/features/kleague-results.md) |
-| `toss-securities` | Сводки только для чтения по счёту, портфелю, котировкам и watchlist через `tossctl` | Да | [Гайд по Toss Securities](docs/features/toss-securities.md) |
+| `toss-securities` | Сводки только для чтения по счёту, портфелю, котировкам и списку наблюдения через `tossctl` | Да | [Гайд по Toss Securities](docs/features/toss-securities.md) |
 | `lotto-results` | Проверка последних и конкретных тиражей корейской лотереи | Нет | [Гайд по lotto](docs/features/lotto-results.md) |
 | `hwp` | Конвертация `.hwp` в JSON/Markdown/HTML, извлечение изображений и пакетная обработка | Нет | [Гайд по HWP](docs/features/hwp.md) |
 | `blue-ribbon-nearby` | Поиск ближайших ресторанов Blue Ribbon Survey после уточнения местоположения | Нет | [Гайд по Blue Ribbon nearby](docs/features/blue-ribbon-nearby.md) |
@@ -118,7 +118,7 @@
 - Проведён release-hygiene раунд: подтверждён текущий inventory `.changeset/`, а из верхнеуровневых документов убраны устаревшие релизные ярлыки и сводки расстояния ветки как неустойчивый live-статус.
 - Doc-regression усилен: README и roadmap теперь дополнительно страхуются тестами от возврата устаревшей release-археологии в живые секции.
 - Проведён исследовательский раунд по railway booking replacements: добавлен отдельный документ с матрицей решений, где официальный поток РЖД признан слишком тяжёлым по части оформления заказа для MVP, а `tutu.ru` и Яндекс Путешествия зафиксированы как кандидаты только для чтения и перенаправления, а не как подтверждённые публичные booking API.
-- Legacy railway docs выровнены с этим решением: `srt-booking` и `ktx-booking` теперь явно помечены как backward-compatible корейские сценарии, а не как направление для новых российских интеграций на запись.
+- Legacy railway docs выровнены с этим решением: `srt-booking` и `ktx-booking` теперь явно помечены как обратно совместимые корейские сценарии, а не как направление для новых российских интеграций на запись.
 - Milestone 5 закрыт документно: подтверждено, что `yandex-rasp` уже покрывает стабильный поиск железнодорожных маршрутов, а отдельный навык-перенаправление без публичного booking API не добавляет новой устойчивой функции.
 - `docs/booking-replacements.md`, `docs/sources.md`, `docs/features/yandex-rasp.md` и `yandex-rasp/SKILL.md` обновлены под это решение: внешний переход в поверхности оформления заказа описан как пользовательский ручной шаг, а не как новый `target`-пакет.
 - Доведена до конца `remaining legacy-only matrix`: `seoul-subway-arrival` и `toss-securities` теперь одинаково помечены как документно закрытые `Legacy`, а `k-skill-proxy` — как `Transition` во всех user-facing верхнеуровневых документах.
@@ -180,8 +180,8 @@
 
 ## Что делаем дальше
 
-- Railway replacement выведен из активного implementation backlog: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + ручное внешнее перенаправление без нового навыка оформления заказа.
-- Если в будущем появится официальный и устойчивый railway booking source без логина, закрытых API и ненадёжных обходов антибота, тогда можно вернуться к идее отдельного target-пакета; до этого автоматизацию записи в потоках оформления заказа не раздувать.
+- Railway replacement выведен из активного перечня задач по реализации: текущая граница зафиксирована в [docs/booking-replacements.md](docs/booking-replacements.md) как `yandex-rasp` + ручное внешнее перенаправление без нового навыка оформления заказа.
+- Если в будущем появится официальный и устойчивый железнодорожный источник бронирования без логина, закрытых API и ненадёжных обходов антибота, тогда можно вернуться к идее отдельного target-пакета; до этого автоматизацию записи в потоках оформления заказа не раздувать.
 - Skill-only drift, legacy feature/skill drift, helper/runtime cleanup, source-level русификация и skill-level copy audit уже закрыты; весь user-facing Korean в source code и docs полностью устранён; оставшийся Korean — domain-inherent (API parameters, location names, fixture data, regex patterns).
 - Все SKILL.md и feature docs приведены к единой каноничной heading scheme; неканоничные варианты (`Что делает этот навык`, `Что умеет`, `Предварительные требования`, `Режимы сбоев`, `Что умеет этот сценарий`, `Что нужно заранее`, `Базовый поток`, `Базовый сценарий`, `Обзор`) устранены.
 - Package README на актуальных target-поверхностях тоже доведены до каноничной heading scheme; оставшийся `## Обзор` в `packages/zoon-nearby/README.md` устранён.
