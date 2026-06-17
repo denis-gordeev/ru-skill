@@ -49,7 +49,7 @@ console.log(places[0]);
 await searchNearby(55.7558, 37.6173, {
   radius: 2000,        // радиус в метрах (по умолчанию: 1000)
   limit: 15,           // максимум результатов (по умолчанию: 20)
-  categories: ['restaurant']  // или 'restaurant'/'cafe'/'bar' для shorthand
+  categories: ['restaurant']  // или 'restaurant'/'cafe'/'bar' для сокращения
 });
 ```
 

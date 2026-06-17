@@ -71,7 +71,7 @@ node packages/k-skill-proxy/src/server.js
 1. `pm2 start ecosystem.config.cjs`
 2. `pm2 save`
 3. `pm2 startup`
-4. Привязать внешний ingress или tunnel к `http://localhost:4020`
+4. Привязать внешний входной прокси или туннель к `http://localhost:4020`
 
 ## Как использовать существующий legacy эндпоинт
 

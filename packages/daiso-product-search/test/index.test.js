@@ -204,7 +204,7 @@ test("normalizeStorePickupStockResponse преобразует строки за
   assert.equal(stock.saleStatusCode, "1")
 })
 
-test("публичные клиентские помощники могут использовать внедрённые фикстуры fetch", async () => {
+test("публичные клиентские помощники могут использовать внедрённые эталонные данные имитации fetch", async () => {
   const originalFetch = global.fetch
 
   global.fetch = async (url) => {

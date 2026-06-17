@@ -81,8 +81,8 @@ console.log(buildArchiveUrl("4x20"));
 | `getArchiveDraws(gameSlug)` | Получить последние тиражи для указанной лотереи |
 | `getDrawById(gameSlug, drawNumber)` | Получить тираж по номеру (если страница поддерживает фильтрацию) |
 | `buildArchiveUrl(gameSlug)` | Построить публичный URL архива |
-| `normalizeGameSlug(gameSlug)` | Нормализовать название лотереи в канонический slug |
-| `SUPPORTED_GAMES` | Массив поддерживаемых канонических slug'ов |
+| `normalizeGameSlug(gameSlug)` | Нормализовать название лотереи в канонический идентификатор |
+| `SUPPORTED_GAMES` | Массив поддерживаемых канонических идентификаторов |
 
 ## Тесты
 

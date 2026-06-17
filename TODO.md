@@ -4,6 +4,45 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-17 (раунд 55)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён следующий слой English jargon в user-facing surfaces: `side effects` → `действия с побочными эффектами` (srt-booking/SKILL.md ×3, kakaotalk-mac/SKILL.md), `holdings` → `позиций` (toss-securities/SKILL.md), `pixel-perfect` → `точную` (hh-vacancies/SKILL.md), `watchlist` → `список наблюдения` (docs/features/toss-securities.md), `waitlist` → `лист ожидания` (docs/features/ktx-booking.md ×2), `scope` → `область действия` (yandex-market-search/SKILL.md, docs/features/ktx-booking.md), `inline-характеристики` → `встроенные характеристики` (yandex-market-search/SKILL.md, docs/features/yandex-market-search.md ×2), `canonical` → `канонический` (yandex-market-search/SKILL.md, docs/features/yandex-market-search.md), `merchant-level` → `со стороны продавца` (docs/features/yandex-market-search.md), `anchor-точка` → `опорная точка` (docs/features/kakao-bar-nearby.md), `slug` → `идентификатор категории` (zoon-nearby/SKILL.md, packages/stoloto-lotto/README.md, packages/yandex-market-search/README.md), `ingress` → `входной прокси` (docs/features/k-skill-proxy.md), `extraction` → `извлечение изображений` (docs/features/hwp.md), `flow` → `потоки` (packages/daiso-product-search/README.md), `dry-run` → `пробный запуск` (kakaotalk-mac/SKILL.md), `harvest, inspect` → `сбор данных, проверка` (kakaotalk-mac/SKILL.md), `HTML-фикстура` → `эталонный HTML` (packages/rpl-results/test), `фикстуры` → `эталонные данные` (packages/k-lotto/test, packages/daiso-product-search/test), `канонические слаги` → `канонические идентификаторы` (packages/stoloto-lotto/test), `shorthand` → `сокращение` (docs/features/osm-nearby.md).
+- Doc-regression расширен: добавлены 17 новых тестов на отсутствие English jargon и наличие русских эквивалентов.
+- Исправлены отставшие CI-тесты: обновлён раунд на 54, убран дублирующийся открытый пункт в TODO.md.
+
+## Выполнено в этом раунде (раунд 55)
+
+- [x] `srt-booking/SKILL.md`: `side effects` → `действия, изменяющие состояние` / `действие с побочными эффектами` (3 вхождения).
+- [x] `kakaotalk-mac/SKILL.md`: `side effects` → `действия с побочными эффектами`, `harvest, inspect` → `сбор данных, проверка`, `dry-run` → `пробный запуск`.
+- [x] `toss-securities/SKILL.md`: `holdings` → `позиций`.
+- [x] `hh-vacancies/SKILL.md`: `pixel-perfect` → `точную`.
+- [x] `docs/features/toss-securities.md`: `watchlist` → `список наблюдения`.
+- [x] `docs/features/ktx-booking.md`: `waitlist` → `лист ожидания` (2 вхождения), `scope` → `область действия`.
+- [x] `yandex-market-search/SKILL.md`: `inline-характеристикам` → `встроенным характеристикам`, `canonical URL` → `канонический URL`, `вне scope` → `вне области действия`.
+- [x] `docs/features/yandex-market-search.md`: `inline-характеристикам` → `встроенным характеристикам`, `canonical` → `каноническим`, `top inline-характеристики` → `верхние встроенные характеристики`, `merchant-level сценарии` → `сценарии со стороны продавца`.
+- [x] `docs/features/kakao-bar-nearby.md`: `anchor-точки` → `опорной точки`.
+- [x] `zoon-nearby/SKILL.md`: `slug/структурой` → `идентификатором категории/структурой`.
+- [x] `kbo-results/SKILL.md`: `inline-сниппете entry file` → `встроенном фрагменте файла входа`.
+- [x] `packages/yandex-market-search/README.md`: `по slug и ID` → `по идентификатору категории (slug) и ID`.
+- [x] `packages/stoloto-lotto/README.md`: `канонический slug` → `канонический идентификатор`, `канонических slug'ов` → `канонических идентификаторов`.
+- [x] `packages/daiso-product-search/README.md`: `магазин/товар/наличие flow` → `потоки магазин/товар/наличие`.
+- [x] `docs/features/osm-nearby.md`: `shorthand` → `сокращение`.
+- [x] `docs/features/k-skill-proxy.md`: `ingress или tunnel` → `входной прокси или туннель`.
+- [x] `docs/features/hwp.md`: `Для extraction:` → `Для извлечения изображений:`.
+- [x] `packages/rpl-results/test/index.test.js`: `HTML-фикстуру` → `эталонный HTML` (2 вхождения), `на фикстурах` → `на эталонных данных`.
+- [x] `packages/k-lotto/test/index.test.js`: `внедрённые фикстуры` → `внедрённые эталонные данные`.
+- [x] `packages/daiso-product-search/test/index.test.js`: `внедрённые фикстуры fetch` → `внедрённые эталонные данные имитации fetch`.
+- [x] `packages/stoloto-lotto/test/index.test.js`: `канонические слаги` → `канонические идентификаторы` (2 вхождения).
+- [x] `scripts/skill-docs.test.js`: добавлены 17 новых тестов на отсутствие English jargon (`side effects`, `holdings`, `pixel-perfect`, `watchlist`, `waitlist`, `scope`, `inline-характеристики`, `canonical`, `merchant-level`, `anchor-точка`, `slug`, `ingress`, `extraction`, `flow`, `dry-run`, `фикстура/слаг`).
+- [x] `scripts/skill-docs.test.js`: обновлён раунд на 54 в doc-regression.
+- [x] `TODO.md`: убран дублирующийся открытый пункт в историческом блоке плана.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+
 ## Статус на 2026-06-16 (раунд 54)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
@@ -39,7 +78,7 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-16 (раунд 53)
 
@@ -81,7 +120,7 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
 
 ## Выполнено в этом раунде (раунд 51)
 

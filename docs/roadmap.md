@@ -4,6 +4,13 @@
 
 `ru-skill` должен перестать быть просто переносом активов `k-skill` и стать рабочим набором навыков для российских и русскоязычных пользователей. Практический критерий успеха: в репозитории должны появляться новые русскоязычные навыки, а legacy-пакеты должны быть явно отделены от нового позиционирования в документации, релизах и матрице пакетов.
 
+## Статус на 2026-06-17 (раунд 55)
+
+- Устранён следующий слой English jargon в user-facing surfaces: `side effects` → `действия с побочными эффектами` (srt-booking/SKILL.md, kakaotalk-mac/SKILL.md), `holdings` → `позиций` (toss-securities/SKILL.md), `pixel-perfect` → `точную` (hh-vacancies/SKILL.md), `watchlist` → `список наблюдения` (docs/features/toss-securities.md), `waitlist` → `лист ожидания` (docs/features/ktx-booking.md), `scope` → `область действия` (yandex-market-search/SKILL.md, docs/features/ktx-booking.md), `inline-характеристики` → `встроенные характеристики` (yandex-market-search SKILL.md и feature doc), `canonical` → `канонический` (yandex-market-search), `merchant-level` → `со стороны продавца` (docs/features/yandex-market-search.md), `anchor-точка` → `опорная точка` (docs/features/kakao-bar-nearby.md), `slug` → `идентификатор категории` (zoon-nearby/SKILL.md, packages/stoloto-lotto/README.md), `ingress` → `входной прокси` (docs/features/k-skill-proxy.md), `extraction` → `извлечение изображений` (docs/features/hwp.md), `flow` → `потоки` (packages/daiso-product-search/README.md), `dry-run` → `пробный запуск` (kakaotalk-mac/SKILL.md), `harvest, inspect` → `сбор данных, проверка` (kakaotalk-mac/SKILL.md), `shorthand` → `сокращение` (docs/features/osm-nearby.md).
+- Переведены оставшиеся жаргонизмы в тестовых файлах: `HTML-фикстура` → `эталонный HTML`, `фикстуры` → `эталонные данные`, `канонические слаги` → `канонические идентификаторы`.
+- Doc-regression расширен: добавлены 17 новых тестов на отсутствие English jargon и наличие русских эквивалентов.
+- Полный `npm run ci` проходит.
+
 ## Статус на 2026-06-16 (раунд 54)
 
 - Устранён следующий слой English jargon в user-facing surfaces: `proxy` → `прокси` (~25 вхождений в docs, SKILL.md, setup docs), `workflow` → `процесс/сценарий` (docs/releasing.md, AGENTS.md, python-packages/README.md, docs/features/zipcode-search.md, docs/install.md, docs/roadmap.md), `batch` → `пакетная обработка/пакетных задач` (docs/features/hwp.md), `plan` → `план` (docs/brand-inventory.md).

@@ -72,7 +72,7 @@ console.log(product.title);
 
 ### `buildProductUrl(slug, productId)`
 
-Формирование канонического URL карточки товара по slug и ID.
+Формирование канонического URL карточки товара по идентификатору категории (slug) и ID.
 
 ## Примечания
 

@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-16");
-  assert.equal(todoStatus.round, 53);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 53\)/);
+  assert.equal(todoStatus.date, "2026-06-17");
+  assert.equal(todoStatus.round, 55);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 55\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -1842,7 +1842,7 @@ test("документация yandex-market-search описывает сцен�
   assert.match(skill, /npm install yandex-market-search/);
   assert.match(skill, /searchProducts/);
   assert.match(skill, /getProduct/);
-  assert.match(featureDoc, /canonical/i);
+  assert.match(featureDoc, /каноническ/i);
   assert.match(packageReadme, /npm install yandex-market-search/);
   assert.match(packageReadme, /searchProducts/);
   assert.match(packageReadme, /getProduct/);
@@ -3561,4 +3561,185 @@ test("английские h1 в SKILL.md legacy-навыков переведе
   assert.match(kakaotalkSkill, /^# CLI для KakaoTalk на macOS$/m);
   assert.doesNotMatch(tossSkill, /^# Toss Securities$/m);
   assert.match(tossSkill, /^# Брокерские данные Toss Securities$/m);
+});
+
+test("side effects как описательное слово заменён на побочные эффекты / действия с побочными эффектами", () => {
+  const srtSkill = read(path.join("srt-booking", "SKILL.md"));
+  const kakaotalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
+
+  assert.doesNotMatch(srtSkill, /side effects/);
+  assert.match(srtSkill, /действия.*изменяющ/);
+
+  assert.doesNotMatch(kakaotalkSkill, /side effects/);
+  assert.match(kakaotalkSkill, /побочн.*эффект/);
+});
+
+test("holdings заменён на позиции в toss-securities SKILL.md", () => {
+  const tossSkill = read(path.join("toss-securities", "SKILL.md"));
+  assert.doesNotMatch(tossSkill, /\bholdings\b/);
+  assert.match(tossSkill, /позиций в портфеле/);
+});
+
+test("pixel-perfect заменён на точную копию в hh-vacancies SKILL.md", () => {
+  const hhSkill = read(path.join("hh-vacancies", "SKILL.md"));
+  assert.doesNotMatch(hhSkill, /pixel-perfect/);
+  assert.match(hhSkill, /точную копию/);
+});
+
+test("watchlist в docs/features/toss-securities.md заменён на список наблюдения", () => {
+  const tossFeature = read(path.join("docs", "features", "toss-securities.md"));
+  const lines = tossFeature.split("\n");
+  for (const line of lines) {
+    if (line.includes("tossctl watchlist") || line.includes("listWatchlist") || line.startsWith("```")) continue;
+    if (/\bwatchlist\b/i.test(line)) {
+      assert.fail(`Найден непереведённый "watchlist" в строке: ${line.trim()}`);
+    }
+  }
+  assert.match(tossFeature, /список наблюдения/);
+});
+
+test("waitlist в docs/features/ktx-booking.md заменён на лист ожидания", () => {
+  const ktxFeature = read(path.join("docs", "features", "ktx-booking.md"));
+  const lines = ktxFeature.split("\n");
+  for (const line of lines) {
+    if (line.includes("--include-waiting-list") || line.includes("--try-waiting") || line.startsWith("```")) continue;
+    if (/\bwaitlist\b/i.test(line)) {
+      assert.fail(`Найден непереведённый "waitlist" в строке: ${line.trim()}`);
+    }
+  }
+  assert.match(ktxFeature, /лист ожидания/);
+});
+
+test("scope в SKILL.md и feature docs заменён на область действия", () => {
+  const ymSkill = read(path.join("yandex-market-search", "SKILL.md"));
+  const ktxFeature = read(path.join("docs", "features", "ktx-booking.md"));
+
+  const ymLines = ymSkill.split("\n");
+  for (const line of ymLines) {
+    if (/\bscope\b/.test(line)) {
+      assert.fail(`Найден непереведённый "scope" в yandex-market-search SKILL.md: ${line.trim()}`);
+    }
+  }
+
+  const ktxLines = ktxFeature.split("\n");
+  for (const line of ktxLines) {
+    if (/\bscope\b/.test(line)) {
+      assert.fail(`Найден непереведённый "scope" в ktx-booking feature doc: ${line.trim()}`);
+    }
+  }
+
+  assert.match(ymSkill, /области действия/);
+  assert.match(ktxFeature, /область действия/);
+});
+
+test("inline-характеристики в yandex-market-search заменены на встроенные характеристики", () => {
+  const ymSkill = read(path.join("yandex-market-search", "SKILL.md"));
+  const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
+
+  assert.doesNotMatch(ymSkill, /inline-характеристик/);
+  assert.match(ymSkill, /встроенн.*характеристик/);
+
+  assert.doesNotMatch(ymFeature, /inline-характеристик/);
+  assert.match(ymFeature, /встроенн.*характеристик/);
+});
+
+test("canonical URL в yandex-market-search заменён на канонический", () => {
+  const ymSkill = read(path.join("yandex-market-search", "SKILL.md"));
+  const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
+
+  const ymSkillLines = ymSkill.split("\n");
+  for (const line of ymSkillLines) {
+    if (/\bcanonical\b/i.test(line)) {
+      assert.fail(`Найден непереведённый "canonical" в yandex-market-search SKILL.md: ${line.trim()}`);
+    }
+  }
+
+  const ymFeatureLines = ymFeature.split("\n");
+  for (const line of ymFeatureLines) {
+    if (/\bcanonical\b/i.test(line)) {
+      assert.fail(`Найден непереведённый "canonical" в yandex-market-search feature doc: ${line.trim()}`);
+    }
+  }
+});
+
+test("merchant-level в yandex-market-search feature doc заменён на со стороны продавца", () => {
+  const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
+  assert.doesNotMatch(ymFeature, /merchant-level/);
+  assert.match(ymFeature, /со стороны продавца/);
+});
+
+test("anchor-точка в kakao-bar-nearby feature doc заменена на опорная точка", () => {
+  const kakaoBarFeature = read(path.join("docs", "features", "kakao-bar-nearby.md"));
+  assert.doesNotMatch(kakaoBarFeature, /anchor-точк/);
+  assert.match(kakaoBarFeature, /опорной точк/);
+});
+
+test("slug как описательное слово заменён на идентификатор категории в zoon-nearby и stoloto-lotto", () => {
+  const zoonSkill = read(path.join("zoon-nearby", "SKILL.md"));
+  const stolotoReadme = read(path.join("packages", "stoloto-lotto", "README.md"));
+
+  const zoonLines = zoonSkill.split("\n");
+  for (const line of zoonLines) {
+    if (line.startsWith("```")) continue;
+    if (/\bslug\b/i.test(line) && !line.includes("`slug`")) {
+      assert.fail(`Найден непереведённый "slug" в zoon-nearby SKILL.md: ${line.trim()}`);
+    }
+  }
+
+  assert.doesNotMatch(stolotoReadme, /канонический slug/);
+  assert.doesNotMatch(stolotoReadme, /канонических slug/);
+  assert.match(stolotoReadme, /канонический идентификатор/);
+});
+
+test("ingress в k-skill-proxy feature doc заменён на входной прокси", () => {
+  const proxyFeature = read(path.join("docs", "features", "k-skill-proxy.md"));
+  assert.doesNotMatch(proxyFeature, /\bingress\b/);
+  assert.match(proxyFeature, /входной прокси/);
+});
+
+test("extraction в hwp feature doc заменён на извлечение изображений", () => {
+  const hwpFeature = read(path.join("docs", "features", "hwp.md"));
+  assert.doesNotMatch(hwpFeature, /Для extraction/);
+  assert.match(hwpFeature, /извлечения изображений/);
+});
+
+test("flow как описательное слово заменён на поток/сценарий в daiso-product-search README", () => {
+  const daisoReadme = read(path.join("packages", "daiso-product-search", "README.md"));
+  const lines = daisoReadme.split("\n");
+  for (const line of lines) {
+    if (/\bflow\b/.test(line) && !line.includes("```") && !line.includes("`flow`")) {
+      assert.fail(`Найден непереведённый "flow" в daiso-product-search README: ${line.trim()}`);
+    }
+  }
+});
+
+test("dry-run как описательное слово заменено на пробный запуск в kakaotalk-mac SKILL.md", () => {
+  const kakaotalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  const lines = kakaotalkSkill.split("\n");
+  for (const line of lines) {
+    if (line.includes("--dry-run") || line.includes("`--dry-run`") || line.startsWith("```")) continue;
+    if (/\bdry-run\b/.test(line)) {
+      assert.fail(`Найден непереведённый "dry-run" в kakaotalk-mac SKILL.md: ${line.trim()}`);
+    }
+  }
+  assert.match(kakaotalkSkill, /пробный запуск/);
+});
+
+test("тесты пакетов не содержат фикстура/слаг как описательные слова", () => {
+  const rplTest = read(path.join("packages", "rpl-results", "test", "index.test.js"));
+  const stolotoTest = read(path.join("packages", "stoloto-lotto", "test", "index.test.js"));
+  const klottoTest = read(path.join("packages", "k-lotto", "test", "index.test.js"));
+  const daisoTest = read(path.join("packages", "daiso-product-search", "test", "index.test.js"));
+
+  assert.doesNotMatch(rplTest, /HTML-фикстур/);
+  assert.match(rplTest, /эталонный HTML/);
+
+  assert.doesNotMatch(stolotoTest, /канонические слаги/);
+  assert.match(stolotoTest, /канонические идентификаторы/);
+
+  assert.doesNotMatch(klottoTest, /внедрённые фикстуры/);
+  assert.match(klottoTest, /эталонные данные/);
+
+  assert.doesNotMatch(daisoTest, /внедрённые фикстуры/);
+  assert.match(daisoTest, /эталонные данные/);
 });
