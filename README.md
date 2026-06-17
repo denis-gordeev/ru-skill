@@ -111,7 +111,7 @@
 - Верхнеуровневая документация и roadmap переведены на единый русскоязычный сценарий с явным разделением `Target` и `Legacy`.
 - `README.md`, `TODO.md`, `docs/install.md` и `docs/roadmap.md` синхронизированы между собой; добавлена регрессия, которая проверяет, что поток установки не пропускает текущие `target` workspace-пакеты.
 - Для setup и shell-скриптов введён двойной путь secrets: сначала `~/.config/ru-skill/secrets.env`, затем legacy запасной вариант `~/.config/k-skill/secrets.env`.
-- Setup-поток теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый alias.
+- Поток настройки теперь можно вызывать через предпочтительное имя `ru-skill-setup`; `k-skill-setup` сохранён как совместимый псевдоним.
 - Плановая документация очищена от устаревших статусов: `README.md`, `TODO.md` и `docs/roadmap.md` теперь синхронно фиксируют 13 реализованных `target`-навыков и текущее состояние migration backlog.
 - В `docs/roadmap.md` обновлён статус Milestone 4: документная миграция, матрица замен и маркировка legacy-пакетов доведены до рабочего завершения; дальше фокус смещён на booking-replacements и release hygiene.
 - Добавлена отдельная doc-regression проверка, которая не даёт README, roadmap и TODO разъехаться по следующим шагам и продуктовым приоритетам.
@@ -130,7 +130,7 @@
 - Doc-regression расширен ещё на secrets template и setup helper-docs, чтобы необязательное переопределение/настоящие учётные данные не откатывалась в локальных инструкциях и проверках окружения.
 - Package-level README для legacy utility-пакетов (`toss-securities`, `daiso-product-search`, `kleague-results`, `blue-ribbon-nearby`, `kakao-bar-nearby`, `k-lotto`) выровнены с текущей migration-governance: они теперь явно фиксируют `legacy-only` границу, называют российские replacements там, где они уже есть, и не выглядят как активный целевой перечень задач.
 - Doc-regression расширен на этот package-level слой, чтобы `legacy-only` граница удерживалась не только в feature guides и top-level docs, но и в README отдельных workspace-пакетов.
-- Legacy alias `k-skill-setup` больше не продвигает `~/.config/k-skill/bin` и `~/.config/k-skill/logs` как runtime-default: update-check examples и log paths переведены на `~/.config/ru-skill/*`, а legacy-пути оставлены только как совместимый запасной вариант.
+- Устаревший псевдоним `k-skill-setup` больше не продвигает `~/.config/k-skill/bin` и `~/.config/k-skill/logs` как runtime-default: update-check examples и log paths переведены на `~/.config/ru-skill/*`, а legacy-пути оставлены только как совместимый запасной вариант.
 - Doc-regression расширен на setup runtime-artifacts, чтобы even legacy setup-skill не возвращал `k-skill`-prefixed bin/log directories в роли основного operational path.
 - Оставшиеся legacy skill-level guides тоже выровнены с migration-boundary: `fine-dust-location`, `srt-booking` и `ktx-booking` теперь одинаково фиксируют `legacy/transition` роль, `ru-skill`-first secrets order и различие между необязательным переопределением адреса и реальными секретами.
 - Doc-regression расширен на этот skill-level слой, чтобы railway/fine-dust copy не возвращала legacy defaults или скрытый целевой перечень задач в новые раунды.
@@ -146,10 +146,10 @@
 - Skill-level copy audit завершён: 7 мест, где legacy-контекст описывался как рабочее значение по умолчанию, исправлены на обратно совместимый запасной вариант (`delivery-tracking`, `toss-securities`, `hwp`, `blue-ribbon-nearby`, `ktx-booking`).
 - Doc-regression теперь покрывает все 13 target-навыков и 4 legacy-навыка с проверками сценария и содержимого (`seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`).
 - Английские заголовки секций во всех target SKILL.md переведены на русский и приведены к единой схеме; нестандартные русские формулировки в `yandex-rasp` и `yandex-market-search` нормализованы; последние Korean фрагменты в feature docs (`kakao-bar-nearby`, `kleague-results`) переведены на русский.
-- `ru-skill-setup/SKILL.md` переведён на русские секционные заголовки (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`), чтобы предпочтительный setup-alias не оставался последним English-heading outlier.
-- Legacy alias `k-skill-setup/SKILL.md` теперь использует ту же верхнеуровневую heading scheme (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`) без изменения setup-flow, secrets order и семантики совместимости.
+- `ru-skill-setup/SKILL.md` переведён на русские секционные заголовки (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`), чтобы предпочтительный псевдоним настройки не оставался последним English-heading outlier.
+- Устаревший псевдоним `k-skill-setup/SKILL.md` теперь использует ту же верхнеуровневую heading scheme (`Назначение`, `Порядок разрешения учётных данных`, `Стандартный сценарий`, `Совместимость`) без изменения потока настройки, порядка секретов и семантики совместимости.
 - `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md` приведены к target-канону (`Что делает навык`, `Когда использовать`, `Предварительные условия`, `Входные данные`, `Рабочий процесс`, `Критерии завершения`, `Возможные ошибки`, `Примечания`), чтобы дополнительный nearby-источник не оставался особым случаем по структуре.
-- `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от смешанного артефакта `可以直接`; doc-regression теперь дополнительно страхует heading scheme для setup alias и `zoon-nearby`, а также отсутствие такого mixed-language drift.
+- `docs/features/zoon-nearby.md` и `packages/zoon-nearby/README.md` очищены от смешанного артефакта `可以直接`; doc-regression теперь дополнительно страхует heading scheme для псевдонима настройки и `zoon-nearby`, а также отсутствие такого mixed-language drift.
 - Все 17 SKILL.md с неканоничными заголовками нормализованы к единой схеме (`Что делает навык`, `Предварительные условия`, `Критерии завершения`, `Возможные ошибки`); устранены варианты `Что делает этот навык`, `Что умеет`, `Предварительные требования`, `Считается выполненным, когда`, `Режимы сбоев`.
 - Все 29 feature docs в `docs/features/` нормализованы к каноничной heading scheme; устранены варианты `Что умеет этот сценарий`, `Что нужно заранее`, `Базовый поток`, `Базовый сценарий`, `Обзор`, `Входы`, `Готово, когда`.
 - `packages/osm-nearby/SKILL.md` полностью перестроен под каноничную схему target-навыка; `Что умеет` заменено на `Что делает навык` и т.д.
@@ -202,6 +202,7 @@
 - Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO, booking docs и package metadata descriptions, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 - Следующий проход делать уже по оставшимся edge-case поверхностям: npm script output, helper JS utilities (`fix-changelog-headings.js`), и другим редким repo-infrastructure сообщениям.
+- Устранён следующий слой English jargon: `alias` → `псевдоним` (setup SKILL.md, docs/install.md, README.md, docs/roadmap.md, docs/brand-inventory.md), `setup-alias` → `псевдоним настройки`, `post-install` → `после установки`, `shared secrets` → `общие секреты`, `feature-specific` → `для отдельных функций`, `setup-навык` → `навык настройки`, `setup-поток` → `поток настройки`, `product card page` → `страница карточки товара`, `Raw JSON` → `Необработанный JSON`, `Legacy alias` → `Устаревший псевдоним`, `compatibility alias` → `псевдоним совместимости`.
 - Английские assert-сообщения в `scripts/skill-docs.test.js` полностью переведены на русский; h1-заголовки верхнеуровневых документов (`Brand Inventory`, `Sources`, `Roadmap`) русифицированы; English jargon в feature docs (`production`, `live-`, `discovery`, `export`) устранён.
 
 ## Быстрые ссылки на ключевые функции
@@ -239,7 +240,7 @@
 
 1. Прочитайте [Установку](docs/install.md) и установите только те навыки, которые реально нужны.
 2. Если используете legacy-функции из `k-skill`, сначала проверьте [Общую настройку](docs/setup.md) и [Политику секретов](docs/security-and-secrets.md).
-3. Для общей подготовки окружения используйте `ru-skill-setup`; legacy-имя `k-skill-setup` остаётся рабочим alias.
+3. Для общей подготовки окружения используйте `ru-skill-setup`; legacy-имя `k-skill-setup` остаётся рабочим псевдонимом.
 4. Область дальнейшего перехода на российские сценарии зафиксирована в [Дорожной карте](docs/roadmap.md).
 5. При изменении релизных настроек и метаданных соблюдайте [Гайд по релизам](docs/releasing.md) и правила Changesets.
 

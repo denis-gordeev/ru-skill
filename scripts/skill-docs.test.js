@@ -1165,7 +1165,7 @@ test("документация установки предпочитает ru-sk
 
   assert.match(readme, /ru-skill-setup/);
   assert.match(install, /ru-skill-setup/);
-  assert.match(install, /k-skill-setup.*alias/i);
+  assert.match(install, /k-skill-setup.*псевдоним/i);
   assert.match(preferredSkill, /^name: ru-skill-setup$/m);
   assert.deepEqual(extractSecondLevelHeadings(preferredSkill), expectedSetupHeadings);
   assert.doesNotMatch(preferredSkill, /^## Purpose$/m);
@@ -1173,7 +1173,7 @@ test("документация установки предпочитает ru-sk
   assert.doesNotMatch(preferredSkill, /^## Default flow$/m);
   assert.doesNotMatch(preferredSkill, /^## Compatibility$/m);
   assert.match(legacySkill, /^name: k-skill-setup$/m);
-  assert.match(legacySkill, /legacy-совместим.*alias/i);
+  assert.match(legacySkill, /legacy-совместим.*псевдоним/i);
   assert.deepEqual(extractSecondLevelHeadings(legacySkill), expectedSetupHeadings);
   assert.doesNotMatch(legacySkill, /^## Стандартное расположение файлов$/m);
   assert.doesNotMatch(legacySkill, /^## Установка$/m);
@@ -3742,4 +3742,41 @@ test("тесты пакетов не содержат фикстура/слаг 
 
   assert.doesNotMatch(daisoTest, /внедрённые фикстуры/);
   assert.match(daisoTest, /эталонные данные/);
+});
+
+test("setup-alias, post-install, shared secrets, feature-specific заменены в setup SKILL.md", () => {
+  const ruSetupSkill = read(path.join("ru-skill-setup", "SKILL.md"));
+  const kSetupSkill = read(path.join("k-skill-setup", "SKILL.md"));
+
+  assert.doesNotMatch(ruSetupSkill, /setup-alias/);
+  assert.doesNotMatch(ruSetupSkill, /post-install/);
+  assert.doesNotMatch(ruSetupSkill, /shared secrets/);
+  assert.doesNotMatch(ruSetupSkill, /feature-specific/);
+  assert.doesNotMatch(ruSetupSkill, /setup-навык/);
+  assert.doesNotMatch(ruSetupSkill, /setup-поток/);
+
+  assert.match(ruSetupSkill, /псевдоним настройки/);
+  assert.match(ruSetupSkill, /после установки/);
+  assert.match(ruSetupSkill, /общие секреты/);
+  assert.match(ruSetupSkill, /для отдельных функций/);
+
+  assert.doesNotMatch(kSetupSkill, /setup-навык/);
+  assert.doesNotMatch(kSetupSkill, /setup-поток/);
+  assert.doesNotMatch(kSetupSkill, /\balias\b/);
+
+  assert.match(kSetupSkill, /навык настройки/);
+  assert.match(kSetupSkill, /поток настройки/);
+  assert.match(kSetupSkill, /псевдоним/);
+});
+
+test("product card page в yandex-market-search SKILL.md заменён на страницу карточки товара", () => {
+  const ymSkill = read(path.join("yandex-market-search", "SKILL.md"));
+  assert.doesNotMatch(ymSkill, /product card page/);
+  assert.match(ymSkill, /страниц[ыу] карточки товара/);
+});
+
+test("Raw JSON в kbo-results SKILL.md заменён на необработанный JSON", () => {
+  const kboSkill = read(path.join("kbo-results", "SKILL.md"));
+  assert.doesNotMatch(kboSkill, /Raw JSON/);
+  assert.match(kboSkill, /Необработанный JSON/);
 });

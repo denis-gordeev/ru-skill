@@ -4,6 +4,32 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-17 (раунд 56)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён следующий слой English jargon в user-facing surfaces: `alias` → `псевдоним` (ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md, docs/install.md ×4, README.md ×5, docs/roadmap.md ×3, docs/brand-inventory.md ×2), `setup-alias` → `псевдоним настройки` (ru-skill-setup/SKILL.md), `post-install` → `после установки` (ru-skill-setup/SKILL.md), `shared secrets` → `общие секреты` (ru-skill-setup/SKILL.md), `feature-specific` → `для отдельных функций` (ru-skill-setup/SKILL.md), `setup-навык` → `навык настройки` (k-skill-setup/SKILL.md frontmatter, ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md), `setup-поток` → `поток настройки` (k-skill-setup/SKILL.md, ru-skill-setup/SKILL.md, docs/roadmap.md), `setup-flow` → `поток настройки` (README.md), `product card page` → `страница карточки товара` (yandex-market-search/SKILL.md), `Raw JSON` → `Необработанный JSON` (kbo-results/SKILL.md), `Legacy alias` → `Устаревший псевдоним` (ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md), `compatibility alias` → `псевдоним совместимости` (docs/roadmap.md), `alias-слой` → `слой псевдонимов` (docs/brand-inventory.md).
+- Doc-regression расширен: добавлены 3 новых теста на отсутствие English jargon (`setup-alias`, `post-install`, `shared secrets`, `feature-specific`, `setup-навык`, `setup-поток`, `alias`, `product card page`, `Raw JSON`) и наличие русских эквивалентов.
+- Полный `npm run ci` проходит: 0 fail.
+
+## Выполнено в этом раунде (раунд 56)
+
+- [x] `ru-skill-setup/SKILL.md`: `setup-alias` → `псевдоним настройки`, `post-install потока` → `потока после установки`, `shared secrets` → `общие секреты`, `feature-specific навыками` → `навыками для отдельных функций`, `Legacy alias` → `Устаревший псевдоним`, `setup-навыка` → `навыка настройки`, `setup-потоку` → `потоку настройки`.
+- [x] `ru-skill-setup/SKILL.md` frontmatter: `legacy alias` → `устаревший псевдоним`.
+- [x] `k-skill-setup/SKILL.md` frontmatter: `setup-навык` → `навык настройки`.
+- [x] `k-skill-setup/SKILL.md`: `alias` → `псевдоним`, `setup-поток` → `поток настройки`, `Legacy alias` → `Устаревший псевдоним`, `setup-навыка` → `навыка настройки`, `legacy alias` → `устаревший псевдоним`.
+- [x] `docs/install.md`: `alias` → `псевдоним` (4 вхождения).
+- [x] `README.md`: `Setup-поток` → `Поток настройки`, `Legacy alias` → `Устаревший псевдоним` (2), `setup-flow` → `поток настройки`, `setup-alias` → `псевдоним настройки`, `alias` → `псевдоним`.
+- [x] `docs/roadmap.md`: `setup-поток` → `поток настройки`, `legacy alias` → `устаревший псевдоним`, `compatibility alias` → `псевдоним совместимости`.
+- [x] `docs/brand-inventory.md`: `Alias` → `Псевдоним`, `legacy alias` → `устаревший псевдоним`, `alias-слой` → `слой псевдонимов`.
+- [x] `yandex-market-search/SKILL.md`: `product card page` → `страница карточки товара`.
+- [x] `kbo-results/SKILL.md`: `Raw JSON` → `Необработанный JSON`.
+- [x] `scripts/skill-docs.test.js`: добавлены 3 новых теста на отсутствие English jargon и наличие русских эквивалентов для setup surfaces, yandex-market-search и kbo-results; обновлён существующий тест `install.md` на `псевдоним` вместо `alias`.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+
 ## Статус на 2026-06-17 (раунд 55)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
