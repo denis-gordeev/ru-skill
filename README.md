@@ -90,7 +90,7 @@
 | [Релизы и публикация](docs/releasing.md) | Changesets, release-please и trusted publishing |
 | [Дорожная карта](docs/roadmap.md) | Следующие шаги миграции под российские сценарии |
 | [Замены booking-навыков](docs/booking-replacements.md) | Матрица решений по замене `srt-booking` и `ktx-booking` |
-| [Инвентарь бренда](docs/brand-inventory.md) | Где legacy-имя `k-skill` ещё нужно ради совместимости |
+| [Инвентарь бренда](docs/brand-inventory.md) | Где устаревшее имя `k-skill` ещё нужно ради совместимости |
 | [Источники и поверхности](docs/sources.md) | Публичные документы и API, на которые опирается проект |
 
 ## Что уже сделано по миграции
@@ -199,7 +199,7 @@
 - Верхний активный блок `TODO.md` теперь зафиксирован как единственный живой backlog; исторические round-секции остаются архивом и не должны снова накапливать открытые checklist-пункты.
 - Shell/infrastructure surfaces больше не выбиваются по языку: `scripts/check-setup.sh` и `scripts/validate-skills.sh` синхронизированы с русскоязычным setup/runtime контуром и застрахованы doc-regression тестами.
 - Source-code error messages и Python helper messages в legacy-пакетах (`toss-securities`, `kleague-results`, `kakao-bar-nearby`, `blue-ribbon-nearby`, `k-lotto`, `daiso-product-search`, `ktx_booking.py`, `fine_dust.py`) переведены на русский и застрахованы doc-regression тестами.
-- Продолжить сужать публичную роль legacy-пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
+- Продолжить сужать публичную роль устаревших пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, roadmap, TODO, booking docs и package metadata descriptions, чтобы закрытые milestone не возвращались в активный backlog из-за документного дрейфа.
 - Следующий проход делать уже по оставшимся edge-case поверхностям: npm script output, helper JS utilities (`fix-changelog-headings.js`), и другим редким repo-infrastructure сообщениям.
 - Устранён следующий слой English jargon: `alias` → `псевдоним` (setup SKILL.md, docs/install.md, README.md, docs/roadmap.md, docs/brand-inventory.md), `setup-alias` → `псевдоним настройки`, `post-install` → `после установки`, `shared secrets` → `общие секреты`, `feature-specific` → `для отдельных функций`, `setup-навык` → `навык настройки`, `setup-поток` → `поток настройки`, `product card page` → `страница карточки товара`, `Raw JSON` → `Необработанный JSON`, `Legacy alias` → `Устаревший псевдоним`, `compatibility alias` → `псевдоним совместимости`.
@@ -239,8 +239,8 @@
 ## С чего начать
 
 1. Прочитайте [Установку](docs/install.md) и установите только те навыки, которые реально нужны.
-2. Если используете legacy-функции из `k-skill`, сначала проверьте [Общую настройку](docs/setup.md) и [Политику секретов](docs/security-and-secrets.md).
-3. Для общей подготовки окружения используйте `ru-skill-setup`; legacy-имя `k-skill-setup` остаётся рабочим псевдонимом.
+2. Если используете устаревшие функции из `k-skill`, сначала проверьте [Общую настройку](docs/setup.md) и [Политику секретов](docs/security-and-secrets.md).
+3. Для общей подготовки окружения используйте `ru-skill-setup`; устаревшее имя `k-skill-setup` остаётся рабочим псевдонимом.
 4. Область дальнейшего перехода на российские сценарии зафиксирована в [Дорожной карте](docs/roadmap.md).
 5. При изменении релизных настроек и метаданных соблюдайте [Гайд по релизам](docs/releasing.md) и правила Changesets.
 

@@ -1173,7 +1173,7 @@ test("документация установки предпочитает ru-sk
   assert.doesNotMatch(preferredSkill, /^## Default flow$/m);
   assert.doesNotMatch(preferredSkill, /^## Compatibility$/m);
   assert.match(legacySkill, /^name: k-skill-setup$/m);
-  assert.match(legacySkill, /legacy-совместим.*псевдоним/i);
+  assert.match(legacySkill, /обратно совместим.*псевдоним/i);
   assert.deepEqual(extractSecondLevelHeadings(legacySkill), expectedSetupHeadings);
   assert.doesNotMatch(legacySkill, /^## Стандартное расположение файлов$/m);
   assert.doesNotMatch(legacySkill, /^## Установка$/m);
@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-18");
-  assert.equal(todoStatus.round, 57);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 57\)/);
+  assert.equal(todoStatus.round, 58);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 58\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -3135,7 +3135,8 @@ test("docs/brand-inventory.md использует русский вместо �
   assert.doesNotMatch(brand, /legacy surface area/);
   assert.doesNotMatch(brand, /Public proxy URL/);
   assert.doesNotMatch(brand, /legacy endpoint/);
-  assert.match(brand, /legacy-поверхностей/);
+  assert.doesNotMatch(brand, /legacy-поверхностей/);
+  assert.match(brand, /устаревших поверхностей/);
   assert.match(brand, /Публичный URL прокси/);
   assert.match(brand, /устаревший эндпоинт/);
 });
@@ -3871,4 +3872,119 @@ test("Nearby-поиск и Nearby JSON заменены на русские эк
 
   assert.doesNotMatch(blueRibbonReadme, /Nearby JSON/);
   assert.match(blueRibbonReadme, /JSON ресторанов поблизости/);
+});
+
+test("legacy- compounds заменены на устаревш* в пользовательской документации (setup, security, sources, install, brand-inventory, booking-replacements)", () => {
+  const setup = read(path.join("docs", "setup.md"));
+  const security = read(path.join("docs", "security-and-secrets.md"));
+  const sources = read(path.join("docs", "sources.md"));
+  const install = read(path.join("docs", "install.md"));
+  const brandInventory = read(path.join("docs", "brand-inventory.md"));
+  const booking = read(path.join("docs", "booking-replacements.md"));
+
+  for (const doc of [setup, security, sources, install, brandInventory, booking]) {
+    assert.doesNotMatch(doc, /legacy-резерв/);
+    assert.doesNotMatch(doc, /legacy-файл/);
+    assert.doesNotMatch(doc, /legacy-имя/);
+    assert.doesNotMatch(doc, /legacy-навык/);
+    assert.doesNotMatch(doc, /legacy-пакет/);
+    assert.doesNotMatch(doc, /legacy-сценари/);
+    assert.doesNotMatch(doc, /legacy-функц/);
+    assert.doesNotMatch(doc, /legacy-контекст/);
+    assert.doesNotMatch(doc, /legacy-поверхност/);
+    assert.doesNotMatch(doc, /legacy-маркировк/);
+    assert.doesNotMatch(doc, /legacy-документ/);
+    assert.doesNotMatch(doc, /legacy-booking/);
+    assert.doesNotMatch(doc, /legacy-адаптер/);
+  }
+
+  assert.match(setup, /устаревший резерв/);
+  assert.match(security, /устаревший резерв/);
+  assert.match(sources, /устаревших навыков/);
+  assert.match(sources, /устаревшего пакета/);
+  assert.match(sources, /устаревшего сценария/);
+  assert.match(sources, /устаревших сценариев/);
+  assert.match(sources, /устаревшей документации/);
+  assert.match(install, /устаревшее имя/);
+  assert.match(install, /устаревших npm-пакетов/);
+  assert.match(brandInventory, /устаревших поверхностей/);
+  assert.match(booking, /устаревших навыков/);
+});
+
+test("legacy- compounds заменены на устаревш* в feature docs (yandex-rasp, k-skill-proxy, yandex-market-search)", () => {
+  const yandexRasp = read(path.join("docs", "features", "yandex-rasp.md"));
+  const kSkillProxy = read(path.join("docs", "features", "k-skill-proxy.md"));
+  const yandexMarket = read(path.join("docs", "features", "yandex-market-search.md"));
+
+  for (const doc of [yandexRasp, kSkillProxy, yandexMarket]) {
+    assert.doesNotMatch(doc, /legacy-навык/);
+    assert.doesNotMatch(doc, /legacy-сценари/);
+    assert.doesNotMatch(doc, /legacy-адаптер/);
+  }
+
+  assert.match(yandexRasp, /устаревших навыков/);
+  assert.match(kSkillProxy, /устаревший адаптер/);
+  assert.match(kSkillProxy, /устаревших сценариев/);
+  assert.match(yandexMarket, /устаревшего навыка/);
+});
+
+test("adapter'ы и job-search заменены на русские эквиваленты в документации", () => {
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const brandInventory = read(path.join("docs", "brand-inventory.md"));
+
+  assert.doesNotMatch(roadmap, /adapter'ы/);
+  assert.doesNotMatch(brandInventory, /adapter'ы/);
+  assert.match(roadmap, /русскоязычные адаптеры/);
+  assert.match(brandInventory, /русскоязычные адаптеры/);
+
+  assert.doesNotMatch(roadmap, /job-search/);
+  assert.match(roadmap, /поиска работы/);
+});
+
+test("remaining guides заменено на оставшиеся guides в brand-inventory", () => {
+  const brandInventory = read(path.join("docs", "brand-inventory.md"));
+  assert.doesNotMatch(brandInventory, /\bremaining\b/);
+  assert.match(brandInventory, /оставшиеся/);
+});
+
+test("SKILL.md не содержит legacy- compounds кроме legacy-only в статусных маркерах", () => {
+  const ruSetup = read(path.join("ru-skill-setup", "SKILL.md"));
+  const kSetup = read(path.join("k-skill-setup", "SKILL.md"));
+  const yandexMarketSkill = read(path.join("yandex-market-search", "SKILL.md"));
+  const yandexRaspSkill = read(path.join("yandex-rasp", "SKILL.md"));
+  const ktxSkill = read(path.join("ktx-booking", "SKILL.md"));
+  const srtSkill = read(path.join("srt-booking", "SKILL.md"));
+
+  assert.doesNotMatch(ruSetup, /legacy-имен/);
+  assert.match(ruSetup, /устаревшим именем/);
+
+  assert.doesNotMatch(kSetup, /legacy-совместим/);
+  assert.match(kSetup, /обратно совместим/);
+
+  assert.doesNotMatch(yandexMarketSkill, /legacy-сценари/);
+  assert.match(yandexMarketSkill, /устаревший сценарий/);
+
+  assert.doesNotMatch(yandexRaspSkill, /legacy-навык/);
+  assert.match(yandexRaspSkill, /устаревших навыков/);
+
+  assert.doesNotMatch(ktxSkill, /legacy-booking/);
+  assert.doesNotMatch(srtSkill, /legacy-booking/);
+  assert.match(ktxSkill, /устаревших навыков бронирования/);
+  assert.match(srtSkill, /устаревших навыков бронирования/);
+});
+
+test("README.md пользовательские секции не содержат legacy- compounds", () => {
+  const readme = read("README.md");
+
+  assert.doesNotMatch(readme, /legacy-имя `k-skill`/);
+  assert.match(readme, /устаревшее имя `k-skill`/);
+
+  assert.doesNotMatch(readme, /legacy-функции из `k-skill`/);
+  assert.match(readme, /устаревшие функции из `k-skill`/);
+
+  assert.doesNotMatch(readme, /legacy-пакетов:/);
+  assert.match(readme, /устаревших пакетов:/);
+
+  assert.doesNotMatch(readme, /legacy-имя `k-skill-setup`/);
+  assert.match(readme, /устаревшее имя `k-skill-setup`/);
 });
