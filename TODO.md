@@ -4,6 +4,49 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-18 (раунд 57)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён следующий слой English jargon в user-facing surfaces: `regex-` → `регулярные выражения` (docs/features/rpl-results.md, docs/features/kinopoisk-search.md, docs/features/stoloto-lotto.md, packages/stoloto-lotto/README.md, packages/kinopoisk-search/README.md), `backlog` → `перечень задач` (6 файлов: zipcode-search, fine-dust-location, kakaotalk-mac, kleague-results feature docs и package README), `target-*` → `целев*` (20+ вхождений в SKILL.md и feature docs: `target-направлением` → `целевым направлением`, `target-трек` → `целевой трек`, `target-линейке` → `целевой линейке`, `target-кандидат` → `целевой кандидат`, `target-supporting` → `целевой-вспомогательный`, `target-навыком` → `целевым навыком`, `target-сценарии` → `целевые сценарии`), `transition-*` → `переходн*` (5 файлов: `transition-слоем` → `переходным слоем`, `transition-инфраструктурой` → `переходной инфраструктурой`), `legacy-*` compounds → `устаревш*` (40+ вхождений: `legacy-резерв` → `устаревший резерв`, `legacy-коридору` → `устаревшему коридору`, `legacy-контекст` → `устаревший контекст`, `legacy-название` → `устаревшее название`, `legacy-след` → `устаревший след`, `legacy-бренда` → `устаревшего бренда`, `legacy-пакетов` → `устаревших пакетов`, и др.), `free` → `бесплатный` (zoon-nearby/SKILL.md ×2), `optional` → `опционально` (docs/features/zoon-nearby.md ×4), `Nearby-поиск` → `Поиск ближайших` (docs/sources.md), `Nearby JSON` → `JSON ресторанов поблизости` (packages/blue-ribbon-nearby/README.md), `public-source интеграций` → `интеграций на публичных источниках` (docs/features/fine-dust-location.md), `fetch для тестов` → `запросов для тестов` (packages/yandex-market-search/README.md ×2), `migration-пунктов/plan` → `пунктов миграции/план миграции` (docs/brand-inventory.md), `backward-compatible` → `обратно совместимые`, `boundary` → `границей`, `distinction` → `различие`, `replacement` → `замена` (docs/roadmap.md), `legacy-пакеты` → `устаревшие пакеты` (docs/roadmap.md, README.md), `target-пакет` → `целевой пакет` (docs/roadmap.md), `Legacy-пакеты` → `Устаревшие пакеты` (заголовок секции), `target-навыки` → `целевые навыки` (заголовок секции), `migration-governance` → `управление миграцией` (docs/roadmap.md).
+- Исправлены отставшие CI-тесты: обновлён раунд на 57, убран дублирующийся открытый пункт в TODO.md.
+- Doc-regression расширен: добавлены 7 новых тестов на отсутствие English jargon (`regex-`, `backlog`, `target-`, `transition-`, `legacy-` compounds, `free`, `optional`, `Nearby-`, `public-source`, `fetch для тестов`) и наличие русских эквивалентов.
+- Полный `npm run ci` проходит: 0 fail.
+
+## Выполнено в этом раунде (раунд 57)
+
+- [x] `docs/features/rpl-results.md`: `regex-выражения` → `регулярные выражения`.
+- [x] `docs/features/kinopoisk-search.md`: `regex-экстракцию` → `извлечение регулярными выражениями`.
+- [x] `docs/features/stoloto-lotto.md`: `regex-парсинг` → `парсинг регулярными выражениями`.
+- [x] `packages/stoloto-lotto/README.md`: `regex-экстракцию` → `извлечение регулярными выражениями`.
+- [x] `packages/kinopoisk-search/README.md`: `regex-экстракцию` → `извлечение регулярными выражениями`.
+- [x] `docs/features/zipcode-search.md`: `backlog` → `перечень задач`.
+- [x] `docs/features/fine-dust-location.md`: `backlog` → `перечень задач`, `public-source интеграций` → `интеграций на публичных источниках`.
+- [x] `docs/features/kakaotalk-mac.md`: `backlog` → `перечень задач`.
+- [x] `docs/features/kleague-results.md`: `backlog` → `перечень задач`.
+- [x] `packages/kakao-bar-nearby/README.md`: `backlog` → `перечень задач`.
+- [x] `packages/kleague-results/README.md`: `backlog` → `перечень задач`.
+- [x] `zoon-nearby/SKILL.md` и `packages/zoon-nearby/SKILL.md`: `free` → `бесплатный`.
+- [x] `docs/features/zoon-nearby.md`: `optional` → `опционально` (4 вхождения).
+- [x] `docs/sources.md`: `Nearby-поиск` → `Поиск ближайших`.
+- [x] `packages/blue-ribbon-nearby/README.md`: `Nearby JSON` → `JSON ресторанов поблизости`.
+- [x] `packages/yandex-market-search/README.md`: `fetch для тестов` → `запросов для тестов` (2 вхождения).
+- [x] `docs/brand-inventory.md`: `migration-пунктов/plan` → `пунктов миграции/план миграции`, `legacy-` compounds → `устаревш*` (8 вхождений).
+- [x] 11 SKILL.md: `target-направлением/трек/линейке/кандидат` → `целевым направлением/трек/линейке/кандидат`, `target-supporting` → `целевой-вспомогательный`, `transition-` → `переходн*`, `legacy-` compounds → `устаревш*`.
+- [x] 5 docs/features/*.md: `target-навыком/сценарии` → `целевым навыком/целевые сценарии`, `transition-слоем` → `переходным слоем`, `legacy-` compounds → `устаревш*`.
+- [x] `docs/sources.md`: `target-линейку/линейки` → `целевую линейку/целевой линейки` (10 вхождений).
+- [x] `docs/install.md`: `target-заменами` → `целевыми заменами`, `transition-слоем` → `переходным слоем`, `target`-линейка → `целевая линейка`, `transition`-инфраструктура → `переходная инфраструктура`, `legacy npm-пакеты` → `устаревшие npm-пакеты`.
+- [x] `docs/booking-replacements.md`: `target-навыком/пакет/линейки` → `целевым навыком/целевой пакет/целевой линейки`.
+- [x] `packages/k-skill-proxy/README.md`: `transition-инфраструктурой` → `переходной инфраструктурой`.
+- [x] `docs/roadmap.md`: `legacy-пакеты` → `устаревшие пакеты`, `target-линейки` → `целевой линейки`, `migration-governance` → `управление миграцией`, `backward-compatible` → `обратно совместимые`, `boundary` → `границей`, `template` → `шаблон`, `replacement` → `замена`, `target-пакет` → `целевой пакет`, `checkout` → `оформление заказа`, `transition-слой` → `переходной слой`, `legacy/transition` → `устаревшие/переходные`, `target-default` → `целевой по умолчанию`, `optional endpoint override` → `необязательное переопределение эндпоинта`, `distinction` → `различие`, секционные заголовки русифицированы.
+- [x] `README.md`: `target-навыки` → `целевые навыки`, `legacy-наследием` → `устаревшим наследием`, `Legacy-функции` → `Устаревшие функции`, `target-пакета` → `целевого пакета`, `legacy-пакеты` → `устаревшие пакеты`.
+- [x] `scripts/skill-docs.test.js`: добавлены 7 новых тестов на отсутствие English jargon и наличие русских эквивалентов; обновлены 15+ существующих тестов на новые русские термины; обновлён раунд на 57.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [ ] Продолжить русификацию оставшихся `legacy-*`, `target-*` и `transition-*` compounds в исторических секциях docs/roadmap.md и README.md, а также в docs/setup.md, docs/security-and-secrets.md, если они ещё содержат английские гибридные термины.
+
 ## Статус на 2026-06-17 (раунд 56)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
@@ -28,7 +71,7 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-17 (раунд 55)
 
@@ -67,7 +110,7 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-16 (раунд 54)
 

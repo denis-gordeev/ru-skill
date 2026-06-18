@@ -52,7 +52,7 @@ console.log(product.title);
 | Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
 | `page` | number | `1` | Номер страницы результатов |
-| `fetcher` | function | глобальный `fetch` | Пользовательская реализация fetch для тестов |
+| `fetcher` | function | глобальный `fetch` | Пользовательская реализация запросов для тестов |
 
 Возвращает `{query, source, page, results}`, где каждый результат содержит `productId`, `title`, `price`, `rating`, `reviewCount`, `url`, `imageUrl` и топ `specs`.
 
@@ -62,7 +62,7 @@ console.log(product.title);
 
 | Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
-| `fetcher` | function | глобальный `fetch` | Пользовательская реализация fetch для тестов |
+| `fetcher` | function | глобальный `fetch` | Пользовательская реализация запросов для тестов |
 
 Возвращает `{productId, title, brand, price, rating, reviewCount, description, specs, source, url}`.
 
