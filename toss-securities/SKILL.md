@@ -1,6 +1,6 @@
 ---
 name: toss-securities
-description: Legacy-совместимая обёртка только для чтения над tossctl для Toss Securities. Использовать только для существующих корейских брокерских запросов; публичные рыночные данные уже покрываются moex-shares.
+description: Обратно совместимая обёртка только для чтения над tossctl для Toss Securities. Использовать только для существующих корейских брокерских запросов; публичные рыночные данные уже покрываются moex-shares.
 license: MIT
 metadata:
   category: finance

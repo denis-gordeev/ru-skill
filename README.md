@@ -36,8 +36,8 @@
 | `yandex-market-search` | Поиск товаров и карточки товаров через серверно отрендеренные страницы Яндекс Маркета | Нет | [Гайд по Яндекс Маркету](docs/features/yandex-market-search.md) |
 | `osm-nearby` | Поиск ближайших заведений через Overpass API OpenStreetMap | Нет | [Гайд по OSM nearby](docs/features/osm-nearby.md) |
 | `zoon-nearby` | Поиск ближайших заведений через публичные страницы Zoon.ru | Нет | [Гайд по Zoon.ru](docs/features/zoon-nearby.md) |
-| `srt-booking` | Legacy-совместимый корейский сценарий поиска поездов SRT и бронирования | Да | [Гайд по SRT](docs/features/srt-booking.md) |
-| `ktx-booking` | Legacy-совместимый корейский сценарий KTX/Korail через вспомогательный скрипт с обходом антибота Dynapath | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
+| `srt-booking` | Обратно совместимый корейский сценарий поиска поездов SRT и бронирования | Да | [Гайд по SRT](docs/features/srt-booking.md) |
+| `ktx-booking` | Обратно совместимый корейский сценарий KTX/Korail через вспомогательный скрипт с обходом антибота Dynapath | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
 | `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
 | `seoul-subway-arrival` | Просмотр ожидаемого времени прибытия поездов метро Сеула по станции | Да | [Гайд по метро Сеула](docs/features/seoul-subway-arrival.md) |
 | `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Гайд по мелкой пыли](docs/features/fine-dust-location.md) |
@@ -89,7 +89,7 @@
 | [Гайд по прокси](docs/features/k-skill-proxy.md) | Эксплуатация прокси для бесплатных API |
 | [Релизы и публикация](docs/releasing.md) | Changesets, release-please и trusted publishing |
 | [Дорожная карта](docs/roadmap.md) | Следующие шаги миграции под российские сценарии |
-| [Замены booking-навыков](docs/booking-replacements.md) | Матрица решений по замене `srt-booking` и `ktx-booking` |
+| [Замены навыков бронирования](docs/booking-replacements.md) | Матрица решений по замене `srt-booking` и `ktx-booking` |
 | [Инвентарь бренда](docs/brand-inventory.md) | Где устаревшее имя `k-skill` ещё нужно ради совместимости |
 | [Источники и поверхности](docs/sources.md) | Публичные документы и API, на которые опирается проект |
 

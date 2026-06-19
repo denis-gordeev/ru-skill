@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-18");
-  assert.equal(todoStatus.round, 58);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 58\)/);
+  assert.equal(todoStatus.date, "2026-06-19");
+  assert.equal(todoStatus.round, 59);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 59\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -3611,9 +3611,10 @@ test("waitlist в docs/features/ktx-booking.md заменён на лист ож
   assert.match(ktxFeature, /лист ожидания/);
 });
 
-test("scope в SKILL.md и feature docs заменён на область действия", () => {
+test("scope в SKILL.md, feature docs и docs/sources.md заменён на область действия", () => {
   const ymSkill = read(path.join("yandex-market-search", "SKILL.md"));
   const ktxFeature = read(path.join("docs", "features", "ktx-booking.md"));
+  const sources = read(path.join("docs", "sources.md"));
 
   const ymLines = ymSkill.split("\n");
   for (const line of ymLines) {
@@ -3629,8 +3630,16 @@ test("scope в SKILL.md и feature docs заменён на область де�
     }
   }
 
+  const sourcesLines = sources.split("\n");
+  for (const line of sourcesLines) {
+    if (/\bscope\b/.test(line)) {
+      assert.fail(`Найден непереведённый "scope" в docs/sources.md: ${line.trim()}`);
+    }
+  }
+
   assert.match(ymSkill, /области действия/);
   assert.match(ktxFeature, /область действия/);
+  assert.match(sources, /область действия/);
 });
 
 test("inline-характеристики в yandex-market-search заменены на встроенные характеристики", () => {
@@ -3987,4 +3996,118 @@ test("README.md пользовательские секции не содерж�
 
   assert.doesNotMatch(readme, /legacy-имя `k-skill-setup`/);
   assert.match(readme, /устаревшее имя `k-skill-setup`/);
+
+  assert.doesNotMatch(readme, /Legacy-совместимый/);
+  assert.match(readme, /Обратно совместимый/);
+
+  assert.doesNotMatch(readme, /booking-навыков/);
+  assert.match(readme, /навыков бронирования/);
+});
+
+test("docs/sources.md не содержит server-side rendered (заменено на серверно отрендеренный)", () => {
+  const sources = read(path.join("docs", "sources.md"));
+  assert.doesNotMatch(sources, /server-side rendered/);
+  assert.match(sources, /серверно отрендеренный/);
+});
+
+test("docs/features/delivery-tracking.md не содержит Endpoint (заменено на Эндпоинт)", () => {
+  const feature = read(path.join("docs", "features", "delivery-tracking.md"));
+  assert.doesNotMatch(feature, /Endpoint деталей/);
+  assert.doesNotMatch(feature, /Endpoint запроса/);
+  assert.match(feature, /Эндпоинт деталей/);
+  assert.match(feature, /Эндпоинт запроса/);
+});
+
+test("Legacy- compounds заменены на устаревш* в security-and-secrets.md, ru-skill-setup/SKILL.md и docs/install.md", () => {
+  const security = read(path.join("docs", "security-and-secrets.md"));
+  const ruSetup = read(path.join("ru-skill-setup", "SKILL.md"));
+  const install = read(path.join("docs", "install.md"));
+
+  assert.doesNotMatch(security, /Legacy-резерв/);
+  assert.match(security, /Устаревший резерв/);
+
+  assert.doesNotMatch(security, /Legacy-файл/);
+  assert.match(security, /Устаревший файл/);
+
+  assert.doesNotMatch(ruSetup, /Legacy-резерв/);
+  assert.match(ruSetup, /Устаревший резерв/);
+
+  assert.doesNotMatch(ruSetup, /Legacy-резервный/);
+  assert.match(ruSetup, /Устаревший резервный/);
+
+  assert.doesNotMatch(install, /Legacy-имя/);
+  assert.match(install, /Устаревшее имя/);
+});
+
+test("kakaotalk-mac/SKILL.md не содержит server-to-server (заменено на межсерверной)", () => {
+  const skill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  assert.doesNotMatch(skill, /server-to-server/);
+  assert.match(skill, /межсерверной/);
+});
+
+test("packages/k-skill-proxy/README.md не содержит legacy- compounds и API proxy", () => {
+  const readme = read(path.join("packages", "k-skill-proxy", "README.md"));
+
+  assert.doesNotMatch(readme, /legacy-кейс/);
+  assert.match(readme, /устаревший кейс/);
+
+  assert.doesNotMatch(readme, /legacy fine-dust/);
+  assert.match(readme, /устаревший сценарий fine-dust/);
+
+  assert.doesNotMatch(readme, /legacy-файл/);
+  assert.match(readme, /устаревший файл/);
+
+  assert.doesNotMatch(readme, /API proxy/);
+  assert.match(readme, /прокси для бесплатных API/);
+});
+
+test("docs/booking-replacements.md не содержит booking-навыков и railway-booking", () => {
+  const doc = read(path.join("docs", "booking-replacements.md"));
+  assert.doesNotMatch(doc, /booking-навыков/);
+  assert.match(doc, /навыков бронирования/);
+  assert.doesNotMatch(doc, /railway-booking/);
+  assert.match(doc, /железнодорожного бронирования/);
+});
+
+test("SKILL.md frontmatter не содержит Legacy-совместимый (заменено на обратно совместимый)", () => {
+  const srtSkill = read(path.join("srt-booking", "SKILL.md"));
+  const ktxSkill = read(path.join("ktx-booking", "SKILL.md"));
+  const kSetup = read(path.join("k-skill-setup", "SKILL.md"));
+  const delivery = read(path.join("delivery-tracking", "SKILL.md"));
+  const toss = read(path.join("toss-securities", "SKILL.md"));
+
+  assert.doesNotMatch(srtSkill, /Legacy-совместимый/);
+  assert.match(srtSkill, /Обратно совместимый/);
+
+  assert.doesNotMatch(ktxSkill, /Legacy-совместимый/);
+  assert.match(ktxSkill, /Обратно совместимый/);
+
+  assert.doesNotMatch(kSetup, /Legacy-совместимый/);
+  assert.match(kSetup, /Обратно совместимый/);
+
+  assert.doesNotMatch(delivery, /Legacy-совместимое/);
+  assert.match(delivery, /Обратно совместимое/);
+
+  assert.doesNotMatch(toss, /Legacy-совместимая/);
+  assert.match(toss, /Обратно совместимая/);
+});
+
+test("docs/features/blue-ribbon-nearby.md не содержит Legacy-формулировка", () => {
+  const feature = read(path.join("docs", "features", "blue-ribbon-nearby.md"));
+  assert.doesNotMatch(feature, /Legacy-формулировка/);
+  assert.match(feature, /Устаревшая формулировка/);
+});
+
+test("tg/ README файлы переведены на русский", () => {
+  const tgFiles = [
+    path.join("tg", "my-ru-coverage", "README.md"),
+    path.join("tg", "codex-console-english", "README.md"),
+    path.join("tg", "repo-autowork", "README.md"),
+    path.join("tg", "mcp-russia", "README.md"),
+  ];
+  for (const f of tgFiles) {
+    const content = read(f);
+    assert.doesNotMatch(content, /Local Telegram mirror/);
+    assert.match(content, /Локальный зеркальный канал Telegram/);
+  }
 });

@@ -25,7 +25,7 @@ metadata:
 1. Уже выставленная переменная окружения
 2. Secret vault агента
 3. `~/.config/ru-skill/secrets.env`
-4. Legacy-резерв `~/.config/k-skill/secrets.env`
+4. Устаревший резерв `~/.config/k-skill/secrets.env`
 5. Запрос значения у пользователя и сохранение через один из путей выше
 
 Явное переопределение: `RU_SKILL_SECRETS_FILE`, затем `KSKILL_SECRETS_FILE`.
@@ -49,7 +49,7 @@ bash scripts/check-setup.sh
 - Предпочтительное имя навыка настройки: `ru-skill-setup`
 - Устаревший псевдоним: `k-skill-setup`
 - Предпочтительный secrets path: `~/.config/ru-skill/secrets.env`
-- Legacy-резервный путь: `~/.config/k-skill/secrets.env`
+- Устаревший резервный путь: `~/.config/k-skill/secrets.env`
 - Предпочтительные артефакты выполнения для проверок обновлений и логов: `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`
 
 Оба имени должны вести к одному и тому же потоку настройки без ломающей миграции.

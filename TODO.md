@@ -4,6 +4,44 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-19 (раунд 59)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён следующий слой English jargon в user-facing surfaces: `scope` → `область действия` (docs/sources.md ×26 вхождений в заголовках секций), `Endpoint` → `Эндпоинт` (docs/features/delivery-tracking.md ×2), `server-side rendered HTML` → `серверно отрендеренный HTML` (docs/sources.md), `server-to-server` → `межсерверной` (kakaotalk-mac/SKILL.md), `API proxy` → `прокси для бесплатных API` (packages/k-skill-proxy/README.md), `booking-навыков` → `навыков бронирования` (docs/booking-replacements.md, README.md), `railway-booking` → `железнодорожного бронирования` (docs/booking-replacements.md).
+- Устранён оставшийся слой `Legacy-` compounds в user-facing running text: `Legacy-резерв` → `Устаревший резерв` (docs/security-and-secrets.md), `Legacy-файл` → `Устаревший файл` (docs/security-and-secrets.md), `Legacy-резерв` → `Устаревший резерв` (ru-skill-setup/SKILL.md), `Legacy-резервный путь` → `Устаревший резервный путь` (ru-skill-setup/SKILL.md), `Legacy-имя` → `Устаревшее имя` (docs/install.md), `Legacy-совместимый` → `Обратно совместимый` (README.md ×2, srt-booking/SKILL.md, ktx-booking/SKILL.md, k-skill-setup/SKILL.md, delivery-tracking/SKILL.md, toss-securities/SKILL.md), `legacy-кейс` → `устаревший кейс` (packages/k-skill-proxy/README.md), `legacy fine-dust` → `устаревший сценарий fine-dust` (packages/k-skill-proxy/README.md), `legacy-файл` → `устаревший файл` (packages/k-skill-proxy/README.md), `Legacy-формулировка` → `Устаревшая формулировка` (docs/features/blue-ribbon-nearby.md).
+- Переведены на русский английские предложения в `tg/` README: `Local Telegram mirror for this repository.` → `Локальный зеркальный канал Telegram для этого репозитория.` (4 файла).
+- Doc-regression расширен: добавлены 8 новых тестов на отсутствие English jargon (`scope`, `Endpoint`, `server-side rendered`, `server-to-server`, `API proxy`, `booking-навыков`, `railway-booking`, `Legacy-совместимый`, `Legacy-резерв`, `Legacy-файл`, `Legacy-имя`, `Legacy-формулировка`, `Local Telegram mirror`) и наличие русских эквивалентов; обновлён тест `scope` с покрытием docs/sources.md; обновлён раунд на 59.
+- Полный `npm run ci` проходит.
+
+## Выполнено в этом раунде (раунд 59)
+
+- [x] `docs/sources.md`: `scope` → `область действия` (26 вхождений: заголовки и секции для всех 12 источников), `server-side rendered HTML` → `серверно отрендеренный HTML`.
+- [x] `docs/features/delivery-tracking.md`: `Endpoint деталей` → `Эндпоинт деталей`, `Endpoint запроса` → `Эндпоинт запроса`.
+- [x] `docs/security-and-secrets.md`: `Legacy-резерв` → `Устаревший резерв`, `Legacy-файл` → `Устаревший файл`.
+- [x] `ru-skill-setup/SKILL.md`: `Legacy-резерв` → `Устаревший резерв`, `Legacy-резервный путь` → `Устаревший резервный путь`.
+- [x] `docs/install.md`: `Legacy-имя` → `Устаревшее имя`.
+- [x] `packages/k-skill-proxy/README.md`: `legacy-кейс` → `устаревший кейс`, `legacy fine-dust сценарий` → `устаревший сценарий fine-dust`, `legacy-файл` → `устаревший файл`, `бесплатный API proxy` → `прокси для бесплатных API`.
+- [x] `kakaotalk-mac/SKILL.md`: `server-to-server` → `межсерверной`.
+- [x] `docs/booking-replacements.md`: `booking-навыков` → `навыков бронирования`, `railway-booking` → `железнодорожного бронирования`.
+- [x] `README.md`: `Legacy-совместимый` → `Обратно совместимый` (2 вхождения), `booking-навыков` → `навыков бронирования`.
+- [x] `srt-booking/SKILL.md` frontmatter: `Legacy-совместимый` → `Обратно совместимый`.
+- [x] `ktx-booking/SKILL.md` frontmatter: `Legacy-совместимый` → `Обратно совместимый`.
+- [x] `k-skill-setup/SKILL.md` frontmatter: `Legacy-совместимый` → `Обратно совместимый`.
+- [x] `delivery-tracking/SKILL.md` frontmatter: `Legacy-совместимое` → `Обратно совместимое`.
+- [x] `toss-securities/SKILL.md` frontmatter: `Legacy-совместимая` → `Обратно совместимая`.
+- [x] `docs/features/blue-ribbon-nearby.md`: `Legacy-формулировка` → `Устаревшая формулировка`.
+- [x] `tg/my-ru-coverage/README.md`: `Local Telegram mirror for this repository.` → `Локальный зеркальный канал Telegram для этого репозитория.`
+- [x] `tg/codex-console-english/README.md`: аналогично.
+- [x] `tg/repo-autowork/README.md`: аналогично.
+- [x] `tg/mcp-russia/README.md`: аналогично.
+- [x] `scripts/skill-docs.test.js`: добавлены 8 новых тестов на отсутствие English jargon и наличие русских эквивалентов; обновлён тест `scope` с покрытием docs/sources.md; обновлён раунд на 59.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [ ] Продолжить русификацию оставшихся English jargon в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
+
 ## Статус на 2026-06-18 (раунд 58)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
@@ -36,8 +74,8 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
-- [ ] Продолжить русификацию оставшихся `legacy-*` compounds в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
+- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Продолжить русификацию оставшихся `legacy-*` compounds в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
 
 ## Статус на 2026-06-18 (раунд 57)
 

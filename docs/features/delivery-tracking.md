@@ -37,7 +37,7 @@
 ## Пример для CJ Logistics
 
 - Страница входа: `https://www.cjlogistics.com/ko/tool/parcel/tracking`
-- Endpoint деталей: `https://www.cjlogistics.com/ko/tool/parcel/tracking-detail`
+- Эндпоинт деталей: `https://www.cjlogistics.com/ko/tool/parcel/tracking-detail`
 - Параметры: `_csrf`, `paramInvcNo`
 
 ```bash
@@ -150,7 +150,7 @@ rm -f "$tmp_body" "$tmp_cookie" "$tmp_json"
 ## Пример для Korea Post
 
 - Страница входа: `https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=`
-- Endpoint запроса: `https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm`
+- Эндпоинт запроса: `https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm`
 - Параметр: `sid1`
 
 ```bash

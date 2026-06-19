@@ -16,7 +16,7 @@
 ## Стандартный secrets-файл
 
 - Предпочтительный путь: `~/.config/ru-skill/secrets.env`
-- Legacy-резерв: `~/.config/k-skill/secrets.env`
+- Устаревший резерв: `~/.config/k-skill/secrets.env`
 - Явное переопределение: `RU_SKILL_SECRETS_FILE`, затем `KSKILL_SECRETS_FILE`
 - Формат: plain dotenv (`KEY=value`, одна переменная на строку)
 - Права: `0600` (только владелец может читать и писать)
@@ -55,7 +55,7 @@ KSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org
 ## Упрощённая модель угроз
 
 - `~/.config/ru-skill/secrets.env` остаётся обычным dotenv-файлом.
-- Legacy-файл `~/.config/k-skill/secrets.env` пока тоже считается допустимым, потому что нужен для совместимости.
+- Устаревший файл `~/.config/k-skill/secrets.env` пока тоже считается допустимым, потому что нужен для совместимости.
 - Права `0600` защищают эти файлы от других пользователей той же машины.
 - `.gitignore` нужен, чтобы файл не утёк в git.
 - Агент может читать и писать этот файл, и это ожидаемое поведение.
