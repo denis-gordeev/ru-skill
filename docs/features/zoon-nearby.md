@@ -59,7 +59,7 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 Поиск ресторанов в городе.
 
 - `city` (string): Название города на русском (например, 'Москва', 'Санкт-Петербург')
-- `opts.page` (number, optional): Номер страницы для пагинации
+- `opts.page` (number, опционально): Номер страницы для пагинации
 - Возвращает: `{ businesses, totalCount, pagination, query, page }`
 
 ### `searchCafes(city, opts?)`
@@ -76,7 +76,7 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 
 - `city` (string): Название города
 - `category` (string): Слаг категории (например, 'restaurants', 'hotels', 'pharmacies')
-- `opts.page` (number, optional): Номер страницы
+- `opts.page` (number, опционально): Номер страницы
 - Возвращает: `{ businesses, totalCount, pagination, query, page }`
 
 ### `search(query, city?, opts?)`
@@ -84,8 +84,8 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 Общий поиск по Zoon.ru.
 
 - `query` (string): Поисковый запрос
-- `city` (string, optional): Город для контекста
-- `opts.page` (number, optional): Номер страницы
+- `city` (string, опционально): Город для контекста
+- `opts.page` (number, опционально): Номер страницы
 - Возвращает: `{ businesses, totalCount, pagination, query, page }`
 
 ### `getBusinessDetails(businessUrl, opts?)`
@@ -128,7 +128,7 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 
 ## Почему Zoon.ru?
 
-- **SSR-страницы**: HTML генерируется на сервере и напрямую парсится
+- **Серверно отрендеренные страницы (SSR)**: HTML генерируется на сервере и напрямую парсится
 - **Без API ключей**: Публичный доступ без аутентификации
 - **Без антибота**: Страницы доступны без CAPTCHA или блокировок
 - **Богатые данные**: Рейтинги, адреса, телефоны, категории, режим работы
@@ -136,9 +136,9 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 
 ## Технические детали
 
-- **Источник**: Zoon.ru (публичные SSR-страницы)
+- **Источник**: Zoon.ru (публичные серверно отрендеренные страницы)
 - **API keys**: Не требуются
-- **Anti-bot**: Отсутствует
+- **Антибот**: Отсутствует
 - **Метод**: Парсинг HTML с серверно отрендеренных страниц
 - **Лимиты**: Разумное использование, кэширование при частых запросах
 

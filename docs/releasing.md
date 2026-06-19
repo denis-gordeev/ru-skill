@@ -6,8 +6,8 @@
 
 - Расположение: `packages/*`
 - Управление версиями: Changesets
-- Workflow публикации: `.github/workflows/release-npm.yml`
-- Момент публикации: после merge bot-generated PR `Version Packages` в `main`
+- Процесс публикации: `.github/workflows/release-npm.yml`
+- Момент публикации: после merge сгенерированного ботом PR `Version Packages` в `main`
 - Предпочтительный способ аутентификации: trusted publishing через GitHub OIDC
 - Базовое правило: версии пакетов не редактируются вручную для релиза, вместо этого в PR добавляется `.changeset/*.md`
 
@@ -23,7 +23,7 @@
 ## Trusted publishing для npm
 
 - Предпочтителен OIDC/trusted publishing, а не долгоживущий `NPM_TOKEN`.
-- Для этого workflow должен иметь `id-token: write`, а пакет на стороне npm должен быть настроен на trusted publisher для этого репозитория.
+- Для этого процесс должен иметь `id-token: write`, а пакет на стороне npm должен быть настроен на trusted publisher для этого репозитория.
 - `NPM_CONFIG_PROVENANCE=true` остаётся включённым, чтобы npm публиковал provenance-метаданные.
 - Если trusted publishing недоступен для конкретного пакета или реестра, только тогда допустим запасной вариант на токен. Такой запасной вариант нужно отдельно задокументировать и обосновать.
 
@@ -31,9 +31,9 @@
 
 - Расположение: `python-packages/*`
 - Управление версиями: release-please
-- Workflow публикации: `.github/workflows/release-python.yml`
+- Процесс публикации: `.github/workflows/release-python.yml`
 - Момент публикации: только если release-please сообщил `release_created=true` для реального пути пакета
-- Текущее состояние: в репозитории пока нет реального Python-пакета, поэтому workflow остаётся только каркасной заготовкой
+- Текущее состояние: в репозитории пока нет реального Python-пакета, поэтому процесс остаётся только каркасной заготовкой
 
 ## Проверка перед релизными изменениями
 
@@ -42,4 +42,4 @@ npm install
 npm run ci
 ```
 
-Если меняются release/workflow/package metadata, нужно обязательно прогонять `npm run ci` и держать документацию, workflow и метаданные в одном изменении.
+Если меняются release/процесс/package metadata, нужно обязательно прогонять `npm run ci` и держать документацию, процесс и метаданные в одном изменении.

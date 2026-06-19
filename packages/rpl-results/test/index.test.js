@@ -67,10 +67,10 @@ test("buildResultsUrl возвращает URL результатов РПЛ н�
 });
 
 //
-// Тесты парсера на фикстурах
+// Тесты парсера на эталонных данных
 //
 
-test("parseStandings корректно разбирает HTML-фикстуру", () => {
+test("parseStandings корректно разбирает эталонный HTML", () => {
   const fixturePath = path.join(__dirname, "fixtures", "standings.html");
   const html = fs.readFileSync(fixturePath, "utf-8");
   const standings = parseStandings(html);
@@ -120,7 +120,7 @@ test("parseStandings корректно разбирает HTML-фикстуру
   });
 });
 
-test("parseMatchResults корректно разбирает HTML-фикстуру", () => {
+test("parseMatchResults корректно разбирает эталонный HTML", () => {
   const fixturePath = path.join(__dirname, "fixtures", "results.html");
   const html = fs.readFileSync(fixturePath, "utf-8");
   const matches = parseMatchResults(html);

@@ -21,7 +21,7 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const archive4x20Fixture = fs.readFileSync(path.join(fixturesDir, "archive-4x20.html"), "utf8");
 const archive6x45Fixture = fs.readFileSync(path.join(fixturesDir, "archive-6x45.html"), "utf8");
 
-test("normalizeGameSlug отображает распространённые псевдонимы в канонические слаги", () => {
+test("normalizeGameSlug отображает распространённые псевдонимы в канонические идентификаторы", () => {
   assert.equal(normalizeGameSlug("4x20"), "4x20");
   assert.equal(normalizeGameSlug("4 из 20"), "4x20");
   assert.equal(normalizeGameSlug("6x45"), "6x45");
@@ -31,7 +31,7 @@ test("normalizeGameSlug отображает распространённые п
   assert.throws(() => normalizeGameSlug("unknown-game"), /Неподдерживаемый идентификатор игры/);
 });
 
-test("SUPPORTED_GAMES перечисляет все канонические слаги игр", () => {
+test("SUPPORTED_GAMES перечисляет все канонические идентификаторы игр", () => {
   assert.ok(SUPPORTED_GAMES.includes("4x20"));
   assert.ok(SUPPORTED_GAMES.includes("6x45"));
   assert.ok(SUPPORTED_GAMES.includes("5x36"));

@@ -30,7 +30,7 @@ npm install
 ## Официальные поверхности Blue Ribbon
 
 - Районы и зоны: `https://www.bluer.co.kr/search/zone`
-- Nearby JSON: `https://www.bluer.co.kr/restaurants/map`
+- JSON ресторанов поблизости: `https://www.bluer.co.kr/restaurants/map`
 - Поисковая страница: `https://www.bluer.co.kr/search`
 
 ## Пример
