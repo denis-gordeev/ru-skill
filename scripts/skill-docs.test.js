@@ -1409,8 +1409,8 @@ test("плановая документация согласована по сл
   assert.match(readme, /активный блок `TODO\.md`/i);
   assert.match(readme, /ru-skill-setup[\s\S]*русские секционные заголовки/i);
 
-  assert.match(roadmap, /### Веха 5\. Booking replacements и release hygiene/);
-  assert.match(roadmap, /Статус: завершён; release-hygiene подзадача закрыта/i);
+  assert.match(roadmap, /### Веха 5\. Booking replacements и релиз-гигиена/);
+  assert.match(roadmap, /Статус: завершён; подзадача релиз-гигиены закрыта/i);
   assert.match(roadmap, /yandex-rasp/);
   assert.match(roadmap, /новый целевой пакет не открывается/i);
   assert.match(roadmap, /оставшаяся матрица устаревших пакетов.*уже доведена/i);
@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-19");
-  assert.equal(todoStatus.round, 59);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 59\)/);
+  assert.equal(todoStatus.round, 60);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 60\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -4110,4 +4110,77 @@ test("tg/ README файлы переведены на русский", () => {
     assert.doesNotMatch(content, /Local Telegram mirror/);
     assert.match(content, /Локальный зеркальный канал Telegram/);
   }
+});
+
+test("AGENTS.md не содержит английского жаргона merge, metadata, fixture", () => {
+  const agents = read("AGENTS.md");
+  assert.doesNotMatch(agents, /\bmerge сгенерированного/);
+  assert.match(agents, /слияния сгенерированного/);
+  assert.doesNotMatch(agents, /package metadata/);
+  assert.match(agents, /метаданные пакетов/);
+  assert.doesNotMatch(agents, /test fixture/);
+  assert.match(agents, /тестовый эталон/);
+});
+
+test("docs/releasing.md не содержит английского жаргона merge, metadata", () => {
+  const releasing = read(path.join("docs", "releasing.md"));
+  assert.doesNotMatch(releasing, /\bmerge сгенерированного/);
+  assert.match(releasing, /слияния сгенерированного/);
+  assert.doesNotMatch(releasing, /package metadata/);
+  assert.match(releasing, /метаданные пакета/);
+});
+
+test("README.md не содержит английского жаргона metadata, helper, release, smoke, fixture, proxy", () => {
+  const readme = read("README.md");
+  assert.doesNotMatch(readme, /package metadata/);
+  assert.match(readme, /метаданные пакетов/);
+  assert.doesNotMatch(readme, /npm\/publish metadata/);
+  assert.match(readme, /npm\/publish-метаданные/);
+  assert.doesNotMatch(readme, /helper-docs/);
+  assert.doesNotMatch(readme, /release hygiene/);
+  assert.match(readme, /релиз-гигиен/);
+  assert.doesNotMatch(readme, /release-археолог/);
+  assert.match(readme, /релиз-археолог/);
+  assert.doesNotMatch(readme, /smoke-пример/);
+  assert.match(readme, /проверочными примерами/);
+  assert.doesNotMatch(readme, /credential\/proxy документам/);
+  assert.doesNotMatch(readme, /publish\/release surfaces/);
+  assert.match(readme, /публикации\/релиз-поверхност/);
+  assert.doesNotMatch(readme, /Python helper messages/);
+  assert.match(readme, /вспомогательные сообщения Python/);
+  assert.doesNotMatch(readme, /helper JS utilities/);
+  assert.match(readme, /вспомогательные JS-утилиты/);
+  assert.doesNotMatch(readme, /fixture data/);
+  assert.match(readme, /эталонные данные/);
+});
+
+test("docs/roadmap.md не содержит английского жаргона helper, metadata, release, guide", () => {
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  assert.doesNotMatch(roadmap, /feature-guide/);
+  assert.match(roadmap, /руководство по функции/);
+  assert.doesNotMatch(roadmap, /release hygiene/);
+  assert.match(roadmap, /релиз-гигиен/);
+  assert.doesNotMatch(roadmap, /release backlog/);
+  assert.match(roadmap, /релизных задач/);
+  assert.doesNotMatch(roadmap, /release-hygiene подзадача/);
+  assert.match(roadmap, /подзадача релиз-гигиены/);
+  assert.doesNotMatch(roadmap, /helper\/runtime cleanup/);
+  assert.match(roadmap, /вспомогательная\/runtime-очистка/);
+  assert.doesNotMatch(roadmap, /package metadata descriptions/);
+  assert.match(roadmap, /метаданные пакетов/);
+  assert.doesNotMatch(roadmap, /helper-поверхност/);
+  assert.match(roadmap, /вспомогательных поверхностях/);
+});
+
+test("docs/features/kleague-results.md не содержит merge", () => {
+  const doc = read(path.join("docs", "features", "kleague-results.md"));
+  assert.doesNotMatch(doc, /\bmerge\b/);
+  assert.match(doc, /после слияния/);
+});
+
+test("yandex-rasp/SKILL.md и yandex-market-search/SKILL.md содержат h1", () => {
+  const yandexRasp = read(path.join("yandex-rasp", "SKILL.md"));
+  const yandexMarket = read(path.join("yandex-market-search", "SKILL.md"));
+  assert.match(yandexRasp, /^# Расписания Яндекс$/m);
+  assert.match(yandexMarket, /^# Поиск на Яндекс Маркете$/m);
 });
