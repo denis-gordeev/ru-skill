@@ -4,6 +4,38 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-23 (раунд 61)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён следующий слой English jargon в user-facing surfaces: `trusted publishing` → `доверенная публикация` (AGENTS.md, docs/releasing.md, python-packages/README.md, README.md), `long-lived registry tokens` → `долгоживущие токены реестра` (AGENTS.md), `Target` → `Целевой` (README.md таблица), `Legacy` → `Устаревший` (README.md таблица), `Transition` → `Переходный` (README.md таблица), `legacy`/`transition`/`target` → `устаревший`/`переходный`/`целевой` (docs/roadmap.md матрица пакетов), `Legacy inventory` → `Инвентарь устаревших пакетов` (docs/roadmap.md), `dual-path secrets` → `двойной путь секретов` (docs/roadmap.md), `Milestone 4` → `Веха 4` (docs/roadmap.md, README.md), `Milestone 5` → `Веха 5` (docs/roadmap.md, README.md), `milestone` → `веха` (docs/roadmap.md), `migration backlog` → `перечня задач миграции` (README.md), `алиасы` → `псевдонимы` (blue-ribbon-nearby/SKILL.md, docs/features/kleague-results.md), `алиаса zone` → `псевдонима зоны` (blue-ribbon-nearby/SKILL.md), `alias` → `псевдоним` (docs/features/blue-ribbon-nearby.md, packages/kleague-results/README.md), `short name, full name или team code alias` → `короткое имя, полное имя или код-псевдоним команды` (packages/kleague-results/README.md), `флагом` → `признаком` (packages/pravo-documents/README.md), `Флаг тестовой отправки` → `Признак тестовой отправки` (kakaotalk-mac/SKILL.md), `curl флагами` → `параметрами curl` (docs/features/zipcode-search.md), `slug` → `идентификатор` (docs/sources.md, packages/zoon-nearby/SKILL.md, packages/yandex-market-search/README.md), `Legacy srt-booking и ktx-booking` → `Устаревшие srt-booking и ktx-booking` (docs/booking-replacements.md), `legacy и utility-навыки` → `устаревшие и вспомогательные навыки` (docs/roadmap.md), `legacy SKILL.md` → `устаревшие SKILL.md` (docs/roadmap.md).
+- Doc-regression расширен: добавлены 7 новых тестов на отсутствие English jargon (`trusted publishing`, `long-lived`, статус-метки `Target`/`Legacy`/`Transition`, `алиас`/`alias`, `флаг` вместо `признак`/`псевдоним`, `slug`, `Legacy inventory`, `dual-path secrets`, `Milestone`) и наличие русских эквивалентов.
+
+## Выполнено в этом раунде (раунд 61)
+
+- [x] `AGENTS.md`: `trusted publishing` → `доверенную публикацию`, `long-lived registry tokens` → `долгоживущие токены реестра`, `trusted publishing доступен` → `доверенная публикация доступна`.
+- [x] `docs/releasing.md`: `trusted publishing через GitHub OIDC` → `доверенная публикация через GitHub OIDC`, `Trusted publishing для npm` → `Доверенная публикация для npm`, `OIDC/trusted publishing` → `OIDC/доверенная публикация`, `trusted publisher` → `доверенного издателя`, `trusted publishing недоступен` → `доверенная публикация недоступен`.
+- [x] `python-packages/README.md`: `PyPI trusted publishing` → `Доверенная публикация PyPI`.
+- [x] `README.md`: таблица пакетов `Target` → `Целевой`, `Legacy` → `Устаревший`, `Transition` → `Переходный`, `trusted publishing` → `доверенная публикация`, `Milestone 4` → `Веха 4`, `Milestone 5` → `Веха 5`, `target workspace-пакеты` → `целевые workspace-пакеты`, `migration backlog` → `перечня задач миграции`, `milestone` → `вехи`.
+- [x] `docs/roadmap.md`: `Legacy inventory` → `Инвентарь устаревших пакетов`, `dual-path secrets` → `двойной путь секретов`, `\`legacy\`, \`transition\` или \`target\`` → `\`устаревший\`, \`переходный\` или \`целевой\``, `Milestone 4` → `Веха 4`, `Milestone 5` → `Веха 5`, `milestone` → `веху`/`вехи`, матрица пакетов `legacy`/`transition`/`target` → `устаревший`/`переходный`/`целевой`, `legacy SKILL.md` → `устаревшие SKILL.md`, `legacy и utility-навыки` → `устаревшие и вспомогательные навыки`, `legacy-пакеты` → `устаревшие пакеты`, `legacy railway` → `устаревшие railway`.
+- [x] `docs/features/blue-ribbon-nearby.md`: `alias` → `псевдоним`.
+- [x] `blue-ribbon-nearby/SKILL.md`: `алиасы` → `псевдонимы`, `алиаса zone` → `псевдонима зоны`.
+- [x] `docs/features/kleague-results.md`: `алиасы` → `псевдонимы`.
+- [x] `packages/kleague-results/README.md`: `short name, full name или team code alias` → `короткое имя, полное имя или код-псевдоним команды`.
+- [x] `packages/pravo-documents/README.md`: `флагом` → `признаком`.
+- [x] `docs/features/zipcode-search.md`: `curl флагами` → `параметрами curl`.
+- [x] `kakaotalk-mac/SKILL.md`: `Флаг тестовой отправки` → `Признак тестовой отправки`.
+- [x] `docs/sources.md`: `slug лотереи` → `идентификатор лотереи`.
+- [x] `packages/zoon-nearby/SKILL.md`: `slug/структурой` → `идентификатором/структурой`.
+- [x] `packages/yandex-market-search/README.md`: `(slug)` → идентификатор категории, `/card/{slug}/{id}` → `/card/{идентификатор_категории}/{id}`.
+- [x] `docs/booking-replacements.md`: `Legacy srt-booking` → `Устаревшие srt-booking`.
+- [x] `scripts/skill-docs.test.js`: добавлены 7 новых тестов на отсутствие English jargon и наличие русских эквивалентов; обновлены существующие тесты на русские статус-метки и параметрами curl; обновлён раунд на 61.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [ ] Продолжить русификацию оставшихся English jargon в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
+
 ## Статус на 2026-06-19 (раунд 60)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
@@ -23,10 +55,10 @@
 - [x] `scripts/skill-docs.test.js`: добавлены 7 новых тестов на отсутствие English jargon и наличие русских эквивалентов; обновлены тесты milestone 5 и раунд на 60.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
-## Новые пункты плана
+## Новые пункты плана (раунд 60, перенесены в раунд 61)
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
-- [ ] Продолжить русификацию оставшихся English jargon в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
+- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Продолжить русификацию оставшихся English jargon в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
 
 ## Статус на 2026-06-18 (раунд 58)
 

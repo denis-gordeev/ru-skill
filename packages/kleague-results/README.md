@@ -51,7 +51,7 @@ const { getKLeagueSummary, getMatchResults, getStandings } = require("kleague-re
 
 - `date`: `YYYY-MM-DD` или `Date`
 - `options.leagueId`: `1`, `2`, `K리그1`, `K리그2`
-- `options.team`: short name, full name или team code alias
+- `options.team`: короткое имя, полное имя или код-псевдоним команды
 
 ### `getStandings(options)`
 

@@ -10,7 +10,7 @@
 - Публикация в npm автоматизирована через GitHub Actions и должна происходить только после слияния сгенерированного ботом PR **Version Packages** в `main`.
 - Python-пакеты лежат в `python-packages/*` и используют **release-please**. Пока реального Python-пакета нет, процесс релиза Python остаётся только каркасной заготовкой.
 - Публикация в PyPI должна запускаться только когда `release-please` сообщает `release_created=true` для конкретного package path.
-- Предпочитайте trusted publishing через OIDC для npm и PyPI. Не добавляйте long-lived registry tokens, если trusted publishing доступен.
+- Предпочитайте доверенную публикацию через OIDC для npm и PyPI. Не добавляйте долгоживущие токены реестра, если доверенная публикация доступна.
 
 ## Правила проверки
 

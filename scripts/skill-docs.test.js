@@ -1373,16 +1373,16 @@ test("npm-фрагмент в документации установки пок
   }
 });
 
-test("матрица пакетов README удерживает статусы legacy и transition в соответствии с roadmap", () => {
+test("матрица пакетов README удерживает русские статусы устаревший и переходный в соответствии с roadmap", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
   const packageMatrix = extractReadmePackageMatrix(readme);
   const byName = new Map(packageMatrix.map((entry) => [entry.name, entry]));
 
-  assert.equal(byName.get("toss-securities")?.status, "Legacy");
-  assert.equal(byName.get("k-skill-proxy")?.status, "Transition");
-  assert.match(roadmap, /\| `toss-securities` \| `legacy` \|/);
-  assert.match(roadmap, /\| `k-skill-proxy` \| `transition` \|/);
+  assert.equal(byName.get("toss-securities")?.status, "Устаревший");
+  assert.equal(byName.get("k-skill-proxy")?.status, "Переходный");
+  assert.match(roadmap, /\| `toss-securities` \| `устаревший` \|/);
+  assert.match(roadmap, /\| `k-skill-proxy` \| `переходный` \|/);
 });
 
 test("документация установки объясняет границы целевых, устаревших и переходных навыков", () => {
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-19");
-  assert.equal(todoStatus.round, 60);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 60\)/);
+  assert.equal(todoStatus.date, "2026-06-23");
+  assert.equal(todoStatus.round, 61);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 61\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
@@ -3256,7 +3256,7 @@ test("user-facing surfaces не содержат английский жарго
   assert.doesNotMatch(zipcodeFeature, /retry-флагами/);
   assert.doesNotMatch(zipcodeFeature, /retry-механика/);
   assert.match(zipcodeFeature, /тайм-аут/);
-  assert.match(zipcodeFeature, /флагами повторных попыток/);
+  assert.match(zipcodeFeature, /параметрами curl повторных попыток/);
   assert.match(zipcodeFeature, /механизм повторных попыток/);
 
   assert.doesNotMatch(zipcodeSkill, /\btimeout\b/);
@@ -4183,4 +4183,94 @@ test("yandex-rasp/SKILL.md и yandex-market-search/SKILL.md содержат h1"
   const yandexMarket = read(path.join("yandex-market-search", "SKILL.md"));
   assert.match(yandexRasp, /^# Расписания Яндекс$/m);
   assert.match(yandexMarket, /^# Поиск на Яндекс Маркете$/m);
+});
+
+test("AGENTS.md и docs/releasing.md не содержат английского жаргона trusted publishing, long-lived", () => {
+  const agents = read("AGENTS.md");
+  const releasing = read(path.join("docs", "releasing.md"));
+  const pythonReadme = read(path.join("python-packages", "README.md"));
+
+  assert.doesNotMatch(agents, /trusted publishing/i);
+  assert.match(agents, /доверенную публикацию/);
+  assert.doesNotMatch(agents, /long-lived registry tokens/);
+  assert.match(agents, /долгоживущие токены реестра/);
+
+  assert.doesNotMatch(releasing, /trusted publishing/i);
+  assert.match(releasing, /доверенная публикация|Доверенная публикация/);
+
+  assert.doesNotMatch(pythonReadme, /trusted publishing/i);
+  assert.match(pythonReadme, /доверенная публикация|Доверенная публикация/);
+});
+
+test("README.md таблица пакетов использует русские статус-метки", () => {
+  const readme = read("README.md");
+  const packageMatrix = extractReadmePackageMatrix(readme);
+
+  const allowedStatuses = ["Целевой", "Устаревший", "Переходный"];
+  for (const pkg of packageMatrix) {
+    assert.ok(
+      allowedStatuses.includes(pkg.status),
+      `ожидался русский статус для ${pkg.name}, получен: ${pkg.status}`,
+    );
+  }
+  assert.doesNotMatch(readme, /\| Target \|/);
+  assert.doesNotMatch(readme, /\| Legacy \|/);
+  assert.doesNotMatch(readme, /\| Transition \|/);
+  assert.doesNotMatch(readme, /migration backlog/);
+  assert.match(readme, /перечня задач миграции/);
+  assert.doesNotMatch(readme, /Milestone \d/);
+});
+
+test("docs/roadmap.md использует русские статус-метки и термины", () => {
+  const roadmap = read(path.join("docs", "roadmap.md"));
+
+  assert.doesNotMatch(roadmap, /Legacy inventory/);
+  assert.match(roadmap, /Инвентарь устаревших пакетов/);
+  assert.doesNotMatch(roadmap, /dual-path secrets/);
+  assert.doesNotMatch(roadmap, /`legacy`, `transition` или `target`/);
+  assert.match(roadmap, /`устаревший`, `переходный` или `целевой`/);
+  assert.doesNotMatch(roadmap, /\bMilestone \d/);
+});
+
+test("SKILL.md и feature docs не содержат алиас/alias и флаг вместо признак/псевдоним", () => {
+  const blueRibbonSkill = read(path.join("blue-ribbon-nearby", "SKILL.md"));
+  const blueRibbonDoc = read(path.join("docs", "features", "blue-ribbon-nearby.md"));
+  const kleagueDoc = read(path.join("docs", "features", "kleague-results.md"));
+  const kleagueReadme = read(path.join("packages", "kleague-results", "README.md"));
+  const pravoReadme = read(path.join("packages", "pravo-documents", "README.md"));
+  const kakaotalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  const zipcodeDoc = read(path.join("docs", "features", "zipcode-search.md"));
+
+  assert.doesNotMatch(blueRibbonSkill, /алиас/);
+  assert.match(blueRibbonSkill, /псевдоним/);
+
+  assert.doesNotMatch(blueRibbonDoc, /\balias\b/);
+  assert.match(blueRibbonDoc, /псевдоним/);
+
+  assert.doesNotMatch(kleagueDoc, /алиас/);
+  assert.match(kleagueDoc, /псевдоним/);
+
+  assert.doesNotMatch(kleagueReadme, /short name, full name или team code alias/);
+  assert.match(kleagueReadme, /код-псевдоним команды/);
+
+  assert.doesNotMatch(pravoReadme, /флагом/);
+  assert.match(pravoReadme, /признаком/);
+
+  assert.doesNotMatch(kakaotalkSkill, /Флаг тестовой/);
+  assert.match(kakaotalkSkill, /Признак тестовой/);
+
+  assert.doesNotMatch(zipcodeDoc, /curl флагами/);
+  assert.match(zipcodeDoc, /параметрами curl/);
+});
+
+test("docs/sources.md не содержит slug в русском тексте описания stoloto", () => {
+  const sources = read(path.join("docs", "sources.md"));
+  assert.doesNotMatch(sources, /slug лотереи/);
+  assert.match(sources, /идентификатор лотереи/);
+});
+
+test("docs/booking-replacements.md не содержит Legacy как английский жаргон", () => {
+  const booking = read(path.join("docs", "booking-replacements.md"));
+  assert.doesNotMatch(booking, /Legacy `srt-booking/);
+  assert.match(booking, /Устаревшие `srt-booking/);
 });
