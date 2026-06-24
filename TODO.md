@@ -4,6 +4,38 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-24 (раунд 63)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён следующий слой English jargon в исторических секциях README.md и docs/roadmap.md: `roadmap` → `дорожная карта` / `дорожной карты` (12 вхождений в README.md, docs/roadmap.md, docs/brand-inventory.md), `target` / `target-` → `целевой` / `целев*` (23 вхождения в README.md и docs/roadmap.md), `edge-case` → `крайних случаев` (README.md), `fallback` → `запасной вариант` / `запасным вариантом` (docs/roadmap.md ×2), `legacy` standalone → `устаревший` / `устаревшие` / `устаревших` (18 вхождений в README.md и docs/roadmap.md), `legacy-` compounds → `устаревш*` (5 вхождений в README.md и docs/roadmap.md), `metadata` → `метаданные` (docs/roadmap.md), `endpoint` → `эндпоинт` (docs/roadmap.md), `transition-навыки` → `переходные навыки` (README.md), `transition-boundary` → `граница перехода` (README.md), `migration-governance` → `управление миграцией` (README.md), `runtime-default` → `значение по умолчанию для выполнения` (README.md), `operational path` → `рабочий путь` (README.md), `setup-skill` → `навык настройки` (README.md ×2), `utility-пакетов` → `вспомогательных пакетов` (README.md), `legacy/transition` → `устаревшие/переходные` (README.md), `legacy defaults` → `устаревшие значения по умолчанию` (README.md), `transition/setup surfaces` → `переходные поверхности настройки` (README.md ×3), `mixed-language drift` → `смешанноязычный дрейф` (README.md ×2), `shell/infrastructure surfaces` → `поверхности оболочки/инфраструктуры` (README.md ×3), `publish metadata` → `метаданные публикации` (docs/roadmap.md), `coverage` → `охват` (README.md), `migration-boundary` → `граница миграции` (README.md), `utility workflows` → `вспомогательные сценарии` (README.md).
+- Полный `npm run ci` проходит: 0 fail.
+
+## Выполнено в этом раунде (раунд 63)
+
+- [x] `README.md`: `roadmap` → `дорожная карта` / `дорожной карты` (5 вхождений вне обратных кавычек).
+- [x] `docs/roadmap.md`: `roadmap` → `дорожная карта` / `дорожной карте` / `дорожной карты` (6 вхождений вне обратных кавычек).
+- [x] `docs/brand-inventory.md`: `roadmap` → `дорожная карта` (1 вхождение).
+- [x] `README.md`: `target` / `target-` → `целевой` / `целевых` / `целевые` / `целевого` / `целевому` (11 вхождений).
+- [x] `docs/roadmap.md`: `target` / `target-` → `целевой` / `целевых` / `целевые` / `целевого` / `целевому` (12 вхождений).
+- [x] `README.md`: `edge-case` → `крайних случаев`.
+- [x] `docs/roadmap.md`: `fallback` → `запасной вариант` / `запасным вариантом` (2 вхождения вне обратных кавычек).
+- [x] `docs/roadmap.md`: `publish metadata` → `метаданные публикации`.
+- [x] `docs/roadmap.md`: `legacy endpoint defaults` → `устаревшие эндпоинты по умолчанию`.
+- [x] `docs/roadmap.md`: `legacy fallback` → `устаревший запасной вариант`.
+- [x] `README.md`: `legacy` standalone → `устаревший` / `устаревшие` / `устаревших` (8 вхождений).
+- [x] `docs/roadmap.md`: `legacy` standalone → `устаревших` / `устаревший` / `устаревшее` (5 вхождений).
+- [x] `README.md`: `legacy-пути` → `устаревшие пути`, `legacy-контекст` → `устаревший контекст`, `legacy-пакетах` → `устаревших пакетах`.
+- [x] `README.md`: `transition-навыки` → `переходные навыки`, `transition-boundary` → `граница перехода`.
+- [x] `README.md`: `migration-governance` → `управление миграцией`, `runtime-default` → `значение по умолчанию для выполнения`, `operational path` → `рабочий путь`.
+- [x] `README.md`: `setup-skill` → `навык настройки`, `utility-пакетов` → `вспомогательных пакетов`, `utility workflows` → `вспомогательные сценарии`.
+- [x] `README.md`: `mixed-language drift` → `смешанноязычный дрейф`, `shell/infrastructure surfaces` → `поверхности оболочки/инфраструктуры`, `coverage` → `охват`.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [ ] Продолжить русификацию оставшихся English jargon в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины (например, `user-facing`, `doc-regression`, `install-flow`, `publishable`, `heading scheme`, `publish surfaces`, `backtick`).
+
 ## Статус на 2026-06-24 (раунд 62)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
