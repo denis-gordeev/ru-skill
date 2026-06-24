@@ -42,7 +42,7 @@ metadata:
 
 ### 0. Установить пакет глобально, если отсутствует
 
-Если `node -e 'require("hh-vacancies")'` не проходит, сначала ставится пакет, а не пишутся ad-hoc запросы к HH API.
+Если `node -e 'require("hh-vacancies")'` не проходит, сначала ставится пакет, а не пишутся разовые запросы к HH API.
 
 ```bash
 npm install -g hh-vacancies
