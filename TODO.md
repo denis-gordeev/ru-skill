@@ -4,10 +4,56 @@
 
 Исторические round summaries ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-25 (раунд 64)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён крупный слой английского жаргона в исторических секциях README.md, docs/roadmap.md и TODO.md: `user-facing` → `пользовательский` / `пользовательская` / `пользовательские` (~50+ вхождений), `doc-regression` / `Doc-regression` → `документная регрессия` / `Документная регрессия` (~40+ вхождений), `heading scheme` → `схема заголовков` / `схеме заголовков` (~13 вхождений), `install-flow` → `поток установки` (5 вхождений), `publishable` → `публикуемый` / `публикуемых` (3 вхождения), `publish surfaces` → `поверхности публикации` (3 вхождения), `domain-inherent` → `обусловлен доменом` / `обусловленный доменом` (4 вхождения), `frontmatter` → `вступительные метаданные` (~8 вхождений), `skill-only` → `только навыков` (6 вхождений), `package-level` → `на уровне пакета` (4 вхождения), `source-level` → `на уровне исходного кода` (1 вхождение), `agent-facing` → `агентный` (1 вхождение), `inventory` → `реестр` (3 вхождения), `governance` / `repo-governance` → `управление` / `управление репозиторием` (3 вхождения), `launcher` → `загрузчик` (1 вхождение), `checklist-пункты` → `контрольные пункты` (1 вхождение), `copy` (жаргон) → `текст` / `аудит текста` (~5 вхождений), `English jargon` / `English drift` → `английский жаргон` / `англоязычный дрейф` (~20 вхождений), `Chinese character` → `китайских иероглифов` (6 вхождений), `mixed-language` → `смешанноязычный` (5 вхождений), `Railway replacement` → `Замена железнодорожных навыков` (3 вхождения), `booking replacement` → `замена бронирования` (2 вхождения), `backlog` → `перечень задач` (3 вхождения), `feature docs` / `feature guides` → `руководства по функциям` (~20 вхождений), `source code` → `исходный код` (~7 вхождений), `code identifiers` → `кодовые идентификаторы` (3 вхождения), `drift` compounds → `дрейф` compounds (~10 вхождений), `surfaces` standalone → `поверхности` (~6 вхождений), `top-level docs` → `верхнеуровневые документы`, `top-block` → `управление через верхние блоки`, `round-секции` → `секции раундов`, `unchecked-пункты` → `неотмеченные пункты`, `plan block` → `блок плана`, `override` → `переопределение`, `replacement` → `замена` (5 вхождений), `Korean` standalone → `корейский` (5 вхождений).
+- `docs/roadmap.md`: Веха 5 заголовок переведён — `Booking replacements` → `Замены бронирования`.
+- `scripts/skill-docs.test.js`: обновлён раунд на 64, обновлены тестовые утверждения под новые русские формулировки.
+
+## Выполнено в этом раунде (раунд 64)
+
+- [x] `README.md`, `docs/roadmap.md`, `TODO.md`: `user-facing` → `пользовательский` / `пользовательская` / `пользовательские` (~50+ вхождений).
+- [x] `README.md`, `docs/roadmap.md`, `TODO.md`: `doc-regression` / `Doc-regression` → `документная регрессия` / `Документная регрессия` (~40+ вхождений).
+- [x] `README.md`, `docs/roadmap.md`: `heading scheme` → `схема заголовков` / `схеме заголовков` (~13 вхождений).
+- [x] `README.md`, `docs/roadmap.md`: `install-flow` → `поток установки` (5 вхождений).
+- [x] `README.md`, `docs/roadmap.md`: `publishable` → `публикуемый` / `публикуемых` (3 вхождения).
+- [x] `docs/roadmap.md`: `publish surfaces` → `поверхности публикации` (3 вхождения).
+- [x] `README.md`, `docs/roadmap.md`: `domain-inherent` → `обусловлен доменом` / `обусловленный доменом` (4 вхождения).
+- [x] `README.md`, `docs/roadmap.md`: `frontmatter` → `вступительные метаданные` (~8 вхождений).
+- [x] `README.md`, `docs/roadmap.md`: `skill-only` → `только навыков` (6 вхождений).
+- [x] `README.md`, `docs/roadmap.md`: `package-level` → `на уровне пакета` (4 вхождения).
+- [x] `README.md`: `source-level` → `на уровне исходного кода`.
+- [x] `docs/roadmap.md`: `agent-facing` → `агентный`.
+- [x] `README.md`, `docs/roadmap.md`: `inventory` → `реестр` (3 вхождения).
+- [x] `README.md`, `docs/roadmap.md`: `governance` / `repo-governance` → `управление` / `управление репозиторием`.
+- [x] `docs/roadmap.md`: `launcher` → `загрузчик`.
+- [x] `README.md`: `checklist-пункты` → `контрольные пункты`.
+- [x] `README.md`, `docs/roadmap.md`: `copy` (жаргон) → `текст` / `аудит текста` (~5 вхождений).
+- [x] `README.md`, `docs/roadmap.md`, `TODO.md`: `English jargon` / `English drift` → `английский жаргон` / `англоязычный дрейф` (~20 вхождений).
+- [x] `README.md`, `docs/roadmap.md`: `Chinese character` → `китайских иероглифов` (6 вхождений).
+- [x] `docs/roadmap.md`: `mixed-language` → `смешанноязычный` (5 вхождений).
+- [x] `docs/roadmap.md`: `Railway replacement` → `Замена железнодорожных навыков`.
+- [x] `docs/roadmap.md`: `booking replacement` → `замена бронирования`.
+- [x] `README.md`, `docs/roadmap.md`, `TODO.md`: `backlog` → `перечень задач` (3 вхождения).
+- [x] `README.md`, `docs/roadmap.md`: `feature docs` / `feature guides` → `руководства по функциям` (~20 вхождений).
+- [x] `docs/roadmap.md`: `source code` → `исходный код` (~7 вхождений).
+- [x] `docs/roadmap.md`: `code identifiers` → `кодовые идентификаторы`.
+- [x] `docs/roadmap.md`: `drift` compounds → `дрейф` compounds (~10 вхождений).
+- [x] `README.md`, `docs/roadmap.md`: `surfaces` standalone → `поверхности` (~6 вхождений).
+- [x] `docs/roadmap.md`: заголовок Вехи 5 `Booking replacements` → `Замены бронирования`.
+- [x] `scripts/skill-docs.test.js`: обновлён раунд на 64, обновлены тестовые утверждения.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим перечнем задач.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
+- [ ] Продолжить русификацию оставшегося английского жаргона в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
+
 ## Статус на 2026-06-24 (раунд 63)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой English jargon в исторических секциях README.md и docs/roadmap.md: `roadmap` → `дорожная карта` / `дорожной карты` (12 вхождений в README.md, docs/roadmap.md, docs/brand-inventory.md), `target` / `target-` → `целевой` / `целев*` (23 вхождения в README.md и docs/roadmap.md), `edge-case` → `крайних случаев` (README.md), `fallback` → `запасной вариант` / `запасным вариантом` (docs/roadmap.md ×2), `legacy` standalone → `устаревший` / `устаревшие` / `устаревших` (18 вхождений в README.md и docs/roadmap.md), `legacy-` compounds → `устаревш*` (5 вхождений в README.md и docs/roadmap.md), `metadata` → `метаданные` (docs/roadmap.md), `endpoint` → `эндпоинт` (docs/roadmap.md), `transition-навыки` → `переходные навыки` (README.md), `transition-boundary` → `граница перехода` (README.md), `migration-governance` → `управление миграцией` (README.md), `runtime-default` → `значение по умолчанию для выполнения` (README.md), `operational path` → `рабочий путь` (README.md), `setup-skill` → `навык настройки` (README.md ×2), `utility-пакетов` → `вспомогательных пакетов` (README.md), `legacy/transition` → `устаревшие/переходные` (README.md), `legacy defaults` → `устаревшие значения по умолчанию` (README.md), `transition/setup surfaces` → `переходные поверхности настройки` (README.md ×3), `mixed-language drift` → `смешанноязычный дрейф` (README.md ×2), `shell/infrastructure surfaces` → `поверхности оболочки/инфраструктуры` (README.md ×3), `publish metadata` → `метаданные публикации` (docs/roadmap.md), `coverage` → `охват` (README.md), `migration-boundary` → `граница миграции` (README.md), `utility workflows` → `вспомогательные сценарии` (README.md).
+- Устранён следующий слой английский жаргон в исторических секциях README.md и docs/roadmap.md: `roadmap` → `дорожная карта` / `дорожной карты` (12 вхождений в README.md, docs/roadmap.md, docs/brand-inventory.md), `target` / `target-` → `целевой` / `целев*` (23 вхождения в README.md и docs/roadmap.md), `edge-case` → `крайних случаев` (README.md), `fallback` → `запасной вариант` / `запасным вариантом` (docs/roadmap.md ×2), `legacy` standalone → `устаревший` / `устаревшие` / `устаревших` (18 вхождений в README.md и docs/roadmap.md), `legacy-` compounds → `устаревш*` (5 вхождений в README.md и docs/roadmap.md), `metadata` → `метаданные` (docs/roadmap.md), `endpoint` → `эндпоинт` (docs/roadmap.md), `transition-навыки` → `переходные навыки` (README.md), `transition-boundary` → `граница перехода` (README.md), `migration-governance` → `управление миграцией` (README.md), `runtime-default` → `значение по умолчанию для выполнения` (README.md), `operational path` → `рабочий путь` (README.md), `setup-skill` → `навык настройки` (README.md ×2), `utility-пакетов` → `вспомогательных пакетов` (README.md), `legacy/transition` → `устаревшие/переходные` (README.md), `legacy defaults` → `устаревшие значения по умолчанию` (README.md), `transition/setup surfaces` → `переходные поверхности настройки` (README.md ×3), `mixed-language drift` → `смешанноязычный дрейф` (README.md ×2), `shell/infrastructure surfaces` → `поверхности оболочки/инфраструктуры` (README.md ×3), `publish metadata` → `метаданные публикации` (docs/roadmap.md), `coverage` → `охват` (README.md), `migration-boundary` → `граница миграции` (README.md), `utility workflows` → `вспомогательные сценарии` (README.md).
 - Полный `npm run ci` проходит: 0 fail.
 
 ## Выполнено в этом раунде (раунд 63)
@@ -33,14 +79,14 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
-- [ ] Продолжить русификацию оставшихся English jargon в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины (например, `user-facing`, `doc-regression`, `install-flow`, `publishable`, `heading scheme`, `publish surfaces`, `backtick`).
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
+- [x] Продолжить русификацию оставшегося английского жаргона в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
 
 ## Статус на 2026-06-24 (раунд 62)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой English jargon в user-facing surfaces: `MVP` → `минимальный рабочий вариант` (docs/sources.md ×10, yandex-market-search/SKILL.md, docs/booking-replacements.md), `secret vault`/`vault` → `хранилище секретов` (docs/setup.md, docs/security-and-secrets.md, k-skill-setup/SKILL.md, ru-skill-setup/SKILL.md, fine-dust-location/SKILL.md, seoul-subway-arrival/SKILL.md, srt-booking/SKILL.md, ktx-booking/SKILL.md, docs/features/ktx-booking.md, docs/features/srt-booking.md, docs/features/fine-dust-location.md, docs/features/seoul-subway-arrival.md), `legacy-only` → `устаревший без развития` (61 вхождение в 13 SKILL.md, 14 docs/features/*.md, 6 packages/*/README.md, docs/install.md), `ad-hoc` → `разовый` (moex-shares/SKILL.md, hh-vacancies/SKILL.md, postcalc-postcodes/SKILL.md), `provenance-метаданные` → `метаданные происхождения` (docs/releasing.md), `publish job` → `задача публикации` (python-packages/README.md ×2), `target-продуктом` → `целевым продуктом` (packages/k-skill-proxy/README.md), `Legacy эндпоинт` → `Устаревший эндпоинт` (packages/k-skill-proxy/README.md, docs/features/k-skill-proxy.md), `public API-сценарии` → `публичные API-сценарии` (docs/features/k-skill-proxy.md), `legacy эндпоинт` → `устаревший эндпоинт` (docs/features/k-skill-proxy.md), `plain dotenv` → `простой dotenv` (docs/security-and-secrets.md, k-skill-setup/SKILL.md), `skill-level copy` → `тексте навыка` (fine-dust-location/SKILL.md), `amenity-типы` → `типы заведений` (packages/osm-nearby/SKILL.md ×2), `board id` → `идентификатор доски торгов` (moex-shares/SKILL.md), `lot size` → `размер лота` (moex-shares/SKILL.md), `board` → `доска торгов` (moex-shares/SKILL.md).
-- Doc-regression расширен: добавлены 12 новых тестов на отсутствие English jargon (`MVP`, `secret vault`/`vault`, `legacy-only`, `ad-hoc`, `provenance-метаданные`, `publish job`, `target-продукт`/`Legacy эндпоинт`/`public API-сценарии`, `lot size`/`board id`, `amenity-типы`, `plain dotenv`, `skill-level copy`) и наличие русских эквивалентов; обновлён раунд на 62.
+- Устранён следующий слой английский жаргон в пользовательских поверхностях: `MVP` → `минимальный рабочий вариант` (docs/sources.md ×10, yandex-market-search/SKILL.md, docs/booking-replacements.md), `secret vault`/`vault` → `хранилище секретов` (docs/setup.md, docs/security-and-secrets.md, k-skill-setup/SKILL.md, ru-skill-setup/SKILL.md, fine-dust-location/SKILL.md, seoul-subway-arrival/SKILL.md, srt-booking/SKILL.md, ktx-booking/SKILL.md, docs/features/ktx-booking.md, docs/features/srt-booking.md, docs/features/fine-dust-location.md, docs/features/seoul-subway-arrival.md), `legacy-only` → `устаревший без развития` (61 вхождение в 13 SKILL.md, 14 docs/features/*.md, 6 packages/*/README.md, docs/install.md), `ad-hoc` → `разовый` (moex-shares/SKILL.md, hh-vacancies/SKILL.md, postcalc-postcodes/SKILL.md), `provenance-метаданные` → `метаданные происхождения` (docs/releasing.md), `publish job` → `задача публикации` (python-packages/README.md ×2), `target-продуктом` → `целевым продуктом` (packages/k-skill-proxy/README.md), `Legacy эндпоинт` → `Устаревший эндпоинт` (packages/k-skill-proxy/README.md, docs/features/k-skill-proxy.md), `public API-сценарии` → `публичные API-сценарии` (docs/features/k-skill-proxy.md), `legacy эндпоинт` → `устаревший эндпоинт` (docs/features/k-skill-proxy.md), `plain dotenv` → `простой dotenv` (docs/security-and-secrets.md, k-skill-setup/SKILL.md), `skill-level copy` → `тексте навыка` (fine-dust-location/SKILL.md), `amenity-типы` → `типы заведений` (packages/osm-nearby/SKILL.md ×2), `board id` → `идентификатор доски торгов` (moex-shares/SKILL.md), `lot size` → `размер лота` (moex-shares/SKILL.md), `board` → `доска торгов` (moex-shares/SKILL.md).
+- Документная регрессия расширена: добавлены 12 новых тестов на отсутствие английский жаргон (`MVP`, `secret vault`/`vault`, `legacy-only`, `ad-hoc`, `provenance-метаданные`, `publish job`, `target-продукт`/`Legacy эндпоинт`/`public API-сценарии`, `lot size`/`board id`, `amenity-типы`, `plain dotenv`, `skill-level copy`) и наличие русских эквивалентов; обновлён раунд на 62.
 
 ## Выполнено в этом раунде (раунд 62)
 
@@ -68,20 +114,20 @@
 - [x] `packages/k-skill-proxy/README.md`: `target-продуктом` → `целевым продуктом`, `Legacy эндпоинт` → `Устаревший эндпоинт`.
 - [x] `docs/features/k-skill-proxy.md`: `public API-сценарии` → `публичные API-сценарии`, `legacy эндпоинт` → `устаревший эндпоинт`, `Legacy эндпоинт` → `Устаревший эндпоинт`.
 - [x] `packages/osm-nearby/SKILL.md`: `amenity-типы` → `типы заведений`, `Типы amenity` → `Типы заведений`.
-- [x] `scripts/skill-docs.test.js`: добавлены 12 новых тестов на отсутствие English jargon и наличие русских эквивалентов; обновлён раунд на 62; исправлены regex-паттерны для русского словоизменения.
+- [x] `scripts/skill-docs.test.js`: добавлены 12 новых тестов на отсутствие английский жаргон и наличие русских эквивалентов; обновлён раунд на 62; исправлены regex-паттерны для русского словоизменения.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
-- [ ] Продолжить русификацию оставшихся English jargon в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
+- [x] Продолжить русификацию оставшихся английский жаргон в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
 
 ## Статус на 2026-06-19 (раунд 60)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой English jargon в user-facing surfaces: `merge` → `слияния` (AGENTS.md, docs/releasing.md, docs/features/kleague-results.md), `package metadata` → `метаданные пакетов` (AGENTS.md, README.md, docs/releasing.md, docs/roadmap.md), `test fixture` → `тестовый эталон` (AGENTS.md), `release hygiene` → `релиз-гигиена` (README.md, docs/roadmap.md), `release-hygiene раунд` → `раунд релиз-гигиены` (README.md), `release-археологии` → `релиз-археологии` (README.md), `helper-docs` → `вспомогательных документов` (README.md), `smoke-примерами` → `проверочными примерами` (README.md), `npm/publish metadata` → `npm/publish-метаданные` (README.md), `helper/status формулировки` → `вспомогательные/status-формулировки` (README.md), `helper/runtime cleanup` → `вспомогательная/runtime-очистка` (README.md, docs/roadmap.md), `fixture data` → `эталонные данные` (README.md), `publish/release surfaces` → `публикации/релиз-поверхности` (README.md), `credential/proxy документам` → `учётных данных/прокси-документам` (README.md), `Python helper messages` → `вспомогательные сообщения Python` (README.md), `helper JS utilities` → `вспомогательные JS-утилиты` (README.md), `feature-guide` → `руководство по функции` (docs/roadmap.md), `release backlog` → `релизных задач` (docs/roadmap.md), `package metadata descriptions` → `метаданные пакетов (descriptions)` (docs/roadmap.md), `helper-поверхностях` → `вспомогательных поверхностях` (docs/roadmap.md), `release/процесс/package metadata` → `релиз/процесс/метаданные пакета` (docs/releasing.md).
+- Устранён следующий слой английский жаргон в пользовательских поверхностях: `merge` → `слияния` (AGENTS.md, docs/releasing.md, docs/features/kleague-results.md), `package metadata` → `метаданные пакетов` (AGENTS.md, README.md, docs/releasing.md, docs/roadmap.md), `test fixture` → `тестовый эталон` (AGENTS.md), `release hygiene` → `релиз-гигиена` (README.md, docs/roadmap.md), `release-hygiene раунд` → `раунд релиз-гигиены` (README.md), `release-археологии` → `релиз-археологии` (README.md), `helper-docs` → `вспомогательных документов` (README.md), `smoke-примерами` → `проверочными примерами` (README.md), `npm/publish metadata` → `npm/publish-метаданные` (README.md), `helper/status формулировки` → `вспомогательные/status-формулировки` (README.md), `helper/runtime cleanup` → `вспомогательная/runtime-очистка` (README.md, docs/roadmap.md), `fixture data` → `эталонные данные` (README.md), `publish/release surfaces` → `публикации/релиз-поверхности` (README.md), `credential/proxy документам` → `учётных данных/прокси-документам` (README.md), `Python helper messages` → `вспомогательные сообщения Python` (README.md), `helper JS utilities` → `вспомогательные JS-утилиты` (README.md), `feature-guide` → `руководство по функции` (docs/roadmap.md), `release backlog` → `релизных задач` (docs/roadmap.md), `package metadata descriptions` → `метаданные пакетов (descriptions)` (docs/roadmap.md), `helper-поверхностях` → `вспомогательных поверхностях` (docs/roadmap.md), `release/процесс/package metadata` → `релиз/процесс/метаданные пакета` (docs/releasing.md).
 - Добавлены отсутствующие h1-заголовки в 2 SKILL.md: `# Расписания Яндекс` (yandex-rasp/SKILL.md), `# Поиск на Яндекс Маркете` (yandex-market-search/SKILL.md).
-- Doc-regression расширен: добавлены 7 новых тестов на отсутствие English jargon (`merge`, `package metadata`, `test fixture`, `release hygiene`, `helper-docs`, `smoke-примерами`, `fixture data`, `credential/proxy`, `publish/release surfaces`, `feature-guide`, `release backlog`, `helper-поверхностях`) и наличие русских эквивалентов, а также тест на h1-заголовки в yandex-rasp/SKILL.md и yandex-market-search/SKILL.md; обновлён раунд на 60.
+- Документная регрессия расширена: добавлены 7 новых тестов на отсутствие английский жаргон (`merge`, `package metadata`, `test fixture`, `release hygiene`, `helper-docs`, `smoke-примерами`, `fixture data`, `credential/proxy`, `publish/release surfaces`, `feature-guide`, `release backlog`, `helper-поверхностях`) и наличие русских эквивалентов, а также тест на h1-заголовки в yandex-rasp/SKILL.md и yandex-market-search/SKILL.md; обновлён раунд на 60.
 
 ## Выполнено в этом раунде (раунд 60)
 
@@ -92,20 +138,20 @@
 - [x] `docs/roadmap.md`: `feature-guide` → `руководство по функции`, `release hygiene` → `релиз-гигиена`, `Changeset/release backlog` → `Перечень релизных задач/changeset`, `release-hygiene подзадача` → `подзадача релиз-гигиены`, `helper/runtime cleanup` → `вспомогательная/runtime-очистка`, `package metadata descriptions` → `метаданные пакетов (descriptions)`, `helper-поверхностях` → `вспомогательных поверхностях`.
 - [x] `yandex-rasp/SKILL.md`: добавлен h1 `# Расписания Яндекс`.
 - [x] `yandex-market-search/SKILL.md`: добавлен h1 `# Поиск на Яндекс Маркете`.
-- [x] `scripts/skill-docs.test.js`: добавлены 7 новых тестов на отсутствие English jargon и наличие русских эквивалентов; обновлены тесты milestone 5 и раунд на 60.
+- [x] `scripts/skill-docs.test.js`: добавлены 7 новых тестов на отсутствие английский жаргон и наличие русских эквивалентов; обновлены тесты milestone 5 и раунд на 60.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана (раунд 60, перенесены в раунд 61)
 
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
-- [x] Продолжить русификацию оставшихся English jargon в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
+- [x] Продолжить русификацию оставшихся английский жаргон в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
 
 ## Статус на 2026-06-18 (раунд 58)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой `legacy-` compounds в user-facing surfaces: `legacy-резерв` → `устаревший резерв` (docs/setup.md, docs/security-and-secrets.md), `legacy-файл` → `устаревший файл` (docs/setup.md), `legacy-резерву` → `устаревшему резерву` (docs/setup.md), `legacy-навыков` → `устаревших навыков` (docs/sources.md ×2, docs/booking-replacements.md, docs/features/yandex-rasp.md), `legacy-пакета` → `устаревшего пакета` (docs/sources.md ×3), `legacy-сценария` → `устаревшего сценария` (docs/sources.md), `legacy-сценариев` → `устаревших сценариев` (docs/sources.md ×2, docs/features/k-skill-proxy.md), `legacy-документации` → `устаревшей документации` (docs/sources.md), `legacy-booking` → `устаревшего бронирования` / `устаревших навыков бронирования` (docs/booking-replacements.md, ktx-booking/SKILL.md, srt-booking/SKILL.md), `legacy-поверхностей` → `устаревших поверхностей` (docs/brand-inventory.md), `legacy-маркировка` → `маркировка устаревших` (docs/brand-inventory.md), `legacy-имя` → `устаревшее имя` (docs/install.md ×2, README.md, docs/brand-inventory.md), `legacy-пути` → `устаревшие пути` (docs/brand-inventory.md), `legacy-функции` → `устаревшие функции` (README.md), `legacy-пакетов` → `устаревших пакетов` (README.md), `legacy-контекста` → `устаревшего контекста` (docs/roadmap.md), `legacy-функций` → `устаревших функций` (docs/roadmap.md), `legacy-пакета/пакеты` → `устаревшего пакета/устаревшие пакеты` (docs/roadmap.md), `legacy-адаптер` → `устаревший адаптер` (docs/features/k-skill-proxy.md), `legacy-навыка` → `устаревшего навыка` (docs/features/yandex-market-search.md), `legacy-совместимый` → `обратно совместимый` (k-skill-setup/SKILL.md), `legacy-именем` → `устаревшим именем` (ru-skill-setup/SKILL.md), `legacy-сценарий` → `устаревший сценарий` (yandex-market-search/SKILL.md), `Legacy-источники` → `Устаревшие источники` (docs/sources.md), `Legacy` (заголовок) → `устаревших источников` (docs/sources.md).
-- Устранён прочий English jargon: `adapter'ы` → `адаптеры` (docs/roadmap.md, docs/brand-inventory.md), `job-search` → `поиска работы` (docs/roadmap.md), `remaining guides` → `оставшиеся guides` (docs/brand-inventory.md), `Legacy-имя` → `Устаревшее имя` (docs/brand-inventory.md), `Legacy-путь` → `Устаревший путь` (docs/brand-inventory.md), `legacy вспомогательных скриптах` → `устаревших вспомогательных скриптах` (docs/brand-inventory.md).
-- Doc-regression расширен: добавлены 5 новых тестов на отсутствие `legacy-` compounds в пользовательской документации, feature docs, SKILL.md и README.md, а также на замену `adapter'ы`, `job-search` и `remaining`; обновлён существующий тест brand-inventory.md на `устаревших поверхностей` вместо `legacy-поверхностей`.
+- Устранён следующий слой `legacy-` compounds в пользовательских поверхностях: `legacy-резерв` → `устаревший резерв` (docs/setup.md, docs/security-and-secrets.md), `legacy-файл` → `устаревший файл` (docs/setup.md), `legacy-резерву` → `устаревшему резерву` (docs/setup.md), `legacy-навыков` → `устаревших навыков` (docs/sources.md ×2, docs/booking-replacements.md, docs/features/yandex-rasp.md), `legacy-пакета` → `устаревшего пакета` (docs/sources.md ×3), `legacy-сценария` → `устаревшего сценария` (docs/sources.md), `legacy-сценариев` → `устаревших сценариев` (docs/sources.md ×2, docs/features/k-skill-proxy.md), `legacy-документации` → `устаревшей документации` (docs/sources.md), `legacy-booking` → `устаревшего бронирования` / `устаревших навыков бронирования` (docs/booking-replacements.md, ktx-booking/SKILL.md, srt-booking/SKILL.md), `legacy-поверхностей` → `устаревших поверхностей` (docs/brand-inventory.md), `legacy-маркировка` → `маркировка устаревших` (docs/brand-inventory.md), `legacy-имя` → `устаревшее имя` (docs/install.md ×2, README.md, docs/brand-inventory.md), `legacy-пути` → `устаревшие пути` (docs/brand-inventory.md), `legacy-функции` → `устаревшие функции` (README.md), `legacy-пакетов` → `устаревших пакетов` (README.md), `legacy-контекста` → `устаревшего контекста` (docs/roadmap.md), `legacy-функций` → `устаревших функций` (docs/roadmap.md), `legacy-пакета/пакеты` → `устаревшего пакета/устаревшие пакеты` (docs/roadmap.md), `legacy-адаптер` → `устаревший адаптер` (docs/features/k-skill-proxy.md), `legacy-навыка` → `устаревшего навыка` (docs/features/yandex-market-search.md), `legacy-совместимый` → `обратно совместимый` (k-skill-setup/SKILL.md), `legacy-именем` → `устаревшим именем` (ru-skill-setup/SKILL.md), `legacy-сценарий` → `устаревший сценарий` (yandex-market-search/SKILL.md), `Legacy-источники` → `Устаревшие источники` (docs/sources.md), `Legacy` (заголовок) → `устаревших источников` (docs/sources.md).
+- Устранён прочий английский жаргон: `adapter'ы` → `адаптеры` (docs/roadmap.md, docs/brand-inventory.md), `job-search` → `поиска работы` (docs/roadmap.md), `remaining guides` → `оставшиеся guides` (docs/brand-inventory.md), `Legacy-имя` → `Устаревшее имя` (docs/brand-inventory.md), `Legacy-путь` → `Устаревший путь` (docs/brand-inventory.md), `legacy вспомогательных скриптах` → `устаревших вспомогательных скриптах` (docs/brand-inventory.md).
+- Документная регрессия расширена: добавлены 5 новых тестов на отсутствие `legacy-` compounds в пользовательской документации, feature docs, SKILL.md и README.md, а также на замену `adapter'ы`, `job-search` и `remaining`; обновлён существующий тест brand-inventory.md на `устаревших поверхностей` вместо `legacy-поверхностей`.
 - Полный `npm run ci` проходит.
 
 ## Выполнено в этом раунде (раунд 58)
@@ -132,14 +178,14 @@
 
 ## Новые пункты плана
 
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 - [x] Продолжить русификацию оставшихся `legacy-*` compounds в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
 
 ## Статус на 2026-06-18 (раунд 57)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой English jargon в user-facing surfaces: `alias` → `псевдоним` (ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md, docs/install.md ×4, README.md ×5, docs/roadmap.md ×3, docs/brand-inventory.md ×2), `setup-alias` → `псевдоним настройки` (ru-skill-setup/SKILL.md), `post-install` → `после установки` (ru-skill-setup/SKILL.md), `shared secrets` → `общие секреты` (ru-skill-setup/SKILL.md), `feature-specific` → `для отдельных функций` (ru-skill-setup/SKILL.md), `setup-навык` → `навык настройки` (k-skill-setup/SKILL.md frontmatter, ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md), `setup-поток` → `поток настройки` (k-skill-setup/SKILL.md, ru-skill-setup/SKILL.md, docs/roadmap.md), `setup-flow` → `поток настройки` (README.md), `product card page` → `страница карточки товара` (yandex-market-search/SKILL.md), `Raw JSON` → `Необработанный JSON` (kbo-results/SKILL.md), `Legacy alias` → `Устаревший псевдоним` (ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md), `compatibility alias` → `псевдоним совместимости` (docs/roadmap.md), `alias-слой` → `слой псевдонимов` (docs/brand-inventory.md).
-- Doc-regression расширен: добавлены 3 новых теста на отсутствие English jargon (`setup-alias`, `post-install`, `shared secrets`, `feature-specific`, `setup-навык`, `setup-поток`, `alias`, `product card page`, `Raw JSON`) и наличие русских эквивалентов.
+- Устранён следующий слой английский жаргон в пользовательских поверхностях: `alias` → `псевдоним` (ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md, docs/install.md ×4, README.md ×5, docs/roadmap.md ×3, docs/brand-inventory.md ×2), `setup-alias` → `псевдоним настройки` (ru-skill-setup/SKILL.md), `post-install` → `после установки` (ru-skill-setup/SKILL.md), `shared secrets` → `общие секреты` (ru-skill-setup/SKILL.md), `feature-specific` → `для отдельных функций` (ru-skill-setup/SKILL.md), `setup-навык` → `навык настройки` (k-skill-setup/SKILL.md frontmatter, ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md), `setup-поток` → `поток настройки` (k-skill-setup/SKILL.md, ru-skill-setup/SKILL.md, docs/roadmap.md), `setup-flow` → `поток настройки` (README.md), `product card page` → `страница карточки товара` (yandex-market-search/SKILL.md), `Raw JSON` → `Необработанный JSON` (kbo-results/SKILL.md), `Legacy alias` → `Устаревший псевдоним` (ru-skill-setup/SKILL.md, k-skill-setup/SKILL.md), `compatibility alias` → `псевдоним совместимости` (docs/roadmap.md), `alias-слой` → `слой псевдонимов` (docs/brand-inventory.md).
+- Документная регрессия расширена: добавлены 3 новых теста на отсутствие английский жаргон (`setup-alias`, `post-install`, `shared secrets`, `feature-specific`, `setup-навык`, `setup-поток`, `alias`, `product card page`, `Raw JSON`) и наличие русских эквивалентов.
 - Полный `npm run ci` проходит: 0 fail.
 
 ## Выполнено в этом раунде (раунд 56)
@@ -154,18 +200,18 @@
 - [x] `docs/brand-inventory.md`: `Alias` → `Псевдоним`, `legacy alias` → `устаревший псевдоним`, `alias-слой` → `слой псевдонимов`.
 - [x] `yandex-market-search/SKILL.md`: `product card page` → `страница карточки товара`.
 - [x] `kbo-results/SKILL.md`: `Raw JSON` → `Необработанный JSON`.
-- [x] `scripts/skill-docs.test.js`: добавлены 3 новых теста на отсутствие English jargon и наличие русских эквивалентов для setup surfaces, yandex-market-search и kbo-results; обновлён существующий тест `install.md` на `псевдоним` вместо `alias`.
+- [x] `scripts/skill-docs.test.js`: добавлены 3 новых теста на отсутствие английский жаргон и наличие русских эквивалентов для setup surfaces, yandex-market-search и kbo-results; обновлён существующий тест `install.md` на `псевдоним` вместо `alias`.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-17 (раунд 55)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой English jargon в user-facing surfaces: `side effects` → `действия с побочными эффектами` (srt-booking/SKILL.md ×3, kakaotalk-mac/SKILL.md), `holdings` → `позиций` (toss-securities/SKILL.md), `pixel-perfect` → `точную` (hh-vacancies/SKILL.md), `watchlist` → `список наблюдения` (docs/features/toss-securities.md), `waitlist` → `лист ожидания` (docs/features/ktx-booking.md ×2), `scope` → `область действия` (yandex-market-search/SKILL.md, docs/features/ktx-booking.md), `inline-характеристики` → `встроенные характеристики` (yandex-market-search/SKILL.md, docs/features/yandex-market-search.md ×2), `canonical` → `канонический` (yandex-market-search/SKILL.md, docs/features/yandex-market-search.md), `merchant-level` → `со стороны продавца` (docs/features/yandex-market-search.md), `anchor-точка` → `опорная точка` (docs/features/kakao-bar-nearby.md), `slug` → `идентификатор категории` (zoon-nearby/SKILL.md, packages/stoloto-lotto/README.md, packages/yandex-market-search/README.md), `ingress` → `входной прокси` (docs/features/k-skill-proxy.md), `extraction` → `извлечение изображений` (docs/features/hwp.md), `flow` → `потоки` (packages/daiso-product-search/README.md), `dry-run` → `пробный запуск` (kakaotalk-mac/SKILL.md), `harvest, inspect` → `сбор данных, проверка` (kakaotalk-mac/SKILL.md), `HTML-фикстура` → `эталонный HTML` (packages/rpl-results/test), `фикстуры` → `эталонные данные` (packages/k-lotto/test, packages/daiso-product-search/test), `канонические слаги` → `канонические идентификаторы` (packages/stoloto-lotto/test), `shorthand` → `сокращение` (docs/features/osm-nearby.md).
-- Doc-regression расширен: добавлены 17 новых тестов на отсутствие English jargon и наличие русских эквивалентов.
+- Устранён следующий слой английский жаргон в пользовательских поверхностях: `side effects` → `действия с побочными эффектами` (srt-booking/SKILL.md ×3, kakaotalk-mac/SKILL.md), `holdings` → `позиций` (toss-securities/SKILL.md), `pixel-perfect` → `точную` (hh-vacancies/SKILL.md), `watchlist` → `список наблюдения` (docs/features/toss-securities.md), `waitlist` → `лист ожидания` (docs/features/ktx-booking.md ×2), `scope` → `область действия` (yandex-market-search/SKILL.md, docs/features/ktx-booking.md), `inline-характеристики` → `встроенные характеристики` (yandex-market-search/SKILL.md, docs/features/yandex-market-search.md ×2), `canonical` → `канонический` (yandex-market-search/SKILL.md, docs/features/yandex-market-search.md), `merchant-level` → `со стороны продавца` (docs/features/yandex-market-search.md), `anchor-точка` → `опорная точка` (docs/features/kakao-bar-nearby.md), `slug` → `идентификатор категории` (zoon-nearby/SKILL.md, packages/stoloto-lotto/README.md, packages/yandex-market-search/README.md), `ingress` → `входной прокси` (docs/features/k-skill-proxy.md), `extraction` → `извлечение изображений` (docs/features/hwp.md), `flow` → `потоки` (packages/daiso-product-search/README.md), `dry-run` → `пробный запуск` (kakaotalk-mac/SKILL.md), `harvest, inspect` → `сбор данных, проверка` (kakaotalk-mac/SKILL.md), `HTML-фикстура` → `эталонный HTML` (packages/rpl-results/test), `фикстуры` → `эталонные данные` (packages/k-lotto/test, packages/daiso-product-search/test), `канонические слаги` → `канонические идентификаторы` (packages/stoloto-lotto/test), `shorthand` → `сокращение` (docs/features/osm-nearby.md).
+- Документная регрессия расширена: добавлены 17 новых тестов на отсутствие английский жаргон и наличие русских эквивалентов.
 - Исправлены отставшие CI-тесты: обновлён раунд на 54, убран дублирующийся открытый пункт в TODO.md.
 
 ## Выполнено в этом раунде (раунд 55)
@@ -191,21 +237,21 @@
 - [x] `packages/k-lotto/test/index.test.js`: `внедрённые фикстуры` → `внедрённые эталонные данные`.
 - [x] `packages/daiso-product-search/test/index.test.js`: `внедрённые фикстуры fetch` → `внедрённые эталонные данные имитации fetch`.
 - [x] `packages/stoloto-lotto/test/index.test.js`: `канонические слаги` → `канонические идентификаторы` (2 вхождения).
-- [x] `scripts/skill-docs.test.js`: добавлены 17 новых тестов на отсутствие English jargon (`side effects`, `holdings`, `pixel-perfect`, `watchlist`, `waitlist`, `scope`, `inline-характеристики`, `canonical`, `merchant-level`, `anchor-точка`, `slug`, `ingress`, `extraction`, `flow`, `dry-run`, `фикстура/слаг`).
-- [x] `scripts/skill-docs.test.js`: обновлён раунд на 54 в doc-regression.
+- [x] `scripts/skill-docs.test.js`: добавлены 17 новых тестов на отсутствие английский жаргон (`side effects`, `holdings`, `pixel-perfect`, `watchlist`, `waitlist`, `scope`, `inline-характеристики`, `canonical`, `merchant-level`, `anchor-точка`, `slug`, `ingress`, `extraction`, `flow`, `dry-run`, `фикстура/слаг`).
+- [x] `scripts/skill-docs.test.js`: обновлён раунд на 54 в документной регрессии.
 - [x] `TODO.md`: убран дублирующийся открытый пункт в историческом блоке плана.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-16 (раунд 54)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой English jargon в user-facing surfaces: `proxy` → `прокси` (~25 вхождений в docs/features/fine-dust-location.md, fine-dust-location/SKILL.md, docs/features/yandex-market-search.md, docs/features/k-skill-proxy.md, docs/brand-inventory.md, docs/sources.md, docs/install.md, docs/setup.md, docs/security-and-secrets.md, k-skill-setup/SKILL.md), `workflow` → `процесс/сценарий` (docs/releasing.md, AGENTS.md, python-packages/README.md, docs/features/zipcode-search.md, docs/install.md, docs/roadmap.md), `batch` → `пакетная обработка/пакетных задач` (docs/features/hwp.md), `plan` → `план` (docs/brand-inventory.md), `Standings (турнирная таблица)` → `Турнирная таблица` (docs/features/rpl-results.md), `Match results (результаты матчей)` → `Результаты матчей` (docs/features/rpl-results.md).
+- Устранён следующий слой английский жаргон в пользовательских поверхностях: `proxy` → `прокси` (~25 вхождений в docs/features/fine-dust-location.md, fine-dust-location/SKILL.md, docs/features/yandex-market-search.md, docs/features/k-skill-proxy.md, docs/brand-inventory.md, docs/sources.md, docs/install.md, docs/setup.md, docs/security-and-secrets.md, k-skill-setup/SKILL.md), `workflow` → `процесс/сценарий` (docs/releasing.md, AGENTS.md, python-packages/README.md, docs/features/zipcode-search.md, docs/install.md, docs/roadmap.md), `batch` → `пакетная обработка/пакетных задач` (docs/features/hwp.md), `plan` → `план` (docs/brand-inventory.md), `Standings (турнирная таблица)` → `Турнирная таблица` (docs/features/rpl-results.md), `Match results (результаты матчей)` → `Результаты матчей` (docs/features/rpl-results.md).
 - Переведены английские h1-заголовки в 2 SKILL.md: `# KakaoTalk Mac CLI` → `# CLI для KakaoTalk на macOS` (kakaotalk-mac/SKILL.md), `# Toss Securities` → `# Брокерские данные Toss Securities` (toss-securities/SKILL.md).
-- Doc-regression расширен: добавлены 6 новых тестов на отсутствие English jargon (`proxy`, `workflow`, `batch`, `plan`, `Standings/Match results`) и перевод h1 SKILL.md.
+- Документная регрессия расширена: добавлены 6 новых тестов на отсутствие английский жаргон (`proxy`, `workflow`, `batch`, `plan`, `Standings/Match results`) и перевод h1 SKILL.md.
 - Полный `npm run ci` проходит: 0 fail.
 
 ## Выполнено в этом раунде (раунд 54)
@@ -230,18 +276,18 @@
 - [x] `toss-securities/SKILL.md`: h1 `# Toss Securities` → `# Брокерские данные Toss Securities`.
 - [x] `docs/features/rpl-results.md`: `### Standings (турнирная таблица)` → `### Турнирная таблица`, `### Match results (результаты матчей)` → `### Результаты матчей`.
 - [x] `README.md`: `workflow/content assertions` → `проверки сценария и содержимого` (2), `proxy endpoint` → `прокси-эндпоинт`, `proxy helper-docs` → `прокси helper-docs`.
-- [x] `scripts/skill-docs.test.js`: добавлены 6 новых тестов на отсутствие English jargon (`proxy`, `workflow`, `batch`, `plan`, `Standings/Match results`) и перевод h1 SKILL.md; обновлён существующий тест на `совместимый прокси`.
+- [x] `scripts/skill-docs.test.js`: добавлены 6 новых тестов на отсутствие английский жаргон (`proxy`, `workflow`, `batch`, `plan`, `Standings/Match results`) и перевод h1 SKILL.md; обновлён существующий тест на `совместимый прокси`.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-16 (раунд 53)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой English jargon в user-facing surfaces: `replacement` → `замена` (7 SKILL.md), `backlog` → `перечень задач` (6 feature docs/SKILL.md, docs/install.md, docs/booking-replacements.md), `railway flow` → `железнодорожный сценарий` (srt-booking/SKILL.md, ktx-booking/SKILL.md, docs/features/ktx-booking.md, docs/features/srt-booking.md), `report эндпоинт` → `отчётный эндпоинт` (fine-dust-location/SKILL.md ×4), `legacy naming` → `устаревшее именование` (fine-dust-location/SKILL.md, docs/features/fine-dust-location.md), `carrier adapter` → `адаптер перевозчика` (docs/features/delivery-tracking.md), `adapter fields` → `поля адаптера` (docs/features/delivery-tracking.md), `carrier id` → `идентификатор перевозчика`, `validator` → `валидатор`, `entrypoint` → `точка входа`, `transport` → `транспорт`, `parser` → `парсер`, `status map` → `таблица статусов` (delivery-tracking/SKILL.md, docs/features/delivery-tracking.md), `product boundary` → `продуктовая граница` (docs/features/ktx-booking.md, docs/features/srt-booking.md), `automation reference` → `эталон автоматизации`, `target-messaging` → `целевое направление обмена сообщениями`, `booking API` → `API бронирования`, `legacy replacement` → `замена legacy-навыков` (yandex-rasp/SKILL.md), `free API` → `бесплатные API` (delivery-tracking/SKILL.md), `research` → `исследование` (docs/sources.md), `railway replacement` → `замена железнодорожных навыков` (docs/sources.md), `replacement-gap` → `пробел в замене` (docs/sources.md), `antibot flow` → `антибот-поток`, `antibot challenge` → `антибот-проверка` (docs/sources.md), `open data` → `открытые данные` (docs/sources.md), `legacy-compatible` → `обратно совместимое`, `transition-layer` → `переходный слой`, `Dual-path` → `Двойной путь`, `proxy naming` → `именование прокси` (docs/brand-inventory.md), `install-flow` → `поток установки` (docs/install.md), `watchlist` → `список наблюдения` (README.md), `backward-compatible` → `обратно совместимые` (README.md), `implementation backlog` → `перечень задач по реализации` (README.md), `booking source` → `источник бронирования` (README.md), `travel inventory` → `база туристических данных` (docs/booking-replacements.md), `train-booking` → `бронирование поездов` (docs/booking-replacements.md), `downstream` → `нисходящий поток` (zipcode-search/SKILL.md, docs/features/zipcode-search.md), `data-source` → `источник данных` (docs/features/fine-dust-location.md), `SSR-страницы` / `SSR-вёрстка` → `серверно отрендеренные страницы (SSR)` / `серверно отрендеренная вёрстка (SSR)` (zoon-nearby SKILL.md ×2, packages/zoon-nearby SKILL.md ×2, packages/zoon-nearby/README.md ×2, docs/features/zoon-nearby.md ×2, docs/features/yandex-market-search.md).
-- Doc-regression расширен: добавлены 8 новых тестов на отсутствие English jargon (`replacement`, `backlog`, `railway flow`, `product boundary`, `entrypoint`, `status map`, `carrier adapter`, `adapter fields`, `report эндпоинт`, `legacy naming`, `research`, `railway replacement`, `antibot flow`, `antibot challenge`, `open data`, `legacy-compatible`, `transition-layer`, `Dual-path`, `watchlist`, `backward-compatible`, `implementation backlog`, `booking source`, `SSR-страницы`, `SSR-вёрстка`) в user-facing surfaces и наличие русских эквивалентов.
+- Устранён следующий слой английский жаргон в пользовательских поверхностях: `replacement` → `замена` (7 SKILL.md), `backlog` → `перечень задач` (6 feature docs/SKILL.md, docs/install.md, docs/booking-replacements.md), `railway flow` → `железнодорожный сценарий` (srt-booking/SKILL.md, ktx-booking/SKILL.md, docs/features/ktx-booking.md, docs/features/srt-booking.md), `report эндпоинт` → `отчётный эндпоинт` (fine-dust-location/SKILL.md ×4), `legacy naming` → `устаревшее именование` (fine-dust-location/SKILL.md, docs/features/fine-dust-location.md), `carrier adapter` → `адаптер перевозчика` (docs/features/delivery-tracking.md), `adapter fields` → `поля адаптера` (docs/features/delivery-tracking.md), `carrier id` → `идентификатор перевозчика`, `validator` → `валидатор`, `entrypoint` → `точка входа`, `transport` → `транспорт`, `parser` → `парсер`, `status map` → `таблица статусов` (delivery-tracking/SKILL.md, docs/features/delivery-tracking.md), `product boundary` → `продуктовая граница` (docs/features/ktx-booking.md, docs/features/srt-booking.md), `automation reference` → `эталон автоматизации`, `target-messaging` → `целевое направление обмена сообщениями`, `booking API` → `API бронирования`, `legacy replacement` → `замена legacy-навыков` (yandex-rasp/SKILL.md), `free API` → `бесплатные API` (delivery-tracking/SKILL.md), `research` → `исследование` (docs/sources.md), `railway replacement` → `замена железнодорожных навыков` (docs/sources.md), `replacement-gap` → `пробел в замене` (docs/sources.md), `antibot flow` → `антибот-поток`, `antibot challenge` → `антибот-проверка` (docs/sources.md), `open data` → `открытые данные` (docs/sources.md), `legacy-compatible` → `обратно совместимое`, `transition-layer` → `переходный слой`, `Dual-path` → `Двойной путь`, `proxy naming` → `именование прокси` (docs/brand-inventory.md), `install-flow` → `поток установки` (docs/install.md), `watchlist` → `список наблюдения` (README.md), `backward-compatible` → `обратно совместимые` (README.md), `implementation backlog` → `перечень задач по реализации` (README.md), `booking source` → `источник бронирования` (README.md), `travel inventory` → `база туристических данных` (docs/booking-replacements.md), `train-booking` → `бронирование поездов` (docs/booking-replacements.md), `downstream` → `нисходящий поток` (zipcode-search/SKILL.md, docs/features/zipcode-search.md), `data-source` → `источник данных` (docs/features/fine-dust-location.md), `SSR-страницы` / `SSR-вёрстка` → `серверно отрендеренные страницы (SSR)` / `серверно отрендеренная вёрстка (SSR)` (zoon-nearby SKILL.md ×2, packages/zoon-nearby SKILL.md ×2, packages/zoon-nearby/README.md ×2, docs/features/zoon-nearby.md ×2, docs/features/yandex-market-search.md).
+- Документная регрессия расширена: добавлены 8 новых тестов на отсутствие английский жаргон (`replacement`, `backlog`, `railway flow`, `product boundary`, `entrypoint`, `status map`, `carrier adapter`, `adapter fields`, `report эндпоинт`, `legacy naming`, `research`, `railway replacement`, `antibot flow`, `antibot challenge`, `open data`, `legacy-compatible`, `transition-layer`, `Dual-path`, `watchlist`, `backward-compatible`, `implementation backlog`, `booking source`, `SSR-страницы`, `SSR-вёрстка`) в пользовательских поверхностях и наличие русских эквивалентов.
 - Полный `npm run ci` проходит: 0 fail.
 
 ## Выполнено в этом раунде (раунд 53)
@@ -272,12 +318,12 @@
 - [x] `docs/booking-replacements.md`: `travel inventory` → `база туристических данных`, `train-booking` → `бронирование поездов`, `backlog` → `перечень задач`.
 - [x] `README.md`: `watchlist` → `список наблюдения`, `backward-compatible` → `обратно совместимые`, `implementation backlog` → `перечень задач по реализации`, `booking source` → `источник бронирования`.
 - [x] Нормализована SSR-терминология: `SSR-страницы` / `SSR-вёрстка` → `серверно отрендеренные страницы (SSR)` / `серверно отрендеренная вёрстка (SSR)` во всех zoon-nearby SKILL.md/README.md и yandex-market-search feature doc.
-- [x] `scripts/skill-docs.test.js`: добавлены 8 новых тестов на отсутствие English jargon и наличие русских эквивалентов; обновлены существующие тесты на новые русские термины.
+- [x] `scripts/skill-docs.test.js`: добавлены 8 новых тестов на отсутствие английский жаргон и наличие русских эквивалентов; обновлены существующие тесты на новые русские термины.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 
 ## Выполнено в этом раунде (раунд 51)
 
@@ -307,12 +353,12 @@
 - [x] `.changeset/kinopoisk-search.md`: `fixture-тесты` → `тесты на эталонных данных`.
 - [x] `yandex-market-search/SKILL.md`: `CSR` → `клиентский рендеринг (CSR)`.
 - [x] `TODO.md`: `supplementary` → `дополнительный` (3 вхождения), `anti-bot` → `антибота` (3 вхождения).
-- [x] `scripts/skill-docs.test.js`: обновлены регрессии на `прокси-эндпоинт` и `антибота`; добавлены 4 новых теста на отсутствие English jargon в user-facing surfaces, тестовых файлах и описаниях тестов.
+- [x] `scripts/skill-docs.test.js`: обновлены регрессии на `прокси-эндпоинт` и `антибота`; добавлены 4 новых теста на отсутствие английский жаргон в пользовательских поверхностях, тестовых файлах и описаниях тестов.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-14 (раунд 49)
 
@@ -320,7 +366,7 @@
 - Переведены на русский английские сообщения об ошибках в имитированных ответах тестов: `Unexpected mocked URL` → `Неожиданный имитированный URL` (8 файлов), `Unexpected mocked date_req` → `Неожиданный имитированный date_req` (1 файл), `provider should not be called` → `провайдер не должен вызываться` (1 файл).
 - Добавлены русские ключевые слова (keywords) во все 13 target package.json для обнаружения русскоязычными пользователями npm.
 - Исправлен отставший regression-тест: `daiso-product-search` description обновлён с `pickup-остатков` на `остатков для самовывоза`; `blue-ribbon-nearby` assertion обновлён с `endpoint` на `эндпоинт`.
-- Doc-regression расширен: добавлены тесты на отсутствие английских сообщений в имитированных ответах тестов и на наличие русских keywords в target package.json.
+- Документная регрессия расширена: добавлены тесты на отсутствие английских сообщений в имитированных ответах тестов и на наличие русских keywords в target package.json.
 - Полный `npm test` проходит: 145 pass / 0 fail / 1 skipped.
 
 ## Выполнено в этом раунде (раунд 49)
@@ -341,15 +387,15 @@
 
 ## Новые пункты плана (раунд 49)
 
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-12 (раунд 48)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
 - Переведены на русский все оставшиеся английские assert-сообщения в `scripts/skill-docs.test.js` (~107 сообщений: `"expected X to exist"`, `"must not X"`, `"must keep X"`, `"should stay X"` и др.).
 - Переведены на русский английские h1-заголовки в верхнеуровневых документах: `# Brand Inventory` → `# Инвентарь бренда`, `# Sources` → `# Источники`, `# Roadmap` → `# Дорожная карта`.
-- Устранён оставшийся English jargon в feature docs: `production` → `промышленного использования`, `live-проверке` → `проверке в реальном времени`, `live-вёрстку` → `актуальную вёрстку`, `live-данные` → `данные в реальном времени`, `export` → `экспорт`, `discovery` → `обнаружение`.
-- Doc-regression расширен: добавлены тесты на русские h1-заголовки в верхнеуровневых документах и отсутствие English jargon (`production`, `live-`, `discovery`, `export`) в feature docs.
+- Устранён оставшийся английский жаргон в feature docs: `production` → `промышленного использования`, `live-проверке` → `проверке в реальном времени`, `live-вёрстку` → `актуальную вёрстку`, `live-данные` → `данные в реальном времени`, `export` → `экспорт`, `discovery` → `обнаружение`.
+- Документная регрессия расширена: добавлены тесты на русские h1-заголовки в верхнеуровневых документах и отсутствие английский жаргон (`production`, `live-`, `discovery`, `export`) в feature docs.
 - Полный `npm test` проходит: 143 pass / 0 fail / 1 skipped.
 
 ## Выполнено в этом раунде (раунд 48)
@@ -364,12 +410,12 @@
 - [x] `docs/features/seoul-subway-arrival.md`: `live-данные` → `данные в реальном времени`.
 - [x] `docs/features/kbo-results.md`: `export` → `экспорт`.
 - [x] `docs/features/yandex-rasp.md`: `discovery` → `обнаружение`.
-- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русские h1-заголовки в верхнеуровневых документах и отсутствие English jargon в feature docs.
+- [x] `scripts/skill-docs.test.js`: добавлена регрессия на русские h1-заголовки в верхнеуровневых документах и отсутствие английский жаргон в feature docs.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-11 (раунд 46)
 
@@ -377,7 +423,7 @@
 - Улучшен навык `mchs-storm-warnings`: добавлены разговорные сокращения и псевдонимы регионов (`"Удмуртия"`, `"Башкирия"`, `"Чувашия"`, `"Питер"`, `"СПб"`, `"Подмосковье"`, `"Чукотка"`, `"Кузбасс"`, `"Тюмень"` и другие 30+ алиасов); нечёткий поиск защищён от тривиально коротких и бессмысленных запросов (`"ия"`, `"ская"`, `"Республика"`, `"область"`); добавлен тайм-аут сетевых запросов через `AbortController` (15 с); добавлены тесты граничных случаев.
 - Переведены на русский все английские описания тестов в 19 файлах `packages/*/test/*.js` (~140 строк): `cbr-rates`, `moex-shares`, `postcalc-postcodes`, `hh-vacancies`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `yandex-market-search`, `osm-nearby`, `yandex-rasp`, `zoon-nearby`, `blue-ribbon-nearby`, `daiso-product-search`, `k-lotto`, `kakao-bar-nearby`, `kleague-results`, `toss-securities`, `k-skill-proxy`.
 - Переведены английские значения `lookup_mode` в `scripts/fine_dust.py`: `"coordinates"` → `"координаты"`, `"fallback"` → `"запасной вариант"` (синхронизировано с Node.js `airkorea.js`).
-- Doc-regression расширен: добавлены тесты на разговорные сокращения регионов МЧС, защиту от тривиальных запросов, тайм-аут запросов и граничные случаи парсинга.
+- Документная регрессия расширена: добавлены тесты на разговорные сокращения регионов МЧС, защиту от тривиальных запросов, тайм-аут запросов и граничные случаи парсинга.
 - Полный `npm test` проходит: 135+ pass / 0 fail / 1 skipped.
 
 ## Выполнено в этом раунде (раунд 46)
@@ -396,16 +442,16 @@
 
 ## Новые пункты плана
 
-- [x] Расширить doc-regression coverage на английские описания тестов в `scripts/skill-docs.test.js` и Python-тестах (`test_fine_dust.py`, `test_ktx_booking.py`), чтобы предотвратить возврат английских описаний тестов.
+- [x] Расширить документной регрессии coverage на английские описания тестов в `scripts/skill-docs.test.js` и Python-тестах (`test_fine_dust.py`, `test_ktx_booking.py`), чтобы предотвратить возврат английских описаний тестов.
 
 ## Статус на 2026-06-10 (раунд 45)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- Закрыт следующий слой English jargon в source code, SKILL.md, feature docs и top-level docs: `lookup` → `поиск` (hh-vacancies, yandex-rasp, docs/sources.md, docs/roadmap.md), `real-time` → `в реальном времени` (moex-shares, fine-dust-location, seoul-subway-arrival, docs/sources.md), `nearby` → `ближайших` (blue-ribbon-nearby, docs/roadmap.md), `Sold out` → `Места распроданы` (srt-booking), `Write-операции` → `Операции записи` (yandex-market-search), `aggressive polling` → `агрессивного опроса` (srt-booking), `HTML scraping/crawling` → `HTML-парсинг` (kleague-results).
+- Закрыт следующий слой английский жаргон в source code, SKILL.md, feature docs и top-level docs: `lookup` → `поиск` (hh-vacancies, yandex-rasp, docs/sources.md, docs/roadmap.md), `real-time` → `в реальном времени` (moex-shares, fine-dust-location, seoul-subway-arrival, docs/sources.md), `nearby` → `ближайших` (blue-ribbon-nearby, docs/roadmap.md), `Sold out` → `Места распроданы` (srt-booking), `Write-операции` → `Операции записи` (yandex-market-search), `aggressive polling` → `агрессивного опроса` (srt-booking), `HTML scraping/crawling` → `HTML-парсинг` (kleague-results).
 - Переведены на русский все оставшиеся английские JSDoc и комментарии в source code: `kinopoisk-search/src/index.js` (4 JSDoc блока + 2 @param), `yandex-market-search/src/parse.js` (1 файловый JSDoc), `yandex-rasp/src/index.js` (`/* ignore */` → `/* пропустить */`), `kinopoisk-search/src/parse.js` (`prominently` → `выделяется`).
 - Переведены на русский h1-заголовки в 2 SKILL.md: `# Fine Dust по местоположению` → `# Мелкая пыль по местоположению`, `# Blue Ribbon Nearby` → `# Рестораны Blue Ribbon поблизости`.
 - Исправлен changelog entry в README.md: `实时 → real-time` → `实时 → в реальном времени`.
-- Doc-regression расширен на этот слой: добавлены тесты на отсутствие `lookup`, `real-time`, `nearby endpoint`, `Sold out`, `Write-операции`, `aggressive polling`, `HTML scraping/crawling`, `prominently`, английских JSDoc и `/* ignore */` в затронутых поверхностях.
+- Документная регрессия расширена на этот слой: добавлены тесты на отсутствие `lookup`, `real-time`, `nearby endpoint`, `Sold out`, `Write-операции`, `aggressive polling`, `HTML scraping/crawling`, `prominently`, английских JSDoc и `/* ignore */` в затронутых поверхностях.
 - Аудит подтверждает: оставшийся English в source code — только code identifiers и domain-inherent термины; оставшийся English в документации — только link labels к документам и навыкам с английскими именами.
 - Полный `npm test` проходит: 137 pass / 0 fail / 1 skipped.
 
@@ -432,20 +478,20 @@
 - [x] `docs/sources.md`: `area lookup` → `поиск региона`; `lookup региона` → `поиск региона`; `real-time прибытие метро` → `API прибытия метро в реальном времени`; `Seoul real-time subway arrival API` → `Сеул API метро реального времени`; `Korea Post postcode lookup` → `Korea Post поиск почтовых индексов`.
 - [x] `README.md`: `lookup регионов` → `поиск регионов`; `Поиск ресторанов Blue Ribbon nearby` → `Поиск ближайших ресторанов Blue Ribbon`; `实时 → real-time` → `实时 → в реальном времени`.
 - [x] `packages/kleague-results/README.md`: `HTML scraping` → `HTML-парсинг`; `HTML crawling` → `HTML-парсинг`.
-- [x] `scripts/skill-docs.test.js`: обновлены существующие тесты (roadmap nearby/lookup assertions); добавлены 4 новых теста на отсутствие English jargon в source code, SKILL.md, feature docs и top-level docs.
+- [x] `scripts/skill-docs.test.js`: обновлены существующие тесты (roadmap nearby/lookup assertions); добавлены 4 новых теста на отсутствие английский жаргон в source code, SKILL.md, feature docs и top-level docs.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [x] Продолжить расширять doc-regression coverage на оставшиеся JS/Python source surfaces по мере их обнаружения.
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Продолжить расширять документной регрессии coverage на оставшиеся JS/Python source surfaces по мере их обнаружения.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-09 (раунд 44)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - Переведены на русский все английские комментарии и JSDoc в исходном коде всех target-пакетов: `mchs-storm-warnings`, `rpl-results`, `kinopoisk-search`, `stoloto-lotto`, `zoon-nearby`, `osm-nearby`, `pravo-documents`, `yandex-rasp`, а также в legacy-пакетах `kakao-bar-nearby` и `k-skill-proxy`.
 - Переведены на русский все английские описания тестов в `packages/mchs-storm-warnings/test/index.test.js`.
-- Добавлена doc-regression проверка на русские сообщения об ошибках в `mchs-storm-warnings` (`page должен быть целым числом`, `warningPathOrId должен быть непустой строкой`, `Запрос к МЧС не удался`, `regionHost должен быть региональным хостом МЧС`), а также запрет на возврат английских эквивалентов.
+- Добавлена документной регрессии проверка на русские сообщения об ошибках в `mchs-storm-warnings` (`page должен быть целым числом`, `warningPathOrId должен быть непустой строкой`, `Запрос к МЧС не удался`, `regionHost должен быть региональным хостом МЧС`), а также запрет на возврат английских эквивалентов.
 - Аудит исходного кода подтверждает: все английские комментарии и JSDoc в пакетах `packages/*/src/` переведены на русский; оставшийся English — только code identifiers и domain-inherent термины.
 
 ## Выполнено в этом раунде (раунд 44)
@@ -466,15 +512,15 @@
 
 ## Новые пункты плана
 
-- [x] Продолжить расширять doc-regression coverage на оставшиеся JS/Python source surfaces по мере их обнаружения.
-- [x] Проводить периодический аудит user-facing surfaces при добавлении новых пакетов или изменении существующих.
+- [x] Продолжить расширять документной регрессии coverage на оставшиеся JS/Python source surfaces по мере их обнаружения.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
 
 ## Статус на 2026-06-05 (раунд 40)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - Настроен автоматический перевод CHANGELOG headings через `scripts/fix-changelog-headings.js`: `npm run version-packages` теперь вызывает `changeset version && node scripts/fix-changelog-headings.js`, что гарантирует русские заголовки (`### Крупные изменения`, `### Незначительные изменения`, `### Исправления`) вместо английских при будущих релизах.
 - Русифицированы GitHub Actions workflow files: `release-npm.yml` → `name: Релиз npm-пакетов`, `release-python.yml` → `name: Релиз Python-пакетов`; step names, comments и echo messages переведены на русский.
-- Doc-regression расширен на GitHub Actions workflow files, version-packages script и fix-changelog-headings script: тесты страхуют русские workflow names, русские step names/comments, цепочку version-packages и покрытие всех стандартных английских CHANGELOG headings.
+- Документная регрессия расширена на GitHub Actions workflow files, version-packages script и fix-changelog-headings script: тесты страхуют русские workflow names, русские step names/comments, цепочку version-packages и покрытие всех стандартных английских CHANGELOG headings.
 
 ## Выполнено в этом раунде (раунд 40)
 
@@ -487,14 +533,14 @@
 
 ## Новые пункты плана
 
-- [x] Проверить оставшиеся English jargon артефакты в `scripts/check-setup.sh`, `scripts/run-k-skill-proxy.sh` и других shell-скриптах, если они есть.
-- [x] Расширить doc-regression на shell-скрипты и другие repo-infrastructure surfaces, не покрытые текущими регрессиями.
+- [x] Проверить оставшиеся английский жаргон артефакты в `scripts/check-setup.sh`, `scripts/run-k-skill-proxy.sh` и других shell-скриптах, если они есть.
+- [x] Расширить документной регрессии на shell-скрипты и другие repo-infrastructure surfaces, не покрытые текущими регрессиями.
 
 ## Статус на 2026-06-05 (раунд 38)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- Закрыт оставшийся слой English jargon в user-facing docs: `Read-only` → `только для чтения` (11 target package README + docs/features + 5 changeset-сводок), `baseline` → `основа` (13 вхождений в docs/sources.md), `fallback` → `запасной вариант` (fine-dust-location/SKILL.md, docs/sources.md), `live smoke test` / `smoke test` → `проверочный тест` (delivery-tracking/SKILL.md, daiso-product-search.md), `checkout` → `оформление заказа` (yandex-rasp/SKILL.md), `delayed` → `задержанный` (docs/sources.md, docs/roadmap.md), `live-матчей` → `текущих матчей` (docs/features/rpl-results.md), `varies` → `варьируется` (docs/features/stoloto-lotto.md), `nearby-поиск` → `поиск ближайших` (docs/sources.md), `nearby-` prefix → `поиск ближайших` (4 package.json descriptions), `availability-страницы` → `страницы наличия` (docs/sources.md), `## Legacy reference block` → `## Справочный блок Legacy` (docs/sources.md).
-- Doc-regression обновлён: добавлены тесты на отсутствие `Read-only`, `baseline`, `fallback`, `live smoke test`, `delayed-`, `nearby-` prefix, `checkout` и других English jargon артефактов в user-facing поверхностях.
+- Закрыт оставшийся слой английский жаргон в пользовательских docs: `Read-only` → `только для чтения` (11 target package README + docs/features + 5 changeset-сводок), `baseline` → `основа` (13 вхождений в docs/sources.md), `fallback` → `запасной вариант` (fine-dust-location/SKILL.md, docs/sources.md), `live smoke test` / `smoke test` → `проверочный тест` (delivery-tracking/SKILL.md, daiso-product-search.md), `checkout` → `оформление заказа` (yandex-rasp/SKILL.md), `delayed` → `задержанный` (docs/sources.md, docs/roadmap.md), `live-матчей` → `текущих матчей` (docs/features/rpl-results.md), `varies` → `варьируется` (docs/features/stoloto-lotto.md), `nearby-поиск` → `поиск ближайших` (docs/sources.md), `nearby-` prefix → `поиск ближайших` (4 package.json descriptions), `availability-страницы` → `страницы наличия` (docs/sources.md), `## Legacy reference block` → `## Справочный блок Legacy` (docs/sources.md).
+- Документная регрессия обновлён: добавлены тесты на отсутствие `Read-only`, `baseline`, `fallback`, `live smoke test`, `delayed-`, `nearby-` prefix, `checkout` и других английский жаргон артефактов в пользовательских поверхностях.
 
 ## Выполнено в этом раунде (раунд 37)
 
@@ -509,40 +555,40 @@
 - [x] Переведён `nearby-поиск` → `поиск ближайших` и `availability-страницы` → `страницы наличия` в docs/sources.md.
 - [x] Переведён `nearby-` prefix → `поиск ближайших` в 4 package.json descriptions (blue-ribbon-nearby, kakao-bar-nearby, osm-nearby, zoon-nearby).
 - [x] Переведён `## Legacy reference block` → `## Справочный блок Legacy` в docs/sources.md.
-- [x] `scripts/skill-docs.test.js` обновлён: добавлены регрессии на отсутствие English jargon в package README, docs/sources.md, docs/roadmap.md, delivery-tracking/SKILL.md, yandex-rasp/SKILL.md, fine-dust-location/SKILL.md, package.json descriptions и changeset summaries.
+- [x] `scripts/skill-docs.test.js` обновлён: добавлены регрессии на отсутствие английский жаргон в package README, docs/sources.md, docs/roadmap.md, delivery-tracking/SKILL.md, yandex-rasp/SKILL.md, fine-dust-location/SKILL.md, package.json descriptions и changeset summaries.
 - [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
-- [x] Проверить оставшиеся English jargon артефакты в менее заметных поверхностях (legacy package README, SKILL.md, helper-скрипты) на предмет `live smoke`, `smoke test`, `read-only`, `fallback`, `baseline`, `checkout`, `delayed` и других мелких артефактов.
+- [x] Проверить оставшиеся английский жаргон артефакты в менее заметных поверхностях (legacy package README, SKILL.md, helper-скрипты) на предмет `live smoke`, `smoke test`, `read-only`, `fallback`, `baseline`, `checkout`, `delayed` и других мелких артефактов.
 - [x] Аудит `## Проверочный пример` заголовков в legacy package README на предмет консистентности с новым названием (текущий статус: все 5 файлов используют `## Проверочный пример` — консистентно).
-- [x] Проверить оставшиеся English jargon в README.md, docs/roadmap.md и docs/sources.md (в том числе `nearby-` в заголовках таблиц и описаниях навыков).
+- [x] Проверить оставшиеся английский жаргон в README.md, docs/roadmap.md и docs/sources.md (в том числе `nearby-` в заголовках таблиц и описаниях навыков).
 
 ## Статус на 2026-06-03 (раунд 35)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - Закрыт следующий слой English drift в docs/roadmap.md: `Migration milestones` → `Вехи миграции`, `Milestone N` → `Веха N`, `Legacy packages` → `Legacy-пакеты`.
-- Устранён English jargon в docs/features/osm-nearby.md: `free/no-key` → `бесплатное решение без API-ключа`, `sparse` → `неполным`.
+- Устранён английский жаргон в docs/features/osm-nearby.md: `free/no-key` → `бесплатное решение без API-ключа`, `sparse` → `неполным`.
 - Исправлена грамматическая ошибка в kleague-results/SKILL.md: `текущий турнирная` → `текущая турнирная`.
 - Нормализован заголовок в docs/features/rpl-results.md: `Когда НЕ использовать` → `Когда не использовать`.
 - Переведён `free/no-key` → `бесплатный источник без API-ключа` в docs/sources.md.
-- Doc-regression расширен на roadmap milestone headings и osm-nearby English jargon: тесты страхуют русские заголовки вех и отсутствие English drift в feature docs.
+- Документная регрессия расширена на roadmap milestone headings и osm-nearby английский жаргон: тесты страхуют русские заголовки вех и отсутствие English drift в feature docs.
 - Полный `npm test` проходит: 104+ pass / 0 fail / 1 skipped, `./scripts/validate-skills.sh` тоже зелёный.
 
 ## Выполнено в этом раунде (раунд 35)
 
 - [x] Переведены на русский milestone headings в docs/roadmap.md (`Migration milestones` → `Вехи миграции`, `Milestone N` → `Веха N`, `Legacy packages` → `Legacy-пакеты`).
-- [x] Устранён English jargon в docs/features/osm-nearby.md (`free/no-key` → `бесплатное решение без API-ключа`, `sparse` → `неполным`).
+- [x] Устранён английский жаргон в docs/features/osm-nearby.md (`free/no-key` → `бесплатное решение без API-ключа`, `sparse` → `неполным`).
 - [x] Исправлена грамматическая ошибка в kleague-results/SKILL.md (`текущий турнирная` → `текущая турнирная`).
 - [x] Нормализован заголовок в docs/features/rpl-results.md (`Когда НЕ использовать` → `Когда не использовать`).
 - [x] Переведён `free/no-key` в docs/sources.md на русский.
-- [x] `scripts/skill-docs.test.js` дополнен регрессией на roadmap milestone headings и osm-nearby English jargon.
+- [x] `scripts/skill-docs.test.js` дополнен регрессией на roadmap milestone headings и osm-nearby английский жаргон.
 - [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
 
 ## Новые пункты плана
 
 - [x] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
-- [x] Проверить оставшиеся English jargon артефакты в docs/features (например, `supplementary`, `read-only` как технический термин в русском контексте).
+- [x] Проверить оставшиеся английский жаргон артефакты в docs/features (например, `supplementary`, `read-only` как технический термин в русском контексте).
 
 ## Статус на 2026-06-02 (раунд 34)
 
@@ -550,7 +596,7 @@
 - Закрыт следующий слой mixed-language drift в release/publish surfaces: все 7 английских changeset-сводок (`.changeset/zoon-nearby-add.md`, `osm-nearby-add.md`, `rpl-results.md`, `pravo-documents.md`, `stoloto-lotto.md`, `kinopoisk-search.md`, `clever-dingos-think.md`) переведены на русский, чтобы publish-summary copy не отставала от README и package metadata.
 - Переведены на русский все 5 оставшихся английских SKILL.md frontmatter `description` (toss-securities, srt-booking, seoul-subway-arrival, ktx-booking, delivery-tracking) и устранена смешанная description в blue-ribbon-nearby.
 - Добавлен отсутствующий frontmatter в `packages/osm-nearby/SKILL.md` (name, description, license, metadata).
-- Doc-regression расширен на changeset summaries и SKILL.md frontmatter descriptions: `scripts/skill-docs.test.js` теперь страхует, что changeset-сводки начинаются по-русски, а SKILL.md descriptions не содержат английских начальных форм.
+- Документная регрессия расширена на changeset summaries и SKILL.md frontmatter descriptions: `scripts/skill-docs.test.js` теперь страхует, что changeset-сводки начинаются по-русски, а SKILL.md descriptions не содержат английских начальных форм.
 - Полный `npm test` проходит: 102 pass / 0 fail / 1 skipped, `./scripts/validate-skills.sh` тоже зелёный.
 
 ## Выполнено в этом раунде (раунд 34)
@@ -564,7 +610,7 @@
 
 ## Новые пункты плана
 
-- [x] Расширить doc-regression на skill frontmatter `description` и install/feature-link labels, чтобы русская терминология держалась не только в README и `package.json`.
+- [x] Расширить документной регрессии на skill frontmatter `description` и install/feature-link labels, чтобы русская терминология держалась не только в README и `package.json`.
 - [x] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
 - [x] Проверить `docs/roadmap.md` на устаревшие ссылки на English surfaces, которые теперь русифицированы.
 
@@ -573,7 +619,7 @@
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - Закрыт следующий слой mixed-language drift в transition/setup surfaces: `docs/setup.md`, `docs/security-and-secrets.md`, `docs/features/fine-dust-location.md`, `docs/features/k-skill-proxy.md`, `fine-dust-location/SKILL.md`, `ru-skill-setup/SKILL.md`, `k-skill-setup/SKILL.md`, `examples/secrets.env.example` и `packages/k-skill-proxy/README.md` выровнены по русской терминологии для резервных путей, endpoint override и compatibility-layer.
 - Все 20 workspace `package.json` descriptions переведены на русский и синхронизированы с текущим target/legacy/transition позиционированием, так что publish metadata больше не расходится с верхнеуровневой документацией.
-- Doc-regression расширен на этот слой: `scripts/skill-docs.test.js` теперь страхует русские формулировки в transition/setup surfaces и descriptions publishable workspace-пакетов.
+- Документная регрессия расширена на этот слой: `scripts/skill-docs.test.js` теперь страхует русские формулировки в transition/setup surfaces и descriptions publishable workspace-пакетов.
 - Полный `npm test` проходит; `./scripts/validate-skills.sh` тоже зелёный.
 
 ## Выполнено в этом раунде (раунд 33)
@@ -586,21 +632,21 @@
 ## Новые пункты плана
 
 - [x] Проверить `CHANGELOG.md`, `.changeset/*` и другие release surfaces на смешанную терминологию, чтобы publish-summary copy не отставала от README и package metadata.
-- [x] Расширить doc-regression на skill frontmatter `description` и install/feature-link labels, чтобы русская терминология держалась не только в README и `package.json`.
+- [x] Расширить документной регрессии на skill frontmatter `description` и install/feature-link labels, чтобы русская терминология держалась не только в README и `package.json`.
 - [x] Продолжить чистку publish/package surfaces только там, где это не ломает package names, code identifiers и доменно-обязательные англоязычные термины.
 
 ## Статус на 2026-06-02 (раунд 32)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- Закрыт следующий слой mixed-language drift в legacy user-facing docs: русифицированы boundary/product формулировки в 6 package README (`blue-ribbon-nearby`, `daiso-product-search`, `k-lotto`, `kakao-bar-nearby`, `kleague-results`, `toss-securities`) и 11 feature guides (`blue-ribbon-nearby`, `daiso-product-search`, `delivery-tracking`, `kakao-bar-nearby`, `kakaotalk-mac`, `kbo-results`, `kleague-results`, `lotto-results`, `seoul-subway-arrival`, `toss-securities`, `zipcode-search`).
+- Закрыт следующий слой mixed-language drift в legacy пользовательских docs: русифицированы boundary/product формулировки в 6 package README (`blue-ribbon-nearby`, `daiso-product-search`, `k-lotto`, `kakao-bar-nearby`, `kleague-results`, `toss-securities`) и 11 feature guides (`blue-ribbon-nearby`, `daiso-product-search`, `delivery-tracking`, `kakao-bar-nearby`, `kakaotalk-mac`, `kbo-results`, `kleague-results`, `lotto-results`, `seoul-subway-arrival`, `toss-securities`, `zipcode-search`).
 - В legacy package README устранён английский заголовок `## Live smoke snapshot`: на обновлённых surfaces теперь используется `## Проверенный live smoke пример`.
-- Doc-regression расширен на этот слой: `scripts/skill-docs.test.js` теперь проверяет русскую boundary copy на обновлённых legacy surfaces, новый smoke heading в `kakao-bar-nearby` package README и отсутствие возврата `backward compatibility` / `reference flow` / `target-backlog` / `public-source replacement` / `adapter-based tracking flow` на затронутых документах.
-- Полный `npm test` проходит: doc-regression `99 pass / 0 fail / 1 skipped`, workspace-тесты зелёные, `./scripts/validate-skills.sh` проходит.
+- Документная регрессия расширена на этот слой: `scripts/skill-docs.test.js` теперь проверяет русскую boundary copy на обновлённых legacy surfaces, новый smoke heading в `kakao-bar-nearby` package README и отсутствие возврата `backward compatibility` / `reference flow` / `target-backlog` / `public-source replacement` / `adapter-based tracking flow` на затронутых документах.
+- Полный `npm test` проходит: документной регрессии `99 pass / 0 fail / 1 skipped`, workspace-тесты зелёные, `./scripts/validate-skills.sh` проходит.
 
 ## Выполнено в этом раунде (раунд 32)
 
 - [x] Русифицированы boundary/product формулировки в 6 legacy package README без изменения code identifiers и API-имен.
-- [x] Русифицированы boundary/product формулировки в 11 legacy feature guides, где оставались `replacement`, `backward compatibility`, `reference flow`, `target-backlog` и смежные user-facing англицизмы.
+- [x] Русифицированы boundary/product формулировки в 11 legacy feature guides, где оставались `replacement`, `backward compatibility`, `reference flow`, `target-backlog` и смежные пользовательских англицизмы.
 - [x] Заголовок `## Live smoke snapshot` заменён на `## Проверенный live smoke пример` в legacy package README с live-smoke блоками.
 - [x] `scripts/skill-docs.test.js` обновлён под новые русские формулировки и дополнен новой регрессией против возврата английской boundary/product copy на обновлённых surfaces.
 - [x] `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы с новым статусом и следующим iteration backlog.
@@ -608,7 +654,7 @@
 ## Новые пункты плана
 
 - [x] Проверить оставшиеся transition surfaces (`k-skill-proxy`, `fine-dust-location`, setup/security docs) на смешанную терминологию вокруг `read-only`, `fallback`, `compatibility-layer` и `public proxy`.
-- [x] Расширить doc-regression на package metadata и release surfaces (`package.json` descriptions, package CHANGELOG, feature-link labels), чтобы English copy drift не возвращался вне README/feature docs.
+- [x] Расширить документной регрессии на package metadata и release surfaces (`package.json` descriptions, package CHANGELOG, feature-link labels), чтобы English copy drift не возвращался вне README/feature docs.
 - [x] Продолжить чистку legacy/transition copy только там, где это не ломает стабильные статус-маркеры, code identifiers и доменно-обязательные англоязычные термины.
 
 ## Статус на 2026-06-02 (раунд 31)
@@ -634,7 +680,7 @@
 
 ## Новые пункты плана
 
-- [x] Расширять doc-regression в CI дальше: README, roadmap, TODO, booking-research, heading scheme критических skill-surfaces и hygiene package/feature docs должны совпадать по текущему продуктовому приоритету. Уточнённый вариант перенесён в верхний активный план.
+- [x] Расширять документной регрессии в CI дальше: README, roadmap, TODO, booking-research, heading scheme критических skill-surfaces и hygiene package/feature docs должны совпадать по текущему продуктовому приоритету. Уточнённый вариант перенесён в верхний активный план.
 - [x] Если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog. Принцип сохранён в верхнем активном плане как постоянное правило миграции.
 - [x] Проверить оставшиеся English артефакты в legacy package README и docs/features, не покрытые текущими регрессиями.
 
@@ -643,25 +689,25 @@
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий слой русификации SKILL.md: английские заголовки секций в 6 target-навыках (`mchs-storm-warnings`, `cbr-rates`, `moex-shares`, `postcalc-postcodes`, `hh-vacancies`, `pravo-documents`) переведены на русский (`What this skill does` → `Что делает навык`, `When to use` → `Когда использовать`, `Prerequisites` → `Предварительные условия`, `Inputs` → `Входные данные`, `Workflow` → `Рабочий процесс`, `Done when` → `Критерии завершения`, `Failure modes` → `Возможные ошибки`, `Notes` → `Примечания`).
 - Нормализованы русские заголовки в `yandex-rasp/SKILL.md` и `yandex-market-search/SKILL.md`: нестандартные формулировки приведены к единой схеме (`Что делает этот навык` → `Что делает навык`, `Предварительные требования` → `Предварительные условия`, `Входы` → `Входные данные`, `Основной сценарий` → `Рабочий процесс`, `Готово, когда` → `Критерии завершения`, `Режимы отказа` → `Возможные ошибки`).
-- Переведены 2 последних user-facing Korean фрагмента в feature docs: `근처 술집 조회` → `Поиск баров поблизости` (`kakao-bar-nearby`), `K리그 결과 조회` → `Результаты K League` (`kleague-results`).
-- Doc-regression тесты обновлены для новых русских заголовков и переводов Korean фрагментов.
+- Переведены 2 последних пользовательского корейского фрагмента в feature docs: `근처 술집 조회` → `Поиск баров поблизости` (`kakao-bar-nearby`), `K리그 결과 조회` → `Результаты K League` (`kleague-results`).
+- Тесты документной регрессии обновлены для новых русских заголовков и переводов Korean фрагментов.
 - Полный CI проходит: lint, typecheck, 94+ pass / 0 fail / 1 skipped, pack:dry-run.
 
 ## Статус на 2026-05-30 (раунд 26)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- В этом раунде закрыт последний слой user-facing Korean в source code и docs: форматирование призов в `k-lotto` (`1,234원` → `1 234 вон`, locale `ko-KR` → `ru-RU`) и примеры CLI-запросов в `kakaotalk-mac` (`"지수"` → `"Jisoo"`, `"점심"` → `"обед"`, `"회의"` → `"встреча"`, `"테스트 메시지"` → `"тестовое сообщение"`, `"팀 공지방"` → `"рабочий чат"`, `"오늘 3시에 만나요"` → `"встречаемся сегодня в 15:00"`).
-- Аудит Korean-остатков подтверждает: весь оставшийся Korean — domain-inherent (API parameters, location names, fixture data, regex patterns для Korean API responses); новых user-facing Korean фрагментов для перевода нет.
+- В этом раунде закрыт последний слой пользовательского корейского в source code и docs: форматирование призов в `k-lotto` (`1,234원` → `1 234 вон`, locale `ko-KR` → `ru-RU`) и примеры CLI-запросов в `kakaotalk-mac` (`"지수"` → `"Jisoo"`, `"점심"` → `"обед"`, `"회의"` → `"встреча"`, `"테스트 메시지"` → `"тестовое сообщение"`, `"팀 공지방"` → `"рабочий чат"`, `"오늘 3시에 만나요"` → `"встречаемся сегодня в 15:00"`).
+- Аудит Korean-остатков подтверждает: весь оставшийся Korean — domain-inherent (API parameters, location names, fixture data, regex patterns для Korean API responses); новых пользовательского корейского фрагментов для перевода нет.
 - Полный CI проходит: lint, typecheck, 94+ pass / 0 fail / 1 skipped, pack:dry-run.
 
 ## Статус на 2026-05-29 (раунд 25)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- В этом раунде закрыт последний оставшийся doc-regression gap: добавлены workflow/content assertions для `kakaotalk-mac`, `daiso-product-search` и `delivery-tracking`.
+- В этом раунде закрыт последний оставшийся документной регрессии gap: добавлены workflow/content assertions для `kakaotalk-mac`, `daiso-product-search` и `delivery-tracking`.
   - `kakaotalk-mac`: проверяется полный workflow от install до safe send (kakaocli status/auth/chats/messages/search/send, Full Disk Access, Accessibility, --me, --dry-run, подтверждение перед отправкой).
   - `daiso-product-search`: проверяется store-product-stock workflow (searchStores, searchProducts, getStorePickupStock, lookupStoreProductAvailability, boundary note с yandex-market-search).
   - `delivery-tracking`: проверяется CJ + ePost carrier adapter workflow (boundary note, adapter pattern, _csrf/sid1, status_map, нормализация, общая схема результатов).
-- Doc-regression теперь покрывает все 13 target-навыков и все legacy-навыки с workflow/content assertions. Оставшихся непокрытых legacy SKILL.md workflow нет.
+- Документная регрессия теперь покрывает все 13 target-навыков и все legacy-навыки с workflow/content assertions. Оставшихся непокрытых legacy SKILL.md workflow нет.
 - Полный CI проходит: lint, typecheck, 94 pass / 0 fail / 1 skipped, pack:dry-run.
 
 ## Статус на 2026-05-29 (раунд 24)
@@ -673,31 +719,31 @@
   - `hwp/SKILL.md` и `docs/features/hwp.md`: добавлен `## Граничное примечание` с классификацией `target-supporting` — корейский формат без прямого российского аналога, но полезный как утилита.
   - `blue-ribbon-nearby/SKILL.md`: routing rule исправлен — теперь `osm-nearby` / `zoon-nearby` указаны как primary для российских nearby-запросов, а `blue-ribbon-nearby` только для явных Blue Ribbon запросов.
   - `ktx-booking/SKILL.md`: description обновлён с добавлением `Legacy-compatible ... not for new Russian railway integrations` по аналогии с `srt-booking`.
-- Doc-regression расширен на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
-- Doc-regression расширен на новый boundary-note coverage: `delivery-tracking/SKILL.md`, `toss-securities/SKILL.md`, `hwp/SKILL.md` + `docs/features/hwp.md`, `blue-ribbon-nearby` routing rule.
+- Документная регрессия расширена на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
+- Документная регрессия расширена на новый boundary-note coverage: `delivery-tracking/SKILL.md`, `toss-securities/SKILL.md`, `hwp/SKILL.md` + `docs/features/hwp.md`, `blue-ribbon-nearby` routing rule.
 - Полный CI проходит: lint, typecheck, 91 pass / 0 fail / 1 skipped, pack:dry-run.
-- Аудит корейского текста подтверждает: весь оставшийся Korean — domain-inherent (API parameters, location names, fixture data); нет user-facing Korean для перевода.
+- Аудит корейского текста подтверждает: весь оставшийся Korean — domain-inherent (API parameters, location names, fixture data); нет пользовательского корейского для перевода.
 
 ## Статус на 2026-05-28 (раунд 23)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- В этом раунде закрыт следующий слой русификации source-level и doc-level корейского текста: user-facing Korean labels в `kleague-results`, `kakao-bar-nearby`, `k-lotto` и `blue-ribbon-nearby` переведены на русский.
+- В этом раунде закрыт следующий слой русификации source-level и doc-level корейского текста: пользовательского корейского labels в `kleague-results`, `kakao-bar-nearby`, `k-lotto` и `blue-ribbon-nearby` переведены на русский.
 - Статусы матчей в `kleague-results`: `종료`→`Завершён`, `예정`→`Запланирован`, `진행 중`→`В процессе`, `하프타임`→`Перерыв`, `연기`→`Отложен`, `취소`→`Отменён`.
 - Подсказки по вместимости в `kakao-bar-nearby`: `단체 방문 가능`→`Групповые места доступны`, `소규모/혼술 위주`→`Для небольших групп / соло`.
 - Лотерейные метки в `k-lotto`: `낙첨`→`Не выиграно`, `N등`→`N-й приз`.
 - Сообщение об ошибке в `blue-ribbon-nearby`: Korean location terms заменены на русские (`район, станция, достопримечательность`).
 - Feature docs и SKILL.md для `kakao-bar-nearby`, `blue-ribbon-nearby`, `kleague-results`, `zipcode-search`, `hwp`, `ktx-booking`, `kakaotalk-mac` и несколько package README дополнительно русифицированы: Korean section headings, field labels, error messages и descriptive phrases переведены на русский.
-- Doc-regression расширен на 6 ранее непокрытых target-навыков: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby`.
+- Документная регрессия расширена на 6 ранее непокрытых target-навыков: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby`.
 - Полный CI проходит: lint, typecheck, 85 pass / 0 fail / 1 skipped, pack:dry-run.
-- `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы: оставшаяся корейская user-facing копия в source code и docs существенно сокращена; domain-inherent Korean (API parameters, location names, fixture data) сохранён корректно.
+- `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы: оставшаяся корейская пользовательская копия в source code и docs существенно сокращена; domain-inherent Korean (API parameters, location names, fixture data) сохранён корректно.
 
 ## Статус на 2026-05-28 (раунд 22)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде не добавлялся новый target-пакет: фокус смещён на то, чтобы закрыть следующий слой doc-governance для уже существующих legacy guides.
-- Doc-regression расширен на user-facing runtime/secrets semantics для `docs/features/fine-dust-location.md`, `docs/features/seoul-subway-arrival.md`, `docs/features/srt-booking.md` и `docs/features/ktx-booking.md`.
+- Документная регрессия расширена на пользовательских runtime/secrets semantics для `docs/features/fine-dust-location.md`, `docs/features/seoul-subway-arrival.md`, `docs/features/srt-booking.md` и `docs/features/ktx-booking.md`.
 - Новые проверки страхуют не только boundary note, но и `ru-skill`-first порядок `~/.config/ru-skill/secrets.env` -> `~/.config/k-skill/secrets.env`, distinction между config override и реальными секретами, а также replacement boundary через `yandex-rasp` там, где это важно.
-- `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы: helper/runtime cleanup больше не висит как следующий шаг, а активный приоритет смещён на оставшуюся русификацию feature-guides и распространение user-facing regression на остальные legacy surfaces.
+- `README.md`, `docs/roadmap.md` и `TODO.md` синхронизированы: helper/runtime cleanup больше не висит как следующий шаг, а активный приоритет смещён на оставшуюся русификацию feature-guides и распространение пользовательской регрессии на остальные legacy surfaces.
 
 ## Статус на 2026-05-28 (раунд 21)
 
@@ -707,7 +753,7 @@
 - Частичная русификация `docs/features/delivery-tracking.md`: та же status map, error messages, sample output и section labels переведены на русский.
 - `docs/sources.md` legacy reference block: все корейские метки источников переведены на русский (K League 일정/결과 → расписание/результаты, 블루리본 → Blue Ribbon, 카카오맵 → Kakao Map, 에어코리아 → AirKorea, 우체국 → Почтовая служба Кореи, CJ대한통운 → CJ Logistics, 동행복권 → Dhlottery, 다이소몰 → Daisomall).
 - `scripts/fixtures/delivery-tracking-public-samples.json` обновлён: статус-метки в sample output синхронизированы с русскоязычным переводом.
-- Doc-regression тесты обновлены: assertions для zipcode-search, delivery-tracking, sources.md, kakaotalk-mac синхронизированы с русскоязычными формулировками.
+- Тесты документной регрессии обновлены: assertions для zipcode-search, delivery-tracking, sources.md, kakaotalk-mac синхронизированы с русскоязычными формулировками.
 - Полный CI проходит: lint, typecheck, 72 pass / 0 fail / 1 skipped, pack:dry-run.
 
 ## Статус на 2026-05-27 (раунд 20)
@@ -724,50 +770,50 @@
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий слой русификации helper/runtime scripts и setup-skill: корейские тексты в `fine_dust.py`, `ktx_booking.py`, `docs/features/fine-dust-location.md` и `k-skill-setup/SKILL.md` переведены на русский.
 - `k-skill-setup/SKILL.md` больше не направляет GitHub star на `NomaDamas/k-skill`; целевой репозиторий исправлен на `denis-gordeev/ru-skill`.
-- Doc-regression тесты обновлены под русскоязычные формулировки в fine-dust docs.
+- Тесты документной регрессии обновлены под русскоязычные формулировки в fine-dust docs.
 - Полный CI проходит: lint, typecheck, 73 pass / 0 fail / 1 skipped, pack:dry-run.
 
 ## Статус на 2026-05-23 (раунд 18)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
-- В этом раунде закрыт следующий слой legacy feature/skill drift после skill-only cleanup: user-facing guides и agent-facing skills больше не расходятся по replacement boundaries для nearby, marketplace, football и railway сценариев.
+- В этом раунде закрыт следующий слой legacy feature/skill drift после skill-only cleanup: пользовательских руководствах и agent-facing skills больше не расходятся по replacement boundaries для nearby, marketplace, football и railway сценариев.
 - `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, `srt-booking` и `ktx-booking` теперь явно публикуют `## Граничное примечание`, а replacement-роли (`osm-nearby`/`zoon-nearby`, `yandex-market-search`, `rpl-results`, `yandex-rasp`) синхронизированы между `docs/features/*` и `*/SKILL.md`.
-- Doc-regression расширен на этот слой, чтобы boundary note и replacement copy не расползались в следующих документных раундах.
+- Документная регрессия расширена на этот слой, чтобы boundary note и replacement copy не расползались в следующих документных раундах.
 
 ## Статус на 2026-05-22 (раунд 17)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий skill-only drift после railway/fine-dust cleanup: оставшиеся legacy utility guides больше не висят отдельным документным островом вне regression perimeter.
 - `kakaotalk-mac`, `kbo-results`, `lotto-results` и `zipcode-search` теперь синхронно фиксируют `устаревший без развития` boundary и не подаются как скрытый target-backlog.
-- Doc-regression расширен на эти skill-only guides и соответствующие `SKILL.md`, чтобы boundary note и подтверждённые replacements/compatibility-role не расходились между user-facing и agent-facing copy.
+- Документная регрессия расширена на эти skill-only guides и соответствующие `SKILL.md`, чтобы boundary note и подтверждённые replacements/compatibility-role не расходились между пользовательской и агентской документацией.
 
 ## Статус на 2026-05-21 (раунд 16)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий skill-level drift после setup runtime-artifacts: оставшиеся ключевые legacy utility/travel skills больше не расходятся по migration-boundary и credential copy.
 - `fine-dust-location`, `srt-booking` и `ktx-booking` теперь синхронно фиксируют `legacy/transition` роль, `ru-skill`-first secrets order и distinction между optional override и реальными секретами.
-- Doc-regression расширен на этот слой, чтобы railway/fine-dust skill copy не возвращала legacy-default формулировки или скрытый target-backlog.
+- Документная регрессия расширена на этот слой, чтобы railway/fine-dust skill copy не возвращала legacy-default формулировки или скрытый target-backlog.
 
 ## Статус на 2026-05-08 (раунд 15)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий setup/runtime drift после package README cleanup: even legacy alias `k-skill-setup` больше не показывает `~/.config/k-skill/bin` и `~/.config/k-skill/logs` как operational default для update checks.
 - Runtime-artifacts для setup automation теперь синхронно описаны как `~/.config/ru-skill/*`-first, а legacy `k-skill` paths оставлены только как backward-compatible fallback для уже существующей локальной автоматизации.
-- Doc-regression расширен на этот слой, чтобы skill-level setup copy не возвращал `k-skill`-prefixed bin/log directories в роль основного пути.
+- Документная регрессия расширена на этот слой, чтобы skill-level setup copy не возвращал `k-skill`-prefixed bin/log directories в роль основного пути.
 
 ## Статус на 2026-05-07 (раунд 14)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий package-level drift после fine-dust/proxy helper cleanup: legacy utility README больше не остаются старым корейским островом без текущего migration-boundary.
 - `toss-securities`, `daiso-product-search`, `kleague-results`, `blue-ribbon-nearby`, `kakao-bar-nearby` и `k-lotto` теперь синхронно помечают `устаревший без развития` статус и называют уже подтверждённые российские replacements там, где они существуют.
-- Doc-regression расширен на package README, чтобы `устаревший без развития` boundary держался не только в feature guides и верхнеуровневых документах.
+- Документная регрессия расширена на package README, чтобы `устаревший без развития` boundary держался не только в feature guides и верхнеуровневых документах.
 
 ## Статус на 2026-05-06 (раунд 13)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий документный drift после fine-dust/proxy boundary: secrets template, setup skills и setup helper'ы больше не подают `KSKILL_PROXY_BASE_URL` как секрет или обязательный default.
 - Минимальный шаблон credential теперь отделён от optional endpoint override, а `AIR_KOREA_OPEN_API_KEY` остаётся единственным реальным секретом fine-dust direct fallback сценария.
-- Doc-regression расширен на `examples/secrets.env.example`, setup-skill copy и `scripts/check-setup.sh`, чтобы это разделение не расползалось между локальными инструкциями и runtime-check helper'ами.
+- Документная регрессия расширена на `examples/secrets.env.example`, setup-skill copy и `scripts/check-setup.sh`, чтобы это разделение не расползалось между локальными инструкциями и runtime-check helper'ами.
 
 ## Статус на 2026-05-04 (раунд 12)
 
@@ -780,7 +826,7 @@
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - В этом раунде закрыт следующий governance/doc gap после railway boundary: `remaining устаревший без развития matrix` теперь синхронно размечена в README, roadmap и install-flow.
-- `seoul-subway-arrival` и `toss-securities` закреплены как документно закрытые `устаревший без развития`, а `k-skill-proxy` переведён в единый `transition`-статус на всех верхнеуровневых user-facing поверхностях.
+- `seoul-subway-arrival` и `toss-securities` закреплены как документно закрытые `устаревший без развития`, а `k-skill-proxy` переведён в единый `transition`-статус на всех верхнеуровневых пользовательских поверхностях.
 - User-facing docs для `delivery-tracking`, `seoul-subway-arrival`, `toss-securities` и `k-skill-proxy` больше не должны выглядеть как скрытый target-backlog без подтверждённого российского public source.
 
 ## Статус на 2026-04-29 (раунд 10)
@@ -795,7 +841,7 @@
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился - двигать репозиторий в сторону российских и русскоязычных сценариев, не расширяя legacy-наследие как основной продукт.
 - Этот раунд не добавляет новый target-пакет, а закрывает следующий governance gap после booking research: legacy railway docs теперь явно согласованы с replacement boundary.
 - `srt-booking` и `ktx-booking` остаются backward-compatible корейскими сценариями, но больше не выглядят в живой документации как возможная опора для новых российских write-интеграций.
-- README, roadmap и doc-regression теперь фиксируют не только сам decision matrix, но и то, что legacy railway docs обязаны направлять новые российские сценарии в сторону `yandex-rasp` и external handoff.
+- README, roadmap и документной регрессии теперь фиксируют не только сам decision matrix, но и то, что legacy railway docs обязаны направлять новые российские сценарии в сторону `yandex-rasp` и external handoff.
 
 ## Статус на 2026-04-27 (раунд 8)
 
@@ -839,14 +885,14 @@
 - [x] README обновлён: в блоках `Что уже сделано по миграции` и `Что делаем дальше` отражён новый статус Milestone 5 и добавлена ссылка на decision matrix.
 - [x] `docs/roadmap.md` обновлён: Milestone 5 переведён из абстрактного research backlog в конкретное решение по границе replacement-а.
 - [x] `docs/sources.md` дополнен отдельным блоком по кандидатам на railway booking replacement.
-- [x] Doc-regression тесты расширены: теперь они требуют наличия отдельного booking-research документа и нового статуса planning docs.
+- [x] Тесты документной регрессии расширены: теперь они требуют наличия отдельного booking-research документа и нового статуса planning docs.
 
 ## Выполнено в этом раунде (раунд 10)
 
 - [x] Закрыт открытый вопрос Milestone 5: подтверждено, что отдельный handoff-skill поверх `yandex-rasp` не нужен и не открывается как новый `target`-пакет.
 - [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/booking-replacements.md` и `docs/sources.md`, чтобы railway replacement был зафиксирован как документно закрытый backlog, а не как незавершённое implementation-направление.
 - [x] Обновлены `docs/features/yandex-rasp.md` и `yandex-rasp/SKILL.md`: railway handoff описан как ручной пользовательский шаг после discovery, без checkout automation внутри репозитория.
-- [x] Doc-regression тесты обновлены под новый статус Milestone 5 и теперь дополнительно страхуют от возврата railway handoff в активный target-backlog.
+- [x] Тесты документной регрессии обновлены под новый статус Milestone 5 и теперь дополнительно страхуют от возврата railway handoff в активный target-backlog.
 
 ## Выполнено в этом раунде (раунд 9)
 
@@ -854,7 +900,7 @@
 - [x] Обновлены `srt-booking/SKILL.md` и `ktx-booking/SKILL.md`: железнодорожные legacy-навыки теперь прямо помечены как backward-compatible корейские сценарии, нецелевые для новых российских write-интеграций.
 - [x] Исправлен credential resolution order в railway legacy-docs: сначала `~/.config/ru-skill/secrets.env`, затем legacy fallback `~/.config/k-skill/secrets.env`.
 - [x] Обновлены `README.md` и `docs/roadmap.md`, чтобы текущий booking-replacement status отражал уже не только research, но и выровненную legacy railway documentation boundary.
-- [x] Doc-regression тесты расширены: README, roadmap и railway docs теперь страхуются от отката к двусмысленной подаче `srt-booking` и `ktx-booking` как target-направления.
+- [x] Тесты документной регрессии расширены: README, roadmap и railway docs теперь страхуются от отката к двусмысленной подаче `srt-booking` и `ktx-booking` как target-направления.
 
 ## Выполнено в этом раунде
 
@@ -879,7 +925,7 @@
 - [x] Подготовлены fixture-based JSON-тесты для `stations_list`, `schedule` и `search` ответов API Яндекс.Расписаний.
 - [x] Обновлены `README.md`, `docs/roadmap.md`, `docs/sources.md`, `docs/features/yandex-rasp.md`, `yandex-rasp/SKILL.md` и `.changeset/yandex-rasp.md`, чтобы девятый target-skill был встроен в основной пользовательский путь.
 - [x] Обновлён `package.json`, чтобы `yandex-rasp` входил в `pack:dry-run`.
-- [x] Добавлены doc-regression тесты в `scripts/skill-docs.test.js` для `yandex-rasp`.
+- [x] Добавлены документной регрессии тесты в `scripts/skill-docs.test.js` для `yandex-rasp`.
 - [x] Расширена матрица замены legacy-пакетов: добавлены столбцы статуса замены и конкретные российские аналоги (РПЛ/ФНЛ/КХЛ, Wildberries/Ozon, 2GIS/Яндекс.Карты, РЖД/Туту.ру).
 - [x] Обновлён `docs/roadmap.md` с развёрнутой таблицей legacy packages → target replacements со статусом каждой замены.
 
@@ -891,7 +937,7 @@
 - [x] Обновлён `package.json`, чтобы `zoon-nearby` входил в `pack:dry-run`.
 - [x] Обновлена матрица замены legacy-пакетов: `blue-ribbon-nearby` и `kakao-bar-nearby` помечены как «Заменён на `osm-nearby` и `zoon-nearby`».
 - [x] Добавлен changeset `.changeset/zoon-nearby-add.md` для подготовки к публикации.
-- [x] Добавлены doc-regression тесты в `scripts/skill-docs.test.js` для `zoon-nearby`.
+- [x] Добавлены документной регрессии тесты в `scripts/skill-docs.test.js` для `zoon-nearby`.
 - [x] Полный CI (`npm run ci`) проходит: lint ✓, typecheck ✓, test 68 pass / 0 fail / 1 skipped, pack:dry-run ✓.
 
 ## Выполнено в этом раунде (раунд 2)
@@ -936,15 +982,15 @@
 
 - [x] Перевести `fine-dust-location/SKILL.md` на единый русскоязычный migration-copy и явно зафиксировать, что `KSKILL_PROXY_BASE_URL` - это optional endpoint override, а не credential.
 - [x] Привести `srt-booking/SKILL.md` и `ktx-booking/SKILL.md` к явному `устаревший без развития` boundary note, чтобы legacy railway flows не выглядели шаблоном для новых российских write-интеграций.
-- [x] Расширить doc-regression на `fine-dust-location`, `srt-booking` и `ktx-booking`, чтобы `ru-skill`-first secrets order и migration-boundary удерживались не только в feature guides и setup docs.
+- [x] Расширить документной регрессии на `fine-dust-location`, `srt-booking` и `ktx-booking`, чтобы `ru-skill`-first secrets order и migration-boundary удерживались не только в feature guides и setup docs.
 - [x] Пройти следующий слой legacy skill-only guides вне railway/fine-dust контура и добавить им явный `устаревший без развития` boundary note.
 - [x] Пройти следующий слой legacy feature/skill guides и добавить им явный `## Граничное примечание` с подтверждённым replacement boundary.
-- [x] Расширить doc-regression на `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby` и `kleague-results`, чтобы replacement copy не расходился между feature guides и `SKILL.md`.
+- [x] Расширить документной регрессии на `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby` и `kleague-results`, чтобы replacement copy не расходился между feature guides и `SKILL.md`.
 - [x] Проверить, не осталось ли в helper/runtime документации других `k-skill`-prefixed operational defaults за пределами уже покрытых setup/proxy/railway сценариев.
 - [x] Добрать runtime/secrets regression для legacy feature-guides, где сейчас тестируется только boundary copy без operational semantics.
-- [x] Перевести user-facing Korean labels в source code на русский (kleague-results status labels, kakao-bar-nearby capacity hints, k-lotto lottery labels, blue-ribbon-nearby error message).
-- [x] Перевести user-facing Korean текст в docs/SKILL.md/feature-docs на русский (kakao-bar-nearby, blue-ribbon-nearby, kleague-results, zipcode-search, hwp, ktx-booking, kakaotalk-mac, package READMEs).
-- [x] Добавить doc-regression тесты для 6 ранее непокрытых target-навыков: moex-shares, stoloto-lotto, kinopoisk-search, pravo-documents, rpl-results, osm-nearby.
+- [x] Перевести пользовательского корейского labels в source code на русский (kleague-results status labels, kakao-bar-nearby capacity hints, k-lotto lottery labels, blue-ribbon-nearby error message).
+- [x] Перевести пользовательского корейского текст в docs/SKILL.md/feature-docs на русский (kakao-bar-nearby, blue-ribbon-nearby, kleague-results, zipcode-search, hwp, ktx-booking, kakaotalk-mac, package READMEs).
+- [x] Добавить документной регрессии тесты для 6 ранее непокрытых target-навыков: moex-shares, stoloto-lotto, kinopoisk-search, pravo-documents, rpl-results, osm-nearby.
 
 - [x] Выбрать 9-й российский read-only источник в домене транспорта/городских сервисов (Яндекс.Расписания).
 - [x] Реализовать пакет `yandex-rasp` для расписаний транспорта с тремя функциями: поиск станции, расписание, поиск маршрута.
@@ -986,13 +1032,13 @@
 
 - [x] Обновлены `docs/features/kakaotalk-mac.md`, `docs/features/kbo-results.md`, `docs/features/lotto-results.md` и `docs/features/zipcode-search.md`: добавлены явные `Boundary note` блоки с `устаревший без развития` статусом и подтверждёнными replacement/compatibility границами.
 - [x] Обновлены `kakaotalk-mac/SKILL.md`, `kbo-results/SKILL.md`, `lotto-results/SKILL.md` и `zipcode-search/SKILL.md`, чтобы agent-facing copy синхронно удерживал ту же migration-boundary.
-- [x] Расширен `scripts/skill-docs.test.js`: новые doc-regression проверки страхуют оставшиеся skill-only legacy guides от возврата скрытого target-backlog.
+- [x] Расширен `scripts/skill-docs.test.js`: новые документной регрессии проверки страхуют оставшиеся skill-only legacy guides от возврата скрытого target-backlog.
 - [x] Синхронизированы `README.md`, `TODO.md` и `docs/roadmap.md` по итогу раунда 17, чтобы живой план и уже закрытые слои drift оставались согласованными.
 
 ## Новые пункты плана
 
 - [x] Добавить явные `## Граничное примечание` блоки в оставшиеся legacy feature/skill guides без такой секции: `blue-ribbon-nearby`, `daiso-product-search`, `kakao-bar-nearby`, `kleague-results`, а также унифицировать форму для `srt-booking` и `ktx-booking`.
-- [x] Проверить helper/runtime copy за пределами setup/proxy контура на скрытые `k-skill`-prefixed operational defaults и при необходимости расширить на этот слой doc-regression.
+- [x] Проверить helper/runtime copy за пределами setup/proxy контура на скрытые `k-skill`-prefixed operational defaults и при необходимости расширить на этот слой документной регрессии.
 
 ## Выполнено в этом раунде (раунд 5)
 
@@ -1008,7 +1054,7 @@
 - [x] README дополнен отдельным блоком `Что делаем дальше`, чтобы следующий iteration backlog был виден не только в `TODO.md`, но и в корневой документации.
 - [x] `docs/roadmap.md` очищен от устаревшего статуса Milestone 4 `в работе`; статус переведён в зафиксированное состояние по документной миграции и матрице замен.
 - [x] Секция roadmap с уже выпущенными навыками разделена на target-линейку и сохраняемые legacy/utility-навыки, чтобы список опубликованных возможностей не смешивал продуктовый вектор и backward compatibility.
-- [x] Добавлена doc-regression проверка, которая держит README, roadmap и TODO синхронными по следующим продуктовым приоритетам.
+- [x] Добавлена документной регрессии проверка, которая держит README, roadmap и TODO синхронными по следующим продуктовым приоритетам.
 - [x] Полный `npm run ci` после документных правок проходит: lint ✓, typecheck ✓, test 62 pass / 0 fail / 1 skipped в корневом doc-suite, workspace tests ✓, pack:dry-run ✓.
 
 ## Выполнено в этом раунде (раунд 7)
@@ -1018,21 +1064,21 @@
 - [x] README обновлён: в блоке `Что уже сделано по миграции` зафиксирован завершённый release-hygiene раунд, а в `Что делаем дальше` добавлены более точные следующие шаги по booking-replacement decision matrix.
 - [x] `docs/roadmap.md` обновлён: Milestone 5 теперь явно разделяет закрытую release-hygiene подзадачу и незавершённый booking-research.
 - [x] `TODO.md` дополнен новым верхним статус-блоком и явной пометкой, что нижележащие round summaries являются историческим журналом, а не источником текущего статуса.
-- [x] Doc-regression тесты расширены: теперь они проверяют отсутствие устаревших branch metrics и merge-ready формулировок в `README.md` и `docs/roadmap.md`.
+- [x] Тесты документной регрессии расширены: теперь они проверяют отсутствие устаревших branch metrics и merge-ready формулировок в `README.md` и `docs/roadmap.md`.
 
 ## Новые пункты плана
 
 - [x] Перевести runtime-artifacts в `k-skill-setup/SKILL.md` на `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`, сохранив legacy alias только на уровне совместимости имени, а не operational default path.
 - [x] Зафиксировать тот же `ru-skill`-first runtime path в `ru-skill-setup/SKILL.md`, README, roadmap и TODO, чтобы следующий шаг был виден не только в tests, но и в planning docs.
-- [x] Добавить doc-regression на setup runtime-artifacts, чтобы `k-skill-setup` не возвращал `~/.config/k-skill/*` как основной путь для check/log automation.
+- [x] Добавить документной регрессии на setup runtime-artifacts, чтобы `k-skill-setup` не возвращал `~/.config/k-skill/*` как основной путь для check/log automation.
 - [x] Решить, нужен ли отдельный read-only/handoff skill сверх `yandex-rasp`, или railway replacement уже достаточно закрыт текущим discovery + documented external handoff.
 - [x] Если отдельный handoff-layer нужен, проверить только стабильные безлогинные сценарии: deep-link, landing search или export маршрута без оплаты и пользовательских секретов.
 - [x] Явно обновить legacy railway docs, чтобы `srt-booking` и `ktx-booking` были помечены не только как совместимые, но и как нецелевые для новых российских write-интеграций.
-- [x] Пункт перенесён в верхний актуальный план TODO: держать doc-regression в CI, чтобы README, roadmap, TODO и booking-research совпадали по следующему продуктовому приоритету и не возвращали release-археологию в живые секции.
+- [x] Пункт перенесён в верхний актуальный план TODO: держать документной регрессии в CI, чтобы README, roadmap, TODO и booking-research совпадали по следующему продуктовому приоритету и не возвращали release-археологию в живые секции.
 - [x] Проверить, даёт ли какой-либо handoff-сценарий измеримую пользовательскую ценность сверх уже существующего `yandex-rasp`, прежде чем открывать новый target-package.
 - [x] Если handoff-ценность не подтверждается, перевести Milestone 5 в документно закрытое состояние и убрать railway replacement из активного implementation backlog.
 - [x] Довести до конца remaining устаревший без развития matrix: `seoul-subway-arrival`, `toss-securities` и другие уже закрытые без replacement gaps должны иметь одинаковый статус в README, roadmap и install-flow.
-- [x] Пересмотреть user-facing surfaces для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs только на предмет реально поддерживаемых российских public surfaces.
+- [x] Пересмотреть пользовательских поверхностях для `delivery-tracking`, `k-skill-proxy` и других utility/transition docs только на предмет реально поддерживаемых российских публичных поверхностей.
 - [x] Пункт перенесён в верхний актуальный план TODO: если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
 ## Выполнено в этом раунде (раунд 15)
@@ -1048,12 +1094,12 @@
 - [x] `docs/install.md` дополнен явным описанием того, как читать смешанный список skills: где текущая `target`-линейка, где `устаревший без развития`, а где transition-инфраструктура.
 - [x] `docs/features/delivery-tracking.md`, `docs/features/seoul-subway-arrival.md`, `docs/features/toss-securities.md` и `docs/features/k-skill-proxy.md` дополнены boundary notes, чтобы legacy/transition сценарии не выглядели как скрытый backlog новых российских skills.
 - [x] `seoul-subway-arrival/SKILL.md` исправлен на `ru-skill`-first credential order с legacy fallback на `~/.config/k-skill/secrets.env`.
-- [x] Doc-regression тесты расширены: теперь они страхуют package-status matrix, install-flow boundary notes и `ru-skill`-first credential order для `seoul-subway-arrival`.
+- [x] Тесты документной регрессии расширены: теперь они страхуют package-status matrix, install-flow boundary notes и `ru-skill`-first credential order для `seoul-subway-arrival`.
 
 ## Новые пункты плана
 
 - [x] Довести `fine-dust-location`, `docs/setup.md` и `docs/security-and-secrets.md` до того же `ru-skill`-first credential order, чтобы proxy/secret flow не расползался между skill-level и setup-level документацией.
-- [x] Добавить doc-regression на user-facing boundary notes для `fine-dust-location` и других transition/legacy utility guides, чтобы они не возвращались к двусмысленной подаче как потенциальные target-skills.
+- [x] Добавить документной регрессии на пользовательских boundary notes для `fine-dust-location` и других transition/legacy utility guides, чтобы они не возвращались к двусмысленной подаче как потенциальные target-skills.
 - [x] Провести отдельный audit helper scripts и package README для `k-skill-proxy`/`fine-dust-location`, чтобы legacy endpoint и naming оставались compatibility-layer, а не неявным public default для новых русскоязычных сценариев.
 
 ## Выполнено в этом раунде (раунд 12)
@@ -1063,7 +1109,7 @@
 - [x] `docs/setup.md` и `docs/security-and-secrets.md` уточняют различие между `KSKILL_PROXY_BASE_URL` как endpoint override и `AIR_KOREA_OPEN_API_KEY` как реальным секретом для direct fallback/self-hosted proxy.
 - [x] `packages/k-skill-proxy/README.md` дополнен transition-boundary и явным порядком secret resolution для `scripts/run-k-skill-proxy.sh`.
 - [x] `README.md` и `docs/roadmap.md` синхронизированы с этим раундом и больше не держат `fine-dust-location` backlog только в TODO.
-- [x] Doc-regression тесты расширены на `fine-dust-location`, `k-skill-proxy` package README и proxy secret-order semantics.
+- [x] Тесты документной регрессии расширены на `fine-dust-location`, `k-skill-proxy` package README и proxy secret-order semantics.
 
 ## Новые пункты плана
 
@@ -1078,12 +1124,12 @@
 - [x] `fine-dust-location/SKILL.md` дополнительно очищен от operational-default формулировок: published proxy endpoint сохранён как compatibility default, а пользовательский запрос секрета ограничен direct fallback/self-hosted сценарием.
 - [x] `scripts/check-setup.sh` теперь не подсказывает добавлять proxy override без необходимости и отражает тот же `ru-skill`-first setup flow.
 - [x] `README.md` и `docs/roadmap.md` обновлены, чтобы этот шаг был отражён не только в `TODO.md`.
-- [x] Doc-regression тесты расширены на secrets template, setup skills и setup helper script.
+- [x] Тесты документной регрессии расширены на secrets template, setup skills и setup helper script.
 
 ## Новые пункты плана
 
 - [x] Довести тот же optional-override vs real-credential split до первой пачки package README и package-level boundary notes за пределами fine-dust/proxy-контура.
-- [x] Добавить doc-regression на package README для `устаревший без развития` boundary и уже подтверждённых российских replacements.
+- [x] Добавить документной регрессии на package README для `устаревший без развития` boundary и уже подтверждённых российских replacements.
 - [x] Проверить оставшиеся legacy setup/runtime helper'ы на подсказки, которые всё ещё могут продвигать `~/.config/k-skill/*` как неявный основной путь.
 - [x] Пройти оставшиеся skill-level guides и package README, где корейский контекст ещё допустим технически, но не должен звучать как продуктовый default.
 - [x] Продолжить вычищать skill-level copy, где legacy-контекст ещё описан как operational default вместо backward-compatible fallback.
@@ -1094,7 +1140,7 @@
 - [x] `scripts/ktx_booking.py` русифицирован: корейские help-строки argparse переведены на русский.
 - [x] `scripts/test_fine_dust.py` обновлён: assertions синхронизированы с русскоязычными переводами fine_dust.py.
 - [x] `docs/features/fine-dust-location.md` русифицирован: корейские описательные термины (`행정구역`, `지역명`, `측정소`, `조회 시각` и др.) заменены русскими аналогами.
-- [x] `scripts/skill-docs.test.js` обновлён: doc-regression assertions для fine-dust docs синхронизированы с русскоязычными формулировками.
+- [x] `scripts/skill-docs.test.js` обновлён: документной регрессии assertions для fine-dust docs синхронизированы с русскоязычными формулировками.
 - [x] `k-skill-setup/SKILL.md` исправлен: GitHub star направлен на `denis-gordeev/ru-skill` вместо `NomaDamas/k-skill`.
 - [x] Проведён аудит helper/runtime scripts на оставшиеся `k-skill`-prefixed defaults: `shared_secrets.py`, `check-setup.sh` и `run-k-skill-proxy.sh` корректно используют `ru-skill`-first порядок; legacy fallback сохранён только как совместимый путь.
 - [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 73 pass / 0 fail / 1 skipped, pack:dry-run.
@@ -1118,15 +1164,15 @@
 - [x] `docs/features/delivery-tracking.md` корейские фрагменты переведены на русский: status map, error messages, carrier names, sample output, section labels.
 - [x] `docs/sources.md` legacy reference block: все корейские метки источников переведены на русский.
 - [x] `scripts/fixtures/delivery-tracking-public-samples.json` обновлён: статус-метки синхронизированы с русскоязычным переводом.
-- [x] `scripts/skill-docs.test.js` обновлён: doc-regression assertions синхронизированы с русскоязычными формулировками для zipcode-search, delivery-tracking, sources.md, kakaotalk-mac, hwp.
+- [x] `scripts/skill-docs.test.js` обновлён: документной регрессии assertions синхронизированы с русскоязычными формулировками для zipcode-search, delivery-tracking, sources.md, kakaotalk-mac, hwp.
 - [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 72 pass / 0 fail / 1 skipped, pack:dry-run.
 
 ## Новые пункты плана
 
-- [x] Добавить doc-regression для user-facing feature-guides (`fine-dust-location`, `seoul-subway-arrival`, `srt-booking`, `ktx-booking`), чтобы runtime/secrets semantics и `ru-skill`-first порядок не защищались только на уровне `SKILL.md` и setup/proxy helper-docs.
+- [x] Добавить документной регрессии для пользовательских feature-guides (`fine-dust-location`, `seoul-subway-arrival`, `srt-booking`, `ktx-booking`), чтобы runtime/secrets semantics и `ru-skill`-first порядок не защищались только на уровне `SKILL.md` и setup/proxy helper-docs.
 - [x] Синхронизировать `README.md`, `TODO.md` и `docs/roadmap.md` после закрытия helper/runtime cleanup, чтобы следующий приоритет больше не ссылался на уже выполненный слой работ.
 - [x] Продолжить русификацию оставшихся feature-doc файлов, где ещё встречаются корейские фрагменты (`docs/features/zipcode-search.md`, `docs/features/kakaotalk-mac.md`, `docs/features/kbo-results.md`, `docs/features/toss-securities.md`, `docs/features/lotto-results.md`, `docs/features/srt-booking.md`, `docs/features/hwp.md`).
-- [x] Распространить user-facing runtime/secrets regression на остальные legacy guides, где сейчас ещё страхуются только boundary notes и replacement copy без operational semantics.
+- [x] Распространить пользовательскую регрессию на runtime/secrets на остальные legacy guides, где сейчас ещё страхуются только boundary notes и replacement copy без operational semantics.
 
 ## Выполнено в этом раунде (раунд 24)
 
@@ -1136,34 +1182,34 @@
 - [x] `hwp/SKILL.md` и `docs/features/hwp.md`: добавлен `## Граничное примечание` (`target-supporting`) — корейский формат без прямого российского аналога, но полезен как утилита.
 - [x] `blue-ribbon-nearby/SKILL.md`: routing rule исправлен — `osm-nearby` / `zoon-nearby` теперь primary для российских nearby-запросов.
 - [x] `ktx-booking/SKILL.md`: description обновлён с добавлением `Legacy-compatible ... not for new Russian railway integrations`.
-- [x] Doc-regression расширен на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
-- [x] Doc-regression расширен на boundary-note coverage: `delivery-tracking/SKILL.md`, `toss-securities/SKILL.md`, `hwp/SKILL.md` + `docs/features/hwp.md`, `blue-ribbon-nearby` routing.
+- [x] Документная регрессия расширена на 4 legacy-навыка с workflow/content assertions: `seoul-subway-arrival`, `kbo-results`, `lotto-results`, `srt-booking`.
+- [x] Документная регрессия расширена на boundary-note coverage: `delivery-tracking/SKILL.md`, `toss-securities/SKILL.md`, `hwp/SKILL.md` + `docs/features/hwp.md`, `blue-ribbon-nearby` routing.
 - [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 91 pass / 0 fail / 1 skipped, pack:dry-run.
 
 ## Новые пункты плана
 
-- [x] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла — закрыто: после раунда 26 весь оставшийся Korean в source code и docs является domain-inherent (API parameters, location names, fixture data, regex patterns); user-facing Korean полностью устранён.
-- [x] Расширить doc-regression coverage для legacy skills с boundary-level тестами на workflow/content assertions для оставшихся непокрытых: `kakaotalk-mac`, `daiso-product-search`, `delivery-tracking` (SKILL.md workflow).
-- [x] Пункт перенесён в верхний актуальный план TODO: держать doc-regression в CI, чтобы README, roadmap, TODO и booking-research совпадали по следующему продуктовому приоритету.
+- [x] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла — закрыто: после раунда 26 весь оставшийся Korean в source code и docs является domain-inherent (API parameters, location names, fixture data, regex patterns); пользовательского корейского полностью устранён.
+- [x] Расширить документной регрессии coverage для legacy skills с boundary-level тестами на workflow/content assertions для оставшихся непокрытых: `kakaotalk-mac`, `daiso-product-search`, `delivery-tracking` (SKILL.md workflow).
+- [x] Пункт перенесён в верхний актуальный план TODO: держать документной регрессии в CI, чтобы README, roadmap, TODO и booking-research совпадали по следующему продуктовому приоритету.
 - [x] Пункт перенесён в верхний актуальный план TODO: если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
 ## Выполнено в этом раунде (раунд 23)
 
 - [x] User-facing Korean labels в source code переведены на русский: `kleague-results` (статусы матчей), `kakao-bar-nearby` (подсказки вместимости), `k-lotto` (лотерейные метки), `blue-ribbon-nearby` (сообщение об ошибке).
 - [x] User-facing Korean текст в docs/SKILL.md/feature-docs переведён на русский: `kakao-bar-nearby`, `blue-ribbon-nearby`, `kleague-results`, `zipcode-search`, `hwp`, `ktx-booking`, `kakaotalk-mac`, package README (`kakao-bar-nearby`, `kleague-results`, `daiso-product-search`, `k-lotto`).
-- [x] Doc-regression расширен на 6 ранее непокрытых target-навыков: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby`.
-- [x] Doc-regression assertions обновлены под русскоязычные формулировки во всех затронутых файлах.
+- [x] Документная регрессия расширена на 6 ранее непокрытых target-навыков: `moex-shares`, `stoloto-lotto`, `kinopoisk-search`, `pravo-documents`, `rpl-results`, `osm-nearby`.
+- [x] Утверждения документной регрессии обновлены под русскоязычные формулировки во всех затронутых файлах.
 - [x] Полный CI (`npm run ci`) проходит: lint, typecheck, 85 pass / 0 fail / 1 skipped, pack:dry-run.
 
 ## Новые пункты плана
 
-- [x] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла — закрыто: после раунда 26 весь оставшийся Korean в source code и docs является domain-inherent (API parameters, location names, fixture data, regex patterns); user-facing Korean полностью устранён.
-- [x] Расширить doc-regression coverage для legacy skills с только boundary-level тестами (srt-booking, seoul-subway-arrival, kbo-results, lotto-results): добавить workflow/content assertions.
-- [x] Пункт перенесён в верхний актуальный план TODO: держать doc-regression в CI, чтобы README, roadmap, TODO и booking-research совпадали по следующему продуктовому приоритету.
+- [x] Продолжить русификацию оставшихся domain-inherent Korean фрагментов, где это допустимо без потери смысла — закрыто: после раунда 26 весь оставшийся Korean в source code и docs является domain-inherent (API parameters, location names, fixture data, regex patterns); пользовательского корейского полностью устранён.
+- [x] Расширить документной регрессии coverage для legacy skills с только boundary-level тестами (srt-booking, seoul-subway-arrival, kbo-results, lotto-results): добавить workflow/content assertions.
+- [x] Пункт перенесён в верхний актуальный план TODO: держать документной регрессии в CI, чтобы README, roadmap, TODO и booking-research совпадали по следующему продуктовому приоритету.
 - [x] Пункт перенесён в верхний актуальный план TODO: если для очередного legacy-gap нет устойчивого public source, закрывать его документно, а не открывать forced implementation backlog.
 
-- [x] `scripts/skill-docs.test.js` расширен на user-facing guides `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking`: добавлены проверки `ru-skill`-first secrets order, runtime/secrets semantics и replacement boundary.
-- [x] `README.md` обновлён: helper/runtime cleanup больше не подаётся как следующий шаг, а новый фокус зафиксирован на user-facing regression и оставшейся русификации feature-docs.
+- [x] `scripts/skill-docs.test.js` расширен на пользовательских руководствах `fine-dust-location`, `seoul-subway-arrival`, `srt-booking` и `ktx-booking`: добавлены проверки `ru-skill`-first secrets order, runtime/secrets semantics и replacement boundary.
+- [x] `README.md` обновлён: helper/runtime cleanup больше не подаётся как следующий шаг, а новый фокус зафиксирован на пользовательской регрессии и оставшейся русификации feature-docs.
 - [x] `docs/roadmap.md` синхронизирован с тем же статусом: roadmap теперь явно фиксирует закрытие helper/runtime cleanup и следующий слой работы по legacy feature-docs.
 
 ## Новые пункты плана

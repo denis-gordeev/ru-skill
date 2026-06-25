@@ -1409,21 +1409,21 @@ test("плановая документация согласована по сл
   assert.match(readme, /активный блок `TODO\.md`/i);
   assert.match(readme, /ru-skill-setup[\s\S]*русские секционные заголовки/i);
 
-  assert.match(roadmap, /### Веха 5\. Booking replacements и релиз-гигиена/);
+  assert.match(roadmap, /### Веха 5\. Замены бронирования и релиз-гигиена/);
   assert.match(roadmap, /Статус: завершён; подзадача релиз-гигиены закрыта/i);
   assert.match(roadmap, /yandex-rasp/);
   assert.match(roadmap, /новый целевой пакет не открывается/i);
   assert.match(roadmap, /оставшаяся матрица устаревших пакетов.*уже доведена/i);
   assert.match(roadmap, /k-skill-proxy[\s\S]*переходн.*слой/i);
-  assert.match(roadmap, /TODO\.md[\s\S]*верхние planning-блоки/i);
+  assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-24");
-  assert.equal(todoStatus.round, 62);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 62\)/);
+  assert.equal(todoStatus.date, "2026-06-25");
+  assert.equal(todoStatus.round, 64);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 64\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
-  assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*heading scheme|heading scheme.*каноничн)/i);
+  assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
   assert.match(todo, /Источником актуального статуса считаются самые верхние блоки/i);
 
   assert.match(bookingResearch, /## Матрица решений/);
@@ -4145,7 +4145,7 @@ test("README.md не содержит английского жаргона meta
   assert.match(readme, /проверочными примерами/);
   assert.doesNotMatch(readme, /credential\/proxy документам/);
   assert.doesNotMatch(readme, /publish\/release surfaces/);
-  assert.match(readme, /публикации\/релиз-поверхност/);
+  assert.match(readme, /поверхностях публикации|поверхностям публикации\/релиза/);
   assert.doesNotMatch(readme, /Python helper messages/);
   assert.match(readme, /вспомогательные сообщения Python/);
   assert.doesNotMatch(readme, /helper JS utilities/);
