@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-25");
-  assert.equal(todoStatus.round, 64);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 64\)/);
+  assert.equal(todoStatus.date, "2026-06-26");
+  assert.equal(todoStatus.round, 65);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 65\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -2737,7 +2737,7 @@ test("имена шагов и комментарии в workflow GitHub Actions
   const releaseNpm = read(path.join(".github", "workflows", "release-npm.yml"));
   const releasePython = read(path.join(".github", "workflows", "release-python.yml"));
 
-  assert.match(releaseNpm, /Создание релизного PR или публикация изменившихся пакетов/);
+  assert.match(releaseNpm, /Создание релизного запроса на слияние или публикация изменившихся пакетов/);
   assert.match(releaseNpm, /Предпочтительный путь.*npm trusted publishing через GitHub OIDC/);
   assert.doesNotMatch(releaseNpm, /Create npm release PR or publish/);
   assert.doesNotMatch(releaseNpm, /Preferred path: npm trusted publishing/);
@@ -4416,4 +4416,33 @@ test("yandex-market-search/SKILL.md и docs/booking-replacements.md не сод�
 
   assert.doesNotMatch(booking, /\bMVP\b/);
   assert.match(booking, /минимальн[а-яё]+ рабоч[а-яё]+ вариант/);
+});
+
+test("документация использует запрос на слияние вместо PR", () => {
+  const releasing = read(path.join("docs", "releasing.md"));
+  const agents = read("AGENTS.md");
+
+  assert.doesNotMatch(releasing, /\bPR\b(?![\s`]*Version)/);
+  assert.match(releasing, /запрос.*на слияние/);
+
+  assert.doesNotMatch(agents, /сгенерированного ботом PR\b/);
+  assert.match(agents, /запрос.*на слияние/);
+});
+
+test("AGENTS.md не содержит repo-local", () => {
+  const agents = read("AGENTS.md");
+  assert.doesNotMatch(agents, /repo-local/);
+  assert.match(agents, /локальн[а-яё]+ каталог[а-яё]* репозитория/);
+});
+
+test("docs/features/stoloto-lotto.md использует пакет вместо английского заимствования", () => {
+  const stoloto = read(path.join("docs", "features", "stoloto-lotto.md"));
+  assert.doesNotMatch(stoloto, /через package/);
+  assert.match(stoloto, /через пакет/);
+});
+
+test("k-skill-setup/SKILL.md не содержит legacy без перевода в критических местах", () => {
+  const skill = read(path.join("k-skill-setup", "SKILL.md"));
+  assert.doesNotMatch(skill, /;\s*legacy\s+`~/);
+  assert.match(skill, /;\s*устаревший\s+`~/);
 });

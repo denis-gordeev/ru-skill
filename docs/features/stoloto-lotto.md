@@ -33,7 +33,7 @@
 | `top3` | Топ-3 | 3 |
 | `5x2` | 5 из 2 | варьируется |
 
-## Как использовать через package
+## Как использовать через пакет
 
 ```js
 const { getArchiveDraws, SUPPORTED_GAMES } = require("stoloto-lotto");
