@@ -161,7 +161,7 @@ python3 -m pip install SRTrain korail2 pycryptodome
 - Для `pnpm dlx` нужен pnpm
 - Для `bunx` нужен Bun
 
-## Навыки, которым нужен setup
+## Навыки, которым нужна настройка
 
 Перед запуском этих навыков сначала пройдите через `ru-skill-setup`:
 

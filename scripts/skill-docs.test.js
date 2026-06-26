@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-26");
-  assert.equal(todoStatus.round, 65);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 65\)/);
+  assert.equal(todoStatus.round, 66);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 66\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -4445,4 +4445,69 @@ test("k-skill-setup/SKILL.md не содержит legacy без перевод�
   const skill = read(path.join("k-skill-setup", "SKILL.md"));
   assert.doesNotMatch(skill, /;\s*legacy\s+`~/);
   assert.match(skill, /;\s*устаревший\s+`~/);
+});
+
+test("docs/sources.md не содержит навык standalone, публичный API, нечёткий поиск, веб-сокеты, конструкции запросов, со стороны продавца, API-ключи, регрессионные тесты", () => {
+  const sources = read(path.join("docs", "sources.md"));
+
+  assert.doesNotMatch(sources, /Техническая основа: skill \+/);
+  assert.match(sources, /Техническая основа: навык \+/);
+
+  assert.doesNotMatch(sources, /public API для локального skill/);
+  assert.match(sources, /публичный API для локального навыка/);
+
+  assert.doesNotMatch(sources, /fuzzy search/);
+  assert.match(sources, /нечёткий поиск/);
+
+  assert.doesNotMatch(sources, /,\s*websocket и/);
+  assert.match(sources, /веб-сокеты/);
+
+  assert.doesNotMatch(sources, /Query-конструкциями/);
+  assert.match(sources, /конструкциями запросов/);
+
+  assert.doesNotMatch(sources, /merchant-facing/);
+  assert.match(sources, /со стороны продавца/);
+
+  assert.doesNotMatch(sources, /без API keys/);
+  assert.match(sources, /без API-ключей/);
+
+  assert.doesNotMatch(sources, /regression-тесты/);
+  assert.match(sources, /регрессионные тесты/);
+
+  assert.doesNotMatch(sources, /skill-гайды/);
+  assert.match(sources, /руководства по навыкам/);
+});
+
+test("docs/install.md использует настройка вместо setup в заголовке", () => {
+  const install = read(path.join("docs", "install.md"));
+  assert.doesNotMatch(install, /## Навыки, которым нужен setup/);
+  assert.match(install, /## Навыки, которым нужна настройка/);
+});
+
+test("docs/security-and-secrets.md использует файл секретов и настройку вместо secrets-файл и setup", () => {
+  const security = read(path.join("docs", "security-and-secrets.md"));
+  assert.doesNotMatch(security, /## Стандартный secrets-файл/);
+  assert.match(security, /## Стандартный файл секретов/);
+  assert.doesNotMatch(security, /гайде по setup/);
+  assert.match(security, /руководстве по настройке/);
+});
+
+test("docs/features/zoon-nearby.md использует API-ключи вместо API keys", () => {
+  const zoon = read(path.join("docs", "features", "zoon-nearby.md"));
+  assert.doesNotMatch(zoon, /\*\*API keys\*\*/);
+  assert.match(zoon, /\*\*API-ключи\*\*/);
+});
+
+test("AGENTS.md использует путь пакета вместо package path", () => {
+  const agents = read("AGENTS.md");
+  assert.doesNotMatch(agents, /package path/);
+  assert.match(agents, /путь пакета|пути пакета/);
+});
+
+test("docs/roadmap.md использует перечень задач и раундов автоматизации вместо task list и automation round", () => {
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  assert.doesNotMatch(roadmap, /task list/);
+  assert.doesNotMatch(roadmap, /automation round/);
+  assert.match(roadmap, /живой перечень задач/);
+  assert.match(roadmap, /раунд[а-яё]* автоматизации/);
 });

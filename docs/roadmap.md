@@ -238,7 +238,7 @@
 
 - `README.md`, `docs/install.md`, `docs/setup.md`, `docs/releasing.md`, `docs/roadmap.md` используют единую русскоязычную терминологию.
 - Placeholder-команды установки заменены на безопасные примеры с `denis-gordeev/ru-skill`.
-- `TODO.md` ведётся как живой task list для следующих automation round.
+- `TODO.md` ведётся как живой перечень задач для следующих раундов автоматизации.
 
 Статус: завершён.
 
