@@ -83,7 +83,7 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 Поиск по произвольной категории.
 
 - `city` (string): Название города
-- `category` (string): Slug категории (например, 'restaurants', 'hotels', 'pharmacies')
+- `category` (string): Идентификатор категории (например, 'restaurants', 'hotels', 'pharmacies')
 - `opts.page` (number, опционально): Номер страницы
 - Возвращает: `{ businesses, totalCount, pagination, query, page }`
 

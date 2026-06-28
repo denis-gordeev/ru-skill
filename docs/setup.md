@@ -32,7 +32,7 @@ chmod 0600 ~/.config/ru-skill/secrets.env
 
 Заполните файл реальными значениями.
 
-`KSKILL_PROXY_BASE_URL` не входит в минимальный secrets-шаблон намеренно: это не учётные данные, а только необязательное переопределение адреса. Если вам действительно нужно заменить опубликованный совместимый прокси на свой адрес, добавьте строку отдельно:
+`KSKILL_PROXY_BASE_URL` не входит в минимальный шаблон секретов намеренно: это не учётные данные, а только необязательное переопределение адреса. Если вам действительно нужно заменить опубликованный совместимый прокси на свой адрес, добавьте строку отдельно:
 
 ```bash
 printf '\n# Необязательное переопределение адреса для fine-dust-location\nKSKILL_PROXY_BASE_URL=https://k-skill-proxy.nomadamas.org\n' >> ~/.config/ru-skill/secrets.env
@@ -66,10 +66,10 @@ bash scripts/check-setup.sh
 
 ## Что читать дальше
 
-- [Гайд по SRT](features/srt-booking.md)
-- [Гайд по KTX](features/ktx-booking.md)
-- [Гайд по метро Сеула](features/seoul-subway-arrival.md)
-- [Гайд по мелкой пыли](features/fine-dust-location.md)
+- [Руководство по SRT](features/srt-booking.md)
+- [Руководство по KTX](features/ktx-booking.md)
+- [Руководство по метро Сеула](features/seoul-subway-arrival.md)
+- [Руководство по мелкой пыли](features/fine-dust-location.md)
 - [Политика секретов](security-and-secrets.md)
 
 Базовый поток остаётся таким: сначала установка полного набора, потом общая настройка, потом запуск нужных навыков.

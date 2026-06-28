@@ -34,7 +34,7 @@ bunx skills add denis-gordeev/ru-skill --list
 npx --yes skills add denis-gordeev/ru-skill --all -g
 ```
 
-После установки запустите `ru-skill-setup` для общей настройки. Устаревшее имя `k-skill-setup` можно использовать как псевдоним, но основной поток теперь описывается через `ru-skill-setup`, а стандартный secrets-файл живёт в `~/.config/ru-skill/secrets.env` с запасным вариантом на `~/.config/k-skill/secrets.env`.
+После установки запустите `ru-skill-setup` для общей настройки. Устаревшее имя `k-skill-setup` можно использовать как псевдоним, но основной поток теперь описывается через `ru-skill-setup`, а стандартный файл секретов живёт в `~/.config/ru-skill/secrets.env` с запасным вариантом на `~/.config/k-skill/secrets.env`.
 
 ```text
 Используй навык ru-skill-setup и выполни общую настройку окружения. Если среда знает только устаревшее имя, используй k-skill-setup как псевдоним.
@@ -131,7 +131,7 @@ npm install -g @ohah/hwpjs \
 export NODE_PATH="$(npm root -g)"
 ```
 
-Здесь намеренно перечислены отдельно и текущие целевые workspace-пакеты, и устаревшие npm-пакеты. Навыки вроде `kbo-results`, `hwp`, `kakaotalk-mac`, `zipcode-search` и `delivery-tracking`, которые опираются на внешние CLI, Python-пакеты или skill-only сценарии, продолжают устанавливаться через `skills add`, а не через этот `npm install -g`.
+Здесь намеренно перечислены отдельно и текущие целевые workspace-пакеты, и устаревшие npm-пакеты. Навыки вроде `kbo-results`, `hwp`, `kakaotalk-mac`, `zipcode-search` и `delivery-tracking`, которые опираются на внешние CLI, Python-пакеты или skill-сценарии, продолжают устанавливаться через `skills add`, а не через этот `npm install -g`.
 
 Важно: присутствие `toss-securities` или других устаревших npm-пакетов в этой команде не означает, что они считаются следующими целевыми заменами. Для `toss-securities` и `seoul-subway-arrival` документная граница уже закрыта как `устаревший без развития`, а `k-skill-proxy` остаётся переходным слоем, а не отдельным направлением продукта.
 
@@ -155,7 +155,7 @@ python3 -m pip install SRTrain korail2 pycryptodome
 
 ## Если нет даже `npx`
 
-Если отсутствуют `npx`, `pnpm dlx` и `bunx`, сначала нужен runtime из экосистемы Node.js.
+Если отсутствуют `npx`, `pnpm dlx` и `bunx`, сначала нужна среда выполнения из экосистемы Node.js.
 
 - Для `npx` нужны Node.js и npm
 - Для `pnpm dlx` нужен pnpm

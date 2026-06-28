@@ -23,34 +23,34 @@
 
 | Навык | Описание | Нужны секреты | Документ |
 | --- | --- | --- | --- |
-| `cbr-rates` | Официальные курсы валют Банка России по публичному XML-сервису | Нет | [Гайд по курсам ЦБ РФ](docs/features/cbr-rates.md) |
-| `moex-shares` | Публичные метаданные и задержанные котировки акций Московской биржи через ISS API | Нет | [Гайд по акциям MOEX](docs/features/moex-shares.md) |
-| `postcalc-postcodes` | Карточки отделений и сводки по населённым пунктам через публичные страницы Postcalc | Нет | [Гайд по Postcalc и индексам](docs/features/postcalc-postcodes.md) |
-| `hh-vacancies` | Поиск вакансий, карточки вакансий и поиск регионов через публичный API hh.ru | Нет | [Гайд по HH вакансиям](docs/features/hh-vacancies.md) |
-| `stoloto-lotto` | Публичные результаты лотерей Столото через архивные страницы тиражей | Нет | [Гайд по лотереям Столото](docs/features/stoloto-lotto.md) |
-| `kinopoisk-search` | Поиск фильмов и карточки фильмов через публичные страницы Кинопоиска | Нет | [Гайд по Кинопоиску](docs/features/kinopoisk-search.md) |
-| `mchs-storm-warnings` | Официальные экстренные предупреждения МЧС по региональным страницам | Нет | [Гайд по предупреждениям МЧС](docs/features/mchs-storm-warnings.md) |
-| `pravo-documents` | Поиск и карточки официальных правовых документов через API pravo.gov.ru | Нет | [Гайд по правовым документам](docs/features/pravo-documents.md) |
-| `yandex-rasp` | Расписания транспорта (электрички, поезда, автобусы, авиарейсы) через API Яндекс.Расписаний | Да | [Гайд по Яндекс.Расписаниям](docs/features/yandex-rasp.md) |
-| `rpl-results` | Турнирная таблица и результаты матчей Российской Премьер-Лиги через championat.com | Нет | [Гайд по РПЛ](docs/features/rpl-results.md) |
-| `yandex-market-search` | Поиск товаров и карточки товаров через серверно отрендеренные страницы Яндекс Маркета | Нет | [Гайд по Яндекс Маркету](docs/features/yandex-market-search.md) |
-| `osm-nearby` | Поиск ближайших заведений через Overpass API OpenStreetMap | Нет | [Гайд по OSM nearby](docs/features/osm-nearby.md) |
-| `zoon-nearby` | Поиск ближайших заведений через публичные страницы Zoon.ru | Нет | [Гайд по Zoon.ru](docs/features/zoon-nearby.md) |
-| `srt-booking` | Обратно совместимый корейский сценарий поиска поездов SRT и бронирования | Да | [Гайд по SRT](docs/features/srt-booking.md) |
-| `ktx-booking` | Обратно совместимый корейский сценарий KTX/Korail через вспомогательный скрипт с обходом антибота Dynapath | Да | [Гайд по KTX](docs/features/ktx-booking.md) |
-| `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Гайд по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
-| `seoul-subway-arrival` | Просмотр ожидаемого времени прибытия поездов метро Сеула по станции | Да | [Гайд по метро Сеула](docs/features/seoul-subway-arrival.md) |
-| `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Гайд по мелкой пыли](docs/features/fine-dust-location.md) |
-| `kbo-results` | Результаты и расписание матчей KBO по датам и командам | Нет | [Гайд по KBO](docs/features/kbo-results.md) |
-| `kleague-results` | Результаты матчей и таблица K League 1/2 | Нет | [Гайд по K League](docs/features/kleague-results.md) |
-| `toss-securities` | Сводки только для чтения по счёту, портфелю, котировкам и списку наблюдения через `tossctl` | Да | [Гайд по Toss Securities](docs/features/toss-securities.md) |
-| `lotto-results` | Проверка последних и конкретных тиражей корейской лотереи | Нет | [Гайд по lotto](docs/features/lotto-results.md) |
-| `hwp` | Конвертация `.hwp` в JSON/Markdown/HTML, извлечение изображений и пакетная обработка | Нет | [Гайд по HWP](docs/features/hwp.md) |
-| `blue-ribbon-nearby` | Поиск ближайших ресторанов Blue Ribbon Survey после уточнения местоположения | Нет | [Гайд по Blue Ribbon nearby](docs/features/blue-ribbon-nearby.md) |
-| `kakao-bar-nearby` | Поиск ближайших баров по данным Kakao Map с режимом работы и контактами | Нет | [Гайд по Kakao bar nearby](docs/features/kakao-bar-nearby.md) |
-| `zipcode-search` | Поиск официального почтового индекса по адресу | Нет | [Гайд по postcode search](docs/features/zipcode-search.md) |
-| `daiso-product-search` | Поиск магазинов, товаров и остатков для самовывоза в Daiso Mall | Нет | [Гайд по Daiso product search](docs/features/daiso-product-search.md) |
-| `delivery-tracking` | Отслеживание доставки через официальные поверхности CJ Logistics и Korea Post | Нет | [Гайд по delivery tracking](docs/features/delivery-tracking.md) |
+| `cbr-rates` | Официальные курсы валют Банка России по публичному XML-сервису | Нет | [Руководство по курсам ЦБ РФ](docs/features/cbr-rates.md) |
+| `moex-shares` | Публичные метаданные и задержанные котировки акций Московской биржи через ISS API | Нет | [Руководство по акциям MOEX](docs/features/moex-shares.md) |
+| `postcalc-postcodes` | Карточки отделений и сводки по населённым пунктам через публичные страницы Postcalc | Нет | [Руководство по Postcalc и индексам](docs/features/postcalc-postcodes.md) |
+| `hh-vacancies` | Поиск вакансий, карточки вакансий и поиск регионов через публичный API hh.ru | Нет | [Руководство по HH вакансиям](docs/features/hh-vacancies.md) |
+| `stoloto-lotto` | Публичные результаты лотерей Столото через архивные страницы тиражей | Нет | [Руководство по лотереям Столото](docs/features/stoloto-lotto.md) |
+| `kinopoisk-search` | Поиск фильмов и карточки фильмов через публичные страницы Кинопоиска | Нет | [Руководство по Кинопоиску](docs/features/kinopoisk-search.md) |
+| `mchs-storm-warnings` | Официальные экстренные предупреждения МЧС по региональным страницам | Нет | [Руководство по предупреждениям МЧС](docs/features/mchs-storm-warnings.md) |
+| `pravo-documents` | Поиск и карточки официальных правовых документов через API pravo.gov.ru | Нет | [Руководство по правовым документам](docs/features/pravo-documents.md) |
+| `yandex-rasp` | Расписания транспорта (электрички, поезда, автобусы, авиарейсы) через API Яндекс.Расписаний | Да | [Руководство по Яндекс.Расписаниям](docs/features/yandex-rasp.md) |
+| `rpl-results` | Турнирная таблица и результаты матчей Российской Премьер-Лиги через championat.com | Нет | [Руководство по РПЛ](docs/features/rpl-results.md) |
+| `yandex-market-search` | Поиск товаров и карточки товаров через серверно отрендеренные страницы Яндекс Маркета | Нет | [Руководство по Яндекс Маркету](docs/features/yandex-market-search.md) |
+| `osm-nearby` | Поиск ближайших заведений через Overpass API OpenStreetMap | Нет | [Руководство по OSM поблизости](docs/features/osm-nearby.md) |
+| `zoon-nearby` | Поиск ближайших заведений через публичные страницы Zoon.ru | Нет | [Руководство по Zoon.ru](docs/features/zoon-nearby.md) |
+| `srt-booking` | Обратно совместимый корейский сценарий поиска поездов SRT и бронирования | Да | [Руководство по SRT](docs/features/srt-booking.md) |
+| `ktx-booking` | Обратно совместимый корейский сценарий KTX/Korail через вспомогательный скрипт с обходом антибота Dynapath | Да | [Руководство по KTX](docs/features/ktx-booking.md) |
+| `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Руководство по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
+| `seoul-subway-arrival` | Просмотр ожидаемого времени прибытия поездов метро Сеула по станции | Да | [Руководство по метро Сеула](docs/features/seoul-subway-arrival.md) |
+| `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Руководство по мелкой пыли](docs/features/fine-dust-location.md) |
+| `kbo-results` | Результаты и расписание матчей KBO по датам и командам | Нет | [Руководство по KBO](docs/features/kbo-results.md) |
+| `kleague-results` | Результаты матчей и таблица K League 1/2 | Нет | [Руководство по K League](docs/features/kleague-results.md) |
+| `toss-securities` | Сводки только для чтения по счёту, портфелю, котировкам и списку наблюдения через `tossctl` | Да | [Руководство по Toss Securities](docs/features/toss-securities.md) |
+| `lotto-results` | Проверка последних и конкретных тиражей корейской лотереи | Нет | [Руководство по lotto](docs/features/lotto-results.md) |
+| `hwp` | Конвертация `.hwp` в JSON/Markdown/HTML, извлечение изображений и пакетная обработка | Нет | [Руководство по HWP](docs/features/hwp.md) |
+| `blue-ribbon-nearby` | Поиск ближайших ресторанов Blue Ribbon Survey после уточнения местоположения | Нет | [Руководство по Blue Ribbon nearby](docs/features/blue-ribbon-nearby.md) |
+| `kakao-bar-nearby` | Поиск ближайших баров по данным Kakao Map с режимом работы и контактами | Нет | [Руководство по Kakao bar nearby](docs/features/kakao-bar-nearby.md) |
+| `zipcode-search` | Поиск официального почтового индекса по адресу | Нет | [Руководство по поиску почтовых индексов](docs/features/zipcode-search.md) |
+| `daiso-product-search` | Поиск магазинов, товаров и остатков для самовывоза в Daiso Mall | Нет | [Руководство по поиску товаров Daiso](docs/features/daiso-product-search.md) |
+| `delivery-tracking` | Отслеживание доставки через официальные поверхности CJ Logistics и Korea Post | Нет | [Руководство по отслеживанию доставки](docs/features/delivery-tracking.md) |
 
 Список выше сейчас смешанный: первые целевые навыки уже переведены на российские сценарии, а заметная часть остального набора всё ещё остаётся устаревшим наследием корейских интеграций. Устаревшие функции сохранены, чтобы не ломать существующие рабочие потоки, пока репозиторий переориентируется на русскоязычное использование.
 
@@ -86,7 +86,7 @@
 | [Установка](docs/install.md) | Установка навыков и локальная проверка |
 | [Общая настройка](docs/setup.md) | Подготовка секретов и переменных окружения |
 | [Политика секретов](docs/security-and-secrets.md) | Правила хранения и использования секретов |
-| [Гайд по прокси](docs/features/k-skill-proxy.md) | Эксплуатация прокси для бесплатных API |
+| [Руководство по прокси](docs/features/k-skill-proxy.md) | Эксплуатация прокси для бесплатных API |
 | [Релизы и публикация](docs/releasing.md) | Changesets, release-please и доверенная публикация |
 | [Дорожная карта](docs/roadmap.md) | Следующие шаги миграции под российские сценарии |
 | [Замены навыков бронирования](docs/booking-replacements.md) | Матрица решений по замене `srt-booking` и `ktx-booking` |
@@ -201,7 +201,7 @@
 - Сообщения об ошибках в исходном коде и вспомогательные сообщения Python в устаревших пакетах (`toss-securities`, `kleague-results`, `kakao-bar-nearby`, `blue-ribbon-nearby`, `k-lotto`, `daiso-product-search`, `ktx_booking.py`, `fine_dust.py`) переведены на русский и застрахованы тестами документной регрессии.
 - Продолжить сужать публичную роль устаревших пакетов: сохранять совместимость, но выносить новые пользовательские сценарии только в российские `target`-пакеты.
 - Держать в CI синхрон README, дорожной карты, TODO, booking docs и метаданные пакетов descriptions, чтобы закрытые вехи не возвращались в активный перечень задач из-за документного дрейфа.
-- Следующий проход делать уже по оставшимся поверхностям крайних случаев: npm script output, вспомогательные JS-утилиты (`fix-changelog-headings.js`), и другим редким сообщениям инфраструктуры репозитория.
+- Следующий проход делать уже по оставшимся поверхностям крайних случаев: вывод npm-скриптов, вспомогательные JS-утилиты (`fix-changelog-headings.js`), и другим редким сообщениям инфраструктуры репозитория.
 - Устранён следующий слой английского жаргона: `alias` → `псевдоним` (setup SKILL.md, docs/install.md, README.md, docs/roadmap.md, docs/brand-inventory.md), `setup-alias` → `псевдоним настройки`, `post-install` → `после установки`, `shared secrets` → `общие секреты`, `feature-specific` → `для отдельных функций`, `setup-навык` → `навык настройки`, `setup-поток` → `поток настройки`, `product card page` → `страница карточки товара`, `Raw JSON` → `Необработанный JSON`, `Legacy alias` → `Устаревший псевдоним`, `compatibility alias` → `псевдоним совместимости`.
 - Английские assert-сообщения в `scripts/skill-docs.test.js` полностью переведены на русский; h1-заголовки верхнеуровневых документов (`Brand Inventory`, `Sources`, `Roadmap`) русифицированы; английский жаргон в руководствах по функциям (`production`, `live-`, `discovery`, `export`) устранён.
 
@@ -218,13 +218,13 @@
 - [Яндекс.Расписания](docs/features/yandex-rasp.md)
 - [Результаты РПЛ](docs/features/rpl-results.md)
 - [Яндекс Маркет](docs/features/yandex-market-search.md)
-- [OSM nearby](docs/features/osm-nearby.md)
+- [OSM поблизости](docs/features/osm-nearby.md)
 - [Zoon.ru](docs/features/zoon-nearby.md)
 - [Бронирование SRT](docs/features/srt-booking.md)
 - [Бронирование KTX](docs/features/ktx-booking.md)
 - [KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md)
 - [Прибытие поездов метро Сеула](docs/features/seoul-subway-arrival.md)
-- [Fine dust по местоположению](docs/features/fine-dust-location.md)
+- [Мелкая пыль по местоположению](docs/features/fine-dust-location.md)
 - [Результаты KBO](docs/features/kbo-results.md)
 - [Результаты K League](docs/features/kleague-results.md)
 - [Сводки Toss Securities](docs/features/toss-securities.md)
@@ -242,10 +242,10 @@
 2. Если используете устаревшие функции из `k-skill`, сначала проверьте [Общую настройку](docs/setup.md) и [Политику секретов](docs/security-and-secrets.md).
 3. Для общей подготовки окружения используйте `ru-skill-setup`; устаревшее имя `k-skill-setup` остаётся рабочим псевдонимом.
 4. Область дальнейшего перехода на российские сценарии зафиксирована в [Дорожной карте](docs/roadmap.md).
-5. При изменении релизных настроек и метаданных соблюдайте [Гайд по релизам](docs/releasing.md) и правила Changesets.
+5. При изменении релизных настроек и метаданных соблюдайте [Руководство по релизам](docs/releasing.md) и правила Changesets.
 
 ## Примечания
 
 - GitHub-репозиторий: `denis-gordeev/ru-skill`.
-- Отдельный issue tracker не используется; работа ведётся через запросы на слияние.
+- Отдельная система отслеживания задач не используется; работа ведётся через запросы на слияние.
 - Действия вроде запроса на GitHub star допустимы только при явном согласии пользователя.

@@ -1,4 +1,4 @@
-# Гайд по мелкой пыли для текущего местоположения
+# Руководство по мелкой пыли для текущего местоположения
 
 ## Граничное примечание
 
@@ -70,7 +70,7 @@ curl -fsS --get 'https://k-skill-proxy.nomadamas.org/v1/fine-dust/report' \
   --data-urlencode 'stationName=우산동(광주)'
 ```
 
-Если нужен почти raw-доступ к AirKorea, можно использовать эндпоинт сквозного маршрута. При этом прокси сам инжектирует `serviceKey`, а отдельный клиентский API не нужен.
+Если нужен почти прямой доступ к AirKorea, можно использовать эндпоинт сквозного маршрута. При этом прокси сам инжектирует `serviceKey`, а отдельный клиентский API не нужен.
 
 ```bash
 curl -fsS --get 'https://k-skill-proxy.nomadamas.org/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty' \

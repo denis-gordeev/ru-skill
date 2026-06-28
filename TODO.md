@@ -4,6 +4,53 @@
 
 Исторические сводки раундов ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-06-28 (раунд 67)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Устранён следующий слой английского жаргона в пользовательских поверхностях: `Гайд` → `Руководство` (16 docs/features/*.md h1 заголовков, 30 ссылок в README.md, 4 ссылки в docs/setup.md), `skill-каталоги` → `каталоги навыков` (AGENTS.md), `home-install` → `сценариев домашней установки` (AGENTS.md), `symlink` → `символическую ссылку` (AGENTS.md), `secrets-файл` → `файл секретов` (docs/install.md), `secrets-шаблон` → `шаблон секретов` (docs/setup.md, docs/security-and-secrets.md), `skill-only` → `skill-сценарии` (docs/install.md), `runtime` → `среда выполнения` (docs/install.md), `мержится` → `вливается` (docs/releasing.md), `legacy` standalone → `устаревший` (docs/features/srt-booking.md, ktx-booking.md, k-skill-proxy.md), `legacy-пакет` → `устаревший пакет` (packages/k-lotto/README.md), `Placeholder-команды` → `Шаблонные команды` (docs/roadmap.md), `workspace-пакета` → `пакета рабочего пространства` (docs/roadmap.md), `package/skill-имена` → `имена пакетов/навыков` (docs/roadmap.md), `tooling` → `инструментарий` (docs/roadmap.md), `Feature guides` → `руководства по функциям` (docs/brand-inventory.md), `референс` → `пример` (docs/features/k-skill-proxy.md), `official zone` → `официальная зона` (docs/features/blue-ribbon-nearby.md), `metro-источники` → `источники данных метро` (docs/features/seoul-subway-arrival.md), `raw-доступ` → `прямой доступ` (docs/features/fine-dust-location.md), `shell-обвязке` → `оболочковой обёртке` (docs/features/zipcode-search.md), `pack-артефакт` → `архивный артефакт` (docs/features/kleague-results.md), `harvest-подобных` → `подобных harvest` (docs/features/kakaotalk-mac.md), `Boolean-операторами` → `булевыми операторами` (docs/features/pravo-documents.md), `API key` → `API-ключ` (docs/sources.md, docs/features/osm-nearby.md, docs/features/seoul-subway-arrival.md), `Slug`/`Слаг` → `Идентификатор` (docs/features/stoloto-lotto.md, docs/features/zoon-nearby.md, packages/zoon-nearby/README.md), `railway` → `железнодорожный` (yandex-rasp/SKILL.md), `aisle` → `ряд` (daiso-product-search/SKILL.md), `UI-автоматизации` → `автоматизации интерфейса` (kakaotalk-mac/SKILL.md), `target-пакета` → `целевого пакета` (docs/booking-replacements.md), `логин` → `вход` (docs/features/toss-securities.md), `issue tracker` → `система отслеживания задач` (README.md), `npm script output` → `вывод npm-скриптов` (README.md), `OSM nearby` → `OSM поблизости` (README.md), `Fine dust` → `Мелкая пыль` (README.md), `postcode search` → `поиск почтовых индексов` (README.md), `Daiso product search` → `поиск товаров Daiso` (README.md), `delivery tracking` → `отслеживание доставки` (README.md), macOS permissions порядок → русский-первый (kakaotalk-mac/SKILL.md, docs/features/kakaotalk-mac.md), `фикстура` → `эталонный набор данных` (docs/sources.md), `help/default URL` → `справка/URL по умолчанию` (docs/brand-inventory.md), `workspace-пакетов` → `пакетов рабочего пространства` (docs/roadmap.md).
+- macOS-разрешения переведены на порядок русский-первый: `Полный доступ к диску (Full Disk Access)` и `Универсальный доступ (Accessibility)`.
+- Документная регрессия расширена: добавлены 11 новых тестов на отсутствие английского жаргона и наличие русских эквивалентов; обновлён раунд на 67.
+
+## Выполнено в этом раунде (раунд 67)
+
+- [x] 16 docs/features/*.md: `# Гайд по` → `# Руководство по` в h1-заголовках.
+- [x] README.md: `[Гайд по` → `[Руководство по` в 30 ссылках; английские остатки в ссылках переведены.
+- [x] docs/setup.md: `[Гайд по` → `[Руководство по` в 4 ссылках.
+- [x] AGENTS.md: `skill-каталоги` → `каталоги навыков`, `home-install` → `сценариев домашней установки`, `symlink` → `символическую ссылку`.
+- [x] docs/install.md: `secrets-файл` → `файл секретов`, `skill-only` → `skill-`, `runtime` → `среда выполнения`.
+- [x] docs/setup.md и docs/security-and-secrets.md: `secrets-шаблон` → `шаблон секретов`.
+- [x] docs/releasing.md: `мержится` → `вливается` (2 вхождения).
+- [x] docs/features/srt-booking.md, ktx-booking.md: `legacy запасной вариант` → `устаревшем запасном варианте`.
+- [x] docs/features/k-skill-proxy.md: `legacy AirKorea-поток` → `устаревший AirKorea-поток`, `референс` → `пример`.
+- [x] docs/features/blue-ribbon-nearby.md: `official zone` → `официальная зона`.
+- [x] docs/features/seoul-subway-arrival.md: `metro-источники` → `источники данных метро`, `API key` → `API-ключ`.
+- [x] docs/features/fine-dust-location.md: `raw-доступ` → `прямой доступ`.
+- [x] docs/features/zipcode-search.md: `shell-обвязке` → `оболочковой обёртке`.
+- [x] docs/features/kleague-results.md: `pack-артефакт` → `архивный артефакт`.
+- [x] docs/features/kakaotalk-mac.md: macOS permissions порядок → русский-первый, `harvest-подобных` → `подобных harvest`.
+- [x] docs/features/pravo-documents.md: `Boolean-операторами` → `булевыми операторами`.
+- [x] docs/features/osm-nearby.md: `API key` → `API-ключ`.
+- [x] docs/features/toss-securities.md: `логин` → `вход` (3 вхождения).
+- [x] docs/features/stoloto-lotto.md: `Slug` → `Идентификатор`.
+- [x] docs/features/zoon-nearby.md: `Слаг` → `Идентификатор`.
+- [x] packages/k-lotto/README.md: `legacy-пакет` → `устаревший пакет`.
+- [x] packages/zoon-nearby/README.md: `Slug` → `Идентификатор`.
+- [x] kakaotalk-mac/SKILL.md: macOS permissions русский-первый, `UI-автоматизации` → `автоматизации интерфейса`.
+- [x] yandex-rasp/SKILL.md: `railway` → `железнодорожный`.
+- [x] daiso-product-search/SKILL.md: `aisle` → `ряд`.
+- [x] docs/sources.md: `API key` → `API-ключ` (4 вхождения), `фикстура` → `эталонный набор данных`.
+- [x] docs/roadmap.md: `Placeholder-команды` → `Шаблонные команды`, `workspace-пакета` → `пакета рабочего пространства`, `package/skill-имена` → `имена пакетов/навыков`, `tooling` → `инструментарий`, `workspace-пакетов` → `пакетов рабочего пространства`.
+- [x] docs/brand-inventory.md: `Feature guides` → `руководства по функциям`, `help/default URL` → `справка/URL по умолчанию`.
+- [x] docs/booking-replacements.md: `target-пакета` → `целевого пакета`.
+- [x] README.md: `issue tracker` → `система отслеживания задач`, `npm script output` → `вывод npm-скриптов`.
+- [x] `scripts/skill-docs.test.js`: добавлены 11 новых тестов на отсутствие английского жаргона и наличие русских эквивалентов; обновлён раунд на 67; обновлены существующие тесты.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим перечнем задач.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
+- [ ] Продолжить русификацию оставшегося английского жаргона в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
+
 ## Статус на 2026-06-26 (раунд 66)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
@@ -25,8 +72,8 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
-- [ ] Продолжить русификацию оставшегося английского жаргона в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
+- [x] Проводить периодический аудит пользовательских поверхностей при добавлении новых пакетов или изменении существующих.
+- [x] Продолжить русификацию оставшегося английского жаргона в исторических секциях docs/roadmap.md и README.md, если они ещё содержат английские гибридные термины.
 
 ## Статус на 2026-06-25 (раунд 64)
 
