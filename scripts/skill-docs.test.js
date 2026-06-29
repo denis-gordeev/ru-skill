@@ -1137,7 +1137,7 @@ test("навык fine-dust-location документирует официаль�
     assert.match(doc, /скрытый перечень задач/i);
     assert.match(doc, /AIR_KOREA_OPEN_API_KEY/);
     assert.match(doc, /KSKILL_PROXY_BASE_URL/);
-    assert.match(doc, /Отдельный клиентский API key в этом режиме не нужен/i);
+    assert.match(doc, /Отдельный клиентский API-ключ в этом режиме не нужен/i);
     assert.match(doc, /B552584\/MsrstnInfoInqireSvc\/getMsrstnList/);
     assert.match(doc, /B552584\/ArpltnInforInqireSvc\/getMsrstnAcctoRltmMesureDnsty/);
     assert.match(doc, /getCtprvnRltmMesureDnsty/);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-28");
-  assert.equal(todoStatus.round, 67);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 67\)/);
+  assert.equal(todoStatus.date, "2026-06-29");
+  assert.equal(todoStatus.round, 68);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 68\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -4601,4 +4601,56 @@ test("README.md не содержит issue tracker, npm script output без п
   assert.match(readme, /систем[а-яё]+ отслеживания задач/);
   assert.doesNotMatch(readme, /npm script output/);
   assert.match(readme, /вывод npm-скриптов/);
+});
+
+test("Пользовательские поверхности не содержат API key без дефиса", () => {
+  const osm = read(path.join("docs", "features", "osm-nearby.md"));
+  assert.doesNotMatch(osm, /API ключ/);
+  assert.doesNotMatch(osm, /\bAPI key\b/);
+  assert.match(osm, /API-ключ/);
+
+  const zoon = read(path.join("docs", "features", "zoon-nearby.md"));
+  assert.doesNotMatch(zoon, /API ключ/);
+  assert.doesNotMatch(zoon, /\bAPI keys\b/);
+  assert.match(zoon, /API-ключ/);
+
+  const ym = read(path.join("yandex-market-search", "SKILL.md"));
+  assert.doesNotMatch(ym, /\bAPI key\b/);
+  assert.match(ym, /API-ключ/);
+
+  const osmSkill = read(path.join("packages", "osm-nearby", "SKILL.md"));
+  assert.doesNotMatch(osmSkill, /API ключ/);
+  assert.doesNotMatch(osmSkill, /\bAPI key\b/);
+  assert.match(osmSkill, /API-ключ/);
+});
+
+test("mchs-storm-warnings/SKILL.md не содержит MChS в русской прозе", () => {
+  const skill = read(path.join("mchs-storm-warnings", "SKILL.md"));
+  assert.doesNotMatch(skill, /под MChS/);
+  assert.match(skill, /под МЧС/);
+});
+
+test("kakaotalk-mac не содержит accessibility-автоматизации и harvest действий", () => {
+  const skill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  assert.doesNotMatch(skill, /accessibility-автоматизаци/);
+  assert.match(skill, /автоматизации специальных возможностей/);
+
+  const doc = read(path.join("docs", "features", "kakaotalk-mac.md"));
+  assert.doesNotMatch(doc, /harvest действий/);
+});
+
+test("docs/sources.md не содержит Реалтайм-подписки", () => {
+  const sources = read(path.join("docs", "sources.md"));
+  assert.doesNotMatch(sources, /Реалтайм-подписки/);
+  assert.match(sources, /Подписки в реальном времени/);
+});
+
+test("README.md не содержит Target/Legacy/Transition как английские ярлыки в прозе", () => {
+  const readme = read("README.md");
+  assert.doesNotMatch(readme, /разделением `Target` и `Legacy`/);
+  assert.match(readme, /разделением целевых и устаревших/);
+  assert.doesNotMatch(readme, /новый `target`-пакет/);
+  assert.doesNotMatch(readme, /закрытые `Legacy`/);
+  assert.doesNotMatch(readme, /как `Transition`/);
+  assert.doesNotMatch(readme, /российские `target`-пакеты/);
 });

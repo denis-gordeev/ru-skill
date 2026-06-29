@@ -72,7 +72,7 @@ JS
 
 ### 0. Установить пакет глобально, если отсутствует
 
-Если `node -e 'require("mchs-storm-warnings")'` не проходит, сначала ставится пакет, а не пишется одноразовый HTML-парсер под MChS.
+Если `node -e 'require("mchs-storm-warnings")'` не проходит, сначала ставится пакет, а не пишется одноразовый HTML-парсер под МЧС.
 
 ```bash
 npm install -g mchs-storm-warnings
