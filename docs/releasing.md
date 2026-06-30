@@ -1,11 +1,11 @@
 # Релизы и автоматическая публикация
 
-Этот репозиторий использует **Changesets для npm** и **release-please для Python**.
+Этот репозиторий использует **файлы `.changeset` для npm** и **`release-please` для Python**.
 
 ## Node / npm пакеты
 
 - Расположение: `packages/*`
-- Управление версиями: Changesets
+- Управление версиями: файлы `.changeset`
 - Процесс публикации: `.github/workflows/release-npm.yml`
 - Момент публикации: после слияния сгенерированного ботом запроса на слияние `Version Packages` в `main`
 - Предпочтительный способ аутентификации: доверенная публикация через GitHub OIDC
@@ -15,10 +15,10 @@
 
 1. В функциональном запросе на слияние добавляется `.changeset/*.md`.
 2. Запрос на слияние вливается в `main`.
-3. Changesets создаёт запрос на слияние `Version Packages`.
+3. Автоматизация `.changeset` создаёт запрос на слияние `Version Packages`.
 4. Запрос на слияние `Version Packages` вливается в `main`.
 5. GitHub Actions публикует только изменившиеся npm-пакеты через `changeset publish`.
-6. `CHANGELOG.md` в пакетах ведёт сам Changesets, а отдельные GitHub Releases для npm-пакетов не создаются, пока `createGithubReleases: false`.
+6. `CHANGELOG.md` в пакетах ведёт автоматизация `.changeset`, а отдельные GitHub Releases для npm-пакетов не создаются, пока `createGithubReleases: false`.
 
 ## Доверенная публикация для npm
 
@@ -30,9 +30,9 @@
 ## Python пакеты
 
 - Расположение: `python-packages/*`
-- Управление версиями: release-please
+- Управление версиями: `release-please`
 - Процесс публикации: `.github/workflows/release-python.yml`
-- Момент публикации: только если release-please сообщил `release_created=true` для реального пути пакета
+- Момент публикации: только если `release-please` сообщил `release_created=true` для реального пути пакета
 - Текущее состояние: в репозитории пока нет реального Python-пакета, поэтому процесс остаётся только каркасной заготовкой
 
 ## Проверка перед релизными изменениями

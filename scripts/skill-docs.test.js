@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-06-30");
-  assert.equal(todoStatus.round, 69);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 69\)/);
+  assert.equal(todoStatus.round, 70);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 70\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -4714,4 +4714,36 @@ test("seoul-subway-arrival/SKILL.md использует шаблон вмест
   const skill = read(path.join("seoul-subway-arrival", "SKILL.md"));
   assert.doesNotMatch(skill, /следующий паттерн/);
   assert.match(skill, /следующий шаблон/);
+});
+
+test("верхнеуровневые документы не возвращают гибриды вокруг настройки и инфраструктуры (раунд 70)", () => {
+  const readme = read("README.md");
+  const releasing = read(path.join("docs", "releasing.md"));
+
+  assert.doesNotMatch(readme, /Для setup и shell-скриптов/);
+  assert.match(readme, /Для навыка настройки и оболочковых скриптов/);
+
+  assert.doesNotMatch(readme, /live-статус/);
+  assert.match(readme, /оперативный статус/);
+
+  assert.doesNotMatch(readme, /`ru-skill`-first/);
+  assert.match(readme, /приоритетн.*для `ru-skill` поряд/);
+
+  assert.doesNotMatch(readme, /setup-skills/);
+  assert.match(readme, /навыки настройки/);
+
+  assert.doesNotMatch(readme, /runtime-artifacts/);
+  assert.match(readme, /артефакты выполнения контура настройки/);
+
+  assert.doesNotMatch(readme, /shell\/infrastructure/);
+  assert.match(readme, /поверхности оболочки и инфраструктуры/);
+
+  assert.doesNotMatch(releasing, /Changesets для npm/);
+  assert.match(releasing, /файлы `?\.changeset`? для npm/);
+
+  assert.doesNotMatch(releasing, /Управление версиями: Changesets/);
+  assert.match(releasing, /Управление версиями: файлы `?\.changeset`?/);
+
+  assert.doesNotMatch(releasing, /Момент публикации: только если release-please сообщил/);
+  assert.match(releasing, /Момент публикации: только если `release-please` сообщил/);
 });
