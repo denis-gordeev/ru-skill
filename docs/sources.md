@@ -419,7 +419,7 @@
 
 - Вход для поиска: строка запроса и опциональная страница выдачи.
 - Вход для карточки: URL товара из результатов поиска.
-- Выход для поиска: `title`, `productId`, canonical `url`, `price`, `rating`, `reviewCount`, `imageUrl`, top inline `specs`.
+- Выход для поиска: `title`, `productId`, канонический `url`, `price`, `rating`, `reviewCount`, `imageUrl`, верхние встроенные `specs`.
 - Выход для карточки: `title`, `brand`, `price`, `rating`, `reviewCount`, `description`, `specs`.
 - Техническая основа: навык + пакет только для чтения + на основе эталонных данных HTML-тесты.
 - Выбранное имя пакета: `yandex-market-search`.

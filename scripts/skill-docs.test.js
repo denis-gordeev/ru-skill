@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-29");
-  assert.equal(todoStatus.round, 68);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 68\)/);
+  assert.equal(todoStatus.date, "2026-06-30");
+  assert.equal(todoStatus.round, 69);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 69\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -1557,7 +1557,7 @@ test("описания workspace-пакетов соответствуют ру�
     "daiso-product-search": "Legacy-клиент поиска магазинов, товаров и остатков для самовывоза Daiso Mall, сохранённый на время миграции ru-skill",
     "hh-vacancies": "Клиент только для чтения для публичных API вакансий и регионов hh.ru",
     "k-lotto": "Legacy-клиент результатов dhlottery, сохранённый на время миграции ru-skill",
-    "k-skill-proxy": "Fastify-прокси для бесплатных и публичных API, используемых в ru-skill",
+    "k-skill-proxy": "Прокси на Fastify для бесплатных и публичных API, используемых в ru-skill",
     "kakao-bar-nearby": "Legacy-клиент поиска ближайших баров через Kakao Map, сохранённый на время миграции ru-skill",
     "kinopoisk-search": "Клиент только для чтения для публичного поиска фильмов и карточек Кинопоиска",
     "kleague-results": "Legacy-клиент результатов и таблицы K League, сохранённый на время миграции ru-skill",
@@ -4049,7 +4049,7 @@ test("packages/k-skill-proxy/README.md не содержит legacy- compounds �
   const readme = read(path.join("packages", "k-skill-proxy", "README.md"));
 
   assert.doesNotMatch(readme, /legacy-кейс/);
-  assert.match(readme, /устаревший кейс/);
+  assert.match(readme, /устаревший сценарий/);
 
   assert.doesNotMatch(readme, /legacy fine-dust/);
   assert.match(readme, /устаревший сценарий fine-dust/);
@@ -4653,4 +4653,65 @@ test("README.md не содержит Target/Legacy/Transition как англи
   assert.doesNotMatch(readme, /закрытые `Legacy`/);
   assert.doesNotMatch(readme, /как `Transition`/);
   assert.doesNotMatch(readme, /российские `target`-пакеты/);
+});
+
+test("docs/sources.md использует канонический вместо canonical и встроенные вместо inline (раунд 69)", () => {
+  const sources = read(path.join("docs", "sources.md"));
+
+  const sourcesLines = sources.split("\n");
+  for (const line of sourcesLines) {
+    if (/\bcanonical\b/i.test(line) && !line.includes("```")) {
+      assert.fail(`Найден непереведённый "canonical" в docs/sources.md: ${line.trim()}`);
+    }
+  }
+
+  assert.match(sources, /канонический/);
+  assert.match(sources, /встроенн.*specs/);
+});
+
+test("blue-ribbon-nearby/SKILL.md не содержит nearby и zone без перевода (раунд 69)", () => {
+  const skill = read(path.join("blue-ribbon-nearby", "SKILL.md"));
+
+  assert.doesNotMatch(skill, /результат Blue Ribbon nearby/);
+  assert.match(skill, /ресторан Blue Ribbon поблизости/);
+  assert.doesNotMatch(skill, /ни с одним официальным zone/);
+  assert.match(skill, /ни с одной официальной зоной/);
+});
+
+test("docs/features/blue-ribbon-nearby.md не содержит zone-списка (раунд 69)", () => {
+  const feature = read(path.join("docs", "features", "blue-ribbon-nearby.md"));
+  assert.doesNotMatch(feature, /zone-списка/);
+  assert.match(feature, /списка зон/);
+});
+
+test("k-skill-proxy использует прокси на Fastify вместо Fastify-прокси (раунд 69)", () => {
+  const proxyDoc = read(path.join("docs", "features", "k-skill-proxy.md"));
+  const proxyReadme = read(path.join("packages", "k-skill-proxy", "README.md"));
+  const proxyPkg = JSON.parse(read(path.join("packages", "k-skill-proxy", "package.json")));
+
+  assert.doesNotMatch(proxyDoc, /Fastify-прокси/);
+  assert.match(proxyDoc, /прокси на Fastify/);
+
+  assert.doesNotMatch(proxyReadme, /Fastify-прокси/);
+  assert.match(proxyReadme, /прокси на Fastify/);
+
+  assert.match(proxyPkg.description, /Прокси на Fastify/);
+});
+
+test("packages/k-skill-proxy/README.md не содержит кейс (раунд 69)", () => {
+  const readme = read(path.join("packages", "k-skill-proxy", "README.md"));
+  assert.doesNotMatch(readme, /устаревший кейс/);
+  assert.match(readme, /устаревший сценарий/);
+});
+
+test("навык delivery-tracking использует шаблон адаптера вместо паттерн адаптера — раунд 69", () => {
+  const skill = read(path.join("delivery-tracking", "SKILL.md"));
+  assert.doesNotMatch(skill, /паттерн адаптера/);
+  assert.match(skill, /шаблон адаптера/);
+});
+
+test("seoul-subway-arrival/SKILL.md использует шаблон вместо паттерн (раунд 69)", () => {
+  const skill = read(path.join("seoul-subway-arrival", "SKILL.md"));
+  assert.doesNotMatch(skill, /следующий паттерн/);
+  assert.match(skill, /следующий шаблон/);
 });
