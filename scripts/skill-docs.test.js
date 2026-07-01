@@ -1391,8 +1391,8 @@ test("документация установки объясняет грани�
   assert.match(install, /целев.*линейк/i);
   assert.match(install, /устаревший без развития/);
   assert.match(install, /переходн/i);
-  assert.match(install, /k-skill-proxy.*не является отдельным конечным пользовательским skill/i);
-  assert.match(install, /toss-securities.*устаревших npm-пакетов|toss-securities.*legacy npm-пакетов/i);
+  assert.match(install, /k-skill-proxy.*не является отдельным конечным пользовательским навыком|k-skill-proxy.*не является отдельным конечным пользовательским skill/i);
+  assert.match(install, /toss-securities.*устаревших пакетов npm|toss-securities.*устаревших npm-пакетов/i);
   assert.match(install, /seoul-subway-arrival.*устаревший без развития/i);
 });
 
@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-07-01");
-  assert.equal(todoStatus.round, 71);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 71\)/);
+  assert.equal(todoStatus.round, 72);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 72\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -1430,7 +1430,7 @@ test("плановая документация согласована по сл
   assert.match(bookingResearch, /yandex-rasp/);
   assert.match(bookingResearch, /Веха 5 считается закрытой/);
   assert.match(bookingResearch, /Веха 5 закрыта вторым способом/);
-  assert.match(bookingResearch, /Отдельный навык-перенаправление для railway не открывается/);
+  assert.match(bookingResearch, /Отдельный навык-перенаправление для железнодорожных маршрутов не открывается|Отдельный навык-перенаправление для railway не открывается/);
 });
 
 test("TODO держит активные незакрытые задачи только в верхнем блоке плана", () => {
@@ -3530,7 +3530,7 @@ test("workflow как описательное слово заменён на п
   assert.match(zipcodeFeature, /ePost-сценарий/);
 
   assert.doesNotMatch(install, /skill-only workflow/);
-  assert.match(install, /skill-сценарии/);
+  assert.match(install, /сценарии навыков|skill-сценарии/);
 });
 
 test("batch как описательное слово заменён на пакетная обработка в docs/features/hwp.md", () => {
@@ -3915,7 +3915,7 @@ test("legacy- compounds заменены на устаревш* в пользо�
   assert.match(sources, /устаревших сценариев/);
   assert.match(sources, /устаревшей документации/);
   assert.match(install, /устаревшее имя/);
-  assert.match(install, /устаревших npm-пакетов/);
+  assert.match(install, /устаревших пакетов npm|устаревших npm-пакетов/);
   assert.match(brandInventory, /устаревших поверхностей/);
   assert.match(booking, /устаревших навыков/);
 });
@@ -4746,4 +4746,85 @@ test("верхнеуровневые документы не возвращаю�
 
   assert.doesNotMatch(releasing, /Момент публикации: только если release-please сообщил/);
   assert.match(releasing, /Момент публикации: только если `release-please` сообщил/);
+});
+
+test("раунд 72: русификация skill/package, категории навыков, prose гибриды", () => {
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  const install = read(path.join("docs", "install.md"));
+  const brandInventory = read(path.join("docs", "brand-inventory.md"));
+  const booking = read(path.join("docs", "booking-replacements.md"));
+
+  assert.match(roadmap, /навык\/пакет/);
+  assert.match(roadmap, /исследование по заменам бронирования проведено/);
+  assert.match(roadmap, /автоматизации проверки обновлений/);
+  assert.match(roadmap, /каталоги bin\/log с префиксом/);
+
+  assert.doesNotMatch(brandInventory, /skill-именам/);
+  assert.match(brandInventory, /именам навыков/);
+
+  assert.doesNotMatch(install, /workspace-пакеты/);
+  assert.match(install, /пакеты рабочего пространства/);
+
+  assert.doesNotMatch(install, /skill-сценарии/);
+  assert.match(install, /сценарии навыков/);
+
+  assert.doesNotMatch(booking, /для railway не открывается/);
+  assert.match(booking, /для железнодорожных маршрутов не открывается/);
+
+  assert.doesNotMatch(booking, /свободный public API/);
+  assert.match(booking, /свободный публичный API/);
+
+  const kSkillSetup = read(path.join("k-skill-setup", "SKILL.md"));
+  const ruSkillSetup = read(path.join("ru-skill-setup", "SKILL.md"));
+
+  assert.doesNotMatch(kSkillSetup, /предпочтительный secrets file/);
+  assert.match(kSkillSetup, /предпочтительный файл секретов/);
+
+  assert.doesNotMatch(kSkillSetup, /Предпочтительный secrets path/);
+  assert.match(kSkillSetup, /Предпочтительный путь к секретам/);
+
+  assert.doesNotMatch(ruSkillSetup, /Предпочтительный secrets path/);
+  assert.match(ruSkillSetup, /Предпочтительный путь к секретам/);
+
+  const hhVac = read(path.join("hh-vacancies", "SKILL.md"));
+  assert.doesNotMatch(hhVac, /frontend вакансии/);
+  assert.match(hhVac, /вакансии фронтенда/);
+  assert.doesNotMatch(hhVac, /area id/);
+  assert.match(hhVac, /идентификатор региона/);
+
+  const zipcode = read(path.join("zipcode-search", "SKILL.md"));
+  assert.doesNotMatch(zipcode, /raw HTML/);
+  assert.match(zipcode, /исходном HTML/);
+  assert.doesNotMatch(zipcode, /here-doc \+ Python one-liner/);
+
+  const lotto = read(path.join("lotto-results", "SKILL.md"));
+  assert.doesNotMatch(lotto, /«latest»/);
+  assert.match(lotto, /«последний»/);
+
+  const kbo = read(path.join("kbo-results", "SKILL.md"));
+  assert.doesNotMatch(kbo, /фактический export/);
+  assert.match(kbo, /фактический экспорт/);
+
+  const delivery = read(path.join("delivery-tracking", "SKILL.md"));
+  assert.doesNotMatch(delivery, /сохранения cookie/);
+  assert.match(delivery, /сохранения куки/);
+
+  const blueRibbon = read(path.join("blue-ribbon-nearby", "SKILL.md"));
+  assert.doesNotMatch(blueRibbon, /\(ribbon\)/);
+
+  const zoon = read(path.join("zoon-nearby", "SKILL.md"));
+  assert.doesNotMatch(zoon, /city\/category поиск/);
+  assert.match(zoon, /поиск по городу\/категории/);
+
+  const srt = read(path.join("srt-booking", "SKILL.md"));
+  assert.doesNotMatch(srt, /инжектировать как env\b/);
+  assert.match(srt, /переменные окружения/);
+
+  const ktx = read(path.join("ktx-booking", "SKILL.md"));
+  assert.doesNotMatch(ktx, /Если env нет/);
+  assert.match(ktx, /переменных окружения нет/);
+
+  const fineDust = read(path.join("fine-dust-location", "SKILL.md"));
+  assert.doesNotMatch(fineDust, /Если env пуст/);
+  assert.match(fineDust, /переменные окружения пусты/);
 });

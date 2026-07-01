@@ -3,7 +3,7 @@ name: daiso-product-search
 description: Поиск товаров Daiso по названию магазина и ключевому слову через официальные страницы поиска/магазинов/остатков Daiso Mall. Используйте, когда пользователь хочет узнать наличие товара в конкретном магазине Daiso.
 license: MIT
 metadata:
-  category: retail
+  category: розница
   locale: ru-RU
   phase: v1
 ---

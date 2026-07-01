@@ -3,7 +3,7 @@ name: yandex-rasp
 description: Расписания транспорта по России (электрички, поезда, автобусы, авиарейсы) через API Яндекс.Расписаний
 license: MIT
 metadata:
-  category: transport
+  category: транспорт
   locale: ru_RU
   phase: target
 ---

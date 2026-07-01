@@ -3,7 +3,7 @@ name: delivery-tracking
 description: Обратно совместимое отслеживание посылок CJ Logistics и Почтовой службы Кореи. Сохранено для обратной совместимости; не является целевым направлением для новых российских логистических интеграций.
 license: MIT
 metadata:
-  category: logistics
+  category: логистика
   locale: ru-RU
   phase: v1
 ---
@@ -86,7 +86,7 @@ metadata:
 - Эндпоинт деталей: `https://www.cjlogistics.com/ko/tool/parcel/tracking-detail`
 - Обязательные поля: `_csrf`, `paramInvcNo`
 
-Базовый пример использует `curl` для получения `_csrf` и сохранения cookie, а Python — только для разбора JSON.
+Базовый пример использует `curl` для получения `_csrf` и сохранения куки, а Python — только для разбора JSON.
 
 ```bash
 tmp_body="$(mktemp)"

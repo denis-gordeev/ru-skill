@@ -3,7 +3,7 @@ name: yandex-market-search
 description: Поиск товаров и карточки товаров на Яндекс Маркете через серверно отрендеренные публичные страницы
 license: MIT
 metadata:
-  category: marketplace
+  category: маркетплейс
   locale: ru_RU
   phase: target
 ---

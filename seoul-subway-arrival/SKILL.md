@@ -3,7 +3,7 @@ name: seoul-subway-arrival
 description: Запрос реального времени прибытия поездов метро Сеула через официальный Seoul Open Data API. Использовать, когда пользователь спрашивает, когда придёт поезд, какие поезда приближаются к станции или насколько загружено метро Сеула прямо сейчас.
 license: MIT
 metadata:
-  category: transit
+  category: транзит
   locale: ru-RU
   phase: v1
 ---

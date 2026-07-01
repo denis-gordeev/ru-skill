@@ -3,7 +3,7 @@ name: postcalc-postcodes
 description: Проверка российских почтовых индексов и карточек отделений через публичные страницы Postcalc. Использовать, когда пользователь спрашивает конкретный 6-значный индекс отделения или сводку по населённому пункту через `citykey`.
 license: MIT
 metadata:
-  category: location
+  category: местоположение
   locale: ru-RU
   phase: v1
 ---

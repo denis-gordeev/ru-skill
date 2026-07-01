@@ -3,7 +3,7 @@ name: hwp
 description: Конвертация HWP-файлов в JSON, Markdown или HTML, извлечение изображений и выбор между @ohah/hwpjs и hwp-mcp в зависимости от ОС и наличия локальной программы Хангул.
 license: MIT
 metadata:
-  category: documents
+  category: документы
   locale: ru-RU
   phase: v1
 ---

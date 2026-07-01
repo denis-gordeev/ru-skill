@@ -3,7 +3,7 @@ name: kakaotalk-mac
 description: Использование kakaocli на macOS для чтения чатов KakaoTalk, поиска сообщений и отправки ответов после явного подтверждения.
 license: MIT
 metadata:
-  category: messaging
+  category: обмен-сообщениями
   locale: ru-RU
   phase: v1.5
 ---

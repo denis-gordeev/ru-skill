@@ -17,8 +17,8 @@
 2. Запрос на слияние вливается в `main`.
 3. Автоматизация `.changeset` создаёт запрос на слияние `Version Packages`.
 4. Запрос на слияние `Version Packages` вливается в `main`.
-5. GitHub Actions публикует только изменившиеся npm-пакеты через `changeset publish`.
-6. `CHANGELOG.md` в пакетах ведёт автоматизация `.changeset`, а отдельные GitHub Releases для npm-пакетов не создаются, пока `createGithubReleases: false`.
+5. GitHub Actions публикует только изменившиеся пакеты npm через `changeset publish`.
+6. `CHANGELOG.md` в пакетах ведёт автоматизация `.changeset`, а отдельные GitHub Releases для пакетов npm не создаются, пока `createGithubReleases: false`.
 
 ## Доверенная публикация для npm
 

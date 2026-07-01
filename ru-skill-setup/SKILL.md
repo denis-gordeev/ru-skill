@@ -3,7 +3,7 @@ name: ru-skill-setup
 description: После установки ru-skill настройте общие секреты и проверки времени выполнения через предпочтительное имя ru-skill, сохранив совместимость с устаревшим псевдонимом `k-skill-setup`.
 license: MIT
 metadata:
-  category: setup
+  category: настройка
   locale: ru-RU
   phase: v1
 ---
@@ -48,7 +48,7 @@ bash scripts/check-setup.sh
 
 - Предпочтительное имя навыка настройки: `ru-skill-setup`
 - Устаревший псевдоним: `k-skill-setup`
-- Предпочтительный secrets path: `~/.config/ru-skill/secrets.env`
+- Предпочтительный путь к секретам: `~/.config/ru-skill/secrets.env`
 - Устаревший резервный путь: `~/.config/k-skill/secrets.env`
 - Предпочтительные артефакты выполнения для проверок обновлений и логов: `~/.config/ru-skill/bin` и `~/.config/ru-skill/logs`
 

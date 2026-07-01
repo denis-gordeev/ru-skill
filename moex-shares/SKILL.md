@@ -3,7 +3,7 @@ name: moex-shares
 description: Проверка публичных метаданных акций Московской биржи и задержанных рыночных снимков через официальный ISS API. Использовать, когда пользователь спрашивает данные по тикеру MOEX: SBER, GAZP, LKOH, размер лота, ISIN, предыдущее закрытие или текущий задержанный снимок цены.
 license: MIT
 metadata:
-  category: finance
+  category: финансы
   locale: ru-RU
   phase: v1
 ---
