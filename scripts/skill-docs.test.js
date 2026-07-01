@@ -308,7 +308,7 @@ test("документация legacy railway удерживает явную г
     assert.match(doc, /booking-replacements\.md/);
   }
 
-  assert.match(readme, /Legacy railway docs выровнены с этим решением/);
+  assert.match(readme, /Устаревшие железнодорожные документы выровнены с этим решением/);
   assert.match(roadmap, /Документация устаревших железнодорожных навыков выровнена с этой границей/);
   assert.match(roadmap, /Документация устаревших железнодорожных навыков выровнена/i);
 });
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-06-30");
-  assert.equal(todoStatus.round, 70);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 70\)/);
+  assert.equal(todoStatus.date, "2026-07-01");
+  assert.equal(todoStatus.round, 71);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 71\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -4135,7 +4135,7 @@ test("README.md не содержит английского жаргона meta
   assert.doesNotMatch(readme, /package metadata/);
   assert.match(readme, /метаданные пакетов/);
   assert.doesNotMatch(readme, /npm\/publish metadata/);
-  assert.match(readme, /npm\/publish-метаданные/);
+  assert.match(readme, /метаданные публикации/);
   assert.doesNotMatch(readme, /helper-docs/);
   assert.doesNotMatch(readme, /release hygiene/);
   assert.match(readme, /релиз-гигиен/);
