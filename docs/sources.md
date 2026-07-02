@@ -124,7 +124,7 @@
 ### Московская биржа: ISS API по акциям
 
 - Страница ISS API: https://www.moex.com/a8531
-- Публичный эндпоинт по тикеру акции: https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.json
+- Публичная конечная точка по тикеру акции: https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.json
 - Публичный список акций на основной доске: https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities.json
 
 Почему этот источник выбран следующим:
@@ -437,7 +437,7 @@
 ### Overpass API: поиск ближайших заведений через OpenStreetMap
 
 - Главная страница: https://overpass-api.de/
-- API-эндпоинт: https://overpass-api.de/api/interpreter
+- API-конечная точка: https://overpass-api.de/api/interpreter
 - Документация Overpass QL: https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL
 - OpenStreetMap данные: https://www.openstreetmap.org/
 

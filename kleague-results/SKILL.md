@@ -1,6 +1,6 @@
 ---
 name: kleague-results
-description: Результаты матчей K League и текущая турнирная таблица по датам/командам через официальный JSON эндпоинт и пакет kleague-results npm.
+description: Результаты матчей K League и текущая турнирная таблица по датам/командам через официальную JSON-конечную точку и пакет kleague-results npm.
 license: MIT
 metadata:
   category: спорт
@@ -47,7 +47,7 @@ npm install -g kleague-results
 
 ### 1. Получение официального JSON K League
 
-Этот навык использует следующие официальные JSON эндпоинты вместо HTML-парсинга.
+Этот навык использует следующие официальные JSON-конечные точки вместо HTML-парсинга.
 
 - Расписание/результаты: `https://www.kleague.com/getScheduleList.do`
 - Турнирная таблица команды: `https://www.kleague.com/record/teamRank.do`
