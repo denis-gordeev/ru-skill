@@ -11,7 +11,7 @@ npm install moex-shares
 ## Официальные поверхности
 
 - Обзор ISS: `https://www.moex.com/a8531`
-- Эндпоинт акций: `https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.json`
+- Конечная точка акций: `https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.json`
 
 ## Использование
 

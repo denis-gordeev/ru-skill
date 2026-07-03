@@ -36,7 +36,7 @@ metadata:
 
 ### 0. Установить пакет глобально, если отсутствует
 
-Если `node -e 'require("postcalc-postcodes")'` не проходит, сначала ставится пакет, а не собирается разовый HTML-парсер.
+Если `node -e 'require("postcalc-postcodes")'` не проходит, сначала ставится пакет, а не собирается разовая программа разбора HTML.
 
 ```bash
 npm install -g postcalc-postcodes

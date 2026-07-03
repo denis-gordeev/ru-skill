@@ -10,7 +10,7 @@ npm install pravo-documents
 
 ## Публичные поверхности
 
-- Эндпоинт поиска: `https://publication.pravo.gov.ru/api/Documents`
+- Конечная точка поиска: `https://publication.pravo.gov.ru/api/Documents`
 - Карточка документа: `https://publication.pravo.gov.ru/api/Document?eoNumber=<number>`
 - Справочник рубрик: `https://publication.pravo.gov.ru/api/PublicBlocks`
 - Тип источника: официальный портал правовой информации, без авторизации
@@ -83,7 +83,7 @@ const {
 ## Примечания
 
 - Пакет работает только для чтения и не требует секретов.
-- Доступ только к метаданным; содержимое PDF не загружается и не парсится.
+- Доступ только к метаданным; содержимое PDF не загружается и не разбирается.
 - Все запросы направляются к официальному API pravo.gov.ru.
 
 ## Тесты

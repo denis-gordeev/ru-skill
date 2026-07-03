@@ -39,7 +39,7 @@ metadata:
 
 ### 0. Установка пакета при отсутствии
 
-Если `kleague-results` отсутствует в `npm root -g`, сначала попробуйте глобальную установку Node-пакета вместо обходного HTML-парсинга.
+Если `kleague-results` отсутствует в `npm root -g`, сначала попробуйте глобальную установку Node-пакета вместо обходного разбора HTML.
 
 ```bash
 npm install -g kleague-results
@@ -47,7 +47,7 @@ npm install -g kleague-results
 
 ### 1. Получение официального JSON K League
 
-Этот навык использует следующие официальные JSON-конечные точки вместо HTML-парсинга.
+Этот навык использует следующие официальные JSON-конечные точки вместо разбора HTML.
 
 - Расписание/результаты: `https://www.kleague.com/getScheduleList.do`
 - Турнирная таблица команды: `https://www.kleague.com/record/teamRank.do`

@@ -282,7 +282,7 @@ test("документация ktx-booking описывает рабочий п�
     assert.match(doc, /--try-waiting/);
     assert.match(doc, /credential resolution order|KSKILL_KTX_ID/);
     assert.match(doc, /антибота|Dynapath|x-dynapath-m-token/i);
-    // Accept both Korean original and Russian translation for payment automation note
+    // Допускается как корейский оригинал, так и русский перевод для примечания об автоматизации оплаты
     assert.match(doc, /Оплата не автоматизируется|Оплата до завершения не автоматизируется|не закрывает оплату/);
     assert.doesNotMatch(doc, /예약 시 선택할 `--train-index`/);
   }
@@ -578,14 +578,14 @@ test("навык delivery-tracking документирует официальн
     assert.match(doc, /tracking-detail/);
     assert.match(doc, /paramInvcNo/);
     assert.match(doc, /_csrf/);
-    // Accept both Korean original and Russian translation for invoice length description
+    // Допускается как корейский оригинал, так и русский перевод для описания длины накладной
     assert.match(doc, /10자리 또는 12자리|10 или 12 цифр/);    assert.match(doc, /https:\/\/service\.epost\.go\.kr\/trace\.RetrieveRegiPrclDeliv\.postal\?sid1=/);
     assert.match(doc, /trace\.RetrieveDomRigiTraceList\.comm/);
     assert.match(doc, /sid1/);
-    // Accept both Korean original and Russian translation for invoice length
+    // Допускается как корейский оригинал, так и русский перевод для длины накладной
     assert.match(doc, /13자리|13 цифр/);    assert.match(doc, /curl --http1\.1 --tls-max 1\.2/);
     assert.match(doc, /модул[ья]-посредник[аи]? перевозчика|carrier adapter/i);
-    // Accept both Korean original and Russian translation for carrier extension
+    // Допускается как корейский оригинал, так и русский перевод для расширения перевозчика
     assert.match(doc, /다른 택배사|другой перевозчик|другие курьерские|других перевозчиков|новых перевозчиков|новых курьерских/i);
   }
 
@@ -746,8 +746,8 @@ test("документация delivery-tracking публикует соглас
   assertSanitizedPublicOutput(epostSkillOutput, "ePost sample output");
 });
 
-// Temporarily disabled - provenance text translated to Russian
-test.skip("delivery-tracking docs pin sample provenance to the verified smoke-test date and invoice", () => {
+// Временно отключено — текст происхождения переведён на русский
+test.skip("документация delivery-tracking привязывает происхождение примера к проверенной дате smoke-test и накладной", () => {
 //   const expectedProvenance = readJson(
 //     path.join("scripts", "fixtures", "delivery-tracking-public-provenance.json"),
 //   );
@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-07-03");
-  assert.equal(todoStatus.round, 74);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 74\)/);
+  assert.equal(todoStatus.round, 75);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 75\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -3844,7 +3844,7 @@ test("target- и transition- и legacy- как описательные слов
   assert.match(lottoSkill, /целевой кандидат/);
 
   assert.doesNotMatch(daisoSkill, /target-трек/);
-  assert.match(daisoSkill, /целевой трек/);
+  assert.match(daisoSkill, /целевое направление/);
 
   assert.doesNotMatch(fineDustSkill, /legacy\/transition.*утилит/i);
   assert.match(fineDustSkill, /устаревш.*переходн.*утилит/i);
@@ -4807,7 +4807,7 @@ test("раунд 72: русификация skill/package, категории н
 
   const delivery = read(path.join("delivery-tracking", "SKILL.md"));
   assert.doesNotMatch(delivery, /сохранения cookie/);
-  assert.match(delivery, /сохранения (?:куки|файла cookie)/);
+  assert.match(delivery, /сохранения файла куки/);
 
   const blueRibbon = read(path.join("blue-ribbon-nearby", "SKILL.md"));
   assert.doesNotMatch(blueRibbon, /\(ribbon\)/);
@@ -4946,4 +4946,60 @@ test("раунд 74: package README и корневой README не возвра
   const rplReadme = read(path.join("packages", "rpl-results", "README.md"));
   assert.doesNotMatch(rplReadme, /Данные парсятся/);
   assert.match(rplReadme, /Данные разбираются/);
+});
+
+test("раунд 75: package README, SKILL.md и тесты не возвращают старые гибриды", () => {
+  const yandexMarketReadme = read(path.join("packages", "yandex-market-search", "README.md"));
+  assert.doesNotMatch(yandexMarketReadme, /серверно отрендеренных/);
+  assert.doesNotMatch(yandexMarketReadme, /серверно отрендеренным/);
+  assert.doesNotMatch(yandexMarketReadme, /трекинг-параметров/);
+  assert.match(yandexMarketReadme, /сгенерированных на сервере/);
+  assert.match(yandexMarketReadme, /параметров отслеживания/);
+
+  const kinopoiskReadme = read(path.join("packages", "kinopoisk-search", "README.md"));
+  assert.doesNotMatch(kinopoiskReadme, /Парсинг HTML-страниц/);
+  assert.match(kinopoiskReadme, /Разбор HTML-страниц/);
+
+  const stolotoReadme = read(path.join("packages", "stoloto-lotto", "README.md"));
+  assert.doesNotMatch(stolotoReadme, /Парсинг HTML-страниц/);
+  assert.match(stolotoReadme, /Разбор HTML-страниц/);
+
+  const moexReadme = read(path.join("packages", "moex-shares", "README.md"));
+  assert.doesNotMatch(moexReadme, /Эндпоинт акций/);
+  assert.match(moexReadme, /Конечная точка акций/);
+
+  const tossReadme = read(path.join("packages", "toss-securities", "README.md"));
+  assert.doesNotMatch(tossReadme, /исходный CLI/);
+  assert.doesNotMatch(tossReadme, /исходного CLI/);
+  assert.doesNotMatch(tossReadme, /пройти логин/);
+  assert.match(tossReadme, /исходный интерфейс командной строки/);
+  assert.match(tossReadme, /выполнить вход/);
+
+  const daisoSkill = read(path.join("daiso-product-search", "SKILL.md"));
+  assert.doesNotMatch(daisoSkill, /целевой трек/);
+  assert.match(daisoSkill, /целевое направление/);
+
+  const deliverySkill = read(path.join("delivery-tracking", "SKILL.md"));
+  assert.doesNotMatch(deliverySkill, /JSON API \/ HTML-форма \/ CLI/);
+  assert.doesNotMatch(deliverySkill, /сохранения файла cookie/);
+  assert.match(deliverySkill, /JSON API \/ HTML-форма \/ командная строка/);
+  assert.match(deliverySkill, /сохранения файла куки/);
+
+  const mchsSkill = read(path.join("mchs-storm-warnings", "SKILL.md"));
+  assert.doesNotMatch(mchsSkill, /CMS-шаблон/);
+  assert.match(mchsSkill, /шаблон CMS/);
+
+  const kakaotalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  assert.doesNotMatch(kakaotalkSkill, /\*\*Full Disk Access \(Полный доступ к диску\)\*\*/);
+  assert.doesNotMatch(kakaotalkSkill, /\*\*Accessibility \(Универсальный доступ\)\*\*/);
+  assert.match(kakaotalkSkill, /\*\*Полный доступ к диску \(Full Disk Access\)\*\*/);
+  assert.match(kakaotalkSkill, /\*\*Универсальный доступ \(Accessibility\)\*\*/);
+
+  const zipcodeSkill = read(path.join("zipcode-search", "SKILL.md"));
+  assert.doesNotMatch(zipcodeSkill, /CLI-обёртках/);
+  assert.match(zipcodeSkill, /обёртках командной строки/);
+
+  const rootReadme = read("README.md");
+  assert.doesNotMatch(rootReadme, /серверно отрендеренные страницы Яндекс Маркета/);
+  assert.match(rootReadme, /сгенерированные на сервере.*Яндекс Маркета|Яндекс Маркета.*сгенерированные на сервере/);
 });
