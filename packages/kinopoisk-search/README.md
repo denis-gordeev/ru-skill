@@ -18,8 +18,8 @@
 
 - Страница фильма: `https://www.kinopoisk.ru/film/{id}/`
 - Поиск фильмов: `https://www.kinopoisk.ru/index/standalone_search/?query={query}`
-- Это публичные веб-страницы Кинопоиска, без отдельного REST API.
-- Разбор HTML-страниц через извлечение регулярными выражениями, аналогично `stoloto-lotto` и `postcalc-postcodes`.
+- Это публичные веб-страницы Кинопоиска, без отдельного REST API (API архитектурного стиля REST).
+- Разбор страниц HTML через извлечение регулярными выражениями, аналогично `stoloto-lotto` и `postcalc-postcodes`.
 
 ## Установка
 

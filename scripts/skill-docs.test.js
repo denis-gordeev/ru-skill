@@ -755,8 +755,8 @@ test.skip("документация delivery-tracking привязывает п�
 //   const featureDoc = read(path.join("docs", "features", "delivery-tracking.md"));
 // 
 //   for (const [docLabel, doc] of [
-//     ["skill doc", skill],
-//     ["feature doc", featureDoc],
+//     ["документ навыка", skill],
+//     ["документ функции", featureDoc],
 //   ]) {
 //     assertSampleProvenance(doc, "Пример вывода CJ", expectedProvenance.cj, docLabel);
 //     assertSampleProvenance(doc, "Пример вывода 우체국", expectedProvenance.epost, docLabel);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-03");
-  assert.equal(todoStatus.round, 75);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 75\)/);
+  assert.equal(todoStatus.date, "2026-07-04");
+  assert.equal(todoStatus.round, 77);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 77\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -2947,7 +2947,7 @@ test("package README используют русский вместо HTML scrap
 
   assert.doesNotMatch(kleagueReadme, /HTML scraping/);
   assert.doesNotMatch(kleagueReadme, /HTML crawling/);
-  assert.match(kleagueReadme, /HTML-разбор/);
+  assert.match(kleagueReadme, /разбор HTML/);
 });
 
 test("описания тестов в skill-docs.test.js на русском, а не на английском", () => {
@@ -4935,7 +4935,7 @@ test("раунд 74: package README и корневой README не возвра
 
   const kleagueReadme = read(path.join("packages", "kleague-results", "README.md"));
   assert.doesNotMatch(kleagueReadme, /HTML-парсинг/);
-  assert.match(kleagueReadme, /HTML-разбор/);
+  assert.match(kleagueReadme, /разбор HTML/);
 
   const proxyReadme = read(path.join("packages", "k-skill-proxy", "README.md"));
   assert.doesNotMatch(proxyReadme, /других адаптеров/);
@@ -4958,11 +4958,11 @@ test("раунд 75: package README, SKILL.md и тесты не возвращ�
 
   const kinopoiskReadme = read(path.join("packages", "kinopoisk-search", "README.md"));
   assert.doesNotMatch(kinopoiskReadme, /Парсинг HTML-страниц/);
-  assert.match(kinopoiskReadme, /Разбор HTML-страниц/);
+  assert.match(kinopoiskReadme, /Разбор страниц HTML/);
 
   const stolotoReadme = read(path.join("packages", "stoloto-lotto", "README.md"));
   assert.doesNotMatch(stolotoReadme, /Парсинг HTML-страниц/);
-  assert.match(stolotoReadme, /Разбор HTML-страниц/);
+  assert.match(stolotoReadme, /Разбор страниц HTML/);
 
   const moexReadme = read(path.join("packages", "moex-shares", "README.md"));
   assert.doesNotMatch(moexReadme, /Эндпоинт акций/);

@@ -8,7 +8,7 @@
 npm install mchs-storm-warnings
 ```
 
-## Публичные поверхности
+## Публичные интерфейсы
 
 - Индекс предупреждений региона: `https://{region}.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya`
 - Страница отдельного предупреждения: `https://{region}.mchs.gov.ru/.../shtormovye-i-ekstrennye-preduprezhdeniya/{warning_id}`

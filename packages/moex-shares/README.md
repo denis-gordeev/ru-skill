@@ -8,7 +8,7 @@
 npm install moex-shares
 ```
 
-## Официальные поверхности
+## Официальные интерфейсы
 
 - Обзор ISS: `https://www.moex.com/a8531`
 - Конечная точка акций: `https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.json`
@@ -42,5 +42,5 @@ const { getSecurityOverview, listShares } = require("moex-shares");
 ## Примечания
 
 - ISS API доступен только для чтения и публично доступен без секретов.
-- Данные по умолчанию приходят с задержкой, как на публичной поверхности MOEX ISS.
+- Данные по умолчанию приходят с задержкой, как на публичном интерфейсе MOEX ISS.
 - Пакет нормализует только акции рынка `stock/shares`, без облигаций, валюты и срочного рынка.

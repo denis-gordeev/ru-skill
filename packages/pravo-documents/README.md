@@ -8,7 +8,7 @@
 npm install pravo-documents
 ```
 
-## Публичные поверхности
+## Публичные интерфейсы
 
 - Конечная точка поиска: `https://publication.pravo.gov.ru/api/Documents`
 - Карточка документа: `https://publication.pravo.gov.ru/api/Document?eoNumber=<number>`
