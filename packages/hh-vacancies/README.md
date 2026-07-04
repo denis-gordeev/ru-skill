@@ -35,7 +35,7 @@ const {
 })();
 ```
 
-## API-справочник
+## Справочник API
 
 ### `getAreaOverview(areaId)`
 

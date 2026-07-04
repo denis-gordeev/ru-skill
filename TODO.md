@@ -4,33 +4,37 @@
 
 Исторические сводки раундов ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-07-03 (раунд 75)
+## Статус на 2026-07-04 (раунд 76)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой английского жаргона в `package README`: `серверно отрендеренных страницах` → `страницах, сгенерированных на сервере` и `публичным серверно отрендеренным HTML` → `публичным HTML, сгенерированным на сервере` (`packages/yandex-market-search/README.md`), `трекинг-параметров` → `параметров отслеживания` (`packages/yandex-market-search/README.md`), `Парсинг HTML-страниц` → `Разбор HTML-страниц` (`packages/kinopoisk-search/README.md`, `packages/stoloto-lotto/README.md`), `Эндпоинт акций` → `Конечная точка акций` (`packages/moex-shares/README.md`), `исходный CLI` / `исходного CLI` → `исходный интерфейс командной строки` / `исходного интерфейса командной строки`, `пройти логин` → `выполнить вход` (`packages/toss-securities/README.md`).
-- Устранён следующий слой английского жаргона в корневых `SKILL.md`: `целевой трек` → `целевое направление` (`daiso-product-search/SKILL.md`), `CLI` → `командная строка` (`delivery-tracking/SKILL.md`), `cookie` → `куки` (`delivery-tracking/SKILL.md`), `CMS-шаблон` → `шаблон CMS` (`mchs-storm-warnings/SKILL.md`), `CLI-обёртках` → `обёртках командной строки` (`zipcode-search/SKILL.md`), английский-первый порядок → русский-первый порядок для разрешений macOS (`kakaotalk-mac/SKILL.md`, 4 вхождения).
-- Переведены английские комментарии в `scripts/skill-docs.test.js` (6 комментариев и 1 название пропущенного теста).
-- Корневой `README.md`: описание `yandex-market-search` в таблице навыков и секции миграции синхронизировано с новым форматулировкой.
+- Устранён следующий слой английского жаргона в `package README`: `## API-справочник` → `## Справочник API` (16 файлов), `CI` → `система непрерывной интеграции (CI)` (5 файлов), `permission grant/revoke` → `предоставление/отзыв разрешений` (`packages/toss-securities/README.md`), `устаревший сценарий fine-dust` → `` устаревший сценарий `fine-dust` `` (`packages/k-skill-proxy/README.md`, 2 вхождения), `JS-рендеринг` → `рендеринг JavaScript (JS)` (`packages/rpl-results/README.md`), `OSM node ID` → `идентификатор узла OSM` (`packages/osm-nearby/README.md`), `OSM element ID` → `идентификатор элемента OSM` (`packages/osm-nearby/README.md`), `Без антибота` → `Без защиты от роботов`, `CAPTCHA` → `капча` (`packages/zoon-nearby/README.md`).
+- Устранён следующий слой английского жаргона в корневых `SKILL.md`: `браузерной автоматизации` → `автоматизации через обозреватель` (`yandex-market-search/SKILL.md`), `CMS` → `системы управления контентом (CMS)` (`mchs-storm-warnings/SKILL.md`), `CI-среда` → `среда непрерывной интеграции (CI)` (`hwp/SKILL.md`), `# CLI для KakaoTalk` → `# Командная строка KakaoTalk` (`kakaotalk-mac/SKILL.md`), `dotenv` → `файл окружения (dotenv)` (`seoul-subway-arrival/SKILL.md`, `k-skill-setup/SKILL.md`), избыточные `(SSR)` → только при первом упоминании (`zoon-nearby/SKILL.md`, 3 вхождения), `(CSR)` → убрано (`yandex-market-search/SKILL.md`), описание `yandex-market-search/SKILL.md` исправлено с некорректного порядка слов.
+- Переведены английские метки и диагностические строки в `scripts/skill-docs.test.js`: `skill doc`/`feature doc` → `документ навыка`/`документ функции` (4 вхождения), `CJ sample output`/`ePost sample output` → `пример вывода CJ`/`пример вывода ePost` (6 вхождений), `feature doc smoke snapshot`/`package README smoke snapshot` → `проверочный пример документации функции`/`проверочный пример README пакета`, `scheme` → `схему заголовков`.
+- Регрессионные тесты обновлены под новую терминологию.
 
-## Выполнено в этом раунде (раунд 75)
+## Выполнено в этом раунде (раунд 76)
 
-- [x] `packages/yandex-market-search/README.md`: `серверно отрендеренных страницах` → `страницах, сгенерированных на сервере`, `публичным серверно отрендеренным HTML` → `публичным HTML, сгенерированным на сервере`, `трекинг-параметров` → `параметров отслеживания`.
-- [x] `packages/kinopoisk-search/README.md`: `Парсинг HTML-страниц` → `Разбор HTML-страниц`.
-- [x] `packages/stoloto-lotto/README.md`: `Парсинг HTML-страниц` → `Разбор HTML-страниц`.
-- [x] `packages/moex-shares/README.md`: `Эндпоинт акций` → `Конечная точка акций`.
-- [x] `packages/toss-securities/README.md`: `исходный CLI` → `исходный интерфейс командной строки`, `исходного CLI` → `исходного интерфейса командной строки`, `пройти логин` → `выполнить вход`.
-- [x] `daiso-product-search/SKILL.md`: `целевой трек` → `целевое направление`.
-- [x] `delivery-tracking/SKILL.md`: `CLI` → `командная строка`, `cookie` → `куки`.
-- [x] `mchs-storm-warnings/SKILL.md`: `CMS-шаблон` → `шаблон CMS`.
-- [x] `kakaotalk-mac/SKILL.md`: порядок разрешений macOS → русский-первый (4 вхождения).
-- [x] `zipcode-search/SKILL.md`: `CLI-обёртках` → `обёртках командной строки`.
-- [x] `scripts/skill-docs.test.js`: 6 английских комментариев и 1 название пропущенного теста переведены на русский.
-- [x] `README.md`: описание `yandex-market-search` синхронизировано с новой формулировкой (таблица навыков + секция миграции).
+- [x] `packages/*/README.md`: `## API-справочник` → `## Справочник API` (16 файлов).
+- [x] `packages/stoloto-lotto/README.md`, `packages/kinopoisk-search/README.md`, `packages/postcalc-postcodes/README.md`, `packages/mchs-storm-warnings/README.md`, `packages/pravo-documents/README.md`: `CI` → `система непрерывной интеграции (CI)`.
+- [x] `packages/toss-securities/README.md`: `permission grant/revoke` → `предоставление/отзыв разрешений`.
+- [x] `packages/k-skill-proxy/README.md`: `fine-dust` в прозе → `` `fine-dust` `` (2 вхождения).
+- [x] `packages/rpl-results/README.md`: `JS-рендеринг` → `рендеринг JavaScript (JS)`.
+- [x] `packages/osm-nearby/README.md`: `OSM node ID` → `идентификатор узла OSM`, `OSM element ID` → `идентификатор элемента OSM`.
+- [x] `packages/zoon-nearby/README.md`: `Без антибота` → `Без защиты от роботов`, `CAPTCHA` → `капча`, `(SSR)` расширено с `Server-Side Rendering`.
+- [x] `yandex-market-search/SKILL.md`: `браузерной автоматизации` → `автоматизации через обозреватель`, `(CSR)` убрано, описание исправлено.
+- [x] `mchs-storm-warnings/SKILL.md`: `шаблон CMS` → `шаблон системы управления контентом (CMS)`.
+- [x] `hwp/SKILL.md`: `CI-среда` → `среда непрерывной интеграции (CI)`.
+- [x] `kakaotalk-mac/SKILL.md`: `# CLI для KakaoTalk на macOS` → `# Командная строка KakaoTalk на macOS`.
+- [x] `seoul-subway-arrival/SKILL.md`, `k-skill-setup/SKILL.md`: `dotenv` → `файл окружения (dotenv)`.
+- [x] `zoon-nearby/SKILL.md`: избыточные `(SSR)` убраны после первого упоминания (3 вхождения).
+- [x] `scripts/skill-docs.test.js`: английские метки и диагностические строки переведены (10 мест).
+- [x] Регрессионные тесты обновлены под новую терминологию.
+- [x] `npm run ci` проходит полностью.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим перечнем задач.
 
 ## Новые пункты плана
 
-- [ ] Провести следующий слой аудита оставшихся `package README` на гибриды и устаревшие формулировки, которые ещё могли остаться.
+- [ ] Провести следующий слой аудита оставшихся `package README` на гибриды и устаревшие формулировки, которые ещё могли остаться (в т.ч. `поверхность` как калка, `REST API` без раскрытия, `JSON-` и `HTML-` гибриды).
 - [ ] Продолжить точечный аудит `SKILL.md` на англоязычные технические ярлыки в прозе, включая менее очевидные гибриды.
 - [ ] Проверить комментарии в оставшихся `scripts/*.js` и `scripts/*.sh` на английский язык.
 

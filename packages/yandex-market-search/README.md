@@ -43,7 +43,7 @@ console.log(product.title);
 // "Смартфон Apple iPhone 16 256GB, Белый (White), nano SIM + eSIM (Восстановленный)"
 ```
 
-## API-справочник
+## Справочник API
 
 ### `searchProducts(query, opts?)`
 

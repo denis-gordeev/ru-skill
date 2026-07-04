@@ -39,7 +39,7 @@ main().catch((error) => {
 });
 ```
 
-## API-справочник
+## Справочник API
 
 - `getLatestRound()`
 - `getResult(round)`

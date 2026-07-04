@@ -677,8 +677,8 @@ test("опубликованные примеры delivery-tracking фиксир
   }
 
   for (const [label, doc] of [
-    ["skill doc", skill],
-    ["feature doc", featureDoc],
+    ["документ навыка", skill],
+    ["документ функции", featureDoc],
   ]) {
     assert.deepEqual(
       extractQuotedEntries(findPrintedObjectBlock(doc, "cj"), 4),
@@ -724,8 +724,8 @@ test("документация delivery-tracking публикует соглас
   const epostFeatureOutput = findJsonFenceAfterLabel(featureDoc, "Пример вывода Почтовой службы Кореи");
 
   for (const [docLabel, doc] of [
-    ["skill doc", skill],
-    ["feature doc", featureDoc],
+    ["документ навыка", skill],
+    ["документ функции", featureDoc],
   ]) {
     for (const [carrier, label] of [
       ["cj", "Пример вывода CJ"],
@@ -738,12 +738,12 @@ test("документация delivery-tracking публикует соглас
       );
     }
   }
-  assert.deepEqual(cjSkillOutput, cjFeatureOutput, "CJ sample output должен оставаться синхронизированным между документами");
-  assert.deepEqual(epostSkillOutput, epostFeatureOutput, "ePost sample output должен оставаться синхронизированным между документами");
-  assert.deepEqual(cjSkillOutput, expectedSamples.cj, "CJ sample output должен оставаться привязанным к проверенному публичному фикстуру");
-  assert.deepEqual(epostSkillOutput, expectedSamples.epost, "ePost sample output должен оставаться привязанным к проверенному публичному фикстуру");
-  assertSanitizedPublicOutput(cjSkillOutput, "CJ sample output");
-  assertSanitizedPublicOutput(epostSkillOutput, "ePost sample output");
+  assert.deepEqual(cjSkillOutput, cjFeatureOutput, "пример вывода CJ должен оставаться синхронизированным между документами");
+  assert.deepEqual(epostSkillOutput, epostFeatureOutput, "пример вывода ePost должен оставаться синхронизированным между документами");
+  assert.deepEqual(cjSkillOutput, expectedSamples.cj, "пример вывода CJ должен оставаться привязанным к проверенному публичному фикстуру");
+  assert.deepEqual(epostSkillOutput, expectedSamples.epost, "пример вывода ePost должен оставаться привязанным к проверенному публичному фикстуру");
+  assertSanitizedPublicOutput(cjSkillOutput, "пример вывода CJ");
+  assertSanitizedPublicOutput(epostSkillOutput, "пример вывода ePost");
 });
 
 // Временно отключено — текст происхождения переведён на русский
@@ -1020,14 +1020,14 @@ test("feature doc kakao-bar-nearby фиксирует проверочный п�
   const featureDoc = read(path.join("docs", "features", "kakao-bar-nearby.md"));
   const smoke = findJsonFenceAfterLabel(featureDoc, "## Проверочный пример");
 
-  assertKakaoBarNearbySadangSmokeSnapshot(smoke, "feature doc smoke snapshot");
+  assertKakaoBarNearbySadangSmokeSnapshot(smoke, "проверочный пример документации функции");
 });
 
 test("проверочный пример в package README kakao-bar-nearby совпадает с выводом sadang от 2026-03-29", () => {
   const packageReadme = read(path.join("packages", "kakao-bar-nearby", "README.md"));
   const smoke = findJsonFenceAfterLabel(packageReadme, "## Проверочный пример");
 
-  assertKakaoBarNearbySadangSmokeSnapshot(smoke, "package README smoke snapshot");
+  assertKakaoBarNearbySadangSmokeSnapshot(smoke, "проверочный пример README пакета");
 });
 
 test("исходный код kakao-bar-nearby использует русские сообщения об ошибках", () => {
@@ -2351,7 +2351,7 @@ test("все файлы SKILL.md используют каноничную ру�
   const pkgOsmSkill = read(path.join("packages", "osm-nearby", "SKILL.md"));
   assert.ok(
     extractSecondLevelHeadings(pkgOsmSkill).includes("Что делает навык"),
-    "packages/osm-nearby/SKILL.md должен иметь каноничный заголовок scheme",
+    "packages/osm-nearby/SKILL.md должен иметь каноничную схему заголовков",
   );
 
   const pkgZoonSkill = read(path.join("packages", "zoon-nearby", "SKILL.md"));
@@ -2992,7 +2992,7 @@ test("feature docs не содержат заголовок ## API без рус
     assert.doesNotMatch(
       content,
       /^## API$/m,
-      `docs/features/${file} не должен содержать голый заголовок "## API" — используйте "## API-справочник"`,
+      `docs/features/${file} не должен содержать голый заголовок "## API" — используйте "## Справочник API"`,
     );
   }
 });
@@ -3185,7 +3185,7 @@ test("user-facing surfaces не содержат английский жарго
   assert.match(pythonReadme, /Каркас/);
 
   assert.doesNotMatch(zoonReadme, /anti-bot/);
-  assert.match(zoonReadme, /антибота/);
+  assert.match(zoonReadme, /защиты от роботов/);
 
   assert.doesNotMatch(zoonFeature, /anti-bot/);
   assert.match(zoonFeature, /антибота/);
@@ -3467,7 +3467,7 @@ test("SSR-терминология нормализована: серверно 
   assert.match(zoonPkgSkill, /серверн.*(?:отрисовк|рендеринг).*?\(SSR\)|серверно отрендерен/);
 
   assert.doesNotMatch(zoonReadme, /SSR-страницы/);
-  assert.match(zoonReadme, /серверн.* рендеринг.* \(SSR\)|серверно отрендерен/);
+  assert.match(zoonReadme, /серверн.* рендеринг.* \(SSR|серверно отрендерен/);
 
   assert.doesNotMatch(zoonFeature, /SSR-страницы/);
   assert.match(zoonFeature, /серверн.* рендеринг.* \(SSR\)|серверно отрендерен/);
@@ -3559,7 +3559,7 @@ test("английские h1 в SKILL.md legacy-навыков переведе
   const kakaotalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
   const tossSkill = read(path.join("toss-securities", "SKILL.md"));
   assert.doesNotMatch(kakaotalkSkill, /^# KakaoTalk Mac CLI$/m);
-  assert.match(kakaotalkSkill, /^# CLI для KakaoTalk на macOS$/m);
+  assert.match(kakaotalkSkill, /^# Командная строка KakaoTalk на macOS$/m);
   assert.doesNotMatch(tossSkill, /^# Toss Securities$/m);
   assert.match(tossSkill, /^# Брокерские данные Toss Securities$/m);
 });
@@ -4052,7 +4052,7 @@ test("packages/k-skill-proxy/README.md не содержит legacy- compounds �
   assert.match(readme, /устаревший сценарий/);
 
   assert.doesNotMatch(readme, /legacy fine-dust/);
-  assert.match(readme, /устаревший сценарий fine-dust/);
+  assert.match(readme, /устаревший сценарий `fine-dust`/);
 
   assert.doesNotMatch(readme, /legacy-файл/);
   assert.match(readme, /устаревший файл/);
@@ -4398,7 +4398,7 @@ test("политика секретов и навык настройки исп�
   assert.match(securityDoc, /простой dotenv/);
 
   assert.doesNotMatch(kSetupSkill, /plain dotenv/);
-  assert.match(kSetupSkill, /простой dotenv/);
+  assert.match(kSetupSkill, /простого файла окружения \(dotenv\)/);
 });
 
 test("fine-dust-location/SKILL.md не содержит skill-level copy", () => {
@@ -4987,7 +4987,7 @@ test("раунд 75: package README, SKILL.md и тесты не возвращ�
 
   const mchsSkill = read(path.join("mchs-storm-warnings", "SKILL.md"));
   assert.doesNotMatch(mchsSkill, /CMS-шаблон/);
-  assert.match(mchsSkill, /шаблон CMS/);
+  assert.match(mchsSkill, /шаблон системы управления контентом \(CMS\)/);
 
   const kakaotalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
   assert.doesNotMatch(kakaotalkSkill, /\*\*Full Disk Access \(Полный доступ к диску\)\*\*/);

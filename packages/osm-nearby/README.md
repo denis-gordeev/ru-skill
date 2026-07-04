@@ -27,11 +27,11 @@ const restaurants = await searchRestaurants(55.7558, 37.6173, {
   limit: 10
 });
 
-// Детали конкретного заведения по OSM node ID
+// Детали конкретного заведения по идентификатору узла OSM
 const details = await getPlaceDetails(1234567890);
 ```
 
-## API-справочник
+## Справочник API
 
 ### `searchNearby(lat, lon, options?)`
 
@@ -61,7 +61,7 @@ const details = await getPlaceDetails(1234567890);
 
 ### `getPlaceDetails(osmNodeId)`
 
-Получение деталей конкретного заведения по OSM element ID.
+Получение деталей конкретного заведения по идентификатору элемента OSM.
 
 **Возвращает:** Объект заведения или `null`, если не найден.
 

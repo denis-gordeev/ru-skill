@@ -47,7 +47,7 @@ const trips = await searchTrips("c146", "c159", {
 // => { search, segments, intervalSegments, pagination }
 ```
 
-## API-справочник
+## Справочник API
 
 ### `searchStations(query, opts?)`
 
