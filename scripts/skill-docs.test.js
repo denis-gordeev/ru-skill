@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-07-05");
-  assert.equal(todoStatus.round, 78);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 78\)/);
+  assert.equal(todoStatus.round, 79);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 79\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -3467,13 +3467,13 @@ test("SSR-терминология нормализована: серверно 
   assert.match(zoonPkgSkill, /серверн.*(?:отрисовк|рендеринг).*?\(SSR\)|серверно отрендерен/);
 
   assert.doesNotMatch(zoonReadme, /SSR-страницы/);
-  assert.match(zoonReadme, /серверн.* рендеринг.* \(SSR|серверно отрендерен/);
+  assert.match(zoonReadme, /серверн.* отрисовк.* \(SSR|серверно отрендерен/);
 
   assert.doesNotMatch(zoonFeature, /SSR-страницы/);
-  assert.match(zoonFeature, /серверн.* рендеринг.* \(SSR\)|серверно отрендерен/);
+  assert.match(zoonFeature, /серверн.* отрисовк.* \(SSR\)|серверно отрендерен/);
 
   assert.doesNotMatch(ymFeature, /SSR-вёрстка/);
-  assert.match(ymFeature, /серверн.* рендеринг.* \(SSR\)|серверно отрендерен/);
+  assert.match(ymFeature, /серверн.* отрисовк.* \(SSR\)|серверно отрендерен/);
 });
 
 test("proxy как описательное слово заменён на прокси в user-facing документации", () => {
@@ -4004,10 +4004,10 @@ test("README.md пользовательские секции не содерж�
   assert.match(readme, /навыков бронирования/);
 });
 
-test("docs/sources.md не содержит server-side rendered (заменено на серверно отрендеренный)", () => {
+test("docs/sources.md не содержит server-side rendered (заменено на сгенерированный на сервере)", () => {
   const sources = read(path.join("docs", "sources.md"));
   assert.doesNotMatch(sources, /server-side rendered/);
-  assert.match(sources, /серверно отрендеренный/);
+  assert.match(sources, /сгенерированный на сервере/);
 });
 
 test("docs/features/delivery-tracking.md не содержит Endpoint (заменено на Эндпоинт)", () => {
@@ -4145,7 +4145,7 @@ test("README.md не содержит английского жаргона meta
   assert.match(readme, /проверочными примерами/);
   assert.doesNotMatch(readme, /credential\/proxy документам/);
   assert.doesNotMatch(readme, /publish\/release surfaces/);
-  assert.match(readme, /поверхностях публикации|поверхностям публикации\/релиза/);
+  assert.match(readme, /интерфейсах публикации|интерфейсам публикации\/релиза/);
   assert.doesNotMatch(readme, /Python helper messages/);
   assert.match(readme, /вспомогательные сообщения Python/);
   assert.doesNotMatch(readme, /helper JS utilities/);
@@ -4168,8 +4168,8 @@ test("docs/roadmap.md не содержит английского жаргон�
   assert.match(roadmap, /вспомогательная\/runtime-очистка/);
   assert.doesNotMatch(roadmap, /package metadata descriptions/);
   assert.match(roadmap, /метаданные пакетов/);
-  assert.doesNotMatch(roadmap, /helper-поверхност/);
-  assert.match(roadmap, /вспомогательных поверхностях/);
+  assert.doesNotMatch(roadmap, /helper-поверхност|helper-интерфейс/);
+  assert.match(roadmap, /вспомогательных интерфейсах/);
 });
 
 test("docs/features/kleague-results.md не содержит merge", () => {
@@ -4736,7 +4736,7 @@ test("верхнеуровневые документы не возвращаю�
   assert.match(readme, /артефакты выполнения контура настройки/);
 
   assert.doesNotMatch(readme, /shell\/infrastructure/);
-  assert.match(readme, /поверхности оболочки и инфраструктуры/);
+  assert.match(readme, /интерфейсы оболочки и инфраструктуры/);
 
   assert.doesNotMatch(releasing, /Changesets для npm/);
   assert.match(releasing, /файлы `?\.changeset`? для npm/);
@@ -4930,7 +4930,7 @@ test("раунд 74: package README и корневой README не возвра
   const zoonReadme = read(path.join("packages", "zoon-nearby", "README.md"));
   assert.doesNotMatch(zoonReadme, /Серверно отрендеренные страницы \(SSR\)/);
   assert.doesNotMatch(zoonReadme, /парсится напрямую/);
-  assert.match(zoonReadme, /Серверный рендеринг \(SSR\)/);
+  assert.match(zoonReadme, /Серверная отрисовка \(SSR\)/);
   assert.match(zoonReadme, /напрямую разбирается/);
 
   const kleagueReadme = read(path.join("packages", "kleague-results", "README.md"));
