@@ -870,7 +870,7 @@ test("навык kleague-results документирует официальны
     assert.match(doc, /FC서울|서울 이랜드|팀 코드/);
     assert.match(doc, /https:\/\/www\.kleague\.com\/getScheduleList\.do/);
     assert.match(doc, /https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
-    assert.match(doc, /공식 JSON|공식 API|공식 표면|официальный JSON|официальный API|официальные поверхности API/u);
+    assert.match(doc, /공식 JSON|공식 API|공식 표면|официальный JSON|официальный API|официальные интерфейсы API/u);
     assert.match(doc, /현재 순위|текущую турнирную таблицу|standings/i);
     assert.match(doc, /kleague-results|K리그 결과 조회|Результаты K League/u);
   }
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-04");
-  assert.equal(todoStatus.round, 77);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 77\)/);
+  assert.equal(todoStatus.date, "2026-07-05");
+  assert.equal(todoStatus.round, 78);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 78\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -2239,7 +2239,7 @@ test("навык daiso-product-search документирует сценари�
   assert.match(featureDoc, /lookupStoreProductAvailability/);
   assert.match(featureDoc, /selStrPkupStck/);
   assert.match(featureDoc, /SearchGoods/);
-  assert.match(featureDoc, /официальн.*поверхност.*не.*расположен/i);
+  assert.match(featureDoc, /официальн.*интерфейс.*не.*расположен/i);
 });
 
 test("навык delivery-tracking документирует сценарий адаптеров перевозчиков CJ и ePost с граничным примечанием", () => {
@@ -2918,7 +2918,7 @@ test("feature docs используют русский вместо англий
   assert.doesNotMatch(srtFeature, /sold out/);
 
   assert.doesNotMatch(kleagueFeature, /HTML scraping/);
-  assert.match(kleagueFeature, /HTML-парсинг/);
+  assert.match(kleagueFeature, /HTML-разбор/);
 });
 
 test("верхнеуровневая документация использует русский вместо английского жаргона: lookup, real-time, nearby-", () => {
@@ -3136,7 +3136,7 @@ test("docs/brand-inventory.md использует русский вместо �
   assert.doesNotMatch(brand, /Public proxy URL/);
   assert.doesNotMatch(brand, /legacy endpoint/);
   assert.doesNotMatch(brand, /legacy-поверхностей/);
-  assert.match(brand, /устаревших поверхностей/);
+  assert.match(brand, /устаревших интерфейсов/);
   assert.match(brand, /Публичный URL прокси/);
   assert.match(brand, /устаревшая конечная точка/);
 });
@@ -3505,7 +3505,7 @@ test("proxy как описательное слово заменён на пр�
   assert.match(install, /прокси-слоя/);
   assert.match(setup, /совместимый прокси/);
   assert.match(security, /совместимого прокси/);
-  assert.match(sources, /прокси-поверхност/);
+  assert.match(sources, /прокси-интерфейс/);
 });
 
 test("workflow как описательное слово заменён на процесс/сценарий в user-facing документации", () => {
@@ -3916,7 +3916,7 @@ test("legacy- compounds заменены на устаревш* в пользо�
   assert.match(sources, /устаревшей документации/);
   assert.match(install, /устаревшее имя/);
   assert.match(install, /устаревших пакетов npm|устаревших npm-пакетов/);
-  assert.match(brandInventory, /устаревших поверхностей/);
+  assert.match(brandInventory, /устаревших интерфейсов/);
   assert.match(booking, /устаревших навыков/);
 });
 
@@ -5002,4 +5002,76 @@ test("раунд 75: package README, SKILL.md и тесты не возвращ�
   const rootReadme = read("README.md");
   assert.doesNotMatch(rootReadme, /серверно отрендеренные страницы Яндекс Маркета/);
   assert.match(rootReadme, /сгенерированные на сервере.*Яндекс Маркета|Яндекс Маркета.*сгенерированные на сервере/);
+});
+
+test("раунд 78: пользовательские интерфейсные документы не содержат «поверхность» как калку surface", () => {
+  const sources = read(path.join("docs", "sources.md"));
+  const brand = read(path.join("docs", "brand-inventory.md"));
+  const booking = read(path.join("docs", "booking-replacements.md"));
+  const proxyFeature = read(path.join("docs", "features", "k-skill-proxy.md"));
+  const kakaoBarFeature = read(path.join("docs", "features", "kakao-bar-nearby.md"));
+  const daisoFeature = read(path.join("docs", "features", "daiso-product-search.md"));
+  const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
+  const blueRibbonFeature = read(path.join("docs", "features", "blue-ribbon-nearby.md"));
+  const kleagueFeature = read(path.join("docs", "features", "kleague-results.md"));
+  const ktxFeature = read(path.join("docs", "features", "ktx-booking.md"));
+  const rplFeature = read(path.join("docs", "features", "rpl-results.md"));
+  const stolotoFeature = read(path.join("docs", "features", "stoloto-lotto.md"));
+
+  const tossSkill = read(path.join("toss-securities", "SKILL.md"));
+  const ktxSkill = read(path.join("ktx-booking", "SKILL.md"));
+  const kleagueSkill = read(path.join("kleague-results", "SKILL.md"));
+  const kakaoBarSkill = read(path.join("kakao-bar-nearby", "SKILL.md"));
+
+  for (const [label, doc] of [
+    ["docs/sources.md", sources],
+    ["docs/brand-inventory.md", brand],
+    ["docs/booking-replacements.md", booking],
+    ["docs/features/k-skill-proxy.md", proxyFeature],
+    ["docs/features/kakao-bar-nearby.md", kakaoBarFeature],
+    ["docs/features/daiso-product-search.md", daisoFeature],
+    ["docs/features/yandex-market-search.md", ymFeature],
+    ["docs/features/blue-ribbon-nearby.md", blueRibbonFeature],
+    ["docs/features/kleague-results.md", kleagueFeature],
+    ["docs/features/ktx-booking.md", ktxFeature],
+    ["docs/features/rpl-results.md", rplFeature],
+    ["docs/features/stoloto-lotto.md", stolotoFeature],
+    ["toss-securities/SKILL.md", tossSkill],
+    ["ktx-booking/SKILL.md", ktxSkill],
+    ["kleague-results/SKILL.md", kleagueSkill],
+    ["kakao-bar-nearby/SKILL.md", kakaoBarSkill],
+  ]) {
+    assert.doesNotMatch(doc, /поверхност[ьиь]/, `${label} не должен содержать «поверхность» как калку surface — используйте «интерфейс»`);
+  }
+
+  assert.match(sources, /внешние интерфейсы/);
+  assert.match(sources, /прокси-интерфейсов/);
+  assert.match(brand, /устаревших интерфейсов/);
+  assert.match(booking, /Тип интерфейса/);
+  assert.match(proxyFeature, /наружный интерфейс/);
+  assert.match(kakaoBarFeature, /Официальные интерфейсы Kakao Map/);
+  assert.match(daisoFeature, /Официальные интерфейсы/);
+  assert.match(ymFeature, /HTML-интерфейс Яндекс Маркета/);
+  assert.match(blueRibbonFeature, /Официальные интерфейсы Blue Ribbon/);
+  assert.match(kleagueFeature, /Официальные интерфейсы/);
+  assert.match(ktxFeature, /отдельный интерфейс и отдельные учётные данные/);
+  assert.match(tossSkill, /интерфейс `tossctl`/);
+
+  assert.doesNotMatch(sources, /\bлогин\b/);
+  assert.match(sources, /не нужен вход/);
+
+  assert.match(rplFeature, /программу разбора/);
+  assert.doesNotMatch(rplFeature, /\bпарсер\b/);
+
+  assert.match(stolotoFeature, /разбор может сломаться/);
+  assert.doesNotMatch(stolotoFeature, /парсинг может сломаться/);
+
+  assert.match(kleagueFeature, /HTML-разбор/);
+  assert.doesNotMatch(kleagueFeature, /HTML-парсинг/);
+
+  assert.match(sources, /сторонняя программа разбора котировок/);
+  assert.doesNotMatch(sources, /сторонний парсер котировок/);
+
+  assert.match(sources, /разбор содержимого PDF/);
+  assert.doesNotMatch(sources, /парсинг содержимого PDF/);
 });

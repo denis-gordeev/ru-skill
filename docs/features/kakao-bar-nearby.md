@@ -28,7 +28,7 @@
 
 Если зона слишком широкая или расплывчатая, лучше сузить её до ближайшей станции.
 
-## Официальные поверхности Kakao Map
+## Официальные интерфейсы Kakao Map
 
 - Мобильный поиск: `https://m.map.kakao.com/actions/searchView?q=<query>`
 - JSON панели места: `https://place-api.map.kakao.com/places/panel3/<confirmId>`
