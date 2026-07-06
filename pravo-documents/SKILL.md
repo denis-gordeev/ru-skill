@@ -41,7 +41,7 @@ metadata:
 
 ### 0. Установить пакет глобально, если отсутствует
 
-Если `node -e 'require("pravo-documents")'` не проходит, сначала ставится пакет, а не пишется одноразовый HTTP-клиент.
+Если `node -e 'require("pravo-documents")'` не проходит, сначала ставится пакет, а не пишется одноразовый клиент HTTP.
 
 ```bash
 npm install -g pravo-documents

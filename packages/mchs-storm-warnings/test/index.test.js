@@ -23,7 +23,7 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const warningsIndexFixture = fs.readFileSync(path.join(fixturesDir, "warnings-index.html"), "utf8");
 const warningDetailFixture = fs.readFileSync(path.join(fixturesDir, "warning-5695266.html"), "utf8");
 
-test("normalizeRegionHost принимает числовые и именованные хосты МЧС", () => {
+test("normalizeRegionHost принимает числовые и именованные имена узлов МЧС", () => {
   assert.equal(normalizeRegionHost("46"), "46");
   assert.equal(normalizeRegionHost("https://moscow.mchs.gov.ru/news"), "moscow");
   assert.throws(() => normalizeRegionHost("bad host"), /regionHost/);
@@ -145,13 +145,13 @@ test("публичные помощники загружают и нормали
   }
 });
 
-test("lookupRegion находит регионы по числовому хосту", () => {
+test("lookupRegion находит регионы по числовому имени узла", () => {
   const result = lookupRegion("46");
   assert.equal(result.host, "46");
   assert.equal(result.name, "Курская область");
 });
 
-test("lookupRegion находит регионы по именованному хосту", () => {
+test("lookupRegion находит регионы по именованному имени узла", () => {
   const moscow = lookupRegion("moscow");
   assert.equal(moscow.host, "moscow");
   assert.equal(moscow.name, "г. Москва");
@@ -220,7 +220,7 @@ test("listRegions возвращает все уникальные регион�
   assert.ok(regions.length > 70);
   assert.equal(regions[0].name, "Алтайский край");
   
-  // Проверка на дубликаты — каждый хост должен встречаться один раз
+  // Проверка на дубликаты — каждое имя узла должно встречаться один раз
   const hosts = new Set(regions.map(r => r.host));
   assert.equal(hosts.size, regions.length);
 });

@@ -145,7 +145,7 @@ npx --yes skills check >> "$HOME/.config/ru-skill/logs/skills-check.log" 2>&1
 schtasks /Create /SC DAILY /TN "ru-skill-update-check" /TR "\"$HOME/.config/ru-skill/bin/check-skill-updates.cmd\"" /ST 09:00 /F
 ```
 
-После настройки сообщите расположение логов:
+После настройки сообщите расположение журналов:
 
 - `~/.config/ru-skill/logs/skills-check.log`
 

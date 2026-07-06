@@ -68,7 +68,7 @@ function parseFilmPage(html, filmId) {
     || matchOne(html, /<title>([\s\S]*?)<\/title>/i)
     || "Неизвестный фильм";
 
-  // Год: часто в мета-блоке или рядом с названием
+// Год: часто в блоке метаданных или рядом с названием
   const year = matchOne(html, /<span\b[^>]*class="[^"]*year[^"]*"[^>]*>(\d{4})/i)
     || matchOne(html, /,\s*(\d{4})\s*,/i)
     || null;

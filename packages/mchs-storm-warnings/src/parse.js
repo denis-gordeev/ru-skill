@@ -82,7 +82,7 @@ function normalizeRegionHost(value) {
     .replace(/\.mchs\.gov\.ru$/, "");
 
   if (!/^[a-z0-9-]+$/.test(normalized)) {
-    throw new Error("regionHost должен быть региональным хостом МЧС, например '46', '78' или 'moscow'.");
+    throw new Error("regionHost должен быть именем узла региона МЧС, например '46', '78' или 'moscow'.");
   }
 
   return normalized;

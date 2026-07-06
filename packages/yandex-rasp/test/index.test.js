@@ -61,7 +61,7 @@ test("groupByTransportType группирует записи по типу тр�
   assert.equal(groups.train.length, 1);
 });
 
-// --- тесты index.js с моками ---
+// --- тесты index.js с заглушками ---
 
 test("searchStations фильтрует станции по запросу из полного справочника", async () => {
   const originalFetch = global.fetch;

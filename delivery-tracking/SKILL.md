@@ -58,7 +58,7 @@ metadata:
 - `идентификатор перевозчика`: например, `cj`, `epost`
 - `модуль проверки`: длина/шаблон номера накладной
 - `точка входа`: официальный URL для запроса статуса
-- `транспорт`: что используется — JSON API / HTML-форма / командная строка
+- `транспорт`: что используется — JSON API / форма HTML / командная строка
 - `программа разбора`: из каких полей или таблиц извлекается статус
 - `таблица статусов`: как привести исходные коды статусов перевозчика к общим статусам
 - `политика повторных попыток`: правила времени ожидания и повторных попыток
@@ -67,8 +67,8 @@ metadata:
 
 | модуль-посредник перевозчика | официальный вход | транспорт | модуль проверки | область разбора |
 | --- | --- | --- | --- | --- |
-| `cj` | `https://www.cjlogistics.com/ko/tool/parcel/tracking` | GET страницы + POST JSON `tracking-detail` | 10 или 12 цифр | `parcelDetailResultMap.resultList` |
-| `epost` | `https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=` | POST HTML-формы | 13 цифр | основная информация `table_col` + детали `processTable` |
+| `cj` | `https://www.cjlogistics.com/ko/tool/parcel/tracking` | получение страницы + отправка JSON методом POST `tracking-detail` | 10 или 12 цифр | `parcelDetailResultMap.resultList` |
+| `epost` | `https://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=` | отправка формы HTML методом POST | 13 цифр | основная информация `table_col` + детали `processTable` |
 
 ## Рабочий процесс
 
@@ -80,7 +80,7 @@ metadata:
 
 ### 1. CJ Logistics: официальный поток JSON
 
-Прочитайте `_csrf` со страницы входа и отправьте это значение вместе с POST-запросом к `tracking-detail`.
+Прочитайте `_csrf` со страницы входа и отправьте это значение вместе с запросом POST к `tracking-detail`.
 
 - Страница входа: `https://www.cjlogistics.com/ko/tool/parcel/tracking`
 - Конечная точка деталей: `https://www.cjlogistics.com/ko/tool/parcel/tracking-detail`
@@ -198,7 +198,7 @@ rm -f "$tmp_body" "$tmp_cookie" "$tmp_json"
 
 Даже если `parcelResultMap.resultList` пуст, события могут поступать через `parcelDetailResultMap.resultList`, поэтому приоритет отдаётся массиву детальных событий. Опубликованный пример оставляет только обезличенные поля в соответствии с общей схемой результатов (`carrier`, `invoice`, `status`, `timestamp`, `location`, `event_count`, `recent_events`, опциональный `status_code`), не раскрывая исходный текст `crgNm`, в который могут попасть имена и контакты ответственных лиц.
 
-### 2. Почтовая служба Кореи: официальный HTML-поток
+### 2. Почтовая служба Кореи: официальный поток HTML
 
 У Почтовой службы Кореи официальная страница входа повторно отправляет `sid1` через POST на `trace.RetrieveDomRigiTraceList.comm`.
 
@@ -206,7 +206,7 @@ rm -f "$tmp_body" "$tmp_cookie" "$tmp_json"
 - Фактическая конечная точка запроса: `https://service.epost.go.kr/trace.RetrieveDomRigiTraceList.comm`
 - Обязательное поле: `sid1`
 
-Для Почтовой службы Кореи путь `curl --http1.1 --tls-max 1.2` стабильнее локального Python HTTP-клиента, поэтому в базовом примере используется именно эта комбинация.
+Для Почтовой службы Кореи путь `curl --http1.1 --tls-max 1.2` стабильнее локального клиента HTTP на Python, поэтому в базовом примере используется именно эта комбинация.
 
 ```bash
 tmp_html="$(mktemp)"
@@ -362,7 +362,7 @@ rm -f "$tmp_html"
 - CJ Logistics: не удалось извлечь `_csrf` или изменилась схема ответа `tracking-detail`
 - CJ Logistics: длина номера накладной не 10 и не 12 цифр
 - Почтовая служба Кореи: `sid1` не состоит из 13 цифр
-- Почтовая служба Кореи: изменение HTML-разметки ломает правила извлечения таблиц
+- Почтовая служба Кореи: изменение разметки HTML ломает правила извлечения таблиц
 - Почтовая служба Кореи: превышение времени ожидания/сброс при использовании клиента, отличного от `curl`
 
 ## Примечания

@@ -502,7 +502,7 @@ test("исходный код mchs-storm-warnings использует русс�
   assert.match(index, /page должен быть целым числом/);
   assert.match(index, /warningPathOrId должен быть непустой строкой/);
   assert.match(index, /Запрос к МЧС не удался/);
-  assert.match(parse, /regionHost должен быть региональным хостом МЧС/);
+  assert.match(parse, /regionHost должен быть именем узла региона МЧС/);
 
   assert.doesNotMatch(index, /page must be an integer/);
   assert.doesNotMatch(index, /warningPathOrId must be a non-empty/);
@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-07-06");
-  assert.equal(todoStatus.round, 80);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 80\)/);
+  assert.equal(todoStatus.round, 81);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 81\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -2273,7 +2273,7 @@ test("навык delivery-tracking документирует сценарий �
   assert.match(skill, /обратно совместимый/i);
 
   assert.match(featureDoc, /curl --http1\.1 --tls-max 1\.2/);
-  assert.match(featureDoc, /валидатор/);
+  assert.match(featureDoc, /модуль проверки/);
   assert.match(featureDoc, /таблица статусов/);
   assert.match(featureDoc, /политика повторных попыток/);
 });
@@ -2846,7 +2846,7 @@ test("JSDoc и комментарии в исходном коде на русс
   assert.doesNotMatch(kinopoiskParse, /\bprominently\b/);
 
   assert.doesNotMatch(yandexMarketParse, /HTML parsing utilities for Yandex Market/);
-  assert.match(yandexMarketParse, /Утилиты парсинга HTML для страниц поиска и карточек товаров Яндекс Маркета/);
+  assert.match(yandexMarketParse, /Утилиты разбора HTML для страниц поиска и карточек товаров Яндекс Маркета/);
 
   assert.doesNotMatch(yandexRaspIndex, /\/\* ignore \*\//);
   assert.match(yandexRaspIndex, /\/\* пропустить \*\//);
@@ -4058,7 +4058,7 @@ test("packages/k-skill-proxy/README.md не содержит legacy- compounds �
   assert.match(readme, /устаревший файл/);
 
   assert.doesNotMatch(readme, /API proxy/);
-  assert.match(readme, /прокси для бесплатных API/);
+  assert.match(readme, /посредник для бесплатных API/);
 });
 
 test("docs/booking-replacements.md не содержит booking-навыков и railway-booking", () => {
@@ -4165,7 +4165,7 @@ test("docs/roadmap.md не содержит английского жаргон�
   assert.doesNotMatch(roadmap, /release-hygiene подзадача/);
   assert.match(roadmap, /подзадача релиз-гигиены/);
   assert.doesNotMatch(roadmap, /helper\/runtime cleanup/);
-  assert.match(roadmap, /вспомогательная\/runtime-очистка/);
+  assert.match(roadmap, /вспомогательная\/очистка среды выполнения/);
   assert.doesNotMatch(roadmap, /package metadata descriptions/);
   assert.match(roadmap, /метаданные пакетов/);
   assert.doesNotMatch(roadmap, /helper-поверхност|helper-интерфейс/);
@@ -4982,7 +4982,8 @@ test("раунд 75: package README, SKILL.md и тесты не возвращ�
   const deliverySkill = read(path.join("delivery-tracking", "SKILL.md"));
   assert.doesNotMatch(deliverySkill, /JSON API \/ HTML-форма \/ CLI/);
   assert.doesNotMatch(deliverySkill, /сохранения файла cookie/);
-  assert.match(deliverySkill, /JSON API \/ HTML-форма \/ командная строка/);
+  assert.doesNotMatch(deliverySkill, /HTML-форма \/ командная строка/);
+  assert.match(deliverySkill, /JSON API \/ форма HTML \/ командная строка/);
   assert.match(deliverySkill, /сохранения файла куки/);
 
   const mchsSkill = read(path.join("mchs-storm-warnings", "SKILL.md"));
@@ -5074,4 +5075,131 @@ test("раунд 78: пользовательские интерфейсные �
 
   assert.match(sources, /разбор содержимого PDF/);
   assert.doesNotMatch(sources, /парсинг содержимого PDF/);
+});
+
+test("раунд 81: устранены оставшиеся гибриды ENGLISH-русское в интерфейсной документации и исходном коде", () => {
+  const kboSkill = read(path.join("kbo-results", "SKILL.md"));
+  assert.doesNotMatch(kboSkill, /Node-пакета/);
+  assert.match(kboSkill, /пакета Node\.js/);
+
+  const zipcodeSkill = read(path.join("zipcode-search", "SKILL.md"));
+  assert.doesNotMatch(zipcodeSkill, /Python-тайм-аут/);
+  assert.match(zipcodeSkill, /тайм-аут Python/);
+
+  const ruSetupSkill = read(path.join("ru-skill-setup", "SKILL.md"));
+  assert.doesNotMatch(ruSetupSkill, /\bлогов\b/);
+  assert.match(ruSetupSkill, /журналов/);
+
+  const kSetupSkill = read(path.join("k-skill-setup", "SKILL.md"));
+  assert.doesNotMatch(kSetupSkill, /расположение логов/);
+  assert.match(kSetupSkill, /расположение журналов/);
+
+  const fineDustSkill = read(path.join("fine-dust-location", "SKILL.md"));
+  assert.doesNotMatch(fineDustSkill, /HTTP-запроса/);
+  assert.match(fineDustSkill, /запроса HTTP/);
+
+  const pravoSkill = read(path.join("pravo-documents", "SKILL.md"));
+  assert.doesNotMatch(pravoSkill, /HTTP-клиент/);
+  assert.match(pravoSkill, /клиент HTTP/);
+
+  const cbrSkill = read(path.join("cbr-rates", "SKILL.md"));
+  assert.doesNotMatch(cbrSkill, /XML-схема/);
+  assert.match(cbrSkill, /схема XML/i);
+
+  const deliverySkill = read(path.join("delivery-tracking", "SKILL.md"));
+  assert.doesNotMatch(deliverySkill, /HTML-поток/);
+  assert.match(deliverySkill, /поток HTML/);
+  assert.doesNotMatch(deliverySkill, /POST-запросом/);
+  assert.match(deliverySkill, /запросом POST/);
+  assert.doesNotMatch(deliverySkill, /HTML-разметки/);
+  assert.match(deliverySkill, /разметки HTML/);
+
+  const mchsReadme = read(path.join("packages", "mchs-storm-warnings", "README.md"));
+  assert.doesNotMatch(mchsReadme, /\bхост\b|\bхосту\b|\bхостами\b/);
+  assert.match(mchsReadme, /имя узла/);
+
+  const kProxyReadme = read(path.join("packages", "k-skill-proxy", "README.md"));
+  assert.doesNotMatch(kProxyReadme, /проксированием/);
+  assert.match(kProxyReadme, /посредничеством/);
+  assert.doesNotMatch(kProxyReadme, /без аутентификации/);
+  assert.match(kProxyReadme, /без проверки подлинности/);
+  assert.doesNotMatch(kProxyReadme, /кэшем/);
+  assert.match(kProxyReadme, /буфером/);
+
+  const ymReadme = read(path.join("packages", "yandex-market-search", "README.md"));
+  assert.doesNotMatch(ymReadme, /\bтоп\b.*`specs`/);
+  assert.match(ymReadme, /основные `specs`/);
+  assert.doesNotMatch(ymReadme, /аккаунтом/);
+  assert.match(ymReadme, /учётной записью/);
+
+  const kinopoiskReadme = read(path.join("packages", "kinopoisk-search", "README.md"));
+  assert.doesNotMatch(kinopoiskReadme, /секретов и прокси/);
+  assert.match(kinopoiskReadme, /секретов и посредника/);
+
+  const stolotoReadme = read(path.join("packages", "stoloto-lotto", "README.md"));
+  assert.doesNotMatch(stolotoReadme, /секретов и прокси/);
+  assert.match(stolotoReadme, /секретов и посредника/);
+
+  const zoonReadme = read(path.join("packages", "zoon-nearby", "README.md"));
+  assert.doesNotMatch(zoonReadme, /Server-Side Rendering/);
+  assert.match(zoonReadme, /серверная отрисовка/);
+  assert.doesNotMatch(zoonReadme, /без капчи/);
+  assert.match(zoonReadme, /без проверки на робота/);
+
+  const yandexRaspReadme = read(path.join("packages", "yandex-rasp", "README.md"));
+  assert.doesNotMatch(yandexRaspReadme, /в кэше/);
+  assert.match(yandexRaspReadme, /в буфере/);
+
+  const deliveryFeature = read(path.join("docs", "features", "delivery-tracking.md"));
+  assert.doesNotMatch(deliveryFeature, /`валидатор/);
+  assert.match(deliveryFeature, /`модуль проверки/);
+
+  const rplParseSrc = read(path.join("packages", "rpl-results", "src", "parse.js"));
+  assert.doesNotMatch(rplParseSrc, /парсинга/);
+  assert.match(rplParseSrc, /разбора/);
+
+  const ymParseSrc = read(path.join("packages", "yandex-market-search", "src", "parse.js"));
+  assert.doesNotMatch(ymParseSrc, /парсинга/);
+  assert.match(ymParseSrc, /разбора/);
+
+  const zoonParseSrc = read(path.join("packages", "zoon-nearby", "src", "parse.js"));
+  assert.doesNotMatch(zoonParseSrc, /парсер/);
+  assert.match(zoonParseSrc, /модуль разбора/);
+
+  const yandexRaspTest = read(path.join("packages", "yandex-rasp", "test", "index.test.js"));
+  assert.doesNotMatch(yandexRaspTest, /с моками/);
+  assert.match(yandexRaspTest, /с заглушками/);
+
+  const yandexRaspParseSrc = read(path.join("packages", "yandex-rasp", "src", "parse.js"));
+  assert.doesNotMatch(yandexRaspParseSrc, /валидации/);
+  assert.match(yandexRaspParseSrc, /проверки корректности/);
+
+  const kinopoiskParseSrc = read(path.join("packages", "kinopoisk-search", "src", "parse.js"));
+  assert.doesNotMatch(kinopoiskParseSrc, /мета-блоке/);
+  assert.match(kinopoiskParseSrc, /блоке метаданных/);
+
+  const rplTest = read(path.join("packages", "rpl-results", "test", "index.test.js"));
+  assert.doesNotMatch(rplTest, /парсинга/);
+  assert.doesNotMatch(rplTest, /парсера/);
+  assert.match(rplTest, /разбора/);
+
+  const mchsRegionsSrc = read(path.join("packages", "mchs-storm-warnings", "src", "regions.js"));
+  assert.doesNotMatch(mchsRegionsSrc, /\bхост\b|\bхосту\b|\bхостами\b|\bхосты\b/);
+  assert.match(mchsRegionsSrc, /имя узла/);
+
+  const mchsParseSrc = read(path.join("packages", "mchs-storm-warnings", "src", "parse.js"));
+  assert.doesNotMatch(mchsParseSrc, /хостом/);
+  assert.match(mchsParseSrc, /именем узла/);
+
+  const mchsTest = read(path.join("packages", "mchs-storm-warnings", "test", "index.test.js"));
+  assert.doesNotMatch(mchsTest, /\bхосты\b|\bхосту\b/);
+  assert.match(mchsTest, /имена узлов|имени узла/);
+
+  const roadmap = read(path.join("docs", "roadmap.md"));
+  assert.doesNotMatch(roadmap, /Python-тестах/);
+  assert.doesNotMatch(roadmap, /workspace-тесты/);
+  assert.doesNotMatch(roadmap, /CLI-запросов/);
+  assert.doesNotMatch(roadmap, /XML-сервис курсов/);
+  assert.doesNotMatch(roadmap, /API-функции без/);
+  assert.doesNotMatch(roadmap, /runtime-очистка/);
 });
