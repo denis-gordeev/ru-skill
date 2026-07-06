@@ -40,7 +40,7 @@ test("валидация команд только для чтения откл�
   assert.throws(() => assertReadOnlyCommandName("orderPlace"), /Неподдерживаемая команда tossctl только для чтения/);
 });
 
-test("parseJsonOutput аннотирует JSON-нагрузку исходной командой", () => {
+test("parseJsonOutput аннотирует нагрузку JSON исходной командой", () => {
   const result = parseJsonOutput('{"ok":true,"items":[1,2]}', "watchlistList");
 
   assert.equal(result.commandName, "watchlistList");
@@ -63,7 +63,7 @@ test("buildReadOnlyCommand добавляет фильтр рынка для з�
   ]);
 });
 
-test("публичные помощники выполняют имитацию бинарного файла tossctl и анализируют его JSON-вывод", async () => {
+test("публичные помощники выполняют имитацию бинарного файла tossctl и анализируют его вывод JSON", async () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "toss-securities-"));
   const binDir = path.join(tempDir, "bin");
   const logFile = path.join(tempDir, "invocation.json");

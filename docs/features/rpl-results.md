@@ -26,7 +26,7 @@
 
 ## Рабочий процесс
 
-Навык читает публичные HTML-страницы championat.com и извлекает структурированные данные:
+Навык читает публичные страницы HTML championat.com и извлекает структурированные данные:
 
 - Турнирная таблица: `/football/_russiapl/tournament/5980/table/`
 - Результаты матчей: `/football/_russiapl/tournament/5980/results/`

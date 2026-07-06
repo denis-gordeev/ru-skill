@@ -38,7 +38,7 @@ const { getDailyRates, getRate, getRateWithChange } = require("cbr-rates");
 
 ### `getRate(charCode, date?)`
 
-- `charCode`: трёхбуквенный ISO-код, например `USD`, `EUR`, `CNY`
+- `charCode`: трёхбуквенный код ISO, например `USD`, `EUR`, `CNY`
 - Возвращает одну строку валюты с `requestedDate` и `publishedDate`
 
 ### `getRateWithChange(charCode, date?, options?)`

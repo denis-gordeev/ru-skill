@@ -1,4 +1,4 @@
-name: Релиз Python-пакетов
+name: Релиз пакетов Python
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
     if: ${{ hashFiles('python-packages/**/pyproject.toml') == '' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Python-пакет пока не существует. release-please остаётся в режиме заглушки."
+      - run: echo "пакет Python пока не существует. release-please остаётся в режиме заглушки."
 
   release:
     if: ${{ hashFiles('python-packages/**/pyproject.toml') != '' }}
@@ -37,5 +37,5 @@ jobs:
       - name: Напоминание
         if: ${{ steps.release.outputs.releases_created == 'true' }}
         run: |
-          echo "Метаданные релиза Python-пакета созданы."
-          echo "Подключите шаги сборки/публикации для конкретного пакета, когда будет добавлен первый Python-пакет."
+          echo "Метаданные релиза пакета Python созданы."
+          echo "Подключите шаги сборки/публикации для конкретного пакета, когда будет добавлен первый пакет Python."

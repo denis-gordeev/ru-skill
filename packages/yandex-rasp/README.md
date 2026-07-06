@@ -55,7 +55,7 @@ const trips = await searchTrips("c146", "c159", {
 
 | Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
-| `apiKey` | string | переменная `YANDEX_RASP_API_KEY` | API-ключ |
+| `apiKey` | string | переменная `YANDEX_RASP_API_KEY` | ключ API |
 | `lang` | string | `ru_RU` | Язык ответа |
 
 Возвращает `Array<{title, yandexCode, esrCode, stationType, transportType, latitude, longitude, direction}>`.
@@ -66,7 +66,7 @@ const trips = await searchTrips("c146", "c159", {
 
 | Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
-| `apiKey` | string | переменная `YANDEX_RASP_API_KEY` | API-ключ |
+| `apiKey` | string | переменная `YANDEX_RASP_API_KEY` | ключ API |
 | `date` | string | все даты | Дата ISO 8601 `YYYY-MM-DD` |
 | `event` | string | `departure` | `departure` или `arrival` |
 | `transportType` | string | все | `plane`, `train`, `suburban`, `bus`, `water`, `helicopter` |
@@ -81,7 +81,7 @@ const trips = await searchTrips("c146", "c159", {
 
 | Параметр | Тип | По умолчанию | Описание |
 | --- | --- | --- | --- |
-| `apiKey` | string | переменная `YANDEX_RASP_API_KEY` | API-ключ |
+| `apiKey` | string | переменная `YANDEX_RASP_API_KEY` | ключ API |
 | `date` | string | все даты | Дата ISO 8601 `YYYY-MM-DD` |
 | `transportType` | string | все | `plane`, `train`, `suburban`, `bus` |
 | `transfers` | boolean | `false` | Включить маршруты с пересадками |
@@ -93,7 +93,7 @@ const trips = await searchTrips("c146", "c159", {
 
 ## Примечания
 
-- Требуется API-ключ. Бесплатный ключ можно получить на [Яндекс.Расписания API](https://yandex.ru/dev/rasp/).
+- Требуется ключ API. Бесплатный ключ можно получить на [Яндекс.Расписания API](https://yandex.ru/dev/rasp/).
 - Конечная точка `stations_list` возвращает полный справочник (~40 МБ). Рекомендуется сохранять в кэше.
 - Это клиент только для чтения; покупка билетов и операции записи не поддерживаются.
 - Устаревший узел `api.rasp.yandex.net` не используется; клиент работает через `api.rasp.yandex-net.ru`.

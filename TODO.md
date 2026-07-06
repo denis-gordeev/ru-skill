@@ -4,37 +4,82 @@
 
 Исторические сводки раундов ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-07-05 (раунд 79)
+## Статус на 2026-07-06 (раунд 80)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён оставшийся слой `парсинг`/`парсер`/`парсить`/`распарсить` в пользовательских документах: `docs/features/rpl-results.md` (`Парсинг` → `Разбор`, `DOM-парсеров` → `программ разбора DOM`, `парсятся` → `разбираются`), `docs/sources.md` (`парсить без JS-рендеринга` → `разбирать без исполнения JavaScript`), `docs/features/pravo-documents.md` (`не парсится` → `не разбирается`), `docs/features/cbr-rates.md` (`XML-парсером` → `разбором XML`), `docs/features/delivery-tracking.md` (`распарсить` → `разобрать`, `парсер` → `программа разбора`, `парсить` → `разбирать`).
-- Устранена несогласованность `рендеринг`/`отрисовка` в пользовательских документах: `рендеринг` → `отрисовка` в `docs/features/zoon-nearby.md` (5 вхождений), `docs/features/yandex-market-search.md`, `packages/zoon-nearby/README.md` (2 вхождения); `JS-рендеринга` → `исполнения JavaScript` в `docs/features/rpl-results.md`; `клиентский рендеринг` → `клиентская отрисовка` в `docs/sources.md`; `рендеринг JavaScript` → `отрисовка JavaScript` в `packages/rpl-results/README.md`.
-- Устранён калкаж `отрендеренный` → `сгенерированный на сервере` в `docs/sources.md` (5 вхождений).
-- Устранён калкаж `браузерный`/`браузерная сессия` в `docs/features/blue-ribbon-nearby.md` (`браузерный` → `из обозревателя`) и `docs/features/toss-securities.md` (`браузерная сессия` → `сеанс в обозревателе`, `веб-API` → `веб-интерфейсов`).
-- Заменён `поверхность` → `интерфейс` в исторических сводках `TODO.md`, `docs/roadmap.md` и `README.md` (~80 вхождений в нарративных контекстах, исключая записи об изменениях).
+- Унифицированы оставшиеся гибридные термины во всей пользовательской документации (~100 замен в ~50 файлах): `API-ключ` → `ключ API`, `Node-пакет` → `пакет Node.js`, `Python-пакет` → `пакет Python`, `HWP-файл` → `файл HWP`, `HWP-документ` → `документ HWP`, `JSON-конечная точка` → `конечная точка JSON`, `HTML-конечная точка` → `конечная точка HTML`, `HTML-страницы` → `страницы HTML`, `JSON-режим` → `режим JSON`, `XML-сервис` → `сервис XML`, `JSON-ответ` → `ответ JSON`, `JSON-поток` → `поток JSON`, `API-слой` → `слой API`, `API-справочник` → `Справочник API`, `API-сценарий` → `сценарий API`, `API-параметр` → `параметр API`, `API-функция` → `функция API`, `API-конечная точка` → `конечная точка API`, `ISO-формат` → `формат ISO`, `ISO-код` → `код ISO`, `SVG-версия` → `версия SVG`, `MCP-сервер` → `сервер MCP`, `HTML-разбор` → `разбор HTML`, `JSON-нормализация` → `нормализация JSON`, `HTML-нормализация` → `нормализация HTML`, `JSON-тест` → `тест JSON`, `HTML-тест` → `тест HTML`, `CLI-скрипт` → `скрипт CLI`, `macOS-автоматизация` → `автоматизация macOS`, `macOS-эталон` → `эталон macOS`, `URL-карточка` → `карточка по URL`, `HTML-описание` → `описание HTML`, `HTML-вёрстка` → `вёрстка HTML`, `DOM-парсер` → `программа разбора DOM`, `HTML-сущность` → `сущность HTML`, `HTML-тег` → `тег HTML`, `HTML-ответ` → `ответ HTML`, `HTML-фрагмент` → `фрагмент HTML`, `JSON-объект` → `объект JSON`, `JSON-вывод` → `вывод JSON`, `XML-ответ` → `ответ XML`, `JSON-файл` → `файл JSON`, `OKATO-подобный` → `подобный OKATO`, `CMS МЧС` → `система управления контентом (CMS) МЧС`, `SSR-страницы` → `страницы с серверной отрисовкой (SSR)`.
+- Регрессионные тесты обновлены под новую терминологию.
 
-## Выполнено в этом раунде (раунд 79)
+## Выполнено в этом раунде (раунд 80)
 
-- [x] `docs/features/rpl-results.md`: `Парсинг` → `Разбор`, `DOM-парсеров` → `программ разбора DOM`, `парсятся` → `разбираются`.
-- [x] `docs/sources.md`: `парсить без JS-рендеринга` → `разбирать без исполнения JavaScript`.
-- [x] `docs/features/pravo-documents.md`: `не парсится` → `не разбирается`.
-- [x] `docs/features/cbr-rates.md`: `XML-парсером` → `разбором XML`.
-- [x] `docs/features/delivery-tracking.md`: `распарсить` → `разобрать`, `парсер` → `программа разбора`, `парсить` → `разбирать`.
-- [x] `docs/features/zoon-nearby.md`: `рендеринг` → `отрисовка` (5 вхождений).
-- [x] `docs/features/yandex-market-search.md`: `рендеринг` → `отрисовка`.
-- [x] `docs/features/rpl-results.md`: `JS-рендеринга` → `исполнения JavaScript`.
-- [x] `docs/sources.md`: `клиентский рендеринг` → `клиентская отрисовка`, `отрендеренный` → `сгенерированный на сервере` (5 вхождений).
-- [x] `packages/zoon-nearby/README.md`: `рендеринг` → `отрисовка` (2 вхождения).
-- [x] `packages/rpl-results/README.md`: `рендеринг JavaScript` → `отрисовка JavaScript`.
-- [x] `docs/features/blue-ribbon-nearby.md`: `браузерный` → `из обозревателя`.
-- [x] `docs/features/toss-securities.md`: `браузерная сессия` → `сеанс в обозревателе`, `веб-API` → `веб-интерфейсов`.
-- [x] `TODO.md`, `docs/roadmap.md`, `README.md`: `поверхность` → `интерфейс` в исторических сводках (~80 вхождений).
+- [x] `AGENTS.md`: `Node-пакеты` → `пакеты Node.js`, `Python-пакеты` → `пакеты Python`, `Python-пакета` → `пакета Python`.
+- [x] `README.md`: `API-слоя` → `слоя API`, `XML-сервису` → `сервису XML`, `XML-сервисе` → `сервисе XML`, `CLI-скрипты` → `скрипты CLI`, `API-ключа` → `ключа API`, `HWP-документов` → `документов HWP`.
+- [x] `docs/install.md`: `Node/Python-пакетов` → `пакетов Node.js/Python`, `Node-пакеты` → `пакеты Node.js`, `Python-пакеты` → `пакеты Python` (×2).
+- [x] `docs/setup.md`: `API-ключи` → `ключи API`.
+- [x] `docs/releasing.md`: `Python-пакета` → `пакета Python`, `Node / npm пакеты` → `пакеты Node.js / npm`, `Python пакеты` → `пакеты Python`.
+- [x] `docs/sources.md`: `XML-сервисов` → `сервисов XML`, `JSON-нормализацию` → `нормализацию JSON`, `HTML-нормализацию` → `нормализацию HTML` (×3), `API-параметрами` → `параметрами API`, `API-параметров` → `параметров API`, `JSON-тесты` → `тесты JSON` (×4), `HTML-тесты` → `тесты HTML` (×4), `API-ключа` → `ключа API` (×3), `API-ключ` → `ключ API` (×2), `API-ключей` → `ключей API`, `API-конечная точка` → `конечная точка API`.
+- [x] `docs/roadmap.md`: `API-функцию` → `функцию API`, `HWP-документов` → `документов HWP` (в текущих секциях).
+- [x] `docs/booking-replacements.md`: `API-функцию` → `функцию API`.
+- [x] `yandex-rasp/SKILL.md`, `seoul-subway-arrival/SKILL.md`, `zoon-nearby/SKILL.md`, `yandex-market-search/SKILL.md`, `fine-dust-location/SKILL.md`: `API-ключ` → `ключ API` (все формы).
+- [x] `packages/osm-nearby/SKILL.md`: `API-ключа` → `ключа API` (×3), `API-ключ` → `ключ API`.
+- [x] `packages/zoon-nearby/SKILL.md`: `API-ключа` → `ключа API`, `API-ключи` → `ключи API`, `URL-карточки` → `карточки по URL`.
+- [x] `cbr-rates/SKILL.md`: `XML-сервиса` → `сервиса XML` (×2).
+- [x] `kleague-results/SKILL.md`: `JSON-конечную точку` → `конечную точку JSON`, `Node-пакета` → `пакета Node.js`, `JSON-конечные точки` → `конечные точки JSON`.
+- [x] `lotto-results/SKILL.md`: `Node-пакета` → `пакета Node.js`, `HTML-страницы` → `страницы HTML`, `JSON-ответа` → `ответа JSON`.
+- [x] `ktx-booking/SKILL.md`: `Python-пакетов` → `пакетов Python`.
+- [x] `delivery-tracking/SKILL.md`: `JSON-конечная точка` → `конечная точка JSON`, `HTML-конечная точка` → `конечная точка HTML`, `JSON-поток` → `поток JSON`.
+- [x] `blue-ribbon-nearby/SKILL.md`: `JSON-конечную точку` → `конечную точку JSON` (×2).
+- [x] `kakaotalk-mac/SKILL.md`: `JSON-режиме` → `режиме JSON`, `macOS-эталон` → `эталон macOS`.
+- [x] `hwp/SKILL.md`: `HWP-файлов` → `файлов HWP`, `HWP-файл` → `файл HWP`, `HWP-файлы` → `файлы HWP`, `HWP-документами` → `документами HWP`.
+- [x] `pravo-documents/SKILL.md`: `SVG-версии` → `версии SVG`.
+- [x] `hh-vacancies/SKILL.md`: `HTML-описание` → `описание HTML`.
+- [x] `postcalc-postcodes/SKILL.md`: `HTML-вёрстка` → `вёрстка HTML`.
+- [x] `packages/osm-nearby/README.md`: `API-ключа` → `ключа API`, `API-ключ` → `ключ API`.
+- [x] `packages/zoon-nearby/README.md`: `API-ключей` → `ключей API`.
+- [x] `packages/yandex-rasp/README.md`: `API-ключ` → `ключ API` (×4).
+- [x] `packages/yandex-market-search/README.md`: `API-ключ` → `ключ API`.
+- [x] `packages/kinopoisk-search/README.md`: `HTML-страницами` → `страницами HTML`.
+- [x] `packages/stoloto-lotto/README.md`: `HTML-страницами` → `страницами HTML`.
+- [x] `packages/cbr-rates/README.md`: `ISO-код` → `код ISO`.
+- [x] `packages/pravo-documents/README.md`: `ISO-формат` → `формат ISO`.
+- [x] `docs/features/osm-nearby.md`: `API-ключа` → `ключа API` (×2), `API-ключом` → `ключом API`, `API-ключ` → `ключ API` (×2).
+- [x] `docs/features/zoon-nearby.md`: `API-ключей` → `ключей API`, `API-ключи` → `ключи API`, `## API-справочник` → `## Справочник API`.
+- [x] `docs/features/kinopoisk-search.md`: `## API-справочник` → `## Справочник API`, `HTML-страницами` → `страницами HTML`, `HTML-страниц` → `страниц HTML`.
+- [x] `docs/features/stoloto-lotto.md`: `HTML-страниц` → `страниц HTML`, `HTML-страницами` → `страницами HTML`.
+- [x] `docs/features/rpl-results.md`: `HTML-страницы` → `страницы HTML`.
+- [x] `docs/features/cbr-rates.md`: `XML-сервиса` → `сервиса XML`, `XML-сервис` → `сервис XML`.
+- [x] `docs/features/seoul-subway-arrival.md`: `API-ключ` → `ключ API`.
+- [x] `docs/features/yandex-rasp.md`: `API-ключ` → `ключ API` (×2).
+- [x] `docs/features/fine-dust-location.md`: `API-ключ` → `ключ API`.
+- [x] `docs/features/yandex-market-search.md`: `API-ключи` → `ключи API`.
+- [x] `docs/features/kakaotalk-mac.md`: `JSON-режиме` → `режиме JSON`, `macOS-автоматизации` → `автоматизации macOS`.
+- [x] `docs/features/kleague-results.md`: `HTML-разбор` → `разбор HTML`.
+- [x] `docs/features/delivery-tracking.md`: `JSON-конечную точку` → `конечную точку JSON`, `Python-пакеты` → `пакеты Python`.
+- [x] `docs/features/ktx-booking.md`: `JSON-ответа` → `ответа JSON`.
+- [x] `docs/features/lotto-results.md`: `JSON-ответа` → `ответа JSON`.
+- [x] `docs/features/hwp.md`: `HWP-документов` → `документов HWP` (×2), `MCP-серверу` → `серверу MCP`.
+- [x] `docs/features/pravo-documents.md`: `ISO-формате` → `формате ISO`.
+- [x] `docs/features/zipcode-search.md`: `HTML-страницу` → `страницу HTML`.
+- [x] `docs/features/k-skill-proxy.md`: `API-сценарии` → `сценарии API`.
+- [x] `.github/workflows/release-python.yml`: `Python-пакетов` → `пакетов Python`, `Python-пакет` → `пакет Python`, `Python-пакета` → `пакета Python`.
+- [x] `python-packages/README.md`: `Python-пакета` → `пакета Python` (×2).
+- [x] `scripts/ktx_booking.py`: `Python-пакеты` → `пакеты Python`.
+- [x] `packages/toss-securities/test/index.test.js`: `JSON-нагрузку` → `нагрузку JSON`, `JSON-вывод` → `вывод JSON`.
+- [x] `packages/rpl-results/src/parse.js`: `DOM-парсера` → `программы разбора DOM`, `HTML-сущностей` → `сущностей HTML`, `HTML-тегов` → `тегов HTML`.
+- [x] `packages/zoon-nearby/src/parse.js`: `HTML-ответов` → `ответов HTML`, `SSR-страницы` → `страницы с серверной отрисовкой (SSR)`.
+- [x] `packages/kinopoisk-search/test/index.test.js`: `HTML-сущности` → `сущности HTML`.
+- [x] `packages/yandex-market-search/test/index.test.js`: `HTML-фрагменты` → `фрагменты HTML`.
+- [x] `packages/mchs-storm-warnings/src/regions.js`: `OKATO-подобным` → `подобным OKATO`, `CMS МЧС` → `системы управления контентом (CMS) МЧС`.
+- [x] `scripts/skill-docs.test.js`: регрессионные тесты обновлены под новую терминологию.
+- [x] `npm run ci` проходит полностью.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим перечнем задач.
 
 ## Новые пункты плана
 
 - [ ] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
-- [ ] Унифицировать оставшиеся гибридные термины: `JSON-конечная точка` → `конечная точка JSON`, `HTML-страницы` → `страницы HTML`, `API-ключ` → `ключ API`, `Node-пакет` → `пакет Node.js`, `Python-пакет` → `пакет Python`, `HWP-файл` → `файл HWP`, `JSON-режим` → `режим JSON` и др.
+- [ ] Проверить исторические секции `TODO.md` и `docs/roadmap.md` на оставшиеся гибридные термины вида `ENGLISH-русское` (в исторических сводках предыдущих раундов).
+- [ ] Проверить оставшиеся гибридные термины в исходном коде (`packages/*/src/*.js`, `scripts/*.py`) на наличие комментариев с `ENGLISH-русское` шаблоном.
+- [ ] Унифицировать оставшиеся гибриды в `.changeset/*.md` файлах.
 
 ## Статус на 2026-07-05 (раунд 78)
 

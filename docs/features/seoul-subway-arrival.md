@@ -14,7 +14,7 @@
 
 - Прочитать [общую настройку](../setup.md)
 - Прочитать [политику по секретам](../security-and-secrets.md)
-- Получить API-ключ Seoul Open Data Plaza
+- Получить ключ API Seoul Open Data Plaza
 
 ## Нужные переменные окружения
 

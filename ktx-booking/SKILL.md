@@ -67,7 +67,7 @@ metadata:
 
 ### 0. Установка пакета при отсутствии
 
-Если `python3 -c 'import korail2, Crypto'` завершается ошибкой, сначала попробуйте глобальную установку Python-пакетов вместо поиска альтернатив.
+Если `python3 -c 'import korail2, Crypto'` завершается ошибкой, сначала попробуйте глобальную установку пакетов Python вместо поиска альтернатив.
 
 ```bash
 python3 -m pip install korail2 pycryptodome

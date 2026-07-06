@@ -1,10 +1,10 @@
-# Каркас релиза Python-пакета
+# Каркас релиза пакета Python
 
 Пакеты Python в этом репозитории размещаются под `python-packages/*`.
 
 В настоящее время реальных пакетов нет, поэтому процесс release-please остаётся в состоянии заглушки.
 
-При добавлении первого Python-пакета необходимо:
+При добавлении первого пакета Python необходимо:
 
 1. Создать `python-packages/<package-name>/pyproject.toml`
 2. Добавить соответствующий path и `release-type: "python"` в `.github/release-please/python-config.json`

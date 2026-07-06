@@ -44,7 +44,7 @@ const {
 - `options.blockId`: фильтр по рубрике публикации
 - `options.categoryId`: фильтр по категории
 - `options.signatoryAuthorityId`: фильтр по подписавшему органу
-- `options.dateFrom`, `options.dateTo`: фильтр по диапазону дат (ISO-формат)
+- `options.dateFrom`, `options.dateTo`: фильтр по диапазону дат (формат ISO)
 - `options.page`: номер страницы, по умолчанию `1`
 - `options.pageSize`: результатов на странице, `1–100`, по умолчанию `20`
 - Возвращает `{ items: Array<object>, pagination: object }`
