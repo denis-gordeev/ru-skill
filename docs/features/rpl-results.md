@@ -135,8 +135,8 @@ if (team) {
 
 ## Критерии завершения
 
-- [x] Возвращается структура standings с rank, team, played, wins, draws, losses, goalsFor/Against, points
-- [x] Возвращается список matches с date, homeTeam, awayTeam, homeScore, awayScore
+- [x] Возвращается структура standings (турнирная таблица) с rank (место), team (команда), played (сыграно), wins (победы), draws (ничьи), losses (поражения), goalsFor/Against (забитые/пропущенные), points (очки)
+- [x] Возвращается список matches (матчи) с date (дата), homeTeam (домашняя команда), awayTeam (гостевая команда), homeScore (счёт хозяев), awayScore (счёт гостей)
 - [x] Данные парсятся с championat.com без авторизации и секретов
 - [x] Тесты на основе эталонных данных покрывают оба сценария
 

@@ -67,7 +67,7 @@ const {
 - Возвращает метаданные документа, включая:
   - Все поля из результатов поиска
   - `documentType`: идентификатор и название типа
-  - `signatoryAuthority`: список органов с флагом `isMain`
+  - `signatoryAuthority`: список органов с признаком `isMain`
 
 ### `listPravoBlocks()`
 

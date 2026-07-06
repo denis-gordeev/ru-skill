@@ -3,7 +3,7 @@ name: postcalc-postcodes
 description: Проверка российских почтовых индексов и карточек отделений через публичные страницы Postcalc. Использовать, когда пользователь спрашивает конкретный 6-значный индекс отделения или сводку по населённому пункту через `citykey`.
 license: MIT
 metadata:
-  category: location
+  category: местоположение
   locale: ru-RU
   phase: v1
 ---
@@ -36,7 +36,7 @@ metadata:
 
 ### 0. Установить пакет глобально, если отсутствует
 
-Если `node -e 'require("postcalc-postcodes")'` не проходит, сначала ставится пакет, а не собирается ad-hoc HTML-парсер.
+Если `node -e 'require("postcalc-postcodes")'` не проходит, сначала ставится пакет, а не собирается разовый HTML-парсер.
 
 ```bash
 npm install -g postcalc-postcodes

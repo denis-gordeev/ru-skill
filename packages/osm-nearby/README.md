@@ -69,7 +69,7 @@ const details = await getPlaceDetails(1234567890);
 
 Пакет использует [Overpass API](https://overpass-api.de/) для запросов к данным OpenStreetMap. API-ключ не требуется.
 
-- Основной эндпоинт: `https://overpass-api.de/api/interpreter`
+- Основная конечная точка: `https://overpass-api.de/api/interpreter`
 - Лимиты: ~10 000 запросов/день на основном экземпляре
 - Лицензия данных: [ODbL](https://www.openstreetmap.org/copyright)
 
