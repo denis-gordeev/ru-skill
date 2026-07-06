@@ -55,7 +55,7 @@ matches.slice(0, 5).forEach((m) => {
 
 - [x] Возвращается структура standings с rank, team, played, wins, draws, losses, goalsFor/Against, points.
 - [x] Возвращается список matches с date, homeTeam, awayTeam, homeScore, awayScore.
-- [x] Данные парсятся с championat.com без авторизации и секретов.
+- [x] Данные разбираются с championat.com без авторизации и секретов.
 
 ## Возможные ошибки
 
@@ -66,4 +66,4 @@ matches.slice(0, 5).forEach((m) => {
 
 - Это источник только для чтения, без записи, авторизации или пользовательских данных.
 - championat.com — публичный спортивный агрегатор, не официальный источник РПЛ.
-- Для официальных данных используйте premierliga.ru (требует JS-рендеринга).
+- Для официальных данных используйте premierliga.ru (требует отрисовки JavaScript (JS)).

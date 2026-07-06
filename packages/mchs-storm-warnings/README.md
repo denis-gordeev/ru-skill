@@ -8,7 +8,7 @@
 npm install mchs-storm-warnings
 ```
 
-## Публичные поверхности
+## Публичные интерфейсы
 
 - Индекс предупреждений региона: `https://{region}.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya`
 - Страница отдельного предупреждения: `https://{region}.mchs.gov.ru/.../shtormovye-i-ekstrennye-preduprezhdeniya/{warning_id}`
@@ -32,7 +32,7 @@ const {
 })();
 ```
 
-## API-справочник
+## Справочник API
 
 ### `lookupRegion(query)`
 
@@ -95,4 +95,4 @@ const regions = listRegions();
 npm test --workspace mchs-storm-warnings
 ```
 
-Тесты используют подход на основе эталонных данных с сохранёнными страницами предупреждений, чтобы CI не зависел от живой вёрстки МЧС.
+Тесты используют подход на основе эталонных данных с сохранёнными страницами предупреждений, чтобы система непрерывной интеграции (CI) не зависела от живой вёрстки МЧС.

@@ -20,7 +20,7 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const film326Fixture = fs.readFileSync(path.join(fixturesDir, "film-326.html"), "utf8");
 const searchBratFixture = fs.readFileSync(path.join(fixturesDir, "search-brat.html"), "utf8");
 
-test("decodeHtmlEntities обрабатывает типичные HTML-сущности", () => {
+test("decodeHtmlEntities обрабатывает типичные сущности HTML", () => {
   assert.equal(decodeHtmlEntities("&lt;div&gt;"), "<div>");
   assert.equal(decodeHtmlEntities("&nbsp;"), " ");
   assert.equal(decodeHtmlEntities("&#65;"), "A");

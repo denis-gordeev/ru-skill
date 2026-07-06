@@ -140,7 +140,7 @@ def ensure_runtime_dependencies() -> None:
     if missing:
         install_command = f"python3 -m pip install {' '.join(missing)}"
         raise SystemExit(
-            "scripts/ktx_booking.py требует дополнительные Python-пакеты "
+            "scripts/ktx_booking.py требует дополнительные пакеты Python "
             f"({', '.join(missing)}). Установите их перед запуском: {install_command}"
         )
 

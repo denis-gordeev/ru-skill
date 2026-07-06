@@ -18,8 +18,8 @@
 
 - Страница фильма: `https://www.kinopoisk.ru/film/{id}/`
 - Поиск фильмов: `https://www.kinopoisk.ru/index/standalone_search/?query={query}`
-- Это публичные веб-страницы Кинопоиска, без отдельного REST API.
-- Парсинг HTML-страниц через извлечение регулярными выражениями, аналогично `stoloto-lotto` и `postcalc-postcodes`.
+- Это публичные веб-страницы Кинопоиска, без отдельного REST API (API архитектурного стиля REST).
+- Разбор страниц HTML через извлечение регулярными выражениями, аналогично `stoloto-lotto` и `postcalc-postcodes`.
 
 ## Установка
 
@@ -90,7 +90,7 @@ console.log(buildSearchUrl("Брат 2"));
 // "https://www.kinopoisk.ru/index/standalone_search/?query=Брат+2"
 ```
 
-## API-справочник
+## Справочник API
 
 | Функция | Описание |
 | --- | --- |
@@ -105,4 +105,4 @@ console.log(buildSearchUrl("Брат 2"));
 npm test --workspace kinopoisk-search
 ```
 
-Тесты используют подход на основе эталонных данных с сохранёнными HTML-страницами Кинопоиска, чтобы CI не зависел от живой вёрстки kinopoisk.ru.
+Тесты используют подход на основе эталонных данных с сохранёнными страницами HTML Кинопоиска, чтобы система непрерывной интеграции (CI) не зависела от живой вёрстки kinopoisk.ru.

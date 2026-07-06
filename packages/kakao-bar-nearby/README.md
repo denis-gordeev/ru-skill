@@ -27,7 +27,7 @@ npm install
 - Рабочие запросы выглядят как `서울역 술집`, `강남 술집`, `사당 술집`.
 - Если есть открытые места, их стоит поднимать первыми.
 
-## Официальные поверхности Kakao Map
+## Официальные интерфейсы Kakao Map
 
 - Мобильный поиск: `https://m.map.kakao.com/actions/searchView`
 - JSON панели места: `https://place-api.map.kakao.com/places/panel3/<confirmId>`
@@ -85,7 +85,7 @@ main().catch((error) => {
 }
 ```
 
-## API-справочник
+## Справочник API
 
 - `searchNearbyBarsByLocationQuery(query, options?)`
 - `searchNearbyBarsByCoordinates({ latitude, longitude }, options?)`

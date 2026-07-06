@@ -1,6 +1,6 @@
 # cbr-rates
 
-Клиент только для чтения для официальных курсов валют Банка России через публичный XML-сервис.
+Клиент только для чтения для официальных курсов валют Банка России через публичный сервис в формате XML.
 
 ## Установка
 
@@ -8,10 +8,10 @@
 npm install cbr-rates
 ```
 
-## Официальные поверхности
+## Официальные интерфейсы
 
 - XML ежедневных курсов: `https://www.cbr.ru/scripts/XML_daily.asp`
-- Справка по XML-сервисам: `https://www.cbr.ru/development/SXML/`
+- Справка по сервисам в формате XML: `https://www.cbr.ru/development/SXML/`
 
 ## Использование
 
@@ -29,7 +29,7 @@ const { getDailyRates, getRate, getRateWithChange } = require("cbr-rates");
 })();
 ```
 
-## API-справочник
+## Справочник API
 
 ### `getDailyRates(date?)`
 
@@ -38,7 +38,7 @@ const { getDailyRates, getRate, getRateWithChange } = require("cbr-rates");
 
 ### `getRate(charCode, date?)`
 
-- `charCode`: трёхбуквенный ISO-код, например `USD`, `EUR`, `CNY`
+- `charCode`: трёхбуквенный код ISO, например `USD`, `EUR`, `CNY`
 - Возвращает одну строку валюты с `requestedDate` и `publishedDate`
 
 ### `getRateWithChange(charCode, date?, options?)`

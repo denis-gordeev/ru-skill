@@ -1,6 +1,6 @@
 # blue-ribbon-nearby
 
-`blue-ribbon-nearby` - устаревший пакет только для чтения для поиска ближайших ресторанов Blue Ribbon по официальным зонам и JSON-поверхностям сервиса.
+`blue-ribbon-nearby` - устаревший пакет только для чтения для поиска ближайших ресторанов Blue Ribbon по официальным зонам и интерфейсам в формате JSON сервиса.
 
 ## Граничное примечание
 
@@ -27,7 +27,7 @@ npm install
 - Ориентиры вроде `코엑스` приводятся к ближайшей официальной зоне, например `삼성동/대치동`.
 - По умолчанию пакет фильтрует только Blue Ribbon места через `ribbonType=RIBBON_THREE,RIBBON_TWO,RIBBON_ONE`.
 
-## Официальные поверхности Blue Ribbon
+## Официальные интерфейсы Blue Ribbon
 
 - Районы и зоны: `https://www.bluer.co.kr/search/zone`
 - JSON ресторанов поблизости: `https://www.bluer.co.kr/restaurants/map`
@@ -87,7 +87,7 @@ main().catch((error) => {
 }
 ```
 
-## API-справочник
+## Справочник API
 
 - `searchNearbyByLocationQuery(query, options?)`
 - `searchNearbyByCoordinates({ latitude, longitude }, options?)`

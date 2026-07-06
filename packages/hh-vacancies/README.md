@@ -8,7 +8,7 @@
 npm install hh-vacancies
 ```
 
-## Публичные поверхности
+## Публичные интерфейсы
 
 - Поиск вакансий: `https://api.hh.ru/vacancies`
 - Карточка вакансии: `https://api.hh.ru/vacancies/{vacancy_id}`
@@ -35,7 +35,7 @@ const {
 })();
 ```
 
-## API-справочник
+## Справочник API
 
 ### `getAreaOverview(areaId)`
 

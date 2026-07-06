@@ -1,6 +1,6 @@
 # kleague-results
 
-`kleague-results` - устаревший клиент только для чтения для официальных K League JSON адресов. Пакет отдаёт результаты матчей по дате и текущую таблицу, не прибегая к HTML-парсингу.
+`kleague-results` - устаревший клиент только для чтения для официальных K League JSON адресов. Пакет отдаёт результаты матчей по дате и текущую таблицу, не прибегая к разбору HTML.
 
 ## Граничное примечание
 
@@ -12,7 +12,7 @@
 npm install kleague-results
 ```
 
-## Официальные поверхности
+## Официальные интерфейсы
 
 - Расписание и результаты: `https://www.kleague.com/getScheduleList.do`
 - Таблица команд: `https://www.kleague.com/record/teamRank.do`
@@ -45,7 +45,7 @@ const { getKLeagueSummary, getMatchResults, getStandings } = require("kleague-re
 })();
 ```
 
-## API-справочник
+## Справочник API
 
 ### `getMatchResults(date, options)`
 
@@ -64,6 +64,6 @@ const { getKLeagueSummary, getMatchResults, getStandings } = require("kleague-re
 
 ## Примечания
 
-- Официальный JSON-поток проще и устойчивее, чем HTML-парсинг.
+- Официальный поток JSON проще и устойчивее, чем разбор HTML.
 - `getScheduleList.do` отдаёт месяц целиком, поэтому библиотека дополнительно фильтрует точную дату.
 - `teamRank.do` читает текущую турнирную таблицу в режиме `stadium=all`.

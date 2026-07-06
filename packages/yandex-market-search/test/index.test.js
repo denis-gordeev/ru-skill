@@ -102,7 +102,7 @@ const PRODUCT_FIXTURE = `
 </html>
 `;
 
-test("decodeHtmlEntities и stripTags нормализуют HTML-фрагменты Маркета", () => {
+test("decodeHtmlEntities и stripTags нормализуют фрагменты HTML Маркета", () => {
   assert.equal(decodeHtmlEntities("6.1&quot; &amp; more"), '6.1" & more');
   assert.equal(stripTags("<div><span>  Apple&nbsp;iPhone </span></div>"), "Apple iPhone");
 });

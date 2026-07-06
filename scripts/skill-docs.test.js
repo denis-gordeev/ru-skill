@@ -282,7 +282,7 @@ test("документация ktx-booking описывает рабочий п�
     assert.match(doc, /--try-waiting/);
     assert.match(doc, /credential resolution order|KSKILL_KTX_ID/);
     assert.match(doc, /антибота|Dynapath|x-dynapath-m-token/i);
-    // Accept both Korean original and Russian translation for payment automation note
+    // Допускается как корейский оригинал, так и русский перевод для примечания об автоматизации оплаты
     assert.match(doc, /Оплата не автоматизируется|Оплата до завершения не автоматизируется|не закрывает оплату/);
     assert.doesNotMatch(doc, /예약 시 선택할 `--train-index`/);
   }
@@ -404,7 +404,7 @@ test("документация репозитория рекламирует н�
   assert.match(sources, /46\.mchs\.gov\.ru\/deyatelnost\/press-centr\/operativnaya-informaciya\/shtormovye-i-ekstrennye-preduprezhdeniya/);
 });
 
-test("документация cbr-rates описывает официальный XML-сервис Банка России", () => {
+test("документация cbr-rates описывает официальный сервис XML Банка России", () => {
   const skillPath = path.join(repoRoot, "cbr-rates", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "cbr-rates", "README.md");
 
@@ -449,7 +449,7 @@ test("документация postcalc-postcodes описывает рабоч�
   assert.match(packageReadme, /getCityOverview/);
 });
 
-test("документация hh-vacancies описывает публичный API-сценарий вакансий HH", () => {
+test("документация hh-vacancies описывает публичный сценарий API вакансий HH", () => {
   const skillPath = path.join(repoRoot, "hh-vacancies", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "hh-vacancies", "README.md");
 
@@ -578,14 +578,14 @@ test("навык delivery-tracking документирует официальн
     assert.match(doc, /tracking-detail/);
     assert.match(doc, /paramInvcNo/);
     assert.match(doc, /_csrf/);
-    // Accept both Korean original and Russian translation for invoice length description
+    // Допускается как корейский оригинал, так и русский перевод для описания длины накладной
     assert.match(doc, /10자리 또는 12자리|10 или 12 цифр/);    assert.match(doc, /https:\/\/service\.epost\.go\.kr\/trace\.RetrieveRegiPrclDeliv\.postal\?sid1=/);
     assert.match(doc, /trace\.RetrieveDomRigiTraceList\.comm/);
     assert.match(doc, /sid1/);
-    // Accept both Korean original and Russian translation for invoice length
+    // Допускается как корейский оригинал, так и русский перевод для длины накладной
     assert.match(doc, /13자리|13 цифр/);    assert.match(doc, /curl --http1\.1 --tls-max 1\.2/);
     assert.match(doc, /модул[ья]-посредник[аи]? перевозчика|carrier adapter/i);
-    // Accept both Korean original and Russian translation for carrier extension
+    // Допускается как корейский оригинал, так и русский перевод для расширения перевозчика
     assert.match(doc, /다른 택배사|другой перевозчик|другие курьерские|других перевозчиков|новых перевозчиков|новых курьерских/i);
   }
 
@@ -677,8 +677,8 @@ test("опубликованные примеры delivery-tracking фиксир
   }
 
   for (const [label, doc] of [
-    ["skill doc", skill],
-    ["feature doc", featureDoc],
+    ["документ навыка", skill],
+    ["документ функции", featureDoc],
   ]) {
     assert.deepEqual(
       extractQuotedEntries(findPrintedObjectBlock(doc, "cj"), 4),
@@ -724,8 +724,8 @@ test("документация delivery-tracking публикует соглас
   const epostFeatureOutput = findJsonFenceAfterLabel(featureDoc, "Пример вывода Почтовой службы Кореи");
 
   for (const [docLabel, doc] of [
-    ["skill doc", skill],
-    ["feature doc", featureDoc],
+    ["документ навыка", skill],
+    ["документ функции", featureDoc],
   ]) {
     for (const [carrier, label] of [
       ["cj", "Пример вывода CJ"],
@@ -738,16 +738,16 @@ test("документация delivery-tracking публикует соглас
       );
     }
   }
-  assert.deepEqual(cjSkillOutput, cjFeatureOutput, "CJ sample output должен оставаться синхронизированным между документами");
-  assert.deepEqual(epostSkillOutput, epostFeatureOutput, "ePost sample output должен оставаться синхронизированным между документами");
-  assert.deepEqual(cjSkillOutput, expectedSamples.cj, "CJ sample output должен оставаться привязанным к проверенному публичному фикстуру");
-  assert.deepEqual(epostSkillOutput, expectedSamples.epost, "ePost sample output должен оставаться привязанным к проверенному публичному фикстуру");
-  assertSanitizedPublicOutput(cjSkillOutput, "CJ sample output");
-  assertSanitizedPublicOutput(epostSkillOutput, "ePost sample output");
+  assert.deepEqual(cjSkillOutput, cjFeatureOutput, "пример вывода CJ должен оставаться синхронизированным между документами");
+  assert.deepEqual(epostSkillOutput, epostFeatureOutput, "пример вывода ePost должен оставаться синхронизированным между документами");
+  assert.deepEqual(cjSkillOutput, expectedSamples.cj, "пример вывода CJ должен оставаться привязанным к проверенному публичному фикстуру");
+  assert.deepEqual(epostSkillOutput, expectedSamples.epost, "пример вывода ePost должен оставаться привязанным к проверенному публичному фикстуру");
+  assertSanitizedPublicOutput(cjSkillOutput, "пример вывода CJ");
+  assertSanitizedPublicOutput(epostSkillOutput, "пример вывода ePost");
 });
 
-// Temporarily disabled - provenance text translated to Russian
-test.skip("delivery-tracking docs pin sample provenance to the verified smoke-test date and invoice", () => {
+// Временно отключено — текст происхождения переведён на русский
+test.skip("документация delivery-tracking привязывает происхождение примера к проверенной дате smoke-test и накладной", () => {
 //   const expectedProvenance = readJson(
 //     path.join("scripts", "fixtures", "delivery-tracking-public-provenance.json"),
 //   );
@@ -755,8 +755,8 @@ test.skip("delivery-tracking docs pin sample provenance to the verified smoke-te
 //   const featureDoc = read(path.join("docs", "features", "delivery-tracking.md"));
 // 
 //   for (const [docLabel, doc] of [
-//     ["skill doc", skill],
-//     ["feature doc", featureDoc],
+//     ["документ навыка", skill],
+//     ["документ функции", featureDoc],
 //   ]) {
 //     assertSampleProvenance(doc, "Пример вывода CJ", expectedProvenance.cj, docLabel);
 //     assertSampleProvenance(doc, "Пример вывода 우체국", expectedProvenance.epost, docLabel);
@@ -853,7 +853,7 @@ test("документация репозитория рекламирует н�
   assert.match(sources, /K League командный рейтинг JSON: https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
 });
 
-test("навык kleague-results документирует официальный JSON-поток для поиска по дате, команде и турнирной таблице", () => {
+test("навык kleague-results документирует официальный поток JSON для поиска по дате, команде и турнирной таблице", () => {
   const skillPath = path.join(repoRoot, "kleague-results", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "ожидалось, что kleague-results/SKILL.md существует");
@@ -870,7 +870,7 @@ test("навык kleague-results документирует официальны
     assert.match(doc, /FC서울|서울 이랜드|팀 코드/);
     assert.match(doc, /https:\/\/www\.kleague\.com\/getScheduleList\.do/);
     assert.match(doc, /https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
-    assert.match(doc, /공식 JSON|공식 API|공식 표면|официальный JSON|официальный API|официальные поверхности API/u);
+    assert.match(doc, /공식 JSON|공식 API|공식 표면|официальный JSON|официальный API|официальные интерфейсы API/u);
     assert.match(doc, /현재 순위|текущую турнирную таблицу|standings/i);
     assert.match(doc, /kleague-results|K리그 결과 조회|Результаты K League/u);
   }
@@ -895,7 +895,7 @@ test("исходный код kleague-results использует русски�
   assert.doesNotMatch(index, /K League request failed with/);
 });
 
-test("package README kleague-results соответствует официальному JSON-потоку K League", () => {
+test("package README kleague-results соответствует официальному потоку JSON K League", () => {
   const packageReadme = read(path.join("packages", "kleague-results", "README.md"));
 
   assert.match(packageReadme, /устаревший без развития/i);
@@ -916,7 +916,7 @@ test("документация репозитория рекламирует н�
 
   assert.ok(fs.existsSync(featureDocPath), "ожидалось, что docs/features/blue-ribbon-nearby.md существует");
   assert.match(readme, /\| `blue-ribbon-nearby` \|/);
-  assert.match(readme, /\[Руководство по Blue Ribbon nearby\]\(docs\/features\/blue-ribbon-nearby\.md\)/);
+  assert.match(readme, /\[Руководство по ресторанам Blue Ribbon поблизости\]\(docs\/features\/blue-ribbon-nearby\.md\)/);
   assert.match(install, /--skill blue-ribbon-nearby/);
   assert.match(roadmap, /Навык поиска ближайших ресторанов Blue Ribbon/);
   assert.match(sources, /Blue Ribbon поиск по зоне: https:\/\/www\.bluer\.co\.kr\/search\/zone/);
@@ -972,7 +972,7 @@ test("документация репозитория рекламирует н�
 
   assert.ok(fs.existsSync(featureDocPath), "ожидалось, что docs/features/kakao-bar-nearby.md существует");
   assert.match(readme, /\| `kakao-bar-nearby` \|/);
-  assert.match(readme, /\[Руководство по Kakao bar nearby\]\(docs\/features\/kakao-bar-nearby\.md\)/);
+  assert.match(readme, /\[Руководство по барам через Kakao Map\]\(docs\/features\/kakao-bar-nearby\.md\)/);
   assert.match(install, /--skill kakao-bar-nearby/);
   assert.match(roadmap, /Навык поиска ближайших баров/);
   assert.match(sources, /Kakao Map мобильный поиск: https:\/\/m\.map\.kakao\.com\/actions\/searchView/);
@@ -1020,14 +1020,14 @@ test("feature doc kakao-bar-nearby фиксирует проверочный п�
   const featureDoc = read(path.join("docs", "features", "kakao-bar-nearby.md"));
   const smoke = findJsonFenceAfterLabel(featureDoc, "## Проверочный пример");
 
-  assertKakaoBarNearbySadangSmokeSnapshot(smoke, "feature doc smoke snapshot");
+  assertKakaoBarNearbySadangSmokeSnapshot(smoke, "проверочный пример документации функции");
 });
 
 test("проверочный пример в package README kakao-bar-nearby совпадает с выводом sadang от 2026-03-29", () => {
   const packageReadme = read(path.join("packages", "kakao-bar-nearby", "README.md"));
   const smoke = findJsonFenceAfterLabel(packageReadme, "## Проверочный пример");
 
-  assertKakaoBarNearbySadangSmokeSnapshot(smoke, "package README smoke snapshot");
+  assertKakaoBarNearbySadangSmokeSnapshot(smoke, "проверочный пример README пакета");
 });
 
 test("исходный код kakao-bar-nearby использует русские сообщения об ошибках", () => {
@@ -1137,7 +1137,7 @@ test("навык fine-dust-location документирует официаль�
     assert.match(doc, /скрытый перечень задач/i);
     assert.match(doc, /AIR_KOREA_OPEN_API_KEY/);
     assert.match(doc, /KSKILL_PROXY_BASE_URL/);
-    assert.match(doc, /Отдельный клиентский API-ключ в этом режиме не нужен/i);
+    assert.match(doc, /Отдельный клиентский ключ API в этом режиме не нужен/i);
     assert.match(doc, /B552584\/MsrstnInfoInqireSvc\/getMsrstnList/);
     assert.match(doc, /B552584\/ArpltnInforInqireSvc\/getMsrstnAcctoRltmMesureDnsty/);
     assert.match(doc, /getCtprvnRltmMesureDnsty/);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-02");
-  assert.equal(todoStatus.round, 73);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 73\)/);
+  assert.equal(todoStatus.date, "2026-07-06");
+  assert.equal(todoStatus.round, 80);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 80\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -2239,7 +2239,7 @@ test("навык daiso-product-search документирует сценари�
   assert.match(featureDoc, /lookupStoreProductAvailability/);
   assert.match(featureDoc, /selStrPkupStck/);
   assert.match(featureDoc, /SearchGoods/);
-  assert.match(featureDoc, /официальн.*поверхност.*не.*расположен/i);
+  assert.match(featureDoc, /официальн.*интерфейс.*не.*расположен/i);
 });
 
 test("навык delivery-tracking документирует сценарий адаптеров перевозчиков CJ и ePost с граничным примечанием", () => {
@@ -2351,7 +2351,7 @@ test("все файлы SKILL.md используют каноничную ру�
   const pkgOsmSkill = read(path.join("packages", "osm-nearby", "SKILL.md"));
   assert.ok(
     extractSecondLevelHeadings(pkgOsmSkill).includes("Что делает навык"),
-    "packages/osm-nearby/SKILL.md должен иметь каноничный заголовок scheme",
+    "packages/osm-nearby/SKILL.md должен иметь каноничную схему заголовков",
   );
 
   const pkgZoonSkill = read(path.join("packages", "zoon-nearby", "SKILL.md"));
@@ -2532,9 +2532,9 @@ test("roadmap использует русские заголовки вех вм
 test("feature doc osm-nearby использует русский вместо английского жаргона", () => {
   const featureDoc = read(path.join("docs", "features", "osm-nearby.md"));
 
-  assert.match(featureDoc, /бесплатн.*решение без API-ключа|решение без API-ключа.*бесплатн/i);
+  assert.match(featureDoc, /бесплатн.*решение без ключа API|решение без ключа API.*бесплатн/i);
   assert.match(featureDoc, /может быть неполным/);
-  assert.match(featureDoc, /бесплатн.*вариант без API-ключа/i);
+  assert.match(featureDoc, /бесплатн.*вариант без ключа API/i);
 
   assert.doesNotMatch(featureDoc, /free.*no.?key/i);
   assert.doesNotMatch(featureDoc, /\bsparse\b/);
@@ -2729,7 +2729,7 @@ test("имена workflow GitHub Actions на русском", () => {
   assert.match(releaseNpm, /^name: Релиз npm-пакетов$/m);
   assert.doesNotMatch(releaseNpm, /^name: Release npm packages$/m);
 
-  assert.match(releasePython, /^name: Релиз Python-пакетов$/m);
+  assert.match(releasePython, /^name: Релиз пакетов Python$/m);
   assert.doesNotMatch(releasePython, /^name: Release Python packages$/m);
 });
 
@@ -2742,8 +2742,8 @@ test("имена шагов и комментарии в workflow GitHub Actions
   assert.doesNotMatch(releaseNpm, /Create npm release PR or publish/);
   assert.doesNotMatch(releaseNpm, /Preferred path: npm trusted publishing/);
 
-  assert.match(releasePython, /Python-пакет пока не существует/);
-  assert.match(releasePython, /Метаданные релиза Python-пакета созданы/);
+  assert.match(releasePython, /пакет Python пока не существует/);
+  assert.match(releasePython, /Метаданные релиза пакета Python созданы/);
   assert.match(releasePython, /name: Напоминание$/m);
   assert.doesNotMatch(releasePython, /No Python package exists yet/);
   assert.doesNotMatch(releasePython, /Python package release metadata was created/);
@@ -2804,7 +2804,7 @@ test("Python-хелперы используют русские пользова
 
   assert.match(ktxBooking, /train_id недействителен/);
   assert.match(ktxBooking, /train_id больше не соответствует/);
-  assert.match(ktxBooking, /требует дополнительные Python-пакеты/);
+  assert.match(ktxBooking, /требует дополнительные пакеты Python/);
   assert.match(ktxBooking, /неподдерживаемая опция бронирования/);
   assert.match(ktxBooking, /создано, но не удалось перезагрузить/);
   assert.match(ktxBooking, /train_id должен начинаться с ktx:v1:/);
@@ -2918,7 +2918,7 @@ test("feature docs используют русский вместо англий
   assert.doesNotMatch(srtFeature, /sold out/);
 
   assert.doesNotMatch(kleagueFeature, /HTML scraping/);
-  assert.match(kleagueFeature, /HTML-парсинг/);
+  assert.match(kleagueFeature, /разбор HTML/);
 });
 
 test("верхнеуровневая документация использует русский вместо английского жаргона: lookup, real-time, nearby-", () => {
@@ -2947,7 +2947,7 @@ test("package README используют русский вместо HTML scrap
 
   assert.doesNotMatch(kleagueReadme, /HTML scraping/);
   assert.doesNotMatch(kleagueReadme, /HTML crawling/);
-  assert.match(kleagueReadme, /HTML-парсинг/);
+  assert.match(kleagueReadme, /разбор HTML/);
 });
 
 test("описания тестов в skill-docs.test.js на русском, а не на английском", () => {
@@ -2992,7 +2992,7 @@ test("feature docs не содержат заголовок ## API без рус
     assert.doesNotMatch(
       content,
       /^## API$/m,
-      `docs/features/${file} не должен содержать голый заголовок "## API" — используйте "## API-справочник"`,
+      `docs/features/${file} не должен содержать голый заголовок "## API" — используйте "## Справочник API"`,
     );
   }
 });
@@ -3136,7 +3136,7 @@ test("docs/brand-inventory.md использует русский вместо �
   assert.doesNotMatch(brand, /Public proxy URL/);
   assert.doesNotMatch(brand, /legacy endpoint/);
   assert.doesNotMatch(brand, /legacy-поверхностей/);
-  assert.match(brand, /устаревших поверхностей/);
+  assert.match(brand, /устаревших интерфейсов/);
   assert.match(brand, /Публичный URL прокси/);
   assert.match(brand, /устаревшая конечная точка/);
 });
@@ -3185,7 +3185,7 @@ test("user-facing surfaces не содержат английский жарго
   assert.match(pythonReadme, /Каркас/);
 
   assert.doesNotMatch(zoonReadme, /anti-bot/);
-  assert.match(zoonReadme, /антибота/);
+  assert.match(zoonReadme, /защиты от роботов/);
 
   assert.doesNotMatch(zoonFeature, /anti-bot/);
   assert.match(zoonFeature, /антибота/);
@@ -3295,10 +3295,10 @@ test("SKILL.md файлы zoon-nearby не содержат Anti-bot", () => {
   const zoonPkgSkill = read(path.join("packages", "zoon-nearby", "SKILL.md"));
 
   assert.doesNotMatch(zoonSkill, /Anti-bot/);
-  assert.match(zoonSkill, /Антибот/);
+  assert.match(zoonSkill, /Антибот|Защита от ботов/);
 
   assert.doesNotMatch(zoonPkgSkill, /Anti-bot/);
-  assert.match(zoonPkgSkill, /Антибот/);
+  assert.match(zoonPkgSkill, /Антибот|Защита от ботов/);
 });
 
 test("тестовые файлы не содержат английский жаргон payload, live-запросы, upstream-ответы", () => {
@@ -3461,19 +3461,19 @@ test("SSR-терминология нормализована: серверно 
   const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
 
   assert.doesNotMatch(zoonSkill, /SSR-страницы|SSR-вёрстка/);
-  assert.match(zoonSkill, /серверно отрендерен/);
+  assert.match(zoonSkill, /серверн.*(?:отрисовк|рендеринг).*?\(SSR\)|серверно отрендерен/);
 
   assert.doesNotMatch(zoonPkgSkill, /SSR-страницы|SSR-вёрстка/);
-  assert.match(zoonPkgSkill, /серверно отрендерен/);
+  assert.match(zoonPkgSkill, /серверн.*(?:отрисовк|рендеринг).*?\(SSR\)|серверно отрендерен/);
 
   assert.doesNotMatch(zoonReadme, /SSR-страницы/);
-  assert.match(zoonReadme, /серверно отрендерен/);
+  assert.match(zoonReadme, /серверн.* отрисовк.* \(SSR|серверно отрендерен/);
 
   assert.doesNotMatch(zoonFeature, /SSR-страницы/);
-  assert.match(zoonFeature, /серверн.* рендеринг.* \(SSR\)|серверно отрендерен/);
+  assert.match(zoonFeature, /серверн.* отрисовк.* \(SSR\)|серверно отрендерен/);
 
   assert.doesNotMatch(ymFeature, /SSR-вёрстка/);
-  assert.match(ymFeature, /серверн.* рендеринг.* \(SSR\)|серверно отрендерен/);
+  assert.match(ymFeature, /серверн.* отрисовк.* \(SSR\)|серверно отрендерен/);
 });
 
 test("proxy как описательное слово заменён на прокси в user-facing документации", () => {
@@ -3505,7 +3505,7 @@ test("proxy как описательное слово заменён на пр�
   assert.match(install, /прокси-слоя/);
   assert.match(setup, /совместимый прокси/);
   assert.match(security, /совместимого прокси/);
-  assert.match(sources, /прокси-поверхност/);
+  assert.match(sources, /прокси-интерфейс/);
 });
 
 test("workflow как описательное слово заменён на процесс/сценарий в user-facing документации", () => {
@@ -3559,7 +3559,7 @@ test("английские h1 в SKILL.md legacy-навыков переведе
   const kakaotalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
   const tossSkill = read(path.join("toss-securities", "SKILL.md"));
   assert.doesNotMatch(kakaotalkSkill, /^# KakaoTalk Mac CLI$/m);
-  assert.match(kakaotalkSkill, /^# CLI для KakaoTalk на macOS$/m);
+  assert.match(kakaotalkSkill, /^# Командная строка KakaoTalk на macOS$/m);
   assert.doesNotMatch(tossSkill, /^# Toss Securities$/m);
   assert.match(tossSkill, /^# Брокерские данные Toss Securities$/m);
 });
@@ -3844,7 +3844,7 @@ test("target- и transition- и legacy- как описательные слов
   assert.match(lottoSkill, /целевой кандидат/);
 
   assert.doesNotMatch(daisoSkill, /target-трек/);
-  assert.match(daisoSkill, /целевой трек/);
+  assert.match(daisoSkill, /целевое направление/);
 
   assert.doesNotMatch(fineDustSkill, /legacy\/transition.*утилит/i);
   assert.match(fineDustSkill, /устаревш.*переходн.*утилит/i);
@@ -3866,7 +3866,7 @@ test("free как описательное слово заменено на бе
   }
 });
 
-test("optional в API-параметрах заменён на опционально в feature docs zoon-nearby", () => {
+test("optional в параметрах API заменён на опционально в feature docs zoon-nearby", () => {
   const zoonFeature = read(path.join("docs", "features", "zoon-nearby.md"));
   assert.doesNotMatch(zoonFeature, /\boptional\b/);
   assert.match(zoonFeature, /опционально/);
@@ -3916,7 +3916,7 @@ test("legacy- compounds заменены на устаревш* в пользо�
   assert.match(sources, /устаревшей документации/);
   assert.match(install, /устаревшее имя/);
   assert.match(install, /устаревших пакетов npm|устаревших npm-пакетов/);
-  assert.match(brandInventory, /устаревших поверхностей/);
+  assert.match(brandInventory, /устаревших интерфейсов/);
   assert.match(booking, /устаревших навыков/);
 });
 
@@ -4004,10 +4004,10 @@ test("README.md пользовательские секции не содерж�
   assert.match(readme, /навыков бронирования/);
 });
 
-test("docs/sources.md не содержит server-side rendered (заменено на серверно отрендеренный)", () => {
+test("docs/sources.md не содержит server-side rendered (заменено на сгенерированный на сервере)", () => {
   const sources = read(path.join("docs", "sources.md"));
   assert.doesNotMatch(sources, /server-side rendered/);
-  assert.match(sources, /серверно отрендеренный/);
+  assert.match(sources, /сгенерированный на сервере/);
 });
 
 test("docs/features/delivery-tracking.md не содержит Endpoint (заменено на Эндпоинт)", () => {
@@ -4052,7 +4052,7 @@ test("packages/k-skill-proxy/README.md не содержит legacy- compounds �
   assert.match(readme, /устаревший сценарий/);
 
   assert.doesNotMatch(readme, /legacy fine-dust/);
-  assert.match(readme, /устаревший сценарий fine-dust/);
+  assert.match(readme, /устаревший сценарий `fine-dust`/);
 
   assert.doesNotMatch(readme, /legacy-файл/);
   assert.match(readme, /устаревший файл/);
@@ -4145,7 +4145,7 @@ test("README.md не содержит английского жаргона meta
   assert.match(readme, /проверочными примерами/);
   assert.doesNotMatch(readme, /credential\/proxy документам/);
   assert.doesNotMatch(readme, /publish\/release surfaces/);
-  assert.match(readme, /поверхностях публикации|поверхностям публикации\/релиза/);
+  assert.match(readme, /интерфейсах публикации|интерфейсам публикации\/релиза/);
   assert.doesNotMatch(readme, /Python helper messages/);
   assert.match(readme, /вспомогательные сообщения Python/);
   assert.doesNotMatch(readme, /helper JS utilities/);
@@ -4168,8 +4168,8 @@ test("docs/roadmap.md не содержит английского жаргон�
   assert.match(roadmap, /вспомогательная\/runtime-очистка/);
   assert.doesNotMatch(roadmap, /package metadata descriptions/);
   assert.match(roadmap, /метаданные пакетов/);
-  assert.doesNotMatch(roadmap, /helper-поверхност/);
-  assert.match(roadmap, /вспомогательных поверхностях/);
+  assert.doesNotMatch(roadmap, /helper-поверхност|helper-интерфейс/);
+  assert.match(roadmap, /вспомогательных интерфейсах/);
 });
 
 test("docs/features/kleague-results.md не содержит merge", () => {
@@ -4344,7 +4344,7 @@ test("SKILL.md не содержит ad-hoc", () => {
   assert.match(hhSkill, /разовые/);
 
   assert.doesNotMatch(postcalcSkill, /ad-hoc/);
-  assert.match(postcalcSkill, /разовый/);
+  assert.match(postcalcSkill, /разов(ая|ую|ый)/);
 });
 
 test("docs/releasing.md не содержит provenance-метаданные", () => {
@@ -4359,7 +4359,7 @@ test("python-packages/README.md не содержит английскую за�
   assert.match(pyReadme, /задачу публикации/);
 });
 
-test("k-skill-proxy surfaces не содержат target-продукт, Legacy конечная точка, public API-сценарии", () => {
+test("k-skill-proxy surfaces не содержат target-продукт, Legacy конечная точка, public сценарии API", () => {
   const proxyReadme = read(path.join("packages", "k-skill-proxy", "README.md"));
   const proxyDoc = read(path.join("docs", "features", "k-skill-proxy.md"));
 
@@ -4368,10 +4368,10 @@ test("k-skill-proxy surfaces не содержат target-продукт, Legacy
   assert.match(proxyReadme, /целевым продуктом/);
   assert.match(proxyReadme, /Устаревшая конечная точка/);
 
-  assert.doesNotMatch(proxyDoc, /public API-сценарии/);
+  assert.doesNotMatch(proxyDoc, /public сценарии API/);
   assert.doesNotMatch(proxyDoc, /legacy конечная точка/);
   assert.doesNotMatch(proxyDoc, /Legacy конечная точка/);
-  assert.match(proxyDoc, /публичные API-сценарии/);
+  assert.match(proxyDoc, /публичные сценарии API/);
   assert.match(proxyDoc, /устаревшая конечная точка|Устаревшая конечная точка/);
 });
 
@@ -4398,7 +4398,7 @@ test("политика секретов и навык настройки исп�
   assert.match(securityDoc, /простой dotenv/);
 
   assert.doesNotMatch(kSetupSkill, /plain dotenv/);
-  assert.match(kSetupSkill, /простой dotenv/);
+  assert.match(kSetupSkill, /простого файла окружения \(dotenv\)/);
 });
 
 test("fine-dust-location/SKILL.md не содержит skill-level copy", () => {
@@ -4447,7 +4447,7 @@ test("k-skill-setup/SKILL.md не содержит legacy без перевод�
   assert.match(skill, /;\s*устаревший\s+`~/);
 });
 
-test("docs/sources.md не содержит навык standalone, публичный API, нечёткий поиск, веб-сокеты, конструкции запросов, со стороны продавца, API-ключи, регрессионные тесты", () => {
+test("docs/sources.md не содержит навык standalone, публичный API, нечёткий поиск, веб-сокеты, конструкции запросов, со стороны продавца, ключи API, регрессионные тесты", () => {
   const sources = read(path.join("docs", "sources.md"));
 
   assert.doesNotMatch(sources, /Техническая основа: skill \+/);
@@ -4469,7 +4469,7 @@ test("docs/sources.md не содержит навык standalone, публич�
   assert.match(sources, /со стороны продавца/);
 
   assert.doesNotMatch(sources, /без API keys/);
-  assert.match(sources, /без API-ключей/);
+  assert.match(sources, /без ключей API/);
 
   assert.doesNotMatch(sources, /regression-тесты/);
   assert.match(sources, /регрессионные тесты/);
@@ -4492,10 +4492,10 @@ test("docs/security-and-secrets.md использует файл секрето�
   assert.match(security, /руководстве по настройке/);
 });
 
-test("docs/features/zoon-nearby.md использует API-ключи вместо API keys", () => {
+test("docs/features/zoon-nearby.md использует ключи API вместо API keys", () => {
   const zoon = read(path.join("docs", "features", "zoon-nearby.md"));
   assert.doesNotMatch(zoon, /\*\*API keys\*\*/);
-  assert.match(zoon, /\*\*API-ключи\*\*/);
+  assert.match(zoon, /\*\*ключи API\*\*/);
 });
 
 test("AGENTS.md использует путь пакета вместо package path", () => {
@@ -4581,10 +4581,10 @@ test("docs/features/*.md не содержат legacy без перевода в
   assert.match(proxy, /устаревший AirKorea/);
 });
 
-test("docs/sources.md использует API-ключ вместо API key и эталонный набор данных вместо фикстура", () => {
+test("docs/sources.md использует ключ API вместо API key и эталонный набор данных вместо фикстура", () => {
   const sources = read(path.join("docs", "sources.md"));
   assert.doesNotMatch(sources, /\bAPI key\b/);
-  assert.match(sources, /API-ключ/);
+  assert.match(sources, /ключ API/);
   assert.doesNotMatch(sources, /добавляется фикстура/);
   assert.match(sources, /эталонный набор данных/);
 });
@@ -4603,25 +4603,25 @@ test("README.md не содержит issue tracker, npm script output без п
   assert.match(readme, /вывод npm-скриптов/);
 });
 
-test("Пользовательские поверхности не содержат API key без дефиса", () => {
+test("Пользовательские поверхности не содержат API key без русского порядка слов", () => {
   const osm = read(path.join("docs", "features", "osm-nearby.md"));
   assert.doesNotMatch(osm, /API ключ/);
   assert.doesNotMatch(osm, /\bAPI key\b/);
-  assert.match(osm, /API-ключ/);
+  assert.match(osm, /ключ API/);
 
   const zoon = read(path.join("docs", "features", "zoon-nearby.md"));
   assert.doesNotMatch(zoon, /API ключ/);
   assert.doesNotMatch(zoon, /\bAPI keys\b/);
-  assert.match(zoon, /API-ключ/);
+  assert.match(zoon, /ключи API/);
 
   const ym = read(path.join("yandex-market-search", "SKILL.md"));
   assert.doesNotMatch(ym, /\bAPI key\b/);
-  assert.match(ym, /API-ключ/);
+  assert.match(ym, /ключ[аи] API/);
 
   const osmSkill = read(path.join("packages", "osm-nearby", "SKILL.md"));
   assert.doesNotMatch(osmSkill, /API ключ/);
   assert.doesNotMatch(osmSkill, /\bAPI key\b/);
-  assert.match(osmSkill, /API-ключ/);
+  assert.match(osmSkill, /ключа API/i);
 });
 
 test("mchs-storm-warnings/SKILL.md не содержит MChS в русской прозе", () => {
@@ -4736,7 +4736,7 @@ test("верхнеуровневые документы не возвращаю�
   assert.match(readme, /артефакты выполнения контура настройки/);
 
   assert.doesNotMatch(readme, /shell\/infrastructure/);
-  assert.match(readme, /поверхности оболочки и инфраструктуры/);
+  assert.match(readme, /интерфейсы оболочки и инфраструктуры/);
 
   assert.doesNotMatch(releasing, /Changesets для npm/);
   assert.match(releasing, /файлы `?\.changeset`? для npm/);
@@ -4788,7 +4788,7 @@ test("раунд 72: русификация skill/package, категории н
 
   const hhVac = read(path.join("hh-vacancies", "SKILL.md"));
   assert.doesNotMatch(hhVac, /frontend вакансии/);
-  assert.match(hhVac, /вакансии фронтенда/);
+  assert.match(hhVac, /вакансии фронтенда|вакансии клиентской разработки/);
   assert.doesNotMatch(hhVac, /area id/);
   assert.match(hhVac, /идентификатор региона/);
 
@@ -4807,7 +4807,7 @@ test("раунд 72: русификация skill/package, категории н
 
   const delivery = read(path.join("delivery-tracking", "SKILL.md"));
   assert.doesNotMatch(delivery, /сохранения cookie/);
-  assert.match(delivery, /сохранения куки/);
+  assert.match(delivery, /сохранения файла куки/);
 
   const blueRibbon = read(path.join("blue-ribbon-nearby", "SKILL.md"));
   assert.doesNotMatch(blueRibbon, /\(ribbon\)/);
@@ -4918,4 +4918,160 @@ test("раунд 73: русификация feature docs и историческ
   assert.doesNotMatch(todoWithoutBackticks, /replacement copy/);
   assert.doesNotMatch(todoWithoutBackticks, /compatibility-layer/);
   assert.doesNotMatch(todoWithoutBackticks, /target-default/);
+});
+
+test("раунд 74: package README и корневой README не возвращают старые гибриды", () => {
+  const rootReadme = read("README.md");
+  assert.doesNotMatch(rootReadme, /\[Руководство по Blue Ribbon nearby\]/);
+  assert.match(rootReadme, /\[Руководство по ресторанам Blue Ribbon поблизости\]/);
+  assert.doesNotMatch(rootReadme, /\[Руководство по Kakao bar nearby\]/);
+  assert.match(rootReadme, /\[Руководство по барам через Kakao Map\]/);
+
+  const zoonReadme = read(path.join("packages", "zoon-nearby", "README.md"));
+  assert.doesNotMatch(zoonReadme, /Серверно отрендеренные страницы \(SSR\)/);
+  assert.doesNotMatch(zoonReadme, /парсится напрямую/);
+  assert.match(zoonReadme, /Серверная отрисовка \(SSR\)/);
+  assert.match(zoonReadme, /напрямую разбирается/);
+
+  const kleagueReadme = read(path.join("packages", "kleague-results", "README.md"));
+  assert.doesNotMatch(kleagueReadme, /HTML-парсинг/);
+  assert.match(kleagueReadme, /разбор HTML/);
+
+  const proxyReadme = read(path.join("packages", "k-skill-proxy", "README.md"));
+  assert.doesNotMatch(proxyReadme, /других адаптеров/);
+  assert.doesNotMatch(proxyReadme, /узкие адаптеры/);
+  assert.match(proxyReadme, /других модулей-посредников/);
+  assert.match(proxyReadme, /узкие модули-посредники/);
+
+  const rplReadme = read(path.join("packages", "rpl-results", "README.md"));
+  assert.doesNotMatch(rplReadme, /Данные парсятся/);
+  assert.match(rplReadme, /Данные разбираются/);
+});
+
+test("раунд 75: package README, SKILL.md и тесты не возвращают старые гибриды", () => {
+  const yandexMarketReadme = read(path.join("packages", "yandex-market-search", "README.md"));
+  assert.doesNotMatch(yandexMarketReadme, /серверно отрендеренных/);
+  assert.doesNotMatch(yandexMarketReadme, /серверно отрендеренным/);
+  assert.doesNotMatch(yandexMarketReadme, /трекинг-параметров/);
+  assert.match(yandexMarketReadme, /сгенерированных на сервере/);
+  assert.match(yandexMarketReadme, /параметров отслеживания/);
+
+  const kinopoiskReadme = read(path.join("packages", "kinopoisk-search", "README.md"));
+  assert.doesNotMatch(kinopoiskReadme, /Парсинг HTML-страниц/);
+  assert.match(kinopoiskReadme, /Разбор страниц HTML/);
+
+  const stolotoReadme = read(path.join("packages", "stoloto-lotto", "README.md"));
+  assert.doesNotMatch(stolotoReadme, /Парсинг HTML-страниц/);
+  assert.match(stolotoReadme, /Разбор страниц HTML/);
+
+  const moexReadme = read(path.join("packages", "moex-shares", "README.md"));
+  assert.doesNotMatch(moexReadme, /Эндпоинт акций/);
+  assert.match(moexReadme, /Конечная точка акций/);
+
+  const tossReadme = read(path.join("packages", "toss-securities", "README.md"));
+  assert.doesNotMatch(tossReadme, /исходный CLI/);
+  assert.doesNotMatch(tossReadme, /исходного CLI/);
+  assert.doesNotMatch(tossReadme, /пройти логин/);
+  assert.match(tossReadme, /исходный интерфейс командной строки/);
+  assert.match(tossReadme, /выполнить вход/);
+
+  const daisoSkill = read(path.join("daiso-product-search", "SKILL.md"));
+  assert.doesNotMatch(daisoSkill, /целевой трек/);
+  assert.match(daisoSkill, /целевое направление/);
+
+  const deliverySkill = read(path.join("delivery-tracking", "SKILL.md"));
+  assert.doesNotMatch(deliverySkill, /JSON API \/ HTML-форма \/ CLI/);
+  assert.doesNotMatch(deliverySkill, /сохранения файла cookie/);
+  assert.match(deliverySkill, /JSON API \/ HTML-форма \/ командная строка/);
+  assert.match(deliverySkill, /сохранения файла куки/);
+
+  const mchsSkill = read(path.join("mchs-storm-warnings", "SKILL.md"));
+  assert.doesNotMatch(mchsSkill, /CMS-шаблон/);
+  assert.match(mchsSkill, /шаблон системы управления контентом \(CMS\)/);
+
+  const kakaotalkSkill = read(path.join("kakaotalk-mac", "SKILL.md"));
+  assert.doesNotMatch(kakaotalkSkill, /\*\*Full Disk Access \(Полный доступ к диску\)\*\*/);
+  assert.doesNotMatch(kakaotalkSkill, /\*\*Accessibility \(Универсальный доступ\)\*\*/);
+  assert.match(kakaotalkSkill, /\*\*Полный доступ к диску \(Full Disk Access\)\*\*/);
+  assert.match(kakaotalkSkill, /\*\*Универсальный доступ \(Accessibility\)\*\*/);
+
+  const zipcodeSkill = read(path.join("zipcode-search", "SKILL.md"));
+  assert.doesNotMatch(zipcodeSkill, /CLI-обёртках/);
+  assert.match(zipcodeSkill, /обёртках командной строки/);
+
+  const rootReadme = read("README.md");
+  assert.doesNotMatch(rootReadme, /серверно отрендеренные страницы Яндекс Маркета/);
+  assert.match(rootReadme, /сгенерированные на сервере.*Яндекс Маркета|Яндекс Маркета.*сгенерированные на сервере/);
+});
+
+test("раунд 78: пользовательские интерфейсные документы не содержат «поверхность» как калку surface", () => {
+  const sources = read(path.join("docs", "sources.md"));
+  const brand = read(path.join("docs", "brand-inventory.md"));
+  const booking = read(path.join("docs", "booking-replacements.md"));
+  const proxyFeature = read(path.join("docs", "features", "k-skill-proxy.md"));
+  const kakaoBarFeature = read(path.join("docs", "features", "kakao-bar-nearby.md"));
+  const daisoFeature = read(path.join("docs", "features", "daiso-product-search.md"));
+  const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
+  const blueRibbonFeature = read(path.join("docs", "features", "blue-ribbon-nearby.md"));
+  const kleagueFeature = read(path.join("docs", "features", "kleague-results.md"));
+  const ktxFeature = read(path.join("docs", "features", "ktx-booking.md"));
+  const rplFeature = read(path.join("docs", "features", "rpl-results.md"));
+  const stolotoFeature = read(path.join("docs", "features", "stoloto-lotto.md"));
+
+  const tossSkill = read(path.join("toss-securities", "SKILL.md"));
+  const ktxSkill = read(path.join("ktx-booking", "SKILL.md"));
+  const kleagueSkill = read(path.join("kleague-results", "SKILL.md"));
+  const kakaoBarSkill = read(path.join("kakao-bar-nearby", "SKILL.md"));
+
+  for (const [label, doc] of [
+    ["docs/sources.md", sources],
+    ["docs/brand-inventory.md", brand],
+    ["docs/booking-replacements.md", booking],
+    ["docs/features/k-skill-proxy.md", proxyFeature],
+    ["docs/features/kakao-bar-nearby.md", kakaoBarFeature],
+    ["docs/features/daiso-product-search.md", daisoFeature],
+    ["docs/features/yandex-market-search.md", ymFeature],
+    ["docs/features/blue-ribbon-nearby.md", blueRibbonFeature],
+    ["docs/features/kleague-results.md", kleagueFeature],
+    ["docs/features/ktx-booking.md", ktxFeature],
+    ["docs/features/rpl-results.md", rplFeature],
+    ["docs/features/stoloto-lotto.md", stolotoFeature],
+    ["toss-securities/SKILL.md", tossSkill],
+    ["ktx-booking/SKILL.md", ktxSkill],
+    ["kleague-results/SKILL.md", kleagueSkill],
+    ["kakao-bar-nearby/SKILL.md", kakaoBarSkill],
+  ]) {
+    assert.doesNotMatch(doc, /поверхност[ьиь]/, `${label} не должен содержать «поверхность» как калку surface — используйте «интерфейс»`);
+  }
+
+  assert.match(sources, /внешние интерфейсы/);
+  assert.match(sources, /прокси-интерфейсов/);
+  assert.match(brand, /устаревших интерфейсов/);
+  assert.match(booking, /Тип интерфейса/);
+  assert.match(proxyFeature, /наружный интерфейс/);
+  assert.match(kakaoBarFeature, /Официальные интерфейсы Kakao Map/);
+  assert.match(daisoFeature, /Официальные интерфейсы/);
+  assert.match(ymFeature, /HTML-интерфейс Яндекс Маркета/);
+  assert.match(blueRibbonFeature, /Официальные интерфейсы Blue Ribbon/);
+  assert.match(kleagueFeature, /Официальные интерфейсы/);
+  assert.match(ktxFeature, /отдельный интерфейс и отдельные учётные данные/);
+  assert.match(tossSkill, /интерфейс `tossctl`/);
+
+  assert.doesNotMatch(sources, /\bлогин\b/);
+  assert.match(sources, /не нужен вход/);
+
+  assert.match(rplFeature, /программу разбора/);
+  assert.doesNotMatch(rplFeature, /\bпарсер\b/);
+
+  assert.match(stolotoFeature, /разбор может сломаться/);
+  assert.doesNotMatch(stolotoFeature, /парсинг может сломаться/);
+
+  assert.match(kleagueFeature, /разбор HTML/);
+  assert.doesNotMatch(kleagueFeature, /HTML-парсинг/);
+
+  assert.match(sources, /сторонняя программа разбора котировок/);
+  assert.doesNotMatch(sources, /сторонний парсер котировок/);
+
+  assert.match(sources, /разбор содержимого PDF/);
+  assert.doesNotMatch(sources, /парсинг содержимого PDF/);
 });
