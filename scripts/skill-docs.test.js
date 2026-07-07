@@ -1092,11 +1092,11 @@ test("документация репозитория рекламирует н�
   assert.match(sources, /AirKorea станции мониторинга API: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
   assert.match(setup, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(setup, /KSKILL_PROXY_BASE_URL/);
-  assert.match(setup, /опубликованн.*совместим.*прокси-конечн.* точк.* используется по умолчанию/i);
+  assert.match(setup, /опубликованн.*совместим.*конечн.* точк.* посредник.* используется по умолчанию/i);
   assert.match(setup, /не входит в минимальный шаблон секретов/i);
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(security, /KSKILL_PROXY_BASE_URL/);
-  assert.match(security, /необязательн.*переопределен.*опубликованн.*прокси-конечн.* точк/i);
+  assert.match(security, /необязательн.*переопределен.*конечн.* точк.* посредник/i);
   assert.match(security, /специально не включён в минимальный шаблон секретов/i);
   assert.match(secretsExample, /^AIR_KOREA_OPEN_API_KEY=replace-me$/m);
   assert.doesNotMatch(secretsExample, /^KSKILL_PROXY_BASE_URL=/m);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-06");
-  assert.equal(todoStatus.round, 81);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 81\)/);
+  assert.equal(todoStatus.date, "2026-07-07");
+  assert.equal(todoStatus.round, 82);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 82\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -1517,7 +1517,7 @@ test("документация fine-dust и proxy различает перео�
   assert.match(security, /AIR_KOREA_OPEN_API_KEY/);
 
   assert.match(setupSkill, /необязательн.*переопределен.*адрес/i);
-  assert.match(setupSkill, /опубликованн.*совместим.*прокси/i);
+  assert.match(setupSkill, /опубликованн.*совместим.*посредник/i);
   assert.match(setupSkill, /~\/\.config\/ru-skill\/bin/);
   assert.match(setupSkill, /~\/\.config\/ru-skill\/logs/);
   assert.doesNotMatch(setupSkill, /~\/\.config\/k-skill\/bin/);
@@ -2584,7 +2584,7 @@ test("AGENTS.md использует русский для repo-governance те�
 
   assert.match(agents, /^# Инструкции для репозитория k-skill$/m);
   assert.match(agents, /^## Правила релизной автоматизации$/m);
-  assert.match(agents, /^## Политика прокси для бесплатных API$/m);
+  assert.match(agents, /^## Политика посредника для бесплатных API$/m);
   assert.doesNotMatch(agents, /^# k-skill repository instructions$/m);
   assert.doesNotMatch(agents, /Default posture: public read-only endpoint/);
 });
@@ -3137,7 +3137,7 @@ test("docs/brand-inventory.md использует русский вместо �
   assert.doesNotMatch(brand, /legacy endpoint/);
   assert.doesNotMatch(brand, /legacy-поверхностей/);
   assert.match(brand, /устаревших интерфейсов/);
-  assert.match(brand, /Публичный URL прокси/);
+  assert.match(brand, /Публичный URL посредника/);
   assert.match(brand, /устаревшая конечная точка/);
 });
 
@@ -3167,16 +3167,16 @@ test("user-facing surfaces не содержат английский жарго
   assert.doesNotMatch(agents, /proxy-auth/);
   assert.doesNotMatch(agents, /scaffold/);
   assert.match(agents, /конечн.* точк/);
-  assert.match(agents, /авторизации прокси/);
+  assert.match(agents, /авторизации посредника/);
   assert.match(agents, /каркасной заготовкой/);
 
   assert.doesNotMatch(setup, /\bproxy endpoint\b/);
   assert.doesNotMatch(setup, /\bcredential\b/);
-  assert.match(setup, /прокси-конечн.* точк/);
+  assert.match(setup, /конечн.* точк.* посредник/);
   assert.match(setup, /учётные данные/);
 
   assert.doesNotMatch(security, /proxy endpoint/);
-  assert.match(security, /прокси-конечн.* точк/);
+  assert.match(security, /конечн.* точк.* посредник/);
 
   assert.doesNotMatch(releasing, /scaffold/);
   assert.match(releasing, /каркасной заготовкой/);
@@ -3476,7 +3476,7 @@ test("SSR-терминология нормализована: серверно 
   assert.match(ymFeature, /серверн.* отрисовк.* \(SSR\)|серверно отрендерен/);
 });
 
-test("proxy как описательное слово заменён на прокси в user-facing документации", () => {
+test("proxy как описательное слово заменён на посредник в user-facing документации (обновлён в раунде 82)", () => {
   const fineDustFeature = read(path.join("docs", "features", "fine-dust-location.md"));
   const fineDustSkill = read(path.join("fine-dust-location", "SKILL.md"));
   const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
@@ -3498,14 +3498,14 @@ test("proxy как описательное слово заменён на пр�
     }
   }
 
-  assert.match(fineDustFeature, /прокси/);
-  assert.match(fineDustSkill, /прокси/);
-  assert.match(ymFeature, /прокси/);
-  assert.match(brand, /прокси-сценария/);
-  assert.match(install, /прокси-слоя/);
-  assert.match(setup, /совместимый прокси/);
-  assert.match(security, /совместимого прокси/);
-  assert.match(sources, /прокси-интерфейс/);
+  assert.match(fineDustFeature, /посредник/);
+  assert.match(fineDustSkill, /посредник/);
+  assert.match(ymFeature, /посредник/);
+  assert.match(brand, /сценария посредника/);
+  assert.match(install, /слоя посредника/);
+  assert.match(setup, /совместимого посредника/);
+  assert.match(security, /совместимого посредника/);
+  assert.match(sources, /интерфейсов посредника/);
 });
 
 test("workflow как описательное слово заменён на процесс/сценарий в user-facing документации", () => {
@@ -3701,10 +3701,10 @@ test("slug как описательное слово заменён на иде
   assert.match(stolotoReadme, /канонический идентификатор/);
 });
 
-test("ingress в k-skill-proxy feature doc заменён на входной прокси", () => {
+test("ingress в k-skill-proxy feature doc заменён на входной посредник", () => {
   const proxyFeature = read(path.join("docs", "features", "k-skill-proxy.md"));
   assert.doesNotMatch(proxyFeature, /\bingress\b/);
-  assert.match(proxyFeature, /входной прокси/);
+  assert.match(proxyFeature, /входной посредник/);
 });
 
 test("extraction в hwp feature doc заменён на извлечение изображений", () => {
@@ -4684,16 +4684,16 @@ test("docs/features/blue-ribbon-nearby.md не содержит zone-списк�
   assert.match(feature, /списка зон/);
 });
 
-test("k-skill-proxy использует прокси на Fastify вместо Fastify-прокси (раунд 69)", () => {
+test("k-skill-proxy использует сервер-посредник на Fastify вместо прокси на Fastify (раунд 69, обновлён в раунде 82)", () => {
   const proxyDoc = read(path.join("docs", "features", "k-skill-proxy.md"));
   const proxyReadme = read(path.join("packages", "k-skill-proxy", "README.md"));
   const proxyPkg = JSON.parse(read(path.join("packages", "k-skill-proxy", "package.json")));
 
-  assert.doesNotMatch(proxyDoc, /Fastify-прокси/);
-  assert.match(proxyDoc, /прокси на Fastify/);
+  assert.doesNotMatch(proxyDoc, /прокси на Fastify/);
+  assert.match(proxyDoc, /сервер-посредник на Fastify/);
 
-  assert.doesNotMatch(proxyReadme, /Fastify-прокси/);
-  assert.match(proxyReadme, /прокси на Fastify/);
+  assert.doesNotMatch(proxyReadme, /прокси на Fastify/);
+  assert.match(proxyReadme, /сервер-посредник на Fastify/);
 
   assert.match(proxyPkg.description, /Прокси на Fastify/);
 });
@@ -5046,7 +5046,7 @@ test("раунд 78: пользовательские интерфейсные �
   }
 
   assert.match(sources, /внешние интерфейсы/);
-  assert.match(sources, /прокси-интерфейсов/);
+  assert.match(sources, /интерфейсов посредника/);
   assert.match(brand, /устаревших интерфейсов/);
   assert.match(booking, /Тип интерфейса/);
   assert.match(proxyFeature, /наружный интерфейс/);
