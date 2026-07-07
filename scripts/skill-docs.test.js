@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-07-07");
-  assert.equal(todoStatus.round, 82);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 82\)/);
+  assert.equal(todoStatus.round, 83);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 83\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -1557,7 +1557,7 @@ test("описания workspace-пакетов соответствуют ру�
     "daiso-product-search": "Legacy-клиент поиска магазинов, товаров и остатков для самовывоза Daiso Mall, сохранённый на время миграции ru-skill",
     "hh-vacancies": "Клиент только для чтения для публичных API вакансий и регионов hh.ru",
     "k-lotto": "Legacy-клиент результатов dhlottery, сохранённый на время миграции ru-skill",
-    "k-skill-proxy": "Прокси на Fastify для бесплатных и публичных API, используемых в ru-skill",
+    "k-skill-proxy": "Сервер-посредник на Fastify для бесплатных и публичных API, используемых в ru-skill",
     "kakao-bar-nearby": "Legacy-клиент поиска ближайших баров через Kakao Map, сохранённый на время миграции ru-skill",
     "kinopoisk-search": "Клиент только для чтения для публичного поиска фильмов и карточек Кинопоиска",
     "kleague-results": "Legacy-клиент результатов и таблицы K League, сохранённый на время миграции ru-skill",
@@ -3527,7 +3527,7 @@ test("workflow как описательное слово заменён на п
   assert.doesNotMatch(pythonReadme, /\btop-level workflow\b/);
 
   assert.doesNotMatch(zipcodeFeature, /ePost workflow/);
-  assert.match(zipcodeFeature, /ePost-сценарий/);
+  assert.match(zipcodeFeature, /сценарий ePost/);
 
   assert.doesNotMatch(install, /skill-only workflow/);
   assert.match(install, /сценарии навыков|skill-сценарии/);
@@ -4193,7 +4193,7 @@ test("AGENTS.md и docs/releasing.md не содержат английског�
   assert.doesNotMatch(agents, /trusted publishing/i);
   assert.match(agents, /доверенную публикацию/);
   assert.doesNotMatch(agents, /long-lived registry tokens/);
-  assert.match(agents, /долгоживущие токены реестра/);
+  assert.match(agents, /долгоживущие маркеры реестра/);
 
   assert.doesNotMatch(releasing, /trusted publishing/i);
   assert.match(releasing, /доверенная публикация|Доверенная публикация/);
@@ -4578,7 +4578,7 @@ test("docs/features/*.md не содержат legacy без перевода в
   assert.doesNotMatch(ktx, /legacy запасной вариант/);
   assert.match(ktx, /устаревшем запасном варианте/);
   assert.doesNotMatch(proxy, /legacy AirKorea/);
-  assert.match(proxy, /устаревший AirKorea/);
+  assert.match(proxy, /устаревший поток AirKorea/);
 });
 
 test("docs/sources.md использует ключ API вместо API key и эталонный набор данных вместо фикстура", () => {
@@ -4695,7 +4695,7 @@ test("k-skill-proxy использует сервер-посредник на Fa
   assert.doesNotMatch(proxyReadme, /прокси на Fastify/);
   assert.match(proxyReadme, /сервер-посредник на Fastify/);
 
-  assert.match(proxyPkg.description, /Прокси на Fastify/);
+  assert.match(proxyPkg.description, /Сервер-посредник на Fastify/);
 });
 
 test("packages/k-skill-proxy/README.md не содержит кейс (раунд 69)", () => {
@@ -5052,7 +5052,7 @@ test("раунд 78: пользовательские интерфейсные �
   assert.match(proxyFeature, /наружный интерфейс/);
   assert.match(kakaoBarFeature, /Официальные интерфейсы Kakao Map/);
   assert.match(daisoFeature, /Официальные интерфейсы/);
-  assert.match(ymFeature, /HTML-интерфейс Яндекс Маркета/);
+  assert.match(ymFeature, /интерфейс HTML Яндекс Маркета/);
   assert.match(blueRibbonFeature, /Официальные интерфейсы Blue Ribbon/);
   assert.match(kleagueFeature, /Официальные интерфейсы/);
   assert.match(ktxFeature, /отдельный интерфейс и отдельные учётные данные/);
