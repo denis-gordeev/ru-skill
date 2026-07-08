@@ -1,4 +1,4 @@
-name: Релиз npm-пакетов
+name: Выпуск npm-пакетов
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
       - run: npm ci
       - run: npm run ci
 
-      - name: Создание релизного запроса на слияние или публикация изменившихся пакетов
+      - name: Создание выпускного запроса на слияние или публикация изменившихся пакетов
         uses: changesets/action@v1
         with:
           version: npm run version-packages

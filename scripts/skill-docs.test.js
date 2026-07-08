@@ -1409,8 +1409,8 @@ test("плановая документация согласована по сл
   assert.match(readme, /активный блок `TODO\.md`/i);
   assert.match(readme, /ru-skill-setup[\s\S]*русские секционные заголовки/i);
 
-  assert.match(roadmap, /### Веха 5\. Замены бронирования и релиз-гигиена/);
-  assert.match(roadmap, /Статус: завершён; подзадача релиз-гигиены закрыта/i);
+  assert.match(roadmap, /### Веха 5\. Замены бронирования и гигиена выпусков/);
+  assert.match(roadmap, /Статус: завершён; подзадача гигиены выпусков закрыта/i);
   assert.match(roadmap, /yandex-rasp/);
   assert.match(roadmap, /новый целевой пакет не открывается/i);
   assert.match(roadmap, /оставшаяся матрица устаревших пакетов.*уже доведена/i);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-07");
-  assert.equal(todoStatus.round, 83);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 83\)/);
+  assert.equal(todoStatus.date, "2026-07-08");
+  assert.equal(todoStatus.round, 84);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 84\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -1453,7 +1453,7 @@ test("TODO держит активные незакрытые задачи то�
   );
 });
 
-test("README и roadmap не содержат устаревшей релизной археологии", () => {
+test("README и roadmap не содержат устаревшей архивации выпусков", () => {
   const readme = read("README.md");
   const roadmap = read(path.join("docs", "roadmap.md"));
 
@@ -2583,7 +2583,7 @@ test("AGENTS.md использует русский для repo-governance те�
   const agents = read("AGENTS.md");
 
   assert.match(agents, /^# Инструкции для репозитория k-skill$/m);
-  assert.match(agents, /^## Правила релизной автоматизации$/m);
+  assert.match(agents, /^## Правила автоматизации выпусков$/m);
   assert.match(agents, /^## Политика посредника для бесплатных API$/m);
   assert.doesNotMatch(agents, /^# k-skill repository instructions$/m);
   assert.doesNotMatch(agents, /Default posture: public read-only endpoint/);
@@ -2726,10 +2726,10 @@ test("имена workflow GitHub Actions на русском", () => {
   const releaseNpm = read(path.join(".github", "workflows", "release-npm.yml"));
   const releasePython = read(path.join(".github", "workflows", "release-python.yml"));
 
-  assert.match(releaseNpm, /^name: Релиз npm-пакетов$/m);
+  assert.match(releaseNpm, /^name: Выпуск npm-пакетов$/m);
   assert.doesNotMatch(releaseNpm, /^name: Release npm packages$/m);
 
-  assert.match(releasePython, /^name: Релиз пакетов Python$/m);
+  assert.match(releasePython, /^name: Выпуск пакетов Python$/m);
   assert.doesNotMatch(releasePython, /^name: Release Python packages$/m);
 });
 
@@ -2737,13 +2737,13 @@ test("имена шагов и комментарии в workflow GitHub Actions
   const releaseNpm = read(path.join(".github", "workflows", "release-npm.yml"));
   const releasePython = read(path.join(".github", "workflows", "release-python.yml"));
 
-  assert.match(releaseNpm, /Создание релизного запроса на слияние или публикация изменившихся пакетов/);
+  assert.match(releaseNpm, /Создание выпускного запроса на слияние или публикация изменившихся пакетов/);
   assert.match(releaseNpm, /Предпочтительный путь.*npm trusted publishing через GitHub OIDC/);
   assert.doesNotMatch(releaseNpm, /Create npm release PR or publish/);
   assert.doesNotMatch(releaseNpm, /Preferred path: npm trusted publishing/);
 
   assert.match(releasePython, /пакет Python пока не существует/);
-  assert.match(releasePython, /Метаданные релиза пакета Python созданы/);
+  assert.match(releasePython, /Метаданные выпуска пакета Python созданы/);
   assert.match(releasePython, /name: Напоминание$/m);
   assert.doesNotMatch(releasePython, /No Python package exists yet/);
   assert.doesNotMatch(releasePython, /Python package release metadata was created/);
@@ -3519,8 +3519,8 @@ test("workflow как описательное слово заменён на п
   assert.doesNotMatch(releasing, /\bworkflow публикации\b/);
   assert.match(releasing, /Процесс публикации/);
 
-  assert.doesNotMatch(agents, /\bworkflow релиза Python\b/);
-  assert.match(agents, /процесс релиза Python/);
+  assert.doesNotMatch(agents, /\bworkflow выпуска Python\b/);
+  assert.match(agents, /процесс выпуска Python/);
 
   assert.doesNotMatch(pythonReadme, /\bworkflow release-please\b/);
   assert.doesNotMatch(pythonReadme, /\breusable workflow\b/);
@@ -4138,18 +4138,18 @@ test("README.md не содержит английского жаргона meta
   assert.match(readme, /метаданные публикации/);
   assert.doesNotMatch(readme, /helper-docs/);
   assert.doesNotMatch(readme, /release hygiene/);
-  assert.match(readme, /релиз-гигиен/);
+  assert.match(readme, /гигиен[а-яё]+ выпуск/);
   assert.doesNotMatch(readme, /release-археолог/);
-  assert.match(readme, /релиз-археолог/);
+  assert.match(readme, /архиваци[а-яё]+ выпуск/);
   assert.doesNotMatch(readme, /smoke-пример/);
   assert.match(readme, /проверочными примерами/);
   assert.doesNotMatch(readme, /credential\/proxy документам/);
   assert.doesNotMatch(readme, /publish\/release surfaces/);
-  assert.match(readme, /интерфейсах публикации|интерфейсам публикации\/релиза/);
+  assert.match(readme, /интерфейсах публикации|интерфейсам публикации\/выпуска/);
   assert.doesNotMatch(readme, /Python helper messages/);
   assert.match(readme, /вспомогательные сообщения Python/);
   assert.doesNotMatch(readme, /helper JS utilities/);
-  assert.match(readme, /вспомогательные JS-утилиты/);
+  assert.match(readme, /вспомогательные утилиты JS/);
   assert.doesNotMatch(readme, /fixture data/);
   assert.match(readme, /эталонные данные/);
 });
@@ -4159,11 +4159,11 @@ test("docs/roadmap.md не содержит английского жаргон�
   assert.doesNotMatch(roadmap, /feature-guide/);
   assert.match(roadmap, /руководство по функции/);
   assert.doesNotMatch(roadmap, /release hygiene/);
-  assert.match(roadmap, /релиз-гигиен/);
+  assert.match(roadmap, /гигиен выпусков|гигиены выпусков/);
   assert.doesNotMatch(roadmap, /release backlog/);
-  assert.match(roadmap, /релизных задач/);
+  assert.match(roadmap, /выпускных задач/);
   assert.doesNotMatch(roadmap, /release-hygiene подзадача/);
-  assert.match(roadmap, /подзадача релиз-гигиены/);
+  assert.match(roadmap, /подзадача гигиены выпусков/);
   assert.doesNotMatch(roadmap, /helper\/runtime cleanup/);
   assert.match(roadmap, /вспомогательная\/очистка среды выполнения/);
   assert.doesNotMatch(roadmap, /package metadata descriptions/);
@@ -4600,7 +4600,7 @@ test("README.md не содержит issue tracker, npm script output без п
   assert.doesNotMatch(readme, /issue tracker/);
   assert.match(readme, /систем[а-яё]+ отслеживания задач/);
   assert.doesNotMatch(readme, /npm script output/);
-  assert.match(readme, /вывод npm-скриптов/);
+  assert.match(readme, /вывод скриптов npm/);
 });
 
 test("Пользовательские поверхности не содержат API key без русского порядка слов", () => {

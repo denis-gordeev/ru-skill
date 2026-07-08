@@ -1,4 +1,4 @@
-name: Релиз пакетов Python
+name: Выпуск пакетов Python
 
 on:
   push:
@@ -37,5 +37,5 @@ jobs:
       - name: Напоминание
         if: ${{ steps.release.outputs.releases_created == 'true' }}
         run: |
-          echo "Метаданные релиза пакета Python созданы."
+          echo "Метаданные выпуска пакета Python созданы."
           echo "Подключите шаги сборки/публикации для конкретного пакета, когда будет добавлен первый пакет Python."

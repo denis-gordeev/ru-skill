@@ -72,7 +72,7 @@ await searchNearby(55.7558, 37.6173, {
 - **API**: [Overpass API](https://overpass-api.de/)
 - **Данные**: [OpenStreetMap](https://www.openstreetmap.org/)
 - **Лицензия**: [ODbL](https://opendatacommons.org/licenses/odbl/)
-- **Лимиты**: ~10,000 запросов/день на основном инстансе
+- **Лимиты**: ~10,000 запросов/день на основном сервере
 - **ключ API**: не требуется
 
 ## Ограничения
