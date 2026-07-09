@@ -4,30 +4,28 @@
 
 Исторические сводки раундов ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-07-08 (раунд 84)
+## Статус на 2026-07-09 (раунд 85)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Заменён `релиз`/`релизный` → `выпуск`/`выпускной` в интерфейсной документации и исторических секциях (19 замен в 4 файлах): `docs/roadmap.md` (12 вхождений), `TODO.md` (5 вхождений), `.github/workflows/release-npm.yml` (1 вхождение), `scripts/skill-docs.test.js` (5 тестов обновлено).
-- Заменён `эндпоинт` → `конечная точка` в связном тексте исторических секций TODO.md (3 вхождения: `переопределения эндпоинта`, `переопределением эндпоинта`, `эндпоинт совместимости`).
-- Заменён `парсинг` → `разбор` в активном описании changeset `.changeset/stoloto-lotto.md` (1 вхождение).
-- Регрессионные тесты обновлены под новую терминологию.
+- Заменён `трек` → `направление` в интерфейсной документации (2 файла): `docs/features/daiso-product-search.md`, `packages/daiso-product-search/README.md`.
+- Заменён `CAPTCHA` → `проверка на робота (CAPTCHA)` в интерфейсной документации (1 файл): `docs/features/zoon-nearby.md`.
+- Заменён `релиз` → `выпуск` в целевых значениях записей замены исторических секций TODO.md (~15 вхождений): `релиз-гигиена` → `выпуск-гигиена`, `релизных задач` → `выпускных задач`, `релиз/процесс` → `выпуск/процесс`, `релиза Python` → `выпуска Python`, `Релиз npm-пакетов` → `Выпуск npm-пакетов`, `релизного PR` → `выпускного PR` и др.
+- Аудит интерфейсной документации подтверждает: все 10 ключевых жаргонизмов (`релиз`, `прокси`, `кэш`, `эндпоинт`, `парсинг`, `токен`, `аутентификация`, `хост`, `аккаунт`, `логин`) полностью устранены из пользовательских документов; оставшийся `push-уведомления` оставлен как установившийся термин (строчная `p` проставлена в раунде 83).
+- Регрессионные тесты проходят полностью.
 
-## Выполнено в этом раунде (раунд 84)
+## Выполнено в этом раунде (раунд 85)
 
-- [x] `docs/roadmap.md`: `релиз`/`релизный` → `выпуск`/`выпускной` в активных секциях и связном тексте исторических секций (12 вхождений).
-- [x] `TODO.md`: `релиз`/`релизный` → `выпуск`/`выпускной` в связном тексте исторических секций (5 вхождений).
-- [x] `TODO.md`: `эндпоинт` → `конечная точка` в связном тексте исторических секций (3 вхождения).
-- [x] `.github/workflows/release-npm.yml`: `Релиз npm-пакетов` → `Выпуск npm-пакетов`.
-- [x] `.changeset/stoloto-lotto.md`: `парсинг` → `разбор`.
-- [x] `scripts/skill-docs.test.js`: регрессионные тесты обновлены под новую терминологию (5 тестов).
+- [x] `docs/features/daiso-product-search.md`: `активный трек` → `активное направление`.
+- [x] `packages/daiso-product-search/README.md`: `активный трек` → `активное направление`.
+- [x] `docs/features/zoon-nearby.md`: `без CAPTCHA или блокировок` → `без проверки на робота (CAPTCHA) или блокировок`.
+- [x] `TODO.md`: `релиз` → `выпуск` в целевых значениях записей замены исторических секций (~15 вхождений).
+- [x] Аудит интерфейсной документации: 10 ключевых жаргонизмов полностью устранены.
 - [x] `npm run ci` проходит полностью.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим перечнем задач.
 
 ## Новые пункты плана
 
 - [ ] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
-- [ ] Проверить оставшиеся `релиз` в исторических записях замены TODO.md и docs/roadmap.md (записи вида `release hygiene` → `релиз-гигиена`), где `релиз` является целевым значением замены, а не самостоятельным использованием.
-- [ ] Рассмотреть замену `релиз` в записях замены исторических секций на `выпуск`, где это не нарушает точность журнала миграции.
 
 ## Статус на 2026-07-07 (раунд 83)
 
@@ -512,7 +510,7 @@
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
 - Устранён следующий слой английского жаргона в пользовательских интерфейсах: `skill` отдельно → `навык` (docs/sources.md ×13), `public API` → `публичный API` (docs/sources.md), `fuzzy search` → `нечёткий поиск` (docs/sources.md), `websocket` → `веб-сокеты` (docs/sources.md), `Query-конструкциями` → `конструкциями запросов` (docs/sources.md), `merchant-facing` → `со стороны продавца` (docs/sources.md), `API keys` → `API-ключи` (docs/sources.md, docs/features/zoon-nearby.md), `регрессионный тесты` → `регрессионные тесты` (docs/sources.md), `skill-гайды` → `руководства по навыкам` (docs/sources.md), `setup` в заголовке → `настройка` (docs/install.md), `secrets-файл` → `файл секретов` (docs/security-and-secrets.md), `setup` в ссылке → `настройке` (docs/security-and-secrets.md), `package path` → `путь пакета` (AGENTS.md), `task list` → `перечень задач` (docs/roadmap.md), `automation round` → `раунд автоматизации` (docs/roadmap.md, TODO.md).
-- Устранён следующий слой английского жаргона в исторических секциях TODO.md: `iteration backlog` → `перечень задач следующей итерации` (~22 вхождения), `legacy-gap` → `пробел в устаревших навыках` (4 вхождения), `public source` → `публичный источник` (4 вхождения), `forced implementation backlog` → `принудительный перечень задач по реализации` (4 вхождения), `target-пакет`/`target-package` → `целевой пакет` (~8 вхождений), `doc-governance` → `управление документацией`, `legacy guides` → `устаревшие руководства`, `governance gap` → `пробел в управлении`, `booking research` → `исследование бронирования`, `replacement boundary` → `граница замен`, `research-first` → `начиная с исследования`, `decision matrix` → `матрица решений`, `railway booking replacements` → `замены железнодорожного бронирования`, `release-hygiene` → `релиз-гигиена`, `premature implementation` → `преждевременная реализация`, `full booking automation` → `полная автоматизация бронирования`, `target-MVP` → `целевой минимальный рабочий вариант`, `official/public interface` → `официальный/публичный интерфейс`, `implementation backlog` → `перечень задач по реализации`, `fixture-based`/`fixture-first` → `на основе эталонных данных` (5 вхождений), `optional-override` → `необязательное переопределение`, `real-credential` → `реальные учётные данные`, `product gap` → `продуктовый пробел`, `implementation priority` → `приоритет реализации`, `implementation-направление` → `направление реализации`, `Milestone N` → `Веха N`, `handoff-skill` → `навык-перенаправление`, `handoff-сценарий` → `сценарий перенаправления`, `handoff-ценность` → `ценность перенаправления`, `research backlog` → `перечень задач по исследованию`, `railway backlog` → `железнодорожный перечень задач`, `railway replacement` → `замена железнодорожных навыков`, `replacement-а` → `замен`, `baseline` → `основа`, `automation round` → `раунд автоматизации`, `round summaries` → `сводки раундов`.
+- Устранён следующий слой английского жаргона в исторических секциях TODO.md: `iteration backlog` → `перечень задач следующей итерации` (~22 вхождения), `legacy-gap` → `пробел в устаревших навыках` (4 вхождения), `public source` → `публичный источник` (4 вхождения), `forced implementation backlog` → `принудительный перечень задач по реализации` (4 вхождения), `target-пакет`/`target-package` → `целевой пакет` (~8 вхождений), `doc-governance` → `управление документацией`, `legacy guides` → `устаревшие руководства`, `governance gap` → `пробел в управлении`, `booking research` → `исследование бронирования`, `replacement boundary` → `граница замен`, `research-first` → `начиная с исследования`, `decision matrix` → `матрица решений`, `railway booking replacements` → `замены железнодорожного бронирования`, `release-hygiene` → `выпуск-гигиена`, `premature implementation` → `преждевременная реализация`, `full booking automation` → `полная автоматизация бронирования`, `target-MVP` → `целевой минимальный рабочий вариант`, `official/public interface` → `официальный/публичный интерфейс`, `implementation backlog` → `перечень задач по реализации`, `fixture-based`/`fixture-first` → `на основе эталонных данных` (5 вхождений), `optional-override` → `необязательное переопределение`, `real-credential` → `реальные учётные данные`, `product gap` → `продуктовый пробел`, `implementation priority` → `приоритет реализации`, `implementation-направление` → `направление реализации`, `Milestone N` → `Веха N`, `handoff-skill` → `навык-перенаправление`, `handoff-сценарий` → `сценарий перенаправления`, `handoff-ценность` → `ценность перенаправления`, `research backlog` → `перечень задач по исследованию`, `railway backlog` → `железнодорожный перечень задач`, `railway replacement` → `замена железнодорожных навыков`, `replacement-а` → `замен`, `baseline` → `основа`, `automation round` → `раунд автоматизации`, `round summaries` → `сводки раундов`.
 - Документная регрессия расширена: добавлены 7 новых тестов на отсутствие английского жаргона (`skill` отдельно, `public API`, `fuzzy search`, `websocket`, `Query-конструкциями`, `merchant-facing`, `API keys`, `регрессионный тесты`, `skill-гайды`, `setup` в заголовке, `secrets-файл`, `setup` в ссылке, `package path`, `task list`, `automation round`) и наличие русских эквивалентов; обновлён раунд на 66.
 
 ## Выполнено в этом раунде (раунд 66)
@@ -653,17 +651,17 @@
 ## Статус на 2026-06-19 (раунд 60)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Устранён следующий слой английский жаргон в пользовательских интерфейсах: `merge` → `слияния` (AGENTS.md, docs/releasing.md, docs/features/kleague-results.md), `package metadata` → `метаданные пакетов` (AGENTS.md, README.md, docs/releasing.md, docs/roadmap.md), `test fixture` → `тестовый эталон` (AGENTS.md), `release hygiene` → `релиз-гигиена` (README.md, docs/roadmap.md), `релиз-гигиена раунд` → `раунд релиз-гигиены` (README.md), `release-археологии` → `релиз-археологии` (README.md), `helper-docs` → `вспомогательных документов` (README.md), `smoke-примерами` → `проверочными примерами` (README.md), `npm/publish metadata` → `npm/publish-метаданные` (README.md), `helper/status формулировки` → `вспомогательные/status-формулировки` (README.md), `helper/runtime cleanup` → `вспомогательная/runtime-очистка` (README.md, docs/roadmap.md), `fixture data` → `эталонные данные` (README.md), `publish/release surfaces` → `публикации/релиз-интерфейсы` (README.md), `credential/proxy документам` → `учётных данных/прокси-документам` (README.md), `Python helper messages` → `вспомогательные сообщения Python` (README.md), `helper JS utilities` → `вспомогательные JS-утилиты` (README.md), `feature-guide` → `руководство по функции` (docs/roadmap.md), `release backlog` → `релизных задач` (docs/roadmap.md), `package metadata descriptions` → `метаданные пакетов (descriptions)` (docs/roadmap.md), `helper-интерфейсах` → `вспомогательных интерфейсах` (docs/roadmap.md), `release/процесс/package metadata` → `релиз/процесс/метаданные пакета` (docs/releasing.md).
+- Устранён следующий слой английский жаргон в пользовательских интерфейсах: `merge` → `слияния` (AGENTS.md, docs/releasing.md, docs/features/kleague-results.md), `package metadata` → `метаданные пакетов` (AGENTS.md, README.md, docs/releasing.md, docs/roadmap.md), `test fixture` → `тестовый эталон` (AGENTS.md), `release hygiene` → `выпуск-гигиена` (README.md, docs/roadmap.md), `выпуск-гигиена раунд` → `раунд выпуск-гигиены` (README.md), `release-археологии` → `выпуск-археологии` (README.md), `helper-docs` → `вспомогательных документов` (README.md), `smoke-примерами` → `проверочными примерами` (README.md), `npm/publish metadata` → `npm/publish-метаданные` (README.md), `helper/status формулировки` → `вспомогательные/status-формулировки` (README.md), `helper/runtime cleanup` → `вспомогательная/runtime-очистка` (README.md, docs/roadmap.md), `fixture data` → `эталонные данные` (README.md), `publish/release surfaces` → `публикации/выпуск-интерфейсы` (README.md), `credential/proxy документам` → `учётных данных/посредник-документам` (README.md), `Python helper messages` → `вспомогательные сообщения Python` (README.md), `helper JS utilities` → `вспомогательные JS-утилиты` (README.md), `feature-guide` → `руководство по функции` (docs/roadmap.md), `release backlog` → `выпускных задач` (docs/roadmap.md), `package metadata descriptions` → `метаданные пакетов (descriptions)` (docs/roadmap.md), `helper-интерфейсах` → `вспомогательных интерфейсах` (docs/roadmap.md), `release/процесс/package metadata` → `выпуск/процесс/метаданные пакета` (docs/releasing.md).
 - Добавлены отсутствующие h1-заголовки в 2 SKILL.md: `# Расписания Яндекс` (yandex-rasp/SKILL.md), `# Поиск на Яндекс Маркете` (yandex-market-search/SKILL.md).
 - Документная регрессия расширена: добавлены 7 новых тестов на отсутствие английский жаргон (`merge`, `package metadata`, `test fixture`, `release hygiene`, `helper-docs`, `smoke-примерами`, `fixture data`, `credential/proxy`, `publish/release surfaces`, `feature-guide`, `release backlog`, `helper-интерфейсах`) и наличие русских эквивалентов, а также тест на h1-заголовки в yandex-rasp/SKILL.md и yandex-market-search/SKILL.md; обновлён раунд на 60.
 
 ## Выполнено в этом раунде (раунд 60)
 
 - [x] `AGENTS.md`: `merge сгенерированного ботом PR` → `слияния сгенерированного ботом PR`, `package metadata держите синхронными` → `метаданные пакетов держите синхронными`, `локальную test fixture внутри репозитория` → `локальный тестовый эталон внутри репозитория`.
-- [x] `docs/releasing.md`: `после merge сгенерированного ботом PR` → `после слияния сгенерированного ботом PR`, `release/процесс/package metadata` → `релиз/процесс/метаданные пакета`.
+- [x] `docs/releasing.md`: `после merge сгенерированного ботом PR` → `после слияния сгенерированного ботом PR`, `release/процесс/package metadata` → `выпуск/процесс/метаданные пакета`.
 - [x] `docs/features/kleague-results.md`: `после merge` → `после слияния`.
-- [x] `README.md`: `release hygiene` → `релиз-гигиену`, `релиз-гигиена раунд` → `раунд релиз-гигиены`, `release-археологии` → `релиз-археологии`, `прокси helper-docs` → `прокси вспомогательных документов`, `setup helper-docs` → `вспомогательных документов настройки`, `smoke-примерами` → `проверочными примерами`, `npm/publish metadata` → `npm/publish-метаданные`, `package metadata: тесты` → `метаданные пакетов: тесты`, `helper/status формулировки` → `вспомогательные/status-формулировки`, `helper/runtime cleanup` → `вспомогательная/runtime-очистка`, `fixture data` → `эталонные данные`, `publish/release surfaces` → `публикации/релиз-интерфейсы`, `credential/proxy документам` → `учётных данных/прокси-документам`, `package metadata` → `метаданные пакетов` (2 вхождения), `Python helper messages` → `вспомогательные сообщения Python`, `helper JS utilities` → `вспомогательные JS-утилиты`.
-- [x] `docs/roadmap.md`: `feature-guide` → `руководство по функции`, `release hygiene` → `релиз-гигиена`, `Changeset/release backlog` → `Перечень релизных задач/changeset`, `релиз-гигиена подзадача` → `подзадача релиз-гигиены`, `helper/runtime cleanup` → `вспомогательная/runtime-очистка`, `package metadata descriptions` → `метаданные пакетов (descriptions)`, `helper-интерфейсах` → `вспомогательных интерфейсах`.
+- [x] `README.md`: `release hygiene` → `выпуск-гигиену`, `выпуск-гигиена раунд` → `раунд выпуск-гигиены`, `release-археологии` → `выпуск-археологии`, `прокси helper-docs` → `посредника вспомогательных документов`, `setup helper-docs` → `вспомогательных документов настройки`, `smoke-примерами` → `проверочными примерами`, `npm/publish metadata` → `npm/publish-метаданные`, `package metadata: тесты` → `метаданные пакетов: тесты`, `helper/status формулировки` → `вспомогательные/status-формулировки`, `helper/runtime cleanup` → `вспомогательная/runtime-очистка`, `fixture data` → `эталонные данные`, `publish/release surfaces` → `публикации/выпуск-интерфейсы`, `credential/proxy документам` → `учётных данных/посредник-документам`, `package metadata` → `метаданные пакетов` (2 вхождения), `Python helper messages` → `вспомогательные сообщения Python`, `helper JS utilities` → `вспомогательные JS-утилиты`.
+- [x] `docs/roadmap.md`: `feature-guide` → `руководство по функции`, `release hygiene` → `выпуск-гигиена`, `Changeset/release backlog` → `Перечень выпускных задач/changeset`, `выпуск-гигиена подзадача` → `подзадача выпуск-гигиены`, `helper/runtime cleanup` → `вспомогательная/runtime-очистка`, `package metadata descriptions` → `метаданные пакетов (descriptions)`, `helper-интерфейсах` → `вспомогательных интерфейсах`.
 - [x] `yandex-rasp/SKILL.md`: добавлен h1 `# Расписания Яндекс`.
 - [x] `yandex-market-search/SKILL.md`: добавлен h1 `# Поиск на Яндекс Маркете`.
 - [x] `scripts/skill-docs.test.js`: добавлены 7 новых тестов на отсутствие английский жаргон и наличие русских эквивалентов; обновлены тесты milestone 5 и раунд на 60.
@@ -795,7 +793,7 @@
 - [x] `docs/security-and-secrets.md`: `совместимого proxy` → `совместимого прокси`.
 - [x] `k-skill-setup/SKILL.md`: `совместимый proxy` → `совместимый прокси` (2 вхождения).
 - [x] `docs/releasing.md`: `Workflow публикации` → `Процесс публикации` (2), `workflow должен` → `процесс должен`, `workflow остаётся` → `процесс остаётся`, `release/workflow/package` → `release/процесс/package`.
-- [x] `AGENTS.md`: `workflow релиза Python` → `процесс релиза Python`, `workflow-файлы` → `файлы автоматизации`.
+- [x] `AGENTS.md`: `workflow выпуска Python` → `процесс выпуска Python`, `workflow-файлы` → `файлы автоматизации`.
 - [x] `python-packages/README.md`: `workflow release-please` → `процесс release-please`, `reusable workflow` → `повторно используемого процесса`, `top-level workflow` → `верхнеуровневом процессе`.
 - [x] `docs/features/zipcode-search.md`: `ePost workflow` → `ePost-сценарий`.
 - [x] `docs/roadmap.md`: `workflow` → `сценарий/процесс` (4 вхождения).
@@ -861,7 +859,7 @@
 - [x] `docs/brand-inventory.md`: `legacy endpoint` → `устаревший эндпоинт`.
 - [x] `docs/sources.md`: `endpoint` → `эндпоинт` (2 вхождения), `anti-bot` → `антибота` (2 вхождения), `export-ссылки` → `экспорт-ссылки`, `production` → `промышленного использования`, `CSR` → `клиентский рендеринг (CSR)`, `Lookup региона` → `Поиск региона`.
 - [x] `docs/releasing.md`: `scaffold-only` → `каркасной заготовкой`.
-- [x] `python-packages/README.md`: `Python package release scaffold` → `Каркас релиза Python-пакета`.
+- [x] `python-packages/README.md`: `Python package release scaffold` → `Каркас выпуска Python-пакета`.
 - [x] `README.md`: `anti-bot` → `антибота` (2 вхождения).
 - [x] `docs/booking-replacements.md`: `anti-bot` → `антибота`.
 - [x] `docs/features/ktx-booking.md`: `anti-bot` → `антибота` (2 вхождения).
@@ -1054,8 +1052,8 @@
 
 - [x] Создан `scripts/fix-changelog-headings.js`: автоматически заменяет `### Major Changes` → `### Крупные изменения`, `### Minor Changes` → `### Незначительные изменения`, `### Patch Changes` → `### Исправления` во всех CHANGELOG.md после `changeset version`.
 - [x] `package.json`: `version-packages` обновлён на `changeset version && node scripts/fix-changelog-headings.js`.
-- [x] `.github/workflows/release-npm.yml`: `name` → `Релиз npm-пакетов`, comment → `Предпочтительный путь...`, step name → `Создание релизного PR или публикация изменившихся пакетов`.
-- [x] `.github/workflows/release-python.yml`: `name` → `Релиз Python-пакетов`, echo messages → русские, step name `Reminder` → `Напоминание`.
+- [x] `.github/workflows/release-npm.yml`: `name` → `Выпуск npm-пакетов`, comment → `Предпочтительный путь...`, step name → `Создание выпускного PR или публикация изменившихся пакетов`.
+- [x] `.github/workflows/release-python.yml`: `name` → `Выпуск Python-пакетов`, echo messages → русские, step name `Reminder` → `Напоминание`.
 - [x] `scripts/skill-docs.test.js` расширен регрессиями: workflow names на русском, workflow step names и comments на русском, version-packages цепочка, fix-changelog-headings покрытие всех heading mappings.
 - [x] `npm test` проходит: 122 pass / 0 fail / 1 skipped.
 
