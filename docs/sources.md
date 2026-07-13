@@ -387,8 +387,8 @@
 Минимальная область действия десятого навыка:
 
 - Вход: тип запроса (`standings` или `results`), опционально — номер тура.
-- Выход для таблицы: rank, team, played, wins, draws, losses, goalsFor/Against, points.
-- Выход для результатов: date, homeTeam, awayTeam, homeScore, awayScore.
+- Выход для таблицы: `rank`, `team`, `played`, `wins`, `draws`, `losses`, `goalsFor/Against`, `points`.
+- Выход для результатов: `date`, `homeTeam`, `awayTeam`, `homeScore`, `awayScore`.
 - Техническая основа: навык + пакет только для чтения + на основе эталонных данных тесты HTML.
 - Выбранное имя пакета: `rpl-results`.
 
