@@ -281,7 +281,7 @@ test("документация ktx-booking описывает рабочий п�
     assert.match(doc, /--include-waiting-list/);
     assert.match(doc, /--try-waiting/);
     assert.match(doc, /credential resolution order|KSKILL_KTX_ID/);
-    assert.match(doc, /антибота|Dynapath|x-dynapath-m-token/i);
+    assert.match(doc, /защиты от ботов|Dynapath|x-dynapath-m-token/i);
     // Допускается как корейский оригинал, так и русский перевод для примечания об автоматизации оплаты
     assert.match(doc, /Оплата не автоматизируется|Оплата до завершения не автоматизируется|не закрывает оплату/);
     assert.doesNotMatch(doc, /예약 시 선택할 `--train-index`/);
@@ -3126,7 +3126,7 @@ test("docs/sources.md использует русские метки URL вме�
   assert.match(sources, /AirKorea качество воздуха API/);
   assert.match(sources, /AirKorea станции мониторинга API/);
   assert.match(sources, /Vercel структура пакетов навыков агента/);
-  assert.match(sources, /обход антибота/);
+  assert.match(sources, /обход защиты от ботов/);
 });
 
 test("docs/brand-inventory.md использует русский вместо английского жаргона", () => {
@@ -3188,7 +3188,7 @@ test("user-facing surfaces не содержат английский жарго
   assert.match(zoonReadme, /защиты от роботов/);
 
   assert.doesNotMatch(zoonFeature, /anti-bot/);
-  assert.match(zoonFeature, /антибота/);
+  assert.match(zoonFeature, /защиты от ботов/);
 });
 
 test("тестовые файлы используют русские сообщения об ошибках вместо unexpected url/URL", () => {
@@ -3287,7 +3287,7 @@ test("user-facing surfaces не содержат английский жарго
   assert.match(sources, /обновления.*в реальном времени/);
 
   assert.doesNotMatch(readme, /\bhelper\b.*с обходом/);
-  assert.match(readme, /вспомогательный скрипт.*антибота/);
+  assert.match(readme, /вспомогательный скрипт.*защиты от ботов/);
 });
 
 test("SKILL.md файлы zoon-nearby не содержат Anti-bot", () => {
@@ -3417,8 +3417,8 @@ test("docs/sources.md не содержит английский жаргон re
 
   assert.doesNotMatch(sources, /antibot flow/);
   assert.doesNotMatch(sources, /antibot challenge/);
-  assert.match(sources, /антибот-поток/);
-  assert.match(sources, /антибот-проверкой/);
+  assert.match(sources, /поток с защитой от ботов/);
+  assert.match(sources, /проверкой на ботов/);
 
   assert.doesNotMatch(sources, /официальных open data/);
   assert.match(sources, /официальных открытых данных/);
@@ -4807,7 +4807,7 @@ test("раунд 72: русификация skill/package, категории н
 
   const delivery = read(path.join("delivery-tracking", "SKILL.md"));
   assert.doesNotMatch(delivery, /сохранения cookie/);
-  assert.match(delivery, /сохранения файла куки/);
+  assert.match(delivery, /сохранения файла cookie/);
 
   const blueRibbon = read(path.join("blue-ribbon-nearby", "SKILL.md"));
   assert.doesNotMatch(blueRibbon, /\(ribbon\)/);
@@ -4981,10 +4981,10 @@ test("раунд 75: package README, SKILL.md и тесты не возвращ�
 
   const deliverySkill = read(path.join("delivery-tracking", "SKILL.md"));
   assert.doesNotMatch(deliverySkill, /JSON API \/ HTML-форма \/ CLI/);
-  assert.doesNotMatch(deliverySkill, /сохранения файла cookie/);
+  assert.doesNotMatch(deliverySkill, /сохранения файла куки/);
   assert.doesNotMatch(deliverySkill, /HTML-форма \/ командная строка/);
   assert.match(deliverySkill, /JSON API \/ форма HTML \/ командная строка/);
-  assert.match(deliverySkill, /сохранения файла куки/);
+  assert.match(deliverySkill, /сохранения файла cookie/);
 
   const mchsSkill = read(path.join("mchs-storm-warnings", "SKILL.md"));
   assert.doesNotMatch(mchsSkill, /CMS-шаблон/);

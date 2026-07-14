@@ -86,7 +86,7 @@ metadata:
 - Конечная точка деталей: `https://www.cjlogistics.com/ko/tool/parcel/tracking-detail`
 - Обязательные поля: `_csrf`, `paramInvcNo`
 
-Базовый пример использует `curl` для получения `_csrf` и сохранения файла куки, а Python — только для разбора JSON.
+Базовый пример использует `curl` для получения `_csrf` и сохранения файла cookie, а Python — только для разбора JSON.
 
 ```bash
 tmp_body="$(mktemp)"
