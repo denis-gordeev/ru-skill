@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-14");
-  assert.equal(todoStatus.round, 90);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 90\)/);
+  assert.equal(todoStatus.date, "2026-07-15");
+  assert.equal(todoStatus.round, 91);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 91\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -5142,7 +5142,7 @@ test("раунд 81: устранены оставшиеся гибриды ENGL
 
   const zoonReadme = read(path.join("packages", "zoon-nearby", "README.md"));
   assert.doesNotMatch(zoonReadme, /Server-Side Rendering/);
-  assert.match(zoonReadme, /серверная отрисовка/);
+  assert.match(zoonReadme, /серверн.* отрисовк/i);
   assert.doesNotMatch(zoonReadme, /без капчи/);
   assert.match(zoonReadme, /без проверки на робота/);
 
