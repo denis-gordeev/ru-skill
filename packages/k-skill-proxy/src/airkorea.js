@@ -228,7 +228,7 @@ async function fetchJson(baseUrl, params, { fetchImpl = global.fetch, headers = 
 
 async function fetchStationLookup({ regionHint = null, stationName = null, serviceKey, fetchImpl = global.fetch, headers = {}, stationServiceUrl = STATION_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике.");
   }
 
   const common = {
@@ -257,7 +257,7 @@ async function fetchStationLookup({ regionHint = null, stationName = null, servi
 
 async function fetchMeasurementPayload({ stationName, serviceKey, fetchImpl = global.fetch, headers = {}, measurementServiceUrl = MEASUREMENT_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике.");
   }
 
   return fetchJson(`${measurementServiceUrl}/getMsrstnAcctoRltmMesureDnsty`, {
@@ -276,7 +276,7 @@ async function fetchMeasurementPayload({ stationName, serviceKey, fetchImpl = gl
 
 async function fetchCtprvnMeasurementPayload({ sidoName, serviceKey, fetchImpl = global.fetch, headers = {}, measurementServiceUrl = MEASUREMENT_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике.");
   }
 
   return fetchJson(`${measurementServiceUrl}/getCtprvnRltmMesureDnsty`, {

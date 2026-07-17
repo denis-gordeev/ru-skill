@@ -14,7 +14,7 @@ const {
 
 const fixturesDir = path.join(__dirname, 'fixtures');
 
-describe('парсер zoon-nearby', () => {
+describe('модуль разбора zoon-nearby', () => {
   let restaurantsHtml;
   let businessDetailHtml;
 

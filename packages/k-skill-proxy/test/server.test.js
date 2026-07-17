@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 
 const { buildServer, proxyAirKoreaRequest } = require("../src/server");
 
-test("endpoint health остаётся общедоступным и сообщает статус аутентификации/вышестоящего API", async (t) => {
+test("конечная точка health остаётся общедоступной и сообщает статус проверки подлинности/вышестоящего API", async (t) => {
   const app = buildServer({
     provider: async () => {
       throw new Error("провайдер не должен вызываться");
@@ -26,7 +26,7 @@ test("endpoint health остаётся общедоступным и сообщ�
   assert.equal(body.upstreams.airKoreaConfigured, false);
 });
 
-test("endpoint мелкой пыли остаётся общедоступным без аутентификации прокси", async (t) => {
+test("конечная точка мелкой пыли остаётся общедоступной без проверки подлинности посредника", async (t) => {
   let providerCalls = 0;
   const app = buildServer({
     env: {
@@ -52,7 +52,7 @@ test("endpoint мелкой пыли остаётся общедоступным
   assert.equal(providerCalls, 1);
 });
 
-test("endpoint мелкой пыли возвращает станции-кандидаты, когда разрешение региона неоднозначно", async (t) => {
+test("конечная точка мелкой пыли возвращает станции-кандидаты, когда разрешение региона неоднозначно", async (t) => {
   const app = buildServer({
     env: {
       AIR_KOREA_OPEN_API_KEY: "airkorea-key"
@@ -82,7 +82,7 @@ test("endpoint мелкой пыли возвращает станции-кан�
   assert.deepEqual(response.json().candidate_stations, ["평동", "오선동"]);
 });
 
-test("endpoint мелкой пыли кэширует успешные ответы провайдера", async (t) => {
+test("конечная точка мелкой пыли буферизует успешные ответы провайдера", async (t) => {
   let providerCalls = 0;
   const app = buildServer({
     env: {

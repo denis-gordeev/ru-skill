@@ -1535,14 +1535,14 @@ test("документация fine-dust и proxy различает перео�
   assert.match(proxyReadme, /~\/\.config\/k-skill\/secrets\.env/);
   assert.ok(
     proxyReadme.indexOf("~/.config/ru-skill/secrets.env") < proxyReadme.indexOf("~/.config/k-skill/secrets.env"),
-    "ожидалось, что README пакета прокси упомянет путь ru-skill перед запасным вариантом legacy",
+    "ожидалось, что README пакета посредника упомянет путь ru-skill перед запасным вариантом legacy",
   );
 
   assert.match(proxyRunner, /DEFAULT_RU_SKILL_SECRETS_FILE/);
   assert.match(proxyRunner, /DEFAULT_LEGACY_SECRETS_FILE/);
   assert.ok(
     proxyRunner.indexOf("RU_SKILL_SECRETS_FILE") < proxyRunner.indexOf("KSKILL_SECRETS_FILE"),
-    "ожидалось, что runner прокси предпочтёт RU_SKILL_SECRETS_FILE перед KSKILL_SECRETS_FILE",
+    "ожидалось, что runner посредника предпочтёт RU_SKILL_SECRETS_FILE перед KSKILL_SECRETS_FILE",
   );
 
   assert.match(checkSetup, /KSKILL_PROXY_BASE_URL только если нужно переопределить адрес fine-dust endpoint/i);
@@ -2684,7 +2684,7 @@ test("k-skill-proxy использует русские значения lookupM
   assert.match(airkorea, /lookupMode: "запасной вариант"/);
   assert.match(airkorea, /Требуется реализация fetch/);
   assert.doesNotMatch(airkorea, /A fetch implementation is required/);
-  assert.match(airkorea, /AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере/);
+  assert.match(airkorea, /AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике/);
   assert.doesNotMatch(airkorea, /AIR_KOREA_OPEN_API_KEY is not configured/);
 });
 

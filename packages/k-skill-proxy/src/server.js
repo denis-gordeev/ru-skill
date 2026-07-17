@@ -131,7 +131,7 @@ async function proxyAirKoreaRequest({ service, operation, query, serviceKey, fet
       contentType: "application/json; charset=utf-8",
       body: JSON.stringify({
         error: "upstream_not_configured",
-        message: "AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере."
+        message: "AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике."
       })
     };
   }
@@ -142,7 +142,7 @@ async function proxyAirKoreaRequest({ service, operation, query, serviceKey, fet
       contentType: "application/json; charset=utf-8",
       body: JSON.stringify({
         error: "not_found",
-        message: "Этот маршрут AirKorea не доступен через прокси."
+        message: "Этот маршрут AirKorea не доступен через посредника."
       })
     };
   }
@@ -256,7 +256,7 @@ function buildServer({ env = process.env, provider = null } = {}) {
       reply.code(503);
       return {
         error: "upstream_not_configured",
-        message: "AIR_KOREA_OPEN_API_KEY не настроен на прокси-сервере.",
+        message: "AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике.",
         proxy: {
           name: config.proxyName,
           cache: {
