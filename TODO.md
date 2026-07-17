@@ -4,6 +4,40 @@
 
 Исторические сводки раундов ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-07-17 (раунд 95)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Периодический аудит интерфейсной документации не выявил возвратов 10 ключевых жаргонизмов в SKILL.md, package README и docs/features.
+- Выявлены и устранены тавтологические пояснения: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST` (5 вхождений в 4 файлах: `packages/stoloto-lotto/README.md`, `packages/kinopoisk-search/README.md`, `docs/features/stoloto-lotto.md`, `docs/features/kinopoisk-search.md`).
+- Восстановлен установившийся термин: `уведомления push` → `push-уведомления` в `docs/sources.md` (2 вхождения).
+- Заменён `KakaoTalk Mac CLI` → `KakaoTalk для Mac` в `README.md` (2 вхождения).
+- Заменён `macOS Keychain` → `Связка ключей macOS` в 5 файлах (6 вхождений): `seoul-subway-arrival/SKILL.md`, `srt-booking/SKILL.md`, `ktx-booking/SKILL.md`, `k-skill-setup/SKILL.md`, `docs/setup.md`, `docs/security-and-secrets.md`.
+- Заменён `Version Packages` → `«Версии пакетов» (Version Packages)` в `AGENTS.md` (1 вхождение) и `docs/releasing.md` (3 вхождения).
+
+## Выполнено в этом раунде (раунд 95)
+
+- [x] `packages/stoloto-lotto/README.md`: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST`.
+- [x] `packages/kinopoisk-search/README.md`: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST`.
+- [x] `docs/features/stoloto-lotto.md`: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST`.
+- [x] `docs/features/kinopoisk-search.md`: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST` (2 вхождения).
+- [x] `docs/sources.md`: `уведомления push` → `push-уведомления` (2 вхождения).
+- [x] `README.md`: `KakaoTalk Mac CLI` → `KakaoTalk для Mac` (2 вхождения).
+- [x] `seoul-subway-arrival/SKILL.md`: `macOS Keychain` → `Связка ключей macOS`.
+- [x] `srt-booking/SKILL.md`: `macOS Keychain` → `Связка ключей macOS`.
+- [x] `ktx-booking/SKILL.md`: `macOS Keychain` → `Связка ключей macOS`.
+- [x] `k-skill-setup/SKILL.md`: `macOS Keychain` → `Связка ключей macOS`.
+- [x] `docs/setup.md`: `macOS Keychain` → `Связка ключей macOS`.
+- [x] `docs/security-and-secrets.md`: `macOS Keychain` → `Связка ключей macOS`.
+- [x] `AGENTS.md`: `Version Packages` → `«Версии пакетов» (Version Packages)`.
+- [x] `docs/releasing.md`: `Version Packages` → `«Версии пакетов» (Version Packages)` (3 вхождения).
+- [x] Периодический аудит интерфейсной документации: 10 ключевых жаргонизмов не вернулись.
+- [x] `npm run ci` проходит полностью.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим перечнем задач.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
+
 ## Статус на 2026-07-17 (раунд 94)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
@@ -24,7 +58,7 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
+- [x] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
 
 ## Статус на 2026-07-16 (раунд 93)
 
@@ -41,7 +75,7 @@
 
 ## Новые пункты плана
 
-- [ ] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
+- [x] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
 
 ## Статус на 2026-07-16 (раунд 92)
 

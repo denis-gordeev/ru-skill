@@ -38,7 +38,7 @@
 | `zoon-nearby` | Поиск ближайших заведений через публичные страницы Zoon.ru | Нет | [Руководство по Zoon.ru](docs/features/zoon-nearby.md) |
 | `srt-booking` | Обратно совместимый корейский сценарий поиска поездов SRT и бронирования | Да | [Руководство по SRT](docs/features/srt-booking.md) |
 | `ktx-booking` | Обратно совместимый корейский сценарий KTX/Korail через вспомогательный скрипт с обходом защиты от ботов Dynapath | Да | [Руководство по KTX](docs/features/ktx-booking.md) |
-| `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Руководство по KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md) |
+| `kakaotalk-mac` | Просмотр, поиск и тестовая отправка сообщений KakaoTalk на macOS через `kakaocli` | Нет | [Руководство по KakaoTalk для Mac](docs/features/kakaotalk-mac.md) |
 | `seoul-subway-arrival` | Просмотр ожидаемого времени прибытия поездов метро Сеула по станции | Да | [Руководство по метро Сеула](docs/features/seoul-subway-arrival.md) |
 | `fine-dust-location` | Проверка PM10/PM2.5 по текущему местоположению или запасному региону через `k-skill-proxy` | Нет | [Руководство по мелкой пыли](docs/features/fine-dust-location.md) |
 | `kbo-results` | Результаты и расписание матчей KBO по датам и командам | Нет | [Руководство по KBO](docs/features/kbo-results.md) |
@@ -225,7 +225,7 @@
 - [Zoon.ru](docs/features/zoon-nearby.md)
 - [Бронирование SRT](docs/features/srt-booking.md)
 - [Бронирование KTX](docs/features/ktx-booking.md)
-- [KakaoTalk Mac CLI](docs/features/kakaotalk-mac.md)
+- [KakaoTalk для Mac](docs/features/kakaotalk-mac.md)
 - [Прибытие поездов метро Сеула](docs/features/seoul-subway-arrival.md)
 - [Мелкая пыль по местоположению](docs/features/fine-dust-location.md)
 - [Результаты KBO](docs/features/kbo-results.md)

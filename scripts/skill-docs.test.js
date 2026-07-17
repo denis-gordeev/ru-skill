@@ -223,7 +223,7 @@ test("документация репозитория рекламирует н�
 
   assert.ok(fs.existsSync(featureDocPath), "ожидалось, что docs/features/kakaotalk-mac.md существует");
   assert.match(readme, /\| `kakaotalk-mac` \|/);
-  assert.match(readme, /\[Руководство по KakaoTalk Mac CLI\]\(docs\/features\/kakaotalk-mac\.md\)/);
+  assert.match(readme, /\[Руководство по KakaoTalk для Mac\]\(docs\/features\/kakaotalk-mac\.md\)/);
   assert.match(install, /--skill kakaotalk-mac/);
 });
 
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-16");
-  assert.equal(todoStatus.round, 93);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 93\)/);
+  assert.equal(todoStatus.date, "2026-07-17");
+  assert.equal(todoStatus.round, 95);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 95\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
