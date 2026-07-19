@@ -41,7 +41,7 @@ console.log(places[0]);
 | `searchRestaurants(lat, lon, options)` | Рестораны | `['restaurant', 'fast_food', 'food_court']` |
 | `searchCafes(lat, lon, options)` | Кафе | `['cafe', 'biergarten', 'ice_cream']` |
 | `searchBars(lat, lon, options)` | Бары | `['bar', 'pub', 'nightclub']` |
-| `getPlaceDetails(osmNodeId)` | Одно заведение по OSM ID | — |
+| `getPlaceDetails(osmNodeId)` | Одно заведение по идентификатору OSM | — |
 
 ## Параметры поиска
 

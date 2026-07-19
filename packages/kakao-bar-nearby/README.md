@@ -30,7 +30,7 @@ npm install
 ## Официальные интерфейсы Kakao Map
 
 - Мобильный поиск: `https://m.map.kakao.com/actions/searchView`
-- JSON панели места: `https://place-api.map.kakao.com/places/panel3/<confirmId>`
+- Данные панели места в формате JSON: `https://place-api.map.kakao.com/places/panel3/<confirmId>`
 - Страница места: `https://place.map.kakao.com/<confirmId>`
 
 ## Пример

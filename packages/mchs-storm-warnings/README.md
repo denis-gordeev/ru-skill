@@ -74,10 +74,10 @@ const regions = listRegions();
 
 ### `getStormWarning(regionHost, warningPathOrId)`
 
-- `warningPathOrId`: числовой идентификатор предупреждения, относительный путь или абсолютный URL
-- Возвращает `title`, `publishedAt`, `publishedAtIso`, `bodyText`, ссылки на экспорт и канонический URL предупреждения
+- `warningPathOrId`: числовой идентификатор предупреждения, относительный путь или абсолютный адрес
+- Возвращает `title`, `publishedAt`, `publishedAtIso`, `bodyText`, ссылки на экспорт и канонический адрес предупреждения
 
-### Построение URL
+### Построение адресов
 
 - `buildWarningsIndexUrl(regionHost, options?)`
 - `buildWarningUrl(regionHost, warningPathOrId)`

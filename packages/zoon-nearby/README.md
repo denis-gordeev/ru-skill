@@ -100,7 +100,7 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 
 Подробная информация о конкретной организации.
 
-- `businessUrl` (string): Полный URL страницы организации на Zoon.ru
+- `businessUrl` (string): Полный адрес страницы организации на Zoon.ru
 - Возвращает: `{ name, address, rating, phone, category, description, website, hours, url }`
 
 ## Формат ответа

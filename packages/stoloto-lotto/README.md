@@ -65,7 +65,7 @@ console.log(normalizeGameSlug("6 из 45")); // "6x45"
 console.log(normalizeGameSlug("русское лото")); // "ruslotto"
 ```
 
-### Построение URL
+### Построение адресов
 
 ```js
 const { buildArchiveUrl } = require("stoloto-lotto");
@@ -80,7 +80,7 @@ console.log(buildArchiveUrl("4x20"));
 | --- | --- |
 | `getArchiveDraws(gameSlug)` | Получить последние тиражи для указанной лотереи |
 | `getDrawById(gameSlug, drawNumber)` | Получить тираж по номеру (если страница поддерживает фильтрацию) |
-| `buildArchiveUrl(gameSlug)` | Построить публичный URL архива |
+| `buildArchiveUrl(gameSlug)` | Построить публичный адрес архива |
 | `normalizeGameSlug(gameSlug)` | Нормализовать название лотереи в канонический идентификатор |
 | `SUPPORTED_GAMES` | Массив поддерживаемых канонических идентификаторов |
 

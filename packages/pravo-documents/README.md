@@ -75,7 +75,7 @@ const {
 
 - Возвращает массив объектов-рубрик
 
-### Построение URL
+### Построение адресов
 
 - `buildSearchUrl(options?)`
 - `buildDocumentUrl(eoNumber)`

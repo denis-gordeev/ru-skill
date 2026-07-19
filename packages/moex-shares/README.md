@@ -36,7 +36,7 @@ const { getSecurityOverview, listShares } = require("moex-shares");
 
 ### `listShares(options?)`
 
-- Возвращает страницу тикеров и кратких метаданных для board `TQBR`
+- Возвращает страницу тикеров и кратких метаданных для режима торгов `TQBR`
 - `options.start` по умолчанию равен `0`
 
 ## Примечания

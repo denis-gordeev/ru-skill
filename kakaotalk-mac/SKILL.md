@@ -67,7 +67,7 @@ mas install 869223134
 
 ### 1. Установить `kakaocli`
 
-Рекомендуемый способ установки из официального репозитория — Homebrew tap.
+Рекомендуемый способ установки из официального репозитория — сторонний репозиторий Homebrew.
 
 ```bash
 brew install silver-flight-group/tap/kakaocli

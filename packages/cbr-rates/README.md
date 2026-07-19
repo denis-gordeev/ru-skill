@@ -10,7 +10,7 @@ npm install cbr-rates
 
 ## Официальные интерфейсы
 
-- XML ежедневных курсов: `https://www.cbr.ru/scripts/XML_daily.asp`
+- Ежедневные курсы в формате XML: `https://www.cbr.ru/scripts/XML_daily.asp`
 - Справка по сервисам в формате XML: `https://www.cbr.ru/development/SXML/`
 
 ## Использование

@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-07-19");
-  assert.equal(todoStatus.round, 97);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 97\)/);
+  assert.equal(todoStatus.round, 98);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 98\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -3137,7 +3137,7 @@ test("docs/brand-inventory.md использует русский вместо �
   assert.doesNotMatch(brand, /legacy endpoint/);
   assert.doesNotMatch(brand, /legacy-поверхностей/);
   assert.match(brand, /устаревших интерфейсов/);
-  assert.match(brand, /Публичный URL посредника/);
+  assert.match(brand, /Публичный адрес посредника/);
   assert.match(brand, /устаревшая конечная точка/);
 });
 
@@ -3880,7 +3880,7 @@ test("Nearby-поиск и Nearby JSON заменены на русские эк
   assert.match(sources, /Поиск ближайших/);
 
   assert.doesNotMatch(blueRibbonReadme, /Nearby JSON/);
-  assert.match(blueRibbonReadme, /JSON ресторанов поблизости/);
+  assert.match(blueRibbonReadme, /Данные о ресторанах поблизости в формате JSON/);
 });
 
 test("legacy- compounds заменены на устаревш* в пользовательской документации (setup, security, sources, install, brand-inventory, booking-replacements)", () => {

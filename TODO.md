@@ -4,6 +4,54 @@
 
 Исторические сводки раундов ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
+## Статус на 2026-07-19 (раунд 98)
+
+- `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
+- Периодический аудит интерфейсной документации не выявил возвратов 10 ключевых жаргонизмов в SKILL.md, package README и docs/features.
+- Унифицирован термин `URL` → `адрес` во всей интерфейсной документации (~25 вхождений в ~15 файлах): `seoul-subway-arrival/SKILL.md`, `delivery-tracking/SKILL.md`, `yandex-market-search/SKILL.md` (4 вхождения), `zoon-nearby/SKILL.md` (4 вхождения), `packages/kinopoisk-search/README.md` (3 вхождения), `packages/mchs-storm-warnings/README.md` (3 вхождения), `packages/postcalc-postcodes/README.md`, `packages/pravo-documents/README.md`, `packages/stoloto-lotto/README.md`, `packages/yandex-market-search/README.md` (4 вхождения), `packages/zoon-nearby/README.md`, `docs/features/kinopoisk-search.md` (3 вхождения), `docs/features/yandex-market-search.md`, `docs/features/zoon-nearby.md`, `docs/features/fine-dust-location.md`, `docs/sources.md`, `docs/brand-inventory.md` (2 вхождения).
+- Унифицирован термин `ID` → `идентификатор` в интерфейсной документации (6 вхождений в 4 файлах): `packages/kinopoisk-search/README.md` (2 вхождения), `packages/yandex-market-search/README.md`, `docs/features/kinopoisk-search.md` (2 вхождения), `docs/features/osm-nearby.md`, `docs/sources.md` (2 вхождения).
+- Унифицированы гибридные термины в SKILL.md (6 файлов): `Seoul Open Data API` → `API открытых данных Сеула`, `Open API` → `открытый API` (seoul-subway-arrival ×2), `Blue Ribbon zone` → `зона Blue Ribbon`, `heredoc` → `встроенный документ (heredoc)`, `Homebrew tap` → `сторонний репозиторий Homebrew`.
+- Унифицированы гибридные термины в package README (5 файлов): `JSON ресторанов поблизости` → `Данные о ресторанах поблизости в формате JSON`, `JSON панели места` → `Данные панели места в формате JSON`, `K League JSON адресов` → `адресов K League в формате JSON`, `XML ежедневных курсов` → `Ежедневные курсы в формате XML`, `board TQBR` → `режим торгов TQBR`, `standings`/`matches` → `` `standings` ``/`` `matches` `` (обратные кавычки), `` `ru-skill`-first путь `` → `путь с приоритетом `ru-skill``.
+- Заголовки секций `Построение URL` → `Построение адресов` в 5 файлах: `packages/kinopoisk-search/README.md`, `packages/mchs-storm-warnings/README.md`, `packages/pravo-documents/README.md`, `packages/stoloto-lotto/README.md`, `docs/features/kinopoisk-search.md`.
+
+## Выполнено в этом раунде (раунд 98)
+
+- [x] `seoul-subway-arrival/SKILL.md`: `Seoul Open Data API` → `API открытых данных Сеула`, `Open API` → `открытый API` (2 вхождения), `URL` → `адресов`.
+- [x] `blue-ribbon-nearby/SKILL.md`: `Blue Ribbon zone` → `зона Blue Ribbon`.
+- [x] `zipcode-search/SKILL.md`: `heredoc` → `встроенный документ (heredoc)`.
+- [x] `kakaotalk-mac/SKILL.md`: `Homebrew tap` → `сторонний репозиторий Homebrew`.
+- [x] `delivery-tracking/SKILL.md`: `URL` → `адрес`.
+- [x] `yandex-market-search/SKILL.md`: `URL` → `адрес`/`адресом` (4 вхождения).
+- [x] `zoon-nearby/SKILL.md`: `URL` → `адрес` (4 вхождения).
+- [x] `packages/kinopoisk-search/README.md`: `ID` → `идентификатор` (2 вхождения), `URL` → `адрес` (3 вхождения), `Построение URL` → `Построение адресов`.
+- [x] `packages/mchs-storm-warnings/README.md`: `URL` → `адрес`/`адресом` (3 вхождения), `Построение URL` → `Построение адресов`.
+- [x] `packages/postcalc-postcodes/README.md`: `URL` → `адресом`.
+- [x] `packages/pravo-documents/README.md`: `Построение URL` → `Построение адресов`.
+- [x] `packages/stoloto-lotto/README.md`: `URL` → `адрес`, `Построение URL` → `Построение адресов`.
+- [x] `packages/yandex-market-search/README.md`: `URL` → `адрес` (4 вхождения), `ID` → `идентификатору`.
+- [x] `packages/zoon-nearby/README.md`: `URL` → `адрес`.
+- [x] `packages/moex-shares/README.md`: `board TQBR` → `режим торгов TQBR`.
+- [x] `packages/rpl-results/README.md`: `standings`/`matches` → `` `standings` ``/`` `matches` `` (обратные кавычки).
+- [x] `packages/blue-ribbon-nearby/README.md`: `JSON ресторанов поблизости` → `Данные о ресторанах поблизости в формате JSON`.
+- [x] `packages/kakao-bar-nearby/README.md`: `JSON панели места` → `Данные панели места в формате JSON`.
+- [x] `packages/kleague-results/README.md`: `K League JSON адресов` → `адресов K League в формате JSON`.
+- [x] `packages/cbr-rates/README.md`: `XML ежедневных курсов` → `Ежедневные курсы в формате XML`.
+- [x] `packages/k-skill-proxy/README.md`: `` `ru-skill`-first путь `` → `путь с приоритетом `ru-skill``.
+- [x] `docs/features/kinopoisk-search.md`: `ID` → `идентификатор` (2 вхождения), `URL` → `адрес` (3 вхождения), `Построение URL` → `Построение адресов`, `Карточка фильма по ID` → `Карточка фильма по идентификатору`.
+- [x] `docs/features/osm-nearby.md`: `OSM ID` → `идентификатор OSM`.
+- [x] `docs/features/yandex-market-search.md`: `URL` → `Адрес`.
+- [x] `docs/features/zoon-nearby.md`: `URL` → `адрес`.
+- [x] `docs/features/fine-dust-location.md`: `URL` → `адрес`.
+- [x] `docs/sources.md`: `ID` → `идентификатор` (2 вхождения), `URL` → `адрес`.
+- [x] `docs/brand-inventory.md`: `URL` → `адрес` (2 вхождения).
+- [x] Периодический аудит интерфейсной документации: 10 ключевых жаргонизмов не вернулись; `URL` и `ID` устранены.
+- [x] `npm run ci` проходит полностью.
+- [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим перечнем задач.
+
+## Новые пункты плана
+
+- [ ] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
+
 ## Статус на 2026-07-19 (раунд 97)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
@@ -19,9 +67,9 @@
 - [x] `npm run ci` проходит полностью.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим перечнем задач.
 
-## Новые пункты плана
+## Новые пункты плана (перенесены из раунда 97 — выполнены в раунде 98)
 
-- [ ] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
+- [x] Проводить периодический аудит интерфейсной документации (SKILL.md, package README, feature docs) на новые гибриды и возврат английского жаргона.
 
 ## Статус на 2026-07-18 (раунд 96)
 
