@@ -4,32 +4,37 @@
 
 Исторические сводки раундов ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-07-17 (раунд 95)
+## Статус на 2026-07-18 (раунд 96)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
 - Периодический аудит интерфейсной документации не выявил возвратов 10 ключевых жаргонизмов в SKILL.md, package README и docs/features.
-- Выявлены и устранены тавтологические пояснения: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST` (5 вхождений в 4 файлах: `packages/stoloto-lotto/README.md`, `packages/kinopoisk-search/README.md`, `docs/features/stoloto-lotto.md`, `docs/features/kinopoisk-search.md`).
-- Восстановлен установившийся термин: `уведомления push` → `push-уведомления` в `docs/sources.md` (2 вхождения).
-- Заменён `KakaoTalk Mac CLI` → `KakaoTalk для Mac` в `README.md` (2 вхождения).
-- Заменён `macOS Keychain` → `Связка ключей macOS` в 5 файлах (6 вхождений): `seoul-subway-arrival/SKILL.md`, `srt-booking/SKILL.md`, `ktx-booking/SKILL.md`, `k-skill-setup/SKILL.md`, `docs/setup.md`, `docs/security-and-secrets.md`.
-- Заменён `Version Packages` → `«Версии пакетов» (Version Packages)` в `AGENTS.md` (1 вхождение) и `docs/releasing.md` (3 вхождения).
+- Унифицирован термин `ботов` → `роботов` во всей интерфейсной документации и верхнеуровневых документах (~20 вхождений в ~10 файлах): `zoon-nearby/SKILL.md`, `packages/zoon-nearby/SKILL.md`, `docs/features/zoon-nearby.md` (2 вхождения), `yandex-market-search/SKILL.md`, `docs/sources.md` (4 вхождения), `ktx-booking/SKILL.md` (3 вхождения), `docs/features/ktx-booking.md` (2 вхождения), `README.md` (2 вхождения), `AGENTS.md` (1 вхождение), `docs/releasing.md` (1 вхождение), `docs/booking-replacements.md` (2 вхождения), `docs/roadmap.md` (2 вхождения).
+- Унифицирован термин `пагинация` → `постраничная навигация` в интерфейсной документации (3 файла): `docs/features/zoon-nearby.md`, `packages/zoon-nearby/README.md`, `packages/yandex-rasp/README.md`.
+- Добавлено русское пояснение к сокращению SSR: `(SSR)` → `(серверная отрисовка, SSR)` в `docs/features/yandex-market-search.md`.
+- Исправлено форматирование: `lookupRegion` → `` `lookupRegion` `` в `docs/features/mchs-storm-warnings.md`, строчная `ключ` → `Ключ` в начале предложения в `packages/osm-nearby/README.md`.
+- Регрессионные тесты обновлены под новую терминологию.
 
-## Выполнено в этом раунде (раунд 95)
+## Выполнено в этом раунде (раунд 96)
 
-- [x] `packages/stoloto-lotto/README.md`: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST`.
-- [x] `packages/kinopoisk-search/README.md`: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST`.
-- [x] `docs/features/stoloto-lotto.md`: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST`.
-- [x] `docs/features/kinopoisk-search.md`: `REST API (API архитектурного стиля REST)` → `API в архитектурном стиле REST` (2 вхождения).
-- [x] `docs/sources.md`: `уведомления push` → `push-уведомления` (2 вхождения).
-- [x] `README.md`: `KakaoTalk Mac CLI` → `KakaoTalk для Mac` (2 вхождения).
-- [x] `seoul-subway-arrival/SKILL.md`: `macOS Keychain` → `Связка ключей macOS`.
-- [x] `srt-booking/SKILL.md`: `macOS Keychain` → `Связка ключей macOS`.
-- [x] `ktx-booking/SKILL.md`: `macOS Keychain` → `Связка ключей macOS`.
-- [x] `k-skill-setup/SKILL.md`: `macOS Keychain` → `Связка ключей macOS`.
-- [x] `docs/setup.md`: `macOS Keychain` → `Связка ключей macOS`.
-- [x] `docs/security-and-secrets.md`: `macOS Keychain` → `Связка ключей macOS`.
-- [x] `AGENTS.md`: `Version Packages` → `«Версии пакетов» (Version Packages)`.
-- [x] `docs/releasing.md`: `Version Packages` → `«Версии пакетов» (Version Packages)` (3 вхождения).
+- [x] `zoon-nearby/SKILL.md`: `Защита от ботов` → `Защита от роботов`.
+- [x] `packages/zoon-nearby/SKILL.md`: `Защита от ботов` → `Защита от роботов`.
+- [x] `docs/features/zoon-nearby.md`: `Без защиты от ботов` → `Без защиты от роботов`, `Защита от ботов` → `Защита от роботов`.
+- [x] `yandex-market-search/SKILL.md`: `режим защиты от ботов` → `режим защиты от роботов`.
+- [x] `docs/sources.md`: `защиты от ботов` → `защиты от роботов` (4 вхождения), `проверкой на ботов` → `проверкой на роботов`, `обход защиты от ботов` → `обход защиты от роботов` (2 вхождения).
+- [x] `ktx-booking/SKILL.md`: `защиты от ботов` → `защиты от роботов` (3 вхождения).
+- [x] `docs/features/ktx-booking.md`: `защиты от ботов` → `защиты от роботов` (2 вхождения).
+- [x] `README.md`: `обходом защиты от ботов` → `обходом защиты от роботов` (2 вхождения).
+- [x] `AGENTS.md`: `сгенерированного ботом` → `сгенерированного роботом`.
+- [x] `docs/releasing.md`: `сгенерированного ботом` → `сгенерированного роботом`.
+- [x] `docs/booking-replacements.md`: `защиты от ботов` → `защиты от роботов` (2 вхождения).
+- [x] `docs/roadmap.md`: `защиты от ботов` → `защиты от роботов` (2 вхождения).
+- [x] `docs/features/zoon-nearby.md`: `Номер страницы для пагинации` → `Номер страницы для постраничной навигации`.
+- [x] `packages/zoon-nearby/README.md`: `Номер страницы для пагинации` → `Номер страницы для постраничной навигации`.
+- [x] `packages/yandex-rasp/README.md`: `Смещение для пагинации` → `Смещение для постраничной навигации`.
+- [x] `docs/features/yandex-market-search.md`: `(SSR)` → `(серверная отрисовка, SSR)`.
+- [x] `docs/features/mchs-storm-warnings.md`: `lookupRegion` → `` `lookupRegion` ``.
+- [x] `packages/osm-nearby/README.md`: `ключ API` → `Ключ API` (исправлена строчная буква в начале предложения).
+- [x] `scripts/skill-docs.test.js`: регрессионные тесты обновлены под `роботов`, `постраничной навигации`.
 - [x] Периодический аудит интерфейсной документации: 10 ключевых жаргонизмов не вернулись.
 - [x] `npm run ci` проходит полностью.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы с новым статусом и следующим перечнем задач.

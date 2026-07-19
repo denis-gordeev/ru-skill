@@ -18,7 +18,7 @@
 
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
 - `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
-- `korail2` обход защиты от ботов PR #54: https://github.com/carpedm20/korail2/pull/54
+- `korail2` обход защиты от роботов PR #54: https://github.com/carpedm20/korail2/pull/54
 - Сеул API метро реального времени: https://www.data.go.kr/data/15058052/openapi.do
 
 ### Спорт
@@ -428,7 +428,7 @@
 
 - Корзина, покупка, сравнение магазинов, отзывы и сценарии со стороны продавца.
 - Авторизация, избранное и персонализированные списки.
-- Гарантия долгосрочной стабильности, если Маркет переведёт выдачу в чистую клиентскую отрисовку (CSR) или усилит слой защиты от ботов.
+- Гарантия долгосрочной стабильности, если Маркет переведёт выдачу в чистую клиентскую отрисовку (CSR) или усилит слой защиты от роботов.
 
 Статус реализации: пакет `yandex-market-search` создан в `packages/yandex-market-search` с двумя функциями (`searchProducts`, `getProduct`), на основе эталонных данных тестами HTML и документацией.
 
@@ -468,8 +468,8 @@
 
 #### Маркетплейсы (Wildberries/Ozon/Price.ru/E-katalog)
 
-- Wildberries API требует маркер продавца (dev.wildberries.ru), а публичная выдача быстро уходит в поток с защитой от ботов.
-- Ozon Seller API также требует авторизацию, а публичная выдача отвечает проверкой на ботов.
+- Wildberries API требует маркер продавца (dev.wildberries.ru), а публичная выдача быстро уходит в поток с защитой от роботов.
+- Ozon Seller API также требует авторизацию, а публичная выдача отвечает проверкой на роботов.
 - Price.ru и E-katalog остаются резервными кандидатами, если текущий интерфейс с серверной отрисовкой (SSR) Яндекс Маркета перестанет быть доступной.
 - **Решение**: основная замена для `daiso-product-search` уже закрыта через `yandex-market-search`; резервный запасной вариант держать на случай деградации страниц с серверной отрисовкой (SSR) Маркета.
 
@@ -477,7 +477,7 @@
 
 - 2GIS Catalog API требует ключ API (docs.2gis.com).
 - Яндекс.Карты Geosearch API требует ключ API.
-- Zoon.ru — публичный справочник организаций, страницы с серверной отрисовкой (SSR), без защиты от ботов, без ключей API.
+- Zoon.ru — публичный справочник организаций, страницы с серверной отрисовкой (SSR), без защиты от роботов, без ключей API.
 - **Решение**: реализован `osm-nearby` через Overpass API как основной бесплатный источник без ключа API; реализован `zoon-nearby` как дополнительный источник с рейтингами, телефонами и режимами работы; 2GIS/Яндекс.Карты остаются опцией для промышленного использования.
 
 ### Бытовые и городские данные
@@ -512,7 +512,7 @@
 - Vercel структура пакетов навыков агента: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
 - `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
-- `korail2` обход защиты от ботов PR #54: https://github.com/carpedm20/korail2/pull/54
+- `korail2` обход защиты от роботов PR #54: https://github.com/carpedm20/korail2/pull/54
 - `kbo-game`: https://github.com/vkehfdl1/kbo-game
 - tossinvest-cli: https://github.com/JungHoonGhae/tossinvest-cli
 - K League расписание/результаты JSON: https://www.kleague.com/getScheduleList.do

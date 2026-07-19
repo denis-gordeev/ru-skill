@@ -85,7 +85,7 @@ const trips = await searchTrips("c146", "c159", {
 | `date` | string | все даты | Дата ISO 8601 `YYYY-MM-DD` |
 | `transportType` | string | все | `plane`, `train`, `suburban`, `bus` |
 | `transfers` | boolean | `false` | Включить маршруты с пересадками |
-| `offset` | number | `0` | Смещение для пагинации |
+| `offset` | number | `0` | Смещение для постраничной навигации |
 | `limit` | number | `100` | Максимум результатов (не более 100) |
 | `lang` | string | `ru_RU` | Язык ответа |
 

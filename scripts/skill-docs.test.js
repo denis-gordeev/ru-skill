@@ -281,7 +281,7 @@ test("документация ktx-booking описывает рабочий п�
     assert.match(doc, /--include-waiting-list/);
     assert.match(doc, /--try-waiting/);
     assert.match(doc, /credential resolution order|KSKILL_KTX_ID/);
-    assert.match(doc, /защиты от ботов|Dynapath|x-dynapath-m-token/i);
+    assert.match(doc, /защиты от роботов|Dynapath|x-dynapath-m-token/i);
     // Допускается как корейский оригинал, так и русский перевод для примечания об автоматизации оплаты
     assert.match(doc, /Оплата не автоматизируется|Оплата до завершения не автоматизируется|не закрывает оплату/);
     assert.doesNotMatch(doc, /예약 시 선택할 `--train-index`/);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-17");
-  assert.equal(todoStatus.round, 95);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 95\)/);
+  assert.equal(todoStatus.date, "2026-07-18");
+  assert.equal(todoStatus.round, 96);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 96\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -3126,7 +3126,7 @@ test("docs/sources.md использует русские метки URL вме�
   assert.match(sources, /AirKorea качество воздуха API/);
   assert.match(sources, /AirKorea станции мониторинга API/);
   assert.match(sources, /Vercel структура пакетов навыков агента/);
-  assert.match(sources, /обход защиты от ботов/);
+  assert.match(sources, /обход защиты от роботов/);
 });
 
 test("docs/brand-inventory.md использует русский вместо английского жаргона", () => {
@@ -3188,7 +3188,7 @@ test("user-facing surfaces не содержат английский жарго
   assert.match(zoonReadme, /защиты от роботов/);
 
   assert.doesNotMatch(zoonFeature, /anti-bot/);
-  assert.match(zoonFeature, /защиты от ботов/);
+  assert.match(zoonFeature, /защиты от роботов/);
 });
 
 test("тестовые файлы используют русские сообщения об ошибках вместо unexpected url/URL", () => {
@@ -3238,10 +3238,10 @@ test("user-facing surfaces не содержат английский жарго
   const readme = read("README.md");
 
   assert.doesNotMatch(agents, /bot-generated/);
-  assert.match(agents, /сгенерированного ботом/);
+  assert.match(agents, /сгенерированного роботом/);
 
   assert.doesNotMatch(releasing, /bot-generated/);
-  assert.match(releasing, /сгенерированного ботом/);
+  assert.match(releasing, /сгенерированного роботом/);
 
   assert.doesNotMatch(deliveryFeature, /retry policy/);
   assert.match(deliveryFeature, /политика повторных попыток/);
@@ -3287,7 +3287,7 @@ test("user-facing surfaces не содержат английский жарго
   assert.match(sources, /обновления.*в реальном времени/);
 
   assert.doesNotMatch(readme, /\bhelper\b.*с обходом/);
-  assert.match(readme, /вспомогательный скрипт.*защиты от ботов/);
+  assert.match(readme, /вспомогательный скрипт.*защиты от роботов/);
 });
 
 test("SKILL.md файлы zoon-nearby не содержат Anti-bot", () => {
@@ -3295,10 +3295,10 @@ test("SKILL.md файлы zoon-nearby не содержат Anti-bot", () => {
   const zoonPkgSkill = read(path.join("packages", "zoon-nearby", "SKILL.md"));
 
   assert.doesNotMatch(zoonSkill, /Anti-bot/);
-  assert.match(zoonSkill, /Антибот|Защита от ботов/);
+  assert.match(zoonSkill, /Защита от роботов/);
 
   assert.doesNotMatch(zoonPkgSkill, /Anti-bot/);
-  assert.match(zoonPkgSkill, /Антибот|Защита от ботов/);
+  assert.match(zoonPkgSkill, /Защита от роботов/);
 });
 
 test("тестовые файлы не содержат английский жаргон payload, live-запросы, upstream-ответы", () => {
@@ -3417,8 +3417,8 @@ test("docs/sources.md не содержит английский жаргон re
 
   assert.doesNotMatch(sources, /antibot flow/);
   assert.doesNotMatch(sources, /antibot challenge/);
-  assert.match(sources, /поток с защитой от ботов/);
-  assert.match(sources, /проверкой на ботов/);
+  assert.match(sources, /поток с защитой от роботов/);
+  assert.match(sources, /проверкой на роботов/);
 
   assert.doesNotMatch(sources, /официальных open data/);
   assert.match(sources, /официальных открытых данных/);
@@ -4425,7 +4425,7 @@ test("документация использует запрос на слиян
   assert.doesNotMatch(releasing, /\bPR\b(?![\s`]*Version)/);
   assert.match(releasing, /запрос.*на слияние/);
 
-  assert.doesNotMatch(agents, /сгенерированного ботом PR\b/);
+  assert.doesNotMatch(agents, /сгенерированного роботом PR\b/);
   assert.match(agents, /запрос.*на слияние/);
 });
 

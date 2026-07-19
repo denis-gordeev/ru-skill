@@ -67,7 +67,7 @@ const details = await getBusinessDetails('https://zoon.ru/msk/restaurants/pushki
 Поиск ресторанов в городе.
 
 - `city` (string): Название города по-русски (например, 'Москва', 'Санкт-Петербург')
-- `opts.page` (number, опционально): Номер страницы для пагинации
+- `opts.page` (number, опционально): Номер страницы для постраничной навигации
 - Возвращает: `{ businesses, totalCount, pagination, query, page }`
 
 ### `searchCafes(city, opts?)`
