@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-18");
-  assert.equal(todoStatus.round, 96);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 96\)/);
+  assert.equal(todoStatus.date, "2026-07-19");
+  assert.equal(todoStatus.round, 97);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 97\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
