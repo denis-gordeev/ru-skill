@@ -42,7 +42,7 @@ console.log(restaurants.businesses);
 // Поиск кафе в Санкт-Петербурге
 const cafes = await searchCafes('Санкт-Петербург');
 
-// Поиск баров с пагинацией
+// Поиск баров с постраничной навигацией
 const barsPage2 = await searchBars('Москва', { page: 2 });
 
 // Общий поиск
