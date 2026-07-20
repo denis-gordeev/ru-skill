@@ -1,6 +1,6 @@
 ---
 name: kleague-results
-description: Результаты матчей K League и текущая турнирная таблица по датам/командам через официальную конечную точку JSON и пакет kleague-results npm.
+description: Результаты матчей K League и текущая турнирная таблица по датам/командам через официальную конечную точку в формате JSON и пакет `kleague-results` из реестра npm.
 license: MIT
 metadata:
   category: спорт

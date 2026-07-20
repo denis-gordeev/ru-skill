@@ -870,7 +870,7 @@ test("навык kleague-results документирует официальны
     assert.match(doc, /FC서울|서울 이랜드|팀 코드/);
     assert.match(doc, /https:\/\/www\.kleague\.com\/getScheduleList\.do/);
     assert.match(doc, /https:\/\/www\.kleague\.com\/record\/teamRank\.do/);
-    assert.match(doc, /공식 JSON|공식 API|공식 표면|официальный JSON|официальный API|официальные интерфейсы API/u);
+    assert.match(doc, /공식 JSON|공식 API|공식 표면|в формате JSON|официальный API|официальные программные интерфейсы/u);
     assert.match(doc, /현재 순위|текущую турнирную таблицу|standings/i);
     assert.match(doc, /kleague-results|K리그 결과 조회|Результаты K League/u);
   }
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-19");
-  assert.equal(todoStatus.round, 99);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 99\)/);
+  assert.equal(todoStatus.date, "2026-07-20");
+  assert.equal(todoStatus.round, 101);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 101\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -3256,7 +3256,7 @@ test("user-facing surfaces не содержат английский жарго
   assert.doesNotMatch(zipcodeFeature, /retry-флагами/);
   assert.doesNotMatch(zipcodeFeature, /retry-механика/);
   assert.match(zipcodeFeature, /тайм-аут/);
-  assert.match(zipcodeFeature, /параметрами curl повторных попыток/);
+  assert.match(zipcodeFeature, /параметрами `curl` повторных попыток/);
   assert.match(zipcodeFeature, /механизм повторных попыток/);
 
   assert.doesNotMatch(zipcodeSkill, /\btimeout\b/);
@@ -4260,7 +4260,7 @@ test("SKILL.md и feature docs не содержат алиас/alias и фла�
   assert.match(kakaotalkSkill, /Признак тестовой/);
 
   assert.doesNotMatch(zipcodeDoc, /curl флагами/);
-  assert.match(zipcodeDoc, /параметрами curl/);
+  assert.match(zipcodeDoc, /параметрами `curl`/);
 });
 
 test("docs/sources.md не содержит slug в русском тексте описания stoloto", () => {
@@ -4684,13 +4684,13 @@ test("docs/features/blue-ribbon-nearby.md не содержит zone-списк�
   assert.match(feature, /списка зон/);
 });
 
-test("k-skill-proxy использует сервер-посредник на Fastify вместо прокси на Fastify (раунд 69, обновлён в раунде 82)", () => {
+test("k-skill-proxy использует сервер-посредник на `Fastify` вместо прокси на Fastify (раунд 69, обновлён в раунде 82)", () => {
   const proxyDoc = read(path.join("docs", "features", "k-skill-proxy.md"));
   const proxyReadme = read(path.join("packages", "k-skill-proxy", "README.md"));
   const proxyPkg = JSON.parse(read(path.join("packages", "k-skill-proxy", "package.json")));
 
   assert.doesNotMatch(proxyDoc, /прокси на Fastify/);
-  assert.match(proxyDoc, /сервер-посредник на Fastify/);
+  assert.match(proxyDoc, /сервер-посредник на `Fastify`/);
 
   assert.doesNotMatch(proxyReadme, /прокси на Fastify/);
   assert.match(proxyReadme, /сервер-посредник на Fastify/);
@@ -5052,7 +5052,7 @@ test("раунд 78: пользовательские интерфейсные �
   assert.match(proxyFeature, /наружный интерфейс/);
   assert.match(kakaoBarFeature, /Официальные интерфейсы Kakao Map/);
   assert.match(daisoFeature, /Официальные интерфейсы/);
-  assert.match(ymFeature, /интерфейс HTML Яндекс Маркета/);
+  assert.match(ymFeature, /интерфейс разметки HTML Яндекс Маркета/);
   assert.match(blueRibbonFeature, /Официальные интерфейсы Blue Ribbon/);
   assert.match(kleagueFeature, /Официальные интерфейсы/);
   assert.match(ktxFeature, /отдельный интерфейс и отдельные учётные данные/);
