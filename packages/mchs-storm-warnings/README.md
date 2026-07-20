@@ -12,7 +12,7 @@ npm install mchs-storm-warnings
 
 - Индекс предупреждений региона: `https://{region}.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya`
 - Страница отдельного предупреждения: `https://{region}.mchs.gov.ru/.../shtormovye-i-ekstrennye-preduprezhdeniya/{warning_id}`
-- Тип источника: официальные региональные страницы МЧС, без авторизации
+- Тип источника: официальные региональные страницы МЧС, без проверки подлинности
 
 ## Использование
 

@@ -13,7 +13,7 @@ npm install pravo-documents
 - Конечная точка поиска: `https://publication.pravo.gov.ru/api/Documents`
 - Карточка документа: `https://publication.pravo.gov.ru/api/Document?eoNumber=<number>`
 - Справочник рубрик: `https://publication.pravo.gov.ru/api/PublicBlocks`
-- Тип источника: официальный портал правовой информации, без авторизации
+- Тип источника: официальный портал правовой информации, без проверки подлинности
 
 ## Использование
 

@@ -1210,7 +1210,7 @@ test("документация репозитория рекламирует н�
   assert.match(sources, /tossinvest-cli: https:\/\/github\.com\/JungHoonGhae\/tossinvest-cli/);
 });
 
-test("навык toss-securities документирует установку tossctl, авторизацию и сценарий только для чтения", () => {
+test("навык toss-securities документирует установку tossctl, проверку подлинности и сценарий только для чтения", () => {
   const skillPath = path.join(repoRoot, "toss-securities", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "ожидалось, что toss-securities/SKILL.md существует");
@@ -3167,7 +3167,7 @@ test("user-facing surfaces не содержат английский жарго
   assert.doesNotMatch(agents, /proxy-auth/);
   assert.doesNotMatch(agents, /scaffold/);
   assert.match(agents, /конечн.* точк/);
-  assert.match(agents, /авторизации посредника/);
+  assert.match(agents, /проверки подлинности посредника/);
   assert.match(agents, /каркасной заготовкой/);
 
   assert.doesNotMatch(setup, /\bproxy endpoint\b/);
