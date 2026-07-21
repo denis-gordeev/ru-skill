@@ -449,7 +449,7 @@ test("документация postcalc-postcodes описывает рабоч�
   assert.match(packageReadme, /getCityOverview/);
 });
 
-test("документация hh-vacancies описывает публичный сценарий API вакансий HH", () => {
+test("документация hh-vacancies описывает публичный сценарий программного интерфейса вакансий HH", () => {
   const skillPath = path.join(repoRoot, "hh-vacancies", "SKILL.md");
   const packageReadmePath = path.join(repoRoot, "packages", "hh-vacancies", "README.md");
 
@@ -1088,8 +1088,8 @@ test("документация репозитория рекламирует н�
   assert.match(readme, /\[Руководство по мелкой пыли\]\(docs\/features\/fine-dust-location\.md\)/);
   assert.match(install, /--skill fine-dust-location/);
   assert.match(roadmap, /Навык по проверке мелкой пыли по местоположению/);
-  assert.match(sources, /AirKorea качество воздуха API: https:\/\/www\.data\.go\.kr\/data\/15073861\/openapi\.do/);
-  assert.match(sources, /AirKorea станции мониторинга API: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
+  assert.match(sources, /AirKorea качество воздуха, программный интерфейс: https:\/\/www\.data\.go\.kr\/data\/15073861\/openapi\.do/);
+  assert.match(sources, /AirKorea станции мониторинга, программный интерфейс: https:\/\/www\.data\.go\.kr\/data\/15073877\/openapi\.do/);
   assert.match(setup, /AIR_KOREA_OPEN_API_KEY/);
   assert.match(setup, /KSKILL_PROXY_BASE_URL/);
   assert.match(setup, /опубликованн.*совместим.*конечн.* точк.* посредник.* используется по умолчанию/i);
@@ -1103,7 +1103,7 @@ test("документация репозитория рекламирует н�
   assert.match(secretsExample, /необязательн.*переопределен.*адрес/i);
 });
 
-test("навык fine-dust-location документирует официальный двух-API сценарий и обработку запасного варианта", () => {
+test("навык fine-dust-location документирует официальный сценарий двух программных интерфейсов и обработку запасного варианта", () => {
   const skillPath = path.join(repoRoot, "fine-dust-location", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "ожидалось, что fine-dust-location/SKILL.md существует");
@@ -1555,17 +1555,17 @@ test("описания workspace-пакетов соответствуют ру�
     "blue-ribbon-nearby": "Legacy-клиент поиска ближайших ресторанов Blue Ribbon Survey, сохранённый на время миграции ru-skill",
     "cbr-rates": "Клиент только для чтения для официальных XML-курсов валют Банка России",
     "daiso-product-search": "Legacy-клиент поиска магазинов, товаров и остатков для самовывоза Daiso Mall, сохранённый на время миграции ru-skill",
-    "hh-vacancies": "Клиент только для чтения для публичных API вакансий и регионов hh.ru",
+    "hh-vacancies": "Клиент только для чтения для публичных программных интерфейсов вакансий и регионов hh.ru",
     "k-lotto": "Legacy-клиент результатов dhlottery, сохранённый на время миграции ru-skill",
-    "k-skill-proxy": "Сервер-посредник на Fastify для бесплатных и публичных API, используемых в ru-skill",
+    "k-skill-proxy": "Сервер-посредник на Fastify для бесплатных и публичных программных интерфейсов, используемых в ru-skill",
     "kakao-bar-nearby": "Legacy-клиент поиска ближайших баров через Kakao Map, сохранённый на время миграции ru-skill",
     "kinopoisk-search": "Клиент только для чтения для публичного поиска фильмов и карточек Кинопоиска",
     "kleague-results": "Legacy-клиент результатов и таблицы K League, сохранённый на время миграции ru-skill",
     "mchs-storm-warnings": "Клиент только для чтения для официальных региональных страниц штормовых и экстренных предупреждений МЧС",
-    "moex-shares": "Клиент только для чтения для метаданных акций и задержанных рыночных снимков ISS Московской биржи",
+    "moex-shares": "Клиент только для чтения для метаданных акций и задержанных срезов рынка ISS Московской биржи",
     "osm-nearby": "Клиент только для чтения для поиска ближайших мест через Overpass API OpenStreetMap",
     "postcalc-postcodes": "Клиент только для чтения для справочных страниц Postcalc по городам и отделениям на базе данных индексов Почты России",
-    "pravo-documents": "Клиент только для чтения для официальных правовых документов через API публикаций pravo.gov.ru",
+    "pravo-documents": "Клиент только для чтения для официальных правовых документов через программный интерфейс pravo.gov.ru",
     "rpl-results": "Результаты матчей и турнирная таблица Российской Премьер-Лиги через публичные страницы championat.com",
     "stoloto-lotto": "Клиент только для чтения для публичного архива результатов тиражей Столото",
     "toss-securities": "Legacy-обёртка tossctl только для чтения, сохранённая на время миграции ru-skill",
@@ -1999,7 +1999,7 @@ test("документация репозитория рекламирует н�
   assert.match(sources, /pravo\.gov\.ru/);
 });
 
-test("документация pravo-documents описывает официальный сценарий API pravo.gov.ru", () => {
+test("документация pravo-documents описывает официальный сценарий программного интерфейса pravo.gov.ru", () => {
   const skill = read(path.join("pravo-documents", "SKILL.md"));
   const featureDoc = read(path.join("docs", "features", "pravo-documents.md"));
   const packageReadme = read(path.join("packages", "pravo-documents", "README.md"));
@@ -2584,7 +2584,7 @@ test("AGENTS.md использует русский для repo-governance те�
 
   assert.match(agents, /^# Инструкции для репозитория k-skill$/m);
   assert.match(agents, /^## Правила автоматизации выпусков$/m);
-  assert.match(agents, /^## Политика посредника для бесплатных API$/m);
+  assert.match(agents, /^## Политика посредника для бесплатных программных интерфейсов$/m);
   assert.doesNotMatch(agents, /^# k-skill repository instructions$/m);
   assert.doesNotMatch(agents, /Default posture: public read-only endpoint/);
 });
@@ -2910,7 +2910,7 @@ test("feature docs используют русский вместо англий
   assert.match(fineDustFeature, /значения поступают в реальном времени/);
 
   assert.doesNotMatch(seoulFeature, /сопоставимого real-time API/);
-  assert.match(seoulFeature, /сопоставимого API реального времени/);
+  assert.match(seoulFeature, /сопоставимого программного интерфейса реального времени/);
 
   assert.doesNotMatch(seoulFeature, /Данные real-time/);
   assert.match(seoulFeature, /Данные поступают в реальном времени/);
@@ -2934,12 +2934,12 @@ test("верхнеуровневая документация используе
   assert.doesNotMatch(sources, /lookup региона/);
   assert.doesNotMatch(sources, /real-time прибытие/);
   assert.match(sources, /поиск региона/);
-  assert.match(sources, /API прибытия метро в реальном времени/);
+  assert.match(sources, /программный интерфейс метро реального времени/);
 
   assert.doesNotMatch(readme, /Поиск ресторанов Blue Ribbon nearby/);
   assert.match(readme, /Поиск ближайших ресторанов Blue Ribbon/);
-  assert.doesNotMatch(readme, /lookup регионов через публичный API/);
-  assert.match(readme, /поиск регионов через публичный API/);
+  assert.doesNotMatch(readme, /lookup регионов через публичный программный интерфейс/);
+  assert.match(readme, /поиск регионов через публичный программный интерфейс/);
 });
 
 test("package README используют русский вместо HTML scraping/crawling", () => {
@@ -3123,8 +3123,8 @@ test("docs/sources.md использует русские метки URL вме�
   assert.match(sources, /Blue Ribbon ближайшие рестораны JSON/);
   assert.match(sources, /Kakao Map мобильный поиск/);
   assert.match(sources, /Kakao Map панель места JSON/);
-  assert.match(sources, /AirKorea качество воздуха API/);
-  assert.match(sources, /AirKorea станции мониторинга API/);
+  assert.match(sources, /AirKorea качество воздуха, программный интерфейс/);
+  assert.match(sources, /AirKorea станции мониторинга, программный интерфейс/);
   assert.match(sources, /Vercel структура пакетов навыков агента/);
   assert.match(sources, /обход защиты от роботов/);
 });
@@ -3353,7 +3353,7 @@ test("SKILL.md и feature docs не содержат английский жар
 
   assert.doesNotMatch(deliverySkill, /free API/);
   assert.doesNotMatch(deliverySkill, /\bbacklog\b/);
-  assert.match(deliverySkill, /бесплатные API/);
+  assert.match(deliverySkill, /бесплатные программные интерфейсы/);
   assert.match(deliverySkill, /перечень задач/);
 
   assert.doesNotMatch(seoulSubwayFeature, /\bbacklog\b/);
@@ -4058,7 +4058,7 @@ test("packages/k-skill-proxy/README.md не содержит legacy- compounds �
   assert.match(readme, /устаревший файл/);
 
   assert.doesNotMatch(readme, /API proxy/);
-  assert.match(readme, /посредник для бесплатных API/);
+  assert.match(readme, /посредник для бесплатных программных интерфейсов/);
 });
 
 test("docs/booking-replacements.md не содержит booking-навыков и railway-booking", () => {
@@ -4371,7 +4371,7 @@ test("k-skill-proxy surfaces не содержат target-продукт, Legacy
   assert.doesNotMatch(proxyDoc, /public сценарии API/);
   assert.doesNotMatch(proxyDoc, /legacy конечная точка/);
   assert.doesNotMatch(proxyDoc, /Legacy конечная точка/);
-  assert.match(proxyDoc, /публичные сценарии API/);
+  assert.match(proxyDoc, /публичные сценарии программного интерфейса/);
   assert.match(proxyDoc, /устаревшая конечная точка|Устаревшая конечная точка/);
 });
 
@@ -4454,7 +4454,7 @@ test("docs/sources.md не содержит навык standalone, публич�
   assert.match(sources, /Техническая основа: навык \+/);
 
   assert.doesNotMatch(sources, /public API для локального skill/);
-  assert.match(sources, /публичный API для локального навыка/);
+  assert.match(sources, /публичный программный интерфейс для локального навыка/);
 
   assert.doesNotMatch(sources, /fuzzy search/);
   assert.match(sources, /нечёткий поиск/);
@@ -4772,7 +4772,7 @@ test("раунд 72: русификация skill/package, категории н
   assert.match(booking, /для железнодорожных маршрутов не открывается/);
 
   assert.doesNotMatch(booking, /свободный public API/);
-  assert.match(booking, /свободный публичный API/);
+  assert.match(booking, /свободный публичный программный интерфейс/);
 
   const kSkillSetup = read(path.join("k-skill-setup", "SKILL.md"));
   const ruSkillSetup = read(path.join("ru-skill-setup", "SKILL.md"));
@@ -4983,7 +4983,7 @@ test("раунд 75: package README, SKILL.md и тесты не возвращ�
   assert.doesNotMatch(deliverySkill, /JSON API \/ HTML-форма \/ CLI/);
   assert.doesNotMatch(deliverySkill, /сохранения файла куки/);
   assert.doesNotMatch(deliverySkill, /HTML-форма \/ командная строка/);
-  assert.match(deliverySkill, /JSON API \/ форма HTML \/ командная строка/);
+  assert.match(deliverySkill, /программный интерфейс JSON \/ форма HTML \/ командная строка/);
   assert.match(deliverySkill, /сохранения файла cookie/);
 
   const mchsSkill = read(path.join("mchs-storm-warnings", "SKILL.md"));

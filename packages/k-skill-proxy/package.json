@@ -2,7 +2,7 @@
   "name": "k-skill-proxy",
   "version": "0.1.0",
   "private": true,
-  "description": "Сервер-посредник на Fastify для бесплатных и публичных API, используемых в ru-skill",
+  "description": "Сервер-посредник на Fastify для бесплатных и публичных программных интерфейсов, используемых в ru-skill",
   "license": "MIT",
   "main": "src/server.js",
   "engines": {
