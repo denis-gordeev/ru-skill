@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-07-22");
-  assert.equal(todoStatus.round, 103);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 103\)/);
+  assert.equal(todoStatus.round, 104);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 104\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -4152,10 +4152,20 @@ test("README.md не содержит английского жаргона meta
   assert.match(readme, /вспомогательные утилиты JS/);
   assert.doesNotMatch(readme, /fixture data/);
   assert.match(readme, /эталонные данные/);
+  assert.doesNotMatch(readme, /remaining устаревший без развития matrix/);
+  assert.doesNotMatch(readme, /`target`, `устаревший без развития`/);
+  assert.match(readme, /матрица оставшихся навыков без развития/);
+  assert.match(readme, /целевые, устаревшие без развития и переходные навыки/);
 });
 
 test("docs/roadmap.md не содержит английского жаргона helper, metadata, release, guide", () => {
   const roadmap = read(path.join("docs", "roadmap.md"));
+  assert.doesNotMatch(roadmap, /русских keywords/);
+  assert.doesNotMatch(roadmap, /publish round/);
+  assert.doesNotMatch(roadmap, /старым summary/);
+  assert.match(roadmap, /русских ключевых слов/);
+  assert.match(roadmap, /раунд публикации/);
+  assert.match(roadmap, /старым сводкам/);
   assert.doesNotMatch(roadmap, /feature-guide/);
   assert.match(roadmap, /руководство по функции/);
   assert.doesNotMatch(roadmap, /release hygiene/);
