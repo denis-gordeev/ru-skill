@@ -27,7 +27,7 @@ const { getSecurityOverview, listShares } = require("moex-shares");
 })();
 ```
 
-## Справочник API
+## Справочник программного интерфейса
 
 ### `getSecurityOverview(secId, options?)`
 

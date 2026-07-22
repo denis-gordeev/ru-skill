@@ -33,7 +33,7 @@ const {
 })();
 ```
 
-## Справочник API
+## Справочник программного интерфейса
 
 ### `searchPravoDocuments(options?)`
 

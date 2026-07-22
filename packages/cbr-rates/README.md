@@ -29,7 +29,7 @@ const { getDailyRates, getRate, getRateWithChange } = require("cbr-rates");
 })();
 ```
 
-## Справочник API
+## Справочник программного интерфейса
 
 ### `getDailyRates(date?)`
 

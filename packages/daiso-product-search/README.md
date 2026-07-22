@@ -73,7 +73,7 @@ main().catch((error) => {
 }
 ```
 
-## Справочник API
+## Справочник программного интерфейса
 
 - `searchStores(query, options?)`
 - `getStoreDetail(strCd, options?)`

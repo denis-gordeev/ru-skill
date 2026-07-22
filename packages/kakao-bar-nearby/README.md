@@ -85,7 +85,7 @@ main().catch((error) => {
 }
 ```
 
-## Справочник API
+## Справочник программного интерфейса
 
 - `searchNearbyBarsByLocationQuery(query, options?)`
 - `searchNearbyBarsByCoordinates({ latitude, longitude }, options?)`

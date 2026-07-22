@@ -1137,7 +1137,7 @@ test("навык fine-dust-location документирует официаль�
     assert.match(doc, /скрытый перечень задач/i);
     assert.match(doc, /AIR_KOREA_OPEN_API_KEY/);
     assert.match(doc, /KSKILL_PROXY_BASE_URL/);
-    assert.match(doc, /Отдельный клиентский ключ API в этом режиме не нужен/i);
+    assert.match(doc, /Отдельный клиентский ключ программного интерфейса в этом режиме не нужен/i);
     assert.match(doc, /B552584\/MsrstnInfoInqireSvc\/getMsrstnList/);
     assert.match(doc, /B552584\/ArpltnInforInqireSvc\/getMsrstnAcctoRltmMesureDnsty/);
     assert.match(doc, /getCtprvnRltmMesureDnsty/);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-20");
-  assert.equal(todoStatus.round, 101);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 101\)/);
+  assert.equal(todoStatus.date, "2026-07-22");
+  assert.equal(todoStatus.round, 103);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 103\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -2532,9 +2532,9 @@ test("roadmap использует русские заголовки вех вм
 test("feature doc osm-nearby использует русский вместо английского жаргона", () => {
   const featureDoc = read(path.join("docs", "features", "osm-nearby.md"));
 
-  assert.match(featureDoc, /бесплатн.*решение без ключа API|решение без ключа API.*бесплатн/i);
+  assert.match(featureDoc, /бесплатн.*решение без ключа программного интерфейса|решение без ключа программного интерфейса.*бесплатн/i);
   assert.match(featureDoc, /может быть неполным/);
-  assert.match(featureDoc, /бесплатн.*вариант без ключа API/i);
+  assert.match(featureDoc, /бесплатн.*вариант без ключа программного интерфейса/i);
 
   assert.doesNotMatch(featureDoc, /free.*no.?key/i);
   assert.doesNotMatch(featureDoc, /\bsparse\b/);
@@ -2992,7 +2992,7 @@ test("feature docs не содержат заголовок ## API без рус
     assert.doesNotMatch(
       content,
       /^## API$/m,
-      `docs/features/${file} не должен содержать голый заголовок "## API" — используйте "## Справочник API"`,
+      `docs/features/${file} не должен содержать голый заголовок "## API" — используйте "## Справочник программного интерфейса"`,
     );
   }
 });
@@ -4469,7 +4469,7 @@ test("docs/sources.md не содержит навык standalone, публич�
   assert.match(sources, /со стороны продавца/);
 
   assert.doesNotMatch(sources, /без API keys/);
-  assert.match(sources, /без ключей API/);
+  assert.match(sources, /без ключей программного интерфейса/);
 
   assert.doesNotMatch(sources, /regression-тесты/);
   assert.match(sources, /регрессионные тесты/);
@@ -4492,10 +4492,10 @@ test("docs/security-and-secrets.md использует файл секрето�
   assert.match(security, /руководстве по настройке/);
 });
 
-test("docs/features/zoon-nearby.md использует ключи API вместо API keys", () => {
+test("docs/features/zoon-nearby.md использует ключи программного интерфейса вместо API keys", () => {
   const zoon = read(path.join("docs", "features", "zoon-nearby.md"));
   assert.doesNotMatch(zoon, /\*\*API keys\*\*/);
-  assert.match(zoon, /\*\*ключи API\*\*/);
+  assert.match(zoon, /\*\*ключи программного интерфейса\*\*/);
 });
 
 test("AGENTS.md использует путь пакета вместо package path", () => {
@@ -4581,10 +4581,10 @@ test("docs/features/*.md не содержат legacy без перевода в
   assert.match(proxy, /устаревший поток AirKorea/);
 });
 
-test("docs/sources.md использует ключ API вместо API key и эталонный набор данных вместо фикстура", () => {
+test("docs/sources.md использует ключ программного интерфейса вместо API key и эталонный набор данных вместо фикстура", () => {
   const sources = read(path.join("docs", "sources.md"));
   assert.doesNotMatch(sources, /\bAPI key\b/);
-  assert.match(sources, /ключ API/);
+  assert.match(sources, /ключ программного интерфейса/);
   assert.doesNotMatch(sources, /добавляется фикстура/);
   assert.match(sources, /эталонный набор данных/);
 });
@@ -4607,21 +4607,21 @@ test("Пользовательские поверхности не содерж�
   const osm = read(path.join("docs", "features", "osm-nearby.md"));
   assert.doesNotMatch(osm, /API ключ/);
   assert.doesNotMatch(osm, /\bAPI key\b/);
-  assert.match(osm, /ключ API/);
+  assert.match(osm, /ключ программного интерфейса/);
 
   const zoon = read(path.join("docs", "features", "zoon-nearby.md"));
   assert.doesNotMatch(zoon, /API ключ/);
   assert.doesNotMatch(zoon, /\bAPI keys\b/);
-  assert.match(zoon, /ключи API/);
+  assert.match(zoon, /ключи программного интерфейса/);
 
   const ym = read(path.join("yandex-market-search", "SKILL.md"));
   assert.doesNotMatch(ym, /\bAPI key\b/);
-  assert.match(ym, /ключ[аи] API/);
+  assert.match(ym, /ключ[аи] программного интерфейса/);
 
   const osmSkill = read(path.join("packages", "osm-nearby", "SKILL.md"));
   assert.doesNotMatch(osmSkill, /API ключ/);
   assert.doesNotMatch(osmSkill, /\bAPI key\b/);
-  assert.match(osmSkill, /ключа API/i);
+  assert.match(osmSkill, /ключа программного интерфейса/i);
 });
 
 test("mchs-storm-warnings/SKILL.md не содержит MChS в русской прозе", () => {
