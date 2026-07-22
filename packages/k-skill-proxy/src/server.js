@@ -315,7 +315,7 @@ async function startServer() {
 
 if (require.main === module) {
   startServer().catch((error) => {
-    console.error(error);
+    console.error("Не удалось запустить сервер-посредник:", error.message);
     process.exitCode = 1;
   });
 }

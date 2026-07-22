@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-07-22");
-  assert.equal(todoStatus.round, 104);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 104\)/);
+  assert.equal(todoStatus.round, 105);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 105\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -2688,6 +2688,13 @@ test("k-skill-proxy использует русские значения lookupM
   assert.doesNotMatch(airkorea, /AIR_KOREA_OPEN_API_KEY is not configured/);
 });
 
+test("k-skill-proxy использует русские сообщения в обработчике ошибки запуска", () => {
+  const server = read(path.join("packages", "k-skill-proxy", "src", "server.js"));
+
+  assert.match(server, /Не удалось запустить сервер-посредник/);
+  assert.doesNotMatch(server, /console\.error\(error\)/);
+});
+
 test("fine_dust.py использует русские значения lookup_mode", () => {
   const fineDust = read(path.join("scripts", "fine_dust.py"));
 
@@ -2769,6 +2776,66 @@ test("скрипт fix-changelog-headings существует и обрабат
   assert.match(script, /Major Changes.*Крупные изменения|Крупные изменения.*Major Changes/s);
   assert.match(script, /Minor Changes.*Незначительные изменения|Незначительные изменения.*Minor Changes/s);
   assert.match(script, /Patch Changes.*Исправления|Исправления.*Patch Changes/s);
+});
+
+test("fix-changelog-headings безопасен при повторной обработке: повторный запуск не изменяет уже русские заголовки", () => {
+  const tmpDir = fs.mkdtempSync(path.join(require("node:os").tmpdir(), "fix-ch-"));
+  const pkgDir = path.join(tmpDir, "test-pkg");
+  fs.mkdirSync(pkgDir);
+  fs.writeFileSync(
+    path.join(pkgDir, "CHANGELOG.md"),
+    "# test-pkg\n\n## 1.0.0\n\n### Незначительные изменения\n\n- Первоначальный выпуск.\n",
+    "utf8",
+  );
+
+  const fakePackagesDir = path.join(tmpDir, "packages");
+  fs.mkdirSync(fakePackagesDir);
+  fs.renameSync(pkgDir, path.join(fakePackagesDir, "test-pkg"));
+
+  const result = childProcess.spawnSync(
+    process.execPath,
+    ["-e", `
+      const fs = require("node:fs");
+      const path = require("node:path");
+      const headingReplacements = {
+        "### Major Changes": "### Крупные изменения",
+        "### Minor Changes": "### Незначительные изменения",
+        "### Patch Changes": "### Исправления",
+      };
+      const packagesDir = process.argv[1];
+      for (const entry of fs.readdirSync(packagesDir, { withFileTypes: true })) {
+        if (!entry.isDirectory()) continue;
+        const changelogPath = path.join(packagesDir, entry.name, "CHANGELOG.md");
+        if (!fs.existsSync(changelogPath)) continue;
+        let content = fs.readFileSync(changelogPath, "utf8");
+        for (const [english, russian] of Object.entries(headingReplacements)) {
+          content = content.replaceAll(english, russian);
+        }
+        fs.writeFileSync(changelogPath, content, "utf8");
+      }
+    `, fakePackagesDir],
+    { encoding: "utf8" },
+  );
+
+  const afterFirst = fs.readFileSync(path.join(fakePackagesDir, "test-pkg", "CHANGELOG.md"), "utf8");
+  const expected = "# test-pkg\n\n## 1.0.0\n\n### Незначительные изменения\n\n- Первоначальный выпуск.\n";
+
+  assert.equal(afterFirst, expected, "повторная обработка не должна изменять уже русские заголовки");
+
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
+
+test("fix-changelog-headings использует русские статусные сообщения", () => {
+  const script = read(path.join("scripts", "fix-changelog-headings.js"));
+
+  assert.match(script, /Каталог пакетов не найден/);
+  assert.match(script, /Не удалось прочитать/);
+  assert.match(script, /Не удалось записать/);
+  assert.match(script, /Заголовки CHANGELOG русифицированы|Все заголовки CHANGELOG уже на русском/);
+
+  assert.doesNotMatch(script, /packages directory not found/);
+  assert.doesNotMatch(script, /Failed to read/);
+  assert.doesNotMatch(script, /Failed to write/);
 });
 
 test("shell-скрипты инфраструктуры используют русские пользовательские статусные сообщения", () => {

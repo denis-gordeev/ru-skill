@@ -11,21 +11,51 @@ const headingReplacements = {
 
 const packagesDir = path.join(__dirname, "..", "packages");
 
-for (const entry of fs.readdirSync(packagesDir)) {
-  const changelogPath = path.join(packagesDir, entry, "CHANGELOG.md");
-  if (!fs.existsSync(changelogPath)) continue;
+if (!fs.existsSync(packagesDir)) {
+  console.error("Каталог пакетов не найден:", packagesDir);
+  process.exitCode = 1;
+} else {
+  let processed = 0;
+  let unchanged = 0;
 
-  let content = fs.readFileSync(changelogPath, "utf8");
-  let modified = false;
+  for (const entry of fs.readdirSync(packagesDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
 
-  for (const [english, russian] of Object.entries(headingReplacements)) {
-    if (content.includes(english)) {
-      content = content.replaceAll(english, russian);
-      modified = true;
+    const changelogPath = path.join(packagesDir, entry.name, "CHANGELOG.md");
+    if (!fs.existsSync(changelogPath)) continue;
+
+    let content;
+    try {
+      content = fs.readFileSync(changelogPath, "utf8");
+    } catch (err) {
+      console.error("Не удалось прочитать:", changelogPath, err.message);
+      continue;
+    }
+
+    let modified = false;
+
+    for (const [english, russian] of Object.entries(headingReplacements)) {
+      if (content.includes(english)) {
+        content = content.replaceAll(english, russian);
+        modified = true;
+      }
+    }
+
+    if (modified) {
+      try {
+        fs.writeFileSync(changelogPath, content, "utf8");
+        processed += 1;
+      } catch (err) {
+        console.error("Не удалось записать:", changelogPath, err.message);
+      }
+    } else {
+      unchanged += 1;
     }
   }
 
-  if (modified) {
-    fs.writeFileSync(changelogPath, content, "utf8");
+  if (processed > 0) {
+    console.log(`Заголовки CHANGELOG русифицированы: ${processed} файл(ов) обновлено, ${unchanged} без изменений.`);
+  } else {
+    console.log(`Все заголовки CHANGELOG уже на русском (${unchanged} файл(ов) без изменений).`);
   }
 }
