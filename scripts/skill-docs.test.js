@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-07-27");
-  assert.equal(todoStatus.round, 110);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 110\)/);
+  assert.equal(todoStatus.round, 111);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 111\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -3313,6 +3313,9 @@ test("user-facing surfaces не содержат английский жарго
   assert.doesNotMatch(deliveryFeature, /retry policy/);
   assert.match(deliveryFeature, /политика повторных попыток/);
 
+  assert.doesNotMatch(deliveryFeature, /JSON \/ HTML \/ CLI/);
+  assert.match(deliveryFeature, /интерфейс командной строки/);
+
   assert.doesNotMatch(deliverySkill, /retry policy/);
   assert.match(deliverySkill, /политика повторных попыток/);
 
@@ -4884,7 +4887,7 @@ test("раунд 72: русификация skill/package, категории н
 
   const delivery = read(path.join("delivery-tracking", "SKILL.md"));
   assert.doesNotMatch(delivery, /сохранения cookie/);
-  assert.match(delivery, /сохранения файла cookie/);
+  assert.match(delivery, /сохранения файла куки/);
 
   const blueRibbon = read(path.join("blue-ribbon-nearby", "SKILL.md"));
   assert.doesNotMatch(blueRibbon, /\(ribbon\)/);
@@ -5058,10 +5061,10 @@ test("раунд 75: package README, SKILL.md и тесты не возвращ�
 
   const deliverySkill = read(path.join("delivery-tracking", "SKILL.md"));
   assert.doesNotMatch(deliverySkill, /JSON API \/ HTML-форма \/ CLI/);
-  assert.doesNotMatch(deliverySkill, /сохранения файла куки/);
+  assert.doesNotMatch(deliverySkill, /сохранения файла cookie/);
   assert.doesNotMatch(deliverySkill, /HTML-форма \/ командная строка/);
   assert.match(deliverySkill, /программный интерфейс JSON \/ форма HTML \/ командная строка/);
-  assert.match(deliverySkill, /сохранения файла cookie/);
+  assert.match(deliverySkill, /сохранения файла куки/);
 
   const mchsSkill = read(path.join("mchs-storm-warnings", "SKILL.md"));
   assert.doesNotMatch(mchsSkill, /CMS-шаблон/);
