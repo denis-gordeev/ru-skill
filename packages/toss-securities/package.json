@@ -1,7 +1,7 @@
 {
   "name": "toss-securities",
   "version": "0.2.0",
-  "description": "Legacy-обёртка tossctl только для чтения, сохранённая на время миграции ru-skill",
+  "description": "Устаревшая обёртка tossctl только для чтения, сохранённая на время миграции ru-skill",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

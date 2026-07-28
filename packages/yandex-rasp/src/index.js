@@ -90,7 +90,7 @@ async function getStationSchedule(stationCode, opts = {}) {
  * @param {string} [opts.date] - Целевая дата в ISO 8601 (YYYY-MM-DD).
  * @param {string} [opts.transportType] - Фильтр: plane, train, suburban, bus, water, helicopter.
  * @param {boolean} [opts.transfers] - Включить маршруты с пересадками (по умолчанию: false).
- * @param {number} [opts.offset] - Смещение для пагинации (по умолчанию: 0).
+ * @param {number} [opts.offset] - Смещение для постраничной навигации (по умолчанию: 0).
  * @param {number} [opts.limit] - Максимальное количество результатов (по умолчанию/максимум: 100).
  * @param {string} [opts.lang] - Язык ответа (по умолчанию: ru_RU).
  * @returns {Promise<{search: object, segments: Array<object>, intervalSegments: Array<object>, pagination: {total: number, limit: number, offset: number}}>}

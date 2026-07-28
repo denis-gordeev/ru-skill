@@ -82,7 +82,7 @@ test("parseCityPage нормализует параметры города Postc
   ]);
 });
 
-test("построители URL фиксируют публичные эндпоинты Postcalc", () => {
+test("построители URL фиксируют публичные конечные точки Postcalc", () => {
   assert.equal(buildOfficeUrl("109189"), "https://postcalc.ru/offices/109189");
   assert.equal(buildCityUrl("Сыктывкар"), "https://postcalc.ru/cities/%D0%A1%D1%8B%D0%BA%D1%82%D1%8B%D0%B2%D0%BA%D0%B0%D1%80");
   assert.throws(() => buildOfficeUrl("10918"), /6-значным российским почтовым индексом/);

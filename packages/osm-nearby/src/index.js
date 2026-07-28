@@ -96,7 +96,7 @@ async function searchBars(lat, lon, options = {}) {
 
 /**
  * Получить детали места по идентификатору элемента OSM (повторный запрос к Overpass)
- * @param {number} id - ID узла OSM
+ * @param {number} id - Идентификатор узла OSM
  * @returns {Promise<{name: string, lat: number, lon: number, amenity: string, address?: string, phone?: string, website?: string, openingHours?: string, cuisine?: string} | null>}
  */
 async function getPlaceDetails(id) {

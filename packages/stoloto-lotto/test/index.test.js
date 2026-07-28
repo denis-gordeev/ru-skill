@@ -39,7 +39,7 @@ test("SUPPORTED_GAMES перечисляет все канонические и�
   assert.ok(SUPPORTED_GAMES.includes("ruslotto"));
 });
 
-test("buildArchiveUrl фиксирует публичный эндпоинт архива Столото", () => {
+test("buildArchiveUrl фиксирует публичную конечную точку архива Столото", () => {
   assert.equal(buildArchiveUrl("4x20"), "https://www.stoloto.ru/4x20/archive");
   assert.equal(buildArchiveUrl("6x45"), "https://www.stoloto.ru/6x45/archive");
   assert.equal(buildArchiveUrl("ruslotto"), "https://www.stoloto.ru/ruslotto/archive");

@@ -254,7 +254,7 @@ class FineDustTests(unittest.TestCase):
         self.assertEqual([url.rsplit("/", 1)[-1] for url, _ in recorded_calls], ["getMsrstnList", "getMsrstnAcctoRltmMesureDnsty"])
         self.assertEqual(recorded_calls[1][1]["stationName"], "중구")
 
-    def test_cli_json_report_предпочитает_прокси_при_настроенном_proxy_base_url(self):
+    def test_cli_json_report_предпочитает_посредника_при_настроенном_proxy_base_url(self):
         stdout = io.StringIO()
         proxy_report = {
             "station_name": "강남구",
