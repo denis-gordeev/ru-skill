@@ -32,7 +32,7 @@ test("buildSearchUrl применяет параметр поиска по на�
   assert.ok(url.includes("Name=%D1%84%D0%B5%D0%B4%D0%B5%D1%80%D0%B0%D0%BB") || url.includes("Name="));
 });
 
-test("buildSearchUrl применяет фильтры и пагинацию", () => {
+test("buildSearchUrl применяет фильтры и постраничную навигацию", () => {
   const url = buildSearchUrl({
     documentTypeId: "type-1",
     page: 2,

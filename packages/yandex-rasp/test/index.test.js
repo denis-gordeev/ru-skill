@@ -116,7 +116,7 @@ test("getStationSchedule нормализует записи расписани�
   }
 });
 
-test("searchTrips нормализует сегменты и пагинацию", async () => {
+test("searchTrips нормализует сегменты и постраничную навигацию", async () => {
   const originalFetch = global.fetch;
 
   global.fetch = async () => makeJsonResponse(JSON.parse(searchTripsJson));

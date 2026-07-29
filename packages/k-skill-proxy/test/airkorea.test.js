@@ -46,7 +46,7 @@ const measurementPayload = {
   }
 };
 
-test("pickStation предпочитает специфичные совпадения токенов региона", () => {
+test("pickStation предпочитает специфичные совпадения маркеров региона", () => {
   const station = pickStation(stationPayload.response.body.items, {
     regionHint: "서울 강남구"
   });
@@ -144,7 +144,7 @@ test("fetchFineDustReport возвращается к прямому поиск�
   ]);
 });
 
-test("fetchFineDustReport возвращает информативный 400, когда токены района не сопоставляются с названиями станций", async () => {
+test("fetchFineDustReport возвращает информативный 400, когда маркеры района не сопоставляются с названиями станций", async () => {
   const fetchImpl = async (url) => {
     const text = String(url);
 

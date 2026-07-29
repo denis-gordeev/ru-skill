@@ -33,7 +33,7 @@ class FineDustTests(unittest.TestCase):
 
         self.assertEqual(station["stationName"], "중구")
 
-    def test_pick_station_предпочитает_конкретный_токен_региона_а_не_общий_город(self):
+    def test_pick_station_предпочитает_конкретный_маркер_региона_а_не_общий_город(self):
         stations = load_fixture("fine-dust-stations.json")
 
         station = fine_dust.pick_station(

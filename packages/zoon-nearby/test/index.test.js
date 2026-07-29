@@ -46,7 +46,7 @@ describe('модуль разбора zoon-nearby', () => {
       assert.strictEqual(count, 1234);
     });
 
-    it('извлекает информацию о пагинации', () => {
+    it('извлекает информацию о постраничной навигации', () => {
       const pagination = extractPagination(restaurantsHtml);
       
       assert.strictEqual(pagination.hasNextPage, true);
