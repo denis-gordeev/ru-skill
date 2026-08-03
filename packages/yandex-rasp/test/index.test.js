@@ -145,14 +145,14 @@ test("searchTrips нормализует сегменты и постранич�
   }
 });
 
-test("searchStations выбрасывает ошибку при отсутствии ключа API", async () => {
+test("searchStations выбрасывает ошибку при отсутствии ключа программного интерфейса", async () => {
   const originalEnv = process.env.YANDEX_RASP_API_KEY;
   delete process.env.YANDEX_RASP_API_KEY;
 
   try {
     await assert.rejects(
       () => searchStations("Москва"),
-      /Требуется ключ API/
+      /Требуется ключ программного интерфейса/
     );
   } finally {
     process.env.YANDEX_RASP_API_KEY = originalEnv;

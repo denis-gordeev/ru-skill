@@ -1,7 +1,7 @@
 {
   "name": "k-lotto",
   "version": "0.2.0",
-  "description": "Legacy-клиент результатов dhlottery, сохранённый на время миграции ru-skill",
+  "description": "Устаревший клиент результатов dhlottery, сохранённый на время миграции ru-skill",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

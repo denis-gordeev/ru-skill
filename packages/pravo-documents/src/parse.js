@@ -6,7 +6,7 @@ const DEFAULT_HEADERS = {
 
 /**
  * Нормализовать элемент результата поиска документов.
- * @param {object} item - Исходный элемент документа из API
+ * @param {object} item - Исходный элемент документа из программного интерфейса
  * @returns {object}
  */
 function normalizeDocumentItem(item) {
@@ -30,7 +30,7 @@ function normalizeDocumentItem(item) {
 
 /**
  * Нормализовать полную карточку документа.
- * @param {object} doc - Исходный документ из API
+ * @param {object} doc - Исходный документ из программного интерфейса
  * @returns {object}
  */
 function normalizeDocumentCard(doc) {

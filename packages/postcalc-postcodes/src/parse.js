@@ -199,7 +199,7 @@ function parseCityPage(html) {
   const infoTable = tables.find((table) => table.includes("Параметры API"));
 
   if (!infoTable) {
-    throw new Error("Не удалось найти таблицу API Postcalc для города.");
+    throw new Error("Не удалось найти таблицу программного интерфейса Postcalc для города.");
   }
 
   const infoRows = Object.fromEntries(extractRows(infoTable).map((row) => [row.label, { value: row.value, valueHtml: row.valueHtml }]));

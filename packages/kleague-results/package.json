@@ -1,7 +1,7 @@
 {
   "name": "kleague-results",
   "version": "0.2.0",
-  "description": "Legacy-клиент результатов и таблицы K League, сохранённый на время миграции ru-skill",
+  "description": "Устаревший клиент результатов и таблицы K League, сохранённый на время миграции ru-skill",
   "license": "MIT",
   "main": "src/index.js",
   "files": [

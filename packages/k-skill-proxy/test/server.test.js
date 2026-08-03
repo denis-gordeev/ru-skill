@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 
 const { buildServer, proxyAirKoreaRequest } = require("../src/server");
 
-test("конечная точка health остаётся общедоступной и сообщает статус проверки подлинности/вышестоящего API", async (t) => {
+test("конечная точка health остаётся общедоступной и сообщает статус проверки подлинности/вышестоящего программного интерфейса", async (t) => {
   const app = buildServer({
     provider: async () => {
       throw new Error("провайдер не должен вызываться");

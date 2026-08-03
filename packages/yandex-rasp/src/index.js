@@ -40,7 +40,7 @@ async function searchStations(query, opts = {}) {
  *
  * @param {string} stationCode - Код станции Яндекс (например s9600213).
  * @param {object} [opts]
- * @param {string} [opts.apiKey] - Ключ API Яндекс Расписаний.
+ * @param {string} [opts.apiKey] - Ключ программного интерфейса Яндекс Расписаний.
  * @param {string} [opts.date] - Целевая дата в ISO 8601 (YYYY-MM-DD). Опустить для всех дат.
  * @param {string} [opts.event] - "departure" (по умолчанию) или "arrival".
  * @param {string} [opts.transportType] - Фильтр: plane, train, suburban, bus, water, helicopter.
@@ -86,7 +86,7 @@ async function getStationSchedule(stationCode, opts = {}) {
  * @param {string} fromCode - Код станции/города отправления (например c146 или s9600213).
  * @param {string} toCode - Код станции/города прибытия.
  * @param {object} [opts]
- * @param {string} [opts.apiKey] - Ключ API Яндекс Расписаний.
+ * @param {string} [opts.apiKey] - Ключ программного интерфейса Яндекс Расписаний.
  * @param {string} [opts.date] - Целевая дата в ISO 8601 (YYYY-MM-DD).
  * @param {string} [opts.transportType] - Фильтр: plane, train, suburban, bus, water, helicopter.
  * @param {boolean} [opts.transfers] - Включить маршруты с пересадками (по умолчанию: false).
@@ -132,7 +132,7 @@ function resolveApiKey(provided) {
   const fromEnv = process.env.YANDEX_RASP_API_KEY;
   if (fromEnv) return fromEnv;
   throw new Error(
-    "Требуется ключ API Яндекс Расписаний. Укажите его через opts.apiKey или переменную окружения YANDEX_RASP_API_KEY. Получить ключ: https://yandex.ru/dev/rasp/"
+    "Требуется ключ программного интерфейса Яндекс Расписаний. Укажите его через opts.apiKey или переменную окружения YANDEX_RASP_API_KEY. Получить ключ: https://yandex.ru/dev/rasp/"
   );
 }
 
@@ -145,7 +145,7 @@ async function fetchWithCheck(url) {
     } catch {
       /* пропустить */
     }
-    throw new Error(`Ошибка API Яндекс Расписаний ${res.status}: ${body || res.statusText}`);
+    throw new Error(`Ошибка программного интерфейса Яндекс Расписаний ${res.status}: ${body || res.statusText}`);
   }
   return res;
 }
