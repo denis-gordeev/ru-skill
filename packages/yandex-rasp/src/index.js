@@ -6,7 +6,7 @@ const BASE_URL = "https://api.rasp.yandex-net.ru/v3.0";
  *
  * @param {string} query - Подстрока названия станции для поиска (без учёта регистра).
  * @param {object} [opts]
- * @param {string} [opts.apiKey] - Ключ API Яндекс Расписаний. Запасной вариант: переменная окружения YANDEX_RASP_API_KEY.
+ * @param {string} [opts.apiKey] - Ключ программного интерфейса Яндекс Расписаний. Запасной вариант: переменная окружения YANDEX_RASP_API_KEY.
  * @param {string} [opts.lang] - Язык ответа (по умолчанию: ru_RU).
  * @returns {Promise<Array<{title: string, yandexCode: string, esrCode: string|null, stationType: string, transportType: string, latitude: number, longitude: number, direction: string}>>}
  */

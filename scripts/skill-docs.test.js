@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-07-29");
-  assert.equal(todoStatus.round, 113);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 113\)/);
+  assert.equal(todoStatus.date, "2026-08-04");
+  assert.equal(todoStatus.round, 115);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 115\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -1571,7 +1571,7 @@ test("описания workspace-пакетов соответствуют ру�
     "toss-securities": "Устаревшая обёртка tossctl только для чтения, сохранённая на время миграции ru-skill",
     "yandex-market-search": "Поиск товаров и карточек товаров только для чтения через сгенерированные на сервере страницы Яндекс Маркета",
     "yandex-rasp": "Клиент только для чтения для расписаний Яндекс.Расписаний: поезда, автобусы, самолёты и электрички",
-    "zoon-nearby": "Дополнительный поиск ближайших мест через SSR-страницы Zoon.ru",
+    "zoon-nearby": "Дополнительный поиск ближайших мест через страницы Zoon.ru с серверной отрисовкой",
   };
 
   for (const [packageName, description] of Object.entries(expectedDescriptions)) {

@@ -1,7 +1,7 @@
 {
   "name": "zoon-nearby",
   "version": "0.1.0",
-  "description": "Дополнительный поиск ближайших мест через SSR-страницы Zoon.ru",
+  "description": "Дополнительный поиск ближайших мест через страницы Zoon.ru с серверной отрисовкой",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
