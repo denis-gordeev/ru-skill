@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-08-05");
-  assert.equal(todoStatus.round, 116);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 116\)/);
+  assert.equal(todoStatus.round, 118);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 118\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -1545,7 +1545,7 @@ test("документация fine-dust и proxy различает перео�
     "ожидалось, что runner посредника предпочтёт RU_SKILL_SECRETS_FILE перед KSKILL_SECRETS_FILE",
   );
 
-  assert.match(checkSetup, /KSKILL_PROXY_BASE_URL только если нужно переопределить адрес fine-dust endpoint/i);
+  assert.match(checkSetup, /KSKILL_PROXY_BASE_URL только если нужно переопределить адрес конечной точки fine-dust/i);
   assert.match(checkSetup, /Следующие шаги:/);
   assert.match(checkSetup, /Конфигурация ru-skill выглядит рабочей:/);
 });
@@ -3229,6 +3229,8 @@ test("user-facing surfaces не содержат английский жарго
   const pythonReadme = read(path.join("python-packages", "README.md"));
   const zoonReadme = read(path.join("packages", "zoon-nearby", "README.md"));
   const zoonFeature = read(path.join("docs", "features", "zoon-nearby.md"));
+  const secretsExample = read(path.join("examples", "secrets.env.example"));
+  const checkSetup = read(path.join("scripts", "check-setup.sh"));
 
   assert.doesNotMatch(agents, /\bendpoint\b/);
   assert.doesNotMatch(agents, /proxy-auth/);
@@ -3244,6 +3246,14 @@ test("user-facing surfaces не содержат английский жарго
 
   assert.doesNotMatch(security, /proxy endpoint/);
   assert.match(security, /конечн.* точк.* посредник/);
+
+  assert.doesNotMatch(secretsExample, /\bproxy endpoint\b/);
+  assert.doesNotMatch(secretsExample, /legacy-совместим/);
+  assert.match(secretsExample, /обратно совместим/);
+  assert.match(secretsExample, /конечн.* точк.* посредник/);
+
+  assert.doesNotMatch(checkSetup, /\bendpoint\b/);
+  assert.match(checkSetup, /конечной точки fine-dust/);
 
   assert.doesNotMatch(releasing, /scaffold/);
   assert.match(releasing, /каркасной заготовкой/);

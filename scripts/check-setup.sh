@@ -48,7 +48,7 @@ if [[ "$missing" -ne 0 ]]; then
 Следующие шаги:
   1. создайте ~/.config/ru-skill/secrets.env со своими учётными данными
   2. выполните chmod 0600 ~/.config/ru-skill/secrets.env
-  3. добавляйте KSKILL_PROXY_BASE_URL только если нужно переопределить адрес fine-dust endpoint
+  3. добавляйте KSKILL_PROXY_BASE_URL только если нужно переопределить адрес конечной точки fine-dust
   4. либо направьте RU_SKILL_SECRETS_FILE / KSKILL_SECRETS_FILE на существующий dotenv-файл
   5. запустите эту проверку ещё раз
 EOF

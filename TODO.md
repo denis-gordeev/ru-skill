@@ -4,31 +4,20 @@
 
 Исторические сводки раундов ниже сохраняются как журнал миграции. Источником актуального статуса считаются самые верхние блоки `Статус ...`, `Выполнено в этом раунде` и `Новые пункты плана`.
 
-## Статус на 2026-08-05 (раунд 117)
+## Статус на 2026-08-05 (раунд 118)
 
 - `AUTOWORK_INSTRUCTIONS.md`: приоритет не изменился — переделать всё под российские / русскоязычные реалии.
-- Периодический аудит выявил: `Overpass API` в сообщениях об ошибках и JSDoc `packages/osm-nearby/src/index.js` (2 вхождения), `packages/osm-nearby/src/query.js` (2 вхождения), `packages/osm-nearby/test/index.test.js` (1 вхождение); `ISS API` в `moex-shares/SKILL.md` (2 вхождения), `packages/moex-shares/README.md` (2 вхождения), `docs/features/moex-shares.md` (1 вхождение); `Wildberries API`, `Ozon Seller API`, `2GIS Catalog API`, `Яндекс.Карты Geosearch API`, `2GIS API`, `Яндекс.Карты Places API`, `Travel API`, `Kakao API` в документации (по 1–2 вхождения каждая); `Overpass API` в `docs/sources.md` (3 вхождения), `docs/features/osm-nearby.md` (1 вхождение), `docs/features/zoon-nearby.md` (2 вхождения), `packages/zoon-nearby/README.md` (1 вхождение), `packages/osm-nearby/SKILL.md` (4 вхождения), `packages/osm-nearby/README.md` (1 вхождение), `packages/osm-nearby/package.json` (1 вхождение), `README.md` (6 вхождений); все устранены.
+- Периодический аудит выявил: `legacy-совместимых` в `examples/secrets.env.example` (1 вхождение: → `обратно совместимых`), `proxy endpoint` в `examples/secrets.env.example` (1 вхождение: → `конечную точку посредника`), `fine-dust endpoint` в `scripts/check-setup.sh` (1 вхождение: → `конечной точки fine-dust`); все устранены.
+- `Параметры API` в `packages/postcalc-postcodes/src/parse.js` и `test/fixtures/city-syktyvkar.html` оставлены без изменений: строка совпадает с заголовком HTML на действующем сайте Postcalc, замена сломала бы разбор.
 - Остальные ключевые жаргонизмы не вернулись в интерфейсной документации.
 
-## Выполнено в этом раунде (раунд 117)
+## Выполнено в этом раунде (раунд 118)
 
-- [x] `packages/osm-nearby/src/index.js`: `Запрос к Overpass API не удался` → `Запрос к программному интерфейсу Overpass не удался` (2 вхождения).
-- [x] `packages/osm-nearby/src/query.js`: `ответ Overpass API` → `ответ программного интерфейса Overpass`, `JSON из Overpass API` → `JSON из программного интерфейса Overpass` (2 вхождения).
-- [x] `packages/osm-nearby/test/index.test.js`: `вызывают Overpass API` → `вызывают программный интерфейс Overpass` (1 вхождение).
-- [x] `moex-shares/SKILL.md`: `официальный ISS API` → `официальный программный интерфейс ISS`, `по публичному ISS API` → `по публичному программному интерфейсу ISS` (2 вхождения).
-- [x] `packages/moex-shares/README.md`: `публичного ISS API` → `публичного программного интерфейса ISS`, `ISS API доступен` → `Программный интерфейс ISS доступен` (2 вхождения).
-- [x] `docs/features/moex-shares.md`: `ISS API Московской биржи` → `программным интерфейсом ISS Московской биржи` (1 вхождение).
-- [x] `docs/sources.md`: `ISS API по акциям` → `программный интерфейс ISS по акциям`, `Страница ISS API` → `Страница программного интерфейса ISS`, `Overpass API: поиск` → `Программный интерфейс Overpass: поиск`, `Wildberries API требует` → `Программный интерфейс Wildberries требует`, `Ozon Seller API` → `Программный интерфейс продавца Ozon`, `2GIS Catalog API` → `Каталожный программный интерфейс 2GIS`, `Яндекс.Карты Geosearch API` → `Программный интерфейс геопоиска Яндекс.Карт`, `через Overpass API как основной` → `через программный интерфейс Overpass как основной`, `Travel API Яндекса` → `программный интерфейс путешествий Яндекса` (9 вхождений).
-- [x] `docs/features/osm-nearby.md`: `публичный Overpass API` → `публичный программный интерфейс Overpass`, `2GIS API` → `Программный интерфейс 2GIS`, `Яндекс.Карты Places API` → `Программный интерфейс мест Яндекс.Карт` (3 вхождения).
-- [x] `docs/features/zoon-nearby.md`: `(Overpass API)` → `(программный интерфейс Overpass)`, `через Overpass API (OSM)` → `через программный интерфейс Overpass (OSM)` (2 вхождения).
-- [x] `packages/zoon-nearby/README.md`: `использует Overpass API` → `использует программный интерфейс Overpass` (1 вхождение).
-- [x] `packages/osm-nearby/SKILL.md`: `публичный Overpass API` → `публичный программный интерфейс Overpass` (4 вхождения: description, h1-подзаголовок, «Что делает навык», «Критерии завершения»).
-- [x] `packages/osm-nearby/README.md`: `публичный Overpass API` → `публичный программный интерфейс Overpass` (1 вхождение).
-- [x] `packages/osm-nearby/package.json`: description `через Overpass API` → `через программный интерфейс Overpass` (1 вхождение).
-- [x] `README.md`: `через ISS API` → `через программный интерфейс ISS` (2 вхождения в таблицах), `через Overpass API` → `через программный интерфейс Overpass` (2 вхождения в таблицах), `на публичном ISS API` → `на публичном программном интерфейсе ISS`, `публичный Overpass API` → `публичный программный интерфейс Overpass` (6 вхождений).
-- [x] `kakaotalk-mac/SKILL.md`: `официальный Kakao API` → `официальный программный интерфейс Kakao` (2 вхождения).
-- [x] `scripts/skill-docs.test.js`: ожидаемое описание osm-nearby обновлено; шаблон проверки moex-shares обновлён (`ISS API` → `программный интерфейс ISS`); название теста osm-nearby обновлено.
-- [x] Периодический аудит интерфейсной документации: ключевые жаргонизмы не вернулись; `API` как самостоятельное существительное полностью устранено (оставшиеся `API` — только в текстах ссылок на внешние продукты `[Overpass API](url)` и в исторических записях дорожной карты).
+- [x] `examples/secrets.env.example`: `legacy-совместимых навыков` → `обратно совместимых навыков` (1 вхождение).
+- [x] `examples/secrets.env.example`: `совместимый proxy endpoint` → `совместимая конечная точка посредника` (1 вхождение).
+- [x] `scripts/check-setup.sh`: `fine-dust endpoint` → `конечной точки fine-dust` (1 вхождение).
+- [x] `scripts/skill-docs.test.js`: обновлена проверка `check-setup.sh` (`fine-dust endpoint` → `конечной точки fine-dust`); добавлены регрессии на отсутствие `proxy endpoint` и `legacy-совместим` в `secrets.env.example`, наличие `обратно совместим` и `конечн.* точк.* посредник`; добавлена проверка отсутствия `endpoint` в `check-setup.sh` и наличие `конечной точки fine-dust`.
+- [x] Периодический аудит интерфейсной документации: ключевые жаргонизмы не вернулись; `legacy-совместимых`, `proxy endpoint` и `fine-dust endpoint` устранены.
 - [x] `README.md`, `TODO.md` и `docs/roadmap.md` синхронизированы со статусом раунда и следующим планом.
 
 ## Новые пункты плана
