@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-08-04");
-  assert.equal(todoStatus.round, 115);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 115\)/);
+  assert.equal(todoStatus.date, "2026-08-05");
+  assert.equal(todoStatus.round, 116);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 116\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -4475,7 +4475,7 @@ test("политика секретов и навык настройки исп�
   const kSetupSkill = read(path.join("k-skill-setup", "SKILL.md"));
 
   assert.doesNotMatch(securityDoc, /plain dotenv/);
-  assert.match(securityDoc, /простой dotenv/);
+  assert.match(securityDoc, /простой формат файла окружения \(dotenv\)/);
 
   assert.doesNotMatch(kSetupSkill, /plain dotenv/);
   assert.match(kSetupSkill, /простого файла окружения \(dotenv\)/);
