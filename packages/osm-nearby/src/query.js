@@ -18,8 +18,8 @@ out body ${limit};`;
 }
 
 /**
- * Разобрать ответ Overpass API в нормализованные объекты мест
- * @param {Object} data - разобранный JSON из Overpass API
+ * Разобрать ответ программного интерфейса Overpass в нормализованные объекты мест
+ * @param {Object} data - разобранный JSON из программного интерфейса Overpass
  * @returns {Array<{name: string, lat: number, lon: number, amenity: string, address?: string, phone?: string, website?: string, openingHours?: string, cuisine?: string}>}
  */
 function parseOverpassResponse(data) {

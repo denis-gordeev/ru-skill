@@ -1563,7 +1563,7 @@ test("описания workspace-пакетов соответствуют ру�
     "kleague-results": "Устаревший клиент результатов и таблицы K League, сохранённый на время миграции ru-skill",
     "mchs-storm-warnings": "Клиент только для чтения для официальных региональных страниц штормовых и экстренных предупреждений МЧС",
     "moex-shares": "Клиент только для чтения для метаданных акций и задержанных срезов рынка ISS Московской биржи",
-    "osm-nearby": "Клиент только для чтения для поиска ближайших мест через Overpass API OpenStreetMap",
+    "osm-nearby": "Клиент только для чтения для поиска ближайших мест через программный интерфейс Overpass OpenStreetMap",
     "postcalc-postcodes": "Клиент только для чтения для справочных страниц Postcalc по городам и отделениям на базе данных индексов Почты России",
     "pravo-documents": "Клиент только для чтения для официальных правовых документов через программный интерфейс pravo.gov.ru",
     "rpl-results": "Результаты матчей и турнирная таблица Российской Премьер-Лиги через публичные страницы championat.com",
@@ -1924,7 +1924,7 @@ test("документация moex-shares описывает официальн
   const packageReadme = read(path.join("packages", "moex-shares", "README.md"));
 
   assert.match(skill, /^name: moex-shares$/m);
-  assert.match(skill, /ISS API|Московской биржи/);
+  assert.match(skill, /программный интерфейс ISS|Московской биржи/);
   assert.match(featureDoc, /getSecurityOverview/);
   assert.match(featureDoc, /listShares/);
   assert.match(packageReadme, /getSecurityOverview/);
@@ -2054,7 +2054,7 @@ test("документация репозитория рекламирует н�
   assert.match(sources, /overpass|OpenStreetMap/i);
 });
 
-test("документация osm-nearby описывает сценарий поиска через Overpass API", () => {
+test("документация osm-nearby описывает сценарий поиска через программный интерфейс Overpass", () => {
   const skillPath = path.join(repoRoot, "packages", "osm-nearby", "SKILL.md");
 
   assert.ok(fs.existsSync(skillPath), "ожидалось, что packages/osm-nearby/SKILL.md существует");

@@ -83,7 +83,7 @@ test("formatAddress формирует адрес из тегов OSM", () => {
   assert.equal(formatAddress(tags3), undefined);
 });
 
-test("публичные функции вызывают Overpass API с корректными параметрами", async () => {
+test("публичные функции вызывают программный интерфейс Overpass с корректными параметрами", async () => {
   const originalFetch = global.fetch;
   let capturedBody = null;
 
