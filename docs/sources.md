@@ -18,7 +18,7 @@
 
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
 - `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
-- `korail2` обход защиты от роботов PR #54: https://github.com/carpedm20/korail2/pull/54
+- `korail2` обход защиты от роботов, запрос на слияние #54: https://github.com/carpedm20/korail2/pull/54
 - Сеул программный интерфейс метро реального времени: https://www.data.go.kr/data/15058052/openapi.do
 
 ### Спорт
@@ -512,7 +512,7 @@
 - Vercel структура пакетов навыков агента: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
 - `SRTrain` / `ryanking13/SRT`: https://github.com/ryanking13/SRT
 - `korail2` / `carpedm20/korail2`: https://github.com/carpedm20/korail2
-- `korail2` обход защиты от роботов PR #54: https://github.com/carpedm20/korail2/pull/54
+- `korail2` обход защиты от роботов, запрос на слияние #54: https://github.com/carpedm20/korail2/pull/54
 - `kbo-game`: https://github.com/vkehfdl1/kbo-game
 - tossinvest-cli: https://github.com/JungHoonGhae/tossinvest-cli
 - K League расписание/результаты JSON: https://www.kleague.com/getScheduleList.do
