@@ -127,7 +127,7 @@ async function search(query, city, opts = {}) {
 
 /**
  * Получить детали организации со страницы Zoon.ru
- * @param {string} businessUrl - Полный URL страницы организации на Zoon.ru
+ * @param {string} businessUrl - Полный адрес страницы организации на Zoon.ru
  * @param {{}} opts
  */
 async function getBusinessDetails(businessUrl, opts = {}) {

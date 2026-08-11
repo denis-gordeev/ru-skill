@@ -71,7 +71,7 @@ test("parseSecuritiesListResponse нормализует страницу стр
   ]);
 });
 
-test("построители URL фиксируют официальные конечные точки ISS и обязательные параметры запроса", () => {
+test("построители адресов фиксируют официальные конечные точки ISS и обязательные параметры запроса", () => {
   assert.equal(
     buildSecurityUrl("sber"),
     "https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.json?iss.meta=off"

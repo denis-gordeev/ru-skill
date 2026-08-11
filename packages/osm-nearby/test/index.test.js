@@ -99,7 +99,7 @@ test("публичные функции вызывают программный 
     const places = await searchNearby(55.7558, 37.6173, { radius: 1500, limit: 10 });
 
     assert.ok(places.length === 4);
-    // Тело закодировано в URL, декодируем для проверок
+    // Тело закодировано в адресе, декодируем для проверок
     const decodedBody = decodeURIComponent(capturedBody.replace('data=', ''));
     assert.ok(decodedBody.includes('around:1500,55.7558,37.6173'));
     assert.ok(decodedBody.includes('out body 10'));

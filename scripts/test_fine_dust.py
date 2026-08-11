@@ -146,7 +146,7 @@ class FineDustTests(unittest.TestCase):
                 return {"response": {"body": {"items": []}}}
             if url.endswith("/getMsrstnList"):
                 return {"response": {"body": {"items": [{"stationName": "강남구", "addr": "서울 강남구 학동로 426"}]}}}
-            raise AssertionError(f"unexpected URL: {url}")
+            raise AssertionError(f"неожиданный адрес: {url}")
 
         with (
             mock.patch.object(fine_dust, "get_required_secret", return_value="test-secret"),
@@ -186,7 +186,7 @@ class FineDustTests(unittest.TestCase):
                         }
                     }
                 }
-            raise AssertionError(f"unexpected URL: {url}")
+            raise AssertionError(f"неожиданный адрес: {url}")
 
         with (
             redirect_stdout(stdout),
@@ -237,7 +237,7 @@ class FineDustTests(unittest.TestCase):
                         }
                     }
                 }
-            raise AssertionError(f"unexpected URL: {url}")
+            raise AssertionError(f"неожиданный адрес: {url}")
 
         with (
             redirect_stdout(stdout),

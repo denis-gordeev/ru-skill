@@ -51,7 +51,7 @@ function normalizeDocumentCard(doc) {
 }
 
 /**
- * Построить URL поиска с необязательными фильтрами.
+ * Построить адрес поиска с необязательными фильтрами.
  * @param {{ name?: string, documentTypeId?: string, blockId?: string, categoryId?: string, signatoryAuthorityId?: string, dateFrom?: string, dateTo?: string, page?: number, pageSize?: number }} options
  * @returns {string}
  */
@@ -105,7 +105,7 @@ function buildSearchUrl(options = {}) {
 }
 
 /**
- * Построить URL карточки документа.
+ * Построить адрес карточки документа.
  * @param {string} eoNumber - Номер электронной публикации
  * @returns {string}
  */

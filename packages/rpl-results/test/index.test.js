@@ -53,15 +53,15 @@ test("toNumberOrNull преобразует строки в числа", () => {
 });
 
 //
-// Тесты построения URL
+// Тесты построения адресов
 //
 
-test("buildStandingsUrl возвращает URL таблицы РПЛ на championat.com", () => {
+test("buildStandingsUrl возвращает адрес таблицы РПЛ на championat.com", () => {
   const url = buildStandingsUrl();
   assert.equal(url, "https://www.championat.com/football/_russiapl/tournament/5980/table/");
 });
 
-test("buildResultsUrl возвращает URL результатов РПЛ на championat.com", () => {
+test("buildResultsUrl возвращает адрес результатов РПЛ на championat.com", () => {
   const url = buildResultsUrl();
   assert.equal(url, "https://www.championat.com/football/_russiapl/tournament/5980/results/");
 });

@@ -105,7 +105,7 @@ function parseSearchResults(html, query = '') {
     const categoryMatch = container.match(/itemprop="servesCuisine"[^>]*>([^<]+)</i);
     if (categoryMatch) business.category = categoryMatch[1].trim();
     
-    // Извлечь URL
+    // Извлечь адрес
     const urlMatch = container.match(/itemprop="url"[^>]*href="([^"]+)"/i);
     if (urlMatch) {
       business.url = urlMatch[1].startsWith('http') ? urlMatch[1] : `https://zoon.ru${urlMatch[1]}`;
@@ -126,8 +126,8 @@ function parseSearchResults(html, query = '') {
 }
 
 /**
- * Нормализовать URL организации на Zoon.ru
- * @param {string} url - Исходный URL
+ * Нормализовать адрес организации на Zoon.ru
+ * @param {string} url - Исходный адрес
  * @returns {string|null}
  */
 function normalizeBusinessUrl(url) {
@@ -149,7 +149,7 @@ function normalizeBusinessUrl(url) {
 /**
  * Разобрать страницу организации на Zoon.ru
  * @param {string} html - Исходный HTML со страницы организации на Zoon.ru
- * @param {string} url - URL страницы для контекста
+ * @param {string} url - Адрес страницы для контекста
  * @returns {{name: string, address?: string, rating?: string, phone?: string, category?: string, description?: string, website?: string, hours?: string}}
  */
 function parseBusinessPage(html, url = '') {

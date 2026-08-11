@@ -22,7 +22,7 @@ async function fetchHtml(url) {
 }
 
 /**
- * Построить URL страницы фильма по идентификатору Кинопоиска.
+ * Построить адрес страницы фильма по идентификатору Кинопоиска.
  * @param {string} filmId
  * @returns {string}
  */
@@ -31,7 +31,7 @@ function buildFilmUrl(filmId) {
 }
 
 /**
- * Построить URL страницы поиска Кинопоиска.
+ * Построить адрес страницы поиска Кинопоиска.
  * @param {string} query
  * @returns {string}
  */

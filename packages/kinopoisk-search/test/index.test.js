@@ -31,12 +31,12 @@ test("stripTags удаляет HTML и нормализует пробелы", (
   assert.equal(stripTags("  multiple   spaces  "), "multiple spaces");
 });
 
-test("buildFilmUrl фиксирует URL страницы фильма на Kinopoisk", () => {
+test("buildFilmUrl фиксирует адрес страницы фильма на Kinopoisk", () => {
   assert.equal(buildFilmUrl("326"), "https://www.kinopoisk.ru/film/326/");
   assert.equal(buildFilmUrl("117"), "https://www.kinopoisk.ru/film/117/");
 });
 
-test("buildSearchUrl фиксирует URL поиска Kinopoisk с закодированным запросом", () => {
+test("buildSearchUrl фиксирует адрес поиска Kinopoisk с закодированным запросом", () => {
   const url = buildSearchUrl("Брат 2");
   assert.ok(url.startsWith("https://www.kinopoisk.ru/index/standalone_search/?query="));
   assert.ok(url.includes("Брат") || url.includes("%D0%91%D1%80%D0%B0%D1%82"));

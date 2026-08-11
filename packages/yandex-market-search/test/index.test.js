@@ -120,7 +120,7 @@ test("normalizeProductUrl убирает отслеживающие параме
   );
 });
 
-test("buildSearchUrl и buildProductUrl возвращают URL Яндекс Маркета", () => {
+test("buildSearchUrl и buildProductUrl возвращают адреса Яндекс Маркета", () => {
   assert.equal(
     buildSearchUrl("iphone 16"),
     "https://market.yandex.ru/search?text=iphone+16"

@@ -144,7 +144,7 @@ test("parseVacancyResponse нормализует детальные данны�
   });
 });
 
-test("построители URL фиксируют публичные конечные точки HH", () => {
+test("построители адресов фиксируют публичные конечные точки HH", () => {
   assert.equal(buildAreaUrl(1), "https://api.hh.ru/areas/1");
   assert.equal(buildVacancyUrl("131927189"), "https://api.hh.ru/vacancies/131927189");
   assert.equal(

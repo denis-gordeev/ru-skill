@@ -8,7 +8,7 @@ const { parseStandings, parseMatchResults } = require("./parse");
 const BASE_URL = "https://www.championat.com/football/_russiapl/tournament/5980/";
 
 /**
- * Построить URL страницы турнирной таблицы РПЛ
+ * Построить адрес страницы турнирной таблицы РПЛ
  * @returns {string}
  */
 function buildStandingsUrl() {
@@ -16,7 +16,7 @@ function buildStandingsUrl() {
 }
 
 /**
- * Построить URL страницы результатов матчей РПЛ
+ * Построить адрес страницы результатов матчей РПЛ
  * @returns {string}
  */
 function buildResultsUrl() {

@@ -19,7 +19,7 @@ const fixturesDir = path.join(__dirname, "fixtures");
 const searchFixture = fs.readFileSync(path.join(fixturesDir, "search-results.json"), "utf8");
 const cardFixture = fs.readFileSync(path.join(fixturesDir, "document-card.json"), "utf8");
 
-test("buildSearchUrl создаёт корректный URL с параметрами по умолчанию", () => {
+test("buildSearchUrl создаёт корректный адрес с параметрами по умолчанию", () => {
   const url = buildSearchUrl();
   assert.ok(url.includes("/api/Documents"));
   assert.ok(url.includes("CurrentPage=1"));
@@ -53,7 +53,7 @@ test("buildSearchUrl проверяет размер страницы", () => {
   assert.throws(() => buildSearchUrl({ pageSize: 101 }), /должен быть целым числом от 1 до 100/);
 });
 
-test("buildDocumentUrl создаёт корректный URL", () => {
+test("buildDocumentUrl создаёт корректный адрес", () => {
   const url = buildDocumentUrl("0001202501010001");
   assert.equal(url, "https://publication.pravo.gov.ru/api/Document?eoNumber=0001202501010001");
 });

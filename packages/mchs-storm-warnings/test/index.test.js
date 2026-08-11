@@ -34,7 +34,7 @@ test("normalizeRussianDateTime преобразует русские текст�
   assert.equal(normalizeRussianDateTime("2026-02-14 13:29"), "2026-02-14T13:29:00");
 });
 
-test("построители URL формируют официальные региональные пути предупреждений МЧС", () => {
+test("построители адресов формируют официальные региональные пути предупреждений МЧС", () => {
   assert.equal(buildRegionOrigin("46"), "https://46.mchs.gov.ru");
   assert.equal(
     buildWarningsIndexUrl("46"),
@@ -106,7 +106,7 @@ test("buildWarningUrl отклоняет пустой идентификатор
   assert.throws(() => buildWarningUrl("46", "  "), /warningPathOrId/);
 });
 
-test("buildWarningUrl принимает абсолютный URL предупреждения", () => {
+test("buildWarningUrl принимает абсолютный адрес предупреждения", () => {
   const absolute = "https://46.mchs.gov.ru/some/path/123";
   assert.equal(buildWarningUrl("46", absolute), absolute);
 });

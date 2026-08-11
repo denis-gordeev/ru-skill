@@ -66,7 +66,7 @@ function buildWarningUrl(regionHost, warningPathOrId) {
     return new URL(normalized, buildRegionOrigin(regionHost)).toString();
   }
 
-  throw new Error("warningPathOrId должен быть абсолютным URL МЧС, относительным путём или числовым идентификатором предупреждения.");
+  throw new Error("warningPathOrId должен быть абсолютным адресом МЧС, относительным путём или числовым идентификатором предупреждения.");
 }
 
 const FETCH_TIMEOUT_MS = 15_000;

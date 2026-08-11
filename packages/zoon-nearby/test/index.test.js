@@ -83,17 +83,17 @@ describe('модуль разбора zoon-nearby', () => {
   });
 
   describe('normalizeBusinessUrl', () => {
-    it('нормализует относительные URL', () => {
+    it('нормализует относительные адреса', () => {
       const result = normalizeBusinessUrl('/msk/restaurants/pushkin');
       assert.ok(result && result.includes('zoon.ru'));
     });
 
-    it('оставляет абсолютные URL без изменений', () => {
+    it('оставляет абсолютные адреса без изменений', () => {
       const result = normalizeBusinessUrl('https://zoon.ru/msk/restaurants/pushkin');
       assert.strictEqual(result, 'https://zoon.ru/msk/restaurants/pushkin');
     });
 
-    it('возвращает null для некорректных URL', () => {
+    it('возвращает null для некорректных адресов', () => {
       const result = normalizeBusinessUrl('not-a-url');
       assert.strictEqual(result, null);
     });

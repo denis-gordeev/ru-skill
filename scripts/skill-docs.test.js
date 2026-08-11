@@ -2905,8 +2905,8 @@ test("JSDoc и комментарии в исходном коде на русс
   assert.doesNotMatch(kinopoiskIndex, /Fetch film info by Kinopoisk ID/);
   assert.doesNotMatch(kinopoiskIndex, /Search films by query string/);
   assert.doesNotMatch(kinopoiskIndex, /e\.g\./);
-  assert.match(kinopoiskIndex, /Построить URL страницы фильма/);
-  assert.match(kinopoiskIndex, /Построить URL страницы поиска/);
+  assert.match(kinopoiskIndex, /Построить адрес страницы фильма/);
+  assert.match(kinopoiskIndex, /Построить адрес страницы поиска/);
   assert.match(kinopoiskIndex, /Получить информацию о фильме/);
   assert.match(kinopoiskIndex, /Поиск фильмов по строке/);
 
@@ -3274,13 +3274,13 @@ test("тестовые файлы используют русские сообщ
   const airkoreaTest = read(path.join("packages", "k-skill-proxy", "test", "airkorea.test.js"));
 
   assert.doesNotMatch(kleagueTest, /unexpected url/i);
-  assert.match(kleagueTest, /неожиданный URL/);
+  assert.match(kleagueTest, /неожиданный адрес/);
 
   assert.doesNotMatch(kakaoBarTest, /unexpected url/i);
-  assert.match(kakaoBarTest, /неожиданный URL/);
+  assert.match(kakaoBarTest, /неожиданный адрес/);
 
   assert.doesNotMatch(airkoreaTest, /unexpected URL/i);
-  assert.match(airkoreaTest, /неожиданный URL/);
+  assert.match(airkoreaTest, /неожиданный адрес/);
 });
 
 test("описания тестов не содержат английский жаргон мок-запрос, upstream-payload", () => {
@@ -3296,6 +3296,78 @@ test("описания тестов не содержат английский �
 
   assert.doesNotMatch(brTest, /upstream-payload/);
   assert.match(brTest, /вышестоящий ответ/);
+});
+
+test("JSDoc и описания тестов используют «адрес» вместо URL как самостоятельное существительное", () => {
+  const kinopoiskIndex = read(path.join("packages", "kinopoisk-search", "src", "index.js"));
+  const rplIndex = read(path.join("packages", "rpl-results", "src", "index.js"));
+  const pravoParse = read(path.join("packages", "pravo-documents", "src", "parse.js"));
+  const mchsIndex = read(path.join("packages", "mchs-storm-warnings", "src", "index.js"));
+  const zoonParse = read(path.join("packages", "zoon-nearby", "src", "parse.js"));
+  const zoonIndex = read(path.join("packages", "zoon-nearby", "src", "index.js"));
+
+  assert.doesNotMatch(kinopoiskIndex, /Построить URL/);
+  assert.match(kinopoiskIndex, /Построить адрес/);
+
+  assert.doesNotMatch(rplIndex, /Построить URL/);
+  assert.match(rplIndex, /Построить адрес/);
+
+  assert.doesNotMatch(pravoParse, /Построить URL/);
+  assert.match(pravoParse, /Построить адрес/);
+
+  assert.doesNotMatch(mchsIndex, /абсолютным URL/);
+  assert.match(mchsIndex, /абсолютным адресом/);
+
+  assert.doesNotMatch(zoonParse, /Извлечь URL/);
+  assert.match(zoonParse, /Извлечь адрес/);
+  assert.doesNotMatch(zoonParse, /Нормализовать URL/);
+  assert.match(zoonParse, /Нормализовать адрес/);
+  assert.doesNotMatch(zoonParse, /Исходный URL/);
+  assert.match(zoonParse, /Исходный адрес/);
+
+  assert.doesNotMatch(zoonIndex, /Полный URL/);
+  assert.match(zoonIndex, /Полный адрес/);
+
+  const kinopoiskTest = read(path.join("packages", "kinopoisk-search", "test", "index.test.js"));
+  const rplTest = read(path.join("packages", "rpl-results", "test", "index.test.js"));
+  const pravoTest = read(path.join("packages", "pravo-documents", "test", "index.test.js"));
+  const hhTest = read(path.join("packages", "hh-vacancies", "test", "index.test.js"));
+  const moexTest = read(path.join("packages", "moex-shares", "test", "index.test.js"));
+  const postcalcTest = read(path.join("packages", "postcalc-postcodes", "test", "index.test.js"));
+  const mchsTest = read(path.join("packages", "mchs-storm-warnings", "test", "index.test.js"));
+  const ymTest = read(path.join("packages", "yandex-market-search", "test", "index.test.js"));
+  const zoonTest = read(path.join("packages", "zoon-nearby", "test", "index.test.js"));
+
+  assert.doesNotMatch(kinopoiskTest, /фиксирует URL/);
+  assert.match(kinopoiskTest, /фиксирует адрес/);
+
+  assert.doesNotMatch(rplTest, /возвращает URL/);
+  assert.match(rplTest, /возвращает адрес/);
+
+  assert.doesNotMatch(pravoTest, /создаёт корректный URL/);
+  assert.match(pravoTest, /создаёт корректный адрес/);
+
+  assert.doesNotMatch(hhTest, /построители URL/);
+  assert.match(hhTest, /построители адресов/);
+
+  assert.doesNotMatch(moexTest, /построители URL/);
+  assert.match(moexTest, /построители адресов/);
+
+  assert.doesNotMatch(postcalcTest, /построители URL/);
+  assert.match(postcalcTest, /построители адресов/);
+
+  assert.doesNotMatch(mchsTest, /построители URL/);
+  assert.match(mchsTest, /построители адресов/);
+  assert.doesNotMatch(mchsTest, /абсолютный URL/);
+  assert.match(mchsTest, /абсолютный адрес/);
+
+  assert.doesNotMatch(ymTest, /возвращают URL/);
+  assert.match(ymTest, /возвращают адреса/);
+
+  assert.doesNotMatch(zoonTest, /относительные URL|абсолютные URL|некорректных URL/);
+  assert.match(zoonTest, /относительные адреса/);
+  assert.match(zoonTest, /абсолютные адреса/);
+  assert.match(zoonTest, /некорректных адресов/);
 });
 
 test("user-facing surfaces не содержат английский жаргон retry policy, tracking query, runtime-, bot-generated, helper", () => {

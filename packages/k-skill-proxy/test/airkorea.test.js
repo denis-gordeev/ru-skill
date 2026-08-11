@@ -92,7 +92,7 @@ test("fetchFineDustReport использует поиск информации �
       });
     }
 
-    throw new Error(`неожиданный URL: ${url}`);
+    throw new Error(`неожиданный адрес: ${url}`);
   };
 
   const report = await fetchFineDustReport({
@@ -126,7 +126,7 @@ test("fetchFineDustReport возвращается к прямому поиск�
       });
     }
 
-    throw new Error(`неожиданный URL: ${url}`);
+    throw new Error(`неожиданный адрес: ${url}`);
   };
 
   const report = await fetchFineDustReport({
@@ -175,7 +175,7 @@ test("fetchFineDustReport возвращает информативный 400, �
       });
     }
 
-    throw new Error(`неожиданный URL: ${url}`);
+    throw new Error(`неожиданный адрес: ${url}`);
   };
 
   await assert.rejects(
