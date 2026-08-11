@@ -88,7 +88,7 @@ const place = await getPlaceDetails("node/123456789");
 
 ## Примечания
 
-- Используется [Overpass API](https://overpass-api.de/) для запросов к данным OpenStreetMap. Ключ программного интерфейса не требуется.
+- Используется [программный интерфейс Overpass](https://overpass-api.de/) для запросов к данным OpenStreetMap. Ключ программного интерфейса не требуется.
 - Основная конечная точка: `https://overpass-api.de/api/interpreter`
 - Лимиты: ~10,000 запросов/день
 - Лицензия данных: [ODbL](https://www.openstreetmap.org/copyright)

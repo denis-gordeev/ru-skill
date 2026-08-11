@@ -69,7 +69,7 @@ await searchNearby(55.7558, 37.6173, {
 
 ## Источник данных
 
-- **Программный интерфейс**: [Overpass API](https://overpass-api.de/)
+- **Программный интерфейс**: [программный интерфейс Overpass](https://overpass-api.de/)
 - **Данные**: [OpenStreetMap](https://www.openstreetmap.org/)
 - **Лицензия**: [ODbL](https://opendatacommons.org/licenses/odbl/)
 - **Лимиты**: ~10,000 запросов/день на основном сервере
