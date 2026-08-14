@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-08-13");
-  assert.equal(todoStatus.round, 126);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 126\)/);
+  assert.equal(todoStatus.date, "2026-08-14");
+  assert.equal(todoStatus.round, 127);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 127\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -1553,7 +1553,7 @@ test("документация fine-dust и proxy различает перео�
 test("описания workspace-пакетов соответствуют русскоязычной миграционной метадате", () => {
   const expectedDescriptions = {
     "blue-ribbon-nearby": "Устаревший клиент поиска ближайших ресторанов Blue Ribbon Survey, сохранённый на время миграции ru-skill",
-    "cbr-rates": "Клиент только для чтения для официальных XML-курсов валют Банка России",
+    "cbr-rates": "Клиент только для чтения для официальных курсов валют в формате XML Банка России",
     "daiso-product-search": "Устаревший клиент поиска магазинов, товаров и остатков для самовывоза Daiso Mall, сохранённый на время миграции ru-skill",
     "hh-vacancies": "Клиент только для чтения для публичных программных интерфейсов вакансий и регионов hh.ru",
     "k-lotto": "Устаревший клиент результатов dhlottery, сохранённый на время миграции ru-skill",
