@@ -1,5 +1,5 @@
-# My-RU-Coverage
+# My-RU-Coverage (зеркальный канал)
 
 Локальный зеркальный канал Telegram для этого репозитория.
-- Repo: /Users/denis/programming/autowork/My-RU-Coverage
-- Идентификатор темы: pending
+- Репозиторий: /Users/denis/programming/autowork/My-RU-Coverage
+- Идентификатор темы: ожидается

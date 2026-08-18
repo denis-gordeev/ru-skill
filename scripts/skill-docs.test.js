@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-08-17");
-  assert.equal(todoStatus.round, 129);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 129\)/);
+  assert.equal(todoStatus.date, "2026-08-18");
+  assert.equal(todoStatus.round, 130);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 130\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -4855,7 +4855,7 @@ test("k-skill-proxy использует сервер-посредник на `F
   assert.match(proxyDoc, /сервер-посредник на `Fastify`/);
 
   assert.doesNotMatch(proxyReadme, /прокси на Fastify/);
-  assert.match(proxyReadme, /сервер-посредник на Fastify/);
+  assert.match(proxyReadme, /сервер-посредник на `Fastify`/);
 
   assert.match(proxyPkg.description, /Сервер-посредник на Fastify/);
 });

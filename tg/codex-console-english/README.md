@@ -1,5 +1,5 @@
-# codex-console-english
+# codex-console-english (зеркальный канал)
 
 Локальный зеркальный канал Telegram для этого репозитория.
-- Repo: /Users/denis/programming/autowork/codex-console-english
-- Идентификатор темы: pending
+- Репозиторий: /Users/denis/programming/autowork/codex-console-english
+- Идентификатор темы: ожидается

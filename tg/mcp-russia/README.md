@@ -1,5 +1,5 @@
-# mcp-russia
+# mcp-russia (зеркальный канал)
 
 Локальный зеркальный канал Telegram для этого репозитория.
-- Repo: /Users/denis/programming/autowork/mcp-russia
-- Идентификатор темы: pending
+- Репозиторий: /Users/denis/programming/autowork/mcp-russia
+- Идентификатор темы: ожидается
