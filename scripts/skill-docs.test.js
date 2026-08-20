@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-08-18");
-  assert.equal(todoStatus.round, 130);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 130\)/);
+  assert.equal(todoStatus.date, "2026-08-20");
+  assert.equal(todoStatus.round, 131);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 131\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -3368,6 +3368,33 @@ test("JSDoc и описания тестов используют «адрес»
   assert.match(zoonTest, /относительные адреса/);
   assert.match(zoonTest, /абсолютные адреса/);
   assert.match(zoonTest, /некорректных адресов/);
+});
+
+test("имитированные запросы используют «адрес» вместо URL в сообщениях об ошибках", () => {
+  const packages = [
+    "hh-vacancies",
+    "kinopoisk-search",
+    "mchs-storm-warnings",
+    "moex-shares",
+    "postcalc-postcodes",
+    "pravo-documents",
+    "stoloto-lotto",
+  ];
+
+  for (const packageName of packages) {
+    const packageTest = read(path.join("packages", packageName, "test", "index.test.js"));
+
+    assert.doesNotMatch(
+      packageTest,
+      /Неожиданный имитированный URL/,
+      `packages/${packageName}/test/index.test.js не должен возвращать URL как самостоятельное существительное`,
+    );
+    assert.match(
+      packageTest,
+      /Неожиданный имитированный адрес/,
+      `packages/${packageName}/test/index.test.js должен использовать русское слово «адрес»`,
+    );
+  }
 });
 
 test("user-facing surfaces не содержат английский жаргон retry policy, tracking query, runtime-, bot-generated, helper", () => {
