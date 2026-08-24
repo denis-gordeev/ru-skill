@@ -32,7 +32,7 @@ function normalizeLeagueId(value = 1) {
   const leagueId = LEAGUE_ALIAS_MAP.get(token);
 
   if (!leagueId) {
-    throw new Error(`leagueId должен разрешаться в K League 1 или 2. Получено: ${value}`);
+    throw new Error(`leagueId (идентификатор лиги) должен разрешаться в K League 1 или 2. Получено: ${value}`);
   }
 
   return leagueId;
@@ -41,7 +41,7 @@ function normalizeLeagueId(value = 1) {
 function normalizeDateInput(value) {
   if (value instanceof Date) {
     if (Number.isNaN(value.getTime())) {
-      throw new Error("date должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
+      throw new Error("date (дата) должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
     }
 
     const formatter = new Intl.DateTimeFormat("en-CA", {
@@ -62,11 +62,11 @@ function normalizeDateInput(value) {
 
   const match = String(value || "").trim().match(/^(\d{4})[-.](\d{2})[-.](\d{2})$/);
   if (!match) {
-    throw new Error("date должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
+    throw new Error("date (дата) должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
   }
 
   if (!isValidCalendarDate(match[1], match[2], match[3])) {
-    throw new Error("date должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
+    throw new Error("date (дата) должен быть корректной датой Date или строкой в формате ГГГГ-ММ-ДД.");
   }
 
   return buildDateParts(match[1], match[2], match[3]);

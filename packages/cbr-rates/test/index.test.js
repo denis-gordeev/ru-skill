@@ -48,7 +48,7 @@ test("публичные загрузчики нормализуют запро�
       return makeXmlResponse(daily20260401);
     }
 
-    throw new Error(`Неожиданный имитированный date_req: ${dateReq}`);
+    throw new Error(`Неожиданный имитированный date_req (запрошенная дата): ${dateReq}`);
   };
 
   try {

@@ -158,7 +158,7 @@ function normalizeVacancyCard(item) {
  */
 function parseVacancySearchResponse(payload) {
   if (!Array.isArray(payload?.items)) {
-    throw new Error("Ответ HH не содержит массив items.");
+    throw new Error("Ответ HH не содержит массив items (список вакансий).");
   }
 
   return {

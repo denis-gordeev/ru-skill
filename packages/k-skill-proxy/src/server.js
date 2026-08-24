@@ -111,7 +111,7 @@ function normalizeFineDustQuery(query) {
   const stationName = trimOrNull(query.stationName ?? query.station_name);
 
   if (!regionHint && !stationName) {
-    throw new Error("Укажите regionHint или stationName.");
+    throw new Error("Укажите regionHint (подсказка региона) или stationName (название станции).");
   }
 
   return {
@@ -131,7 +131,7 @@ async function proxyAirKoreaRequest({ service, operation, query, serviceKey, fet
       contentType: "application/json; charset=utf-8",
       body: JSON.stringify({
         error: "upstream_not_configured",
-        message: "AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике."
+        message: "AIR_KOREA_OPEN_API_KEY (ключ доступа к программному интерфейсу) не настроен на сервере-посреднике."
       })
     };
   }
@@ -256,7 +256,7 @@ function buildServer({ env = process.env, provider = null } = {}) {
       reply.code(503);
       return {
         error: "upstream_not_configured",
-        message: "AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике.",
+        message: "AIR_KOREA_OPEN_API_KEY (ключ доступа к программному интерфейсу) не настроен на сервере-посреднике.",
         proxy: {
           name: config.proxyName,
           cache: {

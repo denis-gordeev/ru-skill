@@ -39,7 +39,7 @@ const READ_ONLY_COMMANDS = Object.freeze({
 
 function assertReadOnlyCommandName(commandName) {
   if (!READ_ONLY_COMMANDS[commandName]) {
-    throw new Error(`Неподдерживаемая команда tossctl только для чтения: ${commandName}`);
+    throw new Error(`Неподдерживаемая команда tossctl (утилита командной строки) только для чтения: ${commandName}`);
   }
 
   return commandName;
@@ -71,7 +71,7 @@ function parseJsonOutput(stdout, commandName) {
   const text = String(stdout || "").trim();
 
   if (!text) {
-    throw new Error(`tossctl ${commandName} вернул пустой вывод.`);
+    throw new Error(`tossctl (утилита командной строки) ${commandName} вернул пустой вывод.`);
   }
 
   try {
@@ -81,7 +81,7 @@ function parseJsonOutput(stdout, commandName) {
     };
   } catch (error) {
     throw new Error(
-      `Не удалось разобрать JSON-вывод tossctl для ${commandName}: ${error.message}`,
+      `Не удалось разобрать JSON-вывод tossctl (утилита командной строки) для ${commandName}: ${error.message}`,
       { cause: error }
     );
   }
@@ -91,7 +91,7 @@ function normalizeMarket(value) {
   const market = String(value || "").trim().toLowerCase();
 
   if (!["all", "us", "kr"].includes(market)) {
-    throw new Error(`market должен быть одним из: all, us, kr. Получено: ${value}`);
+    throw new Error(`market (рынок) должен быть одним из: all (все), us (США), kr (Корея). Получено: ${value}`);
   }
 
   return market;
@@ -101,7 +101,7 @@ function normalizeSymbol(value) {
   const symbol = String(value || "").trim();
 
   if (!symbol) {
-    throw new Error("symbol обязателен.");
+    throw new Error("symbol (тикер) обязателен.");
   }
 
   return symbol;
@@ -109,7 +109,7 @@ function normalizeSymbol(value) {
 
 function normalizeSymbols(values) {
   if (!Array.isArray(values) || values.length === 0) {
-    throw new Error("symbols должен быть непустым массивом.");
+    throw new Error("symbols (список тикеров) должен быть непустым массивом.");
   }
 
   return values.map(normalizeSymbol);

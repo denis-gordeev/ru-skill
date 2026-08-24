@@ -30,7 +30,7 @@ function buildWarningsIndexUrl(regionHost, options = {}) {
   const page = options.page ?? 0;
 
   if (!Number.isInteger(page) || page < 0) {
-    throw new Error("page должен быть целым числом, большим или равным 0.");
+    throw new Error("page (номер страницы) должен быть целым числом, большим или равным 0.");
   }
 
   const url = new URL(`${buildRegionOrigin(regionHost)}${WARNINGS_SECTION_PATH}`);
@@ -51,7 +51,7 @@ function buildWarningUrl(regionHost, warningPathOrId) {
   const normalized = String(warningPathOrId).trim();
 
   if (!normalized) {
-    throw new Error("warningPathOrId должен быть непустой строкой или числом.");
+    throw new Error("warningPathOrId (путь или идентификатор предупреждения) должен быть непустой строкой или числом.");
   }
 
   if (/^https?:\/\//i.test(normalized)) {
@@ -66,7 +66,7 @@ function buildWarningUrl(regionHost, warningPathOrId) {
     return new URL(normalized, buildRegionOrigin(regionHost)).toString();
   }
 
-  throw new Error("warningPathOrId должен быть абсолютным адресом МЧС, относительным путём или числовым идентификатором предупреждения.");
+  throw new Error("warningPathOrId (путь или идентификатор предупреждения) должен быть абсолютным адресом МЧС, относительным путём или числовым идентификатором предупреждения.");
 }
 
 const FETCH_TIMEOUT_MS = 15_000;

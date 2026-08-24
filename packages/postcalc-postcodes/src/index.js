@@ -14,7 +14,7 @@ function normalizePostalCode(postalCode) {
   const normalized = String(postalCode).trim();
 
   if (!/^\d{6}$/.test(normalized)) {
-    throw new Error("postalCode должен быть 6-значным российским почтовым индексом.");
+    throw new Error("postalCode (почтовый индекс) должен быть 6-значным российским почтовым индексом.");
   }
 
   return normalized;
@@ -28,7 +28,7 @@ function normalizeCityKey(cityKey) {
   const normalized = String(cityKey).trim();
 
   if (!normalized) {
-    throw new Error("cityKey должен быть непустой строкой.");
+    throw new Error("cityKey (ключ города) должен быть непустой строкой.");
   }
 
   return normalized;

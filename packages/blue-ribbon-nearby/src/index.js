@@ -55,7 +55,7 @@ async function fetchJson(url, options = {}) {
 
 function assertDistanceMeters(distanceMeters) {
   if (!Number.isFinite(distanceMeters) || distanceMeters <= 0) {
-    throw new Error("distanceMeters должен быть положительным числом.");
+    throw new Error("distanceMeters (расстояние в метрах) должен быть положительным числом.");
   }
 }
 
@@ -148,7 +148,7 @@ async function searchNearbyByCoordinates(options) {
   const limit = options.limit ?? 10;
 
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-    throw new Error("latitude и longitude должны быть конечными числами.");
+    throw new Error("latitude (широта) и longitude (долгота) должны быть конечными числами.");
   }
 
   const params = buildNearbySearchParams({
@@ -206,7 +206,7 @@ async function searchNearbyByLocationQuery(locationQuery, options = {}) {
 
   if (matches.length === 0) {
     throw new Error(
-      "Ни одна официальная зона Blue Ribbon не соответствует этому запросу. Уточните район, станцию, достопримечательность или координаты (lat/lng).",
+      "Ни одна официальная зона Blue Ribbon не соответствует этому запросу. Уточните район, станцию, достопримечательность или координаты (широта/долгота).",
     );
   }
 

@@ -52,7 +52,7 @@ async function searchProducts(query, opts = {}) {
 async function getProduct(productUrl, opts = {}) {
   const url = normalizeProductUrl(productUrl);
   if (!url) {
-    throw new Error("productUrl обязателен");
+    throw new Error("productUrl (адрес товара) обязателен");
   }
 
   const html = await fetchHtml(url, opts);

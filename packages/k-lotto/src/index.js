@@ -94,7 +94,7 @@ async function checkNumber(round, ticketNumbers) {
  */
 function assertValidRound(round) {
   if (!Number.isInteger(round) || round < 1) {
-    throw new Error("round должен быть положительным целым числом.");
+    throw new Error("round (номер тиража) должен быть положительным целым числом.");
   }
 }
 

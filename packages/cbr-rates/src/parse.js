@@ -74,7 +74,7 @@ function parseDailyRatesXml(xml) {
   const rootMatch = xml.match(VALCURS_PATTERN);
 
   if (!rootMatch) {
-    throw new Error("Не удалось найти корневой элемент <ValCurs> в XML-ответе ЦБ РФ.");
+    throw new Error("Не удалось найти корневой элемент <ValCurs> (курсы валют) в XML-ответе ЦБ РФ.");
   }
 
   const rootAttributes = parseAttributes(rootMatch[1]);
@@ -100,7 +100,7 @@ function parseDailyRatesXml(xml) {
   }
 
   if (currencies.length === 0) {
-    throw new Error("XML-ответ ЦБ РФ не содержит элементов <Valute>.");
+    throw new Error("XML-ответ ЦБ РФ не содержит элементов <Valute> (валюты).");
   }
 
   return {
@@ -118,7 +118,7 @@ function findCurrencyByCode(payload, charCode) {
   const normalizedCode = String(charCode).trim().toUpperCase();
 
   if (!/^[A-Z]{3}$/.test(normalizedCode)) {
-    throw new Error("charCode должен быть трёхбуквенным кодом валюты ISO.");
+    throw new Error("charCode (буквенный код валюты) должен быть трёхбуквенным кодом валюты ISO.");
   }
 
   const currency = payload.currencies.find((entry) => entry.charCode === normalizedCode);

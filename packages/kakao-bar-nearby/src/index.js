@@ -167,7 +167,7 @@ async function searchNearbyBarsByLocationQuery(locationQuery, options = {}) {
   const query = String(locationQuery || "").trim();
 
   if (!query) {
-    throw new Error("locationQuery обязателен.");
+    throw new Error("locationQuery (поисковый запрос местоположения) обязателен.");
   }
 
   let { anchor, anchorCandidates } = await resolveAnchor(query, options);

@@ -131,18 +131,18 @@ function buildPayoutRow(rank, winners, prizeAmount, totalPrizeAmount) {
  */
 function normalizeTicket(ticketNumbers) {
   if (!Array.isArray(ticketNumbers) || ticketNumbers.length !== 6) {
-    throw new Error("ticketNumbers должен содержать ровно 6 значений.");
+    throw new Error("ticketNumbers (номера билета) должен содержать ровно 6 значений.");
   }
 
   const normalized = ticketNumbers.map((value) => Number(value));
 
   if (normalized.some((value) => !Number.isInteger(value) || value < 1 || value > 45)) {
-    throw new Error("ticketNumbers должен содержать целые числа от 1 до 45.");
+    throw new Error("ticketNumbers (номера билета) должен содержать целые числа от 1 до 45.");
   }
 
   const uniqueCount = new Set(normalized).size;
   if (uniqueCount !== 6) {
-    throw new Error("ticketNumbers не должен содержать дубликаты.");
+    throw new Error("ticketNumbers (номера билета) не должен содержать дубликаты.");
   }
 
   return normalized.sort((left, right) => left - right);

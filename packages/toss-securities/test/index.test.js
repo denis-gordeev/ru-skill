@@ -37,7 +37,7 @@ test("buildReadOnlyCommand собирает аргументы tossctl для п
 
 test("проверка корректности команд только для чтения отклоняет неподдерживаемые или опасные имена команд", () => {
   assert.equal(assertReadOnlyCommandName("accountSummary"), "accountSummary");
-  assert.throws(() => assertReadOnlyCommandName("orderPlace"), /Неподдерживаемая команда tossctl только для чтения/);
+  assert.throws(() => assertReadOnlyCommandName("orderPlace"), /Неподдерживаемая команда tossctl \(утилита командной строки\) только для чтения/);
 });
 
 test("parseJsonOutput аннотирует нагрузку JSON исходной командой", () => {

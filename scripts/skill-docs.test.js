@@ -499,10 +499,10 @@ test("исходный код mchs-storm-warnings использует русс�
   const index = read(path.join("packages", "mchs-storm-warnings", "src", "index.js"));
   const parse = read(path.join("packages", "mchs-storm-warnings", "src", "parse.js"));
 
-  assert.match(index, /page должен быть целым числом/);
-  assert.match(index, /warningPathOrId должен быть непустой строкой/);
+  assert.match(index, /page \(номер страницы\) должен быть целым числом/);
+  assert.match(index, /warningPathOrId \(путь или идентификатор предупреждения\) должен быть непустой строкой/);
   assert.match(index, /Запрос к МЧС не удался/);
-  assert.match(parse, /regionHost должен быть именем узла региона МЧС/);
+  assert.match(parse, /regionHost \(имя узла региона\) должен быть именем узла региона МЧС/);
 
   assert.doesNotMatch(index, /page must be an integer/);
   assert.doesNotMatch(index, /warningPathOrId must be a non-empty/);
@@ -888,7 +888,7 @@ test("исходный код kleague-results использует русски�
   const parse = read(path.join("packages", "kleague-results", "src", "parse.js"));
   const index = read(path.join("packages", "kleague-results", "src", "index.js"));
 
-  assert.match(parse, /leagueId должен разрешаться в K League 1 или 2/);
+  assert.match(parse, /leagueId \(идентификатор лиги\) должен разрешаться в K League 1 или 2/);
   assert.match(index, /Запрос к K League завершился ошибкой/);
 
   assert.doesNotMatch(parse, /leagueId must resolve to K League/);
@@ -1249,10 +1249,10 @@ test("исходный код toss-securities использует русски�
   const parse = read(path.join("packages", "toss-securities", "src", "parse.js"));
   const index = read(path.join("packages", "toss-securities", "src", "index.js"));
 
-  assert.match(parse, /Неподдерживаемая команда tossctl только для чтения/);
+  assert.match(parse, /Неподдерживаемая команда tossctl \(утилита командной строки\) только для чтения/);
   assert.match(parse, /вернул пустой вывод/);
-  assert.match(parse, /Не удалось разобрать JSON-вывод tossctl/);
-  assert.match(parse, /market должен быть одним из/);
+  assert.match(parse, /Не удалось разобрать JSON-вывод tossctl \(утилита командной строки\)/);
+  assert.match(parse, /market \(рынок\) должен быть одним из/);
   assert.match(index, /завершился с ошибкой/);
 
   assert.doesNotMatch(parse, /Unsupported read-only tossctl command/);
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-08-20");
-  assert.equal(todoStatus.round, 131);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 131\)/);
+  assert.equal(todoStatus.date, "2026-08-24");
+  assert.equal(todoStatus.round, 132);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 132\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -2684,7 +2684,7 @@ test("k-skill-proxy использует русские значения lookupM
   assert.match(airkorea, /lookupMode: "запасной вариант"/);
   assert.match(airkorea, /Требуется реализация fetch/);
   assert.doesNotMatch(airkorea, /A fetch implementation is required/);
-  assert.match(airkorea, /AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике/);
+  assert.match(airkorea, /AIR_KOREA_OPEN_API_KEY \(ключ доступа к программному интерфейсу\) не настроен на сервере-посреднике/);
   assert.doesNotMatch(airkorea, /AIR_KOREA_OPEN_API_KEY is not configured/);
 });
 
@@ -5391,4 +5391,83 @@ test("раунд 81: устранены оставшиеся гибриды ENGL
   assert.doesNotMatch(roadmap, /XML-сервис курсов/);
   assert.doesNotMatch(roadmap, /API-функции без/);
   assert.doesNotMatch(roadmap, /runtime-очистка/);
+});
+
+test("пользовательские ошибки целевых и устаревших пакетов поясняют английские имена параметров на русском", () => {
+  const hhIndex = read(path.join("packages", "hh-vacancies", "src", "index.js"));
+  assert.match(hhIndex, /page \(номер страницы\) должен быть/);
+  assert.match(hhIndex, /perPage \(элементов на страницу\) должен быть/);
+  assert.match(hhIndex, /areaId \(идентификатор региона\)/);
+  assert.match(hhIndex, /vacancyId \(идентификатор вакансии\)/);
+  assert.doesNotMatch(hhIndex, /"page должен быть/);
+  assert.doesNotMatch(hhIndex, /"perPage должен быть/);
+
+  const pravoParse = read(path.join("packages", "pravo-documents", "src", "parse.js"));
+  assert.match(pravoParse, /page \(номер страницы\) должен быть/);
+  assert.match(pravoParse, /pageSize \(размер страницы\) должен быть/);
+  assert.match(pravoParse, /eoNumber \(номер электронной публикации\) должен быть/);
+
+  const moexIndex = read(path.join("packages", "moex-shares", "src", "index.js"));
+  assert.match(moexIndex, /secId \(идентификатор ценной бумаги\) должен/);
+  assert.doesNotMatch(moexIndex, /"secId должен/);
+
+  const cbrIndex = read(path.join("packages", "cbr-rates", "src", "index.js"));
+  assert.match(cbrIndex, /date \(дата\) должен быть/);
+
+  const cbrParse = read(path.join("packages", "cbr-rates", "src", "parse.js"));
+  assert.match(cbrParse, /charCode \(буквенный код валюты\) должен быть/);
+
+  const ymIndex = read(path.join("packages", "yandex-market-search", "src", "index.js"));
+  assert.match(ymIndex, /productUrl \(адрес товара\) обязателен/);
+
+  const postcalcIndex = read(path.join("packages", "postcalc-postcodes", "src", "index.js"));
+  assert.match(postcalcIndex, /postalCode \(почтовый индекс\) должен быть/);
+  assert.match(postcalcIndex, /cityKey \(ключ города\) должен быть/);
+
+  const brIndex = read(path.join("packages", "blue-ribbon-nearby", "src", "index.js"));
+  assert.match(brIndex, /distanceMeters \(расстояние в метрах\) должен быть/);
+  assert.match(brIndex, /latitude \(широта\) и longitude \(долгота\)/);
+  assert.doesNotMatch(brIndex, /\(lat\/lng\)/);
+  assert.match(brIndex, /\(широта\/долгота\)/);
+
+  const daisoIndex = read(path.join("packages", "daiso-product-search", "src", "index.js"));
+  assert.match(daisoIndex, /storeQuery \(поисковый запрос магазина\) обязателен/);
+  assert.match(daisoIndex, /productQuery \(поисковый запрос товара\) обязателен/);
+
+  const kLottoIndex = read(path.join("packages", "k-lotto", "src", "index.js"));
+  assert.match(kLottoIndex, /round \(номер тиража\) должен быть/);
+
+  const kLottoParse = read(path.join("packages", "k-lotto", "src", "parse.js"));
+  assert.match(kLottoParse, /ticketNumbers \(номера билета\) должен содержать/);
+  assert.match(kLottoParse, /ticketNumbers \(номера билета\) не должен/);
+
+  const kakaoIndex = read(path.join("packages", "kakao-bar-nearby", "src", "index.js"));
+  assert.match(kakaoIndex, /locationQuery \(поисковый запрос местоположения\) обязателен/);
+
+  const klParse = read(path.join("packages", "kleague-results", "src", "parse.js"));
+  assert.match(klParse, /leagueId \(идентификатор лиги\) должен разрешаться/);
+  assert.match(klParse, /date \(дата\) должен быть корректной/);
+
+  const tossParse = read(path.join("packages", "toss-securities", "src", "parse.js"));
+  assert.match(tossParse, /tossctl \(утилита командной строки\)/);
+  assert.match(tossParse, /market \(рынок\) должен быть/);
+  assert.match(tossParse, /symbol \(тикер\) обязателен/);
+  assert.match(tossParse, /symbols \(список тикеров\) должен быть/);
+
+  const tossIndex = read(path.join("packages", "toss-securities", "src", "index.js"));
+  assert.match(tossIndex, /tossctl \(утилита командной строки\)/);
+});
+
+test("пользовательские сообщения k-skill-proxy поясняют английские идентификаторы на русском", () => {
+  const airkorea = read(path.join("packages", "k-skill-proxy", "src", "airkorea.js"));
+  assert.match(airkorea, /403 \(доступ запрещён\)/);
+  assert.doesNotMatch(airkorea, /403 Forbidden/);
+  assert.match(airkorea, /AIR_KOREA_OPEN_API_KEY \(ключ доступа к программному интерфейсу\)/);
+  assert.match(airkorea, /regionHint \(подсказка региона\)/);
+  assert.match(airkorea, /stationName \(название станции\)/);
+
+  const server = read(path.join("packages", "k-skill-proxy", "src", "server.js"));
+  assert.match(server, /regionHint \(подсказка региона\)/);
+  assert.match(server, /stationName \(название станции\)/);
+  assert.match(server, /AIR_KOREA_OPEN_API_KEY \(ключ доступа к программному интерфейсу\)/);
 });

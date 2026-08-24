@@ -27,7 +27,7 @@ function normalizeDateInput(value) {
     return new Date(`${value}T00:00:00Z`);
   }
 
-  throw new Error("date должен быть undefined, Date или строкой в формате ГГГГ-ММ-ДД.");
+  throw new Error("date (дата) должен быть undefined, Date или строкой в формате ГГГГ-ММ-ДД.");
 }
 
 /**

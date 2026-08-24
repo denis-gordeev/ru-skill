@@ -14,7 +14,7 @@ function normalizeSecId(secId) {
   const normalized = String(secId).trim().toUpperCase();
 
   if (!/^[A-Z0-9._-]{1,24}$/.test(normalized)) {
-    throw new Error("secId должен содержать только символы тикера MOEX.");
+    throw new Error("secId (идентификатор ценной бумаги) должен содержать только символы тикера MOEX.");
   }
 
   return normalized;

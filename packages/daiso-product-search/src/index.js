@@ -124,11 +124,11 @@ async function lookupStoreProductAvailability(options = {}) {
   const productQuery = String(options.productQuery || "").trim()
 
   if (!storeQuery) {
-    throw new Error("storeQuery обязателен.")
+    throw new Error("storeQuery (поисковый запрос магазина) обязателен.")
   }
 
   if (!productQuery) {
-    throw new Error("productQuery обязателен.")
+    throw new Error("productQuery (поисковый запрос товара) обязателен.")
   }
 
   const [storeResult, productResult] = await Promise.all([

@@ -44,7 +44,7 @@ function normalizeNumericId(value, label) {
  * @returns {string}
  */
 function buildAreaUrl(areaId) {
-  return `${HH_API_BASE_URL}/areas/${normalizeNumericId(areaId, "areaId")}`;
+  return `${HH_API_BASE_URL}/areas/${normalizeNumericId(areaId, "areaId (идентификатор региона)")}`;
 }
 
 /**
@@ -52,7 +52,7 @@ function buildAreaUrl(areaId) {
  * @returns {string}
  */
 function buildVacancyUrl(vacancyId) {
-  return `${HH_API_BASE_URL}/vacancies/${normalizeNumericId(vacancyId, "vacancyId")}`;
+  return `${HH_API_BASE_URL}/vacancies/${normalizeNumericId(vacancyId, "vacancyId (идентификатор вакансии)")}`;
 }
 
 /**
@@ -65,12 +65,12 @@ function buildVacancySearchUrl(text, options = {}) {
   url.searchParams.set("text", normalizeSearchText(text));
 
   if (options.areaId !== undefined) {
-    url.searchParams.set("area", normalizeNumericId(options.areaId, "areaId"));
+    url.searchParams.set("area", normalizeNumericId(options.areaId, "areaId (идентификатор региона)"));
   }
 
   if (options.page !== undefined) {
     if (!Number.isInteger(options.page) || options.page < 0) {
-      throw new Error("page должен быть целым числом, большим или равным 0.");
+      throw new Error("page (номер страницы) должен быть целым числом, большим или равным 0.");
     }
 
     url.searchParams.set("page", String(options.page));
@@ -78,7 +78,7 @@ function buildVacancySearchUrl(text, options = {}) {
 
   if (options.perPage !== undefined) {
     if (!Number.isInteger(options.perPage) || options.perPage < 1 || options.perPage > 100) {
-      throw new Error("perPage должен быть целым числом от 1 до 100.");
+      throw new Error("perPage (элементов на страницу) должен быть целым числом от 1 до 100.");
     }
 
     url.searchParams.set("per_page", String(options.perPage));
@@ -105,7 +105,7 @@ async function fetchJson(url) {
  * @param {string|number} areaId
  */
 async function getAreaOverview(areaId) {
-  const normalizedAreaId = normalizeNumericId(areaId, "areaId");
+  const normalizedAreaId = normalizeNumericId(areaId, "areaId (идентификатор региона)");
   const payload = await fetchJson(buildAreaUrl(normalizedAreaId));
 
   return parseAreaResponse(payload);
@@ -126,7 +126,7 @@ async function searchVacancies(text, options = {}) {
  * @param {string|number} vacancyId
  */
 async function getVacancyOverview(vacancyId) {
-  const normalizedVacancyId = normalizeNumericId(vacancyId, "vacancyId");
+  const normalizedVacancyId = normalizeNumericId(vacancyId, "vacancyId (идентификатор вакансии)");
   const payload = await fetchJson(buildVacancyUrl(normalizedVacancyId));
 
   return parseVacancyResponse(payload);

@@ -216,7 +216,7 @@ async function fetchJson(baseUrl, params, { fetchImpl = global.fetch, headers = 
 
     if (response.status === 403) {
       throw new Error(
-        "AirKorea вернул 403 Forbidden. Возможные причины: ожидание синхронизации после регистрации приложения (1–2 часа), вызов незарегистрированного программного интерфейса, ошибка кодировки/значения сервисного ключа, незарегистрированный домен или IP.",
+        "AirKorea вернул 403 (доступ запрещён). Возможные причины: ожидание синхронизации после регистрации приложения (1–2 часа), вызов незарегистрированного программного интерфейса, ошибка кодировки/значения сервисного ключа, незарегистрированный домен или IP.",
       );
     }
 
@@ -228,7 +228,7 @@ async function fetchJson(baseUrl, params, { fetchImpl = global.fetch, headers = 
 
 async function fetchStationLookup({ regionHint = null, stationName = null, serviceKey, fetchImpl = global.fetch, headers = {}, stationServiceUrl = STATION_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY (ключ доступа к программному интерфейсу) не настроен на сервере-посреднике.");
   }
 
   const common = {
@@ -252,12 +252,12 @@ async function fetchStationLookup({ regionHint = null, stationName = null, servi
     };
   }
 
-  throw new Error("Необходимо указать regionHint или stationName.");
+  throw new Error("Необходимо указать regionHint (подсказка региона) или stationName (название станции).");
 }
 
 async function fetchMeasurementPayload({ stationName, serviceKey, fetchImpl = global.fetch, headers = {}, measurementServiceUrl = MEASUREMENT_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY (ключ доступа к программному интерфейсу) не настроен на сервере-посреднике.");
   }
 
   return fetchJson(`${measurementServiceUrl}/getMsrstnAcctoRltmMesureDnsty`, {
@@ -276,7 +276,7 @@ async function fetchMeasurementPayload({ stationName, serviceKey, fetchImpl = gl
 
 async function fetchCtprvnMeasurementPayload({ sidoName, serviceKey, fetchImpl = global.fetch, headers = {}, measurementServiceUrl = MEASUREMENT_SERVICE_URL }) {
   if (!serviceKey) {
-    throw new Error("AIR_KOREA_OPEN_API_KEY не настроен на сервере-посреднике.");
+    throw new Error("AIR_KOREA_OPEN_API_KEY (ключ доступа к программному интерфейсу) не настроен на сервере-посреднике.");
   }
 
   return fetchJson(`${measurementServiceUrl}/getCtprvnRltmMesureDnsty`, {
@@ -314,7 +314,7 @@ async function fetchFineDustReport({ regionHint = null, stationName = null, serv
   } catch (error) {
     const candidates = buildStationNameCandidates({ stationName, regionHint });
     const canTryMeasurementOnlyFallback =
-      String(error?.message || "").includes("403 Forbidden") &&
+      String(error?.message || "").includes("403 (доступ запрещён)") &&
       candidates.length > 0;
 
     if (!canTryMeasurementOnlyFallback) {
