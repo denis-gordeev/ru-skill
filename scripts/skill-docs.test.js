@@ -1419,8 +1419,8 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
   assert.equal(todoStatus.date, "2026-08-24");
-  assert.equal(todoStatus.round, 132);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 132\)/);
+  assert.equal(todoStatus.round, 133);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 133\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -5402,6 +5402,9 @@ test("пользовательские ошибки целевых и устар
   assert.doesNotMatch(hhIndex, /"page должен быть/);
   assert.doesNotMatch(hhIndex, /"perPage должен быть/);
 
+  const hhParse = read(path.join("packages", "hh-vacancies", "src", "parse.js"));
+  assert.match(hhParse, /items \(список вакансий\)/);
+
   const pravoParse = read(path.join("packages", "pravo-documents", "src", "parse.js"));
   assert.match(pravoParse, /page \(номер страницы\) должен быть/);
   assert.match(pravoParse, /pageSize \(размер страницы\) должен быть/);
@@ -5411,14 +5414,25 @@ test("пользовательские ошибки целевых и устар
   assert.match(moexIndex, /secId \(идентификатор ценной бумаги\) должен/);
   assert.doesNotMatch(moexIndex, /"secId должен/);
 
+  const moexParse = read(path.join("packages", "moex-shares", "src", "parse.js"));
+  assert.match(moexParse, /columns \(столбцы\)/);
+  assert.match(moexParse, /data \(данные\)/);
+  assert.match(moexParse, /securities \(ценные бумаги\)/);
+  assert.match(moexParse, /marketdata \(рыночные данные\)/);
+
   const cbrIndex = read(path.join("packages", "cbr-rates", "src", "index.js"));
   assert.match(cbrIndex, /date \(дата\) должен быть/);
 
   const cbrParse = read(path.join("packages", "cbr-rates", "src", "parse.js"));
   assert.match(cbrParse, /charCode \(буквенный код валюты\) должен быть/);
+  assert.match(cbrParse, /ValCurs> \(курсы валют\)/);
+  assert.match(cbrParse, /Valute> \(валюты\)/);
 
   const ymIndex = read(path.join("packages", "yandex-market-search", "src", "index.js"));
   assert.match(ymIndex, /productUrl \(адрес товара\) обязателен/);
+
+  const yrIndex = read(path.join("packages", "yandex-rasp", "src", "index.js"));
+  assert.match(yrIndex, /opts\.apiKey \(ключ\)/);
 
   const postcalcIndex = read(path.join("packages", "postcalc-postcodes", "src", "index.js"));
   assert.match(postcalcIndex, /postalCode \(почтовый индекс\) должен быть/);
@@ -5451,6 +5465,9 @@ test("пользовательские ошибки целевых и устар
   const tossParse = read(path.join("packages", "toss-securities", "src", "parse.js"));
   assert.match(tossParse, /tossctl \(утилита командной строки\)/);
   assert.match(tossParse, /market \(рынок\) должен быть/);
+  assert.match(tossParse, /all \(все\)/);
+  assert.match(tossParse, /us \(США\)/);
+  assert.match(tossParse, /kr \(Корея\)/);
   assert.match(tossParse, /symbol \(тикер\) обязателен/);
   assert.match(tossParse, /symbols \(список тикеров\) должен быть/);
 
