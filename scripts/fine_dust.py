@@ -50,8 +50,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     report.add_argument("--lon", type=float, help="Долгота WGS84")
     report.add_argument("--region-hint", help="Подсказка региона для резервного поиска")
     report.add_argument("--station-name", help="Явное название станции")
-    report.add_argument("--station-file", help="Локальный JSON-файл со станциями")
-    report.add_argument("--measurement-file", help="Локальный JSON-файл с замерами")
+    report.add_argument("--station-file", help="Локальный файл JSON со станциями")
+    report.add_argument("--measurement-file", help="Локальный файл JSON с замерами")
     report.add_argument("--json", action="store_true", help="Вывести JSON вместо текста")
     return parser.parse_args(argv)
 

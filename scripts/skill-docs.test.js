@@ -5504,6 +5504,15 @@ test("устаревшие возвращаемые объекты поясня�
   assert.match(brParse, /matchedByLabel.*MATCHED_BY_LABEL_MAP/);
 });
 
+test("устаревшие README пакетов поясняют английские идентификаторы возвращаемых значений на русском", () => {
+  const klReadme = read(path.join("packages", "kleague-results", "README.md"));
+  assert.match(klReadme, /`?state`? \(состояние\)/);
+  assert.match(klReadme, /`?winner`? \(победитель\)/);
+
+  const brReadme = read(path.join("packages", "blue-ribbon-nearby", "README.md"));
+  assert.match(brReadme, /`?matchedBy`? \(способ сопоставления\)/);
+});
+
 test("пользовательские ошибки не содержат английских-первых гибридов в описаниях форматов", () => {
   const kLottoParse = read(path.join("packages", "k-lotto", "src", "parse.js"));
   assert.match(kLottoParse, /объект JSON/);
@@ -5516,4 +5525,10 @@ test("пользовательские ошибки не содержат анг
   const cbrParse = read(path.join("packages", "cbr-rates", "src", "parse.js"));
   assert.match(cbrParse, /ответ XML/i);
   assert.doesNotMatch(cbrParse, /XML-ответ/);
+});
+
+test("интерфейсы командной строки не содержат английских-первых гибридов в справке", () => {
+  const fineDustPy = read(path.join("scripts", "fine_dust.py"));
+  assert.match(fineDustPy, /файл JSON/);
+  assert.doesNotMatch(fineDustPy, /JSON-файл/);
 });

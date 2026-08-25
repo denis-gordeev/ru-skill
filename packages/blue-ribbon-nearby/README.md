@@ -92,3 +92,11 @@ main().catch((error) => {
 - `searchNearbyByLocationQuery(query, options?)`
 - `searchNearbyByCoordinates({ latitude, longitude }, options?)`
 - `searchOfficialZones(query, options?)`
+
+## Возвращаемые значения
+
+### Зона-кандидат (`candidates[].*`)
+
+При поиске через `searchNearbyByLocationQuery` возвращается массив `candidates`, где каждый элемент содержит:
+
+- `matchedBy` (способ сопоставления): программный идентификатор того, как зона была найдена. Возможные значения: `"alias"` (по псевдониму), `"query"` (по запросу). Рядом всегда возвращается `matchedByLabel` с русской меткой.
