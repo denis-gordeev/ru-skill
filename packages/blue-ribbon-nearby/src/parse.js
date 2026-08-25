@@ -13,6 +13,11 @@ const LOCATION_QUERY_ALIASES = new Map(
   }).map(([query, aliases]) => [normalizeText(query), aliases])
 );
 
+const MATCHED_BY_LABEL_MAP = {
+  query: "по запросу",
+  alias: "по псевдониму",
+};
+
 function decodeHtml(value) {
   return value
     .replace(/&amp;/g, "&")
@@ -220,7 +225,8 @@ function findZoneMatches(query, zones, options = {}) {
         zone,
         score: bestMatch.score,
         matchedQuery: bestMatch.matchedQuery,
-        matchedBy: bestMatch.matchedBy
+        matchedBy: bestMatch.matchedBy,
+        matchedByLabel: MATCHED_BY_LABEL_MAP[bestMatch.matchedBy] ?? null
       };
     })
     .filter((candidate) => candidate.score > 0)

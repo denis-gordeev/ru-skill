@@ -32,7 +32,7 @@ function extractTagText(xml, tagName) {
   const match = xml.match(new RegExp(`<${tagName}>([\\s\\S]*?)<\\/${tagName}>`, "i"));
 
   if (!match) {
-    throw new Error(`Отсутствует <${tagName}> в XML-ответе ЦБ РФ.`);
+    throw new Error(`Отсутствует <${tagName}> в ответе XML ЦБ РФ.`);
   }
 
   return decodeXmlEntities(match[1].trim());
@@ -74,7 +74,7 @@ function parseDailyRatesXml(xml) {
   const rootMatch = xml.match(VALCURS_PATTERN);
 
   if (!rootMatch) {
-    throw new Error("Не удалось найти корневой элемент <ValCurs> (курсы валют) в XML-ответе ЦБ РФ.");
+    throw new Error("Не удалось найти корневой элемент <ValCurs> (курсы валют) в ответе XML ЦБ РФ.");
   }
 
   const rootAttributes = parseAttributes(rootMatch[1]);
@@ -100,7 +100,7 @@ function parseDailyRatesXml(xml) {
   }
 
   if (currencies.length === 0) {
-    throw new Error("XML-ответ ЦБ РФ не содержит элементов <Valute> (валюты).");
+    throw new Error("Ответ XML ЦБ РФ не содержит элементов <Valute> (валюты).");
   }
 
   return {

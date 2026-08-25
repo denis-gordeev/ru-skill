@@ -1251,7 +1251,7 @@ test("исходный код toss-securities использует русски�
 
   assert.match(parse, /Неподдерживаемая команда tossctl \(утилита командной строки\) только для чтения/);
   assert.match(parse, /вернул пустой вывод/);
-  assert.match(parse, /Не удалось разобрать JSON-вывод tossctl \(утилита командной строки\)/);
+  assert.match(parse, /Не удалось разобрать вывод JSON tossctl \(утилита командной строки\)/);
   assert.match(parse, /market \(рынок\) должен быть одним из/);
   assert.match(index, /завершился с ошибкой/);
 
@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-08-24");
-  assert.equal(todoStatus.round, 133);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 133\)/);
+  assert.equal(todoStatus.date, "2026-08-25");
+  assert.equal(todoStatus.round, 134);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 134\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -5487,4 +5487,33 @@ test("пользовательские сообщения k-skill-proxy пояс
   assert.match(server, /regionHint \(подсказка региона\)/);
   assert.match(server, /stationName \(название станции\)/);
   assert.match(server, /AIR_KOREA_OPEN_API_KEY \(ключ доступа к программному интерфейсу\)/);
+});
+
+test("устаревшие возвращаемые объекты поясняют английские идентификаторы полей на русском через поля label", () => {
+  const klParse = read(path.join("packages", "kleague-results", "src", "parse.js"));
+  assert.match(klParse, /WINNER_LABEL_MAP/);
+  assert.match(klParse, /draw.*ничья/);
+  assert.match(klParse, /home.*победа хозяев/);
+  assert.match(klParse, /away.*победа гостей/);
+  assert.match(klParse, /winnerLabel.*determineWinnerLabel/);
+
+  const brParse = read(path.join("packages", "blue-ribbon-nearby", "src", "parse.js"));
+  assert.match(brParse, /MATCHED_BY_LABEL_MAP/);
+  assert.match(brParse, /query.*по запросу/);
+  assert.match(brParse, /alias.*по псевдониму/);
+  assert.match(brParse, /matchedByLabel.*MATCHED_BY_LABEL_MAP/);
+});
+
+test("пользовательские ошибки не содержат английских-первых гибридов в описаниях форматов", () => {
+  const kLottoParse = read(path.join("packages", "k-lotto", "src", "parse.js"));
+  assert.match(kLottoParse, /объект JSON/);
+  assert.doesNotMatch(kLottoParse, /JSON-объект/);
+
+  const tossParse = read(path.join("packages", "toss-securities", "src", "parse.js"));
+  assert.match(tossParse, /вывод JSON/);
+  assert.doesNotMatch(tossParse, /JSON-вывод/);
+
+  const cbrParse = read(path.join("packages", "cbr-rates", "src", "parse.js"));
+  assert.match(cbrParse, /ответ XML/i);
+  assert.doesNotMatch(cbrParse, /XML-ответ/);
 });

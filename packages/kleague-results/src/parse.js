@@ -19,6 +19,12 @@ const STATUS_MAP = {
   CAN: { state: "cancelled", label: "Отменён" },
 };
 
+const WINNER_LABEL_MAP = {
+  draw: "ничья",
+  home: "победа хозяев",
+  away: "победа гостей",
+};
+
 function normalizeLeagueId(value = 1) {
   if (value === null || value === undefined || value === "") {
     return 1;
@@ -197,6 +203,7 @@ function normalizeScheduleItem(item, clubDirectory) {
     awayTeam: stripAliasTokens(awayTeam),
     score,
     winner: determineWinner(score, status),
+    winnerLabel: determineWinnerLabel(score, status),
     venue: {
       shortName: item.fieldName || null,
       name: item.fieldNameFull || item.fieldName || null,
@@ -356,6 +363,11 @@ function determineWinner(score, status) {
   }
 
   return score.home > score.away ? "home" : "away";
+}
+
+function determineWinnerLabel(score, status) {
+  const winner = determineWinner(score, status);
+  return winner ? (WINNER_LABEL_MAP[winner] ?? null) : null;
 }
 
 function normalizeNumber(value) {

@@ -81,7 +81,7 @@ function parseJsonOutput(stdout, commandName) {
     };
   } catch (error) {
     throw new Error(
-      `Не удалось разобрать JSON-вывод tossctl (утилита командной строки) для ${commandName}: ${error.message}`,
+      `Не удалось разобрать вывод JSON tossctl (утилита командной строки) для ${commandName}: ${error.message}`,
       { cause: error }
     );
   }

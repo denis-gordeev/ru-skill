@@ -106,6 +106,7 @@ test("searchNearbyByLocationQuery разрешает документирова�
     assert.equal(result.anchor.zone2, "삼성동/대치동");
     assert.equal(result.candidates[0].zone.zone2, "삼성동/대치동");
     assert.equal(result.candidates[0].matchedBy, "alias");
+    assert.equal(result.candidates[0].matchedByLabel, "по псевдониму");
     assert.equal(result.items.length, 2);
   } finally {
     global.fetch = originalFetch;
@@ -134,6 +135,8 @@ test("searchNearbyByLocationQuery находит совпадение зоны, 
     });
 
     assert.equal(result.anchor.zone2, "광화문/종로2가");
+    assert.equal(result.candidates[0].matchedBy, "query");
+    assert.equal(result.candidates[0].matchedByLabel, "по запросу");
     assert.equal(result.items.length, 2);
     assert.equal(result.items[0].name, "유유안");
     assert.equal(result.items[0].ribbonCount, 2);

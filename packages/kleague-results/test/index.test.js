@@ -44,6 +44,8 @@ test("normalizeScheduleResponse фильтрует дату и псевдони�
   assert.equal(result.matches[0].round, 5);
   assert.equal(result.matches[0].status.code, "FE");
   assert.equal(result.matches[0].status.label, "Завершён");
+  assert.equal(result.matches[0].winner, "home");
+  assert.equal(result.matches[0].winnerLabel, "победа хозяев");
   assert.equal(result.matches[0].homeTeam.code, "K09");
   assert.equal(result.matches[0].homeTeam.name, "서울");
   assert.equal(result.matches[0].homeTeam.fullName, "FC서울");

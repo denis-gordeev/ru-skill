@@ -41,7 +41,7 @@ function formatYmd(raw) {
  */
 function selectRoundItem(payload, round) {
   if (!payload || typeof payload !== "object") {
-    throw new Error("Ожидается JSON-объект от dhlottery.");
+    throw new Error("Ожидается объект JSON от dhlottery.");
   }
 
   const data = /** @type {{ data?: { list?: Array<Record<string, any>> } }} */ (payload).data;
