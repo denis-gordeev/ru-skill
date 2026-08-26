@@ -1418,9 +1418,9 @@ test("плановая документация согласована по сл
   assert.match(roadmap, /TODO\.md[\s\S]*верхние блоки плана/i);
   assert.match(roadmap, /ru-skill-setup[\s\S]*русские заголовки/i);
 
-  assert.equal(todoStatus.date, "2026-08-25");
-  assert.equal(todoStatus.round, 134);
-  assert.match(todo, /## Выполнено в этом раунде \(раунд 134\)/);
+  assert.equal(todoStatus.date, "2026-08-26");
+  assert.equal(todoStatus.round, 135);
+  assert.match(todo, /## Выполнено в этом раунде \(раунд 135\)/);
   assert.match(todo, /## Новые пункты плана/);
   assert.match(todo, /верхние блоки `Статус.*Новые пункты плана`/);
   assert.match(todo, /(ru-skill-setup|k-skill-setup|каноничн.*схем.*заголовков|схем.*заголовков.*каноничн)/i);
@@ -5531,4 +5531,18 @@ test("интерфейсы командной строки не содержат
   const fineDustPy = read(path.join("scripts", "fine_dust.py"));
   assert.match(fineDustPy, /файл JSON/);
   assert.doesNotMatch(fineDustPy, /JSON-файл/);
+});
+
+test("руководства по функциям используют русский-первый порядок в h1-заголовках и поясняют шаблонные параметры адресов", () => {
+  const hhFeature = read(path.join("docs", "features", "hh-vacancies.md"));
+  assert.match(hhFeature, /^# Вакансии HH$/m);
+  assert.doesNotMatch(hhFeature, /^# HH вакансии$/m);
+
+  const postcalcFeature = read(path.join("docs", "features", "postcalc-postcodes.md"));
+  assert.match(postcalcFeature, /^# Почтовые индексы Postcalc$/m);
+  assert.doesNotMatch(postcalcFeature, /^# Postcalc и индексы Почты России$/m);
+
+  const ymFeature = read(path.join("docs", "features", "yandex-market-search.md"));
+  assert.doesNotMatch(ymFeature, /\{slug\}/);
+  assert.match(ymFeature, /\{идентификатор_категории\}/);
 });
